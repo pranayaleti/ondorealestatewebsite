@@ -114,10 +114,11 @@ export default function LandingPage() {
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Find Your Perfect Rental Property
+            Makes your life easier
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300">
-            OnDo Real Estate helps you find the ideal rental home with professional property management services.
+            OnDo Real Estate helps you find the ideal rental home with professional property management services and makes
+            your life easier.
           </p>
           <div className="mx-auto max-w-md">
             <SearchForm />

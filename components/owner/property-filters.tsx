@@ -56,13 +56,19 @@ export function PropertyFilters({ onClose }: PropertyFiltersProps) {
               <Label>Location</Label>
               <Select defaultValue="all">
                 <SelectTrigger>
-                  <SelectValue placeholder="Select location" />
+                  <SelectValue placeholder="Select Location" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Locations</SelectItem>
                   <SelectItem value="salt-lake-city">Salt Lake City, UT</SelectItem>
                   <SelectItem value="provo">Provo, UT</SelectItem>
                   <SelectItem value="ogden">Ogden, UT</SelectItem>
+                  <SelectItem value="lehi">Lehi, UT</SelectItem>
+                  <SelectItem value="draper">Draper, UT</SelectItem>
+                  <SelectItem value="south-jordan">South Jordan, UT</SelectItem>
+                  <SelectItem value="west-jordan">West Jordan, UT</SelectItem>
+                  <SelectItem value="taylorsville">Taylorville, UT</SelectItem>
+                  <SelectItem value="west-valley-city">West Valley City, UT</SelectItem>
                 </SelectContent>
               </Select>
             </div>

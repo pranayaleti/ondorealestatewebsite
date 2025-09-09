@@ -12,7 +12,7 @@ export default function ContactPage() {
     <div className="flex flex-col min-h-screen">
       <PageBanner
         title="Contact Us"
-        subtitle="Get in touch with our property management experts to find your perfect rental or manage your property"
+        subtitle="Get in touch with our property management experts to find your perfect rental or to help you manage your property"
       />
 
       <main className="flex-1">
@@ -34,7 +34,7 @@ export default function ContactPage() {
                       <p className="text-sm text-muted-foreground">
                         123 Main Street, Suite 100
                         <br />
-                        Salt Lake City, UT 84101
+                        Lehi, UT 84043
                       </p>
                     </div>
                   </div>
@@ -42,7 +42,7 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Email</h3>
-                      <p className="text-sm text-muted-foreground">info@ondo.Real Estate.com</p>
+                      <p className="text-sm text-muted-foreground">ondorealestate@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -76,11 +76,11 @@ export default function ContactPage() {
                   <form className="grid gap-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="first-name">First name</Label>
+                        <Label htmlFor="first-name">First Name</Label>
                         <Input id="first-name" placeholder="John" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="last-name">Last name</Label>
+                      <Label htmlFor="last-name">Last Name</Label>
                         <Input id="last-name" placeholder="Doe" />
                       </div>
                     </div>

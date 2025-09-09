@@ -66,20 +66,21 @@ export function Footer() {
             <address className="not-italic text-gray-400">
               123 Main Street, Suite 100
               <br />
-              Salt Lake City, UT 84101
+              Lehi, UT 84043
               <br />
               <Link href="tel:+15551234567" className="hover:text-white">
                 (555) 123-4567
               </Link>
               <br />
-              <Link href="mailto:info@ondo.Real Estate.com" className="hover:text-white">
-                info@ondo.Real Estate.com
+              <Link href="mailto:ondorealestate@gmail.com" className="hover:text-white">
+                ondorealestate@gmail.com
               </Link>
             </address>
           </div>
         </div>
         <div className="border-t border-gray-800 pt-6 text-center text-sm text-gray-400">
           © {new Date().getFullYear()} Real Estate. All rights reserved.
+          Made with <span className="text-orange-500">🧡</span> by <Link href="http://www.ondosoft.com/" className="hover:text-white">OndoSoft</Link> in Lehi, Utah
         </div>
       </div>
     </footer>
