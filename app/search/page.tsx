@@ -12,17 +12,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Search, MapPin, Home } from "lucide-react"
 import Link from "next/link"
 
-export function generateStaticParams() {
-  // finite list only; otherwise prefer Option A
-  const CITIES = ["hyderabad", "vizag", "vijayawada"];
-  return CITIES.map((slug) => ({ city: slug }));
-}
-
-export const dynamicParams = false; // only these cities exist at build time
-
-
-
-
 // Mock data for properties
 const mockProperties = [
   {
