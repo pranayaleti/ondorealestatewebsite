@@ -249,6 +249,35 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Founder's Note Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div className="flex justify-center md:justify-start">
+              <div className="relative h-40 w-40 rounded-full border-4 border-orange-500 overflow-hidden">
+                <Image 
+                  src="/founder-image.jpg" 
+                  alt="Founder Pranay Reddy Aleti" 
+                  fill 
+                  style={{ objectFit: "cover" }}
+                  className="rounded-full"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold mb-3">Founder's Note</h3>
+              <p className="text-gray-300 mb-6 max-w-3xl">
+                "Real estate is more than property—it's about people, growth, and legacy. At Ondo, we're building a modern
+                platform rooted in trust, transparency, and technology so owners can rest easy and tenants feel right at home."
+              </p>
+              <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+                <Link href="/founders-letter">Read the full letter</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
