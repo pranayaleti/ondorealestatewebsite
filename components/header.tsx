@@ -44,6 +44,9 @@ export default function Header() {
             <Link href="/properties" className="text-sm font-medium hover:underline underline-offset-4">
               Properties
             </Link>
+            <Link href="/why-utah" className="text-sm font-medium hover:underline underline-offset-4">
+              Why Utah
+            </Link>
             <Link href="/about" className="text-sm font-medium hover:underline underline-offset-4">
               About
             </Link>
@@ -136,6 +139,13 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               About
+            </Link>
+            <Link
+              href="/why-utah"
+              className="text-sm font-medium hover:underline underline-offset-4"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Why Utah
             </Link>
             <Link
               href="/contact"
