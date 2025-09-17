@@ -10,7 +10,7 @@ import Header from "@/components/header"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "OnDo Real Estate - Makes your life easier",
+  title: "OnDo Real Estate - Make life easy",
   description: "Find your perfect rental property with OnDo Real Estate",
   generator: 'OndoSoft'
 }
