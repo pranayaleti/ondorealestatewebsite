@@ -80,7 +80,7 @@ export function Footer() {
         </div>
         <div className="border-t border-gray-800 pt-6 text-center text-sm text-gray-400">
           © {new Date().getFullYear()} Real Estate. All rights reserved.
-          Made with <span className="text-orange-500">🧡</span> by <Link href="http://www.ondosoft.com/" className="hover:text-white">OndoSoft</Link> in Lehi, Utah
+          Powered by <Link href="http://www.ondosoft.com/" className="text-orange-500 font-bold hover:text-orange-400">OnDoSoft</Link> in Lehi, Utah
         </div>
       </div>
     </footer>
