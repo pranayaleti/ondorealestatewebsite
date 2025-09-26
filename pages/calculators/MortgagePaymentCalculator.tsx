@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, Download } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { LoanProgram, calculateMonthlyPI, clampCreditScore, getProgramMI } from '@/lib/mortgage-utils';
 
 interface MortgageData {
   homePrice: number;
@@ -13,6 +14,9 @@ interface MortgageData {
   propertyTax: number;
   insurance: number;
   pmi: number;
+  program: LoanProgram;
+  creditScore: number;
+  financeUpfront: boolean;
 }
 
 interface PaymentBreakdown {
@@ -21,9 +25,11 @@ interface PaymentBreakdown {
   tax: number;
   insurance: number;
   pmi: number;
+  monthlyPI: number;
   totalMonthly: number;
   totalYearly: number;
   totalCost: number;
+  totalInterest: number;
   amortizationSchedule: Array<{
     month: number;
     payment: number;
@@ -42,7 +48,10 @@ const MortgagePaymentCalculator: React.FC = () => {
     loanTerm: 30,
     propertyTax: 3000,
     insurance: 1200,
-    pmi: 0
+    pmi: 0,
+    program: 'conventional',
+    creditScore: 740,
+    financeUpfront: true
   });
 
   const [results, setResults] = useState<PaymentBreakdown | null>(null);
@@ -53,35 +62,39 @@ const MortgagePaymentCalculator: React.FC = () => {
   }, [formData]);
 
   const calculateMortgage = () => {
-    const { loanAmount, interestRate, loanTerm, propertyTax, insurance } = formData;
+    const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, program } = formData;
     
     // Calculate monthly interest rate
     const monthlyRate = interestRate / 100 / 12;
     const totalPayments = loanTerm * 12;
     
-    // Calculate monthly mortgage payment (P&I)
-    const monthlyPayment = loanAmount * 
-      (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / 
-      (Math.pow(1 + monthlyRate, totalPayments) - 1);
-    
+    // Program MI and upfront fees
+    const credit = clampCreditScore(formData.creditScore);
+    const { monthlyMI, upfrontFee, description: _miDesc } = getProgramMI(program, loanAmount, homePrice, credit, loanTerm, downPayment);
+    const financedLoanAmount = formData.financeUpfront ? loanAmount + upfrontFee : loanAmount;
+
+    // Calculate monthly mortgage payment (P&I) on base loan amount (not financed amount)
+    const monthlyPayment = calculateMonthlyPI(loanAmount, formData.interestRate, formData.loanTerm);
+
     // Calculate monthly property tax and insurance
     const monthlyTax = propertyTax / 12;
     const monthlyInsurance = insurance / 12;
-    
-    // Calculate PMI if down payment is less than 20%
-    const downPaymentPercent = (formData.downPayment / formData.homePrice) * 100;
-    const monthlyPmi = downPaymentPercent < 20 ? (loanAmount * 0.005) / 12 : 0;
-    
+
+    // Monthly MI from program rules
+    const monthlyPmi = monthlyMI;
+
     // Calculate total monthly payment
     const totalMonthly = monthlyPayment + monthlyTax + monthlyInsurance + monthlyPmi;
-    
+
     // Calculate yearly totals
     const totalYearly = totalMonthly * 12;
     const totalCost = totalYearly * loanTerm;
-    
-    // Generate amortization schedule
+    // Total interest is on the base loan amount (not financed amount for interest calculation)
+    const totalInterest = (monthlyPayment * totalPayments) - loanAmount;
+
+    // Generate amortization schedule starting with financed amount
     const amortizationSchedule = [];
-    let remainingBalance = loanAmount;
+    let remainingBalance = financedLoanAmount;
     
     for (let month = 1; month <= Math.min(360, totalPayments); month++) {
       const interestPayment = remainingBalance * monthlyRate;
@@ -100,19 +113,21 @@ const MortgagePaymentCalculator: React.FC = () => {
     }
     
     setResults({
-      principal: monthlyPayment - (loanAmount * monthlyRate),
-      interest: loanAmount * monthlyRate,
+      principal: monthlyPayment - (financedLoanAmount * monthlyRate),
+      interest: financedLoanAmount * monthlyRate,
       tax: monthlyTax,
       insurance: monthlyInsurance,
       pmi: monthlyPmi,
+      monthlyPI: monthlyPayment,
       totalMonthly,
       totalYearly,
       totalCost,
+      totalInterest,
       amortizationSchedule
     });
   };
 
-  const handleInputChange = (field: keyof MortgageData, value: number) => {
+  const handleInputChange = (field: keyof MortgageData, value: any) => {
     const newData = { ...formData, [field]: value };
     
     // Auto-calculate loan amount if home price or down payment changes
@@ -342,6 +357,51 @@ const MortgagePaymentCalculator: React.FC = () => {
                   />
                 </div>
               </div>
+
+              {/* Loan Program */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Loan Program
+                </label>
+                <select
+                  value={formData.program}
+                  onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="conventional">Conventional</option>
+                  <option value="fha">FHA</option>
+                  <option value="va">VA</option>
+                  <option value="usda">USDA</option>
+                </select>
+              </div>
+
+              {/* Credit Score */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Credit Score
+                </label>
+                <input
+                  type="number"
+                  min={300}
+                  max={850}
+                  value={formData.creditScore}
+                  onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="740"
+                />
+              </div>
+
+              {/* Finance Upfront Fee */}
+              <div className="flex items-center space-x-2">
+                <input
+                  id="financeUpfront"
+                  type="checkbox"
+                  checked={formData.financeUpfront}
+                  onChange={(e) => handleInputChange('financeUpfront', e.target.checked as unknown as number)}
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                />
+                <label htmlFor="financeUpfront" className="text-sm text-gray-700">Finance upfront fee into loan (FHA/VA/USDA)</label>
+              </div>
             </div>
           </div>
 
@@ -355,7 +415,15 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Principal & Interest:</span>
-                      <span className="font-semibold">{formatCurrency(results.principal)}</span>
+                      <span className="font-semibold">{formatCurrency(results.monthlyPI)}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">• Principal (first month):</span>
+                      <span className="text-green-600">{formatCurrency(results.principal)}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">• Interest (first month):</span>
+                      <span className="text-red-600">{formatCurrency(results.interest)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Property Tax:</span>
@@ -393,7 +461,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Total Interest:</span>
-                      <span className="font-semibold">{formatCurrency(results.totalCost - formData.loanAmount)}</span>
+                      <span className="font-semibold">{formatCurrency(results.totalInterest)}</span>
                     </div>
                   </div>
                 </div>

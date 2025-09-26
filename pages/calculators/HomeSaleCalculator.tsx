@@ -10,6 +10,8 @@ interface HomeSaleData {
   repairs: number;
   movingCosts: number;
   capitalGainsTax: number;
+  originalPurchasePrice?: number;
+  originalImprovements?: number;
 }
 
 interface HomeSaleResults {
@@ -17,6 +19,7 @@ interface HomeSaleResults {
   totalCosts: number;
   equity: number;
   profit: number;
+  basisUsed: number;
 }
 
 const HomeSaleCalculator: React.FC = () => {
@@ -27,7 +30,9 @@ const HomeSaleCalculator: React.FC = () => {
     closingCosts: 8000,
     repairs: 5000,
     movingCosts: 2000,
-    capitalGainsTax: 0
+    capitalGainsTax: 0,
+    originalPurchasePrice: 320000,
+    originalImprovements: 0
   });
 
   const [results, setResults] = useState<HomeSaleResults | null>(null);
@@ -51,15 +56,16 @@ const HomeSaleCalculator: React.FC = () => {
     // Calculate net proceeds
     const netProceeds = homeValue - totalCosts - mortgageBalance;
     
-    // Calculate profit (assuming original purchase price was mortgage balance + down payment)
-    const estimatedOriginalPrice = mortgageBalance * 1.2; // Rough estimate
-    const profit = homeValue - estimatedOriginalPrice - totalCosts;
+    // Calculate profit using user-provided cost basis (purchase price + improvements)
+    const costBasis = (formData.originalPurchasePrice || 0) + (formData.originalImprovements || 0);
+    const profit = homeValue - costBasis - totalCosts;
     
     setResults({
       netProceeds,
       totalCosts,
       equity,
-      profit
+      profit,
+      basisUsed: costBasis
     });
   };
 
@@ -216,6 +222,43 @@ const HomeSaleCalculator: React.FC = () => {
                   Usually exempt for primary residence if lived in 2+ years
                 </p>
               </div>
+
+              {/* Original Purchase Price */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Original Purchase Price
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <input
+                    type="number"
+                    value={formData.originalPurchasePrice}
+                    onChange={(e) => handleInputChange('originalPurchasePrice', Number(e.target.value))}
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="320,000"
+                  />
+                </div>
+              </div>
+
+              {/* Capital Improvements */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Capital Improvements (lifetime)
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <input
+                    type="number"
+                    value={formData.originalImprovements}
+                    onChange={(e) => handleInputChange('originalImprovements', Number(e.target.value))}
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="0"
+                  />
+                </div>
+                <p className="text-sm text-gray-500 mt-1">
+                  Major improvements increasing basis (e.g., additions, new roof)
+                </p>
+              </div>
             </div>
           </div>
 
@@ -290,12 +333,13 @@ const HomeSaleCalculator: React.FC = () => {
                         <p className="text-sm text-yellow-600 mb-1">Estimated Profit</p>
                         <p className="text-2xl font-bold text-yellow-700">{formatCurrency(results.profit)}</p>
                         <p className="text-sm text-yellow-600 mt-1">
-                          After all costs and original investment
+                          After all costs and cost basis
                         </p>
                       </div>
                     </div>
                     
                     <div className="space-y-2 text-sm text-gray-600">
+                      <p>• Cost basis used: {formatCurrency(results.basisUsed)}</p>
                       <p>• This is a rough estimate based on available information</p>
                       <p>• Actual costs may vary significantly</p>
                       <p>• Consider consulting a real estate professional</p>

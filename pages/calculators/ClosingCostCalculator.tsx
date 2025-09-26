@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { LoanProgram, getProgramMI } from '@/lib/mortgage-utils';
 
 interface ClosingCostData {
   homePrice: number;
   loanAmount: number;
   downPayment: number;
+  interestRate?: number;
+  loanTerm?: number;
   propertyTax: number;
   insurance: number;
   titleInsurance: number;
@@ -15,6 +18,7 @@ interface ClosingCostData {
   discountPoints: number;
   prepaidInterest: number;
   escrowReserves: number;
+  program?: LoanProgram;
 }
 
 interface ClosingCostResults {
@@ -25,6 +29,7 @@ interface ClosingCostResults {
   prepaidCosts: number;
   monthlyPayment: number;
   breakEvenMonths: number;
+  monthlyPI?: number;
 }
 
 const ClosingCostCalculator: React.FC = () => {
@@ -32,6 +37,8 @@ const ClosingCostCalculator: React.FC = () => {
     homePrice: 300000,
     loanAmount: 240000,
     downPayment: 60000,
+    interestRate: 6.5,
+    loanTerm: 30,
     propertyTax: 3000,
     insurance: 1200,
     titleInsurance: 1000,
@@ -40,7 +47,8 @@ const ClosingCostCalculator: React.FC = () => {
     originationFee: 1200,
     discountPoints: 0,
     prepaidInterest: 0,
-    escrowReserves: 0
+    escrowReserves: 0,
+    program: 'conventional'
   });
 
   const [results, setResults] = useState<ClosingCostResults | null>(null);
@@ -59,8 +67,10 @@ const ClosingCostCalculator: React.FC = () => {
     const monthlyTax = propertyTax / 12;
     const monthlyInsurance = insurance / 12;
 
-    // Calculate lender costs
-    const lenderCosts = originationFee + (discountPoints * loanAmount / 100);
+    // Calculate lender costs plus program-specific upfront fees
+    const baseLender = originationFee + (discountPoints * loanAmount / 100);
+    const upfrontFee = getProgramMI(formData.program || 'conventional', loanAmount, homePrice, 740, formData.loanTerm || 30, downPayment).upfrontFee;
+    const lenderCosts = baseLender + upfrontFee;
 
     // Calculate third-party costs
     const thirdPartyCosts = titleInsurance + appraisal + inspection;
@@ -74,11 +84,18 @@ const ClosingCostCalculator: React.FC = () => {
     // Out of pocket costs (down payment + closing costs)
     const outOfPocket = downPayment + totalClosingCosts;
 
-    // Calculate monthly payment for break-even analysis
-    const monthlyPayment = monthlyTax + monthlyInsurance + (loanAmount * 0.005); // Simplified mortgage payment
+    // Calculate monthly payment for break-even analysis using P&I if rate/term present
+    let monthlyPI = 0;
+    if (formData.interestRate && formData.loanTerm) {
+      const r = (formData.interestRate / 100) / 12;
+      const n = formData.loanTerm * 12;
+      monthlyPI = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+    const monthlyPayment = monthlyTax + monthlyInsurance + (monthlyPI || (loanAmount * 0.005));
 
     // Break-even analysis (how many months to recoup closing costs)
-    const breakEvenMonths = totalClosingCosts / (monthlyPayment * 0.1); // Assuming 10% of payment goes to principal
+    const principalAssumption = monthlyPI ? (monthlyPI * 0.3) : (monthlyPayment * 0.1);
+    const breakEvenMonths = principalAssumption > 0 ? (totalClosingCosts / principalAssumption) : 0;
 
     setResults({
       totalClosingCosts,
@@ -87,11 +104,12 @@ const ClosingCostCalculator: React.FC = () => {
       thirdPartyCosts,
       prepaidCosts,
       monthlyPayment,
-      breakEvenMonths
+      breakEvenMonths,
+      monthlyPI: monthlyPI || undefined
     });
   };
 
-  const handleInputChange = (field: keyof ClosingCostData, value: number) => {
+  const handleInputChange = (field: keyof ClosingCostData, value: any) => {
     const newData = { ...formData, [field]: value };
     
     // Auto-calculate loan amount if home price or down payment changes
@@ -215,6 +233,52 @@ const ClosingCostCalculator: React.FC = () => {
                     placeholder="1,200"
                   />
                 </div>
+              </div>
+
+              {/* Interest Rate */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Interest Rate (%)
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={formData.interestRate}
+                  onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="6.5"
+                />
+              </div>
+
+              {/* Loan Term */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Loan Term (years)
+                </label>
+                <select
+                  value={formData.loanTerm}
+                  onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value={15}>15 years</option>
+                  <option value={20}>20 years</option>
+                  <option value={30}>30 years</option>
+                </select>
+              </div>
+
+              {/* Loan Program */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Loan Program</label>
+                <select
+                  value={formData.program}
+                  onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="conventional">Conventional</option>
+                  <option value="fha">FHA</option>
+                  <option value="va">VA</option>
+                  <option value="usda">USDA</option>
+                </select>
               </div>
 
               {/* Title Insurance */}
@@ -392,13 +456,16 @@ const ClosingCostCalculator: React.FC = () => {
                           {results.breakEvenMonths.toFixed(1)} months
                         </p>
                         <p className="text-sm text-green-600 mt-1">
-                          Time to recoup closing costs through equity
+                          Time to recoup closing costs through principal paydown
                         </p>
                       </div>
                     </div>
                     
                     <div className="space-y-2 text-sm text-gray-600">
                       <p>• Closing costs typically range from 2-5% of home price</p>
+                      {results.monthlyPI && (
+                        <p>• Estimated P&I payment: {formatCurrency(results.monthlyPI)}</p>
+                      )}
                       <p>• Some costs may be negotiable with the seller</p>
                       <p>• Consider rolling costs into the loan if possible</p>
                       <p>• Shop around for title insurance and other services</p>
