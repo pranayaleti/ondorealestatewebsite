@@ -74,11 +74,11 @@ export function Footer() {
     { name: "Facebook", Component: Facebook, href: "https://www.facebook.com/OnDoRealEstate", hover: "hover:text-blue-600" },
     { name: "YouTube", Component: Youtube, href: "https://www.youtube.com/@OnDoRealEstate", hover: "hover:text-red-600" },
     { name: "Instagram", Component: Instagram, href: "https://www.instagram.com/OnDoRealEstate", hover: "hover:text-pink-500" },
-    { name: "TikTok", Component: TiktokIcon, href: "https://www.tiktok.com/@ondorealestate", hover: "hover:text-fuchsia-500" },
+    { name: "TikTok", Component: TiktokIcon, href: "https://www.tiktok.com/@OnDoRealEstate", hover: "hover:text-fuchsia-500" },
     { name: "LinkedIn", Component: Linkedin, href: "https://www.linkedin.com/company/OnDoRealEstate", hover: "hover:text-blue-700" },
     { name: "Twitter", Component: Twitter, href: "https://x.com/OnDoRealEstate", hover: "hover:text-sky-500" },
-    { name: "Yelp", Component: YelpIcon, href: "https://yelp.com/biz/ondo-real-estate-lehi", hover: "hover:text-red-500" },
-    { name: "Google Business", Component: GoogleBusinessIcon, href: "https://www.google.com/business/", hover: "hover:text-green-500" },
+    // { name: "Yelp", Component: YelpIcon, href: "https://yelp.com/biz/ondo-real-estate-lehi", hover: "hover:text-red-500" },
+    // { name: "Google Business", Component: GoogleBusinessIcon, href: "https://www.google.com/business/", hover: "hover:text-green-500" },
   ]
 
   return (
