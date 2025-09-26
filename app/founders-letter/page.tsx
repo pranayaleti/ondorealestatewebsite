@@ -5,6 +5,10 @@ import Image from "next/image"
 import { User, Building2, Lightbulb, TrendingUp, Handshake, Rocket } from "lucide-react"
 
 export default function FoundersLetterPage() {
+  const currentYear = new Date().getFullYear();
+  const yearsInTech = currentYear - 2013;
+  const yearsInUtah = currentYear - 2019;
+
   return (
     <div className="min-h-screen bg-black">
       <div className="relative bg-gradient-to-br from-black via-gray-900 to-orange-900">
@@ -14,17 +18,17 @@ export default function FoundersLetterPage() {
             A Letter From the <span className="text-orange-500">Founder</span>
           </h1>
           <p className="text-2xl text-gray-300 max-w-3xl">
-            From software engineering to real estate innovation—discover the story behind
+            From software engineering to real estate innovation - discover the story behind
             Ondo Real Estate and our mission to revolutionize property management.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             <div className="bg-orange-500 bg-opacity-20 backdrop-blur-lg rounded-lg p-6 border border-orange-500">
-              <div className="text-4xl font-bold text-orange-400">10+</div>
+              <div className="text-4xl font-bold text-orange-400">{yearsInTech}+</div>
               <div className="text-white mt-2">Years in Tech</div>
               <div className="text-gray-400 text-sm">Full Stack Development</div>
             </div>
             <div className="bg-orange-500 bg-opacity-20 backdrop-blur-lg rounded-lg p-6 border border-orange-500">
-              <div className="text-4xl font-bold text-orange-400">5+</div>
+              <div className="text-4xl font-bold text-orange-400">{yearsInUtah}+</div>
               <div className="text-white mt-2">Years in Utah</div>
               <div className="text-gray-400 text-sm">Local Market Expert</div>
             </div>
@@ -53,16 +57,19 @@ export default function FoundersLetterPage() {
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
                 <div className="relative h-32 w-32 rounded-full border-4 border-orange-500 overflow-hidden flex-shrink-0">
                   <Image 
-                    src="/founder-image.jpg" 
+                    src="/founder-image.png" 
                     alt="Founder Pranay Reddy Aleti" 
                     fill 
                     style={{ objectFit: "cover" }}
                     className="rounded-full"
+                    quality={100}
+                    priority
+                    sizes="(max-width: 768px) 128px, 128px"
                   />
                 </div>
                 <div>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    Hi, I'm <strong className="text-orange-400">Pranay Reddy Aleti</strong>—but you can call me Reddy.
+                    Hi, I'm <strong className="text-orange-400">Pranay Reddy Aleti</strong>.
                   </p>
                 </div>
               </div>
@@ -70,7 +77,7 @@ export default function FoundersLetterPage() {
                 When I first came to the U.S. to pursue my <strong className="text-orange-400">Master's degree in computer science</strong>, I
                 thought my life would stay rooted in software engineering. I've spent over a decade building applications, solving
                 problems, and writing code that powers businesses. But somewhere along the way, I realized something important: while I
-                love technology, what truly excites me is <strong className="text-orange-400">real estate</strong>—because real estate is about
+                love technology, what truly excites me is <strong className="text-orange-400">real estate</strong> - because real estate is about
                 people, growth, and legacy.
               </p>
             </div>
@@ -98,7 +105,7 @@ export default function FoundersLetterPage() {
                 <h2 className="text-3xl font-bold text-white">Why Ondo?</h2>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                "Ondo" means <em className="text-orange-400">foundation and rhythm.</em> To me, real estate is exactly that—the foundation for
+                "Ondo" means <em className="text-orange-400">foundation and rhythm.</em> To me, real estate is exactly that - the foundation for
                 families and the rhythm that keeps communities thriving. I created Ondo because I saw a gap: property management was stuck in
                 the past, weighed down by inefficiency, poor communication, and outdated systems.
               </p>
@@ -114,7 +121,7 @@ export default function FoundersLetterPage() {
                 <h2 className="text-3xl font-bold text-white">Our Mission</h2>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                Ondo isn't just another property management company—it's a <strong className="text-orange-400">modern platform built on trust,
+                Ondo isn't just another property management company - it's a <strong className="text-orange-400">modern platform built on trust,
                 transparency, and technology.</strong> My goal is simple: make property ownership stress-free, and make renting a home feel fair
                 and effortless.
               </p>
@@ -130,13 +137,13 @@ export default function FoundersLetterPage() {
                 <h2 className="text-3xl font-bold text-white">A Personal Note</h2>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                I'm not building Ondo from a distance—I live this. I own and manage rental property myself, so I understand the real challenges on
+                I'm not building Ondo from a distance - I live this. I own and manage rental property myself, so I understand the real challenges on
                 both sides. I've also taken risks, whether in <strong className="text-orange-400">real estate, technology, or investing in the
                 future of cryptocurrency.</strong>
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Risk has taught me resilience, and resilience is what drives me to build something bigger than just another business. At the end
-                of the day, Ondo is about <strong className="text-orange-400">creating long-term value</strong>—for owners, for tenants, and for the
+                of the day, Ondo is about <strong className="text-orange-400">creating long-term value</strong> - for owners, for tenants, and for the
                 communities we serve.
               </p>
             </div>
@@ -149,7 +156,7 @@ export default function FoundersLetterPage() {
               <p className="text-gray-300 text-lg leading-relaxed mb-4">
                 I believe the future of real estate lies in combining <strong className="text-orange-400">human connection</strong> with
                 <strong className="text-orange-400"> technology.</strong> That's what Ondo stands for. And if you're reading this, I'd love for you
-                to be part of that journey—whether you're an owner looking for smarter management, a tenant searching for a great home, or a
+                to be part of that journey - whether you're an owner looking for smarter management, a tenant searching for a great home, or a
                 partner who believes in innovation.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
