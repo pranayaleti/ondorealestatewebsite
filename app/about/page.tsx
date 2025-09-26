@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { PageBanner } from "@/components/page-banner"
-import { Footer } from "@/components/footer"
 
 export default function AboutPage() {
   return (

@@ -1,0 +1,143 @@
+import { PageBanner } from "@/components/page-banner"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { Home, DollarSign, Shield, Users, Calculator, CheckCircle } from "lucide-react"
+
+export default function ConventionalLoanPage() {
+  const benefits = [
+    {
+      title: "Flexible Down Payment",
+      description: "As low as 3% down payment for qualified buyers",
+      icon: <DollarSign className="h-6 w-6" />
+    },
+    {
+      title: "No PMI with 20% Down",
+      description: "Eliminate private mortgage insurance with a 20% down payment",
+      icon: <Shield className="h-6 w-6" />
+    },
+    {
+      title: "Competitive Rates",
+      description: "Get competitive interest rates based on your credit profile",
+      icon: <Home className="h-6 w-6" />
+    },
+    {
+      title: "Flexible Terms",
+      description: "Choose from 15, 20, or 30-year fixed-rate terms",
+      icon: <CheckCircle className="h-6 w-6" />
+    }
+  ]
+
+  return (
+    <main className="min-h-screen">
+      <PageBanner
+        title="Conventional Loans"
+        subtitle="Traditional home loans with flexible terms and competitive rates"
+      />
+
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 dark:text-white">What is a Conventional Loan?</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Conventional loans are traditional mortgages not backed by government agencies like FHA, VA, or USDA. 
+                They offer flexibility and competitive rates for qualified borrowers.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {benefits.map((benefit, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                      <div className="text-blue-600 dark:text-blue-400">
+                        {benefit.icon}
+                      </div>
+                    </div>
+                    <CardTitle className="dark:text-white">{benefit.title}</CardTitle>
+                    <CardDescription>{benefit.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
+              <h3 className="text-2xl font-bold mb-6 dark:text-white">Conventional Loan Requirements</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 dark:text-white">Credit Score</h4>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>• Minimum 620 for most programs</li>
+                    <li>• 740+ for best rates</li>
+                    <li>• Higher scores = better terms</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 dark:text-white">Down Payment</h4>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>• As low as 3% for qualified buyers</li>
+                    <li>• 20% to avoid PMI</li>
+                    <li>• Gift funds allowed</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 dark:text-white">Debt-to-Income Ratio</h4>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>• Maximum 43% DTI</li>
+                    <li>• Lower DTI = better approval odds</li>
+                    <li>• Consider all monthly debts</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-4 dark:text-white">Employment</h4>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>• 2+ years employment history</li>
+                    <li>• Stable income required</li>
+                    <li>• Self-employed options available</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 dark:bg-blue-900 rounded-lg p-8 mb-12">
+              <h3 className="text-2xl font-bold mb-4 dark:text-white">Conventional vs. FHA Loans</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold mb-3 dark:text-white text-green-600">Conventional Advantages</h4>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>• No upfront mortgage insurance</li>
+                    <li>• PMI can be removed</li>
+                    <li>• Higher loan limits</li>
+                    <li>• More flexible terms</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-3 dark:text-white text-orange-600">FHA Advantages</h4>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>• Lower credit score requirements</li>
+                    <li>• Lower down payment (3.5%)</li>
+                    <li>• More lenient DTI ratios</li>
+                    <li>• Government-backed</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-6 dark:text-white">Ready to Apply?</h3>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg">
+                  <Link href="/calculators/mortgage-payment">Calculate Your Payment</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/contact">Get Pre-Approved</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}

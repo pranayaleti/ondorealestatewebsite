@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
-              {/* Remove footer from here as it's included in individual pages */}
+              <Footer />
             </div>
             <Toaster />
           </AuthProvider>

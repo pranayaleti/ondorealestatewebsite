@@ -441,7 +441,7 @@ export default function PropertiesPage() {
         </section>
       </main>
 
-      <Footer />
+      {/* Footer rendered globally in RootLayout */}
 
       {/* Property Details Modal */}
       {selectedPropertyData && (
