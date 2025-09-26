@@ -388,7 +388,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <Footer />
+      {/* Footer rendered globally in RootLayout */}
 
       {/* Property Details Modal */}
       {selectedPropertyData && (

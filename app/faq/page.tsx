@@ -112,7 +112,7 @@ export default function FAQPage() {
         </div>
       </main>
 
-      <Footer />
+      {/* Footer rendered globally in RootLayout */}
     </div>
   )
 }

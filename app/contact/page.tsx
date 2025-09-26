@@ -32,7 +32,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold">Our Office</h3>
                       <p className="text-sm text-muted-foreground">
-                        123 Main Street, Suite 100
+                        123 Main Street
                         <br />
                         Lehi, UT 84043
                       </p>
@@ -115,7 +115,7 @@ export default function ContactPage() {
         </section>
       </main>
 
-      <Footer />
+      {/* Footer rendered globally in RootLayout */}
     </div>
   )
 }
