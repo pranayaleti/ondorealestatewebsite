@@ -254,13 +254,16 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="flex justify-center md:justify-start">
-              <div className="relative h-40 w-40 rounded-full border-4 border-orange-500 overflow-hidden">
+              <div className="relative h-60 w-60 md:h-80 md:w-80 rounded-full border-4 border-orange-500 overflow-hidden bg-black">
                 <Image 
-                  src="/founder-image.jpg" 
+                  src="/founder-image.png" 
                   alt="Founder Pranay Reddy Aleti" 
                   fill 
                   style={{ objectFit: "cover" }}
                   className="rounded-full"
+                  quality={100}
+                  priority
+                  sizes="(max-width: 768px) 240px, 320px"
                 />
               </div>
             </div>
