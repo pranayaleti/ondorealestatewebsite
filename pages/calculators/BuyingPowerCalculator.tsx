@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
 
 interface BuyingPowerData {
   annualIncome: number;
@@ -11,6 +12,7 @@ interface BuyingPowerData {
   propertyTaxRate: number;
   insuranceRate: number;
   creditScore: number;
+  program: LoanProgram;
 }
 
 interface BuyingPowerResults {
@@ -30,7 +32,8 @@ const BuyingPowerCalculator: React.FC = () => {
     loanTerm: 30,
     propertyTaxRate: 1.2,
     insuranceRate: 0.5,
-    creditScore: 750
+    creditScore: 750,
+    program: 'conventional'
   });
 
   const [results, setResults] = useState<BuyingPowerResults | null>(null);
@@ -40,23 +43,18 @@ const BuyingPowerCalculator: React.FC = () => {
   }, [formData]);
 
   const calculateBuyingPower = () => {
-    const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate, creditScore } = formData;
-    
-    // Adjust interest rate based on credit score
-    let adjustedRate = interestRate;
-    if (creditScore < 700) adjustedRate += 0.5;
-    if (creditScore < 650) adjustedRate += 1.0;
-    if (creditScore < 600) adjustedRate += 2.0;
-    
+    const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate, creditScore, program } = formData;
+
     const monthlyIncome = annualIncome / 12;
-    const monthlyRate = adjustedRate / 100 / 12;
+    const monthlyRate = interestRate / 100 / 12;
     const totalPayments = loanTerm * 12;
     
-    // Calculate maximum monthly payment using 28% front-end ratio
-    const maxFrontEndPayment = monthlyIncome * 0.28;
-    
-    // Calculate maximum monthly payment using 36% back-end ratio
-    const maxBackEndPayment = (monthlyIncome * 0.36) - monthlyDebts;
+    // Calculate maximum monthly payment using program DTI
+    const dti = getProgramDTI(formData.program);
+    const frontRatio = dti.frontPercent > 0 ? (dti.frontPercent / 100) : 0;
+    const backRatio = dti.backPercent / 100;
+    const maxFrontEndPayment = frontRatio > 0 ? monthlyIncome * frontRatio : Number.POSITIVE_INFINITY;
+    const maxBackEndPayment = (monthlyIncome * backRatio) - monthlyDebts;
     
     // Use the lower of the two ratios
     const maxMonthlyPayment = Math.min(maxFrontEndPayment, maxBackEndPayment);
@@ -73,7 +71,10 @@ const BuyingPowerCalculator: React.FC = () => {
     for (let i = 0; i < 10; i++) {
       const monthlyTax = (adjustedMaxHomePrice * propertyTaxRate / 100) / 12;
       const monthlyInsurance = (adjustedMaxHomePrice * insuranceRate / 100) / 12;
-      const availableForPandI = maxMonthlyPayment - monthlyTax - monthlyInsurance;
+      const estLoan = adjustedMaxHomePrice - downPayment;
+      const credit = clampCreditScore(formData.creditScore);
+      const mi = getProgramMI(formData.program, estLoan, adjustedMaxHomePrice, credit, loanTerm, downPayment).monthlyMI;
+      const availableForPandI = maxMonthlyPayment - monthlyTax - monthlyInsurance - mi;
       
       if (availableForPandI > 0) {
         const newMaxLoanAmount = availableForPandI * 
@@ -96,11 +97,11 @@ const BuyingPowerCalculator: React.FC = () => {
     // Calculate actual monthly payment
     const monthlyTax = (finalMaxHomePrice * propertyTaxRate / 100) / 12;
     const monthlyInsurance = (finalMaxHomePrice * insuranceRate / 100) / 12;
-    const monthlyPandI = finalMaxLoanAmount * 
-      (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / 
-      (Math.pow(1 + monthlyRate, totalPayments) - 1);
+    const monthlyPandI = calculateMonthlyPI(finalMaxLoanAmount, interestRate, loanTerm);
+    const credit = clampCreditScore(formData.creditScore);
+    const monthlyMI = getProgramMI(formData.program, finalMaxLoanAmount, finalMaxHomePrice, credit, loanTerm, downPayment).monthlyMI;
     
-    const totalMonthlyPayment = monthlyPandI + monthlyTax + monthlyInsurance;
+    const totalMonthlyPayment = monthlyPandI + monthlyTax + monthlyInsurance + monthlyMI;
     
     // Calculate debt-to-income ratio
     const debtToIncomeRatio = ((monthlyDebts + totalMonthlyPayment) / monthlyIncome) * 100;
@@ -235,6 +236,21 @@ const BuyingPowerCalculator: React.FC = () => {
                    formData.creditScore >= 700 ? 'Good' : 
                    formData.creditScore >= 650 ? 'Fair' : 'Poor'}
                 </p>
+              </div>
+
+              {/* Loan Program */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Loan Program</label>
+                <select
+                  value={formData.program}
+                  onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="conventional">Conventional</option>
+                  <option value="fha">FHA</option>
+                  <option value="va">VA</option>
+                  <option value="usda">USDA</option>
+                </select>
               </div>
 
               {/* Interest Rate */}

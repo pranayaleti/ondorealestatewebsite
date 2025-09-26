@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, Download, TrendingUp, Home, Building2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { LoanProgram, getProgramMI, clampCreditScore } from '@/lib/mortgage-utils';
 
 interface RentVsOwnData {
   // Rent scenario
@@ -21,6 +22,8 @@ interface RentVsOwnData {
   pmi: number;
   maintenance: number;
   hoa: number;
+  program: LoanProgram;
+  creditScore: number;
   
   // Analysis period
   analysisYears: number;
@@ -40,6 +43,8 @@ interface RentVsOwnResults {
     year: number;
     rentCost: number;
     buyCost: number;
+    principalPaid: number;
+    equity: number;
     buyWithInvestment: number;
     difference: number;
   }>;
@@ -62,6 +67,8 @@ const RentVsOwnCalculator: React.FC = () => {
     pmi: 0,
     maintenance: 3000,
     hoa: 0,
+    program: 'conventional',
+    creditScore: 740,
     analysisYears: 10,
     investmentReturn: 7,
     homeAppreciation: 3
@@ -110,7 +117,10 @@ const RentVsOwnCalculator: React.FC = () => {
     const monthlyInsurance = homeownersInsurance / 12;
     const monthlyMaintenance = maintenance / 12;
     const monthlyHoa = hoa / 12;
-    const totalMonthlyBuy = monthlyPayment + monthlyTax + monthlyInsurance + monthlyPmi + monthlyMaintenance + monthlyHoa;
+    // Program MI overrides simple PMI when applicable
+    const credit = clampCreditScore(formData.creditScore);
+    const programMI = getProgramMI(formData.program, loanAmount, homePrice, credit, loanTerm, downPayment).monthlyMI;
+    const totalMonthlyBuy = monthlyPayment + monthlyTax + monthlyInsurance + programMI + monthlyMaintenance + monthlyHoa;
 
     // Calculate annual comparison
     const annualComparison = [];
@@ -133,6 +143,16 @@ const RentVsOwnCalculator: React.FC = () => {
       // Home appreciation
       currentHomeValue *= (1 + homeAppreciation / 100);
 
+      // Equity accumulation (approximate principal paid this year)
+      let principalPaidThisYear = 0;
+      for (let m = 0; m < 12; m++) {
+        const interestPortion = remainingLoan * monthlyRate;
+        const principalPortion = monthlyPayment - interestPortion;
+        remainingLoan = Math.max(0, remainingLoan - principalPortion);
+        principalPaidThisYear += principalPortion;
+      }
+      const equity = Math.max(0, currentHomeValue - remainingLoan);
+
       // Investment opportunity cost (what down payment + monthly difference could earn)
       const monthlyDifference = totalMonthlyBuy - currentRent;
       const investmentOpportunity = downPayment * Math.pow(1 + investmentReturn / 100, year) + 
@@ -142,6 +162,8 @@ const RentVsOwnCalculator: React.FC = () => {
         year,
         rentCost: annualRentCost,
         buyCost: annualBuyCost,
+        principalPaid: principalPaidThisYear,
+        equity,
         buyWithInvestment: annualBuyCost + investmentOpportunity,
         difference: annualBuyCost - annualRentCost
       });
@@ -371,6 +393,34 @@ const RentVsOwnCalculator: React.FC = () => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Loan Program
+                  </label>
+                  <select
+                    value={formData.program}
+                    onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="conventional">Conventional</option>
+                    <option value="fha">FHA</option>
+                    <option value="va">VA</option>
+                    <option value="usda">USDA</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Credit Score
+                  </label>
+                  <input
+                    type="number"
+                    min={300}
+                    max={850}
+                    value={formData.creditScore}
+                    onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Loan Term (years)
@@ -522,6 +572,8 @@ const RentVsOwnCalculator: React.FC = () => {
                           <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">Rent Cost</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-green-500 uppercase tracking-wider">Buy Cost</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-green-700 uppercase tracking-wider">Principal Paid</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-indigo-500 uppercase tracking-wider">Equity</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difference</th>
                         </tr>
                       </thead>
@@ -531,6 +583,8 @@ const RentVsOwnCalculator: React.FC = () => {
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{year.year}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm text-blue-600">{formatCurrency(year.rentCost)}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">{formatCurrency(year.buyCost)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-green-700">{formatCurrency(year.principalPaid)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-indigo-600">{formatCurrency(year.equity)}</td>
                             <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${
                               year.difference > 0 ? 'text-red-600' : 'text-green-600'
                             }`}>

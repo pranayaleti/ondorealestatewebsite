@@ -19,6 +19,9 @@ interface RefinanceResults {
   breakEvenMonths: number;
   totalSavings: number;
   interestSavings: number;
+  newPI: number;
+  newEscrows: number;
+  currentPI: number;
 }
 
 const RefinanceCalculator: React.FC = () => {
@@ -54,7 +57,8 @@ const RefinanceCalculator: React.FC = () => {
     // Add property tax and insurance
     const monthlyTax = formData.propertyTax / 12;
     const monthlyInsurance = formData.insurance / 12;
-    const totalNewPayment = newMonthlyPayment + monthlyTax + monthlyInsurance;
+    const escrows = monthlyTax + monthlyInsurance;
+    const totalNewPayment = newMonthlyPayment + escrows;
     
     // Calculate monthly savings
     const monthlySavings = currentPayment - totalNewPayment;
@@ -62,18 +66,21 @@ const RefinanceCalculator: React.FC = () => {
     // Calculate break-even months
     const breakEvenMonths = closingCosts / monthlySavings;
     
-    // Calculate total savings over loan term
-    const totalSavings = monthlySavings * totalPayments - closingCosts;
+    // Calculate total savings over loan term (P&I focused minus closing costs)
+    const totalSavings = (currentPayment - escrows - newMonthlyPayment) * totalPayments - closingCosts;
     
-    // Calculate interest savings (simplified)
-    const interestSavings = (currentPayment * newTerm * 12) - (totalNewPayment * newTerm * 12);
+    // Estimate interest savings by comparing PI over full term
+    const interestSavings = (currentPayment - escrows) * totalPayments - (newMonthlyPayment * totalPayments);
     
     setResults({
       newMonthlyPayment: totalNewPayment,
       monthlySavings,
       breakEvenMonths,
       totalSavings,
-      interestSavings
+      interestSavings,
+      newPI: newMonthlyPayment,
+      newEscrows: escrows,
+      currentPI: currentPayment - escrows
     });
   };
 
@@ -266,6 +273,7 @@ const RefinanceCalculator: React.FC = () => {
                       <div className="text-center p-3 bg-green-50 rounded-lg">
                         <p className="text-sm text-green-600 mb-1">New Payment</p>
                         <p className="text-lg font-semibold text-green-700">{formatCurrency(results.newMonthlyPayment)}</p>
+                        <p className="text-xs text-gray-500 mt-1">P&I: {formatCurrency(results.newPI)} • Escrows: {formatCurrency(results.newEscrows)}</p>
                       </div>
                     </div>
                     
@@ -317,7 +325,7 @@ const RefinanceCalculator: React.FC = () => {
                     </div>
                     
                     <div className="space-y-2 text-sm text-gray-600">
-                      <p>• Interest savings: {formatCurrency(results.interestSavings)}</p>
+                      <p>• Interest savings (PI-only est.): {formatCurrency(results.interestSavings)}</p>
                       <p>• Closing costs: {formatCurrency(formData.closingCosts)}</p>
                       <p>• Net savings: {formatCurrency(results.totalSavings)}</p>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore } from '@/lib/mortgage-utils';
 
 interface IncomeData {
   homePrice: number;
@@ -11,6 +12,7 @@ interface IncomeData {
   propertyTax: number;
   insurance: number;
   monthlyDebts: number;
+  program: LoanProgram;
 }
 
 interface IncomeResults {
@@ -31,7 +33,8 @@ const IncomeCalculator: React.FC = () => {
     loanTerm: 30,
     propertyTax: 3000,
     insurance: 1200,
-    monthlyDebts: 500
+    monthlyDebts: 500,
+    program: 'conventional'
   });
 
   const [results, setResults] = useState<IncomeResults | null>(null);
@@ -41,32 +44,41 @@ const IncomeCalculator: React.FC = () => {
   }, [formData]);
 
   const calculateRequiredIncome = () => {
-    const { loanAmount, interestRate, loanTerm, propertyTax, insurance, monthlyDebts } = formData;
-    
+    const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, monthlyDebts, program, creditScore } = formData;
+
     // Calculate monthly interest rate
     const monthlyRate = interestRate / 100 / 12;
     const totalPayments = loanTerm * 12;
-    
+
     // Calculate monthly mortgage payment (P&I)
-    const monthlyPayment = loanAmount * 
-      (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / 
+    const monthlyPayment = loanAmount *
+      (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) /
       (Math.pow(1 + monthlyRate, totalPayments) - 1);
-    
+
     // Calculate monthly property tax and insurance
     const monthlyTax = propertyTax / 12;
     const monthlyInsurance = insurance / 12;
+
+    // Calculate program MI
+    const credit = clampCreditScore(creditScore);
+    const { monthlyMI } = getProgramMI(program, loanAmount, homePrice, credit, loanTerm, downPayment);
+
+    // Calculate total monthly housing payment including MI
+    const totalHousingPayment = monthlyPayment + monthlyTax + monthlyInsurance + monthlyMI;
     
-    // Calculate total monthly housing payment
-    const totalHousingPayment = monthlyPayment + monthlyTax + monthlyInsurance;
-    
-    // Calculate required income using 28% front-end ratio
-    const requiredMonthlyIncome = totalHousingPayment / 0.28;
+    // Qualifying income using program DTI (take the higher required income of the two)
+    const dti = getProgramDTI(formData.program);
+    const frontRatio = dti.frontPercent > 0 ? (dti.frontPercent / 100) : 0;
+    const backRatio = dti.backPercent / 100;
+    const requiredMonthlyIncomeFront = frontRatio > 0 ? totalHousingPayment / frontRatio : 0;
+    const requiredMonthlyIncomeBack = (totalHousingPayment + monthlyDebts) / backRatio;
+    const requiredMonthlyIncome = Math.max(requiredMonthlyIncomeFront, requiredMonthlyIncomeBack);
     const requiredAnnualIncome = requiredMonthlyIncome * 12;
     
-    // Calculate ratios
+    // Calculate ratios at the required income level
     const frontEndRatio = (totalHousingPayment / requiredMonthlyIncome) * 100;
     const backEndRatio = ((totalHousingPayment + monthlyDebts) / requiredMonthlyIncome) * 100;
-    const debtToIncomeRatio = ((monthlyDebts + totalHousingPayment) / requiredMonthlyIncome) * 100;
+    const debtToIncomeRatio = backEndRatio;
     
     setResults({
       requiredAnnualIncome,
@@ -240,6 +252,21 @@ const IncomeCalculator: React.FC = () => {
                 <p className="text-sm text-gray-500 mt-1">
                   Credit cards, car loans, student loans, etc.
                 </p>
+              </div>
+
+              {/* Loan Program */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Loan Program</label>
+                <select
+                  value={formData.program}
+                  onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="conventional">Conventional</option>
+                  <option value="fha">FHA</option>
+                  <option value="va">VA</option>
+                  <option value="usda">USDA</option>
+                </select>
               </div>
             </div>
           </div>
