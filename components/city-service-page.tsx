@@ -3,13 +3,14 @@
 import Link from "next/link"
 import { useMemo } from "react"
 import Script from "next/script"
-import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS } from "@/lib/site"
+import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import { type UtahCity } from "@/lib/utah-cities"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { cityContentByName } from "@/lib/city-content"
+import { getServiceFaqBank } from "@/lib/service-faq"
 
 type CityServicePageProps = {
   city: UtahCity
@@ -35,10 +36,9 @@ export function CityServicePage({ city, service }: CityServicePageProps) {
     return "Get Pre-Qualified"
   }, [service])
 
-  const businessType = service === "property-management" ? "LocalBusiness" : service === "buy-sell" ? "LocalBusiness" : "LocalBusiness"
-  const jsonLd = {
+  const businessJsonLd = {
     "@context": "https://schema.org",
-    "@type": businessType,
+    "@type": ["Organization", "LocalBusiness", "RealEstateAgent"],
     name: SITE_NAME,
     areaServed: city.name + ", UT",
     url: typeof window === "undefined" ? SITE_URL : window.location.href,
@@ -50,19 +50,66 @@ export function CityServicePage({ city, service }: CityServicePageProps) {
       addressRegion: "UT",
       addressCountry: "US",
     },
-    sameAs: [
-      "https://ondorealestate.com",
-    ],
+    sameAs: SITE_SOCIALS,
     makesOffer: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Property Management" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Buy & Sell Representation" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Buying" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Selling" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home Loans" } },
     ],
   }
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name:
+      service === "property-management"
+        ? `Property Management in ${city.name}, UT`
+        : service === "buy-sell"
+        ? `Home Buying & Selling in ${city.name}, UT`
+        : `Home Loans & Mortgages in ${city.name}, UT`,
+    serviceType:
+      service === "property-management"
+        ? "Property Management"
+        : service === "buy-sell"
+        ? "Real Estate Agent Services"
+        : "Mortgage Lending",
+    areaServed: city.name + ", UT",
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  }
+
+  const baseFaqs = getServiceFaqBank(service)
+  const localizedBaseFaqs = baseFaqs.map((item) => ({
+    q: item.q,
+    a: item.a
+      .replace(/Utah(?!\w)/g, `${city.name}, Utah`)
+      .replace(/Wasatch Front/g, `${city.name} area`),
+  }))
+  const citySpecificFaqs = cityContentByName[city.name]?.faq || []
+  const faqList = [...localizedBaseFaqs, ...citySpecificFaqs]
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
+  }
+
   return (
     <div className="container mx-auto px-4 py-10 space-y-10">
-      <Script id="city-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Script id="city-business-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }} />
+      <Script id="city-service-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <Script id="city-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Card>
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl md:text-3xl">
@@ -151,20 +198,12 @@ export function CityServicePage({ city, service }: CityServicePageProps) {
           <CardTitle>Frequently Asked Questions</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {cityContentByName[city.name]?.faq?.map((f) => (
+          {faqList.map((f) => (
             <div key={f.q}>
               <p className="font-medium">{f.q}</p>
               <p>{f.a}</p>
             </div>
           ))}
-          <div>
-            <p className="font-medium">How quickly can you start?</p>
-            <p>Most services can begin within 48–72 hours after onboarding.</p>
-          </div>
-          <div>
-            <p className="font-medium">Do you offer discounts for multiple properties?</p>
-            <p>Yes, volume pricing is available. Contact us for a tailored quote.</p>
-          </div>
         </CardContent>
       </Card>
     </div>

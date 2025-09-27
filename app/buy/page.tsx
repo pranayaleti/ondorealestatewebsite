@@ -1,3 +1,4 @@
+import { SITE_SOCIALS } from "@/lib/site"
 import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
@@ -89,6 +90,30 @@ const faqs = [
   {
     question: "Can you help with new construction homes?",
     answer: "Yes, we work with both existing homes and new construction. We can help you navigate builder contracts, upgrades, and the construction timeline process.",
+  },
+  {
+    question: "How much should I budget for closing costs?",
+    answer: "Plan for roughly 2–3% of the purchase price for lender, title, and prepaid items. We can also negotiate seller credits when appropriate.",
+  },
+  {
+    question: "How do I compete in multiple-offer situations?",
+    answer: "We tailor terms like escalation clauses, appraisal gap strategies, timelines, and earnest money while protecting key contingencies.",
+  },
+  {
+    question: "What inspections are recommended?",
+    answer: "General home inspection plus specialty inspections as needed (radon, sewer, roof, structural). We coordinate and advise on findings.",
+  },
+  {
+    question: "What is earnest money and is it refundable?",
+    answer: "Earnest money is a good-faith deposit applied at closing. It is typically refundable if you cancel within contractual contingency timelines.",
+  },
+  {
+    question: "How long does a typical purchase take?",
+    answer: "Most financed purchases close in 30–45 days after acceptance. Cash purchases can close faster depending on title and inspections.",
+  },
+  {
+    question: "Can I buy before I sell my current home?",
+    answer: "Yes. We explore bridge loans, HELOCs, or contract terms like leasebacks to align both timelines with minimal risk.",
   },
 ]
 
@@ -226,12 +251,7 @@ export default function BuyPage() {
             name: SITE_NAME,
             url: SITE_URL,
             areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-            sameAs: [
-              'https://www.facebook.com/OnDoRealEstate',
-              'https://www.instagram.com/OnDoRealEstate',
-              'https://www.linkedin.com/company/OnDoRealEstate',
-              'https://www.youtube.com/@OnDoRealEstate'
-            ]
+            sameAs: SITE_SOCIALS
           },
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
           serviceType: 'Real Estate Sales',
@@ -245,12 +265,7 @@ export default function BuyPage() {
           name: SITE_NAME,
           url: SITE_URL,
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-          sameAs: [
-            'https://www.facebook.com/OnDoRealEstate',
-            'https://www.instagram.com/OnDoRealEstate',
-            'https://www.linkedin.com/company/OnDoRealEstate',
-            'https://www.youtube.com/@OnDoRealEstate'
-          ],
+          sameAs: SITE_SOCIALS,
           makesOffer: [
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Property Management' } },
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Buying' } },

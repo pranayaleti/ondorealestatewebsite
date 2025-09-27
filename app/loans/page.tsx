@@ -1,3 +1,4 @@
+import { SITE_SOCIALS } from "@/lib/site"
 import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
@@ -95,6 +96,30 @@ const faqs = [
   {
     question: "Can I refinance my existing Utah mortgage?",
     answer: "Absolutely! We offer rate and term refinancing, cash-out refinancing, and streamline refinancing for FHA and VA loans to help you lower payments or access equity.",
+  },
+  {
+    question: "What down payment do I need?",
+    answer: "Conventional loans can start at 3% down, FHA at 3.5%, and VA/USDA may be 0% for eligible borrowers. We’ll confirm your options.",
+  },
+  {
+    question: "How are closing costs calculated?",
+    answer: "Expect 2–3% of price for lender/title/prepaids. We can explore seller credits and lender options to reduce cash to close.",
+  },
+  {
+    question: "When does PMI apply and can I remove it?",
+    answer: "PMI typically applies to conventional loans with <20% down and can be removed as equity grows per investor rules.",
+  },
+  {
+    question: "I’m self‑employed—what documents are needed?",
+    answer: "Usually two years of returns, YTD P&L, and bank statements. Some programs allow alternatives with conditions.",
+  },
+  {
+    question: "Should I buy points or use a temporary buydown?",
+    answer: "Points lower the rate for the life of the loan; buydowns reduce payments for 1–3 years. We’ll model both to compare.",
+  },
+  {
+    question: "How long does underwriting take?",
+    answer: "Underwriting commonly takes 24–72 hours after a complete file. Clear communication and fast document turnarounds keep things moving.",
   },
 ]
 
@@ -242,12 +267,7 @@ export default function LoansPage() {
             name: SITE_NAME,
             url: SITE_URL,
             areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-            sameAs: [
-              'https://www.facebook.com/OnDoRealEstate',
-              'https://www.instagram.com/OnDoRealEstate',
-              'https://www.linkedin.com/company/OnDoRealEstate',
-              'https://www.youtube.com/@OnDoRealEstate'
-            ]
+            sameAs: SITE_SOCIALS
           },
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
           serviceType: 'Financial Services',
@@ -261,12 +281,7 @@ export default function LoansPage() {
           name: SITE_NAME,
           url: SITE_URL,
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-          sameAs: [
-            'https://www.facebook.com/OnDoRealEstate',
-            'https://www.instagram.com/OnDoRealEstate',
-            'https://www.linkedin.com/company/OnDoRealEstate',
-            'https://www.youtube.com/@OnDoRealEstate'
-          ],
+          sameAs: SITE_SOCIALS,
           makesOffer: [
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Property Management' } },
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Buying' } },
