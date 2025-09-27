@@ -127,7 +127,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-foreground dark:bg-card">
+      <section className="py-16 bg-background dark:bg-card">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">How OnDo Real Estate Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -211,7 +211,7 @@ export default function LandingPage() {
       </section>
 
       {/* Property Owner Section */}
-      <section className="py-16 bg-foreground dark:bg-card">
+      <section className="py-16 bg-background dark:bg-card">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
