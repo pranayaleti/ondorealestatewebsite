@@ -138,13 +138,13 @@ export default function SettingsPage() {
                 <div className="space-y-4">
                   <h3 className="text-lg font-medium">Theme</h3>
                   <div className="grid grid-cols-3 gap-4">
-                    <div className="border rounded-md p-4 cursor-pointer bg-white">
-                      <div className="h-10 bg-white border rounded-md mb-2"></div>
+                    <div className="border rounded-md p-4 cursor-pointer bg-foreground">
+                      <div className="h-10 bg-foreground border rounded-md mb-2"></div>
                       <p className="text-center text-sm font-medium">Light</p>
                     </div>
-                    <div className="border rounded-md p-4 cursor-pointer bg-gray-900">
-                      <div className="h-10 bg-gray-800 border border-gray-700 rounded-md mb-2"></div>
-                      <p className="text-center text-sm font-medium text-white">Dark</p>
+                    <div className="border rounded-md p-4 cursor-pointer bg-card">
+                      <div className="h-10 bg-muted border border-border rounded-md mb-2"></div>
+                      <p className="text-center text-sm font-medium text-foreground">Dark</p>
                     </div>
                     <div className="border rounded-md p-4 cursor-pointer bg-gradient-to-b from-white to-gray-900">
                       <div className="h-10 bg-gradient-to-r from-white to-gray-800 border rounded-md mb-2"></div>
@@ -245,7 +245,7 @@ export default function SettingsPage() {
                           <p className="text-sm text-gray-500">Connect your Google account</p>
                         </div>
                       </div>
-                      <button className="px-3 py-1 bg-primary text-white rounded-md text-sm">Connect</button>
+                      <button className="px-3 py-1 bg-primary text-foreground rounded-md text-sm">Connect</button>
                     </div>
 
                     <div className="flex items-center justify-between border p-4 rounded-md">
@@ -260,7 +260,7 @@ export default function SettingsPage() {
                           <p className="text-sm text-gray-500">Connect your LinkedIn account</p>
                         </div>
                       </div>
-                      <button className="px-3 py-1 bg-primary text-white rounded-md text-sm">Connect</button>
+                      <button className="px-3 py-1 bg-primary text-foreground rounded-md text-sm">Connect</button>
                     </div>
                   </div>
                 </div>

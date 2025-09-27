@@ -272,7 +272,7 @@ export function LeadsTable() {
                 </div>
               </TableCell>
               <TableCell>
-                <Badge variant="outline" className={`capitalize ${getStatusColor(application.status)} text-white`}>
+                <Badge variant="outline" className={`capitalize ${getStatusColor(application.status)} text-foreground`}>
                   {application.status}
                 </Badge>
               </TableCell>

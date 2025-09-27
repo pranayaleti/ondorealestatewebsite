@@ -142,7 +142,7 @@ export default function LoansPage() {
         backgroundImage="/modern-office-building.png"
       />
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Find the Perfect Loan for Your Utah Home</h2>
@@ -238,17 +238,17 @@ export default function LoansPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-blue-600 text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Pre-Approved?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Start your mortgage application today and get pre-approved for your Utah home purchase.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-blue-600 hover:bg-gray-100">
               <Link href="/contact">Apply Now</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-blue-600">
               <Link href="/calculators">Calculate Payment</Link>
             </Button>
           </div>

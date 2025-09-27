@@ -329,8 +329,8 @@ export default function PropertiesPage() {
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Find Your Perfect Home</h1>
-              <p className="text-xl text-white/90 mb-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Find Your Perfect Home</h1>
+              <p className="text-xl text-foreground/90 mb-8">
                 Browse our curated selection of quality rental properties managed by OnDo Real Estate
               </p>
               <div className="flex justify-center">
@@ -395,7 +395,7 @@ export default function PropertiesPage() {
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute top-2 right-2 bg-primary text-white px-3 py-1 rounded-md font-medium">
+                      <div className="absolute top-2 right-2 bg-primary text-foreground px-3 py-1 rounded-md font-medium">
                         ${property.price}/mo
                       </div>
                     </div>
@@ -426,9 +426,9 @@ export default function PropertiesPage() {
             ) : (
               <div className="py-12 flex flex-col items-center">
                 <div className="max-w-md w-full">
-                  <div className="bg-white p-6 rounded-lg shadow-sm border mb-6 dark:bg-gray-800 dark:border-gray-700">
-                    <h3 className="text-lg font-semibold mb-4 dark:text-white">No properties found</h3>
-                    <p className="text-gray-600 mb-4 dark:text-gray-300">
+                  <div className="bg-foreground p-6 rounded-lg shadow-sm border mb-6 dark:bg-muted dark:border-border">
+                    <h3 className="text-lg font-semibold mb-4 dark:text-foreground">No properties found</h3>
+                    <p className="text-gray-600 mb-4 dark:text-muted-foreground">
                       We couldn't find any properties matching your search criteria.
                     </p>
                     <Button

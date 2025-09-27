@@ -259,7 +259,7 @@ export function PropertiesTable() {
                         : "Over $1M"}
               </TableCell>
               <TableCell>
-                <Badge variant="outline" className={`capitalize ${getStatusColor(property.status)} text-white`}>
+                <Badge variant="outline" className={`capitalize ${getStatusColor(property.status)} text-foreground`}>
                   {property.status}
                 </Badge>
               </TableCell>

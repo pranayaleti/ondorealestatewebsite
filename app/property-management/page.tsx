@@ -136,7 +136,7 @@ export default function PropertyManagementPage() {
         backgroundImage="/property-manager-meeting.png"
       />
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Complete Property Management Solutions</h2>
@@ -222,17 +222,17 @@ export default function PropertyManagementPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-blue-600 text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Simplify Your Property Management?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get started with our property management services and experience the difference professional management makes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-blue-600 hover:bg-gray-100">
               <Link href="/contact">Get Free Consultation</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-blue-600">
               <Link href="/properties">View Our Properties</Link>
             </Button>
           </div>

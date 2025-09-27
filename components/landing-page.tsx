@@ -113,10 +113,10 @@ export default function LandingPage() {
           <Image src="/modern-office-building.png" alt="Modern building" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
             Make life easy
           </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300">
+          <p className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground">
             OnDo Real Estate helps you find the ideal rental home with professional property management services and makes
             your life easier.
           </p>
@@ -127,34 +127,34 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-foreground dark:bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">How OnDo Real Estate Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">How OnDo Real Estate Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-full mb-4">
+              <div className="bg-gray-100 dark:bg-muted p-4 rounded-full mb-4">
                 <Home className="h-8 w-8 text-gray-700 dark:text-gray-200" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">1. Find Properties</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl font-semibold mb-2 dark:text-foreground">1. Find Properties</h3>
+              <p className="text-gray-600 dark:text-muted-foreground">
                 Enter your ZIP code to browse available rental properties in your area.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-full mb-4">
+              <div className="bg-gray-100 dark:bg-muted p-4 rounded-full mb-4">
                 <Building className="h-8 w-8 text-gray-700 dark:text-gray-200" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">2. Schedule Viewings</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl font-semibold mb-2 dark:text-foreground">2. Schedule Viewings</h3>
+              <p className="text-gray-600 dark:text-muted-foreground">
                 Tour your favorite properties with our professional property managers.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-full mb-4">
+              <div className="bg-gray-100 dark:bg-muted p-4 rounded-full mb-4">
                 <DollarSign className="h-8 w-8 text-gray-700 dark:text-gray-200" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">3. Move In</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl font-semibold mb-2 dark:text-foreground">3. Move In</h3>
+              <p className="text-gray-600 dark:text-muted-foreground">
                 Complete your application, sign the lease, and enjoy your new home.
               </p>
             </div>
@@ -163,12 +163,12 @@ export default function LandingPage() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-gray-50 dark:bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Featured Rental Properties</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">Featured Rental Properties</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProperties.map((property) => (
-              <Card key={property.id} className="dark:bg-gray-900">
+              <Card key={property.id} className="dark:bg-card">
                 <div className="relative h-48 w-full">
                   <Image
                     src={property.image || "/placeholder.svg"}
@@ -178,22 +178,22 @@ export default function LandingPage() {
                   />
                 </div>
                 <CardHeader>
-                  <CardTitle className="dark:text-white">{property.name}</CardTitle>
-                  <CardDescription className="dark:text-gray-300">{property.description}</CardDescription>
+                  <CardTitle className="dark:text-foreground">{property.name}</CardTitle>
+                  <CardDescription className="dark:text-muted-foreground">{property.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm dark:text-gray-300">
+                    <span className="text-sm dark:text-muted-foreground">
                       {property.bedrooms} bed • {property.bathrooms} bath
                     </span>
-                    <span className="font-semibold dark:text-white">${property.price}/mo</span>
+                    <span className="font-semibold dark:text-foreground">${property.price}/mo</span>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{property.shortDescription}</p>
+                  <p className="text-sm text-gray-600 dark:text-muted-foreground">{property.shortDescription}</p>
                 </CardContent>
                 <CardFooter>
                   <Button
                     variant="outline"
-                    className="w-full dark:text-white dark:border-gray-600 dark:hover:bg-gray-800"
+                    className="w-full dark:text-foreground dark:border-gray-600 dark:hover:bg-muted"
                     onClick={() => handleViewDetails(property.id)}
                   >
                     View Details
@@ -203,7 +203,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Button asChild className="bg-black hover:bg-gray-800 text-white">
+            <Button asChild className="bg-background hover:bg-muted text-foreground">
               <Link href="/properties">View All Properties</Link>
             </Button>
           </div>
@@ -211,34 +211,34 @@ export default function LandingPage() {
       </section>
 
       {/* Property Owner Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-foreground dark:bg-card">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6 dark:text-white">Property Owners</h2>
-              <p className="text-lg mb-6 dark:text-gray-300">
+              <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Property Owners</h2>
+              <p className="text-lg mb-6 dark:text-muted-foreground">
                 Let OnDo Real Estate handle the day-to-day management of your rental property. We provide comprehensive
                 property management services so you can enjoy passive income without the hassle.
               </p>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-gray-300 mr-2 flex-shrink-0" />
-                  <span className="dark:text-gray-300">Professional tenant screening and placement</span>
+                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <span className="dark:text-muted-foreground">Professional tenant screening and placement</span>
                 </li>
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-gray-300 mr-2 flex-shrink-0" />
-                  <span className="dark:text-gray-300">Rent collection and financial reporting</span>
+                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <span className="dark:text-muted-foreground">Rent collection and financial reporting</span>
                 </li>
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-gray-300 mr-2 flex-shrink-0" />
-                  <span className="dark:text-gray-300">Maintenance coordination and 24/7 emergency response</span>
+                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <span className="dark:text-muted-foreground">Maintenance coordination and 24/7 emergency response</span>
                 </li>
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-gray-300 mr-2 flex-shrink-0" />
-                  <span className="dark:text-gray-300">Regular property inspections and detailed reports</span>
+                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <span className="dark:text-muted-foreground">Regular property inspections and detailed reports</span>
                 </li>
               </ul>
-              <Button asChild className="bg-black hover:bg-gray-800 text-white">
+              <Button asChild className="bg-background hover:bg-muted text-foreground">
                 <Link href="/contact">Learn More</Link>
               </Button>
             </div>
@@ -250,11 +250,11 @@ export default function LandingPage() {
       </section>
 
       {/* Founder's Note Section */}
-      <section className="py-16 bg-gray-900 text-white">
+      <section className="py-16 bg-card text-foreground">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="flex justify-center md:justify-start">
-              <div className="relative h-60 w-60 md:h-80 md:w-80 rounded-full border-4 border-orange-500 overflow-hidden bg-black">
+              <div className="relative h-60 w-60 md:h-80 md:w-80 rounded-full border-4 border-primary overflow-hidden bg-background">
                 <Image 
                   src="/founder-image.png" 
                   alt="Founder Pranay Reddy Aleti" 
@@ -269,11 +269,11 @@ export default function LandingPage() {
             </div>
             <div className="md:col-span-2">
               <h3 className="text-2xl font-bold mb-3">Founder's Note</h3>
-              <p className="text-gray-300 mb-6 max-w-3xl">
+              <p className="text-muted-foreground mb-6 max-w-3xl">
                 "Real estate is more than property—it's about people, growth, and legacy. At Ondo, we're building a modern
                 platform rooted in trust, transparency, and technology so owners can rest easy and tenants feel right at home."
               </p>
-              <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+              <Button asChild className="bg-primary hover:bg-primary text-foreground">
                 <Link href="/founders-letter">Read the full letter</Link>
               </Button>
             </div>
@@ -282,19 +282,19 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-gray-50 dark:bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">What Our Clients Say</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-white dark:bg-gray-900">
+            <Card className="bg-foreground dark:bg-card">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
                     <Image src="/professional-woman-smiling.png" alt="Sarah J." fill style={{ objectFit: "cover" }} />
                   </div>
                   <div>
-                    <CardTitle className="text-lg dark:text-white">Sarah J.</CardTitle>
-                    <CardDescription className="dark:text-gray-400">Tenant</CardDescription>
+                    <CardTitle className="text-lg dark:text-foreground">Sarah J.</CardTitle>
+                    <CardDescription className="dark:text-muted-foreground">Tenant</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -304,22 +304,22 @@ export default function LandingPage() {
                     <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-muted-foreground">
                   "OnDo Real Estate made finding my new apartment so easy. Their team was responsive and helped me find
                   exactly what I was looking for in my price range."
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-900">
+            <Card className="bg-foreground dark:bg-card">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
                     <Image src="/professional-man-suit.png" alt="Michael T." fill style={{ objectFit: "cover" }} />
                   </div>
                   <div>
-                    <CardTitle className="text-lg dark:text-white">Michael T.</CardTitle>
-                    <CardDescription className="dark:text-gray-400">Property Owner</CardDescription>
+                    <CardTitle className="text-lg dark:text-foreground">Michael T.</CardTitle>
+                    <CardDescription className="dark:text-muted-foreground">Property Owner</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -329,14 +329,14 @@ export default function LandingPage() {
                     <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-muted-foreground">
                   "Since hiring OnDo Real Estate to manage my rental properties, I've had zero stress. They handle
                   everything professionally and my income has actually increased."
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-900">
+            <Card className="bg-foreground dark:bg-card">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
@@ -348,8 +348,8 @@ export default function LandingPage() {
                     />
                   </div>
                   <div>
-                    <CardTitle className="text-lg dark:text-white">Jennifer L.</CardTitle>
-                    <CardDescription className="dark:text-gray-400">Tenant</CardDescription>
+                    <CardTitle className="text-lg dark:text-foreground">Jennifer L.</CardTitle>
+                    <CardDescription className="dark:text-muted-foreground">Tenant</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -359,7 +359,7 @@ export default function LandingPage() {
                     <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-muted-foreground">
                   "The maintenance service through OnDo Real Estate is outstanding. Any issue I've had has been resolved
                   within 24 hours. Best property management I've experienced."
                 </p>
@@ -370,7 +370,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gray-800 text-white">
+      <section className="py-16 bg-muted text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Find Your Perfect Rental?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -381,9 +381,9 @@ export default function LandingPage() {
               <input
                 type="text"
                 placeholder="Enter ZIP code"
-                className="flex-1 px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="flex-1 px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
               />
-              <Button type="submit" className="bg-black hover:bg-gray-700 text-white">
+              <Button type="submit" className="bg-background hover:bg-gray-700 text-foreground">
                 Search
               </Button>
             </form>

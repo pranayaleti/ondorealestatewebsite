@@ -1,0 +1,16 @@
+{
+  "branch": "theme/unify-founders-letter",
+  "tokens": "src/styles/design-tokens.json",
+  "cssVars": "src/styles/_design-tokens.css",
+  "classCodemod": "scripts/codemod-tailwind-classes.mjs",
+  "literalCodemod": "scripts/codemod-tokens.mjs",
+  "tailwindConfig": "tailwind.config.ts",
+  "globals": "app/globals.css",
+  "font": "app/layout.tsx",
+  "replacements": {
+    "hexColors": ["#0D0D0D","#111827","#F2F2F2","#D1D5DB","#1F2937","#333333","#F97316","#FB923C","#FF7700"],
+    "classes": ["bg-black","bg-gray-900","bg-gray-800","bg-orange-500","text-white","text-gray-300","text-gray-400","text-orange-400","border-gray-800","ring-orange-500/40"]
+  }
+}
+
+

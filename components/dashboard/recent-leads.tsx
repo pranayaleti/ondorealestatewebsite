@@ -132,7 +132,7 @@ export function RecentLeads() {
               </div>
             </TableCell>
             <TableCell>
-              <Badge variant="outline" className={`capitalize ${getStatusColor(lead.status)} text-white`}>
+              <Badge variant="outline" className={`capitalize ${getStatusColor(lead.status)} text-foreground`}>
                 {lead.status}
               </Badge>
             </TableCell>
