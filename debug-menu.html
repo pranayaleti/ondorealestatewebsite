@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Mobile Menu</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .debug-info { 
+            position: fixed; 
+            top: 10px; 
+            right: 10px; 
+            background: #000; 
+            color: #fff; 
+            padding: 10px; 
+            font-size: 12px; 
+            z-index: 9999;
+        }
+        iframe { 
+            width: 100%; 
+            height: calc(100vh - 100px); 
+            border: none; 
+        }
+        .controls { 
+            padding: 10px; 
+            background: #f0f0f0; 
+        }
+        button { 
+            margin: 5px; 
+            padding: 10px; 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info" id="debugInfo">
+        Viewport: <span id="viewport"></span><br>
+        Menu State: <span id="menuState">Unknown</span>
+    </div>
+    
+    <div class="controls">
+        <button onclick="setViewport(375, 667)">iPhone SE</button>
+        <button onclick="setViewport(768, 1024)">iPad</button>
+        <button onclick="setViewport(1200, 800)">Desktop</button>
+        <button onclick="testHamburger()">Test Hamburger</button>
+        <button onclick="checkConsole()">Check Console</button>
+    </div>
+    
+    <iframe id="testFrame" src="http://localhost:3000/"></iframe>
+    
+    <script>
+        function updateViewport() {
+            const frame = document.getElementById('testFrame');
+            const viewport = document.getElementById('viewport');
+            viewport.textContent = `${frame.offsetWidth}x${frame.offsetHeight}`;
+        }
+        
+        function setViewport(width, height) {
+            const frame = document.getElementById('testFrame');
+            frame.style.width = width + 'px';
+            frame.style.height = height + 'px';
+            updateViewport();
+        }
+        
+        function testHamburger() {
+            const frame = document.getElementById('testFrame');
+            const frameDoc = frame.contentDocument || frame.contentWindow.document;
+            const button = frameDoc.querySelector('button[aria-label="Toggle menu"]');
+            
+            if (button) {
+                console.log('Hamburger button found:', button);
+                console.log('Button classes:', button.className);
+                console.log('Button aria-expanded:', button.getAttribute('aria-expanded'));
+                
+                // Simulate click
+                button.click();
+                
+                setTimeout(() => {
+                    const menu = frameDoc.querySelector('[ref]');
+                    const menuState = document.getElementById('menuState');
+                    menuState.textContent = menu ? 'Menu found' : 'Menu not found';
+                    console.log('Menu after click:', menu);
+                }, 100);
+            } else {
+                console.log('Hamburger button not found');
+            }
+        }
+        
+        function checkConsole() {
+            console.log('Checking console for errors...');
+        }
+        
+        // Initial setup
+        setViewport(375, 667); // Start with mobile viewport
+        
+        // Update viewport info periodically
+        setInterval(updateViewport, 1000);
+    </script>
+</body>
+</html>

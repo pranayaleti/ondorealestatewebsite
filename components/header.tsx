@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -19,7 +19,13 @@ import { useAuth } from "@/lib/auth-context"
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
   const { user } = useAuth()
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,12 +35,32 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("keydown", handleEscape)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("keydown", handleEscape)
+    }
+  }, [isMenuOpen])
+
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-background"
-      }`}
-    >
+    <header className={`sticky top-0 z-50 w-full transition-all duration-200 ${isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-background"}`}>
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
@@ -111,85 +137,90 @@ export default function Header() {
               <Button variant="ghost" asChild>
                 <Link href="/auth">Log in</Link>
               </Button>
-              {/* Sign up functionality is currently disabled
-              <Button asChild>
-                <Link href="/auth?type=owner">Sign up</Link>
-              </Button>
-              */}
             </div>
           )}
-          <button className="block md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+          <button
+            className="block md:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
+            onClick={() => {
+              console.log('Hamburger clicked, current state:', isMenuOpen)
+              setIsMenuOpen(!isMenuOpen)
+            }}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="container md:hidden py-4 pb-6">
-          <nav className="flex flex-col gap-4">
-            <Link
-              href="/properties"
-              className="text-sm font-medium hover:underline underline-offset-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Properties
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-medium hover:underline underline-offset-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/why-utah"
-              className="text-sm font-medium hover:underline underline-offset-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Why Utah
-            </Link>
-            <Link
-              href="/contact"
-              className="text-sm font-medium hover:underline underline-offset-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </Link>
-            <Link
-              href="/faq"
-              className="text-sm font-medium hover:underline underline-offset-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              FAQ
-            </Link>
-            <div>
-              <p className="text-sm font-medium mb-2">Calculators</p>
-              <div className="grid grid-cols-2 gap-2">
-                <Link href="/calculators" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Overview</Link>
-                <Link href="/calculators/mortgage-payment" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Mortgage</Link>
-                <Link href="/calculators/affordability" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Affordability</Link>
-                <Link href="/calculators/income" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Income</Link>
-                <Link href="/calculators/closing-cost" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Closing Cost</Link>
-                <Link href="/calculators/refinance" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Refinance</Link>
-                <Link href="/calculators/home-sale" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Home Sale</Link>
-                <Link href="/calculators/buying-power" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Buying Power</Link>
-                <Link href="/calculators/temporary-buydown" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Buydown</Link>
-                <Link href="/calculators/rent-vs-own" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Rent vs Own</Link>
-                <Link href="/calculators/retirement" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Retirement</Link>
+      {isMounted && isMenuOpen && (
+        <div ref={menuRef} className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg border-t md:hidden z-50 py-4 pb-6">
+          <div className="container">
+            <nav className="flex flex-col gap-4">
+              <Link
+                href="/properties"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Properties
+              </Link>
+              <Link
+                href="/about"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/why-utah"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Why Utah
+              </Link>
+              <Link
+                href="/contact"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <Link
+                href="/faq"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                FAQ
+              </Link>
+              <div>
+                <p className="text-sm font-medium mb-2">Calculators</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <Link href="/calculators" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Overview</Link>
+                  <Link href="/calculators/mortgage-payment" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Mortgage</Link>
+                  <Link href="/calculators/affordability" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Affordability</Link>
+                  <Link href="/calculators/income" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Income</Link>
+                  <Link href="/calculators/closing-cost" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Closing Cost</Link>
+                  <Link href="/calculators/refinance" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Refinance</Link>
+                  <Link href="/calculators/home-sale" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Home Sale</Link>
+                  <Link href="/calculators/buying-power" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Buying Power</Link>
+                  <Link href="/calculators/temporary-buydown" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Buydown</Link>
+                  <Link href="/calculators/rent-vs-own" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Rent vs Own</Link>
+                  <Link href="/calculators/retirement" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Retirement</Link>
+                </div>
               </div>
-            </div>
-            {!user && (
-              <div className="flex gap-2 mt-2">
-                <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" size="sm">
-                    Log in
-                  </Button>
-                </Link>
-                <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button size="sm">Sign up</Button>
-                </Link>
-              </div>
-            )}
-          </nav>
+              {!user && (
+                <div className="flex gap-2 mt-2">
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="outline" size="sm">
+                      Log in
+                    </Button>
+                  </Link>
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                    <Button size="sm">Sign up</Button>
+                  </Link>
+                </div>
+              )}
+            </nav>
+          </div>
         </div>
       )}
     </header>

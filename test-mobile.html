@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .header { background: #fff; padding: 1rem; border-bottom: 1px solid #ccc; }
+        .hamburger { display: block; background: none; border: none; cursor: pointer; }
+        .mobile-menu { 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            right: 0; 
+            background: #fff; 
+            border-top: 1px solid #ccc; 
+            padding: 1rem; 
+            display: none;
+        }
+        .mobile-menu.open { display: block; }
+        @media (min-width: 768px) {
+            .hamburger { display: none; }
+            .mobile-menu { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+            ☰
+        </button>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/properties">Properties</a><br>
+            <a href="/about">About</a><br>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const button = document.querySelector('.hamburger');
+            const isOpen = menu.classList.contains('open');
+            
+            if (isOpen) {
+                menu.classList.remove('open');
+                button.setAttribute('aria-expanded', 'false');
+                button.textContent = '☰';
+            } else {
+                menu.classList.add('open');
+                button.setAttribute('aria-expanded', 'true');
+                button.textContent = '✕';
+            }
+        }
+    </script>
+</body>
+</html>
