@@ -192,7 +192,7 @@ const MortgagePaymentCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
       {/* Header */}
-      <div className="bg-foreground shadow-sm border-b border-gray-200">
+      <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -217,7 +217,7 @@ const MortgagePaymentCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-foreground rounded-lg shadow-lg p-6">
+          <div className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
@@ -410,7 +410,7 @@ const MortgagePaymentCalculator: React.FC = () => {
             {results && (
               <div id="pdf-content">
                 {/* Monthly Payment Summary */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">Monthly Payment Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
@@ -448,7 +448,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                 </div>
 
                 {/* Cost Summary */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">Cost Summary</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
@@ -467,7 +467,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                 </div>
 
                 {/* Amortization Schedule */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold text-gray-900">Amortization Schedule</h2>
                     <button
@@ -518,7 +518,7 @@ const MortgagePaymentCalculator: React.FC = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 bg-foreground rounded-lg shadow-lg p-6">
+        <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">About This Calculator</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
             <div>
