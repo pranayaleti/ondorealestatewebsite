@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
+import { use } from "react"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
@@ -19,10 +20,11 @@ const slugToComponent: Record<string, any> = {
   "retirement": dynamic(() => import("@/pages/calculators/RetirementCalculator"), { ssr: false }),
 }
 
-export default function CalculatorBySlugPage({ params }: { params: { slug: string } }) {
-  const Component = slugToComponent[params.slug]
+export default function CalculatorBySlugPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = use(params)
+  const Component = slugToComponent[resolvedParams.slug]
   if (!Component) return notFound()
-  const prettyTitle = params.slug
+  const prettyTitle = resolvedParams.slug
     .split("-")
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
     .join(" ")
@@ -31,12 +33,12 @@ export default function CalculatorBySlugPage({ params }: { params: { slug: strin
       <SEO
         title={`${prettyTitle} Calculator`}
         description={`Use our ${prettyTitle.toLowerCase()} calculator to plan your Utah real estate decisions.`}
-        pathname={`/calculators/${params.slug}`}
+        pathname={`/calculators/${resolvedParams.slug}`}
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Calculators", url: `${SITE_URL}/calculators` },
-          { name: prettyTitle, url: `${SITE_URL}/calculators/${params.slug}` },
+          { name: prettyTitle, url: `${SITE_URL}/calculators/${resolvedParams.slug}` },
         ])}
       />
       <Component />
