@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Payments | PropertyPro Management",
@@ -15,6 +18,17 @@ export const metadata: Metadata = {
 export default function PaymentsPage() {
   return (
     <DashboardShell>
+      <SEO
+        title="Dashboard Payments | OnDo Real Estate"
+        description="Manage rent payments and financial transactions in the dashboard."
+        pathname="/dashboard/payments"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+          { name: "Payments", url: `${SITE_URL}/dashboard/payments` },
+        ])}
+      />
       <DashboardHeader heading="Payments" text="Manage rent payments and financial transactions">
         <Button>
           <Plus className="mr-2 h-4 w-4" /> Record Payment

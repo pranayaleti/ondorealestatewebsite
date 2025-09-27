@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { HelpCircle, Phone, Mail, MessageCircle } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function FAQPage() {
   const faqCategories = [
@@ -91,6 +94,17 @@ export default function FAQPage() {
 
   return (
     <main className="min-h-screen">
+      <SEO
+        title="Help Center FAQs"
+        description="Answers to general, owner, tenant, and legal questions at Ondo Real Estate."
+        pathname="/help/faq"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Help", url: `${SITE_URL}/help` },
+          { name: "FAQ", url: `${SITE_URL}/help/faq` },
+        ])}
+      />
       <PageBanner
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about our property management services"

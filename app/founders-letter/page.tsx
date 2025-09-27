@@ -3,6 +3,9 @@
 import React from "react"
 import Image from "next/image"
 import { User, Building2, Lightbulb, TrendingUp, Handshake, Rocket } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function FoundersLetterPage() {
   const currentYear = new Date().getFullYear();
@@ -11,6 +14,16 @@ export default function FoundersLetterPage() {
 
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Founder's Letter | Ondo Real Estate"
+        description="A personal letter from the founder of Ondo Real Estate on our mission, values, and the future of property management."
+        pathname="/founders-letter"
+        image={`${SITE_URL}/founder-image.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Founder's Letter", url: `${SITE_URL}/founders-letter` },
+        ])}
+      />
       <div className="relative bg-gradient-to-br from-black via-gray-900 to-orange-900">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative max-w-7xl mx-auto px-4 py-24">

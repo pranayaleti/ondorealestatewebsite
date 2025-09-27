@@ -219,8 +219,9 @@ export function MaintenanceRequestForm() {
                 <div key={index} className="relative">
                   <img
                     src={photo || "/placeholder.svg"}
-                    alt={`Issue photo ${index + 1}`}
+                    alt={`Maintenance issue photo ${index + 1}`}
                     className="w-24 h-24 object-cover rounded-md border"
+                    loading="lazy"
                   />
                   <button
                     type="button"

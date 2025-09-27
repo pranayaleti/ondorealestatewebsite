@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/breadcrumb"
 import { useAuth } from "@/lib/auth-context"
 import { Badge } from "@/components/ui/badge"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function TenantDashboard() {
   const [loading, setLoading] = useState(true)
@@ -28,6 +31,16 @@ export default function TenantDashboard() {
 
   return (
     <div className="flex flex-col gap-4 p-4 md:p-8">
+      <SEO
+        title="Tenant Dashboard | Ondo Real Estate"
+        description="Manage your rental, payments, maintenance requests, and messages in the Ondo tenant portal."
+        pathname="/tenant"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Tenant", url: `${SITE_URL}/tenant` },
+        ])}
+      />
       <div className="flex items-center">
         <Breadcrumb className="mb-4">
           <BreadcrumbList>
@@ -134,7 +147,12 @@ export default function TenantDashboard() {
               <div className="space-y-4">
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="w-full md:w-1/3 h-48 bg-muted rounded-md overflow-hidden">
-                    <img src="/modern-apartment-balcony.png" alt="Apartment" className="w-full h-full object-cover" />
+                    <img 
+                      src="/modern-apartment-balcony.png" 
+                      alt="Modern apartment building with balcony" 
+                      className="w-full h-full object-cover" 
+                      loading="lazy"
+                    />
                   </div>
                   <div className="flex-1 space-y-4">
                     <div>

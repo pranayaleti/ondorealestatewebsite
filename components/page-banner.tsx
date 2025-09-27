@@ -12,11 +12,17 @@ export function PageBanner({ title, subtitle, backgroundImage }: PageBannerProps
         {backgroundImage ? (
           <img
             src={backgroundImage || "/placeholder.svg"}
-            alt=""
+            alt={`${title} background image`}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
           />
         ) : (
-          <img src="/modern-apartment-balcony.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <img 
+            src="/modern-apartment-balcony.png" 
+            alt="Modern apartment building background" 
+            className="absolute inset-0 w-full h-full object-cover" 
+            loading="lazy"
+          />
         )}
       </div>
       <div className="absolute inset-0 flex items-center z-20">

@@ -1,4 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -55,6 +58,17 @@ export default function PaymentQuestionsPage() {
 
   return (
     <main className="min-h-screen">
+      <SEO
+        title="Payment Questions & Support"
+        description="Learn about payment due dates, methods, auto-pay, and support options for your mortgage payments."
+        pathname="/help/payments"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Help", url: `${SITE_URL}/help` },
+          { name: "Payments", url: `${SITE_URL}/help/payments` },
+        ])}
+      />
       <PageBanner
         title="Payment Questions & Support"
         subtitle="Everything you need to know about making your mortgage payments"

@@ -7,10 +7,24 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Home, Settings } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function OwnerSettingsPage() {
   return (
     <div className="space-y-6 p-6">
+      <SEO
+        title="Owner Settings | Ondo Real Estate"
+        description="Manage your account preferences and settings in the owner portal."
+        pathname="/owner/settings"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Owner", url: `${SITE_URL}/owner` },
+          { name: "Settings", url: `${SITE_URL}/owner/settings` },
+        ])}
+      />
       <div className="flex flex-col gap-2">
         <Breadcrumb>
           <BreadcrumbList>

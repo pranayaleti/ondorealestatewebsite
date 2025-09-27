@@ -15,6 +15,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FileText, Download, Eye, Home, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 import {
   Dialog,
   DialogContent,
@@ -91,6 +94,17 @@ export default function TenantDocumentsPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
+      <SEO
+        title="Tenant Documents | Ondo Real Estate"
+        description="View and download your lease, payment receipts, and other documents."
+        pathname="/tenant/documents"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Tenant", url: `${SITE_URL}/tenant` },
+          { name: "Documents", url: `${SITE_URL}/tenant/documents` },
+        ])}
+      />
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold">Documents</h1>

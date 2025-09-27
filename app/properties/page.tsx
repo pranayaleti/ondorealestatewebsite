@@ -10,6 +10,9 @@ import { PropertyFilter, type PropertyFilters } from "@/components/property-filt
 import { PropertySearch } from "@/components/property-search"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Footer } from "@/components/footer"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 // Mock property data
 const allProperties = [
@@ -307,6 +310,16 @@ export default function PropertiesPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO
+        title="Browse Rental Properties in Utah"
+        description="Explore available rental homes, apartments, condos, and townhouses managed by OnDo Real Estate across Utah."
+        pathname="/properties"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Properties", url: `${SITE_URL}/properties` },
+        ])}
+      />
       {/* Banner with search field */}
       <section className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-black/90 z-10" />

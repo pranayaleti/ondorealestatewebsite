@@ -7,10 +7,25 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Home } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function MaintenanceRequestDetailPage({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-6">
+      <SEO
+        title={`Maintenance Request ${params.id} | Tenant Portal`}
+        description="View your maintenance request details and status."
+        pathname={`/tenant/maintenance/${params.id}`}
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Tenant", url: `${SITE_URL}/tenant` },
+          { name: "Maintenance", url: `${SITE_URL}/tenant/maintenance` },
+          { name: params.id, url: `${SITE_URL}/tenant/maintenance/${params.id}` },
+        ])}
+      />
       <div className="flex flex-col gap-2">
         <Breadcrumb>
           <BreadcrumbList>

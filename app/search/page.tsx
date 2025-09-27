@@ -11,6 +11,9 @@ import { useRouter } from "next/navigation"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Search, MapPin, Home } from "lucide-react"
 import Link from "next/link"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 // Mock data for properties
 const mockProperties = [
@@ -145,6 +148,16 @@ export default function SearchResultsPage() {
 
   return (
     <div className="container py-8">
+      <SEO
+        title={`Property Search in ${city}`}
+        description={`Browse available properties in ${city}. Filter by price, beds, baths, and amenities.`}
+        pathname={`/search`}
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Search", url: `${SITE_URL}/search` },
+        ])}
+      />
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold mb-2">Available Properties in {city}</h1>

@@ -7,10 +7,26 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Home, Building, Edit } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function EditPropertyPage({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-6 p-6">
+      <SEO
+        title={`Edit Property | ${params.id}`}
+        description="Update your property details in the owner portal."
+        pathname={`/owner/properties/${params.id}/edit`}
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Owner", url: `${SITE_URL}/owner` },
+          { name: "Properties", url: `${SITE_URL}/owner/properties` },
+          { name: "Details", url: `${SITE_URL}/owner/properties/${params.id}` },
+          { name: "Edit", url: `${SITE_URL}/owner/properties/${params.id}/edit` },
+        ])}
+      />
       <div className="flex flex-col gap-2">
         <Breadcrumb>
           <BreadcrumbList>

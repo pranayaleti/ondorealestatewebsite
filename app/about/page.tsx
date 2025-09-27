@@ -1,10 +1,23 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { PageBanner } from "@/components/page-banner"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
+      <SEO
+        title="About OnDo Real Estate"
+        description="Learn about OnDo Real Estate's mission, services, team, and coverage across the Wasatch Front."
+        pathname="/about"
+        image={`${SITE_URL}/placeholder.jpg`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "About", url: `${SITE_URL}/about` },
+        ])}
+      />
       <PageBanner
         title="About OnDo Real Estate"
         subtitle="Professional property management services connecting quality properties with qualified tenants"

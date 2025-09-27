@@ -3,6 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { TrendingUp, Calculator, FileText, Clock, CheckCircle } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function RefinanceProcessPage() {
   const steps = [
@@ -46,6 +49,17 @@ export default function RefinanceProcessPage() {
 
   return (
     <main className="min-h-screen">
+      <SEO
+        title="Mortgage Refinance Process"
+        description="Step-by-step guide to refinancing your home loan in Utah, from evaluation to closing."
+        pathname="/refinance/process"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Refinance", url: `${SITE_URL}/refinance` },
+          { name: "Process", url: `${SITE_URL}/refinance/process` },
+        ])}
+      />
       <PageBanner
         title="Mortgage Refinance Process"
         subtitle="A step-by-step guide to refinancing your home loan"

@@ -13,6 +13,9 @@ import { CalendarDateRangePicker } from "@/components/dashboard/date-range-picke
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import Loading from "@/components/loading"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Dashboard | OnDo Real Estate",
@@ -22,6 +25,16 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <DashboardShell>
+      <SEO
+        title="Admin Dashboard | OnDo Real Estate"
+        description="Overview of leads, properties, tenants, maintenance, and finances."
+        pathname="/dashboard"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+        ])}
+      />
       <DashboardHeader heading="Dashboard" text="Overview of your property management business">
         <div className="flex items-center gap-2">
           <CalendarDateRangePicker />

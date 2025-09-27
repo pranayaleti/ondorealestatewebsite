@@ -6,6 +6,9 @@ import { SettingsForm } from "@/components/dashboard/settings-form"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Loading from "@/components/loading"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Settings | Property Management CRM",
@@ -15,6 +18,17 @@ export const metadata: Metadata = {
 export default function SettingsPage() {
   return (
     <DashboardShell>
+      <SEO
+        title="Dashboard Settings | OnDo Real Estate"
+        description="Manage system settings, notifications, appearance, and integrations."
+        pathname="/dashboard/settings"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+          { name: "Settings", url: `${SITE_URL}/dashboard/settings` },
+        ])}
+      />
       <DashboardHeader heading="Settings" text="Manage your system settings and preferences" />
 
       <Tabs defaultValue="general" className="space-y-4">

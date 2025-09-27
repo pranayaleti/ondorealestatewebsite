@@ -1,4 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -63,6 +66,17 @@ export default function HistoryPage() {
 
   return (
     <main className="min-h-screen">
+      <SEO
+        title="Our History | OnDo Real Estate"
+        description="Explore the milestones and values that shaped OnDo Real Estate into Utah's trusted property management company."
+        pathname="/about/history"
+        image={`${SITE_URL}/placeholder.jpg`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "About", url: `${SITE_URL}/about` },
+          { name: "History", url: `${SITE_URL}/about/history` },
+        ])}
+      />
       <PageBanner
         title="Our History"
         subtitle="Building trust and excellence in property management since 2020"

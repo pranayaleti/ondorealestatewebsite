@@ -3,6 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Home, DollarSign, Shield, Users, Calculator, CheckCircle } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function ConventionalLoanPage() {
   const benefits = [
@@ -30,6 +33,17 @@ export default function ConventionalLoanPage() {
 
   return (
     <main className="min-h-screen">
+      <SEO
+        title="Conventional Loans in Utah"
+        description="Traditional mortgages with flexible terms and competitive rates. Learn requirements and compare options."
+        pathname="/loans/conventional"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Loans", url: `${SITE_URL}/loans` },
+          { name: "Conventional", url: `${SITE_URL}/loans/conventional` },
+        ])}
+      />
       <PageBanner
         title="Conventional Loans"
         subtitle="Traditional home loans with flexible terms and competitive rates"

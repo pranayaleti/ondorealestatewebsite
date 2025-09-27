@@ -212,9 +212,10 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
                       <img
                         key={index}
                         src={photo || "/placeholder.svg"}
-                        alt={`Issue photo ${index + 1}`}
+                        alt={`Maintenance issue photo ${index + 1}`}
                         className="w-32 h-32 object-cover rounded-md border hover:opacity-90 transition-opacity cursor-pointer"
                         onClick={() => window.open(photo, "_blank")}
+                        loading="lazy"
                       />
                     ))}
                   </div>

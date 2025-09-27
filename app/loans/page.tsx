@@ -1,0 +1,296 @@
+import type { Metadata } from "next"
+import Script from "next/script"
+import { SITE_NAME, SITE_URL } from "@/lib/site"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { PageBanner } from "@/components/page-banner"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { CheckCircle, DollarSign, Shield, Clock, Users, Home, Calculator } from "lucide-react"
+import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Utah Home Loans & Mortgages | Conventional, FHA, VA, USDA | Salt Lake City, Lehi, Provo",
+  description: "Get pre-approved for Utah home loans including conventional, FHA, VA, and USDA mortgages. Expert loan officers serving Salt Lake City, Lehi, Provo, and surrounding areas.",
+  keywords: [
+    "Utah home loans",
+    "Utah mortgages",
+    "conventional loans Utah",
+    "FHA loans Utah",
+    "VA loans Utah",
+    "USDA loans Utah",
+    "Salt Lake City mortgages",
+    "Lehi home loans",
+    "Provo mortgages",
+    "Utah mortgage rates",
+  ],
+  alternates: {
+    canonical: `${SITE_URL}/loans/`,
+  },
+  openGraph: {
+    title: "Utah Home Loans & Mortgages | Conventional, FHA, VA, USDA",
+    description: "Get pre-approved for Utah home loans including conventional, FHA, VA, and USDA mortgages.",
+    url: `${SITE_URL}/loans/`,
+    images: [
+      {
+        url: `${SITE_URL}/modern-office-building.png`,
+        width: 1200,
+        height: 630,
+        alt: "Utah mortgage and loan services",
+      },
+    ],
+  },
+}
+
+const loanTypes = [
+  {
+    icon: <Home className="h-8 w-8" />,
+    title: "Conventional Loans",
+    description: "Traditional mortgages with competitive rates for qualified borrowers with good credit.",
+    features: ["3% down payment", "No PMI with 20% down", "Flexible terms"],
+  },
+  {
+    icon: <Shield className="h-8 w-8" />,
+    title: "FHA Loans",
+    description: "Government-backed loans with lower down payment requirements and flexible credit standards.",
+    features: ["3.5% down payment", "Lower credit requirements", "Gift funds allowed"],
+  },
+  {
+    icon: <Users className="h-8 w-8" />,
+    title: "VA Loans",
+    description: "Exclusive benefits for veterans, active military, and eligible spouses with no down payment required.",
+    features: ["0% down payment", "No PMI required", "Competitive rates"],
+  },
+  {
+    icon: <DollarSign className="h-8 w-8" />,
+    title: "USDA Loans",
+    description: "Rural development loans for eligible properties in designated rural areas with no down payment.",
+    features: ["0% down payment", "Low interest rates", "Rural area eligibility"],
+  },
+]
+
+const faqs = [
+  {
+    question: "What types of home loans do you offer in Utah?",
+    answer: "We offer conventional, FHA, VA, USDA, and jumbo loans. Our loan officers help you find the best program based on your financial situation, property location, and goals.",
+  },
+  {
+    question: "How do I get pre-approved for a mortgage?",
+    answer: "Start by completing our online application or contacting our loan officers. We'll review your income, credit, and assets to provide a pre-approval letter that strengthens your buying power.",
+  },
+  {
+    question: "What are current Utah mortgage rates?",
+    answer: "Mortgage rates change daily and vary by loan type, credit score, and down payment. Contact our loan officers for current rates and personalized quotes based on your situation.",
+  },
+  {
+    question: "How long does the loan process take?",
+    answer: "Typically 30-45 days from application to closing, though this can vary based on loan type and complexity. We work efficiently to meet your timeline and closing date.",
+  },
+  {
+    question: "Do you offer first-time home buyer programs?",
+    answer: "Yes, we work with various first-time buyer programs including down payment assistance, low down payment options, and special rate programs available in Utah.",
+  },
+  {
+    question: "Can I refinance my existing Utah mortgage?",
+    answer: "Absolutely! We offer rate and term refinancing, cash-out refinancing, and streamline refinancing for FHA and VA loans to help you lower payments or access equity.",
+  },
+]
+
+export default function LoansPage() {
+  return (
+    <>
+      <SEO
+        title="Utah Home Loans & Mortgages | Conventional, FHA, VA, USDA"
+        description="Get pre-approved for Utah home loans including conventional, FHA, VA, and USDA mortgages."
+        pathname="/loans/"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Utah Home Loans & Mortgages", url: `${SITE_URL}/loans/` },
+        ])}
+      />
+      <PageBanner
+        title="Utah Home Loans & Mortgages"
+        subtitle="Get pre-approved for the best mortgage rates and loan programs across Utah"
+        backgroundImage="/modern-office-building.png"
+      />
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Find the Perfect Loan for Your Utah Home</h2>
+            <p className="text-xl text-gray-600">
+              Our experienced loan officers help you navigate the mortgage process and find the best 
+              loan program with competitive rates and terms that fit your financial situation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {loanTypes.map((loan, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center mb-4">
+                    <div className="text-blue-600 mr-4">{loan.icon}</div>
+                    <CardTitle className="text-xl">{loan.title}</CardTitle>
+                  </div>
+                  <CardDescription className="text-gray-600">{loan.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {loan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        <span className="text-sm text-gray-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-2xl font-bold mb-6">Why Choose Our Loan Services?</h3>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Competitive Rates</h4>
+                    <p className="text-gray-600">Access to multiple lenders and loan programs for the best rates</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Local Expertise</h4>
+                    <p className="text-gray-600">Deep understanding of Utah real estate market and local programs</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Fast Processing</h4>
+                    <p className="text-gray-600">Streamlined application process with quick pre-approvals and closings</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Personalized Service</h4>
+                    <p className="text-gray-600">Dedicated loan officer guidance throughout the entire process</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-96 rounded-lg overflow-hidden">
+              <img
+                src="/city-map-with-pin.png"
+                alt="Utah mortgage service areas map"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-blue-600 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Get Pre-Approved?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Start your mortgage application today and get pre-approved for your Utah home purchase.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+              <Link href="/contact">Apply Now</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+              <Link href="/calculators">Calculate Payment</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Service JSON-LD + Business JSON-LD */}
+      <Script id="loans-service-jsonld" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': ['Service'],
+          name: 'Home Loan Services',
+          description: 'Utah home loans including conventional, FHA, VA, and USDA mortgages with competitive rates.',
+          provider: {
+            '@type': ['Organization','LocalBusiness','RealEstateAgent'],
+            name: SITE_NAME,
+            url: SITE_URL,
+            areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
+            sameAs: [
+              'https://www.facebook.com/OnDoRealEstate',
+              'https://www.instagram.com/OnDoRealEstate',
+              'https://www.linkedin.com/company/OnDoRealEstate',
+              'https://www.youtube.com/@OnDoRealEstate'
+            ]
+          },
+          areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
+          serviceType: 'Financial Services',
+          offers: { '@type': 'Offer', description: 'Professional mortgage and home loan services' },
+        })}
+      </Script>
+      <Script id="loans-business-jsonld" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': ['Organization','LocalBusiness','RealEstateAgent'],
+          name: SITE_NAME,
+          url: SITE_URL,
+          areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
+          sameAs: [
+            'https://www.facebook.com/OnDoRealEstate',
+            'https://www.instagram.com/OnDoRealEstate',
+            'https://www.linkedin.com/company/OnDoRealEstate',
+            'https://www.youtube.com/@OnDoRealEstate'
+          ],
+          makesOffer: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Property Management' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Buying' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Selling' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Loans' } }
+          ]
+        })}
+      </Script>
+
+      {/* FAQ JSON-LD */}
+      <Script id="loans-faq-jsonld" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map(faq => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
+        })}
+      </Script>
+    </>
+  )
+}

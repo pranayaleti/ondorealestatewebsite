@@ -29,6 +29,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Home, MessageSquare, Search, AlertTriangle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { UnderMaintenance } from "@/components/ui/under-maintenance"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 // Mock data for messages
 const messages = [
@@ -216,6 +219,17 @@ export default function TenantMessagesPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
+      <SEO
+        title="Tenant Messages | Ondo Real Estate"
+        description="View and compose messages with your property manager and maintenance team."
+        pathname="/tenant/messages"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Tenant", url: `${SITE_URL}/tenant` },
+          { name: "Messages", url: `${SITE_URL}/tenant/messages` },
+        ])}
+      />
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold">Messages</h1>
