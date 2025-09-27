@@ -344,7 +344,7 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                       />
                       <button
                         type="button"
-                        className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full"
+                        className="absolute top-2 right-2 p-1 bg-red-500 text-foreground rounded-full"
                         onClick={() => removeImage(index)}
                       >
                         <X className="h-4 w-4" />
@@ -356,7 +356,7 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                     className="border border-dashed rounded-md flex flex-col items-center justify-center h-32 cursor-pointer hover:bg-gray-50"
                     onClick={triggerFileInput}
                   >
-                    <Upload className="h-8 w-8 text-gray-400 mb-2" />
+                    <Upload className="h-8 w-8 text-muted-foreground mb-2" />
                     <span className="text-sm text-gray-500">Upload Images</span>
                     <input
                       type="file"
@@ -371,9 +371,9 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
 
                 {images.length === 0 && (
                   <div className="flex flex-col items-center justify-center p-8 border border-dashed rounded-md">
-                    <ImageIcon className="h-12 w-12 text-gray-300 mb-4" />
+                    <ImageIcon className="h-12 w-12 text-muted-foreground mb-4" />
                     <p className="text-gray-500 mb-2">No images uploaded yet</p>
-                    <p className="text-sm text-gray-400 mb-4">Upload property images to enhance your listing</p>
+                    <p className="text-sm text-muted-foreground mb-4">Upload property images to enhance your listing</p>
                     <Button type="button" variant="outline" onClick={triggerFileInput}>
                       <Upload className="h-4 w-4 mr-2" />
                       Select Images

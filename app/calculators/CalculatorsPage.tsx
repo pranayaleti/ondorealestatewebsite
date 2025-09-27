@@ -128,7 +128,7 @@ const CalculatorsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-4">
             <Link href="/" className="text-blue-600 hover:text-blue-800">
@@ -153,8 +153,8 @@ const CalculatorsPage: React.FC = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                    ? 'bg-blue-600 text-foreground'
+                    : 'bg-foreground text-gray-700 hover:bg-gray-100 border border-gray-300'
                 }`}
               >
                 {category}
@@ -170,11 +170,11 @@ const CalculatorsPage: React.FC = () => {
               href={calculator.path}
               className="group block"
             >
-              <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 overflow-hidden">
-                <div className={`bg-gradient-to-r ${calculator.color} p-6 text-white`}>
+              <div className="bg-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 overflow-hidden">
+                <div className={`bg-gradient-to-r ${calculator.color} p-6 text-foreground`}>
                   <div className="flex items-center justify-between">
                     {calculator.icon}
-                    <span className="text-xs font-medium bg-white/20 px-2 py-1 rounded-full">
+                    <span className="text-xs font-medium bg-foreground/20 px-2 py-1 rounded-full">
                       {calculator.category}
                     </span>
                   </div>
@@ -196,7 +196,7 @@ const CalculatorsPage: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+        <div className="mt-16 bg-foreground rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Calculators?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">

@@ -113,7 +113,7 @@ export function MaintenanceRequests() {
               <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-medium">{request.tenant}</p>
-                  <Badge variant="outline" className={`capitalize ${getStatusColor(request.status)} text-white`}>
+                  <Badge variant="outline" className={`capitalize ${getStatusColor(request.status)} text-foreground`}>
                     {request.status.replace("-", " ")}
                   </Badge>
                 </div>

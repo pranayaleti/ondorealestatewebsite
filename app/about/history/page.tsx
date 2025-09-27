@@ -86,8 +86,8 @@ export default function HistoryPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 dark:text-white">Our Journey</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+              <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Our Journey</h2>
+              <p className="text-lg text-gray-600 dark:text-muted-foreground">
                 From a small startup to Utah's leading property management company, we've grown by putting our clients first.
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function HistoryPage() {
                 {milestones.map((milestone, index) => (
                   <div key={index} className="relative flex items-start gap-6">
                     <div className="flex-shrink-0">
-                      <div className="h-16 w-16 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400 font-bold text-lg">
+                      <div className="h-16 w-16 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-primary dark:text-primary font-bold text-lg">
                         {milestone.year}
                       </div>
                     </div>
@@ -106,10 +106,10 @@ export default function HistoryPage() {
                       <Card>
                         <CardHeader>
                           <div className="flex items-center gap-3 mb-2">
-                            <div className="h-8 w-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center text-orange-600 dark:text-orange-400">
+                            <div className="h-8 w-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center text-primary dark:text-primary">
                               {milestone.icon}
                             </div>
-                            <CardTitle className="dark:text-white">{milestone.title}</CardTitle>
+                            <CardTitle className="dark:text-foreground">{milestone.title}</CardTitle>
                           </div>
                           <CardDescription className="text-base">{milestone.description}</CardDescription>
                         </CardHeader>
@@ -121,13 +121,13 @@ export default function HistoryPage() {
             </div>
 
             <div className="mt-16 mb-12">
-              <h3 className="text-2xl font-bold mb-8 dark:text-white text-center">Our Values</h3>
+              <h3 className="text-2xl font-bold mb-8 dark:text-foreground text-center">Our Values</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {values.map((value, index) => (
                   <Card key={index} className="text-center">
                     <CardHeader>
                       <div className="text-4xl mb-4">{value.icon}</div>
-                      <CardTitle className="dark:text-white">{value.title}</CardTitle>
+                      <CardTitle className="dark:text-foreground">{value.title}</CardTitle>
                       <CardDescription>{value.description}</CardDescription>
                     </CardHeader>
                   </Card>
@@ -135,33 +135,33 @@ export default function HistoryPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
-              <h3 className="text-2xl font-bold mb-6 dark:text-white text-center">Our Mission</h3>
+            <div className="bg-gray-50 dark:bg-muted rounded-lg p-8 mb-12">
+              <h3 className="text-2xl font-bold mb-6 dark:text-foreground text-center">Our Mission</h3>
               <div className="max-w-4xl mx-auto text-center">
-                <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-lg text-gray-600 dark:text-muted-foreground mb-6">
                   "To provide exceptional property management services that maximize returns for property owners 
                   while creating positive rental experiences for tenants. We believe in building long-term 
                   relationships based on trust, transparency, and outstanding service."
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">500+</div>
-                    <div className="text-gray-600 dark:text-gray-300">Properties Managed</div>
+                    <div className="text-3xl font-bold text-primary dark:text-primary">500+</div>
+                    <div className="text-gray-600 dark:text-muted-foreground">Properties Managed</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">98%</div>
-                    <div className="text-gray-600 dark:text-gray-300">Tenant Satisfaction</div>
+                    <div className="text-3xl font-bold text-primary dark:text-primary">98%</div>
+                    <div className="text-gray-600 dark:text-muted-foreground">Tenant Satisfaction</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">4+</div>
-                    <div className="text-gray-600 dark:text-gray-300">Years of Excellence</div>
+                    <div className="text-3xl font-bold text-primary dark:text-primary">4+</div>
+                    <div className="text-gray-600 dark:text-muted-foreground">Years of Excellence</div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6 dark:text-white">Join Our Story</h3>
+              <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Join Our Story</h3>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
                   <Link href="/about/careers">View Career Opportunities</Link>

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "meta": {
+    "source": "reports/theme-audit/theme-extraction.json",
+    "primary": "founders-letter",
+    "secondary": "why-utah",
+    "generatedAt": "${NOW}"
+  },
+  "color": {
+    "bg-base": { "value": "#0D0D0D" },
+    "bg-elevated": { "value": "#111827" },
+    "text-primary": { "value": "#F2F2F2" },
+    "text-muted": { "value": "#D1D5DB" },
+    "link": { "value": "#F2F2F2" },
+    "border": { "value": "#1F2937" },
+    "border-strong": { "value": "#333333" },
+    "accent-1": { "value": "#F97316" },
+    "accent-2": { "value": "#FB923C" },
+    "gradient-from": { "value": "#000000" },
+    "gradient-via": { "value": "#111827" },
+    "gradient-to": { "value": "#7C2D12" }
+  },
+  "font": {
+    "family-base": { "value": "Inter, \"Inter Fallback\"" },
+    "weights": {
+      "regular": { "value": 400 },
+      "medium": { "value": 500 },
+      "bold": { "value": 700 },
+      "extrabold": { "value": 800 }
+    },
+    "sizes": {
+      "base": { "value": "16px" },
+      "lg": { "value": "20px" },
+      "xl": { "value": "24px" },
+      "2xl": { "value": "30px" },
+      "5xl": { "value": "60px" },
+      "7xl": { "value": "72px" }
+    },
+    "lineHeights": {
+      "base": { "value": "24px" },
+      "lg": { "value": "28px" },
+      "xl": { "value": "32px" }
+    }
+  },
+  "radius": {
+    "sm": { "value": "8px" },
+    "md": { "value": "12px" },
+    "lg": { "value": "16px" }
+  },
+  "border": {
+    "width": {
+      "thin": { "value": "1px" },
+      "thick": { "value": "2px" }
+    }
+  },
+  "shadow": {
+    "sm": { "value": "0 1px 2px rgba(0,0,0,0.1)" },
+    "md": { "value": "0 4px 8px rgba(0,0,0,0.2)" }
+  }
+}
+
+

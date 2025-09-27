@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2025-09-27T08:34:59.343Z",
+  "summary": [
+    {
+      "page": "founders-letter",
+      "missing": true
+    },
+    {
+      "page": "why-utah",
+      "missing": true
+    },
+    {
+      "page": "home",
+      "width": 1280,
+      "height": 4024,
+      "pixelsDifferent": 2300562,
+      "diffPath": "reports/theme-audit/diff/home.png"
+    },
+    {
+      "page": "dashboard",
+      "missing": true
+    }
+  ]
+}

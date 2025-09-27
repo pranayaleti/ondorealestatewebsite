@@ -86,7 +86,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 text-white hover:bg-black/50 rounded-full h-10 w-10"
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/30 text-foreground hover:bg-background/50 rounded-full h-10 w-10"
                 onClick={prevImage}
               >
                 <ChevronLeft className="h-6 w-6" />
@@ -95,14 +95,14 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 text-white hover:bg-black/50 rounded-full h-10 w-10"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/30 text-foreground hover:bg-background/50 rounded-full h-10 w-10"
                 onClick={nextImage}
               >
                 <ChevronRight className="h-6 w-6" />
               </Button>
 
               {/* Image Counter */}
-              <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+              <div className="absolute bottom-4 right-4 bg-background/50 text-foreground px-3 py-1 rounded-full text-sm">
                 {currentImageIndex + 1} / {company.images.length}
               </div>
             </div>
@@ -140,7 +140,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
               <TabsContent value="overview" className="space-y-4">
                 <div>
                   <h4 className="text-lg font-semibold mb-2">About</h4>
-                  <p className="text-gray-700 dark:text-gray-300">{company.description}</p>
+                  <p className="text-gray-700 dark:text-muted-foreground">{company.description}</p>
                 </div>
 
                 <div>
@@ -194,7 +194,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <Calendar className="h-5 w-5 mr-3 text-primary mt-0.5" />
                     <div>
                       <h4 className="text-lg font-semibold">Lease Terms</h4>
-                      <p className="text-gray-700 dark:text-gray-300">{company.leaseTerms}</p>
+                      <p className="text-gray-700 dark:text-muted-foreground">{company.leaseTerms}</p>
                     </div>
                   </div>
 
@@ -202,7 +202,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <DollarSign className="h-5 w-5 mr-3 text-primary mt-0.5" />
                     <div>
                       <h4 className="text-lg font-semibold">Management Fees</h4>
-                      <p className="text-gray-700 dark:text-gray-300">{company.fees}</p>
+                      <p className="text-gray-700 dark:text-muted-foreground">{company.fees}</p>
                     </div>
                   </div>
 
@@ -210,7 +210,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <Clock className="h-5 w-5 mr-3 text-primary mt-0.5" />
                     <div>
                       <h4 className="text-lg font-semibold">Availability</h4>
-                      <p className="text-gray-700 dark:text-gray-300">{company.availability}</p>
+                      <p className="text-gray-700 dark:text-muted-foreground">{company.availability}</p>
                     </div>
                   </div>
                 </div>

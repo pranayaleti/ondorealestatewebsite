@@ -258,7 +258,7 @@ const RetirementCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -270,7 +270,7 @@ const RetirementCalculator: React.FC = () => {
             {results && (
               <button
                 onClick={downloadPDF}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                className="bg-green-600 hover:bg-green-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
               >
                 <Download className="h-5 w-5" />
                 <span>Download PDF</span>
@@ -283,7 +283,7 @@ const RetirementCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="bg-foreground rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
@@ -376,7 +376,7 @@ const RetirementCalculator: React.FC = () => {
               {/* Real Estate Investments */}
               <div>
                 <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                  <Home className="h-5 w-5 mr-2 text-orange-600" />
+                  <Home className="h-5 w-5 mr-2 text-primary" />
                   Real Estate Investments
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -521,7 +521,7 @@ const RetirementCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content" className="bg-white rounded-lg shadow-lg p-6">
+              <div id="pdf-content" className="bg-foreground rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Retirement Analysis Results</h2>
                 
                 {/* Summary */}
@@ -593,7 +593,7 @@ const RetirementCalculator: React.FC = () => {
                           <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Assets</th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
+                      <tbody className="bg-foreground divide-y divide-gray-200">
                         {results.yearByYearProjection.slice(0, 10).map((projection) => (
                           <tr key={projection.year}>
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{projection.age}</td>

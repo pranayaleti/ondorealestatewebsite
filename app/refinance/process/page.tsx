@@ -69,8 +69,8 @@ export default function RefinanceProcessPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 dark:text-white">How Refinancing Works</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+              <h2 className="text-3xl font-bold mb-4 dark:text-foreground">How Refinancing Works</h2>
+              <p className="text-lg text-gray-600 dark:text-muted-foreground">
                 Refinancing your mortgage can help you lower your monthly payment, reduce your interest rate, or access your home's equity. Here's how the process works:
               </p>
             </div>
@@ -79,7 +79,7 @@ export default function RefinanceProcessPage() {
               {steps.map((step, index) => (
                 <div key={step.number} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="h-12 w-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400 font-bold">
+                    <div className="h-12 w-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-primary dark:text-primary font-bold">
                       {step.number}
                     </div>
                   </div>
@@ -87,10 +87,10 @@ export default function RefinanceProcessPage() {
                     <Card>
                       <CardHeader>
                         <div className="flex items-center gap-3 mb-2">
-                          <div className="h-8 w-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center text-orange-600 dark:text-orange-400">
+                          <div className="h-8 w-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center text-primary dark:text-primary">
                             {step.icon}
                           </div>
-                          <CardTitle className="dark:text-white">{step.title}</CardTitle>
+                          <CardTitle className="dark:text-foreground">{step.title}</CardTitle>
                         </div>
                         <CardDescription>{step.description}</CardDescription>
                       </CardHeader>
@@ -100,26 +100,26 @@ export default function RefinanceProcessPage() {
               ))}
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
-              <h3 className="text-2xl font-bold mb-6 dark:text-white">Types of Refinancing</h3>
+            <div className="bg-gray-50 dark:bg-muted rounded-lg p-8 mb-12">
+              <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Types of Refinancing</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-lg font-semibold mb-3 dark:text-white">Rate-and-Term Refinance</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mb-3">
+                  <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Rate-and-Term Refinance</h4>
+                  <p className="text-gray-600 dark:text-muted-foreground mb-3">
                     Lower your interest rate or change your loan term without taking cash out.
                   </p>
-                  <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                  <ul className="space-y-1 text-sm text-gray-600 dark:text-muted-foreground">
                     <li>• Reduce monthly payments</li>
                     <li>• Pay off loan faster</li>
                     <li>• Switch from ARM to fixed rate</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-3 dark:text-white">Cash-Out Refinance</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mb-3">
+                  <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Cash-Out Refinance</h4>
+                  <p className="text-gray-600 dark:text-muted-foreground mb-3">
                     Access your home's equity to get cash for major expenses or investments.
                   </p>
-                  <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                  <ul className="space-y-1 text-sm text-gray-600 dark:text-muted-foreground">
                     <li>• Home improvements</li>
                     <li>• Debt consolidation</li>
                     <li>• Major purchases</li>
@@ -129,7 +129,7 @@ export default function RefinanceProcessPage() {
             </div>
 
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6 dark:text-white">Ready to Refinance?</h3>
+              <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Ready to Refinance?</h3>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
                   <Link href="/calculators/refinance">Calculate Your Savings</Link>

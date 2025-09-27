@@ -268,7 +268,7 @@ const RentVsOwnCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -280,7 +280,7 @@ const RentVsOwnCalculator: React.FC = () => {
             {results && (
               <button
                 onClick={downloadPDF}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
               >
                 <Download className="h-5 w-5" />
                 <span>Download PDF</span>
@@ -293,7 +293,7 @@ const RentVsOwnCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="bg-foreground rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
@@ -529,7 +529,7 @@ const RentVsOwnCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content" className="bg-white rounded-lg shadow-lg p-6">
+              <div id="pdf-content" className="bg-foreground rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Analysis Results</h2>
                 
                 {/* Summary */}
@@ -577,7 +577,7 @@ const RentVsOwnCalculator: React.FC = () => {
                           <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difference</th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
+                      <tbody className="bg-foreground divide-y divide-gray-200">
                         {results.annualComparison.slice(0, 10).map((year) => (
                           <tr key={year.year}>
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{year.year}</td>

@@ -140,7 +140,7 @@ export default function SellPage() {
         backgroundImage="/modern-apartment-balcony.png"
       />
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Maximize Your Home's Value</h2>
@@ -226,17 +226,17 @@ export default function SellPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-purple-600 text-white">
+      <section className="py-16 bg-purple-600 text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Sell Your Utah Home?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get a free home valuation and discover how we can help you sell for top dollar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-purple-600 hover:bg-gray-100">
               <Link href="/contact">Get Free Valuation</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-purple-600">
               <Link href="/properties">View Market Trends</Link>
             </Button>
           </div>

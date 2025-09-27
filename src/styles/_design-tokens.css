@@ -1,0 +1,66 @@
+:root {
+	--color-bg-base: #0D0D0D;
+	--color-bg-elevated: #111827;
+	--color-text-primary: #F2F2F2;
+	--color-text-muted: #D1D5DB;
+	--color-link: #F2F2F2;
+	--color-border: #1F2937;
+	--color-border-strong: #333333;
+	--color-accent-1: #F97316;
+	--color-accent-2: #FB923C;
+	--color-gradient-from: #000000;
+	--color-gradient-via: #111827;
+	--color-gradient-to: #7C2D12;
+
+	--font-family-base: Inter, "Inter Fallback";
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
+	--font-weight-extrabold: 800;
+	--font-size-base: 16px;
+	--font-size-lg: 20px;
+	--font-size-xl: 24px;
+	--font-size-2xl: 30px;
+	--font-size-5xl: 60px;
+	--font-size-7xl: 72px;
+	--line-height-base: 24px;
+	--line-height-lg: 28px;
+	--line-height-xl: 32px;
+
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 16px;
+	--border-width-thin: 1px;
+	--border-width-thick: 2px;
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Map tokens to existing Tailwind CSS variables for integration */
+:root {
+	--background: 0 0% 5%; /* from color-bg-base */
+	--foreground: 0 0% 95%; /* from color-text-primary */
+	--card: 220 26% 10%; /* approximate of bg-elevated */
+	--card-foreground: 0 0% 95%;
+	--popover: 220 26% 10%;
+	--popover-foreground: 0 0% 95%;
+	--primary: 25 95% 53%; /* accent-1 in HSL */
+	--primary-foreground: 0 0% 100%;
+	--secondary: 0 0% 14.9%;
+	--secondary-foreground: 0 0% 98%;
+	--muted: 0 0% 14.9%;
+	--muted-foreground: 0 0% 75%;
+	--accent: 25 95% 53%;
+	--accent-foreground: 0 0% 100%;
+	--border: 215 28% 17%; /* #1F2937 */
+	--input: 215 28% 17%;
+	--ring: 25 95% 40%;
+	--radius: 0.75rem;
+}
+
+/* Utilities for overriding vendor CSS */
+.brand-bg { background-color: var(--color-bg-base) !important; }
+.brand-text { color: var(--color-text-primary) !important; }
+.brand-border { border-color: var(--color-border) !important; }
+
+

@@ -78,8 +78,8 @@ export default function PaymentQuestionsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 dark:text-white">Payment Methods</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+              <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Payment Methods</h2>
+              <p className="text-lg text-gray-600 dark:text-muted-foreground">
                 Choose the payment method that works best for you. All methods are secure and convenient.
               </p>
             </div>
@@ -93,13 +93,13 @@ export default function PaymentQuestionsPage() {
                         {method.icon}
                       </div>
                     </div>
-                    <CardTitle className="dark:text-white">{method.title}</CardTitle>
+                    <CardTitle className="dark:text-foreground">{method.title}</CardTitle>
                     <CardDescription>{method.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       {method.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
+                        <li key={featureIndex} className="text-sm text-gray-600 dark:text-muted-foreground flex items-center gap-2">
                           <div className="h-1.5 w-1.5 bg-blue-500 rounded-full"></div>
                           {feature}
                         </li>
@@ -114,8 +114,8 @@ export default function PaymentQuestionsPage() {
               <div className="flex items-start gap-4">
                 <AlertCircle className="h-6 w-6 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 dark:text-white">Important Payment Information</h3>
-                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                  <h3 className="text-lg font-semibold mb-2 dark:text-foreground">Important Payment Information</h3>
+                  <ul className="space-y-2 text-gray-600 dark:text-muted-foreground">
                     <li>• Payments are due on the 1st of each month</li>
                     <li>• 15-day grace period before late fees</li>
                     <li>• Late fees are typically $25-$50</li>
@@ -126,25 +126,25 @@ export default function PaymentQuestionsPage() {
             </div>
 
             <div className="mb-12">
-              <h3 className="text-2xl font-bold mb-6 dark:text-white text-center">Frequently Asked Questions</h3>
+              <h3 className="text-2xl font-bold mb-6 dark:text-foreground text-center">Frequently Asked Questions</h3>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <Card key={index}>
                     <CardHeader>
-                      <CardTitle className="text-lg dark:text-white">{faq.question}</CardTitle>
+                      <CardTitle className="text-lg dark:text-foreground">{faq.question}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
+                      <p className="text-gray-600 dark:text-muted-foreground">{faq.answer}</p>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
+            <div className="bg-gray-50 dark:bg-muted rounded-lg p-8">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4 dark:text-white">Need More Help?</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <h3 className="text-2xl font-bold mb-4 dark:text-foreground">Need More Help?</h3>
+                <p className="text-gray-600 dark:text-muted-foreground mb-6">
                   Our customer service team is here to help with any payment questions or concerns.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -161,7 +161,7 @@ export default function PaymentQuestionsPage() {
                     </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                <p className="text-sm text-gray-500 dark:text-muted-foreground mt-4">
                   <Clock className="h-4 w-4 inline mr-1" />
                   Mon-Fri 5:00 am – 5:00 pm PT
                 </p>

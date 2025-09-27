@@ -385,7 +385,7 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
                   />
                   <button
                     type="button"
-                    className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full"
+                    className="absolute top-2 right-2 p-1 bg-red-500 text-foreground rounded-full"
                     onClick={() => {
                       const newImages = [...property.images]
                       newImages.splice(index, 1)
@@ -398,7 +398,7 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
               ))}
               <div className="border border-dashed rounded-md flex items-center justify-center h-48 cursor-pointer hover:bg-gray-50">
                 <div className="text-center">
-                  <Plus className="h-8 w-8 mx-auto text-gray-400" />
+                  <Plus className="h-8 w-8 mx-auto text-muted-foreground" />
                   <span className="text-sm text-gray-500">Add Image</span>
                 </div>
               </div>

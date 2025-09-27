@@ -114,8 +114,8 @@ export default function FAQPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 dark:text-white">Get Your Questions Answered</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+              <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Get Your Questions Answered</h2>
+              <p className="text-lg text-gray-600 dark:text-muted-foreground">
                 Can't find what you're looking for? Contact us directly and we'll be happy to help.
               </p>
             </div>
@@ -123,18 +123,18 @@ export default function FAQPage() {
             <div className="space-y-8 mb-12">
               {faqCategories.map((category, categoryIndex) => (
                 <div key={categoryIndex}>
-                  <h3 className="text-xl font-semibold mb-4 dark:text-white flex items-center gap-2">
-                    <HelpCircle className="h-5 w-5 text-orange-500" />
+                  <h3 className="text-xl font-semibold mb-4 dark:text-foreground flex items-center gap-2">
+                    <HelpCircle className="h-5 w-5 text-primary" />
                     {category.title}
                   </h3>
                   <Accordion type="single" collapsible className="space-y-2">
                     {category.questions.map((faq, faqIndex) => (
-                      <AccordionItem key={faqIndex} value={`${categoryIndex}-${faqIndex}`} className="border border-gray-200 dark:border-gray-700 rounded-lg">
+                      <AccordionItem key={faqIndex} value={`${categoryIndex}-${faqIndex}`} className="border border-gray-200 dark:border-border rounded-lg">
                         <AccordionTrigger className="px-4 py-3 text-left hover:no-underline">
-                          <span className="font-medium dark:text-white">{faq.question}</span>
+                          <span className="font-medium dark:text-foreground">{faq.question}</span>
                         </AccordionTrigger>
                         <AccordionContent className="px-4 pb-3">
-                          <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
+                          <p className="text-gray-600 dark:text-muted-foreground">{faq.answer}</p>
                         </AccordionContent>
                       </AccordionItem>
                     ))}
@@ -143,31 +143,31 @@ export default function FAQPage() {
               ))}
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
+            <div className="bg-gray-50 dark:bg-muted rounded-lg p-8">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4 dark:text-white">Still Have Questions?</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <h3 className="text-2xl font-bold mb-4 dark:text-foreground">Still Have Questions?</h3>
+                <p className="text-gray-600 dark:text-muted-foreground mb-6">
                   Our team is here to help with any questions you may have about our services.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Card className="text-center">
                     <CardHeader>
-                      <Phone className="h-8 w-8 text-orange-500 mx-auto mb-2" />
-                      <CardTitle className="text-lg dark:text-white">Call Us</CardTitle>
+                      <Phone className="h-8 w-8 text-primary mx-auto mb-2" />
+                      <CardTitle className="text-lg dark:text-foreground">Call Us</CardTitle>
                       <CardDescription>(555) 123-4567</CardDescription>
                     </CardHeader>
                   </Card>
                   <Card className="text-center">
                     <CardHeader>
-                      <Mail className="h-8 w-8 text-orange-500 mx-auto mb-2" />
-                      <CardTitle className="text-lg dark:text-white">Email Us</CardTitle>
+                      <Mail className="h-8 w-8 text-primary mx-auto mb-2" />
+                      <CardTitle className="text-lg dark:text-foreground">Email Us</CardTitle>
                       <CardDescription>ondorealestate@gmail.com</CardDescription>
                     </CardHeader>
                   </Card>
                   <Card className="text-center">
                     <CardHeader>
-                      <MessageCircle className="h-8 w-8 text-orange-500 mx-auto mb-2" />
-                      <CardTitle className="text-lg dark:text-white">Live Chat</CardTitle>
+                      <MessageCircle className="h-8 w-8 text-primary mx-auto mb-2" />
+                      <CardTitle className="text-lg dark:text-foreground">Live Chat</CardTitle>
                       <CardDescription>Available 24/7</CardDescription>
                     </CardHeader>
                   </Card>

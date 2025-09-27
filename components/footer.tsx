@@ -103,7 +103,7 @@ export function Footer() {
     .filter(Boolean) as Array<{ name: string; Component: any; href: string; hover: string }>
 
   return (
-    <footer className="w-full bg-gray-900 text-white">
+    <footer className="w-full bg-card text-foreground">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
@@ -115,13 +115,13 @@ export function Footer() {
               Buying a Home
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/buying/first-time" className="text-gray-300 hover:text-white">First-time homebuyer</Link></li>
-              <li><Link href="/buying/second-home" className="text-gray-300 hover:text-white">Buying a second home</Link></li>
-              <li><Link href="/buying/fixed-rate" className="text-gray-300 hover:text-white">Fixed-rate mortgage</Link></li>
-              <li><Link href="/buying/adjustable-rate" className="text-gray-300 hover:text-white">Adjustable-rate mortgage</Link></li>
-              <li><Link href="/buying/30-year" className="text-gray-300 hover:text-white">30 year mortgage</Link></li>
-              <li><Link href="/buying/15-year" className="text-gray-300 hover:text-white">15 year mortgage</Link></li>
-              <li><Link href="/buying/rates" className="text-gray-300 hover:text-white">Mortgage rates explained</Link></li>
+              <li><Link href="/buying/first-time" className="text-muted-foreground hover:text-foreground">First-time homebuyer</Link></li>
+              <li><Link href="/buying/second-home" className="text-muted-foreground hover:text-foreground">Buying a second home</Link></li>
+              <li><Link href="/buying/fixed-rate" className="text-muted-foreground hover:text-foreground">Fixed-rate mortgage</Link></li>
+              <li><Link href="/buying/adjustable-rate" className="text-muted-foreground hover:text-foreground">Adjustable-rate mortgage</Link></li>
+              <li><Link href="/buying/30-year" className="text-muted-foreground hover:text-foreground">30 year mortgage</Link></li>
+              <li><Link href="/buying/15-year" className="text-muted-foreground hover:text-foreground">15 year mortgage</Link></li>
+              <li><Link href="/buying/rates" className="text-muted-foreground hover:text-foreground">Mortgage rates explained</Link></li>
             </ul>
           </div>
 
@@ -132,10 +132,10 @@ export function Footer() {
               Refinance
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/refinance/process" className="text-gray-300 hover:text-white">Mortgage refinance process</Link></li>
-              <li><Link href="/refinance/rate-term" className="text-gray-300 hover:text-white">Rate-and-term refinance</Link></li>
-              <li><Link href="/refinance/cash-out" className="text-gray-300 hover:text-white">Cash-out refinance</Link></li>
-              <li><Link href="/refinance/blog" className="text-gray-300 hover:text-white">Mortgage blog – Refinance</Link></li>
+              <li><Link href="/refinance/process" className="text-muted-foreground hover:text-foreground">Mortgage refinance process</Link></li>
+              <li><Link href="/refinance/rate-term" className="text-muted-foreground hover:text-foreground">Rate-and-term refinance</Link></li>
+              <li><Link href="/refinance/cash-out" className="text-muted-foreground hover:text-foreground">Cash-out refinance</Link></li>
+              <li><Link href="/refinance/blog" className="text-muted-foreground hover:text-foreground">Mortgage blog – Refinance</Link></li>
             </ul>
           </div>
 
@@ -146,13 +146,13 @@ export function Footer() {
               Mortgage Loans
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/loans/conventional" className="text-gray-300 hover:text-white">Conventional</Link></li>
-              <li><Link href="/loans/fha" className="text-gray-300 hover:text-white">FHA</Link></li>
-              <li><Link href="/loans/usda" className="text-gray-300 hover:text-white">USDA</Link></li>
-              <li><Link href="/loans/va" className="text-gray-300 hover:text-white">VA</Link></li>
-              <li><Link href="/loans/heloc" className="text-gray-300 hover:text-white">HELOC / HELOAN</Link></li>
-              <li><Link href="/loans/reverse" className="text-gray-300 hover:text-white">Reverse Mortgage</Link></li>
-              <li><Link href="/loans/jumbo" className="text-gray-300 hover:text-white">Jumbo Loans</Link></li>
+              <li><Link href="/loans/conventional" className="text-muted-foreground hover:text-foreground">Conventional</Link></li>
+              <li><Link href="/loans/fha" className="text-muted-foreground hover:text-foreground">FHA</Link></li>
+              <li><Link href="/loans/usda" className="text-muted-foreground hover:text-foreground">USDA</Link></li>
+              <li><Link href="/loans/va" className="text-muted-foreground hover:text-foreground">VA</Link></li>
+              <li><Link href="/loans/heloc" className="text-muted-foreground hover:text-foreground">HELOC / HELOAN</Link></li>
+              <li><Link href="/loans/reverse" className="text-muted-foreground hover:text-foreground">Reverse Mortgage</Link></li>
+              <li><Link href="/loans/jumbo" className="text-muted-foreground hover:text-foreground">Jumbo Loans</Link></li>
             </ul>
           </div>
 
@@ -163,13 +163,13 @@ export function Footer() {
               Calculators
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/calculators/mortgage-payment" className="text-gray-300 hover:text-white">Mortgage payment calculator</Link></li>
-              <li><Link href="/calculators/affordability" className="text-gray-300 hover:text-white">Affordability calculator</Link></li>
-              <li><Link href="/calculators/income" className="text-gray-300 hover:text-white">Income calculator</Link></li>
-              <li><Link href="/calculators/closing-cost" className="text-gray-300 hover:text-white">Closing cost calculator</Link></li>
-              <li><Link href="/calculators/refinance" className="text-gray-300 hover:text-white">Refinance calculator</Link></li>
-              <li><Link href="/calculators/home-sale" className="text-gray-300 hover:text-white">Home sale calculator</Link></li>
-              <li><Link href="/calculators/buying-power" className="text-gray-300 hover:text-white">Buying power calculator</Link></li>
+              <li><Link href="/calculators/mortgage-payment" className="text-muted-foreground hover:text-foreground">Mortgage payment calculator</Link></li>
+              <li><Link href="/calculators/affordability" className="text-muted-foreground hover:text-foreground">Affordability calculator</Link></li>
+              <li><Link href="/calculators/income" className="text-muted-foreground hover:text-foreground">Income calculator</Link></li>
+              <li><Link href="/calculators/closing-cost" className="text-muted-foreground hover:text-foreground">Closing cost calculator</Link></li>
+              <li><Link href="/calculators/refinance" className="text-muted-foreground hover:text-foreground">Refinance calculator</Link></li>
+              <li><Link href="/calculators/home-sale" className="text-muted-foreground hover:text-foreground">Home sale calculator</Link></li>
+              <li><Link href="/calculators/buying-power" className="text-muted-foreground hover:text-foreground">Buying power calculator</Link></li>
             </ul>
           </div>
 
@@ -180,12 +180,12 @@ export function Footer() {
               About Us
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/about/history" className="text-gray-300 hover:text-white">History</Link></li>
-              <li><Link href="/about/leadership" className="text-gray-300 hover:text-white">Leadership</Link></li>
-              <li><Link href="/about/giving-back" className="text-gray-300 hover:text-white">Giving back</Link></li>
-              <li><Link href="/about/careers" className="text-gray-300 hover:text-white">Careers</Link></li>
-              <li><Link href="/about/news" className="text-gray-300 hover:text-white">News</Link></li>
-              <li><Link href="/about/investor-relations" className="text-gray-300 hover:text-white">Investor relations</Link></li>
+              <li><Link href="/about/history" className="text-muted-foreground hover:text-foreground">History</Link></li>
+              <li><Link href="/about/leadership" className="text-muted-foreground hover:text-foreground">Leadership</Link></li>
+              <li><Link href="/about/giving-back" className="text-muted-foreground hover:text-foreground">Giving back</Link></li>
+              <li><Link href="/about/careers" className="text-muted-foreground hover:text-foreground">Careers</Link></li>
+              <li><Link href="/about/news" className="text-muted-foreground hover:text-foreground">News</Link></li>
+              <li><Link href="/about/investor-relations" className="text-muted-foreground hover:text-foreground">Investor relations</Link></li>
             </ul>
           </div>
 
@@ -196,40 +196,40 @@ export function Footer() {
               Help Center
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/help/payments" className="text-gray-300 hover:text-white">Payment questions</Link></li>
-              <li><Link href="/help/hardship" className="text-gray-300 hover:text-white">Hardship assistance</Link></li>
-              <li><Link href="/help/loan-payoffs" className="text-gray-300 hover:text-white">Loan payoffs</Link></li>
-              <li><Link href="/help/faq" className="text-gray-300 hover:text-white">Mortgage FAQs</Link></li>
-              <li><Link href="/help/escrow" className="text-gray-300 hover:text-white">Escrow</Link></li>
-              <li><Link href="/help/disaster" className="text-gray-300 hover:text-white">Natural Disaster Resources</Link></li>
+              <li><Link href="/help/payments" className="text-muted-foreground hover:text-foreground">Payment questions</Link></li>
+              <li><Link href="/help/hardship" className="text-muted-foreground hover:text-foreground">Hardship assistance</Link></li>
+              <li><Link href="/help/loan-payoffs" className="text-muted-foreground hover:text-foreground">Loan payoffs</Link></li>
+              <li><Link href="/help/faq" className="text-muted-foreground hover:text-foreground">Mortgage FAQs</Link></li>
+              <li><Link href="/help/escrow" className="text-muted-foreground hover:text-foreground">Escrow</Link></li>
+              <li><Link href="/help/disaster" className="text-muted-foreground hover:text-foreground">Natural Disaster Resources</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Contact Information */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-border">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center gap-3">
-              <Phone className="h-5 w-5 text-orange-500" />
+              <Phone className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-sm font-medium">Loan Servicing Help Center</p>
                 <a
                   href="tel:18003654441"
-                  className="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
                   aria-label="Call 1-800-365-4441"
                 >
                   1-800-365-4441
                 </a>
-                <p className="text-xs text-gray-400">Mon-Fri 5:00 am – 5:00 pm PT</p>
+                <p className="text-xs text-muted-foreground">Mon-Fri 5:00 am – 5:00 pm PT</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Mail className="h-5 w-5 text-orange-500" />
+              <Mail className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-sm font-medium">Email Us</p>
                 <a
                   href="mailto:ondorealestate@gmail.com"
-                  className="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
                   aria-label="Email ondorealestate@gmail.com"
                 >
                   ondorealestate@gmail.com
@@ -237,14 +237,14 @@ export function Footer() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="h-5 w-5 text-orange-500" />
+              <MapPin className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-sm font-medium">Our Location</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=123%20Main%20Street%2C%20Suite%20100%2C%20Lehi%2C%20UT%2084043"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
                   aria-label="Open address in Google Maps"
                 >
                   <span className="block">123 Main Street</span>
@@ -256,11 +256,11 @@ export function Footer() {
         </div>
 
         {/* Social Media and Legal */}
-        <div className="mt-8 pt-8 border-t border-gray-800">
+        <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             {/* Social Media */}
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-400">Follow us:</span>
+              <span className="text-sm text-muted-foreground">Follow us:</span>
               {socials.map(({ name, Component, href, hover }) => (
                 <Link
                   key={name}
@@ -268,7 +268,7 @@ export function Footer() {
                   aria-label={name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-gray-400 transition-colors ${hover}`}
+                  className={`text-muted-foreground transition-colors ${hover}`}
                 >
                   <Component className="h-5 w-5" aria-hidden="true" />
                 </Link>
@@ -276,9 +276,9 @@ export function Footer() {
             </div>
 
             {/* Legal Information */}
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
-                <EqualHousingIcon className="text-gray-400" />
+                <EqualHousingIcon className="text-muted-foreground" />
                 <span>Equal Housing Opportunity</span>
               </div>
               <span className="h-4 w-px bg-gray-600" />
@@ -299,14 +299,14 @@ export function Footer() {
       {/* Bottom Footer */}
       <div className="bg-gray-950 py-4">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p>© {new Date().getFullYear()} OnDo Real Estate. All rights reserved.</p>
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/licensing" className="hover:text-white">Licensing</Link>
-              <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-white">Terms of Use</Link>
-              <Link href="/accessibility" className="hover:text-white">Accessibility</Link>
-              <Link href="/sitemap" className="hover:text-white">Site Map</Link>
+              <Link href="/licensing" className="hover:text-foreground">Licensing</Link>
+              <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-foreground">Terms of Use</Link>
+              <Link href="/accessibility" className="hover:text-foreground">Accessibility</Link>
+              <Link href="/sitemap" className="hover:text-foreground">Site Map</Link>
             </div>
           </div>
         </div>

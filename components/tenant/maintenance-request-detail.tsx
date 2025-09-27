@@ -106,7 +106,7 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
       case "emergency":
         return <Badge className="bg-red-500">Emergency</Badge>
       case "urgent":
-        return <Badge className="bg-orange-500">Urgent</Badge>
+        return <Badge className="bg-primary">Urgent</Badge>
       case "normal":
         return <Badge className="bg-blue-500">Normal</Badge>
       case "low":
