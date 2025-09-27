@@ -122,7 +122,7 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
       case "emergency":
         return <Badge className="bg-red-500">Emergency</Badge>
       case "urgent":
-        return <Badge className="bg-orange-500">Urgent</Badge>
+        return <Badge className="bg-primary">Urgent</Badge>
       case "normal":
         return <Badge className="bg-blue-500">Normal</Badge>
       case "low":
@@ -393,7 +393,7 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
                 {isUpdating ? (
                   <div className="flex items-center">
                     <svg
-                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-foreground"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"

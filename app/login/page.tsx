@@ -136,7 +136,7 @@ export default function LoginPage() {
                 <CardFooter>
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-[#FF7A00] to-[#FF4500] dark:from-[#FF8C29] dark:to-[#FF5E1A] hover:opacity-90 text-white" 
+                    className="w-full bg-gradient-to-r from-[#FF7A00] to-[#FF4500] dark:from-[#FF8C29] dark:to-[#FF5E1A] hover:opacity-90 text-foreground" 
                     disabled={isLoading}
                   >
                     {isLoading ? (

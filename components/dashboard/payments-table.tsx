@@ -264,7 +264,7 @@ export function PaymentsTable({ status }: { status?: string }) {
                 </div>
               </TableCell>
               <TableCell>
-                <Badge variant="outline" className={`capitalize ${getStatusColor(payment.status)} text-white`}>
+                <Badge variant="outline" className={`capitalize ${getStatusColor(payment.status)} text-foreground`}>
                   {payment.status}
                 </Badge>
               </TableCell>

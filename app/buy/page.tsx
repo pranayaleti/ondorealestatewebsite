@@ -136,7 +136,7 @@ export default function BuyPage() {
         backgroundImage="/suburban-house-garden.png"
       />
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Your Utah Home Buying Journey Starts Here</h2>
@@ -222,17 +222,17 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-green-600 text-white">
+      <section className="py-16 bg-green-600 text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Find Your Utah Dream Home?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Start your home buying journey with expert guidance and local market knowledge.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-green-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-green-600 hover:bg-gray-100">
               <Link href="/contact">Start Your Search</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-green-600">
               <Link href="/properties">Browse Listings</Link>
             </Button>
           </div>
