@@ -16,6 +16,9 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { useAuth } from "@/lib/auth-context"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function OwnerDashboard() {
   const [loading, setLoading] = useState(true)
@@ -34,6 +37,16 @@ export default function OwnerDashboard() {
 
   return (
     <div className="flex flex-col gap-4 p-4 md:p-8">
+      <SEO
+        title="Owner Dashboard | Ondo Real Estate"
+        description="Track revenue, occupancy, maintenance, and tenant activity in the Ondo owner portal."
+        pathname="/owner"
+        image={`${SITE_URL}/property-manager-meeting.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Owner", url: `${SITE_URL}/owner` },
+        ])}
+      />
       <div className="flex items-center">
         <Breadcrumb className="mb-4">
           <BreadcrumbList>

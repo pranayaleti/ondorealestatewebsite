@@ -4,10 +4,23 @@ import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { TrendingUp, Building2, Briefcase, Users, Trees, Trophy, DollarSign, ShieldCheck, LineChart, MapPin } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function WhyUtahPage() {
   return (
     <div className="min-h-screen bg-black">
+      <SEO
+        title="Why Invest in Utah"
+        description="Utah's resilient economy, tech growth, and quality of life create strong real estate investment opportunities across the Wasatch Front."
+        pathname="/why-utah"
+        image={`${SITE_URL}/city-map-with-pin.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Why Utah", url: `${SITE_URL}/why-utah` },
+        ])}
+      />
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-black via-gray-900 to-orange-900">
         <div className="absolute inset-0 bg-black/50" />

@@ -2,10 +2,23 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileQuestion } from "lucide-react"
 import Link from "next/link"
+import SEO from "@/components/seo"
+import { SITE_URL } from "@/lib/site"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
 
 export default function NotFound() {
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-background">
+      <SEO
+        title="404 Not Found | OnDo Real Estate"
+        description="The page you’re looking for doesn’t exist. Return to the homepage."
+        pathname="/404"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "404", url: `${SITE_URL}/404` },
+        ])}
+      />
       <Card className="max-w-md w-full">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">

@@ -7,6 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { UserActivity } from "@/components/dashboard/user-activity"
 import Loading from "@/components/loading"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Profile | Property Management CRM",
@@ -16,6 +19,17 @@ export const metadata: Metadata = {
 export default function ProfilePage() {
   return (
     <DashboardShell>
+      <SEO
+        title="Dashboard Profile | OnDo Real Estate"
+        description="Manage your account settings, recent activity, and security preferences."
+        pathname="/dashboard/profile"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+          { name: "Profile", url: `${SITE_URL}/dashboard/profile` },
+        ])}
+      />
       <DashboardHeader heading="Profile" text="Manage your account settings and preferences" />
 
       <Tabs defaultValue="general" className="space-y-4">

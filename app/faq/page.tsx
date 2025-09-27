@@ -1,10 +1,23 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { PageBanner } from "@/components/page-banner"
 import { Footer } from "@/components/footer"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function FAQPage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO
+        title="FAQs | Property Management & Rentals"
+        description="Find answers to common questions about our property management services and renting with Ondo Real Estate."
+        pathname="/faq"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "FAQ", url: `${SITE_URL}/faq` },
+        ])}
+      />
       <PageBanner
         title="Frequently Asked Questions"
         subtitle="Everything you need to know about our property management and rental services"

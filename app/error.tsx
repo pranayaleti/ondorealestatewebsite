@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertTriangle } from "lucide-react"
 import Link from "next/link"
+import SEO from "@/components/seo"
+import { SITE_URL } from "@/lib/site"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
 
 export default function Error({
   error,
@@ -20,6 +23,16 @@ export default function Error({
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-background">
+      <SEO
+        title="Error | OnDo Real Estate"
+        description="An unexpected error occurred. Please try again or return home."
+        pathname="/error"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Error", url: `${SITE_URL}/error` },
+        ])}
+      />
       <Card className="max-w-md w-full">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">

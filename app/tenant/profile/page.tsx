@@ -11,6 +11,9 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useToast } from "@/hooks/use-toast"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function TenantProfile() {
   const { toast } = useToast()
@@ -31,6 +34,17 @@ export default function TenantProfile() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Tenant Profile | Ondo Real Estate"
+        description="Manage your personal details, contact information, and emergency contacts in the tenant portal."
+        pathname="/tenant/profile"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Tenant", url: `${SITE_URL}/tenant` },
+          { name: "Profile", url: `${SITE_URL}/tenant/profile` },
+        ])}
+      />
       <div>
         <h1 className="text-3xl font-bold">My Profile</h1>
         <p className="text-muted-foreground">Manage your personal information and preferences</p>

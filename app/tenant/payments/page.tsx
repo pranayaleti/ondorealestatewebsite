@@ -19,6 +19,9 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function PaymentsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -40,6 +43,17 @@ export default function PaymentsPage() {
 
   return (
     <div className="flex flex-col gap-4 p-4 md:p-8">
+      <SEO
+        title="Tenant Payments | Ondo Real Estate"
+        description="Make rent payments, manage payment methods, and view payment history in the tenant portal."
+        pathname="/tenant/payments"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Tenant", url: `${SITE_URL}/tenant` },
+          { name: "Payments", url: `${SITE_URL}/tenant/payments` },
+        ])}
+      />
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

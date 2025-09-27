@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Leases | PropertyPro Management",
@@ -15,6 +18,17 @@ export const metadata: Metadata = {
 export default function LeasesPage() {
   return (
     <DashboardShell>
+      <SEO
+        title="Dashboard Leases | OnDo Real Estate"
+        description="Manage and track property leases from a centralized dashboard."
+        pathname="/dashboard/leases"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+          { name: "Leases", url: `${SITE_URL}/dashboard/leases` },
+        ])}
+      />
       <DashboardHeader heading="Leases" text="Manage and track property leases">
         <Button>
           <Plus className="mr-2 h-4 w-4" /> New Lease

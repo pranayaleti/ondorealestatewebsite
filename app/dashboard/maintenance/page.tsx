@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Maintenance | PropertyPro Management",
@@ -15,6 +18,17 @@ export const metadata: Metadata = {
 export default function MaintenancePage() {
   return (
     <DashboardShell>
+      <SEO
+        title="Dashboard Maintenance | OnDo Real Estate"
+        description="Manage and track maintenance requests across properties."
+        pathname="/dashboard/maintenance"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+          { name: "Maintenance", url: `${SITE_URL}/dashboard/maintenance` },
+        ])}
+      />
       <DashboardHeader heading="Maintenance" text="Manage and track maintenance requests">
         <Button>
           <Plus className="mr-2 h-4 w-4" /> New Request

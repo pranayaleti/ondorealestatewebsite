@@ -1,4 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -7,6 +10,17 @@ import { Home, DollarSign, Shield, Users, Calculator, FileText } from "lucide-re
 export default function FirstTimeBuyerPage() {
   return (
     <main className="min-h-screen">
+      <SEO
+        title="First-Time Homebuyer Guide"
+        description="Step-by-step guidance, programs, and calculators for first-time homebuyers in Utah."
+        pathname="/buying/first-time"
+        image={`${SITE_URL}/suburban-house-garden.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Buying", url: `${SITE_URL}/buying` },
+          { name: "First-Time", url: `${SITE_URL}/buying/first-time` },
+        ])}
+      />
       <PageBanner
         title="First-Time Homebuyer Guide"
         subtitle="Everything you need to know about buying your first home"

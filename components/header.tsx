@@ -70,6 +70,18 @@ export default function Header() {
             <Link href="/properties" className="text-sm font-medium hover:underline underline-offset-4">
               Properties
             </Link>
+            <Link href="/property-management" className="text-sm font-medium hover:underline underline-offset-4">
+              Property Management
+            </Link>
+            <Link href="/buy" className="text-sm font-medium hover:underline underline-offset-4">
+              Buy
+            </Link>
+            <Link href="/sell" className="text-sm font-medium hover:underline underline-offset-4">
+              Sell
+            </Link>
+            <Link href="/loans" className="text-sm font-medium hover:underline underline-offset-4">
+              Loans
+            </Link>
             <Link href="/why-utah" className="text-sm font-medium hover:underline underline-offset-4">
               Why Utah
             </Link>
@@ -162,6 +174,34 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Properties
+              </Link>
+              <Link
+                href="/property-management"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Property Management
+              </Link>
+              <Link
+                href="/buy"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Buy
+              </Link>
+              <Link
+                href="/sell"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Sell
+              </Link>
+              <Link
+                href="/loans"
+                className="text-sm font-medium hover:underline underline-offset-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Loans
               </Link>
               <Link
                 href="/about"

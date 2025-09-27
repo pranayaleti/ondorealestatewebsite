@@ -10,6 +10,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function AuthPage() {
   const router = useRouter()
@@ -37,6 +40,16 @@ export default function AuthPage() {
 
   return (
     <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
+      <SEO
+        title="Sign In | OnDo Real Estate"
+        description="Sign in to continue to your tenant or owner portal."
+        pathname="/auth"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Auth", url: `${SITE_URL}/auth` },
+        ])}
+      />
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl text-center">Welcome to <span className="text-primary">OnDo</span> Real Estate</CardTitle>

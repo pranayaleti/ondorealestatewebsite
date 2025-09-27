@@ -12,6 +12,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Building, Home, EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
 import { useAuth } from "@/lib/auth-context"
 import { useToast } from "@/hooks/use-toast"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -55,6 +58,16 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
+      <SEO
+        title="Login | OnDo Real Estate"
+        description="Access your tenant or owner portal to manage rentals, payments, maintenance, and more."
+        pathname="/login"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Login", url: `${SITE_URL}/login` },
+        ])}
+      />
       <div className="w-full max-w-md">
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-2">

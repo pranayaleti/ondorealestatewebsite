@@ -338,8 +338,9 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                     <div key={index} className="relative border rounded-md overflow-hidden h-32">
                       <img
                         src={image || "/placeholder.svg"}
-                        alt={`Property ${index + 1}`}
+                        alt={`Property image ${index + 1}`}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                       <button
                         type="button"

@@ -5,11 +5,24 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Building, Mail, MapPin, Phone } from "lucide-react"
 import { PageBanner } from "@/components/page-banner"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 import { Footer } from "@/components/footer"
 
 export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO
+        title="Contact Ondo Real Estate"
+        description="Get in touch with Ondo Real Estate for property management, rentals, or real estate services across Utah."
+        pathname="/contact"
+        image={`${SITE_URL}/modern-office-building.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Contact", url: `${SITE_URL}/contact` },
+        ])}
+      />
       <PageBanner
         title="Contact Us"
         subtitle="Get in touch with our property management experts to find your perfect rental or to help you manage your property"

@@ -8,6 +8,9 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DollarSign, Home } from "lucide-react"
+import SEO from "@/components/seo"
+import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Finances | OnDo Real Estate",
@@ -17,6 +20,17 @@ export const metadata: Metadata = {
 export default function FinancesPage() {
   return (
     <div className="space-y-6 p-6">
+      <SEO
+        title="Owner Finances | Ondo Real Estate"
+        description="Track income, expenses, and financial performance in the owner portal."
+        pathname="/owner/finances"
+        image={`${SITE_URL}/modern-apartment-balcony.png`}
+        jsonLd={generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Owner", url: `${SITE_URL}/owner` },
+          { name: "Finances", url: `${SITE_URL}/owner/finances` },
+        ])}
+      />
       <div className="flex flex-col gap-2">
         <Breadcrumb>
           <BreadcrumbList>
