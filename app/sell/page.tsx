@@ -1,3 +1,4 @@
+import { SITE_SOCIALS } from "@/lib/site"
 import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
@@ -89,6 +90,34 @@ const faqs = [
   {
     question: "What are your commission rates?",
     answer: "Our commission rates are competitive and vary based on the services provided. We offer flexible pricing options and always provide transparent, upfront information about all costs.",
+  },
+  {
+    question: "How should I prepare my home before listing?",
+    answer: "Declutter, deep clean, complete minor repairs, refresh paint where needed, and enhance curb appeal. We provide a customized prep checklist.",
+  },
+  {
+    question: "Do you recommend staging?",
+    answer: "Yes—professional staging or light styling often increases buyer interest and sale price. We offer tailored recommendations and vendor referrals.",
+  },
+  {
+    question: "How do showings and open houses work?",
+    answer: "We coordinate private showings and strategic open houses aligned to buyer traffic patterns, with feedback shared through your client portal.",
+  },
+  {
+    question: "What happens after we receive an offer?",
+    answer: "We review terms (price, financing, appraisal, concessions, timelines) and negotiate for strongest net and certainty to close.",
+  },
+  {
+    question: "Who pays for repairs after inspection?",
+    answer: "It’s negotiable. We recommend focusing on health/safety and major systems. Credits, repairs, or warranties can resolve concerns efficiently.",
+  },
+  {
+    question: "How long is a typical listing period?",
+    answer: "Most listings run 60–90 days to cover market exposure and seasonal patterns. We review performance every two weeks and adjust strategy.",
+  },
+  {
+    question: "Can I cancel the listing?",
+    answer: "We believe in flexible, performance-driven agreements. If expectations aren’t met, we discuss options and next steps transparently.",
   },
 ]
 
@@ -226,12 +255,7 @@ export default function SellPage() {
             name: SITE_NAME,
             url: SITE_URL,
             areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-            sameAs: [
-              'https://www.facebook.com/OnDoRealEstate',
-              'https://www.instagram.com/OnDoRealEstate',
-              'https://www.linkedin.com/company/OnDoRealEstate',
-              'https://www.youtube.com/@OnDoRealEstate'
-            ]
+            sameAs: SITE_SOCIALS
           },
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
           serviceType: 'Real Estate Sales',
@@ -245,12 +269,7 @@ export default function SellPage() {
           name: SITE_NAME,
           url: SITE_URL,
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-          sameAs: [
-            'https://www.facebook.com/OnDoRealEstate',
-            'https://www.instagram.com/OnDoRealEstate',
-            'https://www.linkedin.com/company/OnDoRealEstate',
-            'https://www.youtube.com/@OnDoRealEstate'
-          ],
+          sameAs: SITE_SOCIALS,
           makesOffer: [
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Property Management' } },
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Buying' } },

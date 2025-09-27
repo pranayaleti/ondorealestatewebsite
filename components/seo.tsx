@@ -12,7 +12,7 @@ type SEOProps = {
 }
 
 export default function SEO({ title, description, pathname = "/", image, jsonLd = null }: SEOProps) {
-  const domain = process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com"
+  const domain = process.env.NEXT_PUBLIC_SITE_URL || "https://ondorealestate.com"
   const url = `${domain.replace(/\/$/, "")}${pathname}`
   const ogImage = image || `${domain}/assets/og-image.png`
 

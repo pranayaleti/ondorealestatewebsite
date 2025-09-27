@@ -1,3 +1,4 @@
+import { SITE_SOCIALS } from "@/lib/site"
 import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
@@ -89,6 +90,30 @@ const faqs = [
   {
     question: "What reporting do you provide to property owners?",
     answer: "Property owners receive detailed monthly financial reports, maintenance summaries, tenant communication logs, and annual property performance analysis.",
+  },
+  {
+    question: "How quickly can you lease my property?",
+    answer: "Well-presented, well-priced homes often lease within 7–21 days depending on seasonality and local comps. We share weekly activity updates.",
+  },
+  {
+    question: "What are your management and leasing fees?",
+    answer: "Management typically ranges 7–10% of collected rent and leasing is a one-time fee at tenant placement. Portfolio size and property type can adjust pricing.",
+  },
+  {
+    question: "Do you require a maintenance reserve?",
+    answer: "We maintain a small operating reserve to cover routine repairs. You approve non-emergency work above your chosen threshold.",
+  },
+  {
+    question: "How do you handle evictions?",
+    answer: "We follow Utah law for notices and timelines, coordinate with legal partners, and aim to minimize downtime and costs for owners.",
+  },
+  {
+    question: "Do you allow pets at my property?",
+    answer: "Pet policies are your choice. If allowed, we use pet screening, deposits, and pet rent to reduce risk and widen the applicant pool.",
+  },
+  {
+    question: "When do I receive owner payouts?",
+    answer: "Owner disbursements are processed monthly after rent clears and expenses are reconciled. Detailed statements are provided in your portal.",
   },
 ]
 
@@ -226,12 +251,7 @@ export default function PropertyManagementPage() {
             name: SITE_NAME,
             url: SITE_URL,
             areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-            sameAs: [
-              'https://www.facebook.com/OnDoRealEstate',
-              'https://www.instagram.com/OnDoRealEstate',
-              'https://www.linkedin.com/company/OnDoRealEstate',
-              'https://www.youtube.com/@OnDoRealEstate'
-            ]
+            sameAs: SITE_SOCIALS
           },
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
           serviceType: 'Property Management',
@@ -245,12 +265,7 @@ export default function PropertyManagementPage() {
           name: SITE_NAME,
           url: SITE_URL,
           areaServed: ['Lehi UT','Salt Lake City UT','Draper UT','Utah County'],
-          sameAs: [
-            'https://www.facebook.com/OnDoRealEstate',
-            'https://www.instagram.com/OnDoRealEstate',
-            'https://www.linkedin.com/company/OnDoRealEstate',
-            'https://www.youtube.com/@OnDoRealEstate'
-          ],
+          sameAs: SITE_SOCIALS,
           makesOffer: [
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Property Management' } },
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Buying' } },

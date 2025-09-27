@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS } from "@/lib/site"
+import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS } from "@/lib/site"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -89,12 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             image: `${SITE_URL}/placeholder-logo.png`,
             areaServed: 'Utah',
             openingHours: SITE_HOURS,
-            sameAs: [
-              'https://www.facebook.com/OnDoRealEstate',
-              'https://www.instagram.com/OnDoRealEstate',
-              'https://www.linkedin.com/company/OnDoRealEstate',
-              'https://www.youtube.com/@OnDoRealEstate'
-            ],
+            sameAs: SITE_SOCIALS,
             address: {
               '@type': 'PostalAddress',
               addressRegion: 'UT',
