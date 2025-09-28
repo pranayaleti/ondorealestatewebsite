@@ -149,7 +149,7 @@ export default function PropertyManagementPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Complete Property Management Solutions</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Let us handle the day-to-day management of your rental properties while you enjoy passive income. 
               Our comprehensive services cover everything from tenant placement to maintenance coordination.
             </p>
@@ -159,11 +159,11 @@ export default function PropertyManagementPage() {
             {services.map((service, index) => (
               <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <div className="mx-auto mb-4 text-blue-600">{service.icon}</div>
+                  <div className="mx-auto mb-4 text-primary">{service.icon}</div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                  <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -174,31 +174,31 @@ export default function PropertyManagementPage() {
               <h3 className="text-2xl font-bold mb-6">Why Choose Our Property Management?</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Local Expertise</h4>
-                    <p className="text-gray-600">Deep knowledge of Utah real estate market and local regulations</p>
+                    <p className="text-muted-foreground">Deep knowledge of Utah real estate market and local regulations</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Technology-Driven</h4>
-                    <p className="text-gray-600">Online portals for owners and tenants with real-time reporting</p>
+                    <p className="text-muted-foreground">Online portals for owners and tenants with real-time reporting</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Proven Track Record</h4>
-                    <p className="text-gray-600">Over 95% tenant retention rate and 99% on-time rent collection</p>
+                    <p className="text-muted-foreground">Over 95% tenant retention rate and 99% on-time rent collection</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">24/7 Support</h4>
-                    <p className="text-gray-600">Round-the-clock emergency response and tenant support</p>
+                    <p className="text-muted-foreground">Round-the-clock emergency response and tenant support</p>
                   </div>
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function PropertyManagementPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -223,7 +223,7 @@ export default function PropertyManagementPage() {
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
                   <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -231,17 +231,17 @@ export default function PropertyManagementPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-blue-600 text-foreground">
+      <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Simplify Your Property Management?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get started with our property management services and experience the difference professional management makes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-blue-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-background text-foreground hover:bg-muted">
               <Link href="/contact">Get Free Consultation</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-blue-600">
+            <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
               <Link href="/properties">View Our Properties</Link>
             </Button>
           </div>
