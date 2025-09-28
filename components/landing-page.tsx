@@ -108,9 +108,9 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Background Image */}
-      <section className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800 py-20 md:py-32">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <Image src="/modern-office-building.png" alt="Modern building" fill style={{ objectFit: "cover" }} priority />
+      <section className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800 py-20 md:py-32" role="banner" aria-label="Hero section">
+        <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
+          <Image src="/modern-office-building.png" alt="Modern office building representing OnDo Real Estate" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
@@ -127,9 +127,9 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-white dark:bg-gray-900" aria-labelledby="how-it-works-heading">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">How OnDo Real Estate Works</h2>
+          <h2 id="how-it-works-heading" className="text-3xl font-bold text-center mb-12 dark:text-white">How OnDo Real Estate Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center">
               <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-full mb-4">
@@ -163,18 +163,19 @@ export default function LandingPage() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800" aria-labelledby="featured-properties-heading">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Featured Rental Properties</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 id="featured-properties-heading" className="text-3xl font-bold text-center mb-12 dark:text-white">Featured Rental Properties</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {featuredProperties.map((property) => (
-              <Card key={property.id} className="dark:bg-gray-900">
-                <div className="relative h-48 w-full">
+              <Card key={property.id} className="dark:bg-gray-900 hover:shadow-lg transition-shadow duration-200">
+                <div className="relative h-48 sm:h-56 w-full">
                   <Image
                     src={property.image || "/placeholder.svg"}
-                    alt={property.name}
+                    alt={`${property.name} - ${property.description}`}
                     fill
                     style={{ objectFit: "cover" }}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
                 <CardHeader>

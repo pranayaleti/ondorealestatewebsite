@@ -16,16 +16,23 @@ export const metadata: Metadata = {
   title: "Utah Home Loans & Mortgages | Conventional, FHA, VA, USDA | Salt Lake City, Lehi, Provo",
   description: "Get pre-approved for Utah home loans including conventional, FHA, VA, and USDA mortgages. Expert loan officers serving Salt Lake City, Lehi, Provo, and surrounding areas.",
   keywords: [
+    // Core
     "Utah home loans",
     "Utah mortgages",
+    "mortgage lender Utah",
+    "mortgage pre-approval Utah",
+    "Utah mortgage rates",
+    // Programs
     "conventional loans Utah",
     "FHA loans Utah",
     "VA loans Utah",
     "USDA loans Utah",
+    "jumbo loans Utah",
+    "refinance Utah",
+    // Geos
     "Salt Lake City mortgages",
     "Lehi home loans",
     "Provo mortgages",
-    "Utah mortgage rates",
   ],
   alternates: {
     canonical: `${SITE_URL}/loans/`,
