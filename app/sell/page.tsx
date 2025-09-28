@@ -16,14 +16,22 @@ export const metadata: Metadata = {
   title: "Sell Your Utah Home | Expert Real Estate Agents | Salt Lake City, Lehi, Provo",
   description: "Sell your Utah home for top dollar with expert real estate agents. Professional marketing, pricing strategy, and negotiation. Serving Salt Lake City, Lehi, Provo, and surrounding areas.",
   keywords: [
+    // Seller intent
     "sell house Utah",
-    "Utah real estate agents",
-    "Salt Lake City homes for sale",
-    "Lehi homes for sale",
-    "Provo homes for sale",
-    "Utah home selling",
-    "real estate Utah",
     "home valuation Utah",
+    "list my home Utah",
+    "sell my house fast Utah",
+    // Core
+    "real estate Utah",
+    "Utah real estate agents",
+    // Geos
+    "Salt Lake City real estate agents",
+    "Lehi real estate agents",
+    "Provo real estate agents",
+    // Services
+    "professional home staging Utah",
+    "real estate marketing Utah",
+    "CMA Utah",
   ],
   alternates: {
     canonical: `${SITE_URL}/sell/`,

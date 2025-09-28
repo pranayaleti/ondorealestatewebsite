@@ -16,14 +16,23 @@ export const metadata: Metadata = {
   title: "Utah Property Management Services | Professional Rental Management",
   description: "Full-service property management in Utah. Tenant screening, rent collection, maintenance, and reporting. Serving Salt Lake City, Lehi, Provo, and surrounding areas.",
   keywords: [
+    // Core
     "Utah property management",
     "rental property management",
+    "property manager Utah",
+    // Services
     "tenant screening Utah",
+    "rent collection Utah",
+    "maintenance management Utah",
+    "owner portal Utah",
+    "tenant portal Utah",
+    // Geos
     "property management Salt Lake City",
     "Lehi property management",
     "Provo property management",
-    "rent collection",
-    "maintenance management",
+    "Orem property management",
+    "Sandy property management",
+    "Draper property management",
   ],
   alternates: {
     canonical: `${SITE_URL}/property-management/`,

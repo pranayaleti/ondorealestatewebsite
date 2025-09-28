@@ -17,7 +17,7 @@ import { SITE_URL } from "@/lib/site"
 export default function AuthPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const userType = searchParams.get("type") || "tenant"
+  const userType = searchParams?.get("type") || "tenant"
 
   const [activeTab, setActiveTab] = useState<string>(userType)
   const [isLoading, setIsLoading] = useState(false)

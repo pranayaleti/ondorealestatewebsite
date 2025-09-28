@@ -154,7 +154,6 @@ export default function Header() {
           <button
             className="block md:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
             onClick={() => {
-              console.log('Hamburger clicked, current state:', isMenuOpen)
               setIsMenuOpen(!isMenuOpen)
             }}
             aria-label="Toggle menu"

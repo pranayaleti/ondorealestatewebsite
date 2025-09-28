@@ -16,14 +16,27 @@ export const metadata: Metadata = {
   title: "Buy Homes in Utah | Expert Real Estate Agents | Salt Lake City, Lehi, Provo",
   description: "Find your dream home in Utah with expert real estate agents. Browse homes for sale in Salt Lake City, Lehi, Provo, and surrounding areas. Get pre-approved for a mortgage.",
   keywords: [
+    // Core
     "homes for sale Utah",
+    "houses for sale Utah",
+    "real estate Utah",
+    "Utah real estate listings",
+    // Buyer intent
     "buy house Utah",
-    "Utah real estate agents",
+    "Utah home buying",
+    "first-time home buyer Utah",
+    "down payment assistance Utah",
+    "Utah closing costs",
+    // Geos
     "Salt Lake City homes for sale",
     "Lehi homes for sale",
     "Provo homes for sale",
-    "Utah home buying",
-    "real estate Utah",
+    "Orem homes for sale",
+    "Sandy homes for sale",
+    "Draper homes for sale",
+    // Finance
+    "mortgage pre-approval Utah",
+    "Utah mortgage rates",
   ],
   alternates: {
     canonical: `${SITE_URL}/buy/`,

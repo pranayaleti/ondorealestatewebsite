@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   description: "Edit property details",
 };
 
-export default function EditPropertyPage({
+export default async function EditPropertyPage({
   searchParams,
 }: {
-  searchParams: { id?: string };
+  searchParams: Promise<{ id?: string }>;
 }) {
-  const id = searchParams?.id ?? "";
+  const { id = "" } = await searchParams;
 
   if (!id) {
     return (

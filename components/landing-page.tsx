@@ -108,9 +108,9 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Background Image */}
-      <section className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800 py-20 md:py-32">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <Image src="/modern-office-building.png" alt="Modern building" fill style={{ objectFit: "cover" }} priority />
+      <section className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800 py-20 md:py-32" role="banner" aria-label="Hero section">
+        <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
+          <Image src="/modern-office-building.png" alt="Modern office building representing OnDo Real Estate" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
@@ -172,9 +172,10 @@ export default function LandingPage() {
                 <div className="relative h-48 w-full">
                   <Image
                     src={property.image || "/placeholder.svg"}
-                    alt={property.name}
+                    alt={`${property.name} - ${property.description}`}
                     fill
                     style={{ objectFit: "cover" }}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
                 <CardHeader>
