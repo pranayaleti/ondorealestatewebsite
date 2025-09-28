@@ -5,14 +5,15 @@ import { SITE_NAME, SITE_URL } from "@/lib/site"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 
-type Params = { city: string }
+type Params = Promise<{ city: string }>
 
-export function generateStaticParams(): Params[] {
+export function generateStaticParams(): { city: string }[] {
   return allCitySlugs.map((city) => ({ city }))
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const city = findCityBySlug(params.city)
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { city: citySlug } = await params
+  const city = findCityBySlug(citySlug)
   const cityName = city?.name ?? params.city
   const title = `${cityName} Property Management | ${SITE_NAME}`
   const description = `Full-service property management in ${cityName}, Utah. Marketing, screening, rent collection, maintenance, and reporting.`
@@ -25,8 +26,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   }
 }
 
-export default function Page({ params }: { params: Params }) {
-  const city = findCityBySlug(params.city)
+export default async function Page({ params }: { params: Params }) {
+  const { city: citySlug } = await params
+  const city = findCityBySlug(citySlug)
   if (!city) {
     return <div className="container mx-auto px-4 py-10">City not found.</div>
   }

@@ -11,13 +11,14 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
-export default function OwnerMaintenanceDetailPage({ params }: { params: { id: string } }) {
+export default async function OwnerMaintenanceDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   return (
     <div className="space-y-6">
       <SEO
-        title={`Maintenance Request ${params.id} | Owner Portal`}
+        title={`Maintenance Request ${id} | Owner Portal`}
         description="View maintenance request details and status."
-        pathname={`/owner/maintenance/${params.id}`}
+        pathname={`/owner/maintenance/${id}`}
         image={`${SITE_URL}/property-manager-meeting.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },

@@ -173,15 +173,16 @@ const getProperty = (id: string) => {
   return PROPERTIES.find((p) => p.id === id)
 }
 
-export default function PropertyDetailsPage({ params }: { params: { id: string } }) {
-  const property = getProperty(params.id)
+export default async function PropertyDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const property = getProperty(id)
 
   return (
     <div className="space-y-6 p-6">
       <SEO
-        title={`Property Details | ${params.id}`}
+        title={`Property Details | ${id}`}
         description="View and manage property details in the owner portal."
-        pathname={`/owner/properties/${params.id}`}
+        pathname={`/owner/properties/${id}`}
         image={`${SITE_URL}/modern-apartment-balcony.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },

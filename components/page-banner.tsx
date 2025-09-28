@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 interface PageBannerProps {
   title: string
   subtitle: string
@@ -10,18 +12,20 @@ export function PageBanner({ title, subtitle, backgroundImage }: PageBannerProps
       <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-black/90 z-10" />
       <div className="relative h-[300px] overflow-hidden">
         {backgroundImage ? (
-          <img
+          <Image
             src={backgroundImage || "/placeholder.svg"}
             alt={`${title} background image`}
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
+            fill
+            className="object-cover"
+            priority
           />
         ) : (
-          <img 
+          <Image 
             src="/modern-apartment-balcony.png" 
             alt="Modern apartment building background" 
-            className="absolute inset-0 w-full h-full object-cover" 
-            loading="lazy"
+            fill
+            className="object-cover"
+            priority
           />
         )}
       </div>
