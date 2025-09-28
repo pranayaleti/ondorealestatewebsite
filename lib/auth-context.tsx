@@ -49,49 +49,68 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string, role: UserRole): Promise<boolean> => {
     setIsLoading(true)
 
-    // Simulate API request with 1-second delay
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        // Demo users based on role
-        let userData: UserData = null
+    try {
+      // Simulate API request with 1-second delay
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          try {
+            // Basic validation
+            if (!email || !password || !role) {
+              setIsLoading(false)
+              resolve(false)
+              return
+            }
 
-        if (role === "tenant") {
-          userData = {
-            id: "t-123",
-            name: "John Smith",
-            email,
-            role: "tenant",
-            avatar: "/abstract-geometric-shapes.png",
-          }
-        } else if (role === "owner") {
-          userData = {
-            id: "o-456",
-            name: "Sarah Johnson",
-            email,
-            role: "owner",
-            avatar: "/abstract-geometric-shapes.png",
-          }
-        } else if (role === "admin") {
-          userData = {
-            id: "a-789",
-            name: "Admin User",
-            email,
-            role: "admin",
-            avatar: "/abstract-geometric-shapes.png",
-          }
-        }
+            // Demo users based on role
+            let userData: UserData = null
 
-        if (userData) {
-          setUser(userData)
-          localStorage.setItem("Real EstateUser", JSON.stringify(userData))
-          setIsLoading(false)
-          resolve(true)
-        } else {
-          setIsLoading(false)
-          resolve(false)
-        }
-      }, 1000)
-    })
+            if (role === "tenant") {
+              userData = {
+                id: "t-123",
+                name: "John Smith",
+                email,
+                role: "tenant",
+                avatar: "/abstract-geometric-shapes.png",
+              }
+            } else if (role === "owner") {
+              userData = {
+                id: "o-456",
+                name: "Sarah Johnson",
+                email,
+                role: "owner",
+                avatar: "/abstract-geometric-shapes.png",
+              }
+            } else if (role === "admin") {
+              userData = {
+                id: "a-789",
+                name: "Admin User",
+                email,
+                role: "admin",
+                avatar: "/abstract-geometric-shapes.png",
+              }
+            }
+
+            if (userData) {
+              setUser(userData)
+              localStorage.setItem("Real EstateUser", JSON.stringify(userData))
+              setIsLoading(false)
+              resolve(true)
+            } else {
+              setIsLoading(false)
+              resolve(false)
+            }
+          } catch (error) {
+            console.error("Login error:", error)
+            setIsLoading(false)
+            resolve(false)
+          }
+        }, 1000)
+      })
+    } catch (error) {
+      console.error("Login error:", error)
+      setIsLoading(false)
+      return false
+    }
   }
 
   const logout = () => {

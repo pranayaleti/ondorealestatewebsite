@@ -11,13 +11,14 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
-export default function EditPropertyPage({ params }: { params: { id: string } }) {
+export default async function EditPropertyPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   return (
     <div className="space-y-6 p-6">
       <SEO
-        title={`Edit Property | ${params.id}`}
+        title={`Edit Property | ${id}`}
         description="Update your property details in the owner portal."
-        pathname={`/owner/properties/${params.id}/edit`}
+        pathname={`/owner/properties/${id}/edit`}
         image={`${SITE_URL}/modern-apartment-balcony.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },

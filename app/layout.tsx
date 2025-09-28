@@ -9,6 +9,7 @@ import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS } from "@/lib/site"
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,15 +22,39 @@ export const metadata: Metadata = {
   description:
     "Utah real estate experts for property management, buying, selling, and home loans. Local service across the Wasatch Front.",
   keywords: [
+    // Core market/service
     "Utah real estate",
-    "property management Utah",
+    "real estate Utah",
+    "Utah real estate listings",
     "homes for sale Utah",
-    "buy house Utah",
-    "sell house Utah",
+    "houses for sale Utah",
+    "property management Utah",
+    "rental property management",
+    "tenant screening Utah",
+    "home buying Utah",
+    "first-time home buyer Utah",
+    "home selling Utah",
+    "sell my house Utah",
     "Utah home loans",
-    "Salt Lake City",
-    "Lehi",
-    "Provo",
+    "mortgage lender Utah",
+    "mortgage pre-approval Utah",
+    "refinance Utah",
+    // Geos
+    "Wasatch Front",
+    "Salt Lake City real estate",
+    "Lehi real estate",
+    "Provo real estate",
+    "Orem real estate",
+    "Sandy real estate",
+    "Draper real estate",
+    "American Fork real estate",
+    "Pleasant Grove real estate",
+    "Utah County real estate",
+    "Salt Lake County real estate",
+    "Davis County real estate",
+    // Topics
+    "Utah housing market",
+    "MLS listings Utah",
   ],
   alternates: {
     canonical: SITE_URL,
@@ -60,8 +85,20 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-  generator: "OndoSoft",
+  generator: "Next.js",
+  applicationName: SITE_NAME,
+  referrer: 'origin-when-cross-origin',
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -106,6 +143,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             ],
           })}
         </Script>
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', {
+                  page_title: document.title,
+                  page_location: window.location.href,
+                });
+              `}
+            </Script>
+          </>
+        )}
+        <Analytics />
       </body>
     </html>
   )

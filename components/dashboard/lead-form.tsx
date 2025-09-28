@@ -37,7 +37,7 @@ export function LeadForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    // TODO: Implement proper API call with error handling
     // Here you would typically send the data to your API
     alert("Lead added successfully!")
   }
