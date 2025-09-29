@@ -211,7 +211,7 @@ export default function PaymentsPage() {
                 <div className="text-xs text-muted-foreground">Payment #12458</div>
               </div>
               <div>
-                <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-100">
+                <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
                   Completed
                 </Badge>
               </div>
@@ -227,7 +227,7 @@ export default function PaymentsPage() {
                 <div className="text-xs text-muted-foreground">Payment #12345</div>
               </div>
               <div>
-                <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-100">
+                <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
                   Completed
                 </Badge>
               </div>
@@ -243,7 +243,7 @@ export default function PaymentsPage() {
                 <div className="text-xs text-muted-foreground">Payment #12234</div>
               </div>
               <div>
-                <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-100">
+                <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
                   Completed
                 </Badge>
               </div>

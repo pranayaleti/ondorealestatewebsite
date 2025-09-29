@@ -337,7 +337,7 @@ export function FinancesView() {
                         <span>{property.name}</span>
                         <span
                           className={
-                            property.netIncome >= 0 ? "text-green-600 font-medium" : "text-red-600 font-medium"
+                            property.netIncome >= 0 ? "text-primary font-medium" : "text-destructive font-medium"
                           }
                         >
                           ${property.netIncome.toLocaleString()}
@@ -414,15 +414,15 @@ export function FinancesView() {
                         <span
                           className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                             transaction.type === "income"
-                              ? "bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20"
-                              : "bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20"
+                              ? "bg-muted text-green-700 ring-1 ring-inset ring-green-600/20"
+                              : "bg-muted text-red-700 ring-1 ring-inset ring-red-600/20"
                           }`}
                         >
                           {transaction.category}
                         </span>
                       </TableCell>
                       <TableCell
-                        className={`text-right ${transaction.type === "income" ? "text-green-600" : "text-red-600"}`}
+                        className={`text-right ${transaction.type === "income" ? "text-primary" : "text-destructive"}`}
                       >
                         {transaction.type === "income" ? "+" : "-"}${transaction.amount.toLocaleString()}
                       </TableCell>
@@ -558,8 +558,8 @@ export function FinancesView() {
                           <span
                             className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                               transaction.type === "income"
-                                ? "bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20"
-                                : "bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20"
+                                ? "bg-muted text-green-700 ring-1 ring-inset ring-green-600/20"
+                                : "bg-muted text-red-700 ring-1 ring-inset ring-red-600/20"
                             }`}
                           >
                             {transaction.category}
@@ -569,15 +569,15 @@ export function FinancesView() {
                           <span
                             className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                               transaction.status === "completed"
-                                ? "bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-600/20"
-                                : "bg-yellow-50 text-yellow-700 ring-1 ring-inset ring-yellow-600/20"
+                                ? "bg-muted text-orange-700 ring-1 ring-inset ring-orange-600/20"
+                                : "bg-muted text-yellow-700 ring-1 ring-inset ring-yellow-600/20"
                             }`}
                           >
                             {transaction.status === "completed" ? "Completed" : "Pending"}
                           </span>
                         </TableCell>
                         <TableCell
-                          className={`text-right ${transaction.type === "income" ? "text-green-600" : "text-red-600"}`}
+                          className={`text-right ${transaction.type === "income" ? "text-primary" : "text-destructive"}`}
                         >
                           {transaction.type === "income" ? "+" : "-"}${transaction.amount.toLocaleString()}
                         </TableCell>
@@ -673,7 +673,7 @@ export function FinancesView() {
                   <div className="pt-2 border-t">
                     <div className="flex justify-between font-medium text-lg">
                       <span>Net Income</span>
-                      <span className="text-green-600">
+                      <span className="text-primary">
                         ${FINANCIAL_SUMMARY.currentMonth.netIncome.toLocaleString()}
                       </span>
                     </div>
@@ -759,11 +759,11 @@ export function FinancesView() {
                         <TableCell className="text-right">${property.income.toLocaleString()}</TableCell>
                         <TableCell className="text-right">${property.expenses.toLocaleString()}</TableCell>
                         <TableCell
-                          className={`text-right ${property.netIncome >= 0 ? "text-green-600" : "text-red-600"}`}
+                          className={`text-right ${property.netIncome >= 0 ? "text-primary" : "text-destructive"}`}
                         >
                           ${property.netIncome.toLocaleString()}
                         </TableCell>
-                        <TableCell className={`text-right ${property.roi >= 0 ? "text-green-600" : "text-red-600"}`}>
+                        <TableCell className={`text-right ${property.roi >= 0 ? "text-primary" : "text-destructive"}`}>
                           {property.roi.toFixed(1)}%
                         </TableCell>
                       </TableRow>

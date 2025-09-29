@@ -99,29 +99,29 @@ export default function ResultsList({ properties }: ResultsListProps) {
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                     <div>
                       <h3 className="font-bold text-lg mb-1">{property.title}</h3>
-                      <p className="text-gray-600 text-sm mb-2">{property.address}</p>
+                      <p className="text-muted-foreground text-sm mb-2">{property.address}</p>
 
                       <div className="flex flex-wrap gap-3 mb-3">
-                        <div className="flex items-center text-gray-700">
+                        <div className="flex items-center text-foreground">
                           <BedDouble className="h-4 w-4 mr-1" />
                           <span>
                             {property.bedrooms}{" "}
                             {property.bedrooms === 0 ? "Studio" : property.bedrooms === 1 ? "Bed" : "Beds"}
                           </span>
                         </div>
-                        <div className="flex items-center text-gray-700">
+                        <div className="flex items-center text-foreground">
                           <Bath className="h-4 w-4 mr-1" />
                           <span>
                             {property.bathrooms} {property.bathrooms === 1 ? "Bath" : "Baths"}
                           </span>
                         </div>
-                        <div className="flex items-center text-gray-700">
+                        <div className="flex items-center text-foreground">
                           <SquareFoot className="h-4 w-4 mr-1" />
                           <span>{property.sqft} sqft</span>
                         </div>
                       </div>
 
-                      <p className="text-gray-600 text-sm mb-3 line-clamp-2">{property.description}</p>
+                      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{property.description}</p>
 
                       <div className="flex flex-wrap gap-2">
                         {property.features.slice(0, 4).map((feature, index) => (
@@ -150,7 +150,7 @@ export default function ResultsList({ properties }: ResultsListProps) {
       ) : (
         <div className="text-center py-12">
           <h3 className="text-xl font-semibold mb-2">No properties found</h3>
-          <p className="text-gray-600">Try adjusting your search criteria to see more results.</p>
+          <p className="text-muted-foreground">Try adjusting your search criteria to see more results.</p>
         </div>
       )}
 

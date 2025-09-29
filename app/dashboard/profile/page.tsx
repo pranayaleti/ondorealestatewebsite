@@ -90,7 +90,7 @@ export default function ProfilePage() {
                       <label htmlFor="confirm-password">Confirm New Password</label>
                       <input id="confirm-password" type="password" className="w-full p-2 border rounded" />
                     </div>
-                    <button className="px-4 py-2 bg-primary text-white rounded">Update Password</button>
+                    <button className="px-4 py-2 bg-primary text-foreground rounded">Update Password</button>
                   </div>
                 </div>
 
@@ -99,9 +99,9 @@ export default function ProfilePage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">Two-factor authentication is disabled</p>
-                      <p className="text-sm text-gray-500">Add an extra layer of security to your account</p>
+                      <p className="text-sm text-muted-foreground">Add an extra layer of security to your account</p>
                     </div>
-                    <button className="px-4 py-2 bg-primary text-white rounded">Enable</button>
+                    <button className="px-4 py-2 bg-primary text-foreground rounded">Enable</button>
                   </div>
                 </div>
               </CardContent>

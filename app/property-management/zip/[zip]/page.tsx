@@ -12,11 +12,12 @@ export function generateStaticParams(): { zip: string }[] {
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const city = findCityByZip(params.zip)
+  const { zip } = await params
+  const city = findCityByZip(zip)
   const cityName = city?.name ?? "Utah"
-  const title = `Property Management ${params.zip} (${cityName}) | ${SITE_NAME}`
-  const description = `Professional property management services across ${params.zip} in ${cityName}, Utah.`
-  const canonical = `${SITE_URL}/property-management/zip/${params.zip}/`
+  const title = `Property Management ${zip} (${cityName}) | ${SITE_NAME}`
+  const description = `Professional property management services across ${zip} in ${cityName}, Utah.`
+  const canonical = `${SITE_URL}/property-management/zip/${zip}/`
   return {
     title,
     description,
@@ -24,8 +25,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     openGraph: { title, description, url: canonical },
   }
 }
-
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params }: { params: { zip: string } }) {
   const city = findCityByZip(params.zip)
   if (!city) {
     return <div className="container mx-auto px-4 py-10">Service area not found.</div>

@@ -17,7 +17,7 @@ export function TestSheet() {
         <div className="py-6 space-y-6 overflow-y-auto max-h-[calc(100vh-180px)]">
           <p>This is a test sheet to verify that the Sheet component is working correctly.</p>
           <p>If you can see this content, the Sheet component is functioning properly.</p>
-          <div className="h-[1000px] bg-gray-100 dark:bg-gray-800 rounded-md p-4">
+          <div className="h-[1000px] bg-muted dark:bg-muted rounded-md p-4">
             <p>This is a tall element to test scrolling.</p>
             <p className="mt-[900px]">You should be able to scroll down to see this text.</p>
           </div>

@@ -90,7 +90,7 @@ export default function SitemapPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">Site Map</h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Find everything you need on our website. Browse by category or use our search feature.
             </p>
           </div>
@@ -113,7 +113,7 @@ export default function SitemapPage() {
                           className="block hover:text-primary transition-colors"
                         >
                           <h3 className="font-semibold text-sm mb-1">{link.name}</h3>
-                          <p className="text-xs text-gray-600">{link.description}</p>
+                          <p className="text-xs text-muted-foreground">{link.description}</p>
                         </Link>
                       </div>
                     ))}
@@ -132,7 +132,7 @@ export default function SitemapPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Use our search feature or contact us directly for personalized assistance.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

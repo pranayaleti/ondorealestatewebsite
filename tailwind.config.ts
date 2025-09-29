@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-family-base)'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

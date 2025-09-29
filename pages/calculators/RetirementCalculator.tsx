@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Download, TrendingUp, Home, Landmark, PiggyBank } from 'lucide-react';
@@ -256,21 +258,21 @@ const RetirementCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-card shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-blue-600 hover:text-blue-800">
+              <Link href="/calculators" className="text-primary hover:text-primary">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Retirement Planning Calculator</h1>
+              <h1 className="text-2xl font-bold text-foreground">Retirement Planning Calculator</h1>
             </div>
             {results && (
               <button
                 onClick={downloadPDF}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                className="bg-green-600 hover:bg-green-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
               >
                 <Download className="h-5 w-5" />
                 <span>Download PDF</span>
@@ -283,48 +285,48 @@ const RetirementCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
+          <div className="bg-card rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
               {/* Personal Information */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                  <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
+                  <TrendingUp className="h-5 w-5 mr-2 text-primary" />
                   Personal Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Current Age
                     </label>
                     <input
                       type="number"
                       value={formData.currentAge}
                       onChange={(e) => handleInputChange('currentAge', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Retirement Age
                     </label>
                     <input
                       type="number"
                       value={formData.retirementAge}
                       onChange={(e) => handleInputChange('retirementAge', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Life Expectancy
                     </label>
                     <input
                       type="number"
                       value={formData.lifeExpectancy}
                       onChange={(e) => handleInputChange('lifeExpectancy', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -332,42 +334,42 @@ const RetirementCalculator: React.FC = () => {
 
               {/* Current Financial Status */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                  <Landmark className="h-5 w-5 mr-2 text-green-600" />
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
+                  <Landmark className="h-5 w-5 mr-2 text-primary" />
                   Current Financial Status
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Current Savings
                     </label>
                     <input
                       type="number"
                       value={formData.currentSavings}
                       onChange={(e) => handleInputChange('currentSavings', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Income
                     </label>
                     <input
                       type="number"
                       value={formData.currentIncome}
                       onChange={(e) => handleInputChange('currentIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Expenses
                     </label>
                     <input
                       type="number"
                       value={formData.currentExpenses}
                       onChange={(e) => handleInputChange('currentExpenses', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -375,46 +377,46 @@ const RetirementCalculator: React.FC = () => {
 
               {/* Real Estate Investments */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                  <Home className="h-5 w-5 mr-2 text-orange-600" />
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
+                  <Home className="h-5 w-5 mr-2 text-primary" />
                   Real Estate Investments
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Current Real Estate Value
                     </label>
                     <input
                       type="number"
                       value={formData.currentRealEstateValue}
                       onChange={(e) => handleInputChange('currentRealEstateValue', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Real Estate Income
                     </label>
                     <input
                       type="number"
                       value={formData.realEstateIncome}
                       onChange={(e) => handleInputChange('realEstateIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Real Estate Expenses
                     </label>
                     <input
                       type="number"
                       value={formData.realEstateExpenses}
                       onChange={(e) => handleInputChange('realEstateExpenses', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Real Estate Appreciation (%)
                     </label>
                     <input
@@ -422,7 +424,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.realEstateAppreciation}
                       onChange={(e) => handleInputChange('realEstateAppreciation', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -430,24 +432,24 @@ const RetirementCalculator: React.FC = () => {
 
               {/* Investment Strategy */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
                   <PiggyBank className="h-5 w-5 mr-2 text-purple-600" />
                   Investment Strategy
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Monthly Contribution
                     </label>
                     <input
                       type="number"
                       value={formData.monthlyContribution}
                       onChange={(e) => handleInputChange('monthlyContribution', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Investment Return (%)
                     </label>
                     <input
@@ -455,11 +457,11 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.investmentReturn}
                       onChange={(e) => handleInputChange('investmentReturn', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Inflation Rate (%)
                     </label>
                     <input
@@ -467,7 +469,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.inflationRate}
                       onChange={(e) => handleInputChange('inflationRate', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -475,42 +477,42 @@ const RetirementCalculator: React.FC = () => {
 
               {/* Retirement Goals */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-indigo-600" />
                   Retirement Goals
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Desired Retirement Income
                     </label>
                     <input
                       type="number"
                       value={formData.desiredRetirementIncome}
                       onChange={(e) => handleInputChange('desiredRetirementIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Social Security Income
                     </label>
                     <input
                       type="number"
                       value={formData.socialSecurityIncome}
                       onChange={(e) => handleInputChange('socialSecurityIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Other Income
                     </label>
                     <input
                       type="number"
                       value={formData.otherIncome}
                       onChange={(e) => handleInputChange('otherIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -521,34 +523,34 @@ const RetirementCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content" className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Retirement Analysis Results</h2>
+              <div id="pdf-content" className="bg-card rounded-lg shadow-lg p-6">
+                <h2 className="text-xl font-semibold text-foreground mb-6">Retirement Analysis Results</h2>
                 
                 {/* Summary */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-blue-900 mb-2">Total Retirement Savings</h3>
-                    <p className="text-2xl font-bold text-blue-900">{formatCurrency(results.totalRetirementSavings)}</p>
+                  <div className="bg-muted p-4 rounded-lg">
+                    <h3 className="text-sm font-medium text-orange-900 mb-2">Total Retirement Savings</h3>
+                    <p className="text-2xl font-bold text-orange-900">{formatCurrency(results.totalRetirementSavings)}</p>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-green-900 mb-2">Real Estate Value at Retirement</h3>
                     <p className="text-2xl font-bold text-green-900">{formatCurrency(results.realEstateValueAtRetirement)}</p>
                   </div>
                 </div>
 
                 {/* Total Assets */}
-                <div className="bg-purple-50 p-4 rounded-lg mb-6">
+                <div className="bg-muted p-4 rounded-lg mb-6">
                   <h3 className="text-lg font-medium text-purple-900 mb-2">Total Retirement Assets</h3>
                   <p className="text-3xl font-bold text-purple-900">{formatCurrency(results.totalRetirementAssets)}</p>
                 </div>
 
                 {/* Income Analysis */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-orange-50 p-4 rounded-lg">
+                  <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-orange-900 mb-2">Annual Retirement Income</h3>
                     <p className="text-xl font-bold text-orange-900">{formatCurrency(results.annualRetirementIncome)}</p>
                   </div>
-                  <div className="bg-red-50 p-4 rounded-lg">
+                  <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-red-900 mb-2">Income Gap</h3>
                     <p className="text-xl font-bold text-red-900">{formatCurrency(results.retirementIncomeGap)}</p>
                   </div>
@@ -556,10 +558,10 @@ const RetirementCalculator: React.FC = () => {
 
                 {/* Retirement Readiness */}
                 <div className={`p-4 rounded-lg mb-6 ${
-                  results.retirementReadiness === 'On Track' ? 'bg-green-50' :
-                  results.retirementReadiness === 'Close to Target' ? 'bg-yellow-50' : 'bg-red-50'
+                  results.retirementReadiness === 'On Track' ? 'bg-muted' :
+                  results.retirementReadiness === 'Close to Target' ? 'bg-muted' : 'bg-muted'
                 }`}>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">Retirement Readiness</h3>
+                  <h3 className="text-lg font-medium text-foreground mb-2">Retirement Readiness</h3>
                   <p className={`text-xl font-bold mb-2 ${
                     results.retirementReadiness === 'On Track' ? 'text-green-900' :
                     results.retirementReadiness === 'Close to Target' ? 'text-yellow-900' : 'text-red-900'
@@ -568,39 +570,39 @@ const RetirementCalculator: React.FC = () => {
                   </p>
                   <ul className="list-disc list-inside space-y-1">
                     {results.recommendations.map((rec, index) => (
-                      <li key={index} className="text-sm text-gray-700">{rec}</li>
+                      <li key={index} className="text-sm text-foreground">{rec}</li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Monthly Budget */}
-                <div className="bg-indigo-50 p-4 rounded-lg mb-6">
+                <div className="bg-muted p-4 rounded-lg mb-6">
                   <h3 className="text-lg font-medium text-indigo-900 mb-2">Monthly Retirement Budget</h3>
                   <p className="text-2xl font-bold text-indigo-900">{formatCurrency(results.monthlyRetirementBudget)}</p>
                 </div>
 
                 {/* Year-by-Year Projection */}
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Savings Projection</h3>
+                  <h3 className="text-lg font-medium text-foreground mb-4">Savings Projection</h3>
                   <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50">
+                      <thead className="bg-muted">
                         <tr>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Savings</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Real Estate</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Assets</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Age</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Year</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Savings</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Real Estate</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Total Assets</th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
+                      <tbody className="bg-card divide-y divide-gray-200">
                         {results.yearByYearProjection.slice(0, 10).map((projection) => (
                           <tr key={projection.year}>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{projection.age}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{projection.year}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-blue-600">{formatCurrency(projection.savings)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">{formatCurrency(projection.realEstateValue)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{formatCurrency(projection.totalAssets)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{projection.age}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-muted-foreground">{projection.year}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.savings)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.realEstateValue)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{formatCurrency(projection.totalAssets)}</td>
                           </tr>
                         ))}
                       </tbody>

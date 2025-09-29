@@ -62,12 +62,12 @@ export function ProfileForm() {
             </Avatar>
             <button
               type="button"
-              className="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full shadow-md hover:bg-primary/90 transition-colors"
+              className="absolute bottom-0 right-0 p-2 bg-primary text-foreground rounded-full shadow-md hover:bg-primary/90 transition-colors"
             >
               <Camera className="h-4 w-4" />
             </button>
           </div>
-          <p className="text-sm text-gray-500">Recommended: 300x300px, max 2MB</p>
+          <p className="text-sm text-muted-foreground">Recommended: 300x300px, max 2MB</p>
         </div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">

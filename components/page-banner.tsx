@@ -32,8 +32,8 @@ export function PageBanner({ title, subtitle, backgroundImage }: PageBannerProps
       <div className="absolute inset-0 flex items-center z-20">
         <div className="container px-4 md:px-6 mx-auto text-center">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h1>
-            <p className="text-xl text-white/90">{subtitle}</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{title}</h1>
+            <p className="text-xl text-foreground/90">{subtitle}</p>
           </div>
         </div>
       </div>

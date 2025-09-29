@@ -226,7 +226,7 @@ export function MaintenanceRequestForm() {
                   <button
                     type="button"
                     onClick={() => removePhoto(index)}
-                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-sm"
+                    className="absolute -top-2 -right-2 bg-red-500 text-foreground rounded-full p-1 shadow-sm"
                     aria-label="Remove photo"
                   >
                     <X className="h-3 w-3" />
@@ -236,7 +236,7 @@ export function MaintenanceRequestForm() {
               <button
                 type="button"
                 onClick={handlePhotoUpload}
-                className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-colors"
+                className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center text-muted-foreground hover:text-foreground hover:border-gray-400 transition-colors"
                 aria-label="Add photo"
               >
                 <Camera className="h-6 w-6 mb-1" />
@@ -322,7 +322,7 @@ export function MaintenanceRequestForm() {
             {isSubmitting ? (
               <div className="flex items-center">
                 <svg
-                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-foreground"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"

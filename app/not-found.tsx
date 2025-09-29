@@ -27,7 +27,7 @@ export default function NotFound() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-muted to-muted p-4">
       <SEO
         title="404 - Page Not Found | OnDo Real Estate"
         description="The page you're looking for doesn't exist. Explore our popular pages and find what you need."
@@ -46,8 +46,8 @@ export default function NotFound() {
             <FileQuestion className="h-10 w-10 text-primary" />
           </div>
           <h1 className="text-6xl font-bold text-primary mb-4">404</h1>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Oops! Page Not Found</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Oops! Page Not Found</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             The page you're looking for seems to have wandered off like a lost property key. 
             Don't worry - we'll help you find what you need!
           </p>
@@ -87,8 +87,8 @@ export default function NotFound() {
                     <div className="flex items-center gap-3">
                       <div className="text-primary">{page.icon}</div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{page.name}</h3>
-                        <p className="text-sm text-gray-600">{page.description}</p>
+                        <h3 className="font-semibold text-foreground">{page.name}</h3>
+                        <p className="text-sm text-muted-foreground">{page.description}</p>
                       </div>
                     </div>
                   </div>
@@ -106,7 +106,7 @@ export default function NotFound() {
               <CardTitle className="text-lg">Need Help Finding Something?</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-gray-600 mb-4">Our team is here to help you navigate our services.</p>
+              <p className="text-muted-foreground mb-4">Our team is here to help you navigate our services.</p>
               <Button asChild variant="outline" className="w-full">
                 <Link href="/contact">Contact Support</Link>
               </Button>
@@ -119,7 +119,7 @@ export default function NotFound() {
               <CardTitle className="text-lg">Try Our Search</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-gray-600 mb-4">Use our search feature to find properties or information.</p>
+              <p className="text-muted-foreground mb-4">Use our search feature to find properties or information.</p>
               <Button asChild variant="outline" className="w-full">
                 <Link href="/search">Search Now</Link>
               </Button>
@@ -132,7 +132,7 @@ export default function NotFound() {
               <CardTitle className="text-lg">Call Us Directly</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-gray-600 mb-4">Speak with our team for immediate assistance.</p>
+              <p className="text-muted-foreground mb-4">Speak with our team for immediate assistance.</p>
               <Button asChild variant="outline" className="w-full">
                 <Link href="tel:+18015551234">(801) 555-1234</Link>
               </Button>
@@ -154,7 +154,7 @@ export default function NotFound() {
             </Button>
           </div>
           
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             <p>Still can't find what you're looking for?</p>
             <p>Email us at <a href="mailto:help@ondorealestate.com" className="text-primary hover:underline">help@ondorealestate.com</a></p>
           </div>

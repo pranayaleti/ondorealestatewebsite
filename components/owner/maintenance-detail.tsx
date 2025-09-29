@@ -90,25 +90,25 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
     switch (status) {
       case "pending":
         return (
-          <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+          <Badge variant="outline" className="bg-muted text-yellow-700 border-yellow-200">
             Pending Review
           </Badge>
         )
       case "in-progress":
         return (
-          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+          <Badge variant="outline" className="bg-muted text-orange-700 border-orange-200">
             In Progress
           </Badge>
         )
       case "scheduled":
         return (
-          <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+          <Badge variant="outline" className="bg-muted text-purple-700 border-purple-200">
             Scheduled
           </Badge>
         )
       case "completed":
         return (
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          <Badge variant="outline" className="bg-muted text-green-700 border-green-200">
             Completed
           </Badge>
         )
@@ -122,9 +122,9 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
       case "emergency":
         return <Badge className="bg-red-500">Emergency</Badge>
       case "urgent":
-        return <Badge className="bg-orange-500">Urgent</Badge>
+        return <Badge className="bg-primary">Urgent</Badge>
       case "normal":
-        return <Badge className="bg-blue-500">Normal</Badge>
+        return <Badge className="bg-orange-500">Normal</Badge>
       case "low":
         return <Badge className="bg-gray-500">Low</Badge>
       default:
@@ -201,7 +201,7 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
             <CardContent className="space-y-6 p-6">
               <div>
                 <h3 className="font-medium mb-2">Description</h3>
-                <p className="text-gray-700">{request.description}</p>
+                <p className="text-foreground">{request.description}</p>
               </div>
 
               {request.photos.length > 0 && (
@@ -224,12 +224,12 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
 
               <div>
                 <h3 className="font-medium mb-2">Property Details</h3>
-                <div className="flex items-center text-gray-700 mb-2">
-                  <Home className="h-4 w-4 mr-2 text-gray-500" />
+                <div className="flex items-center text-foreground mb-2">
+                  <Home className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span>{request.property}</span>
                 </div>
-                <div className="flex items-center text-gray-700">
-                  <User className="h-4 w-4 mr-2 text-gray-500" />
+                <div className="flex items-center text-foreground">
+                  <User className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span>{request.tenant.name}</span>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
 
               <div>
                 <div className="flex items-center mb-4">
-                  <MessageSquare className="h-5 w-5 mr-2 text-gray-500" />
+                  <MessageSquare className="h-5 w-5 mr-2 text-muted-foreground" />
                   <h3 className="font-medium">Communication & Updates</h3>
                 </div>
 
@@ -248,10 +248,10 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
                       key={update.id}
                       className={`p-3 rounded-lg ${
                         update.type === "status-change"
-                          ? "bg-gray-100 text-center text-sm text-gray-600"
+                          ? "bg-muted text-center text-sm text-muted-foreground"
                           : update.user === "Tenant"
-                            ? "bg-gray-50 ml-0 sm:ml-12"
-                            : "bg-blue-50 mr-0 sm:mr-12"
+                            ? "bg-muted ml-0 sm:ml-12"
+                            : "bg-muted mr-0 sm:mr-12"
                       }`}
                     >
                       {update.type === "status-change" ? (
@@ -266,7 +266,7 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
                               </Avatar>
                               <span className="font-medium">{update.user}</span>
                             </div>
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-muted-foreground">
                               {update.date} at {update.time}
                             </span>
                           </div>
@@ -316,15 +316,15 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
             </CardHeader>
             <CardContent className="space-y-4 p-6">
               <div className="flex items-center">
-                <User className="h-4 w-4 mr-2 text-gray-500" />
+                <User className="h-4 w-4 mr-2 text-muted-foreground" />
                 <span>{request.tenant.name}</span>
               </div>
               <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-gray-500" />
+                <Mail className="h-4 w-4 mr-2 text-muted-foreground" />
                 <span>{request.tenant.email}</span>
               </div>
               <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 text-gray-500" />
+                <Phone className="h-4 w-4 mr-2 text-muted-foreground" />
                 <span>{request.tenant.phone}</span>
               </div>
               <Button variant="outline" className="w-full">
@@ -393,7 +393,7 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
                 {isUpdating ? (
                   <div className="flex items-center">
                     <svg
-                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-foreground"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"

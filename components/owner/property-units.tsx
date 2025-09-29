@@ -53,7 +53,7 @@ export function PropertyUnits() {
                     <h3 className="font-medium">Unit 101</h3>
                     <p className="text-sm text-muted-foreground">2 bed, 1 bath • 950 sq ft</p>
                   </div>
-                  <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Occupied</Badge>
+                  <Badge className="bg-muted text-green-800 hover:bg-muted">Occupied</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
@@ -95,7 +95,7 @@ export function PropertyUnits() {
                     <h3 className="font-medium">John Smith</h3>
                     <p className="text-sm text-muted-foreground">Unit 101 • Primary tenant</p>
                   </div>
-                  <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">Active</Badge>
+                  <Badge className="bg-muted text-orange-800 hover:bg-muted">Active</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
@@ -113,7 +113,7 @@ export function PropertyUnits() {
                     <h3 className="font-medium">Sarah Johnson</h3>
                     <p className="text-sm text-muted-foreground">Unit 101 • Co-tenant</p>
                   </div>
-                  <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">Active</Badge>
+                  <Badge className="bg-muted text-orange-800 hover:bg-muted">Active</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
