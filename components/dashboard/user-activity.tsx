@@ -116,7 +116,7 @@ export function UserActivity() {
       <div className="space-y-6">
         {activities.slice(0, 8).map((activity) => (
           <div key={activity.id} className="flex items-start gap-4">
-            <div className={`p-2 rounded-full ${getActivityColor(activity.type)} text-foreground mt-1`}>{activity.icon}</div>
+            <div className={`p-2 rounded-full ${getActivityColor(activity.type)} text-white mt-1`}>{activity.icon}</div>
             <div className="flex-1">
               <p className="font-medium">{activity.description}</p>
               <p className="text-sm text-muted-foreground">
@@ -137,7 +137,7 @@ export function UserActivity() {
       <div className="space-y-6">
         {activities.slice(8).map((activity) => (
           <div key={activity.id} className="flex items-start gap-4">
-            <div className={`p-2 rounded-full ${getActivityColor(activity.type)} text-foreground mt-1`}>{activity.icon}</div>
+            <div className={`p-2 rounded-full ${getActivityColor(activity.type)} text-white mt-1`}>{activity.icon}</div>
             <div className="flex-1">
               <p className="font-medium">{activity.description}</p>
               <p className="text-sm text-muted-foreground">

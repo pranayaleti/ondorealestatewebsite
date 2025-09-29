@@ -267,7 +267,7 @@ export function LeasesTable({ status }: { status?: string }) {
               </TableCell>
               <TableCell>${lease.rent.toLocaleString()}</TableCell>
               <TableCell>
-                <Badge variant="outline" className={`capitalize ${getStatusColor(lease.status)} text-foreground`}>
+                <Badge variant="outline" className={`capitalize ${getStatusColor(lease.status)} text-white`}>
                   {lease.status}
                 </Badge>
               </TableCell>
