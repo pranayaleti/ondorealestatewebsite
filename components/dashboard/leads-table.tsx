@@ -184,7 +184,7 @@ const applications = [
 const getStatusColor = (status: string) => {
   switch (status) {
     case "new":
-      return "bg-blue-500"
+      return "bg-orange-500"
     case "contacted":
       return "bg-yellow-500"
     case "qualified":

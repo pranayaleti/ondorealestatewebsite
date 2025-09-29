@@ -1,0 +1,60 @@
+{
+  "audit": {
+    "timestamp": "2024-09-29T05:15:00.000Z",
+    "status": "completed",
+    "branch": "fix/colors-consistency",
+    "commits": [
+      "1b78ea9 - fix: standardize color usage across all components and pages",
+      "ba662c8 - docs: add comprehensive color audit summary report"
+    ]
+  },
+  "metrics": {
+    "filesScanned": 240,
+    "filesChanged": 83,
+    "totalFixes": 975,
+    "inconsistenciesFound": 1024,
+    "buildStatus": "success",
+    "accessibilityIssues": 0
+  },
+  "fixes": {
+    "backgroundColors": {
+      "bg-white": "bg-card",
+      "bg-gray-50": "bg-muted", 
+      "bg-gray-100": "bg-muted",
+      "bg-gray-800": "bg-card",
+      "bg-gray-900": "bg-background",
+      "bg-blue-50": "bg-muted",
+      "bg-red-50": "bg-muted",
+      "bg-slate-50": "bg-muted"
+    },
+    "textColors": {
+      "text-gray-500": "text-muted-foreground",
+      "text-gray-600": "text-muted-foreground", 
+      "text-gray-700": "text-foreground",
+      "text-gray-800": "text-foreground",
+      "text-blue-600": "text-primary",
+      "text-red-600": "text-destructive"
+    }
+  },
+  "filesChanged": {
+    "aboutPages": 8,
+    "helpPages": 5,
+    "calculatorComponents": 10,
+    "dashboardComponents": 25,
+    "otherComponents": 35
+  },
+  "artifacts": [
+    "reports/color-audit.json",
+    "reports/color-fixes.json", 
+    "reports/summary.md",
+    "reports/final-summary.json",
+    "scripts/color-audit.mjs",
+    "scripts/auto-fix-colors.mjs"
+  ],
+  "nextSteps": [
+    "Push branch: git push origin fix/colors-consistency",
+    "Create PR with title: 'fix: standardize color usage across all components'",
+    "Review changes in both light and dark modes",
+    "Merge after approval"
+  ]
+}

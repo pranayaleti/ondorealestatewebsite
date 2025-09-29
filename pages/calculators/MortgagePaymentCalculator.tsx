@@ -196,7 +196,7 @@ const MortgagePaymentCalculator: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-primary hover:text-blue-800">
+              <Link href="/calculators" className="text-primary hover:text-orange-800">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Mortgage Payment Calculator</h1>
@@ -204,7 +204,7 @@ const MortgagePaymentCalculator: React.FC = () => {
             {results && (
               <button
                 onClick={downloadPDF}
-                className="bg-blue-600 hover:bg-blue-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                className="bg-orange-600 hover:bg-orange-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
               >
                 <Download className="h-5 w-5" />
                 <span>Download PDF</span>
@@ -232,7 +232,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.homePrice}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="300,000"
                   />
                 </div>
@@ -250,7 +250,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                       type="number"
                       value={formData.downPayment}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="60,000"
                     />
                   </div>
@@ -263,7 +263,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                         const newDownPayment = (percent / 100) * formData.homePrice;
                         handleInputChange('downPayment', newDownPayment);
                       }}
-                      className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="20.0"
                     />
                     <span className="absolute right-3 top-3 text-muted-foreground">%</span>
@@ -287,7 +287,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.loanAmount}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="240,000"
                   />
                 </div>
@@ -303,7 +303,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="4.5"
                 />
               </div>
@@ -316,7 +316,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -335,7 +335,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.propertyTax}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="3,000"
                   />
                 </div>
@@ -352,7 +352,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.insurance}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="1,200"
                   />
                 </div>
@@ -366,7 +366,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                 <select
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -386,7 +386,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   max={850}
                   value={formData.creditScore}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="740"
                 />
               </div>
@@ -472,7 +472,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     <h2 className="text-xl font-semibold text-foreground">Amortization Schedule</h2>
                     <button
                       onClick={() => setShowAmortization(!showAmortization)}
-                      className="text-primary hover:text-blue-800 text-sm font-medium"
+                      className="text-primary hover:text-orange-800 text-sm font-medium"
                     >
                       {showAmortization ? 'Hide Details' : 'Show Details'}
                     </button>

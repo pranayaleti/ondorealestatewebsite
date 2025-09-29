@@ -95,7 +95,7 @@ export function PropertyUnits() {
                     <h3 className="font-medium">John Smith</h3>
                     <p className="text-sm text-muted-foreground">Unit 101 • Primary tenant</p>
                   </div>
-                  <Badge className="bg-muted text-blue-800 hover:bg-muted">Active</Badge>
+                  <Badge className="bg-muted text-orange-800 hover:bg-muted">Active</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
@@ -113,7 +113,7 @@ export function PropertyUnits() {
                     <h3 className="font-medium">Sarah Johnson</h3>
                     <p className="text-sm text-muted-foreground">Unit 101 • Co-tenant</p>
                   </div>
-                  <Badge className="bg-muted text-blue-800 hover:bg-muted">Active</Badge>
+                  <Badge className="bg-muted text-orange-800 hover:bg-muted">Active</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>

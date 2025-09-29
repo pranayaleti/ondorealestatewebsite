@@ -60,7 +60,7 @@ export default function CareersPage() {
       description: "Competitive salaries, 401k matching, and performance bonuses"
     },
     {
-      icon: <GraduationCap className="h-8 w-8 text-blue-500" />,
+      icon: <GraduationCap className="h-8 w-8 text-orange-500" />,
       title: "Professional Growth",
       description: "Training programs, conference attendance, and career advancement opportunities"
     },

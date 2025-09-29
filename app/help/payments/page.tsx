@@ -100,7 +100,7 @@ export default function PaymentQuestionsPage() {
                     <ul className="space-y-2">
                       {method.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="text-sm text-muted-foreground dark:text-muted-foreground flex items-center gap-2">
-                          <div className="h-1.5 w-1.5 bg-blue-500 rounded-full"></div>
+                          <div className="h-1.5 w-1.5 bg-orange-500 rounded-full"></div>
                           {feature}
                         </li>
                       ))}

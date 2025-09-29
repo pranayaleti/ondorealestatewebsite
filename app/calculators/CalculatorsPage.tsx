@@ -33,7 +33,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/mortgage-payment',
       icon: <CalcIcon className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-blue-500 to-blue-600'
+      color: 'from-orange-500 to-orange-600'
     },
     {
       id: 'affordability',
@@ -127,11 +127,11 @@ const CalculatorsPage: React.FC = () => {
     : calculators.filter(calc => calc.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-orange-50">
       <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-4">
-            <Link href="/" className="text-primary hover:text-blue-800">
+            <Link href="/" className="text-primary hover:text-orange-800">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
@@ -153,7 +153,7 @@ const CalculatorsPage: React.FC = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-foreground'
+                    ? 'bg-orange-600 text-foreground'
                     : 'bg-foreground text-foreground hover:bg-muted border border-gray-300'
                 }`}
               >
@@ -184,7 +184,7 @@ const CalculatorsPage: React.FC = () => {
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {calculator.description}
                   </p>
-                  <div className="mt-4 flex items-center text-primary group-hover:text-blue-800 font-medium text-sm">
+                  <div className="mt-4 flex items-center text-primary group-hover:text-orange-800 font-medium text-sm">
                     Use Calculator
                     <svg className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

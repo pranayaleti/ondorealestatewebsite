@@ -97,7 +97,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
       <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
-            <Link href="/calculators" className="text-primary hover:text-blue-800">
+            <Link href="/calculators" className="text-primary hover:text-orange-800">
               <ArrowLeft className="h-6 w-6" />
             </Link>
             <h1 className="text-2xl font-bold text-foreground">Temporary Buydown Calculator</h1>
@@ -123,7 +123,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     type="number"
                     value={formData.loanAmount}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="300,000"
                   />
                 </div>
@@ -139,7 +139,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.baseRate}
                   onChange={(e) => handleInputChange('baseRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="6.5"
                 />
               </div>
@@ -154,7 +154,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.buydownRate}
                   onChange={(e) => handleInputChange('buydownRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="4.5"
                 />
                 <p className="text-sm text-muted-foreground mt-1">
@@ -170,7 +170,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 <select
                   value={formData.buydownYears}
                   onChange={(e) => handleInputChange('buydownYears', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value={1}>1 year</option>
                   <option value={2}>2 years</option>
@@ -189,7 +189,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     type="number"
                     value={formData.buydownCost}
                     onChange={(e) => handleInputChange('buydownCost', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="6,000"
                   />
                 </div>
@@ -206,7 +206,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -262,7 +262,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Total Savings During Buydown</p>
-                        <p className="text-2xl font-bold text-blue-700">{formatCurrency(results.totalSavings)}</p>
+                        <p className="text-2xl font-bold text-orange-700">{formatCurrency(results.totalSavings)}</p>
                         <p className="text-sm text-primary mt-1">
                           Over {formData.buydownYears} year{formData.buydownYears > 1 ? 's' : ''}
                         </p>
