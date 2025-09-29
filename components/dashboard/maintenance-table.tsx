@@ -286,7 +286,7 @@ export function MaintenanceTable({ status }: { status?: string }) {
                 </div>
               </TableCell>
               <TableCell>
-                <Badge variant="outline" className={`capitalize ${getStatusColor(request.status)} text-foreground`}>
+                <Badge variant="outline" className={`capitalize ${getStatusColor(request.status)} text-white`}>
                   {request.status.replace("-", " ")}
                 </Badge>
               </TableCell>
