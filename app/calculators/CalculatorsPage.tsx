@@ -33,7 +33,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/mortgage-payment',
       icon: <CalcIcon className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-blue-500 to-blue-600'
+      color: 'from-orange-500 to-orange-600'
     },
     {
       id: 'affordability',
@@ -127,18 +127,18 @@ const CalculatorsPage: React.FC = () => {
     : calculators.filter(calc => calc.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-orange-50">
       <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-4">
-            <Link href="/" className="text-blue-600 hover:text-blue-800">
+            <Link href="/" className="text-primary hover:text-orange-800">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Real Estate Calculators</h1>
-              <p className="text-gray-600 mt-1">Comprehensive tools to help you make informed real estate decisions</p>
+              <h1 className="text-3xl font-bold text-foreground">Real Estate Calculators</h1>
+              <p className="text-muted-foreground mt-1">Comprehensive tools to help you make informed real estate decisions</p>
             </div>
           </div>
         </div>
@@ -153,8 +153,8 @@ const CalculatorsPage: React.FC = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-foreground'
-                    : 'bg-foreground text-gray-700 hover:bg-gray-100 border border-gray-300'
+                    ? 'bg-orange-600 text-foreground'
+                    : 'bg-foreground text-foreground hover:bg-muted border border-gray-300'
                 }`}
               >
                 {category}
@@ -181,10 +181,10 @@ const CalculatorsPage: React.FC = () => {
                   <h3 className="text-xl font-bold mt-4">{calculator.name}</h3>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {calculator.description}
                   </p>
-                  <div className="mt-4 flex items-center text-blue-600 group-hover:text-blue-800 font-medium text-sm">
+                  <div className="mt-4 flex items-center text-primary group-hover:text-orange-800 font-medium text-sm">
                     Use Calculator
                     <svg className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -197,25 +197,25 @@ const CalculatorsPage: React.FC = () => {
         </div>
 
         <div className="mt-16 bg-foreground rounded-xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Use Our Calculators?</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">Why Use Our Calculators?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-muted rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Accurate Calculations</h3>
-              <p className="text-gray-600 text-sm">Professional-grade calculations using current market rates and formulas</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Accurate Calculations</h3>
+              <p className="text-muted-foreground text-sm">Professional-grade calculations using current market rates and formulas</p>
             </div>
             <div className="text-center">
-              <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-muted rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Save Time</h3>
-              <p className="text-gray-600 text-sm">Quick calculations that would take hours to do manually</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Save Time</h3>
+              <p className="text-muted-foreground text-sm">Quick calculations that would take hours to do manually</p>
             </div>
             <div className="text-center">
               <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -223,8 +223,8 @@ const CalculatorsPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Make Better Decisions</h3>
-              <p className="text-gray-600 text-sm">Compare scenarios and understand the financial impact of your choices</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Make Better Decisions</h3>
+              <p className="text-muted-foreground text-sm">Compare scenarios and understand the financial impact of your choices</p>
             </div>
           </div>
         </div>

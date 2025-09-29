@@ -106,7 +106,7 @@ export default function SearchResultsPage() {
   const [sessionValid, setSessionValid] = useState(false)
   const [zipCode, setZipCode] = useState("")
 
-  const city = params.city as string
+  const city = params?.city as string
 
   useEffect(() => {
     // Check if user has valid session

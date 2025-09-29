@@ -109,7 +109,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
 
             {/* Company Info */}
             <div className="flex items-center mb-6">
-              <div className="relative h-20 w-20 rounded-md overflow-hidden bg-gray-100 mr-4">
+              <div className="relative h-20 w-20 rounded-md overflow-hidden bg-muted mr-4">
                 <Image
                   src={company.logo || "/placeholder.svg"}
                   alt={`${company.name} logo`}
@@ -124,7 +124,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <Star className="h-5 w-5 fill-current" />
                     <span className="ml-1 text-base font-medium">{company.rating}</span>
                   </div>
-                  <span className="text-gray-500">({company.reviewCount} reviews)</span>
+                  <span className="text-muted-foreground">({company.reviewCount} reviews)</span>
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
               <TabsContent value="overview" className="space-y-4">
                 <div>
                   <h4 className="text-lg font-semibold mb-2">About</h4>
-                  <p className="text-gray-700 dark:text-muted-foreground">{company.description}</p>
+                  <p className="text-foreground dark:text-muted-foreground">{company.description}</p>
                 </div>
 
                 <div>
@@ -194,7 +194,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <Calendar className="h-5 w-5 mr-3 text-primary mt-0.5" />
                     <div>
                       <h4 className="text-lg font-semibold">Lease Terms</h4>
-                      <p className="text-gray-700 dark:text-muted-foreground">{company.leaseTerms}</p>
+                      <p className="text-foreground dark:text-muted-foreground">{company.leaseTerms}</p>
                     </div>
                   </div>
 
@@ -202,7 +202,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <DollarSign className="h-5 w-5 mr-3 text-primary mt-0.5" />
                     <div>
                       <h4 className="text-lg font-semibold">Management Fees</h4>
-                      <p className="text-gray-700 dark:text-muted-foreground">{company.fees}</p>
+                      <p className="text-foreground dark:text-muted-foreground">{company.fees}</p>
                     </div>
                   </div>
 
@@ -210,7 +210,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <Clock className="h-5 w-5 mr-3 text-primary mt-0.5" />
                     <div>
                       <h4 className="text-lg font-semibold">Availability</h4>
-                      <p className="text-gray-700 dark:text-muted-foreground">{company.availability}</p>
+                      <p className="text-foreground dark:text-muted-foreground">{company.availability}</p>
                     </div>
                   </div>
                 </div>

@@ -14,10 +14,10 @@ export function generateStaticParams(): { city: string }[] {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { city: citySlug } = await params
   const city = findCityBySlug(citySlug)
-  const cityName = city?.name ?? params.city
+  const cityName = city?.name ?? citySlug
   const title = `${cityName} Property Management | ${SITE_NAME}`
   const description = `Full-service property management in ${cityName}, Utah. Marketing, screening, rent collection, maintenance, and reporting.`
-  const canonical = `${SITE_URL}/property-management/${params.city}/`
+  const canonical = `${SITE_URL}/property-management/${citySlug}/`
   return {
     title,
     description,
@@ -37,12 +37,12 @@ export default async function Page({ params }: { params: Params }) {
       <SEO
         title={`${city.name} Property Management | ${SITE_NAME}`}
         description={`Full-service property management in ${city.name}, Utah. Marketing, screening, rent collection, maintenance, and reporting.`}
-        pathname={`/property-management/${params.city}/`}
+        pathname={`/property-management/${citySlug}/`}
         image={`${SITE_URL}/property-manager-meeting.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Property Management", url: `${SITE_URL}/property-management/` },
-          { name: city.name, url: `${SITE_URL}/property-management/${params.city}/` },
+          { name: city.name, url: `${SITE_URL}/property-management/${citySlug}/` },
         ])}
       />
       <CityServicePage city={city} service="property-management" />

@@ -87,13 +87,13 @@ export default function HistoryPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Our Journey</h2>
-              <p className="text-lg text-gray-600 dark:text-muted-foreground">
+              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
                 From a small startup to Utah's leading property management company, we've grown by putting our clients first.
               </p>
             </div>
 
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-muted dark:bg-gray-700"></div>
               <div className="space-y-12">
                 {milestones.map((milestone, index) => (
                   <div key={index} className="relative flex items-start gap-6">
@@ -135,10 +135,10 @@ export default function HistoryPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-muted rounded-lg p-8 mb-12">
+            <div className="bg-muted dark:bg-muted rounded-lg p-8 mb-12">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground text-center">Our Mission</h3>
               <div className="max-w-4xl mx-auto text-center">
-                <p className="text-lg text-gray-600 dark:text-muted-foreground mb-6">
+                <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
                   "To provide exceptional property management services that maximize returns for property owners 
                   while creating positive rental experiences for tenants. We believe in building long-term 
                   relationships based on trust, transparency, and outstanding service."
@@ -146,15 +146,15 @@ export default function HistoryPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary dark:text-primary">500+</div>
-                    <div className="text-gray-600 dark:text-muted-foreground">Properties Managed</div>
+                    <div className="text-muted-foreground dark:text-muted-foreground">Properties Managed</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary dark:text-primary">98%</div>
-                    <div className="text-gray-600 dark:text-muted-foreground">Tenant Satisfaction</div>
+                    <div className="text-muted-foreground dark:text-muted-foreground">Tenant Satisfaction</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary dark:text-primary">4+</div>
-                    <div className="text-gray-600 dark:text-muted-foreground">Years of Excellence</div>
+                    <div className="text-muted-foreground dark:text-muted-foreground">Years of Excellence</div>
                   </div>
                 </div>
               </div>

@@ -153,7 +153,7 @@ export default function BuyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Your Utah Home Buying Journey Starts Here</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Whether you're a first-time buyer or looking to upgrade, our experienced agents will guide you 
               through every step of finding and purchasing your perfect Utah home.
             </p>
@@ -163,11 +163,11 @@ export default function BuyPage() {
             {services.map((service, index) => (
               <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <div className="mx-auto mb-4 text-green-600">{service.icon}</div>
+                  <div className="mx-auto mb-4 text-primary">{service.icon}</div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                  <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -181,28 +181,28 @@ export default function BuyPage() {
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Local Market Expertise</h4>
-                    <p className="text-gray-600">Deep knowledge of Utah neighborhoods, schools, and market trends</p>
+                    <p className="text-muted-foreground">Deep knowledge of Utah neighborhoods, schools, and market trends</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Advanced Search Tools</h4>
-                    <p className="text-gray-600">Access to exclusive listings and advanced MLS search capabilities</p>
+                    <p className="text-muted-foreground">Access to exclusive listings and advanced MLS search capabilities</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Negotiation Excellence</h4>
-                    <p className="text-gray-600">Proven track record of securing the best deals for our clients</p>
+                    <p className="text-muted-foreground">Proven track record of securing the best deals for our clients</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Full-Service Support</h4>
-                    <p className="text-gray-600">Complete guidance from initial search through closing and beyond</p>
+                    <p className="text-muted-foreground">Complete guidance from initial search through closing and beyond</p>
                   </div>
                 </div>
               </div>
@@ -219,7 +219,7 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -227,7 +227,7 @@ export default function BuyPage() {
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
                   <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -242,10 +242,10 @@ export default function BuyPage() {
             Start your home buying journey with expert guidance and local market knowledge.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-green-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-primary hover:bg-muted">
               <Link href="/contact">Start Your Search</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-green-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-primary">
               <Link href="/properties">Browse Listings</Link>
             </Button>
           </div>

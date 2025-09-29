@@ -177,7 +177,7 @@ export default function WhyUtahPage() {
             <Link href="/calculators/buying-power" className="bg-background hover:bg-card text-foreground px-6 py-3 rounded-lg font-semibold">
               Check Your Buying Power
             </Link>
-            <Link href="/founders-letter" className="bg-foreground hover:bg-gray-100 text-primary px-6 py-3 rounded-lg font-semibold">
+            <Link href="/founders-letter" className="bg-foreground hover:bg-muted text-primary px-6 py-3 rounded-lg font-semibold">
               Learn About Ondo
             </Link>
           </div>

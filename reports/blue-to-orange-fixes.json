@@ -1,0 +1,739 @@
+{
+  "timestamp": "2025-09-29T05:15:24.913Z",
+  "totalFilesFixed": 33,
+  "totalChanges": 260,
+  "fixes": [
+    {
+      "file": "app/about/careers/page.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/calculators/CalculatorsPage.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-600",
+          "newValue": "bg-orange-600",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 2
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "from-blue-500",
+          "newValue": "from-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "to-blue-50",
+          "newValue": "to-orange-50",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "to-blue-600",
+          "newValue": "to-orange-600",
+          "count": 1
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "app/dashboard/settings/page.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/help/payments/page.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/loans/page.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-600",
+          "newValue": "bg-orange-600",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/tenant/page.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/dashboard/leads-table.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/leases-table.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/maintenance-requests.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/dashboard/maintenance-table.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/dashboard/payments-table.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/recent-leads.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/user-activity.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/footer.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/owner/documents-view.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 2
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-600",
+          "newValue": "ring-orange-600",
+          "count": 2
+        }
+      ],
+      "totalChanges": 5
+    },
+    {
+      "file": "components/owner/finances-view.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-600",
+          "newValue": "ring-orange-600",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/owner/maintenance-detail.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-200",
+          "newValue": "border-orange-200",
+          "count": 1
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/owner/maintenance-management.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-200",
+          "newValue": "border-orange-200",
+          "count": 1
+        }
+      ],
+      "totalChanges": 4
+    },
+    {
+      "file": "components/owner/property-documents.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-600",
+          "newValue": "ring-orange-600",
+          "count": 1
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/owner/property-maintenance.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/owner/property-units.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 2
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/tenant/maintenance-request-detail.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-200",
+          "newValue": "border-orange-200",
+          "count": 1
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/tenant/maintenance-request-list.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-500",
+          "newValue": "bg-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-200",
+          "newValue": "border-orange-200",
+          "count": 1
+        }
+      ],
+      "totalChanges": 4
+    },
+    {
+      "file": "pages/calculators/AffordabilityCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-600",
+          "newValue": "bg-orange-600",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-700",
+          "newValue": "bg-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 2
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 9
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 9
+        }
+      ],
+      "totalChanges": 22
+    },
+    {
+      "file": "pages/calculators/BuyingPowerCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 9
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 9
+        }
+      ],
+      "totalChanges": 20
+    },
+    {
+      "file": "pages/calculators/ClosingCostCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 15
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 15
+        }
+      ],
+      "totalChanges": 32
+    },
+    {
+      "file": "pages/calculators/HomeSaleCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 9
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 9
+        }
+      ],
+      "totalChanges": 20
+    },
+    {
+      "file": "pages/calculators/IncomeCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 8
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 8
+        }
+      ],
+      "totalChanges": 18
+    },
+    {
+      "file": "pages/calculators/MortgagePaymentCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-600",
+          "newValue": "bg-orange-600",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-700",
+          "newValue": "bg-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 2
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 10
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 10
+        }
+      ],
+      "totalChanges": 24
+    },
+    {
+      "file": "pages/calculators/RefinanceCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 8
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 8
+        }
+      ],
+      "totalChanges": 18
+    },
+    {
+      "file": "pages/calculators/RentVsOwnCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-600",
+          "newValue": "bg-orange-600",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "bg-blue-700",
+          "newValue": "bg-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-500",
+          "newValue": "text-orange-500",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-900",
+          "newValue": "text-orange-900",
+          "count": 2
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 17
+        }
+      ],
+      "totalChanges": 23
+    },
+    {
+      "file": "pages/calculators/RetirementCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-900",
+          "newValue": "text-orange-900",
+          "count": 2
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 16
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "to-blue-50",
+          "newValue": "to-orange-50",
+          "count": 1
+        }
+      ],
+      "totalChanges": 20
+    },
+    {
+      "file": "pages/calculators/TemporaryBuydownCalculator.tsx",
+      "fixes": [
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-700",
+          "newValue": "text-orange-700",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "text-blue-800",
+          "newValue": "text-orange-800",
+          "count": 1
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "border-blue-500",
+          "newValue": "border-orange-500",
+          "count": 6
+        },
+        {
+          "type": "blue_to_orange",
+          "oldValue": "ring-blue-500",
+          "newValue": "ring-orange-500",
+          "count": 6
+        }
+      ],
+      "totalChanges": 14
+    }
+  ]
+}

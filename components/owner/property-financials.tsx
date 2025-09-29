@@ -200,17 +200,17 @@ export function PropertyFinancials({ property }: PropertyFinancialsProps) {
                   <TableCell>{transaction.description}</TableCell>
                   <TableCell>
                     {transaction.type === "income" ? (
-                      <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                      <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                         Income
                       </span>
                     ) : (
-                      <span className="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
+                      <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
                         Expense
                       </span>
                     )}
                   </TableCell>
                   <TableCell
-                    className={`text-right ${transaction.type === "income" ? "text-green-600" : "text-red-600"}`}
+                    className={`text-right ${transaction.type === "income" ? "text-primary" : "text-destructive"}`}
                   >
                     {transaction.type === "income" ? "+" : "-"}${transaction.amount.toLocaleString()}
                   </TableCell>

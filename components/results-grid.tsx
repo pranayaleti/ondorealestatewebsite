@@ -250,7 +250,7 @@ export default function ResultsGrid({ properties }: ResultsGridProps) {
                 </div>
               </div>
 
-              <p className="text-gray-500 dark:text-muted-foreground text-sm mb-4 line-clamp-2">{property.description}</p>
+              <p className="text-muted-foreground dark:text-muted-foreground text-sm mb-4 line-clamp-2">{property.description}</p>
 
               <div className="flex flex-wrap gap-2 mb-2">
                 {property.features.slice(0, 3).map((feature, index) => (
@@ -266,7 +266,7 @@ export default function ResultsGrid({ properties }: ResultsGridProps) {
               </div>
             </CardContent>
 
-            <CardFooter className="bg-gray-50 px-4 py-3">
+            <CardFooter className="bg-muted px-4 py-3">
               <Button className="w-full" onClick={() => setSelectedCompany(property.id)}>
                 View Details
               </Button>
@@ -276,7 +276,7 @@ export default function ResultsGrid({ properties }: ResultsGridProps) {
       ) : (
         <div className="col-span-full text-center py-12">
           <h3 className="text-xl font-semibold mb-2">No properties found</h3>
-          <p className="text-gray-500 dark:text-muted-foreground">Try adjusting your search criteria to see more results.</p>
+          <p className="text-muted-foreground dark:text-muted-foreground">Try adjusting your search criteria to see more results.</p>
         </div>
       )}
 

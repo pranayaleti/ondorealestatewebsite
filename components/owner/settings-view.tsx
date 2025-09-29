@@ -496,7 +496,7 @@ export function SettingsView() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline" className="text-red-600">
+            <Button variant="outline" className="text-destructive">
               Cancel Subscription
             </Button>
             <Button onClick={handleSaveSettings}>Save Changes</Button>

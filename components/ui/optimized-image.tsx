@@ -55,7 +55,7 @@ export function OptimizedImage({
     return (
       <div 
         className={cn(
-          "flex items-center justify-center bg-gray-100 text-gray-400",
+          "flex items-center justify-center bg-muted text-gray-400",
           className
         )}
         style={fill ? undefined : { width, height }}
@@ -69,7 +69,7 @@ export function OptimizedImage({
     <div className={cn("relative", className)}>
       {isLoading && (
         <div 
-          className="absolute inset-0 bg-gray-200 animate-pulse rounded"
+          className="absolute inset-0 bg-muted animate-pulse rounded"
           style={fill ? undefined : { width, height }}
         />
       )}
