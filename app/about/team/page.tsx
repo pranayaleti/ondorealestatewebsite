@@ -104,7 +104,7 @@ export default function TeamPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Leadership Team</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Our leadership team brings decades of combined experience in real estate, property management, and customer service.
             </p>
           </div>
@@ -124,13 +124,13 @@ export default function TeamPage() {
                         />
                       </div>
                       <div className="flex justify-center lg:justify-start gap-4">
-                        <a href={`mailto:${leader.email}`} className="text-gray-600 hover:text-primary">
+                        <a href={`mailto:${leader.email}`} className="text-muted-foreground hover:text-primary">
                           <Mail className="h-5 w-5" />
                         </a>
-                        <a href={`tel:${leader.phone}`} className="text-gray-600 hover:text-primary">
+                        <a href={`tel:${leader.phone}`} className="text-muted-foreground hover:text-primary">
                           <Phone className="h-5 w-5" />
                         </a>
-                        <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary">
+                        <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                           <Linkedin className="h-5 w-5" />
                         </a>
                       </div>
@@ -138,7 +138,7 @@ export default function TeamPage() {
                     <div className="lg:col-span-2">
                       <h3 className="text-2xl font-bold mb-2">{leader.name}</h3>
                       <p className="text-lg text-primary mb-4">{leader.title}</p>
-                      <p className="text-gray-600 mb-6">{leader.bio}</p>
+                      <p className="text-muted-foreground mb-6">{leader.bio}</p>
                       <div className="space-y-2">
                         <h4 className="font-semibold">Credentials:</h4>
                         <div className="flex flex-wrap gap-2">
@@ -159,7 +159,7 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
@@ -180,12 +180,12 @@ export default function TeamPage() {
                     <Badge variant="outline">{member.department}</Badge>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+                    <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
                     <div className="space-y-2">
                       <h4 className="font-semibold text-sm">Credentials:</h4>
                       <div className="space-y-1">
                         {member.credentials.map((cred, credIndex) => (
-                          <div key={credIndex} className="text-xs text-gray-600 flex items-center">
+                          <div key={credIndex} className="text-xs text-muted-foreground flex items-center">
                             <Award className="h-3 w-3 mr-1 text-yellow-500" />
                             {cred}
                           </div>
@@ -208,7 +208,7 @@ export default function TeamPage() {
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -227,7 +227,7 @@ export default function TeamPage() {
               <Button asChild size="lg" variant="secondary">
                 <Link href="/about/careers">View Open Positions</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-card hover:text-primary">
                 <Link href="/contact">Contact Us</Link>
               </Button>
             </div>

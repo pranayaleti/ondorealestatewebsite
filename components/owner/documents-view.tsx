@@ -335,11 +335,11 @@ export function DocumentsView() {
       case "pdf":
         return <FilePdf className="h-6 w-6 text-red-500" />
       case "image":
-        return <FileImage className="h-6 w-6 text-blue-500" />
+        return <FileImage className="h-6 w-6 text-orange-500" />
       case "spreadsheet":
         return <FileSpreadsheet className="h-6 w-6 text-green-500" />
       default:
-        return <File className="h-6 w-6 text-gray-500" />
+        return <File className="h-6 w-6 text-muted-foreground" />
     }
   }
 
@@ -520,7 +520,7 @@ export function DocumentsView() {
                     <div className="p-4 bg-muted/30">
                       <div className="flex flex-col gap-2">
                         <div className="flex justify-between items-center">
-                          <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20 capitalize">
+                          <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/20 capitalize">
                             {document.category}
                           </span>
                           <span className="text-xs text-muted-foreground">
@@ -575,7 +575,7 @@ export function DocumentsView() {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20 capitalize">
+                          <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/20 capitalize">
                             {document.category}
                           </span>
                         </TableCell>

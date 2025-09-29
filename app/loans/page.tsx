@@ -154,7 +154,7 @@ export default function LoansPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Find the Perfect Loan for Your Utah Home</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Our experienced loan officers help you navigate the mortgage process and find the best 
               loan program with competitive rates and terms that fit your financial situation.
             </p>
@@ -165,17 +165,17 @@ export default function LoansPage() {
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center mb-4">
-                    <div className="text-blue-600 mr-4">{loan.icon}</div>
+                    <div className="text-primary mr-4">{loan.icon}</div>
                     <CardTitle className="text-xl">{loan.title}</CardTitle>
                   </div>
-                  <CardDescription className="text-gray-600">{loan.description}</CardDescription>
+                  <CardDescription className="text-muted-foreground">{loan.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {loan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{feature}</span>
+                        <span className="text-sm text-muted-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -192,28 +192,28 @@ export default function LoansPage() {
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Competitive Rates</h4>
-                    <p className="text-gray-600">Access to multiple lenders and loan programs for the best rates</p>
+                    <p className="text-muted-foreground">Access to multiple lenders and loan programs for the best rates</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Local Expertise</h4>
-                    <p className="text-gray-600">Deep understanding of Utah real estate market and local programs</p>
+                    <p className="text-muted-foreground">Deep understanding of Utah real estate market and local programs</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Fast Processing</h4>
-                    <p className="text-gray-600">Streamlined application process with quick pre-approvals and closings</p>
+                    <p className="text-muted-foreground">Streamlined application process with quick pre-approvals and closings</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Personalized Service</h4>
-                    <p className="text-gray-600">Dedicated loan officer guidance throughout the entire process</p>
+                    <p className="text-muted-foreground">Dedicated loan officer guidance throughout the entire process</p>
                   </div>
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function LoansPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -238,7 +238,7 @@ export default function LoansPage() {
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
                   <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -246,17 +246,17 @@ export default function LoansPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-blue-600 text-foreground">
+      <section className="py-16 bg-orange-600 text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Pre-Approved?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Start your mortgage application today and get pre-approved for your Utah home purchase.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-blue-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-primary hover:bg-muted">
               <Link href="/contact">Apply Now</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-blue-600">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-primary">
               <Link href="/calculators">Calculate Payment</Link>
             </Button>
           </div>

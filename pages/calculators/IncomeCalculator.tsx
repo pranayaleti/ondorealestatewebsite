@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -115,15 +117,15 @@ const IncomeCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-muted to-muted">
       {/* Header */}
       <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
-            <Link href="/calculators" className="text-blue-600 hover:text-blue-800">
+            <Link href="/calculators" className="text-primary hover:text-primary">
               <ArrowLeft className="h-6 w-6" />
             </Link>
-            <h1 className="text-2xl font-bold text-gray-900">Mortgage Income Calculator</h1>
+            <h1 className="text-2xl font-bold text-foreground">Mortgage Income Calculator</h1>
           </div>
         </div>
       </div>
@@ -132,21 +134,21 @@ const IncomeCalculator: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
           <div className="bg-foreground rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Mortgage Details</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Mortgage Details</h2>
             
             <div className="space-y-6">
               {/* Home Price */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Home Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.homePrice}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="300,000"
                   />
                 </div>
@@ -154,16 +156,16 @@ const IncomeCalculator: React.FC = () => {
 
               {/* Down Payment */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="60,000"
                   />
                 </div>
@@ -171,7 +173,7 @@ const IncomeCalculator: React.FC = () => {
 
               {/* Interest Rate */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Interest Rate (%)
                 </label>
                 <input
@@ -179,20 +181,20 @@ const IncomeCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="4.5"
                 />
               </div>
 
               {/* Loan Term */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Loan Term (years)
                 </label>
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -202,16 +204,16 @@ const IncomeCalculator: React.FC = () => {
 
               {/* Property Tax */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="3,000"
                   />
                 </div>
@@ -219,16 +221,16 @@ const IncomeCalculator: React.FC = () => {
 
               {/* Insurance */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="1,200"
                   />
                 </div>
@@ -236,31 +238,31 @@ const IncomeCalculator: React.FC = () => {
 
               {/* Monthly Debts */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Monthly Debt Payments
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.monthlyDebts}
                     onChange={(e) => handleInputChange('monthlyDebts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="500"
                   />
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Credit cards, car loans, student loans, etc.
                 </p>
               </div>
 
               {/* Loan Program */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Loan Program</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Loan Program</label>
                 <select
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -277,19 +279,19 @@ const IncomeCalculator: React.FC = () => {
               <>
                 {/* Required Income */}
                 <div className="bg-foreground rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Required Income</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Required Income</h2>
                   <div className="space-y-4">
-                    <div className="bg-green-50 p-4 rounded-lg">
+                    <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
-                        <p className="text-sm text-green-600 mb-1">Annual Income Needed</p>
+                        <p className="text-sm text-primary mb-1">Annual Income Needed</p>
                         <p className="text-3xl font-bold text-green-700">{formatCurrency(results.requiredAnnualIncome)}</p>
                       </div>
                     </div>
                     
-                    <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
-                        <p className="text-sm text-blue-600 mb-1">Monthly Income Needed</p>
-                        <p className="text-2xl font-bold text-blue-700">{formatCurrency(results.requiredMonthlyIncome)}</p>
+                        <p className="text-sm text-primary mb-1">Monthly Income Needed</p>
+                        <p className="text-2xl font-bold text-orange-700">{formatCurrency(results.requiredMonthlyIncome)}</p>
                       </div>
                     </div>
                   </div>
@@ -297,19 +299,19 @@ const IncomeCalculator: React.FC = () => {
 
                 {/* Payment Breakdown */}
                 <div className="bg-foreground rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Payment Breakdown</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Payment Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Monthly Housing Payment:</span>
+                      <span className="text-muted-foreground">Monthly Housing Payment:</span>
                       <span className="font-semibold">{formatCurrency(results.monthlyPayment)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Monthly Debts:</span>
+                      <span className="text-muted-foreground">Monthly Debts:</span>
                       <span className="font-semibold">{formatCurrency(formData.monthlyDebts)}</span>
                     </div>
                     <hr className="my-3" />
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total Monthly Debt:</span>
+                      <span className="text-muted-foreground">Total Monthly Debt:</span>
                       <span className="font-semibold">{formatCurrency(results.monthlyPayment + formData.monthlyDebts)}</span>
                     </div>
                   </div>
@@ -317,19 +319,19 @@ const IncomeCalculator: React.FC = () => {
 
                 {/* Debt Ratios */}
                 <div className="bg-foreground rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Debt-to-Income Ratios</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Debt-to-Income Ratios</h2>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Front-End Ratio (Housing):</span>
-                      <span className="font-semibold text-green-600">{formatPercent(results.frontEndRatio)}</span>
+                      <span className="text-muted-foreground">Front-End Ratio (Housing):</span>
+                      <span className="font-semibold text-primary">{formatPercent(results.frontEndRatio)}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Back-End Ratio (Total Debt):</span>
-                      <span className="font-semibold text-green-600">{formatPercent(results.backEndRatio)}</span>
+                      <span className="text-muted-foreground">Back-End Ratio (Total Debt):</span>
+                      <span className="font-semibold text-primary">{formatPercent(results.backEndRatio)}</span>
                     </div>
                     
-                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-600">
+                    <div className="mt-4 p-3 bg-muted rounded-lg">
+                      <p className="text-sm text-muted-foreground">
                         <strong>Front-End:</strong> Housing expenses ÷ Gross monthly income (target: ≤28%)<br/>
                         <strong>Back-End:</strong> Total debt payments ÷ Gross monthly income (target: ≤36%)
                       </p>
@@ -339,8 +341,8 @@ const IncomeCalculator: React.FC = () => {
 
                 {/* Recommendations */}
                 <div className="bg-foreground rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Recommendations</h2>
-                  <div className="space-y-3 text-sm text-gray-600">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Recommendations</h2>
+                  <div className="space-y-3 text-sm text-muted-foreground">
                     <p>• This calculation uses conservative 28/36 debt-to-income ratios</p>
                     <p>• Consider additional expenses like maintenance and utilities</p>
                     <p>• Factor in emergency savings and other financial goals</p>
@@ -354,10 +356,10 @@ const IncomeCalculator: React.FC = () => {
 
         {/* Additional Information */}
         <div className="mt-12 bg-foreground rounded-lg shadow-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">About This Calculator</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+          <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">How It Works:</h3>
+              <h3 className="font-medium text-foreground mb-2">How It Works:</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Calculates required income for a specific mortgage</li>
                 <li>Uses standard 28% front-end ratio</li>
@@ -367,7 +369,7 @@ const IncomeCalculator: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">Important Notes:</h3>
+              <h3 className="font-medium text-foreground mb-2">Important Notes:</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Income requirements may vary by lender</li>
                 <li>Credit score affects approval chances</li>

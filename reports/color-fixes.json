@@ -1,0 +1,2677 @@
+{
+  "timestamp": "2025-09-29T05:10:31.502Z",
+  "totalFilesFixed": 83,
+  "totalChanges": 975,
+  "fixes": [
+    {
+      "file": "app/about/careers/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 6
+        }
+      ],
+      "totalChanges": 7
+    },
+    {
+      "file": "app/about/giving-back/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 9
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 11
+    },
+    {
+      "file": "app/about/history/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-200",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        }
+      ],
+      "totalChanges": 7
+    },
+    {
+      "file": "app/about/investor-relations/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        }
+      ],
+      "totalChanges": 10
+    },
+    {
+      "file": "app/about/leadership/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-800",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 6
+        }
+      ],
+      "totalChanges": 9
+    },
+    {
+      "file": "app/about/news/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-800",
+          "newValue": "bg-card",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 3
+        }
+      ],
+      "totalChanges": 13
+    },
+    {
+      "file": "app/about/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-slate-50",
+          "newValue": "bg-muted",
+          "count": 2
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "app/about/team/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-white",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 8
+        }
+      ],
+      "totalChanges": 10
+    },
+    {
+      "file": "app/about/testimonials/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-white",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 3
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "app/accessibility/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 16
+        }
+      ],
+      "totalChanges": 16
+    },
+    {
+      "file": "app/blog/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-white",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 7
+    },
+    {
+      "file": "app/buy/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 12
+    },
+    {
+      "file": "app/buying/first-time/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-400",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 12
+    },
+    {
+      "file": "app/calculators/CalculatorsPage.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 18
+    },
+    {
+      "file": "app/dashboard/profile/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/dashboard/settings/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 11
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 3
+        }
+      ],
+      "totalChanges": 19
+    },
+    {
+      "file": "app/error.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/founders-letter/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/help/disaster/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-400",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-400",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-orange-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-orange-400",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 34
+    },
+    {
+      "file": "app/help/escrow/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 6
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 2
+        }
+      ],
+      "totalChanges": 15
+    },
+    {
+      "file": "app/help/faq/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 3
+        }
+      ],
+      "totalChanges": 4
+    },
+    {
+      "file": "app/help/hardship/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-900",
+          "newValue": "bg-card",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-400",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-400",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 24
+    },
+    {
+      "file": "app/help/loan-payoffs/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-400",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 19
+    },
+    {
+      "file": "app/help/payments/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 12
+    },
+    {
+      "file": "app/loans/conventional/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-900",
+          "newValue": "bg-card",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-400",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 15
+    },
+    {
+      "file": "app/loans/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 13
+    },
+    {
+      "file": "app/login/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 2
+        }
+      ],
+      "totalChanges": 5
+    },
+    {
+      "file": "app/not-found.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 2
+        }
+      ],
+      "totalChanges": 8
+    },
+    {
+      "file": "app/owner/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 4
+        }
+      ],
+      "totalChanges": 5
+    },
+    {
+      "file": "app/privacy-policy/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 8
+        }
+      ],
+      "totalChanges": 8
+    },
+    {
+      "file": "app/properties/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "app/refinance/process/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "app/sell/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        }
+      ],
+      "totalChanges": 9
+    },
+    {
+      "file": "app/sitemap/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 3
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "app/tenant/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 3
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "app/tenant/payments/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 6
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "app/terms-of-service/page.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 10
+        }
+      ],
+      "totalChanges": 10
+    },
+    {
+      "file": "app/why-utah/page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/maintenance-requests.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/maintenance-table.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/profile-form.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/dashboard/property-edit-form.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 2
+        }
+      ],
+      "totalChanges": 8
+    },
+    {
+      "file": "components/dashboard/property-form-sheet.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 2
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/error-boundary.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/footer.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/forms/validated-form.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 4
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 5
+    },
+    {
+      "file": "components/landing-page.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 7
+        }
+      ],
+      "totalChanges": 19
+    },
+    {
+      "file": "components/loading-states.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "components/owner/documents-view.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/owner/finances-view.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 6
+        }
+      ],
+      "totalChanges": 17
+    },
+    {
+      "file": "components/owner/maintenance-detail.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 3
+        }
+      ],
+      "totalChanges": 18
+    },
+    {
+      "file": "components/owner/maintenance-management.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        }
+      ],
+      "totalChanges": 8
+    },
+    {
+      "file": "components/owner/messages-view.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/owner/property-details.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/owner/property-documents.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/owner/property-financials.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 4
+    },
+    {
+      "file": "components/owner/property-maintenance.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/owner/property-overview.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/owner/property-units.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-100",
+          "newValue": "bg-muted",
+          "count": 4
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 2
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "components/owner/settings-view.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/owner/tenants-view.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-800",
+          "newValue": "text-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/property-details-modal.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 4
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "components/property-lead-form.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-200",
+          "newValue": "bg-muted",
+          "count": 4
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-900",
+          "newValue": "bg-card",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-400",
+          "newValue": "text-primary",
+          "count": 1
+        }
+      ],
+      "totalChanges": 9
+    },
+    {
+      "file": "components/property-search.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/results-grid.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 2
+        }
+      ],
+      "totalChanges": 3
+    },
+    {
+      "file": "components/results-list.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 3
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "components/tenant/maintenance-request-detail.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 13
+    },
+    {
+      "file": "components/tenant/maintenance-request-form.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/tenant/maintenance-request-list.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        }
+      ],
+      "totalChanges": 8
+    },
+    {
+      "file": "components/test-sheet.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/ui/feature-unavailable.tsx",
+      "fixes": [
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        }
+      ],
+      "totalChanges": 1
+    },
+    {
+      "file": "components/ui/optimized-image.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-100",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-gray-200",
+          "newValue": "bg-muted",
+          "count": 1
+        }
+      ],
+      "totalChanges": 2
+    },
+    {
+      "file": "components/ui/sidebar.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-slate-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-slate-100",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-slate-800",
+          "newValue": "bg-card",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-slate-900",
+          "newValue": "bg-background",
+          "count": 1
+        }
+      ],
+      "totalChanges": 6
+    },
+    {
+      "file": "pages/calculators/AffordabilityCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 3
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 9
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-800",
+          "newValue": "text-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 42
+    },
+    {
+      "file": "pages/calculators/BuyingPowerCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 3
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 6
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 9
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-800",
+          "newValue": "text-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 42
+    },
+    {
+      "file": "pages/calculators/ClosingCostCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 10
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 15
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 2
+        }
+      ],
+      "totalChanges": 47
+    },
+    {
+      "file": "pages/calculators/HomeSaleCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 10
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 9
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 2
+        }
+      ],
+      "totalChanges": 43
+    },
+    {
+      "file": "pages/calculators/IncomeCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 6
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 9
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 39
+    },
+    {
+      "file": "pages/calculators/MortgagePaymentCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 10
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 10
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 15
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 2
+        }
+      ],
+      "totalChanges": 53
+    },
+    {
+      "file": "pages/calculators/RefinanceCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 6
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 10
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 4
+        }
+      ],
+      "totalChanges": 40
+    },
+    {
+      "file": "pages/calculators/RentVsOwnCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 17
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 8
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-red-600",
+          "newValue": "text-destructive",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 39
+    },
+    {
+      "file": "pages/calculators/RetirementCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-red-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-orange-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-indigo-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 5
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 17
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 12
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 2
+        }
+      ],
+      "totalChanges": 50
+    },
+    {
+      "file": "pages/calculators/TemporaryBuydownCalculator.tsx",
+      "fixes": [
+        {
+          "type": "background",
+          "oldValue": "bg-gray-50",
+          "newValue": "bg-muted",
+          "count": 2
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-blue-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-green-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-yellow-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "background",
+          "oldValue": "bg-purple-50",
+          "newValue": "bg-muted",
+          "count": 1
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-500",
+          "newValue": "text-muted-foreground",
+          "count": 4
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-600",
+          "newValue": "text-muted-foreground",
+          "count": 7
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-700",
+          "newValue": "text-foreground",
+          "count": 6
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-800",
+          "newValue": "text-foreground",
+          "count": 2
+        },
+        {
+          "type": "text",
+          "oldValue": "text-gray-900",
+          "newValue": "text-foreground",
+          "count": 10
+        },
+        {
+          "type": "text",
+          "oldValue": "text-blue-600",
+          "newValue": "text-primary",
+          "count": 3
+        },
+        {
+          "type": "text",
+          "oldValue": "text-green-600",
+          "newValue": "text-primary",
+          "count": 3
+        }
+      ],
+      "totalChanges": 41
+    }
+  ]
+}

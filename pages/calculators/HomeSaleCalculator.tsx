@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -83,15 +85,15 @@ const HomeSaleCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-muted to-muted">
       {/* Header */}
       <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
-            <Link href="/calculators" className="text-blue-600 hover:text-blue-800">
+            <Link href="/calculators" className="text-primary hover:text-primary">
               <ArrowLeft className="h-6 w-6" />
             </Link>
-            <h1 className="text-2xl font-bold text-gray-900">Home Sale Calculator</h1>
+            <h1 className="text-2xl font-bold text-foreground">Home Sale Calculator</h1>
           </div>
         </div>
       </div>
@@ -100,21 +102,21 @@ const HomeSaleCalculator: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
           <div className="bg-card rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
               {/* Home Value */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Estimated Home Sale Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.homeValue}
                     onChange={(e) => handleInputChange('homeValue', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="400,000"
                   />
                 </div>
@@ -122,16 +124,16 @@ const HomeSaleCalculator: React.FC = () => {
 
               {/* Mortgage Balance */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Remaining Mortgage Balance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.mortgageBalance}
                     onChange={(e) => handleInputChange('mortgageBalance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="250,000"
                   />
                 </div>
@@ -139,7 +141,7 @@ const HomeSaleCalculator: React.FC = () => {
 
               {/* Realtor Commission */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Realtor Commission (%)
                 </label>
                 <input
@@ -147,23 +149,23 @@ const HomeSaleCalculator: React.FC = () => {
                   step="0.1"
                   value={formData.realtorCommission}
                   onChange={(e) => handleInputChange('realtorCommission', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="6.0"
                 />
               </div>
 
               {/* Closing Costs */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Closing Costs
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.closingCosts}
                     onChange={(e) => handleInputChange('closingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="8,000"
                   />
                 </div>
@@ -171,16 +173,16 @@ const HomeSaleCalculator: React.FC = () => {
 
               {/* Repairs */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Repairs & Improvements
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.repairs}
                     onChange={(e) => handleInputChange('repairs', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="5,000"
                   />
                 </div>
@@ -188,16 +190,16 @@ const HomeSaleCalculator: React.FC = () => {
 
               {/* Moving Costs */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Moving Costs
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.movingCosts}
                     onChange={(e) => handleInputChange('movingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="2,000"
                   />
                 </div>
@@ -205,36 +207,36 @@ const HomeSaleCalculator: React.FC = () => {
 
               {/* Capital Gains Tax */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Capital Gains Tax (if applicable)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.capitalGainsTax}
                     onChange={(e) => handleInputChange('capitalGainsTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="0"
                   />
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Usually exempt for primary residence if lived in 2+ years
                 </p>
               </div>
 
               {/* Original Purchase Price */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Original Purchase Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.originalPurchasePrice}
                     onChange={(e) => handleInputChange('originalPurchasePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="320,000"
                   />
                 </div>
@@ -242,20 +244,20 @@ const HomeSaleCalculator: React.FC = () => {
 
               {/* Capital Improvements */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Capital Improvements (lifetime)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.originalImprovements}
                     onChange={(e) => handleInputChange('originalImprovements', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="0"
                   />
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Major improvements increasing basis (e.g., additions, new roof)
                 </p>
               </div>
@@ -268,23 +270,23 @@ const HomeSaleCalculator: React.FC = () => {
               <>
                 {/* Net Proceeds */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Sale Results</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Sale Results</h2>
                   <div className="space-y-4">
-                    <div className="bg-green-50 p-4 rounded-lg">
+                    <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
-                        <p className="text-sm text-green-600 mb-1">Net Proceeds</p>
+                        <p className="text-sm text-primary mb-1">Net Proceeds</p>
                         <p className="text-3xl font-bold text-green-700">{formatCurrency(results.netProceeds)}</p>
-                        <p className="text-sm text-green-600 mt-1">
+                        <p className="text-sm text-primary mt-1">
                           Cash you'll receive after sale
                         </p>
                       </div>
                     </div>
                     
-                    <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
-                        <p className="text-sm text-blue-600 mb-1">Total Equity</p>
-                        <p className="text-2xl font-bold text-blue-700">{formatCurrency(results.equity)}</p>
-                        <p className="text-sm text-blue-600 mt-1">
+                        <p className="text-sm text-primary mb-1">Total Equity</p>
+                        <p className="text-2xl font-bold text-orange-700">{formatCurrency(results.equity)}</p>
+                        <p className="text-sm text-primary mt-1">
                           Home value minus mortgage
                         </p>
                       </div>
@@ -294,41 +296,41 @@ const HomeSaleCalculator: React.FC = () => {
 
                 {/* Cost Breakdown */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Cost Breakdown</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Cost Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Realtor Commission:</span>
+                      <span className="text-muted-foreground">Realtor Commission:</span>
                       <span className="font-semibold">{formatCurrency((formData.homeValue * formData.realtorCommission) / 100)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Closing Costs:</span>
+                      <span className="text-muted-foreground">Closing Costs:</span>
                       <span className="font-semibold">{formatCurrency(formData.closingCosts)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Repairs & Improvements:</span>
+                      <span className="text-muted-foreground">Repairs & Improvements:</span>
                       <span className="font-semibold">{formatCurrency(formData.repairs)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Moving Costs:</span>
+                      <span className="text-muted-foreground">Moving Costs:</span>
                       <span className="font-semibold">{formatCurrency(formData.movingCosts)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Capital Gains Tax:</span>
+                      <span className="text-muted-foreground">Capital Gains Tax:</span>
                       <span className="font-semibold">{formatCurrency(formData.capitalGainsTax)}</span>
                     </div>
                     <hr className="my-3" />
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total Costs:</span>
-                      <span className="text-red-600">{formatCurrency(results.totalCosts)}</span>
+                      <span className="text-destructive">{formatCurrency(results.totalCosts)}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Profit Analysis */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Profit Analysis</h2>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Profit Analysis</h2>
                   <div className="space-y-4">
-                    <div className="bg-yellow-50 p-4 rounded-lg">
+                    <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-yellow-600 mb-1">Estimated Profit</p>
                         <p className="text-2xl font-bold text-yellow-700">{formatCurrency(results.profit)}</p>
@@ -338,7 +340,7 @@ const HomeSaleCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-gray-600">
+                    <div className="space-y-2 text-sm text-muted-foreground">
                       <p>• Cost basis used: {formatCurrency(results.basisUsed)}</p>
                       <p>• This is a rough estimate based on available information</p>
                       <p>• Actual costs may vary significantly</p>
@@ -354,10 +356,10 @@ const HomeSaleCalculator: React.FC = () => {
 
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">About Home Sales</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+          <h2 className="text-xl font-semibold text-foreground mb-4">About Home Sales</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">Common Sale Costs:</h3>
+              <h3 className="font-medium text-foreground mb-2">Common Sale Costs:</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Realtor commission (typically 5-6%)</li>
                 <li>Closing costs and transfer taxes</li>
@@ -367,7 +369,7 @@ const HomeSaleCalculator: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">Tips for Maximizing Proceeds:</h3>
+              <h3 className="font-medium text-foreground mb-2">Tips for Maximizing Proceeds:</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Improve curb appeal and staging</li>
                 <li>Make necessary repairs before listing</li>

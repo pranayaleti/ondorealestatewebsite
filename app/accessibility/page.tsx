@@ -84,7 +84,7 @@ export default function AccessibilityPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Our Accessibility Commitment</h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 OnDo Real Estate is committed to ensuring digital accessibility for people with disabilities. 
                 We continually improve the user experience for everyone and apply the relevant accessibility standards.
               </p>
@@ -105,12 +105,12 @@ export default function AccessibilityPage() {
                         {feature.icon}
                         <h3 className="text-xl font-semibold">{feature.title}</h3>
                       </div>
-                      <p className="text-gray-600">{feature.description}</p>
+                      <p className="text-muted-foreground">{feature.description}</p>
                       <ul className="space-y-2">
                         {feature.features.map((item, itemIndex) => (
                           <li key={itemIndex} className="flex items-start gap-2">
                             <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-gray-600">{item}</span>
+                            <span className="text-sm text-muted-foreground">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -131,7 +131,7 @@ export default function AccessibilityPage() {
                       <div key={index} className="flex justify-between items-center">
                         <div>
                           <p className="font-semibold">{standard.name}</p>
-                          <p className="text-sm text-gray-600">{standard.description}</p>
+                          <p className="text-sm text-muted-foreground">{standard.description}</p>
                         </div>
                         <Badge variant="secondary">{standard.level}</Badge>
                       </div>
@@ -149,7 +149,7 @@ export default function AccessibilityPage() {
                     {testingMethods.map((method, index) => (
                       <li key={index} className="flex items-start gap-2">
                         <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{method}</span>
+                        <span className="text-sm text-muted-foreground">{method}</span>
                       </li>
                     ))}
                   </ul>
@@ -163,20 +163,20 @@ export default function AccessibilityPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     We welcome your feedback on the accessibility of our website. If you encounter any barriers 
                     or have suggestions for improvement, please contact us:
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold mb-2">Accessibility Coordinator</h4>
-                      <p className="text-sm text-gray-600">Sarah Johnson</p>
-                      <p className="text-sm text-gray-600">accessibility@ondorealestate.com</p>
-                      <p className="text-sm text-gray-600">(801) 555-1234</p>
+                      <p className="text-sm text-muted-foreground">Sarah Johnson</p>
+                      <p className="text-sm text-muted-foreground">accessibility@ondorealestate.com</p>
+                      <p className="text-sm text-muted-foreground">(801) 555-1234</p>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">Response Time</h4>
-                      <p className="text-sm text-gray-600">We aim to respond to accessibility feedback within 2 business days</p>
+                      <p className="text-sm text-muted-foreground">We aim to respond to accessibility feedback within 2 business days</p>
                     </div>
                   </div>
                 </div>
@@ -189,25 +189,25 @@ export default function AccessibilityPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     We are committed to continuously improving the accessibility of our website. This includes:
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-600">Regular accessibility audits and testing</span>
+                      <span className="text-sm text-muted-foreground">Regular accessibility audits and testing</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-600">Training our team on accessibility best practices</span>
+                      <span className="text-sm text-muted-foreground">Training our team on accessibility best practices</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-600">Implementing user feedback and suggestions</span>
+                      <span className="text-sm text-muted-foreground">Implementing user feedback and suggestions</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-600">Staying updated with accessibility standards and guidelines</span>
+                      <span className="text-sm text-muted-foreground">Staying updated with accessibility standards and guidelines</span>
                     </li>
                   </ul>
                 </div>
@@ -216,7 +216,7 @@ export default function AccessibilityPage() {
 
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-4">Questions About Accessibility?</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 We're here to help ensure everyone can access our services. Contact us if you need assistance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

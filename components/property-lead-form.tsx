@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -111,6 +111,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
           </button>
 
           <div className="p-6">
+            <DialogTitle className="sr-only">{isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}</DialogTitle>
             <h2 className="text-xl font-semibold mb-6">{isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}</h2>
 
             {!isSubmitted && (
@@ -122,7 +123,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       "flex items-center justify-center w-10 h-10 rounded-full",
                       step === i
                         ? "bg-background text-foreground dark:bg-muted dark:text-foreground"
-                        : "bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-muted-foreground",
+                        : "bg-muted text-muted-foreground dark:bg-gray-700 dark:text-muted-foreground",
                     )}
                   >
                     {i}
@@ -133,7 +134,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
 
             {isSubmitted ? (
               <div className="flex flex-col items-center justify-center py-6 text-center">
-                <div className="mb-4 rounded-full bg-green-100 p-3 text-green-600 dark:bg-green-900/20 dark:text-green-400">
+                <div className="mb-4 rounded-full bg-muted p-3 text-primary dark:bg-card/20 dark:text-primary">
                   <CheckCircle className="h-8 w-8" />
                 </div>
                 <h3 className="mb-2 text-xl font-semibold">Application Submitted</h3>
@@ -229,7 +230,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       <Button
                         type="button"
                         onClick={handleNext}
-                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-gray-200"
+                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-muted"
                       >
                         Next
                       </Button>
@@ -307,7 +308,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       <Button
                         type="button"
                         onClick={handleNext}
-                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-gray-200"
+                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-muted"
                       >
                         Next
                       </Button>
@@ -406,7 +407,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-gray-200"
+                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-muted"
                       >
                         {isSubmitting ? "Submitting..." : "Submit Application"}
                       </Button>

@@ -251,7 +251,7 @@ export default function FoundersLetterPage() {
             <button className="bg-background hover:bg-card text-foreground px-8 py-4 rounded-lg text-lg font-bold transition-colors">
               Start Your Journey
             </button>
-            <button className="bg-foreground hover:bg-gray-100 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
+            <button className="bg-foreground hover:bg-muted text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
               Learn More About Ondo
             </button>
           </div>

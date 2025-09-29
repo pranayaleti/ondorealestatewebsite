@@ -99,7 +99,7 @@ export default function ProfilePage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">Two-factor authentication is disabled</p>
-                      <p className="text-sm text-gray-500">Add an extra layer of security to your account</p>
+                      <p className="text-sm text-muted-foreground">Add an extra layer of security to your account</p>
                     </div>
                     <button className="px-4 py-2 bg-primary text-foreground rounded">Enable</button>
                   </div>
