@@ -426,7 +426,7 @@ export default function PropertiesPage() {
             ) : (
               <div className="py-12 flex flex-col items-center">
                 <div className="max-w-md w-full">
-                  <div className="bg-foreground p-6 rounded-lg shadow-sm border mb-6 dark:bg-muted dark:border-border">
+                  <div className="bg-card p-6 rounded-lg shadow-sm border mb-6 dark:bg-muted dark:border-border">
                     <h3 className="text-lg font-semibold mb-4 dark:text-foreground">No properties found</h3>
                     <p className="text-muted-foreground mb-4 dark:text-muted-foreground">
                       We couldn't find any properties matching your search criteria.

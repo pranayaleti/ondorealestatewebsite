@@ -287,7 +287,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-foreground dark:bg-card">
+            <Card className="bg-card dark:bg-card">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
@@ -312,7 +312,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-foreground dark:bg-card">
+            <Card className="bg-card dark:bg-card">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
@@ -337,7 +337,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-foreground dark:bg-card">
+            <Card className="bg-card dark:bg-card">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">

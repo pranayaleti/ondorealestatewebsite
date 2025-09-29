@@ -148,7 +148,7 @@ export default function SellPage() {
         backgroundImage="/modern-apartment-balcony.png"
       />
 
-      <section className="py-16 bg-foreground">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Maximize Your Home's Value</h2>
@@ -241,10 +241,10 @@ export default function SellPage() {
             Get a free home valuation and discover how we can help you sell for top dollar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-primary hover:bg-muted">
+            <Button asChild size="lg" className="bg-background text-primary hover:bg-muted">
               <Link href="/contact">Get Free Valuation</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-primary">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-background hover:text-primary">
               <Link href="/properties">View Market Trends</Link>
             </Button>
           </div>

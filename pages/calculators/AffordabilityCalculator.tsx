@@ -453,7 +453,7 @@ const AffordabilityCalculator: React.FC = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 bg-foreground rounded-lg shadow-lg p-6">
+        <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
             <div>
