@@ -256,13 +256,13 @@ const RetirementCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50">
       {/* Header */}
       <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-primary hover:text-blue-800">
+              <Link href="/calculators" className="text-primary hover:text-orange-800">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Retirement Planning Calculator</h1>
@@ -302,7 +302,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentAge}
                       onChange={(e) => handleInputChange('currentAge', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -313,7 +313,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.retirementAge}
                       onChange={(e) => handleInputChange('retirementAge', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -324,7 +324,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.lifeExpectancy}
                       onChange={(e) => handleInputChange('lifeExpectancy', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -345,7 +345,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentSavings}
                       onChange={(e) => handleInputChange('currentSavings', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -356,7 +356,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentIncome}
                       onChange={(e) => handleInputChange('currentIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -367,7 +367,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentExpenses}
                       onChange={(e) => handleInputChange('currentExpenses', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -388,7 +388,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentRealEstateValue}
                       onChange={(e) => handleInputChange('currentRealEstateValue', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -399,7 +399,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.realEstateIncome}
                       onChange={(e) => handleInputChange('realEstateIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -410,7 +410,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.realEstateExpenses}
                       onChange={(e) => handleInputChange('realEstateExpenses', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -422,7 +422,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.realEstateAppreciation}
                       onChange={(e) => handleInputChange('realEstateAppreciation', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -443,7 +443,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.monthlyContribution}
                       onChange={(e) => handleInputChange('monthlyContribution', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -455,7 +455,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.investmentReturn}
                       onChange={(e) => handleInputChange('investmentReturn', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -467,7 +467,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.inflationRate}
                       onChange={(e) => handleInputChange('inflationRate', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -488,7 +488,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.desiredRetirementIncome}
                       onChange={(e) => handleInputChange('desiredRetirementIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -499,7 +499,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.socialSecurityIncome}
                       onChange={(e) => handleInputChange('socialSecurityIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -510,7 +510,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.otherIncome}
                       onChange={(e) => handleInputChange('otherIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -527,8 +527,8 @@ const RetirementCalculator: React.FC = () => {
                 {/* Summary */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-muted p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-blue-900 mb-2">Total Retirement Savings</h3>
-                    <p className="text-2xl font-bold text-blue-900">{formatCurrency(results.totalRetirementSavings)}</p>
+                    <h3 className="text-sm font-medium text-orange-900 mb-2">Total Retirement Savings</h3>
+                    <p className="text-2xl font-bold text-orange-900">{formatCurrency(results.totalRetirementSavings)}</p>
                   </div>
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-green-900 mb-2">Real Estate Value at Retirement</h3>

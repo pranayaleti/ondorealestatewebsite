@@ -569,7 +569,7 @@ export function FinancesView() {
                           <span
                             className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                               transaction.status === "completed"
-                                ? "bg-muted text-blue-700 ring-1 ring-inset ring-blue-600/20"
+                                ? "bg-muted text-orange-700 ring-1 ring-inset ring-orange-600/20"
                                 : "bg-muted text-yellow-700 ring-1 ring-inset ring-yellow-600/20"
                             }`}
                           >

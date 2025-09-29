@@ -87,7 +87,7 @@ export function Footer() {
         return { name: "TikTok", Component: TiktokIcon, href, hover: "hover:text-fuchsia-500" }
       }
       if (lower.includes("linkedin.com")) {
-        return { name: "LinkedIn", Component: Linkedin, href, hover: "hover:text-blue-700" }
+        return { name: "LinkedIn", Component: Linkedin, href, hover: "hover:text-orange-700" }
       }
       if (lower.includes("x.com") || lower.includes("twitter.com")) {
         return { name: "Twitter", Component: Twitter, href, hover: "hover:text-sky-500" }

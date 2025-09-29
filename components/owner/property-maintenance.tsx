@@ -169,7 +169,7 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
                           Completed
                         </Badge>
                       ) : record.status === "scheduled" ? (
-                        <Badge className="bg-muted text-blue-800">
+                        <Badge className="bg-muted text-orange-800">
                           <Calendar className="h-3 w-3 mr-1" />
                           Scheduled
                         </Badge>

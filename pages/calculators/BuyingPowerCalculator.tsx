@@ -148,7 +148,7 @@ const BuyingPowerCalculator: React.FC = () => {
       <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
-            <Link href="/calculators" className="text-primary hover:text-blue-800">
+            <Link href="/calculators" className="text-primary hover:text-orange-800">
               <ArrowLeft className="h-6 w-6" />
             </Link>
             <h1 className="text-2xl font-bold text-foreground">Buying Power Calculator</h1>
@@ -174,7 +174,7 @@ const BuyingPowerCalculator: React.FC = () => {
                     type="number"
                     value={formData.annualIncome}
                     onChange={(e) => handleInputChange('annualIncome', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="80,000"
                   />
                 </div>
@@ -191,7 +191,7 @@ const BuyingPowerCalculator: React.FC = () => {
                     type="number"
                     value={formData.monthlyDebts}
                     onChange={(e) => handleInputChange('monthlyDebts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="500"
                   />
                 </div>
@@ -211,7 +211,7 @@ const BuyingPowerCalculator: React.FC = () => {
                     type="number"
                     value={formData.downPayment}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="20,000"
                   />
                 </div>
@@ -228,7 +228,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   max="850"
                   value={formData.creditScore}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="750"
                 />
                 <p className={`text-sm mt-1 ${getCreditScoreColor(formData.creditScore)}`}>
@@ -244,7 +244,7 @@ const BuyingPowerCalculator: React.FC = () => {
                 <select
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -263,7 +263,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="4.5"
                 />
               </div>
@@ -276,7 +276,7 @@ const BuyingPowerCalculator: React.FC = () => {
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -294,7 +294,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   step="0.1"
                   value={formData.propertyTaxRate}
                   onChange={(e) => handleInputChange('propertyTaxRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="1.2"
                 />
               </div>
@@ -309,7 +309,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   step="0.1"
                   value={formData.insuranceRate}
                   onChange={(e) => handleInputChange('insuranceRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="0.5"
                 />
               </div>
@@ -327,7 +327,7 @@ const BuyingPowerCalculator: React.FC = () => {
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Maximum Home Price</p>
-                        <p className="text-3xl font-bold text-blue-700">{formatCurrency(results.maxHomePrice)}</p>
+                        <p className="text-3xl font-bold text-orange-700">{formatCurrency(results.maxHomePrice)}</p>
                       </div>
                     </div>
                     

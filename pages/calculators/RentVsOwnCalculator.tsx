@@ -272,7 +272,7 @@ const RentVsOwnCalculator: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-primary hover:text-blue-800">
+              <Link href="/calculators" className="text-primary hover:text-orange-800">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Rent vs Own Calculator</h1>
@@ -280,7 +280,7 @@ const RentVsOwnCalculator: React.FC = () => {
             {results && (
               <button
                 onClick={downloadPDF}
-                className="bg-blue-600 hover:bg-blue-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                className="bg-orange-600 hover:bg-orange-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
               >
                 <Download className="h-5 w-5" />
                 <span>Download PDF</span>
@@ -312,7 +312,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.monthlyRent}
                       onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -324,7 +324,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.rentIncrease}
                       onChange={(e) => handleInputChange('rentIncrease', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -335,7 +335,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.securityDeposit}
                       onChange={(e) => handleInputChange('securityDeposit', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -346,7 +346,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.rentersInsurance}
                       onChange={(e) => handleInputChange('rentersInsurance', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -367,7 +367,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.homePrice}
                       onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -378,7 +378,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.downPayment}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -390,7 +390,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.interestRate}
                       onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 <div>
@@ -400,7 +400,7 @@ const RentVsOwnCalculator: React.FC = () => {
                   <select
                     value={formData.program}
                     onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
                     <option value="conventional">Conventional</option>
                     <option value="fha">FHA</option>
@@ -418,7 +418,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     max={850}
                     value={formData.creditScore}
                     onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
                   <div>
@@ -429,7 +429,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.loanTerm}
                       onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -440,7 +440,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.propertyTax}
                       onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -451,7 +451,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.homeownersInsurance}
                       onChange={(e) => handleInputChange('homeownersInsurance', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -462,7 +462,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.maintenance}
                       onChange={(e) => handleInputChange('maintenance', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -473,7 +473,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.hoa}
                       onChange={(e) => handleInputChange('hoa', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -494,7 +494,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       type="number"
                       value={formData.analysisYears}
                       onChange={(e) => handleInputChange('analysisYears', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -506,7 +506,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.investmentReturn}
                       onChange={(e) => handleInputChange('investmentReturn', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                   <div>
@@ -518,7 +518,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.homeAppreciation}
                       onChange={(e) => handleInputChange('homeAppreciation', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
@@ -535,8 +535,8 @@ const RentVsOwnCalculator: React.FC = () => {
                 {/* Summary */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-muted p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-blue-900 mb-2">Total Rent Cost ({formData.analysisYears} years)</h3>
-                    <p className="text-2xl font-bold text-blue-900">{formatCurrency(results.rentTotalCost)}</p>
+                    <h3 className="text-sm font-medium text-orange-900 mb-2">Total Rent Cost ({formData.analysisYears} years)</h3>
+                    <p className="text-2xl font-bold text-orange-900">{formatCurrency(results.rentTotalCost)}</p>
                   </div>
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-green-900 mb-2">Total Buy Cost ({formData.analysisYears} years)</h3>
@@ -570,7 +570,7 @@ const RentVsOwnCalculator: React.FC = () => {
                       <thead className="bg-muted">
                         <tr>
                           <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Year</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">Rent Cost</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-orange-500 uppercase tracking-wider">Rent Cost</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-green-500 uppercase tracking-wider">Buy Cost</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-green-700 uppercase tracking-wider">Principal Paid</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-indigo-500 uppercase tracking-wider">Equity</th>

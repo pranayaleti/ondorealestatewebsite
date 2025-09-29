@@ -80,7 +80,7 @@ const activities = [
 const getActivityColor = (type: string) => {
   switch (type) {
     case "login":
-      return "bg-blue-500"
+      return "bg-orange-500"
     case "lead":
       return "bg-green-500"
     case "property":
