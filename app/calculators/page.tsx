@@ -1,5 +1,3 @@
-"use client"
-
 import CalculatorsPage from "./CalculatorsPage"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
