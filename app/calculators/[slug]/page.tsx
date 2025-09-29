@@ -1,22 +1,41 @@
-"use client"
-
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import Loading from "@/components/loading"
 
 const slugToComponent: Record<string, any> = {
-  "mortgage-payment": dynamic(() => import("@/pages/calculators/MortgagePaymentCalculator"), { ssr: false }),
-  "affordability": dynamic(() => import("@/pages/calculators/AffordabilityCalculator"), { ssr: false }),
-  "income": dynamic(() => import("@/pages/calculators/IncomeCalculator"), { ssr: false }),
-  "closing-cost": dynamic(() => import("@/pages/calculators/ClosingCostCalculator"), { ssr: false }),
-  "refinance": dynamic(() => import("@/pages/calculators/RefinanceCalculator"), { ssr: false }),
-  "home-sale": dynamic(() => import("@/pages/calculators/HomeSaleCalculator"), { ssr: false }),
-  "buying-power": dynamic(() => import("@/pages/calculators/BuyingPowerCalculator"), { ssr: false }),
-  "temporary-buydown": dynamic(() => import("@/pages/calculators/TemporaryBuydownCalculator"), { ssr: false }),
-  "rent-vs-own": dynamic(() => import("@/pages/calculators/RentVsOwnCalculator"), { ssr: false }),
-  "retirement": dynamic(() => import("@/pages/calculators/RetirementCalculator"), { ssr: false }),
+  "mortgage-payment": dynamic(() => import("@/pages/calculators/MortgagePaymentCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "affordability": dynamic(() => import("@/pages/calculators/AffordabilityCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "income": dynamic(() => import("@/pages/calculators/IncomeCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "closing-cost": dynamic(() => import("@/pages/calculators/ClosingCostCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "refinance": dynamic(() => import("@/pages/calculators/RefinanceCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "home-sale": dynamic(() => import("@/pages/calculators/HomeSaleCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "buying-power": dynamic(() => import("@/pages/calculators/BuyingPowerCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "temporary-buydown": dynamic(() => import("@/pages/calculators/TemporaryBuydownCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "rent-vs-own": dynamic(() => import("@/pages/calculators/RentVsOwnCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "retirement": dynamic(() => import("@/pages/calculators/RetirementCalculator"), { 
+    loading: () => <Loading />
+  }),
 }
 
 export default async function CalculatorBySlugPage({ params }: { params: Promise<{ slug: string }> }) {
