@@ -51,7 +51,7 @@ export function ValidatedForm<T extends FieldValues>({
       <form onSubmit={form.handleSubmit(handleSubmit)} className={className}>
         {children(form)}
         {form.formState.errors.root && (
-          <div className="rounded-md bg-red-50 p-4 mb-4">
+          <div className="rounded-md bg-muted p-4 mb-4">
             <div className="text-sm text-red-700">
               {form.formState.errors.root.message}
             </div>
@@ -116,7 +116,7 @@ export function FormFieldComponent<T extends FieldValues>({
               type={type}
               placeholder={placeholder}
               disabled={disabled}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-muted disabled:cursor-not-allowed"
             />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}
@@ -165,7 +165,7 @@ export function FormTextareaComponent<T extends FieldValues>({
               placeholder={placeholder}
               disabled={disabled}
               rows={rows}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed resize-vertical"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-muted disabled:cursor-not-allowed resize-vertical"
             />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}
@@ -212,7 +212,7 @@ export function FormSelectComponent<T extends FieldValues>({
             <select
               {...field}
               disabled={disabled}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-muted disabled:cursor-not-allowed"
             >
               <option value="">{placeholder}</option>
               {options.map((option) => (
@@ -260,7 +260,7 @@ export function FormCheckboxComponent<T extends FieldValues>({
               checked={field.value}
               onChange={field.onChange}
               disabled={disabled}
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded disabled:bg-muted disabled:cursor-not-allowed"
             />
           </FormControl>
           <div className="space-y-1 leading-none">

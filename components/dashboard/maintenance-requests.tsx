@@ -59,9 +59,9 @@ const getPriorityIcon = (priority: string) => {
     case "medium":
       return <Clock className="h-4 w-4 text-yellow-500" />
     case "low":
-      return <Clock className="h-4 w-4 text-blue-500" />
+      return <Clock className="h-4 w-4 text-orange-500" />
     default:
-      return <Clock className="h-4 w-4 text-gray-500" />
+      return <Clock className="h-4 w-4 text-muted-foreground" />
   }
 }
 
@@ -85,7 +85,7 @@ const getStatusIcon = (status: string) => {
 const getStatusColor = (status: string) => {
   switch (status) {
     case "open":
-      return "bg-blue-500"
+      return "bg-orange-500"
     case "in-progress":
       return "bg-yellow-500"
     case "scheduled":
@@ -113,7 +113,7 @@ export function MaintenanceRequests() {
               <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-medium">{request.tenant}</p>
-                  <Badge variant="outline" className={`capitalize ${getStatusColor(request.status)} text-white`}>
+                  <Badge variant="outline" className={`capitalize ${getStatusColor(request.status)} text-foreground`}>
                     {request.status.replace("-", " ")}
                   </Badge>
                 </div>

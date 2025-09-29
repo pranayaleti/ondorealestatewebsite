@@ -19,6 +19,14 @@ yarn-error.log*
 # env files
 .env*
 
+# macOS
+.DS_Store
+
+# visual diff artifacts
+reports/theme-audit/after/*.png
+reports/theme-audit/before/*.png
+reports/theme-audit/diff/*.png
+
 # vercel
 .vercel
 

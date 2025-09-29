@@ -171,7 +171,7 @@ const getStatusColor = (status: string) => {
     case "overdue":
       return "bg-red-500"
     case "refunded":
-      return "bg-blue-500"
+      return "bg-orange-500"
     default:
       return "bg-gray-500"
   }
@@ -264,7 +264,7 @@ export function PaymentsTable({ status }: { status?: string }) {
                 </div>
               </TableCell>
               <TableCell>
-                <Badge variant="outline" className={`capitalize ${getStatusColor(payment.status)} text-white`}>
+                <Badge variant="outline" className={`capitalize ${getStatusColor(payment.status)} text-foreground`}>
                   {payment.status}
                 </Badge>
               </TableCell>

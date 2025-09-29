@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2025-09-27T08:32:03.950Z",
+  "results": [
+    {
+      "pair": "text-primary on bg-base",
+      "ratio": 17.36,
+      "min": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text-muted on bg-base",
+      "ratio": 13.19,
+      "min": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "inverse on accent-1",
+      "ratio": 2.8,
+      "min": 4.5,
+      "pass": false
+    },
+    {
+      "pair": "link on bg-base",
+      "ratio": 17.36,
+      "min": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text-primary on bg-elevated",
+      "ratio": 15.85,
+      "min": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "accent-1 on bg-base",
+      "ratio": 6.93,
+      "min": 3,
+      "pass": true
+    }
+  ]
+}

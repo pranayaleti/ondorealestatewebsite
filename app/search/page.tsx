@@ -106,7 +106,7 @@ export default function SearchResultsPage() {
   const [sessionValid, setSessionValid] = useState(false)
   const [zipCode, setZipCode] = useState("")
 
-  const city = params.city as string
+  const city = params?.city as string
 
   useEffect(() => {
     // Check if user has valid session
@@ -195,7 +195,7 @@ export default function SearchResultsPage() {
               <AlertDescription>We couldn't find any available properties in ZIP code {zipCode}.</AlertDescription>
             </Alert>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm border mb-6">
+            <div className="bg-card p-6 rounded-lg shadow-sm border mb-6">
               <h3 className="text-lg font-semibold mb-4">What you can do next:</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2">

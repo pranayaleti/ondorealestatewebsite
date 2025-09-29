@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Download } from 'lucide-react';
@@ -190,21 +192,21 @@ const MortgagePaymentCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-muted to-muted">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-blue-600 hover:text-blue-800">
+              <Link href="/calculators" className="text-primary hover:text-primary">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Mortgage Payment Calculator</h1>
+              <h1 className="text-2xl font-bold text-foreground">Mortgage Payment Calculator</h1>
             </div>
             {results && (
               <button
                 onClick={downloadPDF}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                className="bg-orange-600 hover:bg-orange-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
               >
                 <Download className="h-5 w-5" />
                 <span>Download PDF</span>
@@ -217,22 +219,22 @@ const MortgagePaymentCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
+          <div className="bg-card rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
               {/* Home Price */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Home Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.homePrice}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="300,000"
                   />
                 </div>
@@ -240,17 +242,17 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Down Payment */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Down Payment
                 </label>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative">
-                    <span className="absolute left-3 top-3 text-gray-500">$</span>
+                    <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                     <input
                       type="number"
                       value={formData.downPayment}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="60,000"
                     />
                   </div>
@@ -263,13 +265,13 @@ const MortgagePaymentCalculator: React.FC = () => {
                         const newDownPayment = (percent / 100) * formData.homePrice;
                         handleInputChange('downPayment', newDownPayment);
                       }}
-                      className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="20.0"
                     />
-                    <span className="absolute right-3 top-3 text-gray-500">%</span>
+                    <span className="absolute right-3 top-3 text-muted-foreground">%</span>
                   </div>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   {formData.downPayment < formData.homePrice * 0.2 && 
                     "Note: Less than 20% down payment will require PMI"
                   }
@@ -278,16 +280,16 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Loan Amount */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Loan Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.loanAmount}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="240,000"
                   />
                 </div>
@@ -295,7 +297,7 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Interest Rate */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Interest Rate (%)
                 </label>
                 <input
@@ -303,20 +305,20 @@ const MortgagePaymentCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="4.5"
                 />
               </div>
 
               {/* Loan Term */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Loan Term (years)
                 </label>
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -326,16 +328,16 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Property Tax */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="3,000"
                   />
                 </div>
@@ -343,16 +345,16 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Insurance */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-gray-500">$</span>
+                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="1,200"
                   />
                 </div>
@@ -360,13 +362,13 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Loan Program */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Loan Program
                 </label>
                 <select
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -377,7 +379,7 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Credit Score */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Credit Score
                 </label>
                 <input
@@ -386,7 +388,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   max={850}
                   value={formData.creditScore}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="740"
                 />
               </div>
@@ -398,9 +400,9 @@ const MortgagePaymentCalculator: React.FC = () => {
                   type="checkbox"
                   checked={formData.financeUpfront}
                   onChange={(e) => handleInputChange('financeUpfront', e.target.checked as unknown as number)}
-                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                  className="h-4 w-4 text-primary border-gray-300 rounded"
                 />
-                <label htmlFor="financeUpfront" className="text-sm text-gray-700">Finance upfront fee into loan (FHA/VA/USDA)</label>
+                <label htmlFor="financeUpfront" className="text-sm text-foreground">Finance upfront fee into loan (FHA/VA/USDA)</label>
               </div>
             </div>
           </div>
@@ -410,69 +412,69 @@ const MortgagePaymentCalculator: React.FC = () => {
             {results && (
               <div id="pdf-content">
                 {/* Monthly Payment Summary */}
-                <div className="bg-white rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Monthly Payment Breakdown</h2>
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Monthly Payment Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Principal & Interest:</span>
+                      <span className="text-muted-foreground">Principal & Interest:</span>
                       <span className="font-semibold">{formatCurrency(results.monthlyPI)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-500">• Principal (first month):</span>
-                      <span className="text-green-600">{formatCurrency(results.principal)}</span>
+                      <span className="text-muted-foreground">• Principal (first month):</span>
+                      <span className="text-primary">{formatCurrency(results.principal)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-500">• Interest (first month):</span>
-                      <span className="text-red-600">{formatCurrency(results.interest)}</span>
+                      <span className="text-muted-foreground">• Interest (first month):</span>
+                      <span className="text-destructive">{formatCurrency(results.interest)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Property Tax:</span>
+                      <span className="text-muted-foreground">Property Tax:</span>
                       <span className="font-semibold">{formatCurrency(results.tax)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Insurance:</span>
+                      <span className="text-muted-foreground">Insurance:</span>
                       <span className="font-semibold">{formatCurrency(results.insurance)}</span>
                     </div>
                     {results.pmi > 0 && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">PMI:</span>
+                        <span className="text-muted-foreground">PMI:</span>
                         <span className="font-semibold">{formatCurrency(results.pmi)}</span>
                       </div>
                     )}
                     <hr className="my-3" />
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total Monthly Payment:</span>
-                      <span className="text-blue-600">{formatCurrency(results.totalMonthly)}</span>
+                      <span className="text-primary">{formatCurrency(results.totalMonthly)}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Cost Summary */}
-                <div className="bg-white rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Cost Summary</h2>
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">Cost Summary</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Annual Payment:</span>
+                      <span className="text-muted-foreground">Annual Payment:</span>
                       <span className="font-semibold">{formatCurrency(results.totalYearly)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total Cost ({formData.loanTerm} years):</span>
+                      <span className="text-muted-foreground">Total Cost ({formData.loanTerm} years):</span>
                       <span className="font-semibold">{formatCurrency(results.totalCost)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total Interest:</span>
+                      <span className="text-muted-foreground">Total Interest:</span>
                       <span className="font-semibold">{formatCurrency(results.totalInterest)}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Amortization Schedule */}
-                <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-semibold text-gray-900">Amortization Schedule</h2>
+                    <h2 className="text-xl font-semibold text-foreground">Amortization Schedule</h2>
                     <button
                       onClick={() => setShowAmortization(!showAmortization)}
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      className="text-primary hover:text-primary text-sm font-medium"
                     >
                       {showAmortization ? 'Hide Details' : 'Show Details'}
                     </button>
@@ -481,28 +483,28 @@ const MortgagePaymentCalculator: React.FC = () => {
                   {showAmortization && (
                     <div className="max-h-96 overflow-y-auto">
                       <table className="w-full text-sm">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-muted">
                           <tr>
-                            <th className="px-2 py-2 text-left text-gray-700">Month</th>
-                            <th className="px-2 py-2 text-right text-gray-700">Payment</th>
-                            <th className="px-2 py-2 text-right text-gray-700">Principal</th>
-                            <th className="px-2 py-2 text-right text-gray-700">Interest</th>
-                            <th className="px-2 py-2 text-right text-gray-700">Balance</th>
+                            <th className="px-2 py-2 text-left text-foreground">Month</th>
+                            <th className="px-2 py-2 text-right text-foreground">Payment</th>
+                            <th className="px-2 py-2 text-right text-foreground">Principal</th>
+                            <th className="px-2 py-2 text-right text-foreground">Interest</th>
+                            <th className="px-2 py-2 text-right text-foreground">Balance</th>
                           </tr>
                         </thead>
                         <tbody>
                           {results.amortizationSchedule.slice(0, 60).map((row) => (
                             <tr key={row.month} className="border-b border-gray-100">
-                              <td className="px-2 py-2 text-gray-600">{row.month}</td>
+                              <td className="px-2 py-2 text-muted-foreground">{row.month}</td>
                               <td className="px-2 py-2 text-right font-medium">{formatCurrency(row.payment)}</td>
-                              <td className="px-2 py-2 text-right text-green-600">{formatCurrency(row.principal)}</td>
-                              <td className="px-2 py-2 text-right text-red-600">{formatCurrency(row.interest)}</td>
-                              <td className="px-2 py-2 text-right text-gray-600">{formatCurrency(row.remainingBalance)}</td>
+                              <td className="px-2 py-2 text-right text-primary">{formatCurrency(row.principal)}</td>
+                              <td className="px-2 py-2 text-right text-destructive">{formatCurrency(row.interest)}</td>
+                              <td className="px-2 py-2 text-right text-muted-foreground">{formatCurrency(row.remainingBalance)}</td>
                             </tr>
                           ))}
                           {results.amortizationSchedule.length > 60 && (
-                            <tr className="bg-gray-50">
-                              <td colSpan={5} className="px-2 py-2 text-center text-gray-500 text-sm">
+                            <tr className="bg-muted">
+                              <td colSpan={5} className="px-2 py-2 text-center text-muted-foreground text-sm">
                                 ... and {results.amortizationSchedule.length - 60} more months
                               </td>
                             </tr>
@@ -518,11 +520,11 @@ const MortgagePaymentCalculator: React.FC = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">About This Calculator</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+        <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
+          <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">What This Calculator Shows:</h3>
+              <h3 className="font-medium text-foreground mb-2">What This Calculator Shows:</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Monthly mortgage payment breakdown</li>
                 <li>Total cost over the loan term</li>
@@ -532,7 +534,7 @@ const MortgagePaymentCalculator: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">Important Notes:</h3>
+              <h3 className="font-medium text-foreground mb-2">Important Notes:</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Rates and terms may vary by lender</li>
                 <li>Property taxes vary by location</li>

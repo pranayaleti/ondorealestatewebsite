@@ -127,7 +127,7 @@ export default function TestimonialsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Client Testimonials</h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 Don't just take our word for it - hear from the people we serve every day.
               </p>
             </div>
@@ -168,9 +168,9 @@ export default function TestimonialsPage() {
                   <CardContent>
                     <div className="relative">
                       <Quote className="h-6 w-6 text-gray-300 absolute -top-2 -left-2" />
-                      <p className="text-gray-600 italic pl-4">"{testimonial.text}"</p>
+                      <p className="text-muted-foreground italic pl-4">"{testimonial.text}"</p>
                     </div>
-                    <p className="text-sm text-gray-500 mt-2">{testimonial.location}</p>
+                    <p className="text-sm text-muted-foreground mt-2">{testimonial.location}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -179,7 +179,7 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-12">Our Track Record</h2>
@@ -190,7 +190,7 @@ export default function TestimonialsPage() {
                     {stat.icon}
                   </div>
                   <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -231,7 +231,7 @@ export default function TestimonialsPage() {
               <Button asChild size="lg" variant="secondary">
                 <Link href="/contact">Get Started Today</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-card hover:text-primary">
                 <Link href="/properties">Browse Properties</Link>
               </Button>
             </div>
