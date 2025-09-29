@@ -128,7 +128,7 @@ const CalculatorsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-orange-50">
-      <div className="bg-foreground shadow-sm border-b border-gray-200">
+      <div className="bg-card shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-4">
             <Link href="/" className="text-primary hover:text-orange-800">
@@ -154,7 +154,7 @@ const CalculatorsPage: React.FC = () => {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
                     ? 'bg-orange-600 text-foreground'
-                    : 'bg-foreground text-foreground hover:bg-muted border border-gray-300'
+                    : 'bg-card text-foreground hover:bg-muted border border-gray-300'
                 }`}
               >
                 {category}
@@ -170,11 +170,11 @@ const CalculatorsPage: React.FC = () => {
               href={calculator.path}
               className="group block"
             >
-              <div className="bg-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 overflow-hidden">
+              <div className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 overflow-hidden">
                 <div className={`bg-gradient-to-r ${calculator.color} p-6 text-foreground`}>
                   <div className="flex items-center justify-between">
                     {calculator.icon}
-                    <span className="text-xs font-medium bg-foreground/20 px-2 py-1 rounded-full">
+                    <span className="text-xs font-medium bg-card/20 px-2 py-1 rounded-full">
                       {calculator.category}
                     </span>
                   </div>
@@ -196,7 +196,7 @@ const CalculatorsPage: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-foreground rounded-xl shadow-lg p-8">
+        <div className="mt-16 bg-card rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-foreground mb-4">Why Use Our Calculators?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">

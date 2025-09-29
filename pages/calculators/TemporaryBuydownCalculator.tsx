@@ -96,7 +96,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       {/* Header */}
-      <div className="bg-foreground shadow-sm border-b border-gray-200">
+      <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
             <Link href="/calculators" className="text-primary hover:text-primary">
@@ -110,7 +110,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-foreground rounded-lg shadow-lg p-6">
+          <div className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
@@ -223,7 +223,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
             {results && (
               <>
                 {/* Monthly Savings */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Monthly Savings</h2>
                   <div className="space-y-4">
                     <div className="bg-muted p-4 rounded-lg">
@@ -258,7 +258,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 </div>
 
                 {/* Total Savings */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Total Savings</h2>
                   <div className="space-y-4">
                     <div className="bg-muted p-4 rounded-lg">
@@ -280,7 +280,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 </div>
 
                 {/* Break-Even Analysis */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Break-Even Analysis</h2>
                   <div className="space-y-4">
                     <div className="bg-muted p-4 rounded-lg">
@@ -304,7 +304,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 </div>
 
                 {/* Effective Rate */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Effective Rate</h2>
                   <div className="space-y-4">
                     <div className="bg-muted p-4 rounded-lg">
@@ -326,7 +326,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 </div>
 
                 {/* Recommendations */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Recommendations</h2>
                   <div className="space-y-3 text-sm text-muted-foreground">
                     {results.breakEvenMonths < formData.buydownYears * 12 ? (
@@ -346,7 +346,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 bg-foreground rounded-lg shadow-lg p-6">
+        <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Temporary Buydowns</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
             <div>

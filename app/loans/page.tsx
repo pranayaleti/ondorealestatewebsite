@@ -253,10 +253,10 @@ export default function LoansPage() {
             Start your mortgage application today and get pre-approved for your Utah home purchase.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-primary hover:bg-muted">
+            <Button asChild size="lg" className="bg-card text-primary hover:bg-muted">
               <Link href="/contact">Apply Now</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-primary">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-card hover:text-primary">
               <Link href="/calculators">Calculate Payment</Link>
             </Button>
           </div>

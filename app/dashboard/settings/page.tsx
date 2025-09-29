@@ -138,8 +138,8 @@ export default function SettingsPage() {
                 <div className="space-y-4">
                   <h3 className="text-lg font-medium">Theme</h3>
                   <div className="grid grid-cols-3 gap-4">
-                    <div className="border rounded-md p-4 cursor-pointer bg-foreground">
-                      <div className="h-10 bg-foreground border rounded-md mb-2"></div>
+                    <div className="border rounded-md p-4 cursor-pointer bg-card">
+                      <div className="h-10 bg-card border rounded-md mb-2"></div>
                       <p className="text-center text-sm font-medium">Light</p>
                     </div>
                     <div className="border rounded-md p-4 cursor-pointer bg-card">

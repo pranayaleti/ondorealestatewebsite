@@ -39,7 +39,7 @@ export default function WhyUtahPage() {
                 <Link href="/properties" className="bg-primary hover:bg-primary text-foreground px-6 py-3 rounded-lg font-semibold">
                   Browse Properties
                 </Link>
-                <Link href="/calculators/mortgage-payment" className="bg-foreground/10 hover:bg-foreground/20 text-foreground px-6 py-3 rounded-lg font-semibold border border-white/20">
+                <Link href="/calculators/mortgage-payment" className="bg-card/10 hover:bg-card/20 text-foreground px-6 py-3 rounded-lg font-semibold border border-white/20">
                   Run Numbers
                 </Link>
               </div>
@@ -159,7 +159,7 @@ export default function WhyUtahPage() {
             <Link href="/search" className="bg-primary hover:bg-primary text-foreground px-6 py-3 rounded-lg font-semibold">
               See Available Homes
             </Link>
-            <Link href="/contact" className="bg-foreground/10 hover:bg-foreground/20 text-foreground px-6 py-3 rounded-lg font-semibold border border-white/20">
+            <Link href="/contact" className="bg-card/10 hover:bg-card/20 text-foreground px-6 py-3 rounded-lg font-semibold border border-white/20">
               Talk to Our Team
             </Link>
           </div>
@@ -177,7 +177,7 @@ export default function WhyUtahPage() {
             <Link href="/calculators/buying-power" className="bg-background hover:bg-card text-foreground px-6 py-3 rounded-lg font-semibold">
               Check Your Buying Power
             </Link>
-            <Link href="/founders-letter" className="bg-foreground hover:bg-muted text-primary px-6 py-3 rounded-lg font-semibold">
+            <Link href="/founders-letter" className="bg-card hover:bg-muted text-primary px-6 py-3 rounded-lg font-semibold">
               Learn About Ondo
             </Link>
           </div>

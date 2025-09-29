@@ -242,10 +242,10 @@ export default function BuyPage() {
             Start your home buying journey with expert guidance and local market knowledge.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-primary hover:bg-muted">
+            <Button asChild size="lg" className="bg-card text-primary hover:bg-muted">
               <Link href="/contact">Start Your Search</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-primary">
+            <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-card hover:text-primary">
               <Link href="/properties">Browse Listings</Link>
             </Button>
           </div>

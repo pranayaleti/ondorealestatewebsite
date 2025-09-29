@@ -260,7 +260,7 @@ const RetirementCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50">
       {/* Header */}
-      <div className="bg-foreground shadow-sm border-b border-gray-200">
+      <div className="bg-card shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -285,7 +285,7 @@ const RetirementCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-foreground rounded-lg shadow-lg p-6">
+          <div className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
@@ -523,7 +523,7 @@ const RetirementCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content" className="bg-foreground rounded-lg shadow-lg p-6">
+              <div id="pdf-content" className="bg-card rounded-lg shadow-lg p-6">
                 <h2 className="text-xl font-semibold text-foreground mb-6">Retirement Analysis Results</h2>
                 
                 {/* Summary */}
@@ -595,7 +595,7 @@ const RetirementCalculator: React.FC = () => {
                           <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Total Assets</th>
                         </tr>
                       </thead>
-                      <tbody className="bg-foreground divide-y divide-gray-200">
+                      <tbody className="bg-card divide-y divide-gray-200">
                         {results.yearByYearProjection.slice(0, 10).map((projection) => (
                           <tr key={projection.year}>
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{projection.age}</td>

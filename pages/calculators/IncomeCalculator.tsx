@@ -119,7 +119,7 @@ const IncomeCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-muted to-muted">
       {/* Header */}
-      <div className="bg-foreground shadow-sm border-b border-gray-200">
+      <div className="bg-card shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
             <Link href="/calculators" className="text-primary hover:text-primary">
@@ -133,7 +133,7 @@ const IncomeCalculator: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
-          <div className="bg-foreground rounded-lg shadow-lg p-6">
+          <div className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Mortgage Details</h2>
             
             <div className="space-y-6">
@@ -278,7 +278,7 @@ const IncomeCalculator: React.FC = () => {
             {results && (
               <>
                 {/* Required Income */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Required Income</h2>
                   <div className="space-y-4">
                     <div className="bg-muted p-4 rounded-lg">
@@ -298,7 +298,7 @@ const IncomeCalculator: React.FC = () => {
                 </div>
 
                 {/* Payment Breakdown */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Payment Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
@@ -318,7 +318,7 @@ const IncomeCalculator: React.FC = () => {
                 </div>
 
                 {/* Debt Ratios */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Debt-to-Income Ratios</h2>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
@@ -340,7 +340,7 @@ const IncomeCalculator: React.FC = () => {
                 </div>
 
                 {/* Recommendations */}
-                <div className="bg-foreground rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Recommendations</h2>
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p>• This calculation uses conservative 28/36 debt-to-income ratios</p>
@@ -355,7 +355,7 @@ const IncomeCalculator: React.FC = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="mt-12 bg-foreground rounded-lg shadow-lg p-6">
+        <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
             <div>
