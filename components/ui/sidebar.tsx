@@ -46,7 +46,7 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "h-screen sticky top-0 z-30 flex flex-col transition-all duration-300 ease-in-out bg-slate-50 dark:bg-slate-900",
+        "h-screen sticky top-0 z-30 flex flex-col transition-all duration-300 ease-in-out bg-muted dark:bg-background",
         expanded ? "w-64" : "w-16",
         className,
       )}
@@ -145,7 +145,7 @@ export function SidebarMenuButton({
             "flex w-full items-center rounded-md px-3 py-3 text-sm font-medium transition-colors",
             isActive
               ? "bg-primary/10 text-primary font-semibold"
-              : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800",
+              : "text-slate-700 dark:text-slate-300 hover:bg-muted dark:hover:bg-card",
             expanded ? "justify-start" : "justify-center",
             className,
           ),
@@ -166,7 +166,7 @@ export function SidebarMenuButton({
         "group relative flex w-full items-center rounded-md px-3 py-3 text-sm font-medium transition-colors",
         isActive
           ? "bg-primary/10 text-primary font-semibold"
-          : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800",
+          : "text-slate-700 dark:text-slate-300 hover:bg-muted dark:hover:bg-card",
         expanded ? "justify-start" : "justify-center",
         className,
       )}

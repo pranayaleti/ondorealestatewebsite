@@ -132,29 +132,29 @@ export default function LandingPage() {
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">How OnDo Real Estate Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 dark:bg-muted p-4 rounded-full mb-4">
-                <Home className="h-8 w-8 text-gray-700 dark:text-gray-200" />
+              <div className="bg-muted dark:bg-muted p-4 rounded-full mb-4">
+                <Home className="h-8 w-8 text-foreground dark:text-gray-200" />
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-foreground">1. Find Properties</h3>
-              <p className="text-gray-600 dark:text-muted-foreground">
+              <p className="text-muted-foreground dark:text-muted-foreground">
                 Enter your ZIP code to browse available rental properties in your area.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 dark:bg-muted p-4 rounded-full mb-4">
-                <Building className="h-8 w-8 text-gray-700 dark:text-gray-200" />
+              <div className="bg-muted dark:bg-muted p-4 rounded-full mb-4">
+                <Building className="h-8 w-8 text-foreground dark:text-gray-200" />
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-foreground">2. Schedule Viewings</h3>
-              <p className="text-gray-600 dark:text-muted-foreground">
+              <p className="text-muted-foreground dark:text-muted-foreground">
                 Tour your favorite properties with our professional property managers.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <div className="bg-gray-100 dark:bg-muted p-4 rounded-full mb-4">
-                <DollarSign className="h-8 w-8 text-gray-700 dark:text-gray-200" />
+              <div className="bg-muted dark:bg-muted p-4 rounded-full mb-4">
+                <DollarSign className="h-8 w-8 text-foreground dark:text-gray-200" />
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-foreground">3. Move In</h3>
-              <p className="text-gray-600 dark:text-muted-foreground">
+              <p className="text-muted-foreground dark:text-muted-foreground">
                 Complete your application, sign the lease, and enjoy your new home.
               </p>
             </div>
@@ -163,7 +163,7 @@ export default function LandingPage() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-16 bg-gray-50 dark:bg-muted">
+      <section className="py-16 bg-muted dark:bg-muted">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">Featured Rental Properties</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -189,7 +189,7 @@ export default function LandingPage() {
                     </span>
                     <span className="font-semibold dark:text-foreground">${property.price}/mo</span>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-muted-foreground">{property.shortDescription}</p>
+                  <p className="text-sm text-muted-foreground dark:text-muted-foreground">{property.shortDescription}</p>
                 </CardContent>
                 <CardFooter>
                   <Button
@@ -223,19 +223,19 @@ export default function LandingPage() {
               </p>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
                   <span className="dark:text-muted-foreground">Professional tenant screening and placement</span>
                 </li>
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
                   <span className="dark:text-muted-foreground">Rent collection and financial reporting</span>
                 </li>
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
                   <span className="dark:text-muted-foreground">Maintenance coordination and 24/7 emergency response</span>
                 </li>
                 <li className="flex items-start">
-                  <Shield className="h-6 w-6 text-gray-700 dark:text-muted-foreground mr-2 flex-shrink-0" />
+                  <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
                   <span className="dark:text-muted-foreground">Regular property inspections and detailed reports</span>
                 </li>
               </ul>
@@ -283,7 +283,7 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gray-50 dark:bg-muted">
+      <section className="py-16 bg-muted dark:bg-muted">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -305,7 +305,7 @@ export default function LandingPage() {
                     <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-muted-foreground">
+                <p className="text-muted-foreground dark:text-muted-foreground">
                   "OnDo Real Estate made finding my new apartment so easy. Their team was responsive and helped me find
                   exactly what I was looking for in my price range."
                 </p>
@@ -330,7 +330,7 @@ export default function LandingPage() {
                     <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-muted-foreground">
+                <p className="text-muted-foreground dark:text-muted-foreground">
                   "Since hiring OnDo Real Estate to manage my rental properties, I've had zero stress. They handle
                   everything professionally and my income has actually increased."
                 </p>
@@ -360,7 +360,7 @@ export default function LandingPage() {
                     <Star key={i} className="h-4 w-4 fill-current text-yellow-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-muted-foreground">
+                <p className="text-muted-foreground dark:text-muted-foreground">
                   "The maintenance service through OnDo Real Estate is outstanding. Any issue I've had has been resolved
                   within 24 hours. Best property management I've experienced."
                 </p>

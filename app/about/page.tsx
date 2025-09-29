@@ -40,7 +40,7 @@ export default function AboutPage() {
 
             <h2 className="text-2xl font-semibold mb-4 dark:text-foreground">Our Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-slate-50 dark:bg-muted p-6 rounded-lg">
+              <div className="bg-muted dark:bg-muted p-6 rounded-lg">
                 <h3 className="text-xl font-medium mb-3 dark:text-foreground">For Property Owners</h3>
                 <ul className="space-y-2 dark:text-muted-foreground">
                   <li>• Comprehensive property marketing</li>
@@ -53,7 +53,7 @@ export default function AboutPage() {
                 </ul>
               </div>
 
-              <div className="bg-slate-50 dark:bg-muted p-6 rounded-lg">
+              <div className="bg-muted dark:bg-muted p-6 rounded-lg">
                 <h3 className="text-xl font-medium mb-3 dark:text-foreground">For Tenants</h3>
                 <ul className="space-y-2 dark:text-muted-foreground">
                   <li>• Wide selection of quality rental properties</li>

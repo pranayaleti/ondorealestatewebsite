@@ -187,7 +187,7 @@ export default function OwnerDashboard() {
                 </div>
                 <div className="flex items-center justify-between border-t pt-4">
                   <div className="text-sm font-medium">Net Income</div>
-                  <div className="font-medium text-green-600">$6,410.00</div>
+                  <div className="font-medium text-primary">$6,410.00</div>
                 </div>
               </div>
             )}
@@ -218,28 +218,28 @@ export default function OwnerDashboard() {
                       <p className="font-medium">123 Main St</p>
                       <p className="text-sm text-muted-foreground">Single Family</p>
                     </div>
-                    <div className="font-medium text-green-600">Occupied</div>
+                    <div className="font-medium text-primary">Occupied</div>
                   </div>
                   <div className="flex items-center justify-between border-b pb-2">
                     <div>
                       <p className="font-medium">456 Oak Ave</p>
                       <p className="text-sm text-muted-foreground">Single Family</p>
                     </div>
-                    <div className="font-medium text-green-600">Occupied</div>
+                    <div className="font-medium text-primary">Occupied</div>
                   </div>
                   <div className="flex items-center justify-between border-b pb-2">
                     <div>
                       <p className="font-medium">Sunset Apts #101</p>
                       <p className="text-sm text-muted-foreground">Apartment</p>
                     </div>
-                    <div className="font-medium text-green-600">Occupied</div>
+                    <div className="font-medium text-primary">Occupied</div>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">Sunset Apts #205</p>
                       <p className="text-sm text-muted-foreground">Apartment</p>
                     </div>
-                    <div className="font-medium text-red-600">Vacant</div>
+                    <div className="font-medium text-destructive">Vacant</div>
                   </div>
                 </div>
               </div>

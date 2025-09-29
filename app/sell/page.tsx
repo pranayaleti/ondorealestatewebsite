@@ -152,7 +152,7 @@ export default function SellPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Maximize Your Home's Value</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Our proven selling strategies and local market expertise help you get the best price 
               for your Utah home while minimizing stress and time on market.
             </p>
@@ -166,7 +166,7 @@ export default function SellPage() {
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                  <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -180,28 +180,28 @@ export default function SellPage() {
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Proven Results</h4>
-                    <p className="text-gray-600">Consistently achieve above-market prices with faster sales times</p>
+                    <p className="text-muted-foreground">Consistently achieve above-market prices with faster sales times</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Local Market Mastery</h4>
-                    <p className="text-gray-600">Deep understanding of Utah market trends and buyer preferences</p>
+                    <p className="text-muted-foreground">Deep understanding of Utah market trends and buyer preferences</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Professional Marketing</h4>
-                    <p className="text-gray-600">High-quality photography, virtual tours, and multi-channel marketing</p>
+                    <p className="text-muted-foreground">High-quality photography, virtual tours, and multi-channel marketing</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Stress-Free Process</h4>
-                    <p className="text-gray-600">Complete guidance and support throughout the entire selling process</p>
+                    <p className="text-muted-foreground">Complete guidance and support throughout the entire selling process</p>
                   </div>
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function SellPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -226,7 +226,7 @@ export default function SellPage() {
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
                   <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -241,7 +241,7 @@ export default function SellPage() {
             Get a free home valuation and discover how we can help you sell for top dollar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-foreground text-purple-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-foreground text-purple-600 hover:bg-muted">
               <Link href="/contact">Get Free Valuation</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white text-foreground hover:bg-foreground hover:text-purple-600">

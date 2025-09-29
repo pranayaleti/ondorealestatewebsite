@@ -37,7 +37,7 @@ export default function Error({
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-red-100 p-3 rounded-full">
-              <AlertTriangle className="h-8 w-8 text-red-600" />
+              <AlertTriangle className="h-8 w-8 text-destructive" />
             </div>
           </div>
           <CardTitle className="text-xl">Something went wrong!</CardTitle>

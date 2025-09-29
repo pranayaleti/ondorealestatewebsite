@@ -75,10 +75,10 @@ export function Footer() {
     .map((href) => {
       const lower = href.toLowerCase()
       if (lower.includes("facebook.com")) {
-        return { name: "Facebook", Component: Facebook, href, hover: "hover:text-blue-600" }
+        return { name: "Facebook", Component: Facebook, href, hover: "hover:text-primary" }
       }
       if (lower.includes("youtube.com") || lower.includes("youtu.be")) {
-        return { name: "YouTube", Component: Youtube, href, hover: "hover:text-red-600" }
+        return { name: "YouTube", Component: Youtube, href, hover: "hover:text-destructive" }
       }
       if (lower.includes("instagram.com")) {
         return { name: "Instagram", Component: Instagram, href, hover: "hover:text-pink-500" }

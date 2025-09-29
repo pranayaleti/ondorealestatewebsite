@@ -110,9 +110,9 @@ export function PropertyOverview({ property }: PropertyOverviewProps) {
                   </div>
                 </div>
                 {unit.status === "occupied" ? (
-                  <Badge className="bg-green-100 text-green-800 hover:bg-green-200">Occupied</Badge>
+                  <Badge className="bg-muted text-green-800 hover:bg-green-200">Occupied</Badge>
                 ) : (
-                  <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+                  <Badge variant="outline" className="bg-muted text-yellow-700 border-yellow-200">
                     Vacant
                   </Badge>
                 )}
