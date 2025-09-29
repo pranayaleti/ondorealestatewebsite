@@ -77,10 +77,10 @@ export default function PrivacyPolicyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <p className="text-lg text-gray-600 mb-4">
+              <p className="text-lg text-muted-foreground mb-4">
                 Last updated: <strong>{lastUpdated}</strong>
               </p>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 This Privacy Policy describes how OnDo Real Estate collects, uses, and protects your personal information 
                 when you use our services or visit our website.
               </p>
@@ -100,7 +100,7 @@ export default function PrivacyPolicyPage() {
                       {section.content.map((item, itemIndex) => (
                         <li key={itemIndex} className="flex items-start gap-2">
                           <span className="text-primary mt-1">•</span>
-                          <span className="text-gray-600">{item}</span>
+                          <span className="text-muted-foreground">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -115,7 +115,7 @@ export default function PrivacyPolicyPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     You have the right to access, update, or delete your personal information. You can also opt out of 
                     certain communications from us. To exercise these rights or if you have questions about this policy, 
                     please contact us using the information below.
@@ -125,14 +125,14 @@ export default function PrivacyPolicyPage() {
                       <Mail className="h-5 w-5 text-primary" />
                       <div>
                         <p className="font-semibold">Email</p>
-                        <p className="text-sm text-gray-600">privacy@ondorealestate.com</p>
+                        <p className="text-sm text-muted-foreground">privacy@ondorealestate.com</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <Phone className="h-5 w-5 text-primary" />
                       <div>
                         <p className="font-semibold">Phone</p>
-                        <p className="text-sm text-gray-600">(801) 555-1234</p>
+                        <p className="text-sm text-muted-foreground">(801) 555-1234</p>
                       </div>
                     </div>
                   </div>
@@ -145,7 +145,7 @@ export default function PrivacyPolicyPage() {
                 <CardTitle>Changes to This Policy</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   We may update this Privacy Policy from time to time. We will notify you of any changes by posting 
                   the new Privacy Policy on this page and updating the "Last updated" date. We encourage you to review 
                   this Privacy Policy periodically for any changes.
@@ -155,7 +155,7 @@ export default function PrivacyPolicyPage() {
 
             <div className="text-center mt-12">
               <h3 className="text-2xl font-bold mb-4">Questions About Our Privacy Policy?</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 If you have any questions about this Privacy Policy or our data practices, please don't hesitate to contact us.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

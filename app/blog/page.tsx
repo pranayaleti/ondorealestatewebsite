@@ -130,11 +130,11 @@ export default function BlogPage() {
                   <CardContent className="p-8">
                     <div className="flex items-center gap-2 mb-4">
                       <Badge variant="secondary">{featuredPost.category}</Badge>
-                      <span className="text-sm text-gray-500">{featuredPost.readTime}</span>
+                      <span className="text-sm text-muted-foreground">{featuredPost.readTime}</span>
                     </div>
                     <CardTitle className="text-2xl mb-4">{featuredPost.title}</CardTitle>
                     <CardDescription className="text-lg mb-6">{featuredPost.excerpt}</CardDescription>
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
                       <div className="flex items-center gap-1">
                         <User className="h-4 w-4" />
                         {featuredPost.author}
@@ -173,11 +173,11 @@ export default function BlogPage() {
                       <CardContent className="p-6">
                         <div className="flex items-center gap-2 mb-3">
                           <Badge variant="outline" className="text-xs">{post.category}</Badge>
-                          <span className="text-xs text-gray-500">{post.readTime}</span>
+                          <span className="text-xs text-muted-foreground">{post.readTime}</span>
                         </div>
                         <CardTitle className="text-lg mb-2 line-clamp-2">{post.title}</CardTitle>
                         <CardDescription className="mb-4 line-clamp-2">{post.excerpt}</CardDescription>
-                        <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
                           <div className="flex items-center gap-1">
                             <User className="h-3 w-3" />
                             {post.author}
@@ -209,7 +209,7 @@ export default function BlogPage() {
                     <div className="space-y-3">
                       {categories.map((category, index) => (
                         <Link key={index} href={`/blog/category/${category.name.toLowerCase().replace(' ', '-')}`}>
-                          <div className="flex items-center justify-between p-2 rounded hover:bg-gray-50 cursor-pointer">
+                          <div className="flex items-center justify-between p-2 rounded hover:bg-muted cursor-pointer">
                             <div className="flex items-center gap-2">
                               {category.icon}
                               <span className="text-sm">{category.name}</span>
@@ -227,7 +227,7 @@ export default function BlogPage() {
                     <CardTitle>Stay Updated</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-muted-foreground mb-4">
                       Get the latest real estate insights delivered to your inbox.
                     </p>
                     <Button asChild className="w-full">
@@ -252,7 +252,7 @@ export default function BlogPage() {
               <Button asChild size="lg" variant="secondary">
                 <Link href="/contact">Get Expert Advice</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-card hover:text-primary">
                 <Link href="/properties">Browse Properties</Link>
               </Button>
             </div>

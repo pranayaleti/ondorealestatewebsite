@@ -164,12 +164,12 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
                     <TableCell>{record.description}</TableCell>
                     <TableCell>
                       {record.status === "completed" ? (
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-muted text-green-800">
                           <CheckCircle className="h-3 w-3 mr-1" />
                           Completed
                         </Badge>
                       ) : record.status === "scheduled" ? (
-                        <Badge className="bg-blue-100 text-blue-800">
+                        <Badge className="bg-muted text-blue-800">
                           <Calendar className="h-3 w-3 mr-1" />
                           Scheduled
                         </Badge>

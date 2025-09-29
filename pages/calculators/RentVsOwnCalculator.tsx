@@ -266,16 +266,16 @@ const RentVsOwnCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-muted to-muted">
       {/* Header */}
       <div className="bg-foreground shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-blue-600 hover:text-blue-800">
+              <Link href="/calculators" className="text-primary hover:text-blue-800">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Rent vs Own Calculator</h1>
+              <h1 className="text-2xl font-bold text-foreground">Rent vs Own Calculator</h1>
             </div>
             {results && (
               <button
@@ -294,18 +294,18 @@ const RentVsOwnCalculator: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Form */}
           <div className="bg-foreground rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Enter Your Information</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
             
             <div className="space-y-6">
               {/* Rent Scenario */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                  <Building2 className="h-5 w-5 mr-2 text-blue-600" />
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
+                  <Building2 className="h-5 w-5 mr-2 text-primary" />
                   Rent Scenario
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Monthly Rent
                     </label>
                     <input
@@ -316,7 +316,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Rent Increase (%)
                     </label>
                     <input
@@ -328,7 +328,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Security Deposit
                     </label>
                     <input
@@ -339,7 +339,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Renters Insurance
                     </label>
                     <input
@@ -354,13 +354,13 @@ const RentVsOwnCalculator: React.FC = () => {
 
               {/* Buy Scenario */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                  <Home className="h-5 w-5 mr-2 text-green-600" />
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
+                  <Home className="h-5 w-5 mr-2 text-primary" />
                   Buy Scenario
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Home Price
                     </label>
                     <input
@@ -371,7 +371,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Down Payment
                     </label>
                     <input
@@ -382,7 +382,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Interest Rate (%)
                     </label>
                     <input
@@ -394,7 +394,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Loan Program
                   </label>
                   <select
@@ -409,7 +409,7 @@ const RentVsOwnCalculator: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Credit Score
                   </label>
                   <input
@@ -422,7 +422,7 @@ const RentVsOwnCalculator: React.FC = () => {
                   />
                 </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Loan Term (years)
                     </label>
                     <input
@@ -433,7 +433,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Property Tax
                     </label>
                     <input
@@ -444,7 +444,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Homeowners Insurance
                     </label>
                     <input
@@ -455,7 +455,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual Maintenance
                     </label>
                     <input
@@ -466,7 +466,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Annual HOA Fees
                     </label>
                     <input
@@ -481,13 +481,13 @@ const RentVsOwnCalculator: React.FC = () => {
 
               {/* Analysis Settings */}
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-medium text-foreground mb-4 flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-purple-600" />
                   Analysis Settings
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Analysis Period (years)
                     </label>
                     <input
@@ -498,7 +498,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Investment Return (%)
                     </label>
                     <input
@@ -510,7 +510,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Home Appreciation (%)
                     </label>
                     <input
@@ -530,22 +530,22 @@ const RentVsOwnCalculator: React.FC = () => {
           <div className="space-y-6">
             {results && (
               <div id="pdf-content" className="bg-foreground rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Analysis Results</h2>
+                <h2 className="text-xl font-semibold text-foreground mb-6">Analysis Results</h2>
                 
                 {/* Summary */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-blue-900 mb-2">Total Rent Cost ({formData.analysisYears} years)</h3>
                     <p className="text-2xl font-bold text-blue-900">{formatCurrency(results.rentTotalCost)}</p>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-green-900 mb-2">Total Buy Cost ({formData.analysisYears} years)</h3>
                     <p className="text-2xl font-bold text-green-900">{formatCurrency(results.buyTotalCost)}</p>
                   </div>
                 </div>
 
                 {/* Break-even Analysis */}
-                <div className="bg-yellow-50 p-4 rounded-lg mb-6">
+                <div className="bg-muted p-4 rounded-lg mb-6">
                   <h3 className="text-lg font-medium text-yellow-900 mb-2">Break-even Analysis</h3>
                   <p className="text-sm text-yellow-800 mb-2">
                     <strong>Break-even point:</strong> {results.breakEvenYears} years
@@ -556,7 +556,7 @@ const RentVsOwnCalculator: React.FC = () => {
                 </div>
 
                 {/* Recommendation */}
-                <div className="bg-purple-50 p-4 rounded-lg mb-6">
+                <div className="bg-muted p-4 rounded-lg mb-6">
                   <h3 className="text-lg font-medium text-purple-900 mb-2">Recommendation</h3>
                   <p className="text-lg font-semibold text-purple-900 mb-2">{results.recommendation}</p>
                   <p className="text-sm text-purple-800">{results.explanation}</p>
@@ -564,29 +564,29 @@ const RentVsOwnCalculator: React.FC = () => {
 
                 {/* Annual Comparison */}
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Annual Cost Comparison</h3>
+                  <h3 className="text-lg font-medium text-foreground mb-4">Annual Cost Comparison</h3>
                   <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50">
+                      <thead className="bg-muted">
                         <tr>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Year</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">Rent Cost</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-green-500 uppercase tracking-wider">Buy Cost</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-green-700 uppercase tracking-wider">Principal Paid</th>
                           <th className="px-3 py-2 text-left text-xs font-medium text-indigo-500 uppercase tracking-wider">Equity</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difference</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Difference</th>
                         </tr>
                       </thead>
                       <tbody className="bg-foreground divide-y divide-gray-200">
                         {results.annualComparison.slice(0, 10).map((year) => (
                           <tr key={year.year}>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{year.year}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-blue-600">{formatCurrency(year.rentCost)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">{formatCurrency(year.buyCost)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{year.year}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(year.rentCost)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(year.buyCost)}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm text-green-700">{formatCurrency(year.principalPaid)}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm text-indigo-600">{formatCurrency(year.equity)}</td>
                             <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${
-                              year.difference > 0 ? 'text-red-600' : 'text-green-600'
+                              year.difference > 0 ? 'text-destructive' : 'text-primary'
                             }`}>
                               {year.difference > 0 ? '+' : ''}{formatCurrency(year.difference)}
                             </td>

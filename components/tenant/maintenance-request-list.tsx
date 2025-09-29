@@ -76,7 +76,7 @@ export function MaintenanceRequestList() {
       case "completed":
         return <CheckCircle className="h-5 w-5 text-green-500" />
       default:
-        return <Clock className="h-5 w-5 text-gray-500" />
+        return <Clock className="h-5 w-5 text-muted-foreground" />
     }
   }
 
@@ -84,25 +84,25 @@ export function MaintenanceRequestList() {
     switch (status) {
       case "pending":
         return (
-          <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+          <Badge variant="outline" className="bg-muted text-yellow-700 border-yellow-200">
             Pending Review
           </Badge>
         )
       case "in-progress":
         return (
-          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+          <Badge variant="outline" className="bg-muted text-blue-700 border-blue-200">
             In Progress
           </Badge>
         )
       case "scheduled":
         return (
-          <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+          <Badge variant="outline" className="bg-muted text-purple-700 border-purple-200">
             Scheduled
           </Badge>
         )
       case "completed":
         return (
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          <Badge variant="outline" className="bg-muted text-green-700 border-green-200">
             Completed
           </Badge>
         )
@@ -160,7 +160,7 @@ export function MaintenanceRequestList() {
       <CardContent className="p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="relative flex-1">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search requests..."
               className="pl-8"
@@ -213,7 +213,7 @@ export function MaintenanceRequestList() {
                         <div className="mt-1">{getStatusIcon(request.status)}</div>
                         <div>
                           <h3 className="font-medium">{request.title}</h3>
-                          <p className="text-sm text-gray-500 mt-1 line-clamp-2">{request.description}</p>
+                          <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{request.description}</p>
                           <div className="flex flex-wrap gap-2 mt-2">
                             {getStatusBadge(request.status)}
                             {getPriorityBadge(request.priority)}
@@ -230,7 +230,7 @@ export function MaintenanceRequestList() {
                         </Button>
                       </Link>
                     </div>
-                    <div className="mt-3 pt-3 border-t text-sm text-gray-500 flex flex-wrap gap-x-4 gap-y-1">
+                    <div className="mt-3 pt-3 border-t text-sm text-muted-foreground flex flex-wrap gap-x-4 gap-y-1">
                       <span>Submitted: {request.dateSubmitted}</span>
                       <span>Last Updated: {request.lastUpdated}</span>
                       {request.scheduledDate && <span>Scheduled: {request.scheduledDate}</span>}

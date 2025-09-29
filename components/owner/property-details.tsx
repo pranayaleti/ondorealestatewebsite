@@ -132,8 +132,8 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
                 variant="outline"
                 className={
                   property.status === "active"
-                    ? "bg-green-50 text-green-700 border-green-200"
-                    : "bg-yellow-50 text-yellow-700 border-yellow-200"
+                    ? "bg-muted text-green-700 border-green-200"
+                    : "bg-muted text-yellow-700 border-yellow-200"
                 }
               >
                 {property.status === "active" ? "Active" : "Inactive"}
