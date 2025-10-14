@@ -206,9 +206,11 @@ export default function PropertyManagementPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <img
                 src="/city-map-with-pin.png"
-                alt="Utah property management service areas map"
+                alt="Utah property management service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by OnDo Real Estate"
                 className="w-full h-full object-cover"
                 loading="lazy"
+                title="OnDo Real Estate Utah Property Management Service Areas"
+                aria-label="Map showing Utah property management service areas including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities"
               />
             </div>
           </div>

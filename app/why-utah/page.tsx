@@ -45,7 +45,15 @@ export default function WhyUtahPage() {
               </div>
             </div>
             <div className="relative h-64 md:h-80 rounded-xl overflow-hidden ring-1 ring-primary/40">
-              <Image src="/city-map-with-pin.png" alt="Utah growth map" fill priority style={{ objectFit: "cover" }} />
+              <Image 
+                src="/city-map-with-pin.png" 
+                alt="Utah growth map showing Wasatch Front real estate development and economic expansion" 
+                fill 
+                priority 
+                style={{ objectFit: "cover" }}
+                title="Utah Growth Map - Wasatch Front Real Estate Development"
+                aria-label="Utah growth map showing Wasatch Front real estate development and economic expansion"
+              />
             </div>
           </div>
 

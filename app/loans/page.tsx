@@ -221,8 +221,10 @@ export default function LoansPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <img
                 src="/city-map-with-pin.png"
-                alt="Utah mortgage service areas map"
+                alt="Utah mortgage and loan service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by OnDo Real Estate"
                 className="w-full h-full object-cover"
+                title="OnDo Real Estate Utah Mortgage Service Areas"
+                aria-label="Map showing Utah mortgage and loan service areas including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities"
                 loading="lazy"
               />
             </div>

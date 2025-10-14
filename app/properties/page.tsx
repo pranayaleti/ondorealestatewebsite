@@ -324,7 +324,15 @@ export default function PropertiesPage() {
       <section className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-black/90 z-10" />
         <div className="relative h-[400px] overflow-hidden">
-          <Image src="/modern-apartment-balcony.png" alt="Properties Banner" fill className="object-cover" priority />
+          <Image 
+            src="/modern-apartment-balcony.png" 
+            alt="Modern apartment building representing Utah rental properties available through OnDo Real Estate" 
+            fill 
+            className="object-cover" 
+            priority 
+            title="Utah Rental Properties - OnDo Real Estate"
+            aria-label="Modern apartment building representing Utah rental properties available through OnDo Real Estate"
+          />
         </div>
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="container px-4 md:px-6 mx-auto">

@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -22,6 +23,16 @@ export default function Header() {
   const [isMounted, setIsMounted] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const { user } = useAuth()
+  const pathname = usePathname()
+
+  // Helper function to check if a link is active
+  const isActive = (href: string) => {
+    if (!pathname) return false
+    if (href === "/") {
+      return pathname === "/"
+    }
+    return pathname.startsWith(href)
+  }
 
   useEffect(() => {
     setIsMounted(true)
@@ -66,37 +77,75 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2">
             <span className="text-xl font-bold">OnDo <span className="text-primary">Real Estate</span></span>
           </Link>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/properties" className="text-sm font-medium hover:underline underline-offset-4">
-              Properties
-            </Link>
-            <Link href="/property-management" className="text-sm font-medium hover:underline underline-offset-4">
-              Property Management
-            </Link>
-            <Link href="/buy" className="text-sm font-medium hover:underline underline-offset-4">
+          <nav className="hidden md:flex gap-1">
+            <Link 
+              href="/buy" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/buy") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
               Buy
             </Link>
-            <Link href="/sell" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link 
+              href="/sell" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/sell") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
               Sell
             </Link>
-            <Link href="/loans" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link 
+              href="/properties" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/properties") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
+              Properties
+            </Link>
+            <Link 
+              href="/property-management" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/property-management") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
+              Property Management
+            </Link>
+            <Link 
+              href="/loans" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/loans") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
               Loans
             </Link>
-            <Link href="/why-utah" className="text-sm font-medium hover:underline underline-offset-4">
-              Why Utah
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:underline underline-offset-4">
-              About
-            </Link>
-            <Link href="/contact" className="text-sm font-medium hover:underline underline-offset-4">
-              Contact
-            </Link>
-            <Link href="/faq" className="text-sm font-medium hover:underline underline-offset-4">
-              FAQ
+            <Link 
+              href="/notary" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/notary") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+              aria-current={isActive("/notary") ? "page" : undefined}
+            >
+              Notary
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="text-sm font-medium hover:underline underline-offset-4">
+                <button className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/calculators") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}>
                   Calculators
                 </button>
               </DropdownMenuTrigger>
@@ -138,6 +187,46 @@ export default function Header() {
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
+            <Link 
+              href="/why-utah" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/why-utah") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
+              Why Utah
+            </Link>
+            <Link 
+              href="/about" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/about") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
+              About
+            </Link>
+            <Link 
+              href="/contact" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/contact") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
+              Contact
+            </Link>
+            <Link 
+              href="/faq" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                isActive("/faq") 
+                  ? "bg-orange-500 text-white" 
+                  : "text-foreground hover:!bg-orange-500 hover:!text-white"
+              }`}
+            >
+              FAQ
+            </Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -166,84 +255,246 @@ export default function Header() {
       {isMounted && isMenuOpen && (
         <div ref={menuRef} className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg border-t md:hidden z-50 py-4 pb-6">
           <div className="container">
-            <nav className="flex flex-col gap-4">
-              <Link
-                href="/properties"
-                className="text-sm font-medium hover:underline underline-offset-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Properties
-              </Link>
-              <Link
-                href="/property-management"
-                className="text-sm font-medium hover:underline underline-offset-4"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Property Management
-              </Link>
+            <nav className="flex flex-col gap-2">
               <Link
                 href="/buy"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/buy") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Buy
               </Link>
               <Link
                 href="/sell"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/sell") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sell
               </Link>
               <Link
+                href="/properties"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/properties") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Properties
+              </Link>
+              <Link
+                href="/property-management"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/property-management") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Property Management
+              </Link>
+              <Link
                 href="/loans"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/loans") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Loans
               </Link>
               <Link
-                href="/about"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                href="/notary"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/notary") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
+                aria-current={isActive("/notary") ? "page" : undefined}
               >
-                About
+                Notary
               </Link>
               <Link
                 href="/why-utah"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/why-utah") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Why Utah
               </Link>
               <Link
+                href="/about"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/about") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
                 href="/contact"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/contact") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link
                 href="/faq"
-                className="text-sm font-medium hover:underline underline-offset-4"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/faq") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 FAQ
               </Link>
               <div>
-                <p className="text-sm font-medium mb-2">Calculators</p>
+                <p className={`text-sm font-medium mb-2 px-3 py-2 rounded-md ${
+                  isActive("/calculators") 
+                    ? "bg-orange-500 text-white" 
+                    : "text-foreground"
+                }`}>Calculators</p>
                 <div className="grid grid-cols-2 gap-2">
-                  <Link href="/calculators" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Overview</Link>
-                  <Link href="/calculators/mortgage-payment" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Mortgage</Link>
-                  <Link href="/calculators/affordability" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Affordability</Link>
-                  <Link href="/calculators/income" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Income</Link>
-                  <Link href="/calculators/closing-cost" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Closing Cost</Link>
-                  <Link href="/calculators/refinance" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Refinance</Link>
-                  <Link href="/calculators/home-sale" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Home Sale</Link>
-                  <Link href="/calculators/buying-power" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Buying Power</Link>
-                  <Link href="/calculators/temporary-buydown" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Buydown</Link>
-                  <Link href="/calculators/rent-vs-own" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Rent vs Own</Link>
-                  <Link href="/calculators/retirement" onClick={() => setIsMenuOpen(false)} className="text-sm hover:underline underline-offset-4">Retirement</Link>
+                  <Link 
+                    href="/calculators" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Overview
+                  </Link>
+                  <Link 
+                    href="/calculators/mortgage-payment" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/mortgage-payment") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Mortgage
+                  </Link>
+                  <Link 
+                    href="/calculators/affordability" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/affordability") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Affordability
+                  </Link>
+                  <Link 
+                    href="/calculators/income" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/income") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Income
+                  </Link>
+                  <Link 
+                    href="/calculators/closing-cost" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/closing-cost") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Closing Cost
+                  </Link>
+                  <Link 
+                    href="/calculators/refinance" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/refinance") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Refinance
+                  </Link>
+                  <Link 
+                    href="/calculators/home-sale" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/home-sale") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Home Sale
+                  </Link>
+                  <Link 
+                    href="/calculators/buying-power" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/buying-power") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Buying Power
+                  </Link>
+                  <Link 
+                    href="/calculators/temporary-buydown" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/temporary-buydown") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Buydown
+                  </Link>
+                  <Link 
+                    href="/calculators/rent-vs-own" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/rent-vs-own") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Rent vs Own
+                  </Link>
+                  <Link 
+                    href="/calculators/retirement" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`text-sm px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive("/calculators/retirement") 
+                        ? "bg-orange-500 text-white" 
+                        : "text-foreground hover:!bg-orange-500 hover:!text-white"
+                    }`}
+                  >
+                    Retirement
+                  </Link>
                 </div>
               </div>
               {!user && (

@@ -210,8 +210,10 @@ export default function BuyPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <img
                 src="/modern-townhouse-garage.png"
-                alt="Modern Utah townhouse for sale"
+                alt="Modern Utah townhouse for sale in Midvale featuring attached garage and contemporary design"
                 className="w-full h-full object-cover"
+                title="Modern Utah Townhouse for Sale - Midvale"
+                aria-label="Modern Utah townhouse for sale in Midvale featuring attached garage and contemporary design"
                 loading="lazy"
               />
             </div>
@@ -235,7 +237,7 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-green-600 text-foreground">
+      <section className="py-16 bg-primary text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Find Your Utah Dream Home?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
