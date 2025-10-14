@@ -300,7 +300,21 @@ export function Footer() {
       <div className="bg-gray-950 py-4">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>© {new Date().getFullYear()} OnDo Real Estate. All rights reserved.</p>
+            <div className="flex flex-col md:flex-row items-center gap-2">
+              <p>© {new Date().getFullYear()} OnDo Real Estate. All rights reserved.</p>
+              <p className="flex items-center gap-1">
+                <span className="text-muted-foreground/80">Designed. Developed. Deployed by</span>
+                <Link 
+                  href="https://ondosoft.com/?utm_source=ondorealestate" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="font-semibold text-orange-500 hover:text-orange-400 transition-colors duration-200 hover:underline decoration-orange-400 underline-offset-2"
+                >
+                  OnDoSoft
+                </Link>
+                <span className="text-muted-foreground/80">The digital engine behind Ondo Real Estate.</span>
+              </p>
+            </div>
             <div className="flex flex-wrap items-center gap-4">
               <Link href="/licensing" className="hover:text-foreground">Licensing</Link>
               <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>

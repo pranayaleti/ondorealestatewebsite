@@ -14,18 +14,22 @@ export function PageBanner({ title, subtitle, backgroundImage }: PageBannerProps
         {backgroundImage ? (
           <Image
             src={backgroundImage || "/placeholder.svg"}
-            alt={`${title} background image`}
+            alt={`${title} background image - ${subtitle}`}
             fill
             className="object-cover"
             priority
+            title={`${title} - ${subtitle}`}
+            aria-label={`Background image for ${title} page showing ${subtitle}`}
           />
         ) : (
           <Image 
             src="/modern-apartment-balcony.png" 
-            alt="Modern apartment building background" 
+            alt="Modern apartment building background representing Utah rental properties and property management services" 
             fill
             className="object-cover"
             priority
+            title="Modern Apartment Building - Utah Rental Properties"
+            aria-label="Modern apartment building background representing Utah rental properties and property management services"
           />
         )}
       </div>

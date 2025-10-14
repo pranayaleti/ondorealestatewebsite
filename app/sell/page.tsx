@@ -209,8 +209,10 @@ export default function SellPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <img
                 src="/modern-office-building.png"
-                alt="Professional real estate office in Utah"
+                alt="Professional OnDo Real Estate office building in Utah representing expert home selling services"
                 className="w-full h-full object-cover"
+                title="OnDo Real Estate Professional Office - Utah Home Selling Services"
+                aria-label="Professional OnDo Real Estate office building in Utah representing expert home selling services"
                 loading="lazy"
               />
             </div>

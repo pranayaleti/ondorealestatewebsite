@@ -29,8 +29,8 @@ const featuredProperties = [
     valueRanges: ["300k-500k"],
     images: [
       "/modern-apartment-balcony.png",
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
+      "/modern-apartment-balcony.png",
+      "/modern-apartment-balcony.png",
     ],
     leaseTerms: "12-month minimum lease term with option to renew. $50 application fee per adult.",
     services: ["24/7 maintenance", "Package receiving", "Online rent payment", "Fitness center", "Rooftop lounge"],
@@ -56,8 +56,8 @@ const featuredProperties = [
     valueRanges: ["500k-750k"],
     images: [
       "/suburban-house-garden.png",
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
+      "/suburban-house-garden.png",
+      "/suburban-house-garden.png",
     ],
     leaseTerms: "12-month lease. $45 application fee per adult. Security deposit equal to one month's rent.",
     services: ["Lawn maintenance", "Snow removal", "Pest control", "Annual HVAC service", "24/7 emergency support"],
@@ -83,8 +83,8 @@ const featuredProperties = [
     valueRanges: ["300k-500k"],
     images: [
       "/modern-townhouse-garage.png",
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
+      "/modern-townhouse-garage.png",
+      "/modern-townhouse-garage.png",
     ],
     leaseTerms: "6 or 12-month lease terms. $40 application fee. Security deposit equal to one month's rent.",
     services: ["Community pool maintenance", "Exterior maintenance", "Trash removal", "Snow removal", "HOA management"],
@@ -110,7 +110,15 @@ export default function LandingPage() {
       {/* Hero Section with Background Image */}
       <section className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800 py-20 md:py-32" role="banner" aria-label="Hero section">
         <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-          <Image src="/modern-office-building.png" alt="Modern office building representing OnDo Real Estate" fill style={{ objectFit: "cover" }} priority />
+          <Image 
+            src="/modern-office-building.png" 
+            alt="Modern professional office building representing OnDo Real Estate's headquarters and property management services" 
+            fill 
+            style={{ objectFit: "cover" }} 
+            priority 
+            title="OnDo Real Estate Professional Office Building"
+            aria-label="Modern office building representing OnDo Real Estate's professional property management services"
+          />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
@@ -172,10 +180,12 @@ export default function LandingPage() {
                 <div className="relative h-48 w-full">
                   <Image
                     src={property.image || "/placeholder.svg"}
-                    alt={`${property.name} - ${property.description}`}
+                    alt={`${property.name} rental property in ${property.description} - ${property.shortDescription}`}
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    title={`${property.name} - ${property.description} Rental Property`}
+                    aria-label={`${property.name} rental property in ${property.description} featuring ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms`}
                   />
                 </div>
                 <CardHeader>
@@ -244,7 +254,14 @@ export default function LandingPage() {
               </Button>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden">
-              <Image src="/city-map-with-pin.png" alt="Property management" fill style={{ objectFit: "cover" }} />
+              <Image 
+                src="/city-map-with-pin.png" 
+                alt="Utah property management service areas map showing Salt Lake City, Holladay, Midvale and surrounding communities served by OnDo Real Estate" 
+                fill 
+                style={{ objectFit: "cover" }}
+                title="OnDo Real Estate Utah Service Areas"
+                aria-label="Map showing Utah property management service areas including Salt Lake City, Holladay, Midvale and surrounding communities"
+              />
             </div>
           </div>
         </div>
@@ -258,13 +275,15 @@ export default function LandingPage() {
               <div className="relative h-60 w-60 md:h-80 md:w-80 rounded-full border-4 border-primary overflow-hidden bg-background">
                 <Image 
                   src="/founder-image.png" 
-                  alt="Founder Pranay Reddy Aleti" 
+                  alt="Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate, professional headshot" 
                   fill 
                   style={{ objectFit: "cover" }}
                   className="rounded-full"
                   quality={100}
                   priority
                   sizes="(max-width: 768px) 240px, 320px"
+                  title="Pranay Reddy Aleti - OnDo Real Estate Founder"
+                  aria-label="Professional headshot of Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate"
                 />
               </div>
             </div>
@@ -291,7 +310,14 @@ export default function LandingPage() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                    <Image src="/professional-woman-smiling.png" alt="Sarah J." fill style={{ objectFit: "cover" }} />
+                    <Image 
+                      src="/professional-woman-smiling.png" 
+                      alt="Sarah J., satisfied tenant customer of OnDo Real Estate" 
+                      fill 
+                      style={{ objectFit: "cover" }}
+                      title="Sarah J. - OnDo Real Estate Tenant"
+                      aria-label="Professional photo of Sarah J., a satisfied tenant customer of OnDo Real Estate"
+                    />
                   </div>
                   <div>
                     <CardTitle className="text-lg dark:text-foreground">Sarah J.</CardTitle>
@@ -316,7 +342,14 @@ export default function LandingPage() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                    <Image src="/professional-man-suit.png" alt="Michael T." fill style={{ objectFit: "cover" }} />
+                    <Image 
+                      src="/professional-man-suit.png" 
+                      alt="Michael T., satisfied property owner customer of OnDo Real Estate" 
+                      fill 
+                      style={{ objectFit: "cover" }}
+                      title="Michael T. - OnDo Real Estate Property Owner"
+                      aria-label="Professional photo of Michael T., a satisfied property owner customer of OnDo Real Estate"
+                    />
                   </div>
                   <div>
                     <CardTitle className="text-lg dark:text-foreground">Michael T.</CardTitle>
@@ -343,9 +376,11 @@ export default function LandingPage() {
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
                     <Image
                       src="/professional-woman-glasses.png"
-                      alt="Jennifer L."
+                      alt="Jennifer L., satisfied tenant customer of OnDo Real Estate"
                       fill
                       style={{ objectFit: "cover" }}
+                      title="Jennifer L. - OnDo Real Estate Tenant"
+                      aria-label="Professional photo of Jennifer L., a satisfied tenant customer of OnDo Real Estate"
                     />
                   </div>
                   <div>

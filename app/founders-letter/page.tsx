@@ -2,7 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
-import { User, Building2, Lightbulb, TrendingUp, Handshake, Rocket } from "lucide-react"
+import { User, Building2, Lightbulb, TrendingUp, Handshake, Rocket, Code, Home, Zap, Target } from "lucide-react"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
@@ -71,13 +71,15 @@ export default function FoundersLetterPage() {
                 <div className="relative h-32 w-32 rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
                   <Image 
                     src="/founder-image.png" 
-                    alt="Founder Pranay Reddy Aleti" 
+                    alt="Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate, professional headshot" 
                     fill 
                     style={{ objectFit: "cover" }}
                     className="rounded-full"
                     quality={100}
                     priority
                     sizes="(max-width: 768px) 128px, 128px"
+                    title="Pranay Reddy Aleti - OnDo Real Estate Founder"
+                    aria-label="Professional headshot of Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate"
                   />
                 </div>
                 <div>
@@ -106,9 +108,14 @@ export default function FoundersLetterPage() {
                 building wealth, and creating opportunities. That belief is what led me to start <strong className="text-primary">Ondo Real
                 Estate</strong>.
               </p>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                I purchased my first home in <strong className="text-primary">2019</strong> — that experience sparked something in me. Since then, I’ve been helping friends and family purchase their own homes, place tenants, and navigate the real estate journey confidently.
+              </p>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                What started as a personal passion evolved into a full-time vision: to invest in real estate and eventually dedicate my career to it. In early <strong className="text-primary">2022</strong>, I launched both <a href="https://ondosoft.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 font-semibold decoration-2 underline-offset-2 transition-colors">OndoSoft</a> and <strong className="text-primary">Ondo Real Estate</strong>, blending technology and real estate innovation.
+              </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                My background in <strong className="text-primary">technology and full stack development</strong> has given me unique insights
-                into how to solve the complex challenges that property owners and tenants face every day.
+                Around the same time, I began building this very website — a continuous work in progress that evolves as I do. Every update reflects a step forward in our mission to make property management smarter, more transparent, and deeply human.
               </p>
             </div>
 
@@ -257,6 +264,155 @@ export default function FoundersLetterPage() {
           </div>
         </div>
       </div>
+
+<div className="max-w-7xl mx-auto px-4 py-24">
+  <div className="text-center mb-16">
+    <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+      The <span className="text-primary">Ondo</span> Journey
+    </h2>
+    <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+      From software engineering to real estate innovation - a decade of growth, learning, and building the future of property management.
+    </p>
+  </div>
+  
+  <div className="relative">
+    {/* Timeline line */}
+    <div className="hidden md:block absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
+    
+    {/* Timeline items */}
+    <div className="grid md:grid-cols-4 gap-8 md:gap-4">
+      {/* 2013 */}
+      <div className="group relative">
+        <div className="flex flex-col items-center text-center">
+          {/* Icon and year circle */}
+          <div className="relative mb-6">
+            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Code className="h-8 w-8" />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
+              2013
+            </div>
+          </div>
+          
+          {/* Content card */}
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm group-hover:shadow-lg transition-all duration-300 group-hover:border-primary/50">
+            <h3 className="text-xl font-bold text-foreground mb-3">The Foundation</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Began journey in <strong className="text-primary">software engineering</strong> — mastering full stack development, 
+              building scalable applications, and developing a deep understanding of technology's potential.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Full Stack</span>
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Innovation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 2019 */}
+      <div className="group relative">
+        <div className="flex flex-col items-center text-center">
+          {/* Icon and year circle */}
+          <div className="relative mb-6">
+            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Home className="h-8 w-8" />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
+              2019
+            </div>
+          </div>
+          
+          {/* Content card */}
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm group-hover:shadow-lg transition-all duration-300 group-hover:border-primary/50">
+            <h3 className="text-xl font-bold text-foreground mb-3">The Spark</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Purchased <strong className="text-primary">first home in Utah</strong>. This life-changing experience sparked 
+              a passion for real estate and began helping friends and family navigate their own property journeys.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">First Home</span>
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Utah Market</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 2022 */}
+      <div className="group relative">
+        <div className="flex flex-col items-center text-center">
+          {/* Icon and year circle */}
+          <div className="relative mb-6">
+            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Zap className="h-8 w-8" />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
+              2022
+            </div>
+          </div>
+          
+          {/* Content card */}
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm group-hover:shadow-lg transition-all duration-300 group-hover:border-primary/50">
+            <h3 className="text-xl font-bold text-foreground mb-3">The Launch</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Founded <strong className="text-primary">Ondo Real Estate</strong> and launched <a href="https://ondosoft.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 font-semibold decoration-2 underline-offset-2 transition-colors">OndoSoft</a>. 
+              Started building the platform that would merge cutting-edge technology with real estate expertise.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Ondo Launch</span>
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Tech + RE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 2025 */}
+      <div className="group relative">
+        <div className="flex flex-col items-center text-center">
+          {/* Icon and year circle */}
+          <div className="relative mb-6">
+            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Target className="h-8 w-8" />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
+              2025+
+            </div>
+          </div>
+          
+          {/* Content card */}
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm group-hover:shadow-lg transition-all duration-300 group-hover:border-primary/50">
+            <h3 className="text-xl font-bold text-foreground mb-3">The Future</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Expanding Ondo into a <strong className="text-primary">fully integrated real estate ecosystem</strong> — 
+              combining management, investment, and technology to serve owners and tenants with unprecedented innovation.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Ecosystem</span>
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">Innovation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {/* Bottom CTA */}
+  <div className="text-center mt-16">
+    <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
+      <h3 className="text-2xl font-bold text-foreground mb-4">Ready to Be Part of Our Story?</h3>
+      <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+        Join thousands of property owners and tenants who are already experiencing the future of real estate management.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <button className="bg-primary hover:bg-primary/90 text-background px-8 py-3 rounded-lg font-semibold transition-colors">
+          Start Your Journey
+        </button>
+        <button className="bg-card hover:bg-muted text-foreground px-8 py-3 rounded-lg font-semibold transition-colors border border-border">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   )
 }

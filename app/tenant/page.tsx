@@ -149,8 +149,10 @@ export default function TenantDashboard() {
                   <div className="w-full md:w-1/3 h-48 bg-muted rounded-md overflow-hidden">
                     <img 
                       src="/modern-apartment-balcony.png" 
-                      alt="Modern apartment building with balcony" 
-                      className="w-full h-full object-cover" 
+                      alt="Modern apartment building with balcony in Salt Lake City representing quality rental properties" 
+                      className="w-full h-full object-cover"
+                      title="Modern Apartment Building - Salt Lake City"
+                      aria-label="Modern apartment building with balcony in Salt Lake City representing quality rental properties" 
                       loading="lazy"
                     />
                   </div>
