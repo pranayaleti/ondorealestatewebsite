@@ -12,5 +12,6 @@ export const SITE_SOCIALS = [
   "https://www.tiktok.com/@OnDoRealEstate",
   "https://www.linkedin.com/company/OnDoRealEstate",
   "https://x.com/OnDoRealEstate",
+  "https://yelp.com/biz/ondo-real-estate-lehi",
 ]
 
