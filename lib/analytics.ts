@@ -4,7 +4,7 @@ export const analytics = {
   // Track page views
   trackPageView: (url: string, title?: string) => {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!, {
+      window.gtag('config', 'G-SSND5XGJ87', {
         page_title: title,
         page_location: url,
       })
