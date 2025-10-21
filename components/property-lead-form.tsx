@@ -1,30 +1,47 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Checkbox } from "@/components/ui/checkbox"
-import { CheckCircle, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import type React from "react";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
+import { CheckCircle, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PropertyLeadFormProps {
-  open: boolean
-  onClose: () => void
-  propertyName: string
+  open: boolean;
+  onClose: () => void;
+  propertyName: string;
+  publicId: string; // NEW: pass the property's publicId
 }
 
-export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFormProps) {
-  const [step, setStep] = useState(1)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+type FormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  preferredContact: "email" | "phone" | "text";
+  moveInDate: string;      // yyyy-mm-dd
+  budget: string;          // we’ll parse to number
+  occupants: "1" | "2" | "3" | "4" | "5+";
+  pets: "Yes" | "No";
+  comments: string;
+  termsAccepted: boolean;
+};
 
-  const [formData, setFormData] = useState({
+type Errors = Partial<Record<keyof FormData, string>> & { form?: string };
+
+export function PropertyLeadForm({ open, onClose, propertyName, publicId }: PropertyLeadFormProps) {
+  const [step, setStep] = useState<1 | 2>(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
+
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -34,51 +51,131 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
     budget: "",
     occupants: "1",
     pets: "No",
-    creditScore: "",
-    employmentStatus: "",
-    income: "",
     comments: "",
     termsAccepted: false,
-  })
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
 
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleSelectChange = (name: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value as any }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
 
   const handleCheckboxChange = (checked: boolean) => {
-    setFormData((prev) => ({ ...prev, termsAccepted: checked }))
-  }
+    setFormData((prev) => ({ ...prev, termsAccepted: !!checked }));
+    setErrors((prev) => ({ ...prev, termsAccepted: "" as any }));
+  };
+
+  // --- Validation helpers ---
+  const isValidEmail = (v: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+
+  // Allow +91, spaces, dashes; require 10–15 digits total
+  const isValidPhone = (v: string) =>
+    /^\+?\d[\d\s-]{8,}\d$/.test(v.trim());
+
+  const isFutureOrToday = (iso: string) => {
+    if (!iso) return false;
+    const d = new Date(iso + "T00:00:00");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return d >= today;
+  };
+
+  const parseBudget = (v: string) => Number(String(v).replace(/[^\d.]/g, "") || NaN);
+
+  const validateStep1 = (): boolean => {
+    const next: Errors = {};
+    if (!formData.firstName.trim()) next.firstName = "First name is required";
+    if (!formData.lastName.trim()) next.lastName = "Last name is required";
+    if (!formData.email.trim()) next.email = "Email is required";
+    else if (!isValidEmail(formData.email)) next.email = "Enter a valid email";
+    if (!formData.phone.trim()) next.phone = "Phone number is required";
+    else if (!isValidPhone(formData.phone)) next.phone = "Enter a valid phone number";
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  const validateStep2 = (): boolean => {
+    const next: Errors = {};
+    if (!formData.moveInDate) next.moveInDate = "Move-in date is required";
+    else if (!isFutureOrToday(formData.moveInDate)) next.moveInDate = "Move-in date cannot be in the past";
+
+    const budgetNum = parseBudget(formData.budget);
+    if (!formData.budget.trim()) next.budget = "Monthly budget is required";
+    else if (!Number.isFinite(budgetNum) || budgetNum <= 0) next.budget = "Enter a valid positive amount";
+
+    if (!formData.occupants) next.occupants = "Select occupants";
+
+    if (!formData.termsAccepted) next.termsAccepted = "You must accept the terms to submit";
+
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
 
   const handleNext = () => {
-    setStep(step + 1)
-  }
+    if (step === 1) {
+      if (!validateStep1()) return;
+      setStep(2);
+    }
+  };
 
-  const handleBack = () => {
-    setStep(step - 1)
-  }
+  const handleBack = () => setStep(1);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateStep2()) return;
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 1500)
-  }
+    setIsSubmitting(true);
+    setErrors({});
+
+    try {
+      // Build payload for your API
+      const budgetNum = parseBudget(formData.budget);
+      const occ = formData.occupants === "5+" ? 5 : Number(formData.occupants);
+      const payload = {
+        publicId,
+        tenantName: `${formData.firstName.trim()} ${formData.lastName.trim()}`.trim(),
+        tenantEmail: formData.email.trim(),
+        tenantPhone: formData.phone.trim(),
+        moveInDate: formData.moveInDate, // yyyy-mm-dd
+        monthlyBudget: budgetNum,
+        occupants: occ,
+        hasPets: formData.pets === "Yes",
+        message: formData.comments.trim(),
+      };
+
+      const res = await fetch("/api/leads/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}));
+        throw new Error(errJson?.error || `Submission failed (${res.status})`);
+      }
+
+      setIsSubmitted(true);
+    } catch (err: any) {
+      setErrors({ form: err?.message ?? "Something went wrong. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleClose = () => {
-    onClose()
-    // Reset form after closing
+    onClose();
+    // reset after closing animation
     setTimeout(() => {
-      setStep(1)
-      setIsSubmitted(false)
+      setStep(1);
+      setIsSubmitted(false);
+      setErrors({});
       setFormData({
         firstName: "",
         lastName: "",
@@ -89,14 +186,11 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
         budget: "",
         occupants: "1",
         pets: "No",
-        creditScore: "",
-        employmentStatus: "",
-        income: "",
         comments: "",
         termsAccepted: false,
-      })
-    }, 300)
-  }
+      });
+    }, 300);
+  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -104,26 +198,30 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
         <div className="relative">
           <button
             onClick={handleClose}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </button>
 
           <div className="p-6">
-            <DialogTitle className="sr-only">{isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}</DialogTitle>
-            <h2 className="text-xl font-semibold mb-6">{isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}</h2>
+            <DialogTitle className="sr-only">
+              {isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}
+            </DialogTitle>
+            <h2 className="text-xl font-semibold mb-6">
+              {isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}
+            </h2>
 
             {!isSubmitted && (
               <div className="flex justify-between mb-6">
-                {[1, 2, 3].map((i) => (
+                {[1, 2].map((i) => (
                   <div
                     key={i}
                     className={cn(
                       "flex items-center justify-center w-10 h-10 rounded-full",
                       step === i
                         ? "bg-background text-foreground dark:bg-muted dark:text-foreground"
-                        : "bg-muted text-muted-foreground dark:bg-gray-700 dark:text-muted-foreground",
+                        : "bg-muted text-muted-foreground dark:bg-gray-700 dark:text-muted-foreground"
                     )}
                   >
                     {i}
@@ -144,7 +242,11 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                 <Button onClick={handleClose}>Close</Button>
               </div>
             ) : (
-              <form onSubmit={step === 3 ? handleSubmit : (e) => e.preventDefault()}>
+              <form onSubmit={handleSubmit}>
+                {errors.form ? (
+                  <p className="mb-3 text-sm text-red-500">{errors.form}</p>
+                ) : null}
+
                 {step === 1 && (
                   <div className="space-y-4">
                     <h3 className="font-medium text-lg mb-4">Personal Information</h3>
@@ -154,25 +256,15 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                         <Label htmlFor="firstName">
                           First Name <span className="text-red-500">*</span>
                         </Label>
-                        <Input
-                          id="firstName"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleChange}
-                          required
-                        />
+                        <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} />
+                        {errors.firstName && <p className="text-xs text-red-500">{errors.firstName}</p>}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="lastName">
                           Last Name <span className="text-red-500">*</span>
                         </Label>
-                        <Input
-                          id="lastName"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleChange}
-                          required
-                        />
+                        <Input id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} />
+                        {errors.lastName && <p className="text-xs text-red-500">{errors.lastName}</p>}
                       </div>
                     </div>
 
@@ -180,35 +272,23 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       <Label htmlFor="email">
                         Email <span className="text-red-500">*</span>
                       </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                      />
+                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} />
+                      {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="phone">
                         Phone Number <span className="text-red-500">*</span>
                       </Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                      />
+                      <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} />
+                      {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
                     </div>
 
                     <div className="space-y-2">
                       <Label>Preferred Contact Method</Label>
                       <RadioGroup
                         defaultValue={formData.preferredContact}
-                        onValueChange={(value) => handleSelectChange("preferredContact", value)}
+                        onValueChange={(val) => handleSelectChange("preferredContact", val)}
                         className="flex space-x-4 mt-2"
                       >
                         <div className="flex items-center space-x-2">
@@ -252,8 +332,8 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                         type="date"
                         value={formData.moveInDate}
                         onChange={handleChange}
-                        required
                       />
+                      {errors.moveInDate && <p className="text-xs text-red-500">{errors.moveInDate}</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -263,11 +343,11 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       <Input
                         id="budget"
                         name="budget"
-                        placeholder="$"
+                        placeholder="₹"
                         value={formData.budget}
                         onChange={handleChange}
-                        required
                       />
+                      {errors.budget && <p className="text-xs text-red-500">{errors.budget}</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -277,7 +357,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                         name="occupants"
                         value={formData.occupants}
                         onChange={(e) => handleSelectChange("occupants", e.target.value)}
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       >
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -285,6 +365,7 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                         <option value="4">4</option>
                         <option value="5+">5+</option>
                       </select>
+                      {errors.occupants && <p className="text-xs text-red-500">{errors.occupants}</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -294,87 +375,11 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                         name="pets"
                         value={formData.pets}
                         onChange={(e) => handleSelectChange("pets", e.target.value)}
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       >
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                       </select>
-                    </div>
-
-                    <div className="pt-4 flex justify-between">
-                      <Button type="button" variant="outline" onClick={handleBack}>
-                        Back
-                      </Button>
-                      <Button
-                        type="button"
-                        onClick={handleNext}
-                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-muted"
-                      >
-                        Next
-                      </Button>
-                    </div>
-                  </div>
-                )}
-
-                {step === 3 && (
-                  <div className="space-y-4">
-                    <h3 className="font-medium text-lg mb-4">Financial Information</h3>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="creditScore">
-                        Credit Score Range <span className="text-red-500">*</span>
-                      </Label>
-                      <select
-                        id="creditScore"
-                        name="creditScore"
-                        value={formData.creditScore}
-                        onChange={(e) => handleSelectChange("creditScore", e.target.value)}
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        required
-                      >
-                        <option value="">Select</option>
-                        <option value="Excellent (750+)">Excellent (750+)</option>
-                        <option value="Good (700-749)">Good (700-749)</option>
-                        <option value="Fair (650-699)">Fair (650-699)</option>
-                        <option value="Below 650">Below 650</option>
-                        <option value="Don't Know">Don't Know</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="employmentStatus">
-                        Employment Status <span className="text-red-500">*</span>
-                      </Label>
-                      <select
-                        id="employmentStatus"
-                        name="employmentStatus"
-                        value={formData.employmentStatus}
-                        onChange={(e) => handleSelectChange("employmentStatus", e.target.value)}
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        required
-                      >
-                        <option value="">Select</option>
-                        <option value="Full-time">Full-time</option>
-                        <option value="Part-time">Part-time</option>
-                        <option value="Self-employed">Self-employed</option>
-                        <option value="Student">Student</option>
-                        <option value="Retired">Retired</option>
-                        <option value="Unemployed">Unemployed</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="income">
-                        Annual Income <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        id="income"
-                        name="income"
-                        placeholder="$"
-                        value={formData.income}
-                        onChange={handleChange}
-                        required
-                      />
                     </div>
 
                     <div className="space-y-2">
@@ -392,23 +397,19 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
                       <Checkbox
                         id="termsAccepted"
                         checked={formData.termsAccepted}
-                        onCheckedChange={(checked) => handleCheckboxChange(checked as boolean)}
+                        onCheckedChange={(checked) => handleCheckboxChange(!!checked)}
                       />
                       <Label htmlFor="termsAccepted" className="text-sm">
-                        I agree to the terms and conditions and consent to having my information stored for rental
-                        application purposes.
+                        I agree to the terms and conditions and consent to having my information stored for rental application purposes.
                       </Label>
                     </div>
+                    {errors.termsAccepted && <p className="text-xs text-red-500">{errors.termsAccepted}</p>}
 
                     <div className="pt-4 flex justify-between">
                       <Button type="button" variant="outline" onClick={handleBack}>
                         Back
                       </Button>
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-muted"
-                      >
+                      <Button type="submit" disabled={isSubmitting} className="bg-background hover:bg-muted dark:bg-muted dark:text-foreground dark:hover:bg-muted">
                         {isSubmitting ? "Submitting..." : "Submit Application"}
                       </Button>
                     </div>
@@ -420,5 +421,5 @@ export function PropertyLeadForm({ open, onClose, propertyName }: PropertyLeadFo
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
