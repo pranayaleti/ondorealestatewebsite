@@ -38,7 +38,7 @@ interface PropertyDetailsModalProps {
     services: string[]
     fees: string
     availability: string
-    website: string
+    email: string
   }
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -231,12 +231,12 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                   <div className="flex items-center">
                     <Globe className="h-5 w-5 mr-3 text-primary" />
                     <a
-                      href={`https://${company.website}`}
+                      href={`mailto:${company.email}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
-                      {company.website}
+                      {company.email}
                     </a>
                   </div>
 
@@ -254,7 +254,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
       </Dialog>
 
       {/* Lead Form Dialog */}
-      {showLeadForm && <PropertyLeadForm open={showLeadForm} onClose={handleFormClose} propertyName={company.name} />}
+      {showLeadForm && <PropertyLeadForm open={showLeadForm} onClose={handleFormClose} propertyName={company.name} publicId={String(company.id)}/>}
     </>
   )
 }

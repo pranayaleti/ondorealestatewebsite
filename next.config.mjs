@@ -83,6 +83,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year cache for static images
     dangerouslyAllowSVG: true,
+    domains: ['images.unsplash.com'],
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // Enable image optimization
     unoptimized: false,
