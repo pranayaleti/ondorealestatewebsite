@@ -2,6 +2,10 @@ import { allCitySlugs, allZips } from "@/lib/utah-cities"
 import { SITE_URL } from "@/lib/site"
 import { NextResponse } from "next/server"
 
+// Configure for static export
+export const dynamic = "force-static";
+export const revalidate = 0;
+
 function url(loc: string, priority = 0.7) {
   return `\n  <url>\n    <loc>${loc}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>${priority}</priority>\n  </url>`
 }

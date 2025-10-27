@@ -1,6 +1,10 @@
 // app/api/leads/submit/route.ts
 import { NextResponse } from "next/server";
 
+// Configure for static export
+export const dynamic = "force-static";
+export const revalidate = 0;
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();

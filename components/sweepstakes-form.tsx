@@ -55,7 +55,8 @@ export function SweepstakesForm({ initialReferralCode }: SweepstakesFormProps) {
         referralCode: formData.referralCode || undefined,
       }
       
-      const response = await fetch("/api/sweepstakes", {
+      // Call upstream server directly for static deployment
+      const response = await fetch("https://ondorealestateserver.onrender.com/api/sweepstakes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

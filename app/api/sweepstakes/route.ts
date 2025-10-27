@@ -3,6 +3,10 @@ import { z } from "zod"
 import { generateReferralCode, generateId } from "@/lib/sweepstakes-utils"
 import { emailValidation, phoneValidation } from "@/lib/validations"
 
+// Configure for static export
+export const dynamic = "force-static";
+export const revalidate = 0;
+
 // Validation schema for sweepstakes entry
 const sweepstakesSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
