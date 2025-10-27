@@ -169,7 +169,8 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
         message: formData.comments.trim(),
       };
 
-      const res = await fetch("/api/leads/submit", {
+      // Call upstream server directly for static deployment
+      const res = await fetch("https://ondorealestateserver.onrender.com/api/leads/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

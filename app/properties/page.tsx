@@ -555,7 +555,8 @@ export default function PropertiesPage() {
         setLoading(true);
         setError(null);
         console.log('[properties] fetching…');
-        const res = await fetch('/api/properties/public', {
+        // Call upstream server directly for static deployment
+        const res = await fetch('https://ondorealestateserver.onrender.com/api/properties/public', {
           signal: controller.signal,
           cache: 'no-store',
         });
