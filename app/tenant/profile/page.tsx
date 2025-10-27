@@ -154,7 +154,7 @@ export default function TenantProfile() {
 
               <div className="space-y-2">
                 <Label htmlFor="address">Current Address</Label>
-                <Input id="address" defaultValue="123 Main Street, Apt 4B" disabled />
+                <Input id="address" defaultValue="2701 N Thanksgiving Way, Apt 4B" disabled />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

@@ -158,8 +158,8 @@ export default function TenantDashboard() {
                   </div>
                   <div className="flex-1 space-y-4">
                     <div>
-                      <h3 className="text-xl font-bold">123 Main Street, Apt 4B</h3>
-                      <p className="text-muted-foreground">New York, NY 10001</p>
+                      <h3 className="text-xl font-bold">2701 N Thanksgiving Way, Apt 4B</h3>
+                      <p className="text-muted-foreground">Lehi, UT 84043</p>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>

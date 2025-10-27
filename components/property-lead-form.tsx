@@ -11,6 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CheckCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { emailValidation, phoneValidation } from "@/lib/validations";
 
 interface PropertyLeadFormProps {
   open: boolean;
@@ -72,13 +73,6 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
   };
 
   // --- Validation helpers ---
-  const isValidEmail = (v: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
-
-  // Allow +91, spaces, dashes; require 10–15 digits total
-  const isValidPhone = (v: string) =>
-    /^\+?\d[\d\s-]{8,}\d$/.test(v.trim());
-
   const isFutureOrToday = (iso: string) => {
     if (!iso) return false;
     const d = new Date(iso + "T00:00:00");
@@ -91,12 +85,37 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
 
   const validateStep1 = (): boolean => {
     const next: Errors = {};
-    if (!formData.firstName.trim()) next.firstName = "First name is required";
-    if (!formData.lastName.trim()) next.lastName = "Last name is required";
-    if (!formData.email.trim()) next.email = "Email is required";
-    else if (!isValidEmail(formData.email)) next.email = "Enter a valid email";
-    if (!formData.phone.trim()) next.phone = "Phone number is required";
-    else if (!isValidPhone(formData.phone)) next.phone = "Enter a valid phone number";
+    
+    // First name validation
+    if (!formData.firstName.trim()) {
+      next.firstName = "First name is required";
+    }
+    
+    // Last name validation
+    if (!formData.lastName.trim()) {
+      next.lastName = "Last name is required";
+    }
+    
+    // Email validation using Zod
+    if (!formData.email.trim()) {
+      next.email = "Email is required";
+    } else {
+      const emailResult = emailValidation.safeParse(formData.email);
+      if (!emailResult.success) {
+        next.email = emailResult.error.errors[0]?.message || "Enter a valid email";
+      }
+    }
+    
+    // Phone validation using Zod
+    if (!formData.phone.trim()) {
+      next.phone = "Phone number is required";
+    } else {
+      const phoneResult = phoneValidation.safeParse(formData.phone);
+      if (!phoneResult.success) {
+        next.phone = phoneResult.error.errors[0]?.message || "Enter a valid phone number";
+      }
+    }
+    
     setErrors(next);
     return Object.keys(next).length === 0;
   };

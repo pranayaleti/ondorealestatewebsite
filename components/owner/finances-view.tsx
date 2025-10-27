@@ -54,7 +54,7 @@ const TRANSACTIONS = [
   {
     id: "txn1",
     date: "2023-05-01",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     category: "Rent",
     description: "May 2023 Rent - Unit 1",
     amount: 1700,
@@ -64,7 +64,7 @@ const TRANSACTIONS = [
   {
     id: "txn2",
     date: "2023-05-01",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     category: "Rent",
     description: "May 2023 Rent - Unit 2",
     amount: 1700,
@@ -84,7 +84,7 @@ const TRANSACTIONS = [
   {
     id: "txn4",
     date: "2023-05-05",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     category: "Mortgage",
     description: "Monthly Mortgage Payment",
     amount: 1800,
@@ -104,7 +104,7 @@ const TRANSACTIONS = [
   {
     id: "txn6",
     date: "2023-05-15",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     category: "Maintenance",
     description: "Plumbing Repair",
     amount: 350,
@@ -144,7 +144,7 @@ const TRANSACTIONS = [
   {
     id: "txn10",
     date: "2023-06-01",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     category: "Rent",
     description: "June 2023 Rent - Unit 1",
     amount: 1700,
@@ -157,7 +157,7 @@ const TRANSACTIONS = [
 const PROPERTIES = [
   {
     id: "prop1",
-    name: "123 Main Street",
+      name: "2701 N Thanksgiving Way",
     income: 3400,
     expenses: 2100,
     netIncome: 1300,
@@ -469,7 +469,7 @@ export function FinancesView() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Properties</SelectItem>
-                    <SelectItem value="123 Main Street">123 Main Street</SelectItem>
+                    <SelectItem value="2701 N Thanksgiving Way">2701 N Thanksgiving Way</SelectItem>
                     <SelectItem value="456 Oak Avenue">456 Oak Avenue</SelectItem>
                     <SelectItem value="789 Pine Street">789 Pine Street</SelectItem>
                     <SelectItem value="All Properties">Shared Expenses</SelectItem>

@@ -30,7 +30,7 @@ const CONVERSATIONS = [
       name: "John Smith",
       avatar: "/placeholder.svg?key=9xqre",
       role: "tenant",
-      property: "123 Main Street, Unit 1",
+      property: "2701 N Thanksgiving Way, Unit 1",
     },
     lastMessage: {
       content: "Yes, I'll be available for the maintenance visit tomorrow between 2-4pm.",
@@ -47,7 +47,7 @@ const CONVERSATIONS = [
       name: "Sarah Johnson",
       avatar: "/placeholder.svg?key=1g942",
       role: "tenant",
-      property: "123 Main Street, Unit 2",
+      property: "2701 N Thanksgiving Way, Unit 2",
     },
     lastMessage: {
       content: "I've submitted the rent payment for this month. Please confirm when received.",
@@ -98,7 +98,7 @@ const CONVERSATIONS = [
       name: "Elite Electric",
       avatar: "/placeholder.svg?key=2k8lp",
       role: "vendor",
-      property: "123 Main Street",
+      property: "2701 N Thanksgiving Way",
     },
     lastMessage: {
       content: "The electrical work has been completed. Here's the invoice for your records.",
