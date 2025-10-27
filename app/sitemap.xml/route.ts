@@ -31,6 +31,7 @@ export async function GET() {
     `${base}/why-utah/`,
     `${base}/faq/`,
     `${base}/calculators/`,
+    `${base}/sweepstakes/`,
   ]
 
   // Prioritize service pages

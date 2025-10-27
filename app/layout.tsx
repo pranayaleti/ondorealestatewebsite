@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS } from "@/lib/site"
+import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
 import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ["latin"], weight: ["400","500","700","800"] })
@@ -98,6 +98,9 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      'p:domain_verify': 'e6002f0bbb15bad4447b62fed255798b',
+    },
   },
 }
 
@@ -129,7 +132,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             sameAs: SITE_SOCIALS,
             address: {
               '@type': 'PostalAddress',
+              streetAddress: '2701 N Thanksgiving Way',
+              addressLocality: 'Lehi',
               addressRegion: 'UT',
+              postalCode: '84043',
               addressCountry: 'US',
             },
             makesOffer: [
@@ -157,6 +163,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
         <Analytics />
+        {/* rb2b Script */}
+        <Script
+          id="rb2b-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(key) {
+                if (window.reb2b) return;
+                window.reb2b = {loaded: true};
+                var s = document.createElement("script");
+                s.async = true;
+                s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+                document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
+              }("961Y0H4259NG");
+            `,
+          }}
+        />
       </body>
     </html>
   )

@@ -1,10 +1,33 @@
 import { z } from "zod"
 
+// Reusable validation helpers
+
+/**
+ * Email validation - Uses Zod's built-in email validator
+ */
+export const emailValidation = z.string().email("Please enter a valid email address")
+
+/**
+ * Phone validation - Accepts international format with digits, spaces, dashes, parentheses, and + prefix
+ * Validates that after removing non-digits, the number has 10-15 digits
+ */
+export const phoneValidation = z.string()
+  .min(1, "Phone number is required")
+  .refine((val) => {
+    // Remove all non-digit characters for length check
+    const digitsOnly = val.replace(/\D/g, '')
+    return digitsOnly.length >= 10 && digitsOnly.length <= 15
+  }, "Phone number must be between 10 and 15 digits")
+  .refine((val) => {
+    // Allow common phone characters: digits, spaces, dashes, parentheses, plus sign
+    return /^[\d\s\-\(\)\+]+$/.test(val)
+  }, "Phone number can only contain digits, spaces, dashes, parentheses, and +")
+
 // Contact form validation
 export const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
+  email: emailValidation,
+  phone: phoneValidation,
   message: z.string().min(10, "Message must be at least 10 characters"),
   subject: z.string().min(3, "Subject must be at least 3 characters"),
 })
@@ -13,8 +36,8 @@ export const contactFormSchema = z.object({
 export const leadFormSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
+  email: emailValidation,
+  phone: phoneValidation,
   address: z.string().min(5, "Please enter a valid address"),
   city: z.string().min(2, "Please enter a valid city"),
   zipCode: z.string().regex(/^\d{5}(-\d{4})?$/, "Please enter a valid ZIP code"),
@@ -65,22 +88,22 @@ export const propertyFormSchema = z.object({
 // User profile validation
 export const userProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
+  email: emailValidation,
+  phone: phoneValidation,
   address: z.string().min(5, "Please enter a valid address"),
   city: z.string().min(2, "Please enter a valid city"),
   state: z.string().min(2, "Please enter a valid state"),
   zipCode: z.string().regex(/^\d{5}(-\d{4})?$/, "Please enter a valid ZIP code"),
   emergencyContact: z.object({
     name: z.string().min(2, "Emergency contact name must be at least 2 characters"),
-    phone: z.string().min(10, "Please enter a valid emergency contact phone number"),
+    phone: phoneValidation,
     relationship: z.string().min(2, "Please specify relationship"),
   }),
 })
 
 // Login validation
 export const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
+  email: emailValidation,
   password: z.string()
     .min(8, "Password must be at least 8 characters")
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Password must contain at least one uppercase letter, one lowercase letter, and one number"),
@@ -93,8 +116,8 @@ export const loginSchema = z.object({
 export const registrationSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
+  email: emailValidation,
+  phone: phoneValidation,
   password: z.string()
     .min(8, "Password must be at least 8 characters")
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Password must contain at least one uppercase letter, one lowercase letter, and one number"),
@@ -119,6 +142,17 @@ export const searchSchema = z.object({
   bathrooms: z.number().min(0).optional(),
 })
 
+// Sweepstakes validation
+export const sweepstakesSchema = z.object({
+  firstName: z.string().min(2, "First name must be at least 2 characters"),
+  lastName: z.string().min(2, "Last name must be at least 2 characters"),
+  email: emailValidation,
+  phone: phoneValidation,
+  referralCode: z.string().optional(),
+  services: z.array(z.string()).min(1, "Please select at least one service"),
+  serviceDescription: z.string().optional(),
+})
+
 export type ContactFormData = z.infer<typeof contactFormSchema>
 export type LeadFormData = z.infer<typeof leadFormSchema>
 export type MaintenanceRequestData = z.infer<typeof maintenanceRequestSchema>
@@ -127,3 +161,4 @@ export type UserProfileData = z.infer<typeof userProfileSchema>
 export type LoginData = z.infer<typeof loginSchema>
 export type RegistrationData = z.infer<typeof registrationSchema>
 export type SearchData = z.infer<typeof searchSchema>
+export type SweepstakesData = z.infer<typeof sweepstakesSchema>

@@ -16,11 +16,11 @@ import { useToast } from "@/hooks/use-toast"
 const PROPERTIES = [
   {
     id: "prop1",
-    name: "123 Main Street",
-    address: "123 Main Street",
-    city: "Salt Lake City",
+    name: "2701 N Thanksgiving Way",
+    address: "2701 N Thanksgiving Way",
+    city: "Lehi",
     state: "UT",
-    zipCode: "84101",
+    zipCode: "84043",
     type: "multi-family",
     units: 2,
     image: "/modern-apartment-balcony.png",

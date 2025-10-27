@@ -88,7 +88,7 @@ const DOCUMENTS = [
     name: "Lease Agreement - 123 Main St Unit 1",
     type: "pdf",
     category: "lease",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     size: "1.2 MB",
     uploadedAt: "2023-05-15T10:30:00",
     uploadedBy: "Sarah Johnson",
@@ -99,7 +99,7 @@ const DOCUMENTS = [
     name: "Lease Agreement - 123 Main St Unit 2",
     type: "pdf",
     category: "lease",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     size: "1.2 MB",
     uploadedAt: "2023-05-15T10:35:00",
     uploadedBy: "Sarah Johnson",
@@ -121,7 +121,7 @@ const DOCUMENTS = [
     name: "Property Insurance Policy - 123 Main St",
     type: "pdf",
     category: "insurance",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     size: "3.5 MB",
     uploadedAt: "2023-04-20T14:45:00",
     uploadedBy: "Sarah Johnson",
@@ -143,7 +143,7 @@ const DOCUMENTS = [
     name: "Property Tax Statement 2023 - 123 Main St",
     type: "pdf",
     category: "tax",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     size: "850 KB",
     uploadedAt: "2023-03-20T09:15:00",
     uploadedBy: "Sarah Johnson",
@@ -165,7 +165,7 @@ const DOCUMENTS = [
     name: "Maintenance Receipt - Plumbing Repair",
     type: "image",
     category: "maintenance",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     size: "2.1 MB",
     uploadedAt: "2023-05-05T16:20:00",
     uploadedBy: "Sarah Johnson",
@@ -187,7 +187,7 @@ const DOCUMENTS = [
     name: "Property Inspection Report - 123 Main St",
     type: "pdf",
     category: "inspection",
-    property: "123 Main Street",
+    property: "2701 N Thanksgiving Way",
     size: "4.3 MB",
     uploadedAt: "2023-02-12T11:10:00",
     uploadedBy: "Sarah Johnson",
@@ -378,7 +378,7 @@ export function DocumentsView() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Properties</SelectItem>
-                <SelectItem value="123 Main Street">123 Main Street</SelectItem>
+                <SelectItem value="2701 N Thanksgiving Way">2701 N Thanksgiving Way</SelectItem>
                 <SelectItem value="456 Oak Avenue">456 Oak Avenue</SelectItem>
                 <SelectItem value="789 Pine Street">789 Pine Street</SelectItem>
                 <SelectItem value="All Properties">Shared Properties</SelectItem>

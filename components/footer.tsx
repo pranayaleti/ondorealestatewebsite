@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { SITE_SOCIALS } from "@/lib/site"
+import { SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
 import {
   Facebook,
   Twitter,
@@ -70,37 +70,68 @@ function TiktokIcon({ className }: { className?: string }) {
   )
 }
 
+function LinktreeIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" className={className} aria-hidden="true">
+      <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    </svg>
+  )
+}
+
+function PinterestIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" className={className} aria-hidden="true">
+      <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      <path fill="currentColor" d="M12 6c-3.314 0-6 2.686-6 6 0 2.25 1.5 4.25 3.5 5.25.25.125.5.25.75.25.5 0 1-.25 1.25-.75.25-.5.25-1 .25-1.5 0-1.25-.5-2.5-1.5-3.5-.5-.5-.75-1.25-.75-2 0-1.5 1-2.5 2.5-2.5.75 0 1.5.25 2 .75.5.5.75 1.25.75 2 0 .75-.25 1.5-.75 2-.5.5-1.25.75-2 .75-.5 0-1-.25-1.25-.75-.25-.5-.25-1-.25-1.5 0-1.25.5-2.5 1.5-3.5.5-.5.75-1.25.75-2 0-1.5-1-2.5-2.5-2.5z"/>
+    </svg>
+  )
+}
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" className={className} aria-hidden="true">
+      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-1.012-2.03-1.129-.272-.118-.47-.178-.668.178-.197.356-.768 1.129-.94 1.36-.173.233-.346.262-.643.088-.297-.173-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+    </svg>
+  )
+}
+
 export function Footer() {
+  // Define social media mapping in a deterministic order to prevent hydration issues
+  const socialMediaMap = [
+    { pattern: "facebook.com", name: "Facebook", Component: Facebook, hover: "hover:text-primary" },
+    { pattern: "youtube.com", name: "YouTube", Component: Youtube, hover: "hover:text-destructive" },
+    { pattern: "youtu.be", name: "YouTube", Component: Youtube, hover: "hover:text-destructive" },
+    { pattern: "instagram.com", name: "Instagram", Component: Instagram, hover: "hover:text-pink-500" },
+    { pattern: "tiktok.com", name: "TikTok", Component: TiktokIcon, hover: "hover:text-fuchsia-500" },
+    { pattern: "linkedin.com", name: "LinkedIn", Component: Linkedin, hover: "hover:text-orange-700" },
+    { pattern: "x.com", name: "Twitter", Component: Twitter, hover: "hover:text-sky-500" },
+    { pattern: "twitter.com", name: "Twitter", Component: Twitter, hover: "hover:text-sky-500" },
+    { pattern: "pinterest.com", name: "Pinterest", Component: PinterestIcon, hover: "hover:text-red-500" },
+    { pattern: "yelp.com", name: "Yelp", Component: YelpIcon, hover: "hover:text-red-500" },
+    { pattern: "linktr.ee", name: "Linktree", Component: LinktreeIcon, hover: "hover:text-green-500" },
+    // TODO: Implement WhatsApp group integration - temporarily commented out
+    // { pattern: "chat.whatsapp.com", name: "WhatsApp", Component: WhatsAppIcon, hover: "hover:text-green-500" },
+    { pattern: "google.com/maps", name: "Google Business", Component: GoogleBusinessIcon, hover: "hover:text-green-500" },
+    { pattern: "google.com/business", name: "Google Business", Component: GoogleBusinessIcon, hover: "hover:text-green-500" },
+    { pattern: "g.page", name: "Google Business", Component: GoogleBusinessIcon, hover: "hover:text-green-500" },
+  ]
+
   const socials = SITE_SOCIALS
     .map((href) => {
       const lower = href.toLowerCase()
-      if (lower.includes("facebook.com")) {
-        return { name: "Facebook", Component: Facebook, href, hover: "hover:text-primary" }
-      }
-      if (lower.includes("youtube.com") || lower.includes("youtu.be")) {
-        return { name: "YouTube", Component: Youtube, href, hover: "hover:text-destructive" }
-      }
-      if (lower.includes("instagram.com")) {
-        return { name: "Instagram", Component: Instagram, href, hover: "hover:text-pink-500" }
-      }
-      if (lower.includes("tiktok.com")) {
-        return { name: "TikTok", Component: TiktokIcon, href, hover: "hover:text-fuchsia-500" }
-      }
-      if (lower.includes("linkedin.com")) {
-        return { name: "LinkedIn", Component: Linkedin, href, hover: "hover:text-orange-700" }
-      }
-      if (lower.includes("x.com") || lower.includes("twitter.com")) {
-        return { name: "Twitter", Component: Twitter, href, hover: "hover:text-sky-500" }
-      }
-      if (lower.includes("yelp.com")) {
-        return { name: "Yelp", Component: YelpIcon, href, hover: "hover:text-red-500" }
-      }
-      if (lower.includes("google.com/maps") || lower.includes("google.com/business") || lower.includes("g.page")) {
-        return { name: "Google Business", Component: GoogleBusinessIcon, href, hover: "hover:text-green-500" }
+      const match = socialMediaMap.find(item => lower.includes(item.pattern))
+      if (match) {
+        return { 
+          name: match.name, 
+          Component: match.Component, 
+          href, 
+          hover: match.hover,
+          key: `${match.name}-${href}` // Add stable key for consistent rendering
+        }
       }
       return null
     })
-    .filter(Boolean) as Array<{ name: string; Component: any; href: string; hover: string }>
+    .filter(Boolean) as Array<{ name: string; Component: any; href: string; hover: string; key: string }>
 
   return (
     <footer className="w-full bg-card text-foreground">
@@ -241,13 +272,13 @@ export function Footer() {
               <div>
                 <p className="text-sm font-medium">Our Location</p>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=123%20Main%20Street%2C%20Suite%20100%2C%20Lehi%2C%20UT%2084043"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE_ADDRESS)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
                   aria-label="Open address in Google Maps"
                 >
-                  <span className="block">123 Main Street</span>
+                  <span className="block">2701 N Thanksgiving Way</span>
                   <span className="block">Lehi, UT 84043</span>
                 </a>
               </div>
@@ -261,9 +292,9 @@ export function Footer() {
             {/* Social Media */}
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground">Follow us:</span>
-              {socials.map(({ name, Component, href, hover }) => (
+              {socials.map(({ name, Component, href, hover, key }) => (
                 <Link
-                  key={name}
+                  key={key}
                   href={href}
                   aria-label={name}
                   target="_blank"
@@ -273,6 +304,24 @@ export function Footer() {
                   <Component className="h-5 w-5" aria-hidden="true" />
                 </Link>
               ))}
+              <div className="flex items-center gap-2 ml-2 pl-4 border-l border-border">
+                <a
+                  href="https://linktr.ee/ondorealestate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Scan QR code to access all social media links"
+                >
+                  <img 
+                    src="/Linktree.png" 
+                    alt="Linktree QR Code - Scan to access all social media" 
+                    className="h-8 w-8 rounded border bg-white p-0.5"
+                  />
+                </a>
+                <span className="text-xs text-muted-foreground hidden sm:block">
+                  Click or Scan for all links
+                </span>
+              </div>
             </div>
 
             {/* Legal Information */}

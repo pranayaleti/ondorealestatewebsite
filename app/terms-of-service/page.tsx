@@ -170,8 +170,8 @@ export default function TermsOfServicePage() {
                     <p className="font-semibold">Address</p>
                     <p className="text-sm text-muted-foreground">
                       OnDo Real Estate<br />
-                      123 Main Street<br />
-                      Salt Lake City, UT 84101
+                      2701 N Thanksgiving Way<br />
+                      Lehi, UT 84043
                     </p>
                   </div>
                 </div>

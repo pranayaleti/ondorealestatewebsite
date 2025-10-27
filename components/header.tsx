@@ -75,7 +75,10 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold">OnDo <span className="text-primary">Real Estate</span></span>
+            <span className="text-xl font-bold text-center">
+              <span className="block">OnDo</span>
+              <span className="block text-primary">Real Estate</span>
+            </span>
           </Link>
           <nav className="hidden md:flex gap-1">
             <Link 
@@ -227,6 +230,12 @@ export default function Header() {
             >
               FAQ
             </Link>
+            <Link 
+              href="/sweepstakes" 
+              className="text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold"
+            >
+              🎁 Win Prizes
+            </Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -311,6 +320,7 @@ export default function Header() {
               >
                 Loans
               </Link>
+              {/* TODO: Implement notary page - temporarily commented out
               <Link
                 href="/notary"
                 className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
@@ -323,6 +333,7 @@ export default function Header() {
               >
                 Notary
               </Link>
+              */}
               <Link
                 href="/why-utah"
                 className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
@@ -366,6 +377,13 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 FAQ
+              </Link>
+              <Link
+                href="/sweepstakes"
+                className="text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                🎁 Win Prizes
               </Link>
               <div>
                 <p className={`text-sm font-medium mb-2 px-3 py-2 rounded-md ${

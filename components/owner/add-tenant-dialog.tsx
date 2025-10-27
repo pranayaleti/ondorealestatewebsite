@@ -81,7 +81,7 @@ export function AddTenantDialog() {
                   <SelectValue placeholder="Select property" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="property-1">123 Main Street</SelectItem>
+                  <SelectItem value="property-1">2701 N Thanksgiving Way</SelectItem>
                   <SelectItem value="property-2">456 Oak Avenue</SelectItem>
                   <SelectItem value="property-3">789 Pine Boulevard</SelectItem>
                 </SelectContent>

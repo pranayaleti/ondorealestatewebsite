@@ -157,7 +157,7 @@ export function AddTransactionDialog({ onAddTransaction }: AddTransactionDialogP
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="123 Main Street">123 Main Street</SelectItem>
+                      <SelectItem value="2701 N Thanksgiving Way">2701 N Thanksgiving Way</SelectItem>
                       <SelectItem value="456 Oak Avenue">456 Oak Avenue</SelectItem>
                       <SelectItem value="789 Pine Street">789 Pine Street</SelectItem>
                       <SelectItem value="All Properties">All Properties (Shared)</SelectItem>

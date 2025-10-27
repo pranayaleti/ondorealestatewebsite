@@ -45,7 +45,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold">Our Office</h3>
                       <p className="text-sm text-muted-foreground">
-                        123 Main Street
+                        2701 N Thanksgiving Way
                         <br />
                         Lehi, UT 84043
                       </p>
@@ -76,6 +76,44 @@ export default function ContactPage() {
                         <br />
                         Sunday: Closed
                       </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="h-6 w-6 text-primary flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">Follow Us</h3>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        Connect with us on social media for updates and insights
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href="https://linktr.ee/ondorealestate"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:text-primary/80 transition-colors"
+                        >
+                          <img 
+                            src="/Linktree.png" 
+                            alt="Linktree QR Code" 
+                            className="h-16 w-16 rounded border bg-white p-1"
+                          />
+                        </a>
+                        <div className="text-xs text-muted-foreground">
+                          <p>Scan QR code or visit</p>
+                          <a 
+                            href="https://linktr.ee/ondorealestate" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            linktr.ee/ondorealestate
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

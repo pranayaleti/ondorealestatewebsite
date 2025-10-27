@@ -132,8 +132,8 @@ export function NewMessageDialog({ onCreateConversation }: NewMessageDialogProps
                   <SelectValue placeholder="Select property" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="123 Main Street, Unit 1">123 Main Street, Unit 1</SelectItem>
-                  <SelectItem value="123 Main Street, Unit 2">123 Main Street, Unit 2</SelectItem>
+                  <SelectItem value="2701 N Thanksgiving Way, Unit 1">2701 N Thanksgiving Way, Unit 1</SelectItem>
+                  <SelectItem value="2701 N Thanksgiving Way, Unit 2">2701 N Thanksgiving Way, Unit 2</SelectItem>
                   <SelectItem value="456 Oak Avenue">456 Oak Avenue</SelectItem>
                   <SelectItem value="789 Pine Street">789 Pine Street</SelectItem>
                   <SelectItem value="Multiple Properties">Multiple Properties</SelectItem>

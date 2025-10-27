@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SITE_NAME, SITE_URL } from "./site"
+import { SITE_NAME, SITE_URL, SITE_ADDRESS } from "./site"
 
 // Generate structured data for different page types
 export const generateStructuredData = {
@@ -22,6 +22,7 @@ export const generateStructuredData = {
       "https://www.instagram.com/OnDoRealEstate",
       "https://www.linkedin.com/company/OnDoRealEstate",
       "https://x.com/OnDoRealEstate",
+      "https://linktr.ee/ondorealestate",
     ],
   }),
 
@@ -35,7 +36,7 @@ export const generateStructuredData = {
     email: "ondorealestate@gmail.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "123 Main Street",
+      streetAddress: "2701 N Thanksgiving Way",
       addressLocality: "Lehi",
       addressRegion: "UT",
       postalCode: "84043",
