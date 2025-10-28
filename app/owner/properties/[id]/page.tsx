@@ -17,6 +17,13 @@ export const metadata: Metadata = {
   description: "View and manage property details",
 }
 
+// Generate static params for build-time static generation
+export async function generateStaticParams() {
+  // Return empty array to indicate this is a dynamic route
+  // that should be handled at runtime
+  return []
+}
+
 // This would normally fetch from a database
 const getProperty = (id: string) => {
   // Mock property data
@@ -188,7 +195,7 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
           { name: "Home", url: SITE_URL },
           { name: "Owner", url: `${SITE_URL}/owner` },
           { name: "Properties", url: `${SITE_URL}/owner/properties` },
-          { name: "Details", url: `${SITE_URL}/owner/properties/${params.id}` },
+          { name: "Details", url: `${SITE_URL}/owner/properties/${id}` },
         ])}
       />
       <div className="flex flex-col gap-2">
@@ -209,7 +216,7 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/owner/properties/${params.id}`}>Property Details</BreadcrumbLink>
+              <BreadcrumbLink href={`/owner/properties/${id}`}>Property Details</BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

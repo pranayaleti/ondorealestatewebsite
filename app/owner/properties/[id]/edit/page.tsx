@@ -11,6 +11,13 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
+// Generate static params for build-time static generation
+export async function generateStaticParams() {
+  // Return empty array to indicate this is a dynamic route
+  // that should be handled at runtime
+  return []
+}
+
 export default async function EditPropertyPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   return (
@@ -24,8 +31,8 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
           { name: "Home", url: SITE_URL },
           { name: "Owner", url: `${SITE_URL}/owner` },
           { name: "Properties", url: `${SITE_URL}/owner/properties` },
-          { name: "Details", url: `${SITE_URL}/owner/properties/${params.id}` },
-          { name: "Edit", url: `${SITE_URL}/owner/properties/${params.id}/edit` },
+          { name: "Details", url: `${SITE_URL}/owner/properties/${id}` },
+          { name: "Edit", url: `${SITE_URL}/owner/properties/${id}/edit` },
         ])}
       />
       <div className="flex flex-col gap-2">
@@ -46,11 +53,11 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/owner/properties/${params.id}`}>Property Details</BreadcrumbLink>
+              <BreadcrumbLink href={`/owner/properties/${id}`}>Property Details</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/owner/properties/${params.id}/edit`}>
+              <BreadcrumbLink href={`/owner/properties/${id}/edit`}>
                 <Edit className="h-4 w-4 mr-1" />
                 Edit Property
               </BreadcrumbLink>
@@ -66,7 +73,7 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
         description="We're currently developing the property editing functionality. Please check back soon."
         showHomeButton={false}
         actionText="Return to Property Details"
-        actionHref={`/owner/properties/${params.id}`}
+        actionHref={`/owner/properties/${id}`}
       />
     </div>
   )
