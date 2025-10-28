@@ -152,7 +152,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
       case "pdf":
         return <FilePdf className="h-6 w-6 text-red-500" />
       case "image":
-        return <FileImage className="h-6 w-6 text-orange-500" />
+        return <FileImage className="h-6 w-6 text-primary" />
       case "spreadsheet":
         return <FileSpreadsheet className="h-6 w-6 text-green-500" />
       default:
@@ -261,7 +261,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
                 </div>
                 <div className="p-4 bg-muted/30">
                   <div className="flex justify-between items-center">
-                    <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/20 capitalize">
+                    <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 capitalize">
                       {document.category}
                     </span>
                     <span className="text-xs text-muted-foreground">Uploaded by {document.uploadedBy}</span>

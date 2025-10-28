@@ -248,7 +248,7 @@ export default function LoansPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-orange-600 text-foreground">
+      <section className="py-16 bg-primary text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Pre-Approved?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

@@ -174,7 +174,7 @@ export default function WhyUtahPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-gray-900 rounded-xl p-8 border border-primary">
+        <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-8 border border-primary">
           <p className="text-muted-foreground text-lg mb-4">Ready to capitalize on Utah’s momentum?</p>
           <div className="text-2xl font-bold text-foreground mb-2">Invest with Confidence</div>
           <p className="text-muted-foreground mb-6 max-w-3xl">

@@ -35,11 +35,48 @@ export function LeadForm() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement proper API call with error handling
-    // Here you would typically send the data to your API
-    alert("Lead added successfully!")
+    setIsSubmitting(true)
+    setSubmitError("")
+    
+    try {
+      const res = await fetch("https://ondorealestateserver.onrender.com/api/leads/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      
+      if (!res.ok) {
+        const error = await res.json().catch(() => ({}))
+        throw new Error(error?.error || `Submission failed (${res.status})`)
+      }
+      
+      // Success
+      alert("Lead added successfully!")
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        city: "",
+        zipCode: "",
+        propertyType: "",
+        propertyValue: "",
+        source: "",
+        comments: "",
+      })
+    } catch (err: any) {
+      setSubmitError(err?.message || "Failed to submit lead. Please try again.")
+      console.error("Lead submission error:", err)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (

@@ -176,7 +176,7 @@ const getStatusColor = (status: string) => {
     case "active":
       return "bg-green-500"
     case "upcoming":
-      return "bg-orange-500"
+      return "bg-primary"
     case "expiring":
       return "bg-yellow-500"
     case "expired":

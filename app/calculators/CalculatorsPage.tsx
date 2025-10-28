@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { 
   Calculator as CalcIcon,
@@ -11,7 +11,11 @@ import {
   ShoppingCart as ShoppingCartIcon,
   ArrowLeftRight,
   PiggyBank,
-  ArrowLeftRight as CompareIcon
+  ArrowLeftRight as CompareIcon,
+  CheckCircle2,
+  Clock,
+  BarChart3,
+  ChevronRight
 } from 'lucide-react'
 
 interface CalculatorTile {
@@ -33,7 +37,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/mortgage-payment',
       icon: <CalcIcon className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-orange-500 to-orange-600'
+      color: 'from-primary to-primary'
     },
     {
       id: 'affordability',
@@ -60,7 +64,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/closing-cost',
       icon: <Landmark className="h-8 w-8" />,
       category: 'Purchase',
-      color: 'from-orange-500 to-orange-600'
+      color: 'from-primary to-primary'
     },
     {
       id: 'refinance',
@@ -120,41 +124,41 @@ const CalculatorsPage: React.FC = () => {
 
   const categories = ['All', 'Mortgage', 'Purchase', 'Sale', 'Analysis', 'Planning']
 
-  const [selectedCategory, setSelectedCategory] = React.useState('All')
+  const [selectedCategory, setSelectedCategory] = useState('All')
 
   const filteredCalculators = selectedCategory === 'All' 
     ? calculators 
     : calculators.filter(calc => calc.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-orange-50">
-      <div className="bg-card shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="text-primary hover:text-orange-800">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </Link>
-            <div>
-              <h1 className="text-3xl font-bold text-foreground">Real Estate Calculators</h1>
-              <p className="text-muted-foreground mt-1">Comprehensive tools to help you make informed real estate decisions</p>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-black via-[#0a0a0a] to-[#111111] text-white antialiased" style={{ fontFamily: 'var(--font-outfit), sans-serif' }}>
+      {/* Hero Header */}
+      <div className="relative border-b border-white/10 bg-gradient-to-r from-black to-[#0a0a0a]">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/5 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative">
+          <div className="space-y-4 text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#ff6b00] to-[#ff9500] bg-clip-text text-transparent tracking-tight mx-auto">
+              Real Estate Calculators
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Professional-grade tools to help you make informed real estate decisions
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        {/* Category Filter Pills */}
+        <div className="mb-12">
+          <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer border backdrop-blur-sm active:scale-95 ${
                   selectedCategory === category
-                    ? 'bg-orange-600 text-foreground'
-                    : 'bg-card text-foreground hover:bg-muted border border-gray-300'
+                    ? 'bg-gradient-to-r from-[#ff6b00] to-[#ff9500] text-white border-[#ff6b00] shadow-lg shadow-orange-500/30'
+                    : 'bg-white/5 text-white border-white/10 hover:border-[#ff6b00]/50 hover:bg-white/[0.08]'
                 }`}
               >
                 {category}
@@ -163,76 +167,128 @@ const CalculatorsPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Calculator Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCalculators.map((calculator) => (
-            <Link
+          {filteredCalculators.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <p className="text-[#b0b0b0]">No calculators found in this category.</p>
+            </div>
+          ) : (
+            filteredCalculators.map((calculator, index) => (
+            <div
               key={calculator.id}
-              href={calculator.path}
-              className="group block"
+              className="animate-fade-in-up animate-fill-both"
+              style={{ 
+                animationDelay: `${Math.min(index * 0.1, 1)}s`,
+              } as React.CSSProperties}
             >
-              <div className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 overflow-hidden">
-                <div className={`bg-gradient-to-r ${calculator.color} p-6 text-foreground`}>
-                  <div className="flex items-center justify-between">
-                    {calculator.icon}
-                    <span className="text-xs font-medium bg-card/20 px-2 py-1 rounded-full">
+              <Link
+                href={calculator.path}
+                className="block group h-full"
+              >
+                <div className="relative h-full rounded-2xl backdrop-blur-lg border border-white/10 bg-white/5 p-6 overflow-hidden transition-all duration-500 hover:border-[#ff6b00]/50 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(255,107,0,0.15)]">
+                  {/* Animated Glow Border on Hover */}
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff6b00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff9500] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className="text-xs font-semibold bg-[#ff6b00]/20 text-[#ff9500] px-3 py-1 rounded-full border border-[#ff6b00]/30 backdrop-blur-sm">
                       {calculator.category}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold mt-4">{calculator.name}</h3>
-                </div>
-                <div className="p-6">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+
+                  {/* Icon */}
+                  <div className="mb-6 relative">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#ff6b00] to-[#ff9500] flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-all duration-300">
+                      {calculator.icon}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-orange-400 transition-colors">
+                    {calculator.name}
+                  </h3>
+                  <p className="text-sm text-gray-300 leading-relaxed mb-6">
                     {calculator.description}
                   </p>
-                  <div className="mt-4 flex items-center text-primary group-hover:text-orange-800 font-medium text-sm">
-                    Use Calculator
-                    <svg className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+
+                  {/* Use Calculator Button */}
+                  <div className="flex items-center gap-2 text-[#ff6b00] group-hover:text-[#ff9500] font-semibold text-sm transition-colors">
+                    <span>Use Calculator</span>
+                    <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            </div>
+          )))}
         </div>
 
-        <div className="mt-16 bg-card rounded-xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Why Use Our Calculators?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="bg-muted rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+        {/* Why Use Our Calculators Section */}
+        <div className="mt-24 mb-12 animate-fade-in-up">
+          <div className="relative backdrop-blur-lg border border-white/10 bg-white/5 rounded-3xl p-8 md:p-12 overflow-hidden">
+            {/* Background Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
+            
+            <div className="relative">
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#ff6b00] to-[#ff9500] bg-clip-text text-transparent">
+                Why Use Our Calculators?
+              </h2>
+              <p className="text-gray-300 mb-12 max-w-2xl">
+                Professional tools designed for accuracy and speed
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center group">
+                  <div className="relative inline-block mb-6">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff6b00]/20 to-[#ff9500]/20 flex items-center justify-center backdrop-blur-sm border border-[#ff6b00]/30 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle2 className="h-10 w-10 text-[#ff9500]" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b00] to-[#ff9500] rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white">Accurate Calculations</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">Professional-grade calculations using current market rates and formulas</p>
+                </div>
+
+                <div className="text-center group">
+                  <div className="relative inline-block mb-6">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff6b00]/20 to-[#ff9500]/20 flex items-center justify-center backdrop-blur-sm border border-[#ff6b00]/30 group-hover:scale-110 transition-transform duration-300">
+                      <Clock className="h-10 w-10 text-[#ff9500]" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b00] to-[#ff9500] rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white">Save Time</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">Quick calculations that would take hours to do manually</p>
+                </div>
+
+                <div className="text-center group">
+                  <div className="relative inline-block mb-6">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff6b00]/20 to-[#ff9500]/20 flex items-center justify-center backdrop-blur-sm border border-[#ff6b00]/30 group-hover:scale-110 transition-transform duration-300">
+                      <BarChart3 className="h-10 w-10 text-[#ff9500]" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b00] to-[#ff9500] rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white">Make Better Decisions</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">Compare scenarios and understand the financial impact of your choices</p>
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Accurate Calculations</h3>
-              <p className="text-muted-foreground text-sm">Professional-grade calculations using current market rates and formulas</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-muted rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Save Time</h3>
-              <p className="text-muted-foreground text-sm">Quick calculations that would take hours to do manually</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Make Better Decisions</h3>
-              <p className="text-muted-foreground text-sm">Compare scenarios and understand the financial impact of your choices</p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Disclaimer */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="text-center">
+          <p className="text-sm text-gray-400 flex items-center justify-center gap-1">
+            <span className="text-yellow-400">*</span>
+            <span>AI-generated content. Please verify all calculations with a qualified professional. We are not responsible for financial decisions made based on these calculators.</span>
+          </p>
+        </div>
+      </div>
+
     </div>
   )
 }
 
 export default CalculatorsPage
-
-
