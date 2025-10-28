@@ -11,6 +11,13 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
+// Generate static params for build-time static generation
+export async function generateStaticParams() {
+  // Return empty array to indicate this is a dynamic route
+  // that should be handled at runtime
+  return []
+}
+
 export default async function OwnerMaintenanceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   return (
@@ -24,7 +31,7 @@ export default async function OwnerMaintenanceDetailPage({ params }: { params: P
           { name: "Home", url: SITE_URL },
           { name: "Owner", url: `${SITE_URL}/owner` },
           { name: "Maintenance", url: `${SITE_URL}/owner/maintenance` },
-          { name: params.id, url: `${SITE_URL}/owner/maintenance/${params.id}` },
+          { name: id, url: `${SITE_URL}/owner/maintenance/${id}` },
         ])}
       />
       <div className="flex flex-col gap-2">
@@ -42,12 +49,12 @@ export default async function OwnerMaintenanceDetailPage({ params }: { params: P
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/owner/maintenance/${params.id}`}>Request Details</BreadcrumbLink>
+              <BreadcrumbLink href={`/owner/maintenance/${id}`}>Request Details</BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <OwnerMaintenanceDetail requestId={params.id} />
+      <OwnerMaintenanceDetail requestId={id} />
     </div>
   )
 }
