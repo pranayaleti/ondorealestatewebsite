@@ -11,11 +11,10 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
-// Generate static params for build-time static generation
 export async function generateStaticParams() {
-  // Return empty array to indicate this is a dynamic route
-  // that should be handled at runtime
-  return []
+  // Return placeholder IDs for static generation
+  // These will be pre-rendered, but actual data loads client-side
+  return [{ id: 'prop1' }, { id: 'prop2' }]
 }
 
 export default async function EditPropertyPage({ params }: { params: Promise<{ id: string }> }) {

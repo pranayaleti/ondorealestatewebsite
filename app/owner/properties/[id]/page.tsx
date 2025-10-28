@@ -17,11 +17,10 @@ export const metadata: Metadata = {
   description: "View and manage property details",
 }
 
-// Generate static params for build-time static generation
 export async function generateStaticParams() {
-  // Return empty array to indicate this is a dynamic route
-  // that should be handled at runtime
-  return []
+  // Return placeholder IDs for static generation
+  // These will be pre-rendered, but actual data loads client-side
+  return [{ id: 'prop1' }, { id: 'prop2' }]
 }
 
 // This would normally fetch from a database
@@ -36,7 +35,7 @@ const getProperty = (id: string) => {
       state: "UT",
       zipCode: "84043",
       type: "multi-family",
-      units: 2,
+      unitCount: 2,
       image: "/modern-apartment-balcony.png",
       occupancy: "Fully Occupied",
       occupancyRate: 100,
@@ -121,7 +120,7 @@ const getProperty = (id: string) => {
       state: "UT",
       zipCode: "11201",
       type: "single-family",
-      units: 1,
+      unitCount: 1,
       image: "/suburban-house-garden.png",
       occupancy: "Fully Occupied",
       occupancyRate: 100,

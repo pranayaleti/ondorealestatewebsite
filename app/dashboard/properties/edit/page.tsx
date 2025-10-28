@@ -14,67 +14,31 @@ export const metadata: Metadata = {
   description: "Edit property details",
 };
 
-export default async function EditPropertyPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ id?: string }>;
-}) {
-  const { id = "" } = await searchParams;
-
-  if (!id) {
-    return (
-      <DashboardShell>
-        <SEO
-          title="Edit Property | Dashboard"
-          description="Edit property details within the dashboard."
-          pathname="/dashboard/properties/edit"
-          image={`${SITE_URL}/modern-apartment-balcony.png`}
-          jsonLd={generateBreadcrumbJsonLd([
-            { name: "Home", url: SITE_URL },
-            { name: "Dashboard", url: `${SITE_URL}/dashboard` },
-            { name: "Properties", url: `${SITE_URL}/dashboard/properties` },
-            { name: "Edit", url: `${SITE_URL}/dashboard/properties/edit` },
-          ])}
-        />
-        <DashboardHeader heading="Edit Property" text="Missing property ID" />
-        <Card>
-          <CardHeader>
-            <CardTitle>No ID provided</CardTitle>
-            <CardDescription>
-              Add <code>?id=YOUR_ID</code> to the URL or open this page via the “Edit” button.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </DashboardShell>
-    );
-  }
-
+// Make this a static page for static export
+export default function EditPropertyPage() {
   return (
     <DashboardShell>
       <SEO
-        title={`Edit Property ${id} | Dashboard`}
-        description={`Update property details for property ID ${id}.`}
-        pathname={`/dashboard/properties/edit?id=${id}`}
+        title="Edit Property | Dashboard"
+        description="Edit property details within the dashboard."
+        pathname="/dashboard/properties/edit"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Dashboard", url: `${SITE_URL}/dashboard` },
           { name: "Properties", url: `${SITE_URL}/dashboard/properties` },
-          { name: "Edit", url: `${SITE_URL}/dashboard/properties/edit?id=${id}` },
+          { name: "Edit", url: `${SITE_URL}/dashboard/properties/edit` },
         ])}
       />
-      <DashboardHeader heading="Edit Property" text={`Edit property details for ID: ${id}`} />
-      <Suspense fallback={<Loading />}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Property Details</CardTitle>
-            <CardDescription>Update the details of this property</CardDescription>
-          </CardHeader>
-        <CardContent>
-            <PropertyEditForm propertyId={id} />
-          </CardContent>
-        </Card>
-      </Suspense>
+      <DashboardHeader heading="Edit Property" text="Select a property to edit" />
+      <Card>
+        <CardHeader>
+          <CardTitle>Property Edit</CardTitle>
+          <CardDescription>
+            Use the properties list to select a property to edit.
+          </CardDescription>
+        </CardHeader>
+      </Card>
     </DashboardShell>
   );
 }
