@@ -38,6 +38,11 @@ const slugToComponent: Record<string, any> = {
   }),
 }
 
+// Generate static params for all calculator slugs at build time
+export async function generateStaticParams() {
+  return Object.keys(slugToComponent).map((slug) => ({ slug }))
+}
+
 export default async function CalculatorBySlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const Component = slugToComponent[slug]

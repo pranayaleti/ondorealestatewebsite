@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
@@ -19,11 +18,6 @@ export default function AboutPage() {
           { name: "About", url: `${SITE_URL}/about` },
         ])}
       />
-      <PageBanner
-        title="Ondo Real Estate — Your One-Stop Real Estate Engine"
-        subtitle="Buy. Sell. Manage. Finance. All in one place — smart, simple, unstoppable."
-      />
-
       {/* Hero Image */}
       <section className="relative h-96 md:h-[500px]">
         <Image
@@ -84,7 +78,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">Our Core Services</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
-                  <h3 className="text-2xl font-semibold mb-4 text-orange-600 dark:text-orange-400">Buying & Selling</h3>
+                  <h3 className="text-2xl font-semibold mb-4 text-primary">Buying & Selling</h3>
                   <ul className="space-y-3 dark:text-muted-foreground">
                     <li>• Strategic listing & acquisition services for condos, townhouses, single-family homes (SFH), and land</li>
                     <li>• Market-driven pricing, premium staging guidance, and negotiators who close</li>
@@ -92,7 +86,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
-                  <h3 className="text-2xl font-semibold mb-4 text-orange-600 dark:text-orange-400">Property Management</h3>
+                  <h3 className="text-2xl font-semibold mb-4 text-primary">Property Management</h3>
                   <ul className="space-y-3 dark:text-muted-foreground">
                     <li>• Full-service property management: tenant sourcing, screening, rent collection, maintenance coordination</li>
                     <li>• Owner dashboard & tenant portal — transparent, real-time, no surprises</li>
@@ -100,7 +94,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
-                  <h3 className="text-2xl font-semibold mb-4 text-orange-600 dark:text-orange-400">Loans & Financing</h3>
+                  <h3 className="text-2xl font-semibold mb-4 text-primary">Loans & Financing</h3>
                   <ul className="space-y-3 dark:text-muted-foreground">
                     <li>• End-to-end mortgage and loan services for purchases, refinance, and investment properties</li>
                     <li>• Fast pre-approvals, competitive partners, and loan officers who think like investors</li>
@@ -108,7 +102,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
-                  <h3 className="text-2xl font-semibold mb-4 text-orange-600 dark:text-orange-400">Investor Services</h3>
+                  <h3 className="text-2xl font-semibold mb-4 text-primary">Investor Services</h3>
                   <ul className="space-y-3 dark:text-muted-foreground">
                     <li>• Portfolio optimization, cashflow modeling, and hands-off management for multi-property owners</li>
                     <li>• Strategic acquisition sourcing tailored to yield and value-add opportunities</li>
@@ -122,7 +116,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-center mb-8 dark:text-foreground">Why Choose Ondo</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white font-bold">1</span>
                   </div>
                   <div>
@@ -131,7 +125,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white font-bold">2</span>
                   </div>
                   <div>
@@ -140,7 +134,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white font-bold">3</span>
                   </div>
                   <div>
@@ -149,7 +143,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white font-bold">4</span>
                   </div>
                   <div>
@@ -218,7 +212,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <p className="text-lg dark:text-muted-foreground">
-                Schedule a conversation — <Link href="/contact" className="text-orange-600 hover:text-orange-700 dark:text-orange-400">ondorealestate.com/contact</Link> or call us today. Built by OndoSoft, powered for growth.
+                Schedule a conversation — <Link href="/contact" className="text-primary hover:text-primary">ondorealestate.com/contact</Link> or call us today. Built by OndoSoft, powered for growth.
               </p>
             </div>
           </div>

@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_PHONE } from "@/lib/site"
-import { CheckCircle, Clock, MapPin, Phone, Mail, Download, FileText, Shield, Users, Calendar } from "lucide-react"
+import { CheckCircle, Clock, MapPin, Phone, Mail, Download, FileText, Shield, Users, Calendar, Award, Building2, Globe, Zap } from "lucide-react"
+import { NotaryFAQ } from "@/components/notary-faq"
+import { NotaryBooking } from "@/components/notary-booking"
 
 export default function NotaryPage() {
   return (
@@ -87,7 +88,7 @@ export default function NotaryPage() {
       />
 
       {/* Hero Section */}
-      <section id="hero" className="relative py-16 md:py-24 bg-gradient-to-br from-orange-500 to-orange-600">
+      <section id="hero" className="relative py-16 md:py-24 bg-gradient-to-br from-primary to-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
@@ -97,13 +98,13 @@ export default function NotaryPage() {
               Utah-commissioned Notary Public services focused on fast, reliable notarization for ONDO clients — in-person, mobile, and RON where applicable.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white">
-                <Link href="#contact" className="flex items-center gap-2">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Link href="https://calendly.com/pranay_ondo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
                   Book Notary Services
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-orange-600">
+              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
                 <Link href="#about" className="flex items-center gap-2">
                   <FileText className="w-5 h-5" />
                   Learn More
@@ -124,13 +125,13 @@ export default function NotaryPage() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h3 className="text-2xl font-semibold mb-4 text-orange-500">Professional Notary Services</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-primary">Professional Notary Services</h3>
                 <p className="text-lg leading-relaxed mb-6 text-gray-300">
                   ONDO Real Estate provides professional notarial services through our Utah-commissioned notary public, serving Lehi and the greater Utah area. We specialize in real estate closings, loan documentation, affidavits, acknowledgements, jurats, and oaths for ONDO clients.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <Shield className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Shield className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-white">Commission Details</h4>
                       <p className="text-sm text-gray-300">
@@ -141,7 +142,7 @@ export default function NotaryPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Users className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Users className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-white">Remote Online Notary (RON)</h4>
                       <p className="text-sm text-gray-300">
@@ -153,24 +154,24 @@ export default function NotaryPage() {
                 </div>
               </div>
               
-              <div className="bg-orange-500 p-8 rounded-lg">
+              <div className="bg-primary p-8 rounded-lg">
                 <h3 className="text-xl font-semibold mb-4 text-white">Why Choose ONDO?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Utah-commissioned notary with real estate expertise</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Utah-commissioned notary with real estate expertise</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Fast, reliable service with flexible scheduling</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Fast, reliable service with flexible scheduling</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Mobile notary services for your convenience</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Mobile notary services for your convenience</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Specialized in real estate and loan documents</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Specialized in real estate and loan documents</span>
                   </li>
                 </ul>
               </div>
@@ -180,17 +181,17 @@ export default function NotaryPage() {
       </section>
 
       {/* Services Offered */}
-      <section id="services" className="py-16 md:py-24 bg-white">
+      <section id="services" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Services Offered</h2>
-              <p className="text-xl text-gray-600">Professional notarial services tailored to your needs</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Services Offered</h2>
+              <p className="text-xl text-muted-foreground">Professional notarial services tailored to your needs</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-xl font-semibold mb-4 text-orange-500">In-Office Notarizations</h3>
+              <div className="bg-black p-6 rounded-lg border border-primary">
+                <h3 className="text-xl font-semibold mb-4 text-primary">In-Office Notarizations</h3>
                 <p className="text-gray-300 mb-4">Professional notary services by appointment at our Lehi office.</p>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li>• Real estate closing documents</li>
@@ -200,10 +201,10 @@ export default function NotaryPage() {
                 </ul>
               </div>
               
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4 text-white">Mobile Notarizations</h3>
-                <p className="text-orange-100 mb-4">Convenient notary services at your location throughout Lehi and surrounding areas.</p>
-                <ul className="space-y-2 text-sm text-orange-100">
+              <div className="bg-muted p-6 rounded-lg border border-border">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Mobile Notarizations</h3>
+                <p className="text-muted-foreground mb-4">Convenient notary services at your location throughout Lehi and surrounding areas.</p>
+                <ul className="space-y-2 text-sm text-foreground">
                   <li>• Home and office visits</li>
                   <li>• Travel fees may apply</li>
                   <li>• Flexible scheduling</li>
@@ -211,10 +212,10 @@ export default function NotaryPage() {
                 </ul>
               </div>
               
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4 text-white">Loan Signing Support</h3>
-                <p className="text-orange-100 mb-4">Specialized support for mortgage and refinance document notarization.</p>
-                <ul className="space-y-2 text-sm text-orange-100">
+              <div className="bg-muted p-6 rounded-lg border border-border">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Loan Signing Support</h3>
+                <p className="text-muted-foreground mb-4">Specialized support for mortgage and refinance document notarization.</p>
+                <ul className="space-y-2 text-sm text-foreground">
                   <li>• Coordinated with title companies</li>
                   <li>• Mortgage document notarization</li>
                   <li>• Refinance paperwork</li>
@@ -222,8 +223,8 @@ export default function NotaryPage() {
                 </ul>
               </div>
               
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-xl font-semibold mb-4 text-orange-500">Remote Online Notary (RON)</h3>
+              <div className="bg-black p-6 rounded-lg border border-primary">
+                <h3 className="text-xl font-semibold mb-4 text-primary">Remote Online Notary (RON)</h3>
                 <p className="text-gray-300 mb-4">Secure online notarization services when available and applicable.</p>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li>• Digital document notarization</li>
@@ -238,36 +239,36 @@ export default function NotaryPage() {
       </section>
 
       {/* Fees & Availability */}
-      <section id="fees" className="py-16 md:py-24 bg-white">
+      <section id="fees" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Fees & Availability</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Fees & Availability</h2>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <h3 className="text-2xl font-semibold mb-6 text-orange-500">Pricing</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">Pricing</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-3 border-b border-gray-300">
-                    <span className="font-medium text-black">Standard notary fee</span>
-                    <span className="text-orange-500 font-semibold">Per Utah statute</span>
+                  <div className="flex justify-between items-center py-3 border-b border-border">
+                    <span className="font-medium text-foreground">Standard notary fee</span>
+                    <span className="text-primary font-semibold">Per Utah statute</span>
                   </div>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-300">
-                    <span className="font-medium text-black">Mobile trip fee</span>
-                    <span className="text-orange-500 font-semibold">$25</span>
+                  <div className="flex justify-between items-center py-3 border-b border-border">
+                    <span className="font-medium text-foreground">Mobile trip fee</span>
+                    <span className="text-primary font-semibold">$25</span>
                   </div>
-                  <p className="text-sm text-gray-600 mt-4">
+                  <p className="text-sm text-muted-foreground mt-4">
                     We comply with all state fee caps and regulations. Contact us for specific pricing based on your needs.
                   </p>
                 </div>
               </div>
               
               <div>
-                <h3 className="text-2xl font-semibold mb-6 text-orange-500">Availability</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">Availability</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <Clock className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-black">Typical Hours</h4>
                       <p className="text-gray-600">
@@ -277,10 +278,10 @@ export default function NotaryPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Users className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Users className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-black">Client Volume</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-semibold text-foreground">Client Volume</h4>
+                      <p className="text-muted-foreground">
                         Currently serving 5–10 clients per month, primarily ONDO clients
                       </p>
                     </div>
@@ -302,41 +303,41 @@ export default function NotaryPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4 text-white">Required Documents</h3>
+              <div className="bg-muted p-6 rounded-lg border border-border">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Required Documents</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Valid government photo ID (driver's license or passport)</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Valid government photo ID (driver's license or passport)</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Original documents to be notarized (do not sign before appointment unless instructed)</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Original documents to be notarized (do not sign before appointment unless instructed)</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-orange-100">Required witnesses (we can help arrange if needed)</span>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">Required witnesses (we can help arrange if needed)</span>
                   </li>
                 </ul>
               </div>
               
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-xl font-semibold mb-4 text-orange-500">For RON Appointments</h3>
+              <div className="bg-black p-6 rounded-lg border border-primary">
+                <h3 className="text-xl font-semibold mb-4 text-primary">For RON Appointments</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">Camera and microphone access</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">Government-issued photo ID</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">Stable internet connection</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">Quiet, well-lit environment</span>
                   </li>
                 </ul>
@@ -347,41 +348,41 @@ export default function NotaryPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-16 md:py-24 bg-white">
+      <section id="how-it-works" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">How It Works</h2>
-              <p className="text-xl text-gray-600">Simple 3-step process to get your documents notarized</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">How It Works</h2>
+              <p className="text-xl text-muted-foreground">Simple 3-step process to get your documents notarized</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   1
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-black">Book Appointment</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Book Appointment</h3>
+                <p className="text-muted-foreground">
                   Contact us to schedule your notary appointment or call to arrange a convenient time.
                 </p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   2
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-black">Verify & Notarize</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Verify & Notarize</h3>
+                <p className="text-muted-foreground">
                   We verify your documents and ID during the meeting, then perform the notarization.
                 </p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   3
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-black">Receive Documents</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Receive Documents</h3>
+                <p className="text-muted-foreground">
                   Get your notarized document immediately (digital copy if RON).
                 </p>
               </div>
@@ -396,126 +397,10 @@ export default function NotaryPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Frequently Asked Questions</h2>
+              <p className="text-xl text-gray-300">Click on any question to expand and view the answer</p>
             </div>
             
-            <div className="space-y-6">
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Can you notarize for non-ONDO clients?
-                </h3>
-                <p className="text-orange-100">
-                  Yes, when schedule permits. Priority goes to ONDO clients first, but we're happy to serve the broader community when availability allows.
-                </p>
-              </div>
-              
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Are your services valid for real estate loans and closings?
-                </h3>
-                <p className="text-gray-300">
-                  Yes — I notarize for loan and closing documents, in compliance with Utah law and lender/title requirements. My real estate background ensures proper handling of complex real estate documents.
-                </p>
-              </div>
-              
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  How can I verify your commission?
-                </h3>
-                <p className="text-orange-100">
-                  You can request my commission certificate or bond via the contact form or download link below. All notary credentials are publicly verifiable through Utah state records.
-                </p>
-              </div>
-              
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  What types of documents can you notarize?
-                </h3>
-                <p className="text-gray-300">
-                  I can notarize acknowledgements, jurats, oaths, affidavits, and witness signatures. This includes real estate documents, loan papers, legal affidavits, and general business documents.
-                </p>
-              </div>
-              
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Do you offer same-day service?
-                </h3>
-                <p className="text-orange-100">
-                  Same-day service is available based on schedule and location. Contact us as early as possible to check availability for urgent notarization needs.
-                </p>
-              </div>
-
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  What identification do I need to bring?
-                </h3>
-                <p className="text-gray-300">
-                  You must bring a valid government-issued photo ID such as a driver's license, passport, or state ID card. The ID must be current and not expired. We cannot notarize documents without proper identification.
-                </p>
-              </div>
-
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  How much do notary services cost?
-                </h3>
-                <p className="text-orange-100">
-                  Standard notary fees follow Utah state regulations. Mobile services may include a travel fee. Contact us for specific pricing based on your needs. We're transparent about all costs upfront.
-                </p>
-              </div>
-
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Can you notarize documents that are already signed?
-                </h3>
-                <p className="text-gray-300">
-                  No, documents must be signed in the presence of the notary. This is a legal requirement in Utah. Please do not sign documents before your appointment unless specifically instructed to do so.
-                </p>
-              </div>
-
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  What is Remote Online Notarization (RON)?
-                </h3>
-                <p className="text-orange-100">
-                  RON allows notarization to occur remotely through secure video technology. It's legally equivalent to in-person notarization when performed by a certified RON notary. This service is available when applicable and permitted by law.
-                </p>
-              </div>
-
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  How far in advance should I schedule?
-                </h3>
-                <p className="text-gray-300">
-                  We recommend scheduling at least 24-48 hours in advance for in-office appointments. For mobile services, please allow more time for travel. Same-day service may be available but is not guaranteed.
-                </p>
-              </div>
-
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Can you notarize documents in languages other than English?
-                </h3>
-                <p className="text-orange-100">
-                  Yes, I can notarize documents in other languages. However, I must be able to communicate with you in English to verify your identity and ensure you understand what you're signing. The notarial certificate will be in English as required by Utah law.
-                </p>
-              </div>
-
-              <div className="bg-black p-6 rounded-lg border border-orange-500">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  What if I need witnesses for my document?
-                </h3>
-                <p className="text-gray-300">
-                  We can help arrange witnesses if needed, or you can bring your own. Witnesses must also present valid ID and be present during the notarization. There may be additional fees for witness services.
-                </p>
-              </div>
-
-              <div className="bg-orange-500 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Are your notarizations valid in other states?
-                </h3>
-                <p className="text-orange-100">
-                  Utah notarizations are generally recognized in other states, but requirements vary. For documents to be used in other states, check with the receiving party or institution to ensure Utah notarizations are acceptable for your specific needs.
-                </p>
-              </div>
-            </div>
+            <NotaryFAQ />
           </div>
         </div>
       </section>
@@ -531,68 +416,70 @@ export default function NotaryPage() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <h3 className="text-2xl font-semibold mb-6 text-orange-500">Get in Touch</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">Get in Touch</h3>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
-                    <Phone className="w-6 h-6 text-orange-500 flex-shrink-0" />
+                    <Phone className="w-6 h-6 text-primary flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-white">Phone</h4>
-                      <p className="text-gray-300">{"{{YOUR_PHONE}}"}</p>
+                      <p className="text-gray-300">{SITE_PHONE}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    <Mail className="w-6 h-6 text-orange-500 flex-shrink-0" />
+                    <Mail className="w-6 h-6 text-primary flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-white">Email</h4>
-                      <p className="text-gray-300">{"{{YOUR_EMAIL}}"}</p>
+                      <p className="text-gray-300">info@ondorealestate.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    <MapPin className="w-6 h-6 text-orange-500 flex-shrink-0" />
+                    <MapPin className="w-6 h-6 text-primary flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-white">Office Location</h4>
+                      <p className="text-gray-300">2701 N Thanksgiving Way, Lehi, UT 84043</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-4">
+                    <Building2 className="w-6 h-6 text-primary flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-white">Service Area</h4>
-                      <p className="text-gray-300">Lehi and surrounding Utah County areas</p>
+                      <p className="text-gray-300">Lehi, Provo, Orem, American Fork, and all of Utah County</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-4">
+                    <Clock className="w-6 h-6 text-primary flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-white">Business Hours</h4>
+                      <p className="text-gray-300">Monday - Friday: 9:00 AM - 7:00 PM<br />Weekends: By appointment only</p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-orange-500 p-8 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-6 text-white">Book Appointment</h3>
-                <p className="text-orange-100 mb-6">
-                  Schedule your notary appointment quickly and easily through our booking system.
-                </p>
-                <Button asChild size="lg" className="w-full bg-black hover:bg-gray-800 text-white">
-                  <Link href={"{{BOOKING_URL}}"} className="flex items-center justify-center gap-2">
-                    <Calendar className="w-5 h-5" />
-                    Book Appointment Now
-                  </Link>
-                </Button>
-                <p className="text-sm text-orange-100 mt-4 text-center">
-                  Or call us directly for immediate assistance
-                </p>
-              </div>
+              <NotaryBooking />
             </div>
           </div>
         </div>
       </section>
 
       {/* Downloadable Documents */}
-      <section id="documents" className="py-16 md:py-24 bg-white">
+      <section id="documents" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Downloadable Documents</h2>
-            <p className="text-xl text-gray-600 mb-8">Access official notary credentials and documentation</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Downloadable Documents</h2>
+            <p className="text-xl text-muted-foreground mb-8">Access official notary credentials and documentation</p>
             
-            <div className="bg-black p-8 rounded-lg border border-orange-500 max-w-md mx-auto">
-              <Download className="w-12 h-12 text-orange-500 mx-auto mb-4" />
+            <div className="bg-black p-8 rounded-lg border border-primary max-w-md mx-auto">
+              <Download className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-4 text-white">Commission Certificate</h3>
               <p className="text-gray-300 mb-6">
                 Download official proof of notary commission and credentials
               </p>
-              <Button asChild className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+              <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Link href="/assets/commission.pdf" className="flex items-center justify-center gap-2">
                   <Download className="w-4 h-4" />
                   Download Commission Certificate
@@ -607,7 +494,7 @@ export default function NotaryPage() {
       <section id="disclaimer" className="py-16 md:py-24 bg-black">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-orange-500 p-8 rounded-lg">
+            <div className="bg-primary p-8 rounded-lg">
               <h2 className="text-2xl font-semibold mb-6 text-white">Legal Disclaimer</h2>
               <div className="space-y-4 text-orange-100">
                 <p>

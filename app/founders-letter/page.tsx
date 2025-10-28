@@ -184,7 +184,7 @@ export default function FoundersLetterPage() {
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-gray-900 rounded-xl p-8 border border-primary">
+            <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-8 border border-primary">
               <p className="text-muted-foreground text-lg mb-4">Sincerely,</p>
               <div className="text-2xl font-bold text-foreground mb-2">Pranay Reddy Aleti</div>
               <div className="text-primary font-semibold">Founder, Ondo Real Estate</div>
@@ -236,7 +236,7 @@ export default function FoundersLetterPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-gray-900 rounded-xl p-6 border border-primary">
+            <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-6 border border-primary">
               <h3 className="text-xl font-bold text-foreground mb-4">Let's Connect</h3>
               <p className="text-muted-foreground text-sm mb-4">Ready to experience the future of property management?</p>
               <button className="w-full bg-primary hover:bg-primary text-foreground px-6 py-3 rounded-lg font-semibold transition-colors">
@@ -247,7 +247,7 @@ export default function FoundersLetterPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-orange-500 to-orange-600 py-20">
+      <div className="bg-gradient-to-r from-primary to-primary py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ready to Experience Ondo?</h2>
           <p className="text-xl text-foreground mb-8 opacity-90">

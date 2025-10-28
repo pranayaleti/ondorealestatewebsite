@@ -160,7 +160,7 @@ export default function SweepstakesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-orange-500 to-orange-600 py-20">
+        <section className="bg-gradient-to-r from-primary to-primary py-20">
           <div className="container px-4 md:px-6">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">

@@ -70,7 +70,7 @@ export function MaintenanceRequestList() {
       case "pending":
         return <Clock className="h-5 w-5 text-yellow-500" />
       case "in-progress":
-        return <Tool className="h-5 w-5 text-orange-500" />
+        return <Tool className="h-5 w-5 text-primary" />
       case "scheduled":
         return <Calendar className="h-5 w-5 text-purple-500" />
       case "completed":
@@ -90,7 +90,7 @@ export function MaintenanceRequestList() {
         )
       case "in-progress":
         return (
-          <Badge variant="outline" className="bg-muted text-orange-700 border-orange-200">
+          <Badge variant="outline" className="bg-muted text-primary border-border">
             In Progress
           </Badge>
         )
@@ -118,7 +118,7 @@ export function MaintenanceRequestList() {
       case "urgent":
         return <Badge className="bg-primary">Urgent</Badge>
       case "normal":
-        return <Badge className="bg-orange-500">Normal</Badge>
+        return <Badge className="bg-primary">Normal</Badge>
       case "low":
         return <Badge className="bg-gray-500">Low</Badge>
       default:

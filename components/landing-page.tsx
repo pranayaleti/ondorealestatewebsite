@@ -108,7 +108,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Background Image */}
-      <section className="relative w-full bg-gradient-to-r from-gray-900 to-gray-800 py-20 md:py-32" role="banner" aria-label="Hero section">
+      <section className="relative w-full bg-gradient-to-r from-background to-card py-20 md:py-32" role="banner" aria-label="Hero section">
         <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
           <Image 
             src="/modern-office-building.png" 

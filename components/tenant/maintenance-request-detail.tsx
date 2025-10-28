@@ -80,7 +80,7 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
         )
       case "in-progress":
         return (
-          <Badge variant="outline" className="bg-muted text-orange-700 border-orange-200">
+          <Badge variant="outline" className="bg-muted text-primary border-border">
             In Progress
           </Badge>
         )
@@ -108,7 +108,7 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
       case "urgent":
         return <Badge className="bg-primary">Urgent</Badge>
       case "normal":
-        return <Badge className="bg-orange-500">Normal</Badge>
+        return <Badge className="bg-primary">Normal</Badge>
       case "low":
         return <Badge className="bg-gray-500">Low</Badge>
       default:

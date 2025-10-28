@@ -45,7 +45,7 @@ export class ConflictError extends AppError {
 
 export class RateLimitError extends AppError {
   constructor(message: string = "Rate limit exceeded") {
-    super(message, 429)
+    super(message, 429);
   }
 }
 

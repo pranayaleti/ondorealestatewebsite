@@ -103,7 +103,7 @@ export function Footer() {
     { pattern: "youtu.be", name: "YouTube", Component: Youtube, hover: "hover:text-destructive" },
     { pattern: "instagram.com", name: "Instagram", Component: Instagram, hover: "hover:text-pink-500" },
     { pattern: "tiktok.com", name: "TikTok", Component: TiktokIcon, hover: "hover:text-fuchsia-500" },
-    { pattern: "linkedin.com", name: "LinkedIn", Component: Linkedin, hover: "hover:text-orange-700" },
+    { pattern: "linkedin.com", name: "LinkedIn", Component: Linkedin, hover: "hover:text-primary" },
     { pattern: "x.com", name: "Twitter", Component: Twitter, hover: "hover:text-sky-500" },
     { pattern: "twitter.com", name: "Twitter", Component: Twitter, hover: "hover:text-sky-500" },
     { pattern: "pinterest.com", name: "Pinterest", Component: PinterestIcon, hover: "hover:text-red-500" },
@@ -246,7 +246,7 @@ export function Footer() {
                 <p className="text-sm font-medium">Loan Servicing Help Center</p>
                 <a
                   href="tel:18003654441"
-                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label="Call 1-800-365-4441"
                 >
                   1-800-365-4441
@@ -260,7 +260,7 @@ export function Footer() {
                 <p className="text-sm font-medium">Email Us</p>
                 <a
                   href="mailto:ondorealestate@gmail.com"
-                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label="Email ondorealestate@gmail.com"
                 >
                   ondorealestate@gmail.com
@@ -275,7 +275,7 @@ export function Footer() {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE_ADDRESS)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label="Open address in Google Maps"
                 >
                   <span className="block">2701 N Thanksgiving Way</span>
@@ -357,7 +357,7 @@ export function Footer() {
                   href="https://ondosoft.com/?utm_source=ondorealestate" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="font-semibold text-orange-500 hover:text-orange-400 transition-colors duration-200 hover:underline decoration-orange-400 underline-offset-2"
+                  className="font-semibold text-primary hover:text-primary transition-colors duration-200 hover:underline decoration-primary underline-offset-2"
                 >
                   OnDoSoft
                 </Link>

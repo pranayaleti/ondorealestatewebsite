@@ -171,7 +171,7 @@ const getStatusColor = (status: string) => {
     case "overdue":
       return "bg-red-500"
     case "refunded":
-      return "bg-orange-500"
+      return "bg-primary"
     default:
       return "bg-gray-500"
   }
