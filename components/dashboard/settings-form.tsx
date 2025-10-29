@@ -15,7 +15,7 @@ export function SettingsForm() {
   const [formData, setFormData] = useState({
     companyName: "Real Estate",
     website: "https://Real Estate.com",
-    supportEmail: "support@ondo.Real Estate.com",
+    supportEmail: "help@ondorealestate.com",
     supportPhone: "(555) 123-4567",
     dateFormat: "MM/DD/YYYY",
     timeFormat: "12h",

@@ -1,7 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_EMAILS, SITE_PHONE, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE } from "@/lib/site"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -160,18 +160,18 @@ export default function TermsOfServicePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p className="text-sm text-muted-foreground">legal@ondorealestate.com</p>
+                    <p className="text-sm text-muted-foreground">{SITE_EMAILS.legal}</p>
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p className="text-sm text-muted-foreground">(801) 555-1234</p>
+                    <p className="text-sm text-muted-foreground">{SITE_PHONE}</p>
                   </div>
                   <div>
                     <p className="font-semibold">Address</p>
                     <p className="text-sm text-muted-foreground">
                       OnDo Real Estate<br />
-                      2701 N Thanksgiving Way<br />
-                      Lehi, UT 84043
+                      {SITE_ADDRESS_STREET}<br />
+                      {`${SITE_ADDRESS_CITY}, ${SITE_ADDRESS_REGION} ${SITE_ADDRESS_POSTAL_CODE}`}
                     </p>
                   </div>
                 </div>

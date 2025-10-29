@@ -1,7 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -149,13 +149,13 @@ export default function PaymentQuestionsPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg">
-                    <Link href="tel:1-800-365-4441">
+                    <Link href={`tel:${SITE_PHONE.replace(/[^+\\d]/g, "")}`}>
                       <Phone className="h-4 w-4 mr-2" />
-                      Call 1-800-365-4441
+                      Call {SITE_PHONE}
                     </Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
-                    <Link href="mailto:ondorealestate@gmail.com">
+                    <Link href={`mailto:${SITE_EMAILS.primary}`}>
                       <Mail className="h-4 w-4 mr-2" />
                       Email Us
                     </Link>
@@ -163,7 +163,7 @@ export default function PaymentQuestionsPage() {
                 </div>
                 <p className="text-sm text-muted-foreground dark:text-muted-foreground mt-4">
                   <Clock className="h-4 w-4 inline mr-1" />
-                  Mon-Fri 5:00 am – 5:00 pm PT
+                  {SITE_HOURS_LABEL}
                 </p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SITE_NAME, SITE_URL, SITE_ADDRESS } from "./site"
+import { SITE_NAME, SITE_URL, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_SOCIALS, SITE_ADDRESS_OBJ, SITE_HOURS } from "./site"
 
 // Generate structured data for different page types
 export const generateStructuredData = {
@@ -12,18 +12,12 @@ export const generateStructuredData = {
     logo: `${SITE_URL}/placeholder-logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-800-365-4441",
+      telephone: SITE_PHONE,
       contactType: "customer service",
       availableLanguage: "English",
     },
-    sameAs: [
-      "https://www.facebook.com/OnDoRealEstate",
-      "https://www.youtube.com/@OnDoRealEstate",
-      "https://www.instagram.com/OnDoRealEstate",
-      "https://www.linkedin.com/company/OnDoRealEstate",
-      "https://x.com/OnDoRealEstate",
-      "https://linktr.ee/ondorealestate",
-    ],
+    sameAs: SITE_SOCIALS,
+    openingHours: SITE_HOURS,
   }),
 
   // Real Estate Agent schema
@@ -32,15 +26,15 @@ export const generateStructuredData = {
     "@type": "RealEstateAgent",
     name: SITE_NAME,
     url: SITE_URL,
-    telephone: "+1-800-365-4441",
-    email: "ondorealestate@gmail.com",
+    telephone: SITE_PHONE,
+    email: SITE_EMAILS.primary,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "2701 N Thanksgiving Way",
-      addressLocality: "Lehi",
-      addressRegion: "UT",
-      postalCode: "84043",
-      addressCountry: "US",
+      streetAddress: SITE_ADDRESS_OBJ.streetAddress,
+      addressLocality: SITE_ADDRESS_OBJ.addressLocality,
+      addressRegion: SITE_ADDRESS_OBJ.addressRegion,
+      postalCode: SITE_ADDRESS_OBJ.postalCode,
+      addressCountry: SITE_ADDRESS_OBJ.addressCountry,
     },
     areaServed: {
       "@type": "State",
@@ -53,6 +47,7 @@ export const generateStructuredData = {
       "Home Selling",
       "Mortgage Services",
     ],
+    openingHours: SITE_HOURS,
   }),
 
   // Property listing schema

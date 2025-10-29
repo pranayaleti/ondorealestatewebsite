@@ -1,7 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_EMAILS, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -171,8 +171,8 @@ export default function AccessibilityPage() {
                     <div>
                       <h4 className="font-semibold mb-2">Accessibility Coordinator</h4>
                       <p className="text-sm text-muted-foreground">Sarah Johnson</p>
-                      <p className="text-sm text-muted-foreground">accessibility@ondorealestate.com</p>
-                      <p className="text-sm text-muted-foreground">(801) 555-1234</p>
+                      <p className="text-sm text-muted-foreground">{SITE_EMAILS.accessibility}</p>
+                      <p className="text-sm text-muted-foreground">{SITE_PHONE}</p>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">Response Time</h4>
