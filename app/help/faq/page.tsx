@@ -6,7 +6,7 @@ import { HelpCircle, Phone, Mail, MessageCircle } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
 
 export default function FAQPage() {
   const faqCategories = [
@@ -23,7 +23,7 @@ export default function FAQPage() {
         },
         {
           question: "How do I get started with your services?",
-          answer: "Getting started is easy! Contact us through our website, call us at (555) 123-4567, or email us at ondorealestate@gmail.com. We'll schedule a consultation to discuss your needs."
+          answer: `Getting started is easy! Contact us through our website, call us at ${SITE_PHONE}, or email us at ${SITE_EMAILS.primary}. We'll schedule a consultation to discuss your needs.`
         }
       ]
     },
@@ -65,7 +65,7 @@ export default function FAQPage() {
         },
         {
           question: "What should I do if I have a maintenance issue?",
-          answer: "Contact us immediately through our 24/7 maintenance hotline at (555) 123-4567 or submit a request through our online portal. We'll dispatch a qualified technician to address the issue."
+          answer: `Contact us immediately through our 24/7 maintenance hotline at ${SITE_PHONE} or submit a request through our online portal. We'll dispatch a qualified technician to address the issue.`
         }
       ]
     },
@@ -154,14 +154,14 @@ export default function FAQPage() {
                     <CardHeader>
                       <Phone className="h-8 w-8 text-primary mx-auto mb-2" />
                       <CardTitle className="text-lg dark:text-foreground">Call Us</CardTitle>
-                      <CardDescription>(555) 123-4567</CardDescription>
+                      <CardDescription>{SITE_PHONE}</CardDescription>
                     </CardHeader>
                   </Card>
                   <Card className="text-center">
                     <CardHeader>
                       <Mail className="h-8 w-8 text-primary mx-auto mb-2" />
                       <CardTitle className="text-lg dark:text-foreground">Email Us</CardTitle>
-                      <CardDescription>ondorealestate@gmail.com</CardDescription>
+                      <CardDescription>{SITE_EMAILS.primary}</CardDescription>
                     </CardHeader>
                   </Card>
                   <Card className="text-center">

@@ -1,7 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -224,9 +224,9 @@ export default function HardshipPage() {
                   <Link href="/contact">Contact Us Today</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="tel:+15551234567">
+                  <Link href={`tel:${SITE_PHONE.replace(/[^+\\d]/g, "")}`}>
                     <Phone className="h-4 w-4 mr-2" />
-                    Call (555) 123-4567
+                    Call {SITE_PHONE}
                   </Link>
                 </Button>
               </div>

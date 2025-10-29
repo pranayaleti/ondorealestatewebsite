@@ -3,7 +3,7 @@ import { PageBanner } from "@/components/page-banner"
 import { Footer } from "@/components/footer"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_EMAILS } from "@/lib/site"
 
 export default function FAQPage() {
   return (
@@ -134,7 +134,7 @@ export default function FAQPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:info@ondorealestate.com"
+                  href={`mailto:${SITE_EMAILS.info}`}
                   className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 transition-colors duration-200"
                 >
                   Send us an email

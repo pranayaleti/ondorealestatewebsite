@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
+import { SITE_SOCIALS, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE } from "@/lib/site"
 import {
   Facebook,
   Twitter,
@@ -245,13 +245,13 @@ export function Footer() {
               <div>
                 <p className="text-sm font-medium">Loan Servicing Help Center</p>
                 <a
-                  href="tel:18003654441"
+                  href={`tel:${SITE_PHONE.replace(/[^+\d]/g, "")}`}
                   className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
-                  aria-label="Call 1-800-365-4441"
+                  aria-label={`Call ${SITE_PHONE}`}
                 >
-                  1-800-365-4441
+                  {SITE_PHONE}
                 </a>
-                <p className="text-xs text-muted-foreground">Mon-Fri 5:00 am – 5:00 pm PT</p>
+                <p className="text-xs text-muted-foreground">{SITE_HOURS_LABEL}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -259,11 +259,11 @@ export function Footer() {
               <div>
                 <p className="text-sm font-medium">Email Us</p>
                 <a
-                  href="mailto:ondorealestate@gmail.com"
+                  href={`mailto:${SITE_EMAILS.primary}`}
                   className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
-                  aria-label="Email ondorealestate@gmail.com"
+                  aria-label={`Email ${SITE_EMAILS.primary}`}
                 >
-                  ondorealestate@gmail.com
+                  {SITE_EMAILS.primary}
                 </a>
               </div>
             </div>
@@ -278,8 +278,8 @@ export function Footer() {
                   className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label="Open address in Google Maps"
                 >
-                  <span className="block">2701 N Thanksgiving Way</span>
-                  <span className="block">Lehi, UT 84043</span>
+                  <span className="block">{SITE_ADDRESS_STREET}</span>
+                  <span className="block">{`${SITE_ADDRESS_CITY}, ${SITE_ADDRESS_REGION} ${SITE_ADDRESS_POSTAL_CODE}`}</span>
                 </a>
               </div>
             </div>

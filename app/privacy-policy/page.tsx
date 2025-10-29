@@ -1,7 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_EMAILS, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -125,14 +125,14 @@ export default function PrivacyPolicyPage() {
                       <Mail className="h-5 w-5 text-primary" />
                       <div>
                         <p className="font-semibold">Email</p>
-                        <p className="text-sm text-muted-foreground">privacy@ondorealestate.com</p>
+                        <p className="text-sm text-muted-foreground">{SITE_EMAILS.privacy}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <Phone className="h-5 w-5 text-primary" />
                       <div>
                         <p className="font-semibold">Phone</p>
-                        <p className="text-sm text-muted-foreground">(801) 555-1234</p>
+                        <p className="text-sm text-muted-foreground">{SITE_PHONE}</p>
                       </div>
                     </div>
                   </div>

@@ -11,7 +11,7 @@ import { Building, Mail, MapPin, Phone, Calendar, CheckCircle, AlertCircle } fro
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL, SITE_PHONE } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE, SITE_HOURS_LABEL } from "@/lib/site"
 import ConsultationModal from "@/components/ConsultationModal"
 
 export default function ContactPage() {
@@ -130,9 +130,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold">Our Office</h3>
                       <p className="text-sm text-muted-foreground">
-                        2701 N Thanksgiving Way
+                        {SITE_ADDRESS_STREET}
                         <br />
-                        Lehi, UT 84043
+                        {`${SITE_ADDRESS_CITY}, ${SITE_ADDRESS_REGION} ${SITE_ADDRESS_POSTAL_CODE}`}
                       </p>
                     </div>
                   </div>
@@ -140,7 +140,7 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Email</h3>
-                      <p className="text-sm text-muted-foreground">ondorealestate@gmail.com</p>
+                      <p className="text-sm text-muted-foreground">{SITE_EMAILS.primary}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -154,13 +154,7 @@ export default function ContactPage() {
                     <Building className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Business Hours</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Monday - Friday: 9am - 5pm
-                        <br />
-                        Saturday: 10am - 2pm
-                        <br />
-                        Sunday: Closed
-                      </p>
+                      <p className="text-sm text-muted-foreground">{SITE_HOURS_LABEL}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">

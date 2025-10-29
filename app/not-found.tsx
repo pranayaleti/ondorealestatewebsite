@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import SEO from "@/components/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 
 export default function NotFound() {
@@ -134,7 +134,7 @@ export default function NotFound() {
             <CardContent className="text-center">
               <p className="text-muted-foreground mb-4">Speak with our team for immediate assistance.</p>
               <Button asChild variant="outline" className="w-full">
-                <Link href="tel:+18015551234">(801) 555-1234</Link>
+                <Link href={`tel:${SITE_PHONE.replace(/[^+\\d]/g, "")}`}>{SITE_PHONE}</Link>
               </Button>
             </CardContent>
           </Card>
@@ -156,7 +156,7 @@ export default function NotFound() {
           
           <div className="text-sm text-muted-foreground">
             <p>Still can't find what you're looking for?</p>
-            <p>Email us at <a href="mailto:help@ondorealestate.com" className="text-primary hover:underline">help@ondorealestate.com</a></p>
+            <p>Email us at <a href={`mailto:${SITE_EMAILS.support}`} className="text-primary hover:underline">{SITE_EMAILS.support}</a></p>
           </div>
         </div>
       </div>

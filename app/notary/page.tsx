@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL, SITE_PHONE } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
 import { CheckCircle, Clock, MapPin, Phone, Mail, Download, FileText, Shield, Users, Calendar, Award, Building2, Globe, Zap } from "lucide-react"
 import { NotaryFAQ } from "@/components/notary-faq"
 import { NotaryBooking } from "@/components/notary-booking"
@@ -36,7 +36,7 @@ export default function NotaryPage() {
           "description": "ONDO Real Estate Utah Notary Public services, offering in-person, mobile, and remote notarization for real estate, loan documents, affidavits, and legal documents in Lehi and Utah County. Book online today.",
           "url": `${SITE_URL}/notary`,
           "telephone": SITE_PHONE,
-          "email": "{{YOUR_EMAIL}}",
+          "email": SITE_EMAILS.primary,
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Lehi",
@@ -430,7 +430,7 @@ export default function NotaryPage() {
                     <Mail className="w-6 h-6 text-primary flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-white">Email</h4>
-                      <p className="text-gray-300">info@ondorealestate.com</p>
+                      <p className="text-gray-300">{SITE_EMAILS.primary}</p>
                     </div>
                   </div>
                   

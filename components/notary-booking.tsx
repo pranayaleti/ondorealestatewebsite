@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { SITE_PHONE } from "@/lib/site"
 import { Calendar } from "lucide-react"
 import Link from "next/link"
 
@@ -29,7 +30,7 @@ export function NotaryBooking() {
           </Button>
           
           <p className="text-xs text-gray-500 mt-4">
-            For urgent requests or mobile services, please call us at <span className="text-primary font-semibold">+1-800-365-4441</span>
+            For urgent requests or mobile services, please call us at <span className="text-primary font-semibold">{SITE_PHONE}</span>
           </p>
         </div>
       </div>

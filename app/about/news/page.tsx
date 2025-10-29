@@ -1,7 +1,7 @@
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SITE_EMAILS, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -235,15 +235,15 @@ export default function NewsPage() {
                   <Link href="/contact">Contact Us</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="mailto:media@ondorealestate.com">
+                  <Link href={`mailto:${SITE_EMAILS.media}`}>
                     <Mail className="h-4 w-4 mr-2" />
-                    media@ondorealestate.com
+                    {SITE_EMAILS.media}
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="tel:+15551234567">
+                  <Link href={`tel:${SITE_PHONE.replace(/[^+\\d]/g, "")}`}>
                     <Phone className="h-4 w-4 mr-2" />
-                    (555) 123-4567
+                    {SITE_PHONE}
                   </Link>
                 </Button>
               </div>
