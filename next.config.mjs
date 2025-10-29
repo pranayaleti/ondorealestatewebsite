@@ -2,7 +2,7 @@
 const nextConfig = {
   // Enable static export for GitHub Pages
   // Note: headers() and rewrites() are not supported with static export
-  output: 'export',
+  // output: 'export', // Temporarily disabled for API routes
   eslint: {
     ignoreDuringBuilds: false, // Enable ESLint for better code quality
   },

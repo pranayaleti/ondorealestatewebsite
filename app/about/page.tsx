@@ -211,9 +211,6 @@ export default function AboutPage() {
                   </Button>
                 </div>
               </div>
-              <p className="text-lg dark:text-muted-foreground">
-                Schedule a conversation — <Link href="/contact" className="text-primary hover:text-primary">ondorealestate.com/contact</Link> or call us today. Built by OndoSoft, powered for growth.
-              </p>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, Home, DollarSign, Camera, Users, Shield, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import ConsultationCTA from "@/components/ConsultationCTA"
 
 export const metadata: Metadata = {
   title: "Sell Your Utah Home | Expert Real Estate Agents | Salt Lake City, Lehi, Provo",
@@ -216,6 +217,19 @@ export default function SellPage() {
                 loading="lazy"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation CTA Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <ConsultationCTA 
+              title="Ready to Sell Your Utah Home?"
+              description="Get a free home valuation and expert selling strategy from our Utah real estate professionals. Learn how to maximize your home's value and selling potential."
+              variant="card"
+            />
           </div>
         </div>
       </section>

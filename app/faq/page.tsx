@@ -122,6 +122,32 @@ export default function FAQPage() {
               </Accordion>
             </div>
           </div>
+          
+          {/* Contact Section */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-lg p-8 md:p-12">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                Have another question?
+              </h3>
+              <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+                Can't find what you're looking for? Our team is here to help. Send us an email or contact us directly.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="mailto:info@ondorealestate.com"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 transition-colors duration-200"
+                >
+                  Send us an email
+                </a>
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-orange-600 text-base font-medium rounded-md text-orange-600 bg-white hover:bg-orange-50 transition-colors duration-200"
+                >
+                  Contact us
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
 
