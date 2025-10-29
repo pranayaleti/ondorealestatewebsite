@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, Home, Search, DollarSign, Shield, Users, MapPin } from "lucide-react"
 import Link from "next/link"
+import ConsultationCTA from "@/components/ConsultationCTA"
 
 export const metadata: Metadata = {
   title: "Buy Homes in Utah | Expert Real Estate Agents | Salt Lake City, Lehi, Provo",
@@ -217,6 +218,19 @@ export default function BuyPage() {
                 loading="lazy"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation CTA Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <ConsultationCTA 
+              title="Ready to Start Your Home Buying Journey?"
+              description="Get personalized guidance from our Utah real estate experts. Book a free consultation to discuss your home buying goals and get expert market insights."
+              variant="card"
+            />
           </div>
         </div>
       </section>

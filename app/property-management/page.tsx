@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, Shield, DollarSign, Clock, Users, Home, Building } from "lucide-react"
 import Link from "next/link"
+import ConsultationCTA from "@/components/ConsultationCTA"
 
 export const metadata: Metadata = {
   title: "Utah Property Management Services | Professional Rental Management",
@@ -213,6 +214,19 @@ export default function PropertyManagementPage() {
                 aria-label="Map showing Utah property management service areas including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation CTA Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <ConsultationCTA 
+              title="Ready to Maximize Your Rental Income?"
+              description="Get a free property management consultation and learn how our services can increase your rental income while reducing your workload."
+              variant="card"
+            />
           </div>
         </div>
       </section>
