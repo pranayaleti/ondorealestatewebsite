@@ -99,7 +99,7 @@ export default function NotaryPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link href="https://calendly.com/pranay_ondo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <Link href="https://calendly.com/scheduleondo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
                   Book Notary Services
                 </Link>
