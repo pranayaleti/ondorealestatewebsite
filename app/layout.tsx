@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import ConsultationWidget from "@/components/ConsultationWidget"
+import ClientConsultationWidget from "@/components/ClientConsultationWidget"
 import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
 import { Analytics } from '@vercel/analytics/react'
 
@@ -117,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="flex-1">{children}</main>
               <Footer />
             </div>
-            <ConsultationWidget />
+            <ClientConsultationWidget />
             <Toaster />
           </AuthProvider>
         </ThemeProvider>
