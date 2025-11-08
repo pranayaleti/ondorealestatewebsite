@@ -118,11 +118,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background text-foreground`}>
+    <html lang="en" suppressHydrationWarning className="dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
+      <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background dark:bg-transparent text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <AuthProvider>
-            <div className="min-h-screen flex flex-col">
+            <div className="min-h-screen flex flex-col dark:bg-transparent">
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />

@@ -88,13 +88,13 @@ export default function NotaryPage() {
       />
 
       {/* Hero Section */}
-      <section id="hero" className="relative py-16 md:py-24 bg-gradient-to-br from-primary to-primary">
+      <section id="hero" className="relative py-16 md:py-24 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               ONDO Notary Services
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-orange-100">
+            <p className="text-xl md:text-2xl mb-8 text-gray-300">
               Utah-commissioned Notary Public services focused on fast, reliable notarization for ONDO clients — in-person, mobile, and RON where applicable.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -154,7 +154,7 @@ export default function NotaryPage() {
                 </div>
               </div>
               
-              <div className="bg-primary p-8 rounded-lg">
+              <div className="bg-gradient-to-b from-black to-gray-900 p-8 rounded-lg border border-border">
                 <h3 className="text-xl font-semibold mb-4 text-white">Why Choose ONDO?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
@@ -181,7 +181,7 @@ export default function NotaryPage() {
       </section>
 
       {/* Services Offered */}
-      <section id="services" className="py-16 md:py-24 bg-card">
+      <section id="services" className="py-16 md:py-24 bg-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -239,7 +239,7 @@ export default function NotaryPage() {
       </section>
 
       {/* Fees & Availability */}
-      <section id="fees" className="py-16 md:py-24 bg-card">
+      <section id="fees" className="py-16 md:py-24 bg-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -348,7 +348,7 @@ export default function NotaryPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-16 md:py-24 bg-card">
+      <section id="how-it-works" className="py-16 md:py-24 bg-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -392,7 +392,7 @@ export default function NotaryPage() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-16 md:py-24 bg-black">
+      <section id="faq" className="py-16 md:py-24 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -467,7 +467,7 @@ export default function NotaryPage() {
       </section>
 
       {/* Downloadable Documents */}
-      <section id="documents" className="py-16 md:py-24 bg-card">
+      <section id="documents" className="py-16 md:py-24 bg-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Downloadable Documents</h2>
@@ -494,9 +494,9 @@ export default function NotaryPage() {
       <section id="disclaimer" className="py-16 md:py-24 bg-black">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-primary p-8 rounded-lg">
+            <div className="bg-gradient-to-b from-black to-gray-900 p-8 rounded-lg border border-border">
               <h2 className="text-2xl font-semibold mb-6 text-white">Legal Disclaimer</h2>
-              <div className="space-y-4 text-orange-100">
+              <div className="space-y-4 text-gray-300">
                 <p>
                   Notary services are provided in compliance with Utah law. Notary cannot offer legal advice. All notarizations require valid identification and adherence to Utah's notarial act rules.
                 </p>

@@ -258,7 +258,7 @@ export default function TenantDashboard() {
                   <div className="flex-1">
                     <div className="flex flex-col sm:flex-row sm:justify-between">
                       <h4 className="font-medium">Leaking Kitchen Faucet</h4>
-                      <Badge className="w-fit mt-1 sm:mt-0 bg-muted text-orange-800 hover:bg-muted">
+                      <Badge className="w-fit mt-1 sm:mt-0 bg-muted text-foreground hover:bg-muted">
                         In Progress
                       </Badge>
                     </div>

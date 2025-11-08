@@ -116,7 +116,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.homeValue}
                     onChange={(e) => handleInputChange('homeValue', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="400,000"
                   />
                 </div>
@@ -133,7 +133,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.mortgageBalance}
                     onChange={(e) => handleInputChange('mortgageBalance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="250,000"
                   />
                 </div>
@@ -149,7 +149,7 @@ const HomeSaleCalculator: React.FC = () => {
                   step="0.1"
                   value={formData.realtorCommission}
                   onChange={(e) => handleInputChange('realtorCommission', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="6.0"
                 />
               </div>
@@ -165,7 +165,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.closingCosts}
                     onChange={(e) => handleInputChange('closingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="8,000"
                   />
                 </div>
@@ -182,7 +182,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.repairs}
                     onChange={(e) => handleInputChange('repairs', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="5,000"
                   />
                 </div>
@@ -199,7 +199,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.movingCosts}
                     onChange={(e) => handleInputChange('movingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="2,000"
                   />
                 </div>
@@ -216,7 +216,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.capitalGainsTax}
                     onChange={(e) => handleInputChange('capitalGainsTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"
                   />
                 </div>
@@ -236,7 +236,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.originalPurchasePrice}
                     onChange={(e) => handleInputChange('originalPurchasePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="320,000"
                   />
                 </div>
@@ -253,7 +253,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.originalImprovements}
                     onChange={(e) => handleInputChange('originalImprovements', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"
                   />
                 </div>
@@ -285,7 +285,7 @@ const HomeSaleCalculator: React.FC = () => {
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Total Equity</p>
-                        <p className="text-2xl font-bold text-orange-700">{formatCurrency(results.equity)}</p>
+                        <p className="text-2xl font-bold text-foreground">{formatCurrency(results.equity)}</p>
                         <p className="text-sm text-primary mt-1">
                           Home value minus mortgage
                         </p>

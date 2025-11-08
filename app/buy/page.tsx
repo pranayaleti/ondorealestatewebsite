@@ -235,15 +235,15 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-muted">
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+                  <AccordionTrigger className="text-left text-white">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-gray-300">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -251,7 +251,7 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-primary text-foreground">
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Find Your Utah Dream Home?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

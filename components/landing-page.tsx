@@ -108,7 +108,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Background Image */}
-      <section className="relative w-full bg-gradient-to-r from-background to-card py-20 md:py-32" role="banner" aria-label="Hero section">
+      <section className="relative w-full bg-gradient-to-r from-background to-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900 py-20 md:py-32" role="banner" aria-label="Hero section">
         <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
           <Image 
             src="/modern-office-building.png" 
@@ -135,7 +135,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-background dark:bg-card">
+      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">How OnDo Real Estate Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -171,7 +171,7 @@ export default function LandingPage() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-16 bg-muted dark:bg-muted">
+      <section className="py-16 bg-muted dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">Featured Rental Properties</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -222,7 +222,7 @@ export default function LandingPage() {
       </section>
 
       {/* Property Owner Section */}
-      <section className="py-16 bg-background dark:bg-card">
+      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -268,7 +268,7 @@ export default function LandingPage() {
       </section>
 
       {/* Founder's Note Section */}
-      <section className="py-16 bg-card text-foreground">
+      <section className="py-16 bg-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900 text-foreground">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="flex justify-center md:justify-start">
@@ -302,7 +302,7 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-muted dark:bg-muted">
+      <section className="py-16 bg-muted dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -406,7 +406,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-muted text-foreground">
+      <section className="py-16 bg-muted dark:bg-gradient-to-b dark:from-black dark:to-gray-900 text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Find Your Perfect Rental?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

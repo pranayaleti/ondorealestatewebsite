@@ -65,7 +65,7 @@ export default function RefinanceProcessPage() {
         subtitle="A step-by-step guide to refinancing your home loan"
       />
 
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -79,7 +79,7 @@ export default function RefinanceProcessPage() {
               {steps.map((step, index) => (
                 <div key={step.number} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="h-12 w-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-primary dark:text-primary font-bold">
+                    <div className="h-12 w-12 bg-muted rounded-full flex items-center justify-center text-primary font-bold">
                       {step.number}
                     </div>
                   </div>
@@ -87,7 +87,7 @@ export default function RefinanceProcessPage() {
                     <Card>
                       <CardHeader>
                         <div className="flex items-center gap-3 mb-2">
-                          <div className="h-8 w-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center text-primary dark:text-primary">
+                          <div className="h-8 w-8 bg-muted rounded-lg flex items-center justify-center text-primary">
                             {step.icon}
                           </div>
                           <CardTitle className="dark:text-foreground">{step.title}</CardTitle>

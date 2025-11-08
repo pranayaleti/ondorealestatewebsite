@@ -163,7 +163,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.homePrice}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="300,000"
                   />
                 </div>
@@ -180,7 +180,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.downPayment}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="60,000"
                   />
                 </div>
@@ -197,7 +197,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.loanAmount}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="240,000"
                   />
                 </div>
@@ -214,7 +214,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.propertyTax}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="3,000"
                   />
                 </div>
@@ -231,7 +231,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.insurance}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
                   />
                 </div>
@@ -247,7 +247,7 @@ const ClosingCostCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="6.5"
                 />
               </div>
@@ -260,7 +260,7 @@ const ClosingCostCalculator: React.FC = () => {
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -274,7 +274,7 @@ const ClosingCostCalculator: React.FC = () => {
                 <select
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -294,7 +294,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.titleInsurance}
                     onChange={(e) => handleInputChange('titleInsurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,000"
                   />
                 </div>
@@ -311,7 +311,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.appraisal}
                     onChange={(e) => handleInputChange('appraisal', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="500"
                   />
                 </div>
@@ -328,7 +328,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.inspection}
                     onChange={(e) => handleInputChange('inspection', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="400"
                   />
                 </div>
@@ -345,7 +345,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.originationFee}
                     onChange={(e) => handleInputChange('originationFee', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
                   />
                 </div>
@@ -361,7 +361,7 @@ const ClosingCostCalculator: React.FC = () => {
                   step="0.125"
                   value={formData.discountPoints}
                   onChange={(e) => handleInputChange('discountPoints', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="0"
                 />
               </div>
@@ -375,7 +375,7 @@ const ClosingCostCalculator: React.FC = () => {
                   type="number"
                   value={formData.prepaidInterest}
                   onChange={(e) => handleInputChange('prepaidInterest', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="0"
                 />
               </div>
@@ -391,7 +391,7 @@ const ClosingCostCalculator: React.FC = () => {
                     type="number"
                     value={formData.escrowReserves}
                     onChange={(e) => handleInputChange('escrowReserves', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"
                   />
                 </div>
@@ -417,7 +417,7 @@ const ClosingCostCalculator: React.FC = () => {
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Total Out of Pocket</p>
-                        <p className="text-2xl font-bold text-orange-700">{formatCurrency(results.outOfPocket)}</p>
+                        <p className="text-2xl font-bold text-foreground">{formatCurrency(results.outOfPocket)}</p>
                       </div>
                     </div>
                   </div>

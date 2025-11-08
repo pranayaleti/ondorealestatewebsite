@@ -82,7 +82,7 @@ export default function HistoryPage() {
         subtitle="Building trust and excellence in property management since 2020"
       />
 
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -98,7 +98,7 @@ export default function HistoryPage() {
                 {milestones.map((milestone, index) => (
                   <div key={index} className="relative flex items-start gap-6">
                     <div className="flex-shrink-0">
-                      <div className="h-16 w-16 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center text-primary dark:text-primary font-bold text-lg">
+                      <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center text-primary font-bold text-lg">
                         {milestone.year}
                       </div>
                     </div>
@@ -106,7 +106,7 @@ export default function HistoryPage() {
                       <Card>
                         <CardHeader>
                           <div className="flex items-center gap-3 mb-2">
-                            <div className="h-8 w-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center text-primary dark:text-primary">
+                            <div className="h-8 w-8 bg-muted rounded-lg flex items-center justify-center text-primary">
                               {milestone.icon}
                             </div>
                             <CardTitle className="dark:text-foreground">{milestone.title}</CardTitle>

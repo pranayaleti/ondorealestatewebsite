@@ -105,7 +105,7 @@ export default function LoanPayoffsPage() {
         subtitle="Everything you need to know about paying off your mortgage"
       />
 
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">

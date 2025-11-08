@@ -13,7 +13,7 @@ export default function FoundersLetterPage() {
   const yearsInUtah = currentYear - 2019;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark:bg-transparent">
       <SEO
         title="Founder's Letter | Ondo Real Estate"
         description="A personal letter from the founder of Ondo Real Estate on our mission, values, and the future of property management."
@@ -247,7 +247,7 @@ export default function FoundersLetterPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-primary to-primary py-20">
+      <div className="bg-gradient-to-b from-black to-gray-900 py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ready to Experience Ondo?</h2>
           <p className="text-xl text-foreground mb-8 opacity-90">

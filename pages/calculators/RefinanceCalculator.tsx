@@ -104,7 +104,7 @@ const RefinanceCalculator: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -135,7 +135,7 @@ const RefinanceCalculator: React.FC = () => {
                     type="number"
                     value={formData.currentBalance}
                     onChange={(e) => handleInputChange('currentBalance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="200,000"
                   />
                 </div>
@@ -151,7 +151,7 @@ const RefinanceCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.currentRate}
                   onChange={(e) => handleInputChange('currentRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="5.5"
                 />
               </div>
@@ -167,7 +167,7 @@ const RefinanceCalculator: React.FC = () => {
                     type="number"
                     value={formData.currentPayment}
                     onChange={(e) => handleInputChange('currentPayment', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
                   />
                 </div>
@@ -185,7 +185,7 @@ const RefinanceCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.newRate}
                   onChange={(e) => handleInputChange('newRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="4.0"
                 />
               </div>
@@ -198,7 +198,7 @@ const RefinanceCalculator: React.FC = () => {
                 <select
                   value={formData.newTerm}
                   onChange={(e) => handleInputChange('newTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -217,7 +217,7 @@ const RefinanceCalculator: React.FC = () => {
                     type="number"
                     value={formData.closingCosts}
                     onChange={(e) => handleInputChange('closingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="3,000"
                   />
                 </div>
@@ -234,7 +234,7 @@ const RefinanceCalculator: React.FC = () => {
                     type="number"
                     value={formData.propertyTax}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="3,000"
                   />
                 </div>
@@ -251,7 +251,7 @@ const RefinanceCalculator: React.FC = () => {
                     type="number"
                     value={formData.insurance}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
                   />
                 </div>
@@ -282,7 +282,7 @@ const RefinanceCalculator: React.FC = () => {
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Monthly Savings</p>
-                        <p className="text-2xl font-bold text-orange-700">{formatCurrency(results.monthlySavings)}</p>
+                        <p className="text-2xl font-bold text-foreground">{formatCurrency(results.monthlySavings)}</p>
                       </div>
                     </div>
                   </div>
