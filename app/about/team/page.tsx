@@ -7,22 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Phone, Linkedin, Award, GraduationCap, MapPin } from "lucide-react"
+import { Award } from "lucide-react"
 
 export default function TeamPage() {
-  const leadership = [
-    {
-      name: "Pranay Reddy Aleti",
-      title: "Founder & CEO",
-      image: "/founder-image.png",
-      bio: "Pranay founded OnDo Real Estate with a vision to revolutionize property management in Utah. With over 10 years of experience in real estate and technology, he leads our strategic direction and company culture.",
-      credentials: ["Utah Real Estate License", "MBA - University of Utah", "Certified Property Manager"],
-      email: "pranay@ondorealestate.com",
-      phone: "(801) 555-0100",
-      linkedin: "https://linkedin.com/in/pranay-aleti"
-    }
-  ]
-
   const teamMembers = [
     {
       name: "Sarah Johnson",
@@ -99,65 +86,6 @@ export default function TeamPage() {
         subtitle="Experienced professionals dedicated to your success"
         backgroundImage="/modern-office-building.png"
       />
-
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Leadership Team</h2>
-            <p className="text-xl text-muted-foreground">
-              Our leadership team brings decades of combined experience in real estate, property management, and customer service.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            {leadership.map((leader, index) => (
-              <Card key={index} className="mb-12">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div className="text-center lg:text-left">
-                      <div className="relative h-64 w-64 mx-auto lg:mx-0 mb-6 rounded-full overflow-hidden border-4 border-primary">
-                        <Image
-                          src={leader.image}
-                          alt={leader.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex justify-center lg:justify-start gap-4">
-                        <a href={`mailto:${leader.email}`} className="text-muted-foreground hover:text-primary">
-                          <Mail className="h-5 w-5" />
-                        </a>
-                        <a href={`tel:${leader.phone}`} className="text-muted-foreground hover:text-primary">
-                          <Phone className="h-5 w-5" />
-                        </a>
-                        <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                          <Linkedin className="h-5 w-5" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="lg:col-span-2">
-                      <h3 className="text-2xl font-bold mb-2">{leader.name}</h3>
-                      <p className="text-lg text-primary mb-4">{leader.title}</p>
-                      <p className="text-muted-foreground mb-6">{leader.bio}</p>
-                      <div className="space-y-2">
-                        <h4 className="font-semibold">Credentials:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {leader.credentials.map((cred, credIndex) => (
-                            <Badge key={credIndex} variant="secondary">
-                              <GraduationCap className="h-3 w-3 mr-1" />
-                              {cred}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">

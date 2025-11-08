@@ -36,22 +36,22 @@ export default function FoundersLetterPage() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             <div className="bg-primary bg-opacity-20 backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">{yearsInTech}+</div>
+              <div className="text-4xl font-bold text-foreground">{yearsInTech}+</div>
               <div className="text-foreground mt-2">Years in Tech</div>
               <div className="text-muted-foreground text-sm">Full Stack Development</div>
             </div>
             <div className="bg-primary bg-opacity-20 backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">{yearsInUtah}+</div>
+              <div className="text-4xl font-bold text-foreground">{yearsInUtah}+</div>
               <div className="text-foreground mt-2">Years in Utah</div>
               <div className="text-muted-foreground text-sm">Local Market Expert</div>
             </div>
             <div className="bg-primary bg-opacity-20 backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">100%</div>
+              <div className="text-4xl font-bold text-foreground">100%</div>
               <div className="text-foreground mt-2">Client Focused</div>
               <div className="text-muted-foreground text-sm">Personal Touch</div>
             </div>
             <div className="bg-primary bg-opacity-20 backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">24/7</div>
+              <div className="text-4xl font-bold text-foreground">24/7</div>
               <div className="text-foreground mt-2">Tech Platform</div>
               <div className="text-muted-foreground text-sm">Always Available</div>
             </div>
@@ -255,10 +255,10 @@ export default function FoundersLetterPage() {
             experience, Ondo is here for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-background hover:bg-card text-foreground px-8 py-4 rounded-lg text-lg font-bold transition-colors">
+            <button className="bg-black hover:bg-black/90 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
               Start Your Journey
             </button>
-            <button className="bg-card hover:bg-muted text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
+            <button className="bg-black hover:bg-black/90 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
               Learn More About Ondo
             </button>
           </div>
@@ -403,10 +403,10 @@ export default function FoundersLetterPage() {
         Join thousands of property owners and tenants who are already experiencing the future of real estate management.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="bg-primary hover:bg-primary/90 text-background px-8 py-3 rounded-lg font-semibold transition-colors">
+        <button className="bg-black hover:bg-black/90 text-primary px-8 py-3 rounded-lg font-semibold transition-colors">
           Start Your Journey
         </button>
-        <button className="bg-card hover:bg-muted text-foreground px-8 py-3 rounded-lg font-semibold transition-colors border border-border">
+        <button className="bg-black hover:bg-black/90 text-primary px-8 py-3 rounded-lg font-semibold transition-colors">
           Learn More
         </button>
       </div>

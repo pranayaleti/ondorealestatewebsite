@@ -3,6 +3,7 @@
 import type React from "react"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import {
   SidebarProvider,
@@ -90,9 +91,14 @@ export function DashboardSidebar() {
     <SidebarProvider>
       <Sidebar className="border-r">
         <SidebarHeader className="flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2 px-2">
-            <Building className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg">PropertyPro Management</span>
+          <Link href="/" className="flex items-center space-x-2 px-2 hover:opacity-80 transition-opacity">
+            <Image
+              src="/logo.png"
+              alt="OnDo Real Estate"
+              width={120}
+              height={40}
+              className="h-14 w-auto"
+            />
           </Link>
           <SidebarTrigger />
         </SidebarHeader>

@@ -23,6 +23,16 @@ export const metadata: Metadata = {
   },
   description:
     "Utah real estate experts for property management, buying, selling, and home loans. Local service across the Wasatch Front.",
+  icons: {
+    icon: [
+      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/logo.png',
+  },
   keywords: [
     // Core market/service
     "Utah real estate",
@@ -129,7 +139,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             name: SITE_NAME,
             url: SITE_URL,
             telephone: SITE_PHONE,
-            image: `${SITE_URL}/placeholder-logo.png`,
+            image: `${SITE_URL}/logo.png`,
             areaServed: 'Utah',
             openingHours: SITE_HOURS,
             sameAs: SITE_SOCIALS,
