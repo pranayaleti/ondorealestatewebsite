@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -64,13 +65,17 @@ export default function Header() {
 
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-200 bg-background ${isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : ""}`}>
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold">
-              <span className="block">OnDo</span>
-              <span className="block text-primary">Real Estate</span>
-            </span>
+      <div className="container flex h-16 items-center justify-between px-4">
+        <div className="flex items-center gap-2 md:gap-6 flex-1 min-w-0">
+          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="OnDo Real Estate"
+              width={120}
+              height={40}
+              className="h-14 w-auto md:h-16"
+              priority
+            />
           </Link>
           <nav className="hidden md:flex gap-1">
             <Link 
@@ -192,19 +197,19 @@ export default function Header() {
             </Link>
           </nav>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
           <ModeToggle />
           {user ? (
             <UserMenu />
           ) : (
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-2">
               <Button variant="ghost" asChild>
                 <Link href="/auth">Log in</Link>
               </Button>
             </div>
           )}
           <button
-            className="block md:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
+            className="block md:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring flex-shrink-0"
             onClick={() => {
               setIsMenuOpen(!isMenuOpen)
             }}
@@ -274,7 +279,6 @@ export default function Header() {
               >
                 Loans
               </Link>
-              {/* TODO: Implement notary page - temporarily commented out
               <Link
                 href="/notary"
                 className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
@@ -287,7 +291,17 @@ export default function Header() {
               >
                 Notary
               </Link>
-              */}
+              <Link
+                href="/calculators"
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+                  isActive("/calculators") 
+                    ? "bg-primary text-primary-foreground" 
+                    : "text-foreground hover:bg-primary hover:text-primary-foreground"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Calculators
+              </Link>
               <Link
                 href="/why-utah"
                 className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
@@ -338,17 +352,6 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 🎁 Win Prizes
-              </Link>
-              <Link
-                href="/calculators"
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
-                  isActive("/calculators") 
-                    ? "bg-primary text-primary-foreground" 
-                    : "text-foreground hover:bg-primary hover:text-primary-foreground"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Calculators
               </Link>
               {!user && (
                 <div className="flex gap-2 mt-2">

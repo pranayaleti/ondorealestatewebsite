@@ -60,22 +60,22 @@ export default function WhyUtahPage() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">Top 5</div>
+              <div className="text-4xl font-bold text-primary-foreground">Top 5</div>
               <div className="text-foreground mt-2">Job Growth</div>
               <div className="text-muted-foreground text-sm">Consistently in the U.S.</div>
             </div>
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">Silicon Slopes</div>
+              <div className="text-4xl font-bold text-primary-foreground">Silicon Slopes</div>
               <div className="text-foreground mt-2">Tech Corridor</div>
               <div className="text-muted-foreground text-sm">Lehi–SLC–Provo</div>
             </div>
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">2034</div>
+              <div className="text-4xl font-bold text-primary-foreground">2034</div>
               <div className="text-foreground mt-2">Winter Olympics</div>
               <div className="text-muted-foreground text-sm">Tourism & Infra boost</div>
             </div>
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
-              <div className="text-4xl font-bold text-primary">Landlord</div>
+              <div className="text-4xl font-bold text-primary-foreground">Landlord</div>
               <div className="text-foreground mt-2">Friendly</div>
               <div className="text-muted-foreground text-sm">Predictable processes</div>
             </div>
@@ -185,7 +185,7 @@ export default function WhyUtahPage() {
             <Link href="/calculators/buying-power" className="bg-background hover:bg-card text-foreground px-6 py-3 rounded-lg font-semibold">
               Check Your Buying Power
             </Link>
-            <Link href="/founders-letter" className="bg-card hover:bg-muted text-primary px-6 py-3 rounded-lg font-semibold">
+            <Link href="/founders-letter" className="bg-black hover:bg-black/90 text-primary px-6 py-3 rounded-lg font-semibold">
               Learn About Ondo
             </Link>
           </div>

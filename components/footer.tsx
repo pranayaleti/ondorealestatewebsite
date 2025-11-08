@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import Image from "next/image"
 import { SITE_SOCIALS, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE } from "@/lib/site"
 import {
   Facebook,
@@ -212,7 +213,6 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about/history" className="text-muted-foreground hover:text-foreground">History</Link></li>
-              <li><Link href="/about/leadership" className="text-muted-foreground hover:text-foreground">Leadership</Link></li>
               <li><Link href="/about/giving-back" className="text-muted-foreground hover:text-foreground">Giving back</Link></li>
               <li><Link href="/about/careers" className="text-muted-foreground hover:text-foreground">Careers</Link></li>
               <li><Link href="/about/news" className="text-muted-foreground hover:text-foreground">News</Link></li>
@@ -354,14 +354,14 @@ export function Footer() {
               <p className="flex items-center gap-1">
                 <span className="text-muted-foreground/80">Designed. Developed. Deployed by</span>
                 <Link 
-                  href="https://ondosoft.com/?utm_source=ondorealestate" 
+                  href="https://www.ondosoft.com/?utm_source=ondorealestate" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="font-semibold text-primary hover:text-primary transition-colors duration-200 hover:underline decoration-primary underline-offset-2"
                 >
                   OnDoSoft
                 </Link>
-                <span className="text-muted-foreground/80">The digital engine behind Ondo Real Estate.</span>
+                <span className="text-muted-foreground/80">The digital engine behind <Link href="/" className="text-primary hover:text-primary/80 hover:underline">Ondo Real Estate</Link>.</span>
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-4">

@@ -9,7 +9,7 @@ export const generateStructuredData = {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/placeholder-logo.png`,
+    logo: `${SITE_URL}/logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: SITE_PHONE,
