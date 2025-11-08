@@ -21,7 +21,7 @@ export default function SweepstakesPage() {
       />
 
       {/* Hero Banner */}
-      <div className="relative bg-gradient-to-b from-primary to-primary/90 text-white py-16 md:py-24">
+      <div className="relative bg-gradient-to-b from-black to-gray-900 text-white py-16 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-2 items-center max-w-6xl mx-auto">
             <div>
@@ -303,7 +303,7 @@ export default function SweepstakesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-primary to-primary py-20">
+        <section className="bg-gradient-to-b from-black to-gray-900 py-20">
           <div className="container px-4 md:px-6">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">

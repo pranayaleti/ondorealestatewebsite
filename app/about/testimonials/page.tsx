@@ -220,7 +220,7 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-primary text-primary-foreground">
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Experience the Difference?</h2>

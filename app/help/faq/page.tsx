@@ -110,7 +110,7 @@ export default function FAQPage() {
         subtitle="Find answers to common questions about our property management services"
       />
 
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">

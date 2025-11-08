@@ -131,10 +131,10 @@ const CalculatorsPage: React.FC = () => {
     : calculators.filter(calc => calc.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-[#0a0a0a] to-[#111111] text-white antialiased" style={{ fontFamily: 'var(--font-outfit), sans-serif' }}>
+    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white antialiased" style={{ fontFamily: 'var(--font-outfit), sans-serif' }}>
       {/* Hero Header */}
-      <div className="relative border-b border-white/10 bg-gradient-to-r from-black to-[#0a0a0a]">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/5 to-transparent"></div>
+      <div className="relative border-b border-white/10 bg-gradient-to-b from-black to-gray-900">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative">
           <div className="space-y-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#ff6b00] to-[#ff9500] bg-clip-text text-transparent tracking-tight mx-auto">
@@ -228,7 +228,7 @@ const CalculatorsPage: React.FC = () => {
         <div className="mt-24 mb-12 animate-fade-in-up">
           <div className="relative backdrop-blur-lg border border-white/10 bg-white/5 rounded-3xl p-8 md:p-12 overflow-hidden">
             {/* Background Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none"></div>
             
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#ff6b00] to-[#ff9500] bg-clip-text text-transparent">

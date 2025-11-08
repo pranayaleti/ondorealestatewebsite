@@ -74,7 +74,7 @@ export default function SitemapPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background dark:bg-transparent">
       <SEO
         title="Sitemap | OnDo Real Estate"
         description="Complete sitemap of OnDo Real Estate website. Find all our pages, services, and resources in one place."

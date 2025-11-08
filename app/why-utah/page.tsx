@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/site"
 
 export default function WhyUtahPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark:bg-transparent">
       <SEO
         title="Why Invest in Utah"
         description="Utah's resilient economy, tech growth, and quality of life create strong real estate investment opportunities across the Wasatch Front."

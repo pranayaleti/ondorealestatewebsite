@@ -76,9 +76,26 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply bg-background;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-family-base);
+  }
+  
+  html.dark {
+    background: linear-gradient(to bottom, #000000, #111827) !important;
+    background-attachment: fixed;
+    min-height: 100%;
+  }
+  
+  html.dark body {
+    background: transparent !important;
+  }
+  
+  html.dark > body {
+    background: transparent !important;
   }
 }
 

@@ -40,7 +40,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Intro */}
@@ -54,21 +54,21 @@ export default function AboutPage() {
             <div className="mb-16">
               <h2 className="text-3xl font-bold text-center mb-8 dark:text-foreground">Why This Matters</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
-                  <h3 className="text-xl font-semibold mb-3 text-orange-900 dark:text-orange-100">Skip the noise</h3>
-                  <p className="text-orange-800 dark:text-orange-200">One contract, one portal, one trusted partner.</p>
+                <div className="bg-muted p-6 rounded-lg border border-border">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Skip the noise</h3>
+                  <p className="text-muted-foreground">One contract, one portal, one trusted partner.</p>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
-                  <h3 className="text-xl font-semibold mb-3 text-orange-900 dark:text-orange-100">Built for outcomes</h3>
-                  <p className="text-orange-800 dark:text-orange-200">More leased properties, faster sales, higher NOI.</p>
+                <div className="bg-muted p-6 rounded-lg border border-border">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Built for outcomes</h3>
+                  <p className="text-muted-foreground">More leased properties, faster sales, higher NOI.</p>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
-                  <h3 className="text-xl font-semibold mb-3 text-orange-900 dark:text-orange-100">Tech-first approach</h3>
-                  <p className="text-orange-800 dark:text-orange-200">Dashboards, tenant-owner workflows, and automated reporting.</p>
+                <div className="bg-muted p-6 rounded-lg border border-border">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Tech-first approach</h3>
+                  <p className="text-muted-foreground">Dashboards, tenant-owner workflows, and automated reporting.</p>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
-                  <h3 className="text-xl font-semibold mb-3 text-orange-900 dark:text-orange-100">Local expertise</h3>
-                  <p className="text-orange-800 dark:text-orange-200">Utah-native market knowledge with national reach.</p>
+                <div className="bg-muted p-6 rounded-lg border border-border">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Local expertise</h3>
+                  <p className="text-muted-foreground">Utah-native market knowledge with national reach.</p>
                 </div>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function AboutPage() {
             </div>
 
             {/* Our Promise */}
-            <div className="mb-16 text-center bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 p-8 rounded-lg border border-orange-200 dark:border-orange-800">
+            <div className="mb-16 text-center bg-muted p-8 rounded-lg border border-border">
               <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Our Promise</h2>
               <p className="text-xl leading-relaxed dark:text-muted-foreground">
                 Clear communication. Relentless execution. Real returns. We don't do busywork — we produce predictable outcomes and measurable value.
