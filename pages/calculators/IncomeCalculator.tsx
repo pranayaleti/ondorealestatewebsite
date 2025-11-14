@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore } from '@/lib/mortgage-utils';
+import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
 
 interface IncomeData {
   homePrice: number;
@@ -15,6 +15,7 @@ interface IncomeData {
   insurance: number;
   monthlyDebts: number;
   program: LoanProgram;
+  creditScore: number;
 }
 
 interface IncomeResults {
@@ -36,7 +37,8 @@ const IncomeCalculator: React.FC = () => {
     propertyTax: 3000,
     insurance: 1200,
     monthlyDebts: 500,
-    program: 'conventional'
+    program: 'conventional',
+    creditScore: 740
   });
 
   const [results, setResults] = useState<IncomeResults | null>(null);
@@ -48,14 +50,8 @@ const IncomeCalculator: React.FC = () => {
   const calculateRequiredIncome = () => {
     const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, monthlyDebts, program, creditScore } = formData;
 
-    // Calculate monthly interest rate
-    const monthlyRate = interestRate / 100 / 12;
-    const totalPayments = loanTerm * 12;
-
-    // Calculate monthly mortgage payment (P&I)
-    const monthlyPayment = loanAmount *
-      (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) /
-      (Math.pow(1 + monthlyRate, totalPayments) - 1);
+    // Calculate monthly mortgage payment (P&I) using utility function
+    const monthlyPayment = calculateMonthlyPI(loanAmount, interestRate, loanTerm);
 
     // Calculate monthly property tax and insurance
     const monthlyTax = propertyTax / 12;
@@ -269,6 +265,20 @@ const IncomeCalculator: React.FC = () => {
                   <option value="va">VA</option>
                   <option value="usda">USDA</option>
                 </select>
+              </div>
+
+              {/* Credit Score */}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">Credit Score</label>
+                <input
+                  type="number"
+                  min={300}
+                  max={850}
+                  value={formData.creditScore}
+                  onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  placeholder="740"
+                />
               </div>
             </div>
           </div>
