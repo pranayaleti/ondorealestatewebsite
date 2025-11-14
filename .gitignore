@@ -33,3 +33,4 @@ reports/theme-audit/diff/*.png
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.cursor/mcp.json
