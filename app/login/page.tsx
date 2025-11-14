@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import { TestCredentials } from "@/components/test-credentials"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -27,16 +28,22 @@ export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [activeTab, setActiveTab] = useState<"tenant" | "owner">("tenant")
+  const [selectedRole, setSelectedRole] = useState<"tenant" | "owner" | "admin">("tenant")
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
     try {
-      const success = await login(email, password, activeTab)
+      // Use selectedRole if it's admin, otherwise use activeTab
+      const roleToUse = selectedRole === "admin" ? "admin" : activeTab
+      const success = await login(email, password, roleToUse)
 
       if (success) {
-        const redirectPath = activeTab === "tenant" ? "/tenant" : "/owner"
+        const redirectPath = 
+          roleToUse === "tenant" ? "/tenant" : 
+          roleToUse === "owner" ? "/owner" : 
+          "/dashboard"
         router.push(redirectPath)
       } else {
         toast({
@@ -53,6 +60,20 @@ export default function LoginPage() {
       })
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handleFillCredentials = (fillEmail: string, fillPassword: string, fillRole: "tenant" | "owner" | "admin") => {
+    setEmail(fillEmail)
+    setPassword(fillPassword)
+    setSelectedRole(fillRole)
+    
+    // Switch to appropriate tab based on role
+    if (fillRole === "tenant" || fillRole === "owner") {
+      setActiveTab(fillRole)
+    } else if (fillRole === "admin") {
+      // Admin can use owner tab for UI purposes
+      setActiveTab("owner")
     }
   }
 
@@ -76,7 +97,10 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "tenant" | "owner")} className="w-full">
+        <Tabs value={activeTab} onValueChange={(v) => {
+          setActiveTab(v as "tenant" | "owner")
+          setSelectedRole(v as "tenant" | "owner")
+        }} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="tenant" className="flex items-center gap-2">
               <Home className="h-4 w-4" />
@@ -214,6 +238,10 @@ export default function LoginPage() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        <div className="mt-6">
+          <TestCredentials onFill={handleFillCredentials} />
+        </div>
 
         <div className="mt-6 text-center">
           <p className="text-sm text-muted-foreground">
