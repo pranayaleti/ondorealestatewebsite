@@ -15,7 +15,11 @@ import {
   CheckCircle2,
   Clock,
   BarChart3,
-  ChevronRight
+  ChevronRight,
+  DollarSign,
+  Percent,
+  Building2,
+  TrendingDown
 } from 'lucide-react'
 
 interface CalculatorTile {
@@ -119,10 +123,73 @@ const CalculatorsPage: React.FC = () => {
       icon: <Landmark className="h-8 w-8" />,
       category: 'Planning', 
       color: 'from-emerald-500 to-emerald-600'
+    },
+    {
+      id: 'cash-on-cash',
+      name: 'Cash-on-Cash Return Calculator',
+      description: 'Calculate the annual return on your actual cash investment in rental properties.',
+      path: '/calculators/cash-on-cash',
+      icon: <DollarSign className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      id: 'cap-rate',
+      name: 'Cap Rate Calculator',
+      description: 'Calculate the capitalization rate to evaluate property income potential.',
+      path: '/calculators/cap-rate',
+      icon: <Percent className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-cyan-500 to-cyan-600'
+    },
+    {
+      id: 'roi',
+      name: 'ROI Calculator',
+      description: 'Calculate total return on investment including cash flow and appreciation.',
+      path: '/calculators/roi',
+      icon: <TrendingUpIcon className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-violet-500 to-violet-600'
+    },
+    {
+      id: 'grm',
+      name: 'Gross Rent Multiplier Calculator',
+      description: 'Quick screening tool to evaluate property price relative to rental income.',
+      path: '/calculators/grm',
+      icon: <Building2 className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-slate-500 to-slate-600'
+    },
+    {
+      id: 'dscr',
+      name: 'DSCR Calculator',
+      description: 'Calculate Debt Service Coverage Ratio for investment property loans.',
+      path: '/calculators/dscr',
+      icon: <TrendingDown className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-rose-500 to-rose-600'
+    },
+    {
+      id: 'one-percent-rule',
+      name: '1% Rule Calculator',
+      description: 'Quick screening tool: monthly rent should be at least 1% of purchase price.',
+      path: '/calculators/one-percent-rule',
+      icon: <CalcIcon className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-lime-500 to-lime-600'
+    },
+    {
+      id: 'fifty-percent-rule',
+      name: '50% Rule Calculator',
+      description: 'Estimate operating expenses: typically 50% of gross rental income.',
+      path: '/calculators/fifty-percent-rule',
+      icon: <Percent className="h-8 w-8" />,
+      category: 'Investment',
+      color: 'from-orange-500 to-orange-600'
     }
   ]
 
-  const categories = ['All', 'Mortgage', 'Purchase', 'Sale', 'Analysis', 'Planning']
+  const categories = ['All', 'Mortgage', 'Purchase', 'Sale', 'Analysis', 'Planning', 'Investment']
 
   const [selectedCategory, setSelectedCategory] = useState('All')
 

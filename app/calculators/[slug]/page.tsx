@@ -36,6 +36,27 @@ const slugToComponent: Record<string, any> = {
   "retirement": dynamic(() => import("@/pages/calculators/RetirementCalculator"), { 
     loading: () => <Loading />
   }),
+  "cash-on-cash": dynamic(() => import("@/pages/calculators/CashOnCashCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "cap-rate": dynamic(() => import("@/pages/calculators/CapRateCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "roi": dynamic(() => import("@/pages/calculators/ROICalculator"), { 
+    loading: () => <Loading />
+  }),
+  "grm": dynamic(() => import("@/pages/calculators/GRMCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "dscr": dynamic(() => import("@/pages/calculators/DSCRCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "one-percent-rule": dynamic(() => import("@/pages/calculators/OnePercentRuleCalculator"), { 
+    loading: () => <Loading />
+  }),
+  "fifty-percent-rule": dynamic(() => import("@/pages/calculators/FiftyPercentRuleCalculator"), { 
+    loading: () => <Loading />
+  }),
 }
 
 // Generate static params for all calculator slugs at build time
