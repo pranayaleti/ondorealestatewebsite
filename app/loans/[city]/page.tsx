@@ -30,17 +30,15 @@ export default async function Page({ params }: { params: Params }) {
       <SEO
         title={`Home Loans in ${city.name}, Utah | ${SITE_NAME}`}
         description={`Conventional, FHA, VA, USDA, and jumbo loans serving ${city.name}. Get pre-qualified.`}
-        pathname={`/loans/${params.city}/`}
+        pathname={`/loans/${citySlug}/`}
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Loans", url: `${SITE_URL}/loans/` },
-          { name: city.name, url: `${SITE_URL}/loans/${params.city}/` },
+          { name: city.name, url: `${SITE_URL}/loans/${citySlug}/` },
         ])}
       />
       <CityServicePage city={city} service="loans" />
     </>
   )
 }
-
-
