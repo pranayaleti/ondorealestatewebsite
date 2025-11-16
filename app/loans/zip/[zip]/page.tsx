@@ -12,33 +12,33 @@ export function generateStaticParams(): { zip: string }[] {
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const city = findCityByZip(params.zip)
+  const { zip } = await params
+  const city = findCityByZip(zip)
   const cityName = city?.name ?? "Utah"
-  const title = `Mortgage Lenders ${params.zip} (${cityName}) | ${SITE_NAME}`
-  const description = `Loan options and pre-qualification for borrowers in ${params.zip} ${cityName}.`
-  const canonical = `${SITE_URL}/loans/zip/${params.zip}/`
+  const title = `Mortgage Lenders ${zip} (${cityName}) | ${SITE_NAME}`
+  const description = `Loan options and pre-qualification for borrowers in ${zip} ${cityName}.`
+  const canonical = `${SITE_URL}/loans/zip/${zip}/`
   return { title, description, alternates: { canonical }, openGraph: { title, description, url: canonical } }
 }
 
 export default async function Page({ params }: { params: Params }) {
-  const city = findCityByZip(params.zip)
+  const { zip } = await params
+  const city = findCityByZip(zip)
   if (!city) return <div className="container mx-auto px-4 py-10">Service area not found.</div>
   return (
     <>
       <SEO
-        title={`Mortgage Lenders ${params.zip} (${city.name}) | ${SITE_NAME}`}
-        description={`Loan options and pre-qualification for borrowers in ${params.zip} ${city.name}.`}
-        pathname={`/loans/zip/${params.zip}/`}
+        title={`Mortgage Lenders ${zip} (${city.name}) | ${SITE_NAME}`}
+        description={`Loan options and pre-qualification for borrowers in ${zip} ${city.name}.`}
+        pathname={`/loans/zip/${zip}/`}
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Loans", url: `${SITE_URL}/loans/` },
-          { name: `${params.zip} (${city.name})`, url: `${SITE_URL}/loans/zip/${params.zip}/` },
+          { name: `${zip} (${city.name})`, url: `${SITE_URL}/loans/zip/${zip}/` },
         ])}
       />
       <CityServicePage city={city} service="loans" />
     </>
   )
 }
-
-

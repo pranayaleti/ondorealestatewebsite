@@ -1,4 +1,5 @@
 // Bundle optimization utilities
+import * as React from "react"
 
 // Dynamic imports for code splitting
 export const dynamicImports = {
@@ -28,7 +29,6 @@ export const dynamicImports = {
   // Owner components
   owner: {
     propertyMaintenance: () => import("@/components/owner/property-maintenance"),
-    propertyEditForm: () => import("@/components/owner/property-edit-form"),
     addUnitDialog: () => import("@/components/owner/add-unit-dialog"),
     settingsView: () => import("@/components/owner/settings-view"),
   },
@@ -43,7 +43,8 @@ export const dynamicImports = {
   // Charts and visualizations
   charts: {
     recharts: () => import("recharts"),
-    chartjs: () => import("chart.js"),
+    // chartjs module not found, commenting out until available
+    // chartjs: () => import("chart.js"),
   },
 
   // Heavy libraries
@@ -63,11 +64,12 @@ export const lazyLoading = {
   ) => {
     const LazyComponent = React.lazy(importFunc)
     
-    return (props: React.ComponentProps<T>) => (
-      <React.Suspense fallback={fallback ? <fallback /> : <div>Loading...</div>}>
-        <LazyComponent {...props} />
-      </React.Suspense>
-    )
+    return (props: React.ComponentProps<T>) =>
+      React.createElement(
+        React.Suspense,
+        { fallback: fallback ? React.createElement(fallback) : React.createElement("div", null, "Loading...") },
+        React.createElement(LazyComponent, props)
+      )
   },
 
   // Lazy load with intersection observer
@@ -97,10 +99,10 @@ export const lazyLoading = {
         return () => observer.disconnect()
       }, [])
 
-      return (
-        <div ref={elementRef as any}>
-          {isVisible ? <Component {...props} ref={ref} /> : <div>Loading...</div>}
-        </div>
+      return React.createElement(
+        "div",
+        { ref: elementRef as any },
+        isVisible ? React.createElement(Component, { ...props, ref }) : React.createElement("div", null, "Loading...")
       )
     })
   },
@@ -111,7 +113,7 @@ export const bundleAnalysis = {
   // Get bundle size information
   getBundleInfo: () => {
     if (typeof window !== "undefined" && "performance" in window) {
-      const resources = performance.getEntriesByType("resource")
+      const resources = performance.getEntriesByType("resource") as PerformanceResourceTiming[]
       const jsFiles = resources.filter((resource) => resource.name.includes(".js"))
       const cssFiles = resources.filter((resource) => resource.name.includes(".css"))
       
@@ -157,10 +159,10 @@ export const treeShaking = {
   lodash: {
     // Instead of: import _ from 'lodash'
     // Use: import { debounce, throttle } from 'lodash'
-    debounce: () => import("lodash/debounce"),
-    throttle: () => import("lodash/throttle"),
-    isEmpty: () => import("lodash/isEmpty"),
-    isEqual: () => import("lodash/isEqual"),
+    debounce: () => import("lodash").then(m => m.debounce),
+    throttle: () => import("lodash").then(m => m.throttle),
+    isEmpty: () => import("lodash").then(m => m.isEmpty),
+    isEqual: () => import("lodash").then(m => m.isEqual),
   },
 
   // Date utilities
@@ -288,7 +290,7 @@ export const performanceMonitoring = {
         }
       })
 
-      return <Component {...props} ref={ref} />
+      return React.createElement(Component, { ...props, ref })
     })
   },
 
