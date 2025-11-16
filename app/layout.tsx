@@ -10,7 +10,9 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ClientConsultationWidget from "@/components/ClientConsultationWidget"
 import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
-import { Analytics } from '@vercel/analytics/react'
+// Vercel Analytics is disabled for static exports (GitHub Pages)
+// It only works on Vercel's platform, not with static site generation
+// const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
 
 const inter = Inter({ subsets: ["latin"], weight: ["400","500","700","800"] })
 const outfit = Outfit({ subsets: ["latin"], weight: ["400","500","600","700","800"], variable: "--font-outfit" })
@@ -175,7 +177,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-SSND5XGJ87');
           `}
         </Script>
-        <Analytics />
+        {/* Vercel Analytics disabled for static exports - only works on Vercel platform */}
+        {/* {process.env.NEXT_PUBLIC_VERCEL && <Analytics />} */}
         {/* rb2b Script */}
         <Script
           id="rb2b-script"
