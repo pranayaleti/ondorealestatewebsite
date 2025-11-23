@@ -27,7 +27,7 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year cache for static images
     dangerouslyAllowSVG: true,
     domains: ['images.unsplash.com'],
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Removed CSP from images config - CSP is now handled via meta tag in layout.tsx
     // Disable image optimization for static export
     unoptimized: true,
   },
