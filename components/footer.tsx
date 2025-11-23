@@ -147,13 +147,13 @@ export function Footer() {
               Buying a Home
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/buying/first-time" className="text-muted-foreground hover:text-foreground">First-time homebuyer</Link></li>
-              <li><Link href="/buying/second-home" className="text-muted-foreground hover:text-foreground">Buying a second home</Link></li>
-              <li><Link href="/buying/fixed-rate" className="text-muted-foreground hover:text-foreground">Fixed-rate mortgage</Link></li>
-              <li><Link href="/buying/adjustable-rate" className="text-muted-foreground hover:text-foreground">Adjustable-rate mortgage</Link></li>
-              <li><Link href="/buying/30-year" className="text-muted-foreground hover:text-foreground">30 year mortgage</Link></li>
-              <li><Link href="/buying/15-year" className="text-muted-foreground hover:text-foreground">15 year mortgage</Link></li>
-              <li><Link href="/buying/rates" className="text-muted-foreground hover:text-foreground">Mortgage rates explained</Link></li>
+              <li><Link href="/buy/first-time" className="text-muted-foreground hover:text-foreground">First-time homebuyer</Link></li>
+              <li><Link href="/buy/second-home" className="text-muted-foreground hover:text-foreground">Buying a second home</Link></li>
+              <li><Link href="/buy/fixed-rate" className="text-muted-foreground hover:text-foreground">Fixed-rate mortgage</Link></li>
+              <li><Link href="/buy/adjustable-rate" className="text-muted-foreground hover:text-foreground">Adjustable-rate mortgage</Link></li>
+              <li><Link href="/buy/30-year" className="text-muted-foreground hover:text-foreground">30 year mortgage</Link></li>
+              <li><Link href="/buy/15-year" className="text-muted-foreground hover:text-foreground">15 year mortgage</Link></li>
+              <li><Link href="/buy/rates" className="text-muted-foreground hover:text-foreground">Mortgage rates explained</Link></li>
             </ul>
           </div>
 

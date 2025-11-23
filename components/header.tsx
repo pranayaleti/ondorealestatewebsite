@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-200 bg-background ${isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : ""}`}>
       <div className="container flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-2 md:gap-6 flex-1 min-w-0">
+        <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0 overflow-hidden">
           <Link href="/" className="flex items-center hover:opacity-80 transition-opacity flex-shrink-0">
             <Image
               src="/logo.png"
@@ -77,10 +77,10 @@ export default function Header() {
               priority
             />
           </Link>
-          <nav className="hidden md:flex gap-1">
+          <nav className="hidden md:flex gap-0.5 overflow-x-auto scrollbar-hide flex-1 min-w-0 max-w-full">
             <Link 
               href="/buy" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/buy") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -90,7 +90,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/sell" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/sell") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -100,7 +100,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/properties" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/properties") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -110,17 +110,17 @@ export default function Header() {
             </Link>
             <Link 
               href="/property-management" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/property-management") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
               }`}
             >
-              Property Management
+              Property Mgmt
             </Link>
             <Link 
               href="/loans" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/loans") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -130,7 +130,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/notary" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/notary") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -141,7 +141,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/calculators" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/calculators") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -151,7 +151,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/why-utah" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/why-utah") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -161,7 +161,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/about" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/about") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -171,7 +171,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/contact" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/contact") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -181,7 +181,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/faq" 
-              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 ${
+              className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
                 isActive("/faq") 
                   ? "bg-primary text-primary-foreground" 
                   : "text-foreground hover:bg-primary hover:text-primary-foreground"
@@ -191,7 +191,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/sweepstakes" 
-              className="text-sm font-medium px-3 py-2 rounded-md transition-colors duration-200 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-primary-foreground font-bold"
+              className="text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-primary-foreground font-bold whitespace-nowrap flex-shrink-0"
             >
               🎁 Win Prizes
             </Link>
