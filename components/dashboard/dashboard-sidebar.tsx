@@ -95,9 +95,11 @@ export function DashboardSidebar() {
             <Image
               src="/logo.png"
               alt="OnDo Real Estate"
-              width={120}
-              height={40}
+              width={240}
+              height={80}
               className="h-14 w-auto"
+              quality={90}
+              sizes="120px"
             />
           </Link>
           <SidebarTrigger />

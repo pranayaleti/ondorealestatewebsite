@@ -23,7 +23,7 @@ export function PageBanner({ title, subtitle, backgroundImage }: PageBannerProps
           />
         ) : (
           <Image 
-            src="/modern-apartment-balcony.png" 
+            src="/modern-apartment-balcony.webp" 
             alt="Modern apartment building background representing Utah rental properties and property management services" 
             fill
             className="object-cover"

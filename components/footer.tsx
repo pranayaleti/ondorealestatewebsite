@@ -312,10 +312,14 @@ export function Footer() {
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="Scan QR code to access all social media links"
                 >
-                  <img 
-                    src="/Linktree.png" 
-                    alt="Linktree QR Code - Scan to access all social media" 
+                  <Image
+                    src="/Linktree.png"
+                    alt="Linktree QR Code - Scan to access all social media"
+                    width={52}
+                    height={52}
                     className="h-8 w-8 rounded border bg-white p-0.5"
+                    quality={85}
+                    sizes="32px"
                   />
                 </a>
                 <span className="text-xs text-muted-foreground hidden sm:block">

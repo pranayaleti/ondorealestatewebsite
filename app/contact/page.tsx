@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -175,10 +176,14 @@ export default function ContactPage() {
                           rel="noopener noreferrer"
                           className="text-primary hover:text-primary/80 transition-colors"
                         >
-                          <img 
-                            src="/Linktree.png" 
-                            alt="Linktree QR Code" 
+                          <Image
+                            src="/Linktree.png"
+                            alt="Linktree QR Code"
+                            width={64}
+                            height={64}
                             className="h-16 w-16 rounded border bg-white p-1"
+                            quality={85}
+                            sizes="64px"
                           />
                         </a>
                         <div className="text-xs text-muted-foreground">

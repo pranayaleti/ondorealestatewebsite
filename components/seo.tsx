@@ -33,7 +33,7 @@ export default function SEO({
 }: SEOProps) {
   const domain = SITE_URL
   const url = `${domain.replace(/\/$/, "")}${pathname}`
-  const ogImage = image || `${domain}/modern-office-building.png`
+  const ogImage = image || `${domain}/modern-office-building.webp`
   
   // Enhanced keywords with default real estate terms
   const defaultKeywords = [

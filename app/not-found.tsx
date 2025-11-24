@@ -1,11 +1,12 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone, Mail } from "lucide-react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
-import SEO from "@/components/seo"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone } from "lucide-react"
 import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+
+// Lazy load SEO component to reduce initial bundle size
+const SEO = dynamic(() => import("@/components/seo"), { ssr: true })
 
 export default function NotFound() {
   const popularPages = [
@@ -32,11 +33,7 @@ export default function NotFound() {
         title="404 - Page Not Found | OnDo Real Estate"
         description="The page you're looking for doesn't exist. Explore our popular pages and find what you need."
         pathname="/404"
-        image={`${SITE_URL}/modern-apartment-balcony.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "404", url: `${SITE_URL}/404` },
-        ])}
+        image={`${SITE_URL}/modern-apartment-balcony.webp`}
       />
       
       <div className="container mx-auto max-w-4xl">

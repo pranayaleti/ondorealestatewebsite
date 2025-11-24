@@ -8,14 +8,31 @@ import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import ClientConsultationWidget from "@/components/ClientConsultationWidget"
+import dynamic from "next/dynamic"
+
+// Lazy load non-critical widgets
+// Note: Can't use ssr: false in Server Components, but static export doesn't need SSR anyway
+const ClientConsultationWidget = dynamic(() => import("@/components/ClientConsultationWidget"), {
+  loading: () => null, // Don't show loading state for widget
+})
 import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
 // Vercel Analytics is disabled for static exports (GitHub Pages)
 // It only works on Vercel's platform, not with static site generation
 // const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
 
-const inter = Inter({ subsets: ["latin"], weight: ["400","500","700","800"] })
-const outfit = Outfit({ subsets: ["latin"], weight: ["400","500","600","700","800"], variable: "--font-outfit" })
+const inter = Inter({ 
+  subsets: ["latin"], 
+  weight: ["400","500","700","800"],
+  display: 'swap', // Optimize font loading
+  preload: true,
+})
+const outfit = Outfit({ 
+  subsets: ["latin"], 
+  weight: ["400","500","600","700","800"], 
+  variable: "--font-outfit",
+  display: 'swap', // Optimize font loading
+  preload: true,
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -122,10 +139,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className="dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
       <head>
+        {/* Preconnect to external domains for faster resource loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href="/logo.png" as="image" type="image/png" />
+        {/* Preload critical fonts */}
+        <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        
         <meta
           httpEquiv="Content-Security-Policy"
           content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com; frame-src 'self';"
         />
+        {/* Bfcache optimization - ensure pages can be cached for instant back/forward navigation */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background dark:bg-transparent text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
@@ -170,12 +202,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             ],
           })}
         </Script>
-        {/* Google Analytics */}
+        {/* Google Analytics - Deferred to reduce render blocking and unused JS */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SSND5XGJ87"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -185,10 +217,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         {/* Vercel Analytics disabled for static exports - only works on Vercel platform */}
         {/* {process.env.NEXT_PUBLIC_VERCEL && <Analytics />} */}
-        {/* rb2b Script */}
+        {/* rb2b Script - Deferred to reduce render blocking */}
         <Script
           id="rb2b-script"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               !function(key) {

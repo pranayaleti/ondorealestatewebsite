@@ -1,13 +1,18 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, memo } from "react"
+import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { SearchForm } from "@/components/search-form"
 import { Home, Building, DollarSign, Shield, Star } from "lucide-react"
-import { PropertyDetailsModal } from "@/components/property-details-modal"
-import { Footer } from "@/components/footer"
+import { LazyImage } from "@/components/lazy-image"
+
+// Lazy load heavy components to reduce initial bundle size
+const PropertyDetailsModal = dynamic(() => import("@/components/property-details-modal").then(m => ({ default: m.PropertyDetailsModal })), {
+  ssr: true,
+})
 
 // Mock data for featured properties
 const featuredProperties = [
@@ -15,7 +20,7 @@ const featuredProperties = [
     id: 101,
     name: "Modern Downtown Apartment",
     description: "Salt Lake City, UT",
-    image: "/modern-apartment-balcony.png",
+    image: "/modern-apartment-balcony.webp",
     bedrooms: 2,
     bathrooms: 2,
     price: 1850,
@@ -28,9 +33,9 @@ const featuredProperties = [
     specialties: ["apartment", "downtown"],
     valueRanges: ["300k-500k"],
     images: [
-      "/modern-apartment-balcony.png",
-      "/modern-apartment-balcony.png",
-      "/modern-apartment-balcony.png",
+      "/modern-apartment-balcony.webp",
+      "/modern-apartment-balcony.webp",
+      "/modern-apartment-balcony.webp",
     ],
     leaseTerms: "12-month minimum lease term with option to renew. $50 application fee per adult.",
     services: ["24/7 maintenance", "Package receiving", "Online rent payment", "Fitness center", "Rooftop lounge"],
@@ -42,7 +47,7 @@ const featuredProperties = [
     id: 102,
     name: "Family Home with Garden",
     description: "Holladay, UT",
-    image: "/suburban-house-garden.png",
+    image: "/suburban-house-garden.webp",
     bedrooms: 3,
     bathrooms: 2.5,
     price: 2400,
@@ -55,9 +60,9 @@ const featuredProperties = [
     specialties: ["single-family", "suburban"],
     valueRanges: ["500k-750k"],
     images: [
-      "/suburban-house-garden.png",
-      "/suburban-house-garden.png",
-      "/suburban-house-garden.png",
+      "/suburban-house-garden.webp",
+      "/suburban-house-garden.webp",
+      "/suburban-house-garden.webp",
     ],
     leaseTerms: "12-month lease. $45 application fee per adult. Security deposit equal to one month's rent.",
     services: ["Lawn maintenance", "Snow removal", "Pest control", "Annual HVAC service", "24/7 emergency support"],
@@ -69,7 +74,7 @@ const featuredProperties = [
     id: 103,
     name: "Modern Townhouse",
     description: "Midvale, UT",
-    image: "/modern-townhouse-garage.png",
+    image: "/modern-townhouse-garage.webp",
     bedrooms: 2,
     bathrooms: 1.5,
     price: 1650,
@@ -82,9 +87,9 @@ const featuredProperties = [
     specialties: ["townhouse", "modern"],
     valueRanges: ["300k-500k"],
     images: [
-      "/modern-townhouse-garage.png",
-      "/modern-townhouse-garage.png",
-      "/modern-townhouse-garage.png",
+      "/modern-townhouse-garage.webp",
+      "/modern-townhouse-garage.webp",
+      "/modern-townhouse-garage.webp",
     ],
     leaseTerms: "6 or 12-month lease terms. $40 application fee. Security deposit equal to one month's rent.",
     services: ["Community pool maintenance", "Exterior maintenance", "Trash removal", "Snow removal", "HOA management"],
@@ -94,7 +99,7 @@ const featuredProperties = [
   },
 ]
 
-export default function LandingPage() {
+function LandingPage() {
   const [selectedProperty, setSelectedProperty] = useState<number | null>(null)
 
   const handleViewDetails = (propertyId: number) => {
@@ -110,14 +115,14 @@ export default function LandingPage() {
       {/* Hero Section with Background Image */}
       <section className="relative w-full bg-gradient-to-r from-background to-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900 py-20 md:py-32" role="banner" aria-label="Hero section">
         <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
-          <Image 
-            src="/modern-office-building.png" 
+          <LazyImage 
+            src="/modern-office-building.webp" 
             alt="Modern professional office building representing OnDo Real Estate's headquarters and property management services" 
             fill 
-            style={{ objectFit: "cover" }} 
+            className="object-cover"
             priority 
-            title="OnDo Real Estate Professional Office Building"
-            aria-label="Modern office building representing OnDo Real Estate's professional property management services"
+            quality={75}
+            sizes="100vw"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
@@ -178,14 +183,13 @@ export default function LandingPage() {
             {featuredProperties.map((property) => (
               <Card key={property.id} className="dark:bg-card">
                 <div className="relative h-48 w-full">
-                  <Image
+                  <LazyImage
                     src={property.image || "/placeholder.svg"}
                     alt={`${property.name} rental property in ${property.description} - ${property.shortDescription}`}
                     fill
-                    style={{ objectFit: "cover" }}
+                    className="object-cover"
+                    quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    title={`${property.name} - ${property.description} Rental Property`}
-                    aria-label={`${property.name} rental property in ${property.description} featuring ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms`}
                   />
                 </div>
                 <CardHeader>
@@ -254,13 +258,13 @@ export default function LandingPage() {
               </Button>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden">
-              <Image 
-                src="/city-map-with-pin.png" 
+              <LazyImage 
+                src="/city-map-with-pin.webp" 
                 alt="Utah property management service areas map showing Salt Lake City, Holladay, Midvale and surrounding communities served by OnDo Real Estate" 
                 fill 
-                style={{ objectFit: "cover" }}
-                title="OnDo Real Estate Utah Service Areas"
-                aria-label="Map showing Utah property management service areas including Salt Lake City, Holladay, Midvale and surrounding communities"
+                className="object-cover"
+                quality={80}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -273,17 +277,14 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="flex justify-center md:justify-start">
               <div className="relative h-60 w-60 md:h-80 md:w-80 rounded-full border-4 border-primary overflow-hidden bg-background">
-                <Image 
-                  src="/founder-image.png" 
+                <LazyImage 
+                  src="/founder-image.webp" 
                   alt="Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate, professional headshot" 
                   fill 
-                  style={{ objectFit: "cover" }}
-                  className="rounded-full"
-                  quality={100}
+                  className="rounded-full object-cover"
+                  quality={90}
                   priority
                   sizes="(max-width: 768px) 240px, 320px"
-                  title="Pranay Reddy Aleti - OnDo Real Estate Founder"
-                  aria-label="Professional headshot of Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate"
                 />
               </div>
             </div>
@@ -310,13 +311,13 @@ export default function LandingPage() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                    <Image 
-                      src="/professional-woman-smiling.png" 
+                    <LazyImage 
+                      src="/professional-woman-smiling.webp" 
                       alt="Sarah J., satisfied tenant customer of OnDo Real Estate" 
                       fill 
-                      style={{ objectFit: "cover" }}
-                      title="Sarah J. - OnDo Real Estate Tenant"
-                      aria-label="Professional photo of Sarah J., a satisfied tenant customer of OnDo Real Estate"
+                      className="object-cover"
+                      quality={75}
+                      sizes="48px"
                     />
                   </div>
                   <div>
@@ -342,13 +343,13 @@ export default function LandingPage() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                    <Image 
-                      src="/professional-man-suit.png" 
+                    <LazyImage 
+                      src="/professional-man-suit.webp" 
                       alt="Michael T., satisfied property owner customer of OnDo Real Estate" 
                       fill 
-                      style={{ objectFit: "cover" }}
-                      title="Michael T. - OnDo Real Estate Property Owner"
-                      aria-label="Professional photo of Michael T., a satisfied property owner customer of OnDo Real Estate"
+                      className="object-cover"
+                      quality={75}
+                      sizes="48px"
                     />
                   </div>
                   <div>
@@ -374,13 +375,13 @@ export default function LandingPage() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                    <Image
-                      src="/professional-woman-glasses.png"
+                    <LazyImage
+                      src="/professional-woman-glasses.webp"
                       alt="Jennifer L., satisfied tenant customer of OnDo Real Estate"
                       fill
-                      style={{ objectFit: "cover" }}
-                      title="Jennifer L. - OnDo Real Estate Tenant"
-                      aria-label="Professional photo of Jennifer L., a satisfied tenant customer of OnDo Real Estate"
+                      className="object-cover"
+                      quality={75}
+                      sizes="48px"
                     />
                   </div>
                   <div>
@@ -457,3 +458,6 @@ export default function LandingPage() {
     </div>
   )
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(LandingPage)

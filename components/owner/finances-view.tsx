@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { DatePickerWithRange } from "@/components/dashboard/date-picker-with-range"
 import type { DateRange } from "react-day-picker"
+// Use tree-shaken imports for better bundle size
 import { format, subMonths } from "date-fns"
 import {
   DollarSign,

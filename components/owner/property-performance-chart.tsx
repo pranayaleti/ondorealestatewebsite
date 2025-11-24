@@ -1,5 +1,6 @@
 "use client"
 
+// Import only what's needed from recharts (tree-shaken)
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts"
 
 // Mock data for the chart

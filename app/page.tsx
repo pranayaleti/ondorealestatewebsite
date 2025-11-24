@@ -18,7 +18,7 @@ export default function Home() {
         title="Utah Property Management, Buying & Selling"
         description="OnDo Real Estate provides professional property management, home buying, and selling services across Utah. Explore listings, loans, and expert guidance."
         pathname="/"
-        image={`${SITE_URL}/modern-office-building.png`}
+        image={`${SITE_URL}/modern-office-building.webp`}
         keywords={[
           // Core market/service
           "Utah real estate",

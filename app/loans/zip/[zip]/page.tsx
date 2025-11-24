@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: Params }) {
         title={`Mortgage Lenders ${zip} (${city.name}) | ${SITE_NAME}`}
         description={`Loan options and pre-qualification for borrowers in ${zip} ${city.name}.`}
         pathname={`/loans/zip/${zip}/`}
-        image={`${SITE_URL}/modern-office-building.png`}
+        image={`${SITE_URL}/modern-office-building.webp`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Loans", url: `${SITE_URL}/loans/` },
