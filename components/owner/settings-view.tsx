@@ -11,63 +11,121 @@ import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, CreditCard, Globe, Moon, Sun, Smartphone, Laptop, CheckCircle } from "lucide-react"
 
+type SettingsState = {
+  general: {
+    theme: string
+    language: string
+    timezone: string
+  }
+  notifications: {
+    email: {
+      marketing: boolean
+      maintenance: boolean
+      payments: boolean
+      leases: boolean
+      messages: boolean
+    }
+    push: {
+      maintenance: boolean
+      payments: boolean
+      leases: boolean
+      messages: boolean
+    }
+  }
+  security: {
+    twoFactor: boolean
+    sessionTimeout: string
+    loginAlerts: boolean
+  }
+  billing: {
+    plan: string
+    paymentMethod: string
+    autoRenew: boolean
+  }
+}
+
+const initialSettings: SettingsState = {
+  general: {
+    theme: "light",
+    language: "english",
+    timezone: "America/New_York",
+  },
+  notifications: {
+    email: {
+      marketing: true,
+      maintenance: true,
+      payments: true,
+      leases: true,
+      messages: true,
+    },
+    push: {
+      maintenance: true,
+      payments: true,
+      leases: false,
+      messages: true,
+    },
+  },
+  security: {
+    twoFactor: false,
+    sessionTimeout: "30",
+    loginAlerts: true,
+  },
+  billing: {
+    plan: "professional",
+    paymentMethod: "visa",
+    autoRenew: true,
+  },
+}
+
 export function SettingsView() {
   const [activeTab, setActiveTab] = useState("general")
-  const [settings, setSettings] = useState({
-    general: {
-      theme: "light",
-      language: "english",
-      timezone: "America/New_York",
-    },
-    notifications: {
-      email: {
-        marketing: true,
-        maintenance: true,
-        payments: true,
-        leases: true,
-        messages: true,
-      },
-      push: {
-        maintenance: true,
-        payments: true,
-        leases: false,
-        messages: true,
-      },
-    },
-    security: {
-      twoFactor: false,
-      sessionTimeout: "30",
-      loginAlerts: true,
-    },
-    billing: {
-      plan: "professional",
-      paymentMethod: "visa",
-      autoRenew: true,
-    },
-  })
+  const [settings, setSettings] = useState<SettingsState>(initialSettings)
   const { toast } = useToast()
 
-  const handleToggleChange = (category: string, subcategory: string, setting: string) => {
-    setSettings((prev) => ({
-      ...prev,
-      [category]: {
-        ...prev[category as keyof typeof prev],
-        [subcategory]: {
-          ...prev[category as keyof typeof prev][subcategory as any],
-          [setting]: !prev[category as keyof typeof prev][subcategory as any][setting],
-        },
-      },
-    }))
+  const handleToggleChange = (
+    category: keyof SettingsState,
+    subcategory: string,
+    setting: string,
+  ) => {
+    setSettings((prev) => {
+      const next = structuredClone ? structuredClone(prev) : JSON.parse(JSON.stringify(prev))
+
+      if (category === "notifications" && (subcategory === "email" || subcategory === "push")) {
+        const target = next.notifications[subcategory] as Record<string, boolean>
+        if (setting in target) {
+          target[setting] = !target[setting]
+        }
+      } else if (category === "security") {
+        if (setting in next.security) {
+          const key = setting as keyof SettingsState["security"]
+          next.security[key] = !next.security[key]
+        }
+      } else if (category === "billing") {
+        if (setting in next.billing) {
+          const key = setting as keyof SettingsState["billing"]
+          const current = next.billing[key]
+          if (typeof current === "boolean") {
+            next.billing[key] = !current as SettingsState["billing"][keyof SettingsState["billing"]]
+          }
+        }
+      }
+
+      return next
+    })
   }
 
-  const handleSelectChange = (category: string, setting: string, value: string) => {
-    setSettings((prev) => ({
-      ...prev,
-      [category]: {
-        ...prev[category as keyof typeof prev],
-        [setting]: value,
-      },
-    }))
+  const handleSelectChange = (category: keyof SettingsState, setting: string, value: string) => {
+    setSettings((prev) => {
+      const next = { ...prev }
+      if (category === "general") {
+        next.general = { ...prev.general, [setting]: value }
+      } else if (category === "security") {
+        next.security = { ...prev.security, [setting]: value }
+      } else if (category === "billing") {
+        next.billing = { ...prev.billing, [setting]: value }
+      }
+      return next
+    })
   }
 
   const handleSaveSettings = () => {

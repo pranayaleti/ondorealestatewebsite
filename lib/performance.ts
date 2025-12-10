@@ -88,14 +88,17 @@ export const bundleAnalysis = {
   getBundleInfo: () => {
     if (typeof window !== "undefined" && "performance" in window) {
       const resources = performance.getEntriesByType("resource")
-      const jsFiles = resources.filter((resource) => resource.name.includes(".js"))
-      const cssFiles = resources.filter((resource) => resource.name.includes(".css"))
+      const resourceEntries = resources.filter(
+        (resource): resource is PerformanceResourceTiming => resource.entryType === "resource",
+      )
+      const jsFiles = resourceEntries.filter((resource) => resource.name.includes(".js"))
+      const cssFiles = resourceEntries.filter((resource) => resource.name.includes(".css"))
       
       return {
         jsFiles: jsFiles.length,
         cssFiles: cssFiles.length,
-        totalResources: resources.length,
-        totalSize: resources.reduce((total, resource) => {
+        totalResources: resourceEntries.length,
+        totalSize: resourceEntries.reduce((total, resource) => {
           return total + (resource.transferSize || 0)
         }, 0),
       }

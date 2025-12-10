@@ -30,7 +30,7 @@ export const isBreakpoint = (breakpoint: Breakpoint, width: number): boolean => 
 export const responsiveGrid = {
   // Generate responsive grid classes
   getGridCols: (cols: Partial<Record<Breakpoint, number>>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(cols).forEach(([bp, colCount]) => {
       if (bp === "xs") {
         classes.push(`grid-cols-${colCount}`)
@@ -43,7 +43,7 @@ export const responsiveGrid = {
 
   // Generate responsive gap classes
   getGap: (gap: Partial<Record<Breakpoint, number>>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(gap).forEach(([bp, gapSize]) => {
       if (bp === "xs") {
         classes.push(`gap-${gapSize}`)
@@ -59,7 +59,7 @@ export const responsiveGrid = {
 export const responsiveSpacing = {
   // Generate responsive padding classes
   getPadding: (padding: Partial<Record<Breakpoint, number>>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(padding).forEach(([bp, paddingSize]) => {
       if (bp === "xs") {
         classes.push(`p-${paddingSize}`)
@@ -72,7 +72,7 @@ export const responsiveSpacing = {
 
   // Generate responsive margin classes
   getMargin: (margin: Partial<Record<Breakpoint, number>>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(margin).forEach(([bp, marginSize]) => {
       if (bp === "xs") {
         classes.push(`m-${marginSize}`)
@@ -88,7 +88,7 @@ export const responsiveSpacing = {
 export const responsiveTypography = {
   // Generate responsive text size classes
   getTextSize: (sizes: Partial<Record<Breakpoint, string>>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(sizes).forEach(([bp, size]) => {
       if (bp === "xs") {
         classes.push(`text-${size}`)
@@ -101,7 +101,7 @@ export const responsiveTypography = {
 
   // Generate responsive font weight classes
   getFontWeight: (weights: Partial<Record<Breakpoint, string>>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(weights).forEach(([bp, weight]) => {
       if (bp === "xs") {
         classes.push(`font-${weight}`)
@@ -117,7 +117,7 @@ export const responsiveTypography = {
 export const responsiveVisibility = {
   // Show/hide elements at different breakpoints
   getVisibility: (visibility: Partial<Record<Breakpoint, "show" | "hide">>) => {
-    const classes = []
+    const classes: string[] = []
     Object.entries(visibility).forEach(([bp, action]) => {
       if (action === "hide") {
         if (bp === "xs") {

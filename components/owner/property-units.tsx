@@ -8,7 +8,7 @@ import { Users, AlertTriangle } from "lucide-react"
 import { AddUnitDialog } from "./add-unit-dialog"
 import { useToast } from "@/hooks/use-toast"
 
-export function PropertyUnits() {
+export function PropertyUnits({ property }: { property?: any }) {
   const { toast } = useToast()
 
   const handleManageTenants = () => {

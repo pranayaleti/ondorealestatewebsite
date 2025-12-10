@@ -10,6 +10,7 @@ import {
   MapPin,
   Phone,
   Globe,
+  Mail,
   ChevronLeft,
   ChevronRight,
   Calendar,
@@ -38,7 +39,8 @@ interface PropertyDetailsModalProps {
     services: string[]
     fees: string
     availability: string
-    email: string
+    email?: string
+    website?: string
   }
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -228,17 +230,31 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                     <span>{company.phone}</span>
                   </div>
 
-                  <div className="flex items-center">
-                    <Globe className="h-5 w-5 mr-3 text-primary" />
-                    <a
-                      href={`mailto:${company.email}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline"
-                    >
-                      {company.email}
-                    </a>
-                  </div>
+                  {company.email && (
+                    <div className="flex items-center">
+                      <Mail className="h-5 w-5 mr-3 text-primary" />
+                      <a
+                        href={`mailto:${company.email}`}
+                        className="text-primary hover:underline"
+                      >
+                        {company.email}
+                      </a>
+                    </div>
+                  )}
+
+                  {company.website && (
+                    <div className="flex items-center">
+                      <Globe className="h-5 w-5 mr-3 text-primary" />
+                      <a
+                        href={company.website.startsWith("http") ? company.website : `https://${company.website}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        {company.website}
+                      </a>
+                    </div>
+                  )}
 
                   <div className="pt-4">
                     <Button className="w-full" onClick={handleInterested}>

@@ -28,7 +28,7 @@ export default function NotFound() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-muted to-muted p-4">
+    <div className="min-h-screen bg-background text-foreground p-4">
       <SEO
         title="404 - Page Not Found | OnDo Real Estate"
         description="The page you're looking for doesn't exist. Explore our popular pages and find what you need."

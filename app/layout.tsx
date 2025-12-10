@@ -44,13 +44,14 @@ export const metadata: Metadata = {
     "Utah real estate experts for property management, buying, selling, and home loans. Local service across the Wasatch Front.",
   icons: {
     icon: [
-      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/logo.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/logo-favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo-favicon.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [
-      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/logo-favicon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/logo.png',
+    shortcut: '/favicon.svg',
   },
   keywords: [
     // Core market/service
@@ -145,9 +146,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         
         {/* Preload critical resources */}
-        <link rel="preload" href="/logo.png" as="image" type="image/png" />
+        <link rel="preload" href="/logo-favicon.png" as="image" type="image/png" />
         {/* Preload critical fonts */}
         <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
@@ -159,10 +161,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Bfcache optimization - ensure pages can be cached for instant back/forward navigation */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background dark:bg-transparent text-foreground`}>
+      <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <AuthProvider>
-            <div className="min-h-screen flex flex-col dark:bg-transparent">
+            <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />
@@ -179,7 +181,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             name: SITE_NAME,
             url: SITE_URL,
             telephone: SITE_PHONE,
-            image: `${SITE_URL}/logo.png`,
+            image: `${SITE_URL}/logo-favicon.png`,
             areaServed: 'Utah',
             openingHours: SITE_HOURS,
             sameAs: SITE_SOCIALS,

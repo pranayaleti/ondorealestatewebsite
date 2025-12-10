@@ -140,13 +140,13 @@ function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
+      <section className="py-16 bg-background dark:bg-[var(--gradient-overlay)]">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">How OnDo Real Estate Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center">
               <div className="bg-muted dark:bg-muted p-4 rounded-full mb-4">
-                <Home className="h-8 w-8 text-foreground dark:text-gray-200" />
+                <Home className="h-8 w-8 text-foreground dark:text-foreground" />
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-foreground">1. Find Properties</h3>
               <p className="text-muted-foreground dark:text-muted-foreground">
@@ -155,7 +155,7 @@ function LandingPage() {
             </div>
             <div className="flex flex-col items-center text-center">
               <div className="bg-muted dark:bg-muted p-4 rounded-full mb-4">
-                <Building className="h-8 w-8 text-foreground dark:text-gray-200" />
+                <Building className="h-8 w-8 text-foreground dark:text-foreground" />
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-foreground">2. Schedule Viewings</h3>
               <p className="text-muted-foreground dark:text-muted-foreground">
@@ -164,7 +164,7 @@ function LandingPage() {
             </div>
             <div className="flex flex-col items-center text-center">
               <div className="bg-muted dark:bg-muted p-4 rounded-full mb-4">
-                <DollarSign className="h-8 w-8 text-foreground dark:text-gray-200" />
+                <DollarSign className="h-8 w-8 text-foreground dark:text-foreground" />
               </div>
               <h3 className="text-xl font-semibold mb-2 dark:text-foreground">3. Move In</h3>
               <p className="text-muted-foreground dark:text-muted-foreground">
@@ -176,7 +176,7 @@ function LandingPage() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-16 bg-muted dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
+      <section className="py-16 bg-muted dark:bg-[var(--gradient-overlay)]">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">Featured Rental Properties</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -208,7 +208,7 @@ function LandingPage() {
                 <CardFooter>
                   <Button
                     variant="outline"
-                    className="w-full dark:text-foreground dark:border-gray-600 dark:hover:bg-muted"
+                    className="w-full dark:text-foreground dark:border-border dark:hover:bg-muted"
                     onClick={() => handleViewDetails(property.id)}
                   >
                     View Details
@@ -218,7 +218,7 @@ function LandingPage() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Button asChild className="bg-background hover:bg-muted text-foreground">
+            <Button asChild className="bg-background hover:bg-muted dark:hover:bg-muted text-foreground">
               <Link href="/properties">View All Properties</Link>
             </Button>
           </div>
@@ -226,7 +226,7 @@ function LandingPage() {
       </section>
 
       {/* Property Owner Section */}
-      <section className="py-16 bg-background dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
+      <section className="py-16 bg-background dark:bg-[var(--gradient-overlay)]">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -253,7 +253,7 @@ function LandingPage() {
                   <span className="dark:text-muted-foreground">Regular property inspections and detailed reports</span>
                 </li>
               </ul>
-              <Button asChild className="bg-background hover:bg-muted text-foreground">
+              <Button asChild className="bg-background hover:bg-muted dark:hover:bg-muted text-foreground">
                 <Link href="/contact">Learn More</Link>
               </Button>
             </div>
@@ -272,7 +272,7 @@ function LandingPage() {
       </section>
 
       {/* Founder's Note Section */}
-      <section className="py-16 bg-card dark:bg-gradient-to-b dark:from-black dark:to-gray-900 text-foreground">
+      <section className="py-16 bg-card dark:bg-[var(--gradient-overlay)] text-foreground">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="flex justify-center md:justify-start">
@@ -303,7 +303,7 @@ function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-muted dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
+      <section className="py-16 bg-muted dark:bg-[var(--gradient-overlay)]">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 dark:text-foreground">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -407,7 +407,7 @@ function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-muted dark:bg-gradient-to-b dark:from-black dark:to-gray-900 text-foreground">
+      <section className="py-16 bg-muted dark:bg-[var(--gradient-overlay)] text-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Find Your Perfect Rental?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -418,9 +418,9 @@ function LandingPage() {
               <input
                 type="text"
                 placeholder="Enter ZIP code"
-                className="flex-1 px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="flex-1 px-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background dark:bg-card dark:border-border dark:placeholder:text-muted-foreground"
               />
-              <Button type="submit" className="bg-background hover:bg-gray-700 text-foreground">
+              <Button type="submit" className="bg-background hover:bg-muted dark:hover:bg-muted text-foreground">
                 Search
               </Button>
             </form>

@@ -193,7 +193,7 @@ export const preloading = {
       // Preload critical images
       const criticalImages = [
         "/modern-office-building.png",
-        "/logo.png",
+        "/logo-favicon.png",
       ]
 
       criticalImages.forEach(src => {

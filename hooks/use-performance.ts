@@ -37,8 +37,11 @@ export function usePerformance() {
 
         // Get FID (if available)
         const fidEntries = performance.getEntriesByType('first-input')
-        const firstInputDelay = fidEntries[0]?.processingStart ? 
-          fidEntries[0].processingStart - fidEntries[0].startTime : 0
+        const firstInputEntry = fidEntries[0]
+        const firstInputDelay =
+          firstInputEntry && 'processingStart' in firstInputEntry && typeof (firstInputEntry as any).processingStart === 'number'
+            ? (firstInputEntry as PerformanceEventTiming).processingStart - firstInputEntry.startTime
+            : 0
 
         // Get CLS (if available)
         const clsEntries = performance.getEntriesByType('layout-shift')

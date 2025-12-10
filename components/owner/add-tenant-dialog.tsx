@@ -19,26 +19,83 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { UserPlus, AlertTriangle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
-export function AddTenantDialog() {
+interface AddTenantDialogProps {
+  onAddTenant?: (data: {
+    name: string
+    email: string
+    phone: string
+    property: string
+    propertyId: string
+    unit: string
+    leaseStart: string
+    leaseEnd: string
+    rent: string
+  }) => void
+}
+
+export function AddTenantDialog({ onAddTenant }: AddTenantDialogProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    property: "",
+    propertyId: "",
+    unit: "",
+    leaseStart: "",
+    leaseEnd: "",
+    rent: "",
+  })
   const { toast } = useToast()
+
+  const handleChange = (key: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: value }))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate submission process
     setTimeout(() => {
+      if (onAddTenant) {
+        onAddTenant({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          phone: formData.phone,
+          property: formData.property,
+          propertyId: formData.propertyId || "property-1",
+          unit: formData.unit,
+          leaseStart: formData.leaseStart,
+          leaseEnd: formData.leaseEnd,
+          rent: formData.rent,
+        })
+      }
+
       setIsSubmitting(false)
       setIsOpen(false)
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        property: "",
+        propertyId: "",
+        unit: "",
+        leaseStart: "",
+        leaseEnd: "",
+        rent: "",
+      })
 
       toast({
-        title: "Feature in development",
-        description: "Adding tenants functionality is coming soon. We're working on it!",
-        variant: "destructive",
+        title: onAddTenant ? "Tenant added" : "Feature in development",
+        description: onAddTenant
+          ? "The tenant has been successfully added."
+          : "Adding tenants functionality is coming soon. We're working on it!",
+        variant: onAddTenant ? "default" : "destructive",
       })
-    }, 1500)
+    }, 500)
   }
 
   return (
@@ -59,49 +116,97 @@ export function AddTenantDialog() {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="first-name">First Name</Label>
-                <Input id="first-name" placeholder="Enter first name" />
+                  <Input
+                    id="first-name"
+                    placeholder="Enter first name"
+                    value={formData.firstName}
+                    onChange={(event) => handleChange("firstName", event.target.value)}
+                    required
+                  />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="last-name">Last Name</Label>
-                <Input id="last-name" placeholder="Enter last name" />
+                  <Input
+                    id="last-name"
+                    placeholder="Enter last name"
+                    value={formData.lastName}
+                    onChange={(event) => handleChange("lastName", event.target.value)}
+                    required
+                  />
               </div>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter email address" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter email address"
+                  value={formData.email}
+                  onChange={(event) => handleChange("email", event.target.value)}
+                  required
+                />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" placeholder="Enter phone number" />
+                <Input
+                  id="phone"
+                  placeholder="Enter phone number"
+                  value={formData.phone}
+                  onChange={(event) => handleChange("phone", event.target.value)}
+                  required
+                />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="property">Property</Label>
-              <Select>
-                <SelectTrigger id="property">
-                  <SelectValue placeholder="Select property" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="property-1">2701 N Thanksgiving Way</SelectItem>
-                  <SelectItem value="property-2">456 Oak Avenue</SelectItem>
-                  <SelectItem value="property-3">789 Pine Boulevard</SelectItem>
-                </SelectContent>
-              </Select>
+                <Select value={formData.property} onValueChange={(value) => handleChange("property", value)}>
+                  <SelectTrigger id="property">
+                    <SelectValue placeholder="Select property" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="2701 N Thanksgiving Way">2701 N Thanksgiving Way</SelectItem>
+                    <SelectItem value="456 Oak Avenue">456 Oak Avenue</SelectItem>
+                    <SelectItem value="789 Pine Boulevard">789 Pine Boulevard</SelectItem>
+                  </SelectContent>
+                </Select>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="unit">Unit (if applicable)</Label>
-              <Input id="unit" placeholder="Enter unit number" />
+                <Input
+                  id="unit"
+                  placeholder="Enter unit number"
+                  value={formData.unit}
+                  onChange={(event) => handleChange("unit", event.target.value)}
+                />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="lease-start">Lease Start Date</Label>
-              <Input id="lease-start" type="date" />
+                <Input
+                  id="lease-start"
+                  type="date"
+                  value={formData.leaseStart}
+                  onChange={(event) => handleChange("leaseStart", event.target.value)}
+                  required
+                />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="lease-end">Lease End Date</Label>
-              <Input id="lease-end" type="date" />
+                <Input
+                  id="lease-end"
+                  type="date"
+                  value={formData.leaseEnd}
+                  onChange={(event) => handleChange("leaseEnd", event.target.value)}
+                  required
+                />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="rent">Monthly Rent</Label>
-              <Input id="rent" placeholder="Enter monthly rent amount" />
+                <Input
+                  id="rent"
+                  placeholder="Enter monthly rent amount"
+                  value={formData.rent}
+                  onChange={(event) => handleChange("rent", event.target.value)}
+                  required
+                />
             </div>
             <div className="bg-amber-50 p-3 rounded-md flex items-start gap-2 border border-amber-200">
               <AlertTriangle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />

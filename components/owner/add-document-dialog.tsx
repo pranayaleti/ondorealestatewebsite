@@ -19,26 +19,46 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FileUp, AlertTriangle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
-export function AddDocumentDialog() {
+interface AddDocumentDialogProps {
+  onAddDocument?: (data: { name: string; type: string; folder: string }) => void
+  folders?: Array<{ id: string; name: string }>
+}
+
+export function AddDocumentDialog({ onAddDocument, folders = [] }: AddDocumentDialogProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    type: "",
+    folder: "",
+  })
   const { toast } = useToast()
+
+  const handleChange = (key: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: value }))
+  }
 
   const handleUpload = (e: React.FormEvent) => {
     e.preventDefault()
     setIsUploading(true)
 
-    // Simulate upload process
     setTimeout(() => {
+      if (onAddDocument) {
+        onAddDocument(formData)
+      }
+
       setIsUploading(false)
       setIsOpen(false)
+      setFormData({ name: "", type: "", folder: "" })
 
       toast({
-        title: "Feature in development",
-        description: "Document upload functionality is coming soon. We're working on it!",
-        variant: "destructive",
+        title: onAddDocument ? "Document uploaded" : "Feature in development",
+        description: onAddDocument
+          ? "The document has been successfully uploaded."
+          : "Document upload functionality is coming soon. We're working on it!",
+        variant: onAddDocument ? "default" : "destructive",
       })
-    }, 1500)
+    }, 500)
   }
 
   return (
@@ -58,11 +78,17 @@ export function AddDocumentDialog() {
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <Label htmlFor="document-name">Document Name</Label>
-              <Input id="document-name" placeholder="Enter document name" />
+              <Input
+                id="document-name"
+                placeholder="Enter document name"
+                value={formData.name}
+                onChange={(event) => handleChange("name", event.target.value)}
+                required
+              />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="document-type">Document Type</Label>
-              <Select>
+              <Select value={formData.type} onValueChange={(value) => handleChange("type", value)}>
                 <SelectTrigger id="document-type">
                   <SelectValue placeholder="Select document type" />
                 </SelectTrigger>
@@ -72,6 +98,22 @@ export function AddDocumentDialog() {
                   <SelectItem value="maintenance">Maintenance Record</SelectItem>
                   <SelectItem value="financial">Financial Document</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="document-folder">Folder</Label>
+              <Select value={formData.folder} onValueChange={(value) => handleChange("folder", value)}>
+                <SelectTrigger id="document-folder">
+                  <SelectValue placeholder="Select folder" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">No folder</SelectItem>
+                  {folders.map((folder) => (
+                    <SelectItem key={folder.id} value={folder.name}>
+                      {folder.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

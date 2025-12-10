@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { useForm, UseFormReturn, FieldValues, Path } from "react-hook-form"
+import { useForm, UseFormReturn, FieldValues, Path, DefaultValues, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
@@ -9,10 +9,10 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { LoadingSpinner } from "@/components/loading-states"
 
 interface ValidatedFormProps<T extends FieldValues> {
-  schema: z.ZodSchema<T>
-  onSubmit: (data: T) => Promise<void> | void
+  schema: z.ZodType<T, z.ZodTypeDef, T>
+  onSubmit: SubmitHandler<T>
   children: (form: UseFormReturn<T>) => React.ReactNode
-  defaultValues?: Partial<T>
+  defaultValues?: DefaultValues<T>
   className?: string
   submitText?: string
   isLoading?: boolean
@@ -28,12 +28,12 @@ export function ValidatedForm<T extends FieldValues>({
   isLoading = false,
 }: ValidatedFormProps<T>) {
   const form = useForm<T>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema as any),
     defaultValues,
     mode: "onChange",
   })
 
-  const handleSubmit = async (data: T) => {
+  const handleSubmit: SubmitHandler<T> = async (data) => {
     try {
       await onSubmit(data)
     } catch (error) {

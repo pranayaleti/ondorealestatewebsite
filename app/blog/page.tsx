@@ -1,3 +1,5 @@
+ "use client"
+
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
@@ -7,21 +9,202 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
-import { Calendar, User, ArrowRight, Home, TrendingUp, DollarSign, MapPin } from "lucide-react"
+import { useMemo, useState } from "react"
+import { Calendar, User, ArrowRight } from "lucide-react"
 
 export default function BlogPage() {
   const featuredPost = {
-    title: "Utah Real Estate Market Update: December 2024",
-    excerpt: "The Utah real estate market continues to show strong growth with median home prices increasing 8% year-over-year. Here's what buyers and sellers need to know.",
-    author: "Pranay Reddy Aleti",
-    date: "December 15, 2024",
-    readTime: "5 min read",
-    category: "Market Updates",
+    title: "Remote Online Notary in All 50 States",
+    excerpt: "How ONDO Notary delivers secure Remote Online Notarization nationwide with ID checks, audit trails, and lender-ready documents.",
+    author: "ONDO Notary Team",
+    date: "January 10, 2025",
+    readTime: "6 min read",
+    category: "Notary",
     image: "/modern-office-building.png",
-    slug: "utah-real-estate-market-update-december-2024"
+    slug: "remote-online-notary-all-50-states"
   }
 
   const blogPosts = [
+    {
+      title: "The Hidden Math Behind Renting vs Owning",
+      excerpt: "Opportunity cost, equity velocity, and inflation-adjusted rent modeled by a developer-landlord.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "7 min read",
+      category: "Finance",
+      image: "/modern-office-building.png",
+      slug: "renting-vs-owning-hidden-math"
+    },
+    {
+      title: "I’m a Full-Stack Dev and Landlord: What Software Gets Wrong",
+      excerpt: "UX gaps in property software and how to design flows that serve tenants and owners.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Product",
+      image: "/modern-townhouse-garage.png",
+      slug: "full-stack-dev-landlord-gaps"
+    },
+    {
+      title: "Commercial Real Estate 101: Cap Rates, NNN, and Tenant Mix",
+      excerpt: "A practical primer on how cap rates, lease structures, and tenant mix shape CRE value.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "7 min read",
+      category: "Commercial",
+      image: "/modern-office-building.png",
+      slug: "commercial-real-estate-101-tenant-mix"
+    },
+    {
+      title: "Crypto and Real Estate: Building a Barbell Hedge",
+      excerpt: "Balancing fast, volatile assets with slow, cashflowing rentals—without co-mingling risk.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Strategy",
+      image: "/modern-apartment-balcony.png",
+      slug: "crypto-and-real-estate-hedge"
+    },
+    {
+      title: "New Landlord Mistakes and the Systems That Prevent Them",
+      excerpt: "Documentation, reserves, maintenance states, and comms playbooks to avoid expensive errors.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Landlording",
+      image: "/modern-office-building.png",
+      slug: "new-landlord-mistakes-systems"
+    },
+    {
+      title: "Utah Rent vs Buy: Wasatch Front Playbook",
+      excerpt: "Corridor-specific math on taxes, transit, schools, and maintenance along the Wasatch Front.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "7 min read",
+      category: "Utah",
+      image: "/city-map-with-pin.png",
+      slug: "utah-rent-vs-buy-wasatch-front"
+    },
+    {
+      title: "Property Management Automation Checklist",
+      excerpt: "High-ROI automations for rent, maintenance, and owner reporting—built by a dev-operator.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Automation",
+      image: "/modern-office-building.png",
+      slug: "property-management-automation-checklist"
+    },
+    {
+      title: "Vacancy Risk Playbook",
+      excerpt: "Model, reduce, and recover from vacancy with renewals, turns, and seasonality tactics.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Vacancy",
+      image: "/modern-apartment-balcony.png",
+      slug: "vacancy-risk-playbook"
+    },
+    {
+      title: "Maintenance and CapEx Strategy for Rentals",
+      excerpt: "Lifecycle intervals, reserves, and standardization to keep NOI stable and assets healthy.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Maintenance",
+      image: "/modern-office-building.png",
+      slug: "maintenance-capex-strategy"
+    },
+    {
+      title: "Dashboards for Landlords: See Patterns, Act Faster",
+      excerpt: "KPIs, design principles, and build notes for turning rentals into a managed system.",
+      author: "ONDO Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Analytics",
+      image: "/modern-office-building.png",
+      slug: "dashboards-for-landlords"
+    },
+    {
+      title: "Building a High-Performance Real Estate Platform with Next.js 15 and Supabase",
+      excerpt: "A technical deep dive into the architecture of Ondo Real Estate, featuring App Router, React Server Components, and Supabase.",
+      author: "Engineering Team",
+      date: "December 10, 2025",
+      readTime: "8 min read",
+      category: "Engineering",
+      image: "/modern-office-building.png",
+      slug: "building-high-performance-real-estate-nextjs-supabase"
+    },
+    {
+      title: "Engineering Accuracy: Behind the Scenes of Real Estate Investment Calculators",
+      excerpt: "How we built the web's most accurate real estate financial calculators using React and TypeScript.",
+      author: "Engineering Team",
+      date: "December 10, 2025",
+      readTime: "7 min read",
+      category: "Engineering",
+      image: "/modern-townhouse-garage.png",
+      slug: "engineering-real-estate-investment-calculators"
+    },
+    {
+      title: "Modernizing Legal Workflows: Integrating Remote Online Notary Services",
+      excerpt: "How we integrated seamless booking for mobile and remote online notary services directly into the Ondo platform.",
+      author: "Product Team",
+      date: "December 10, 2025",
+      readTime: "5 min read",
+      category: "Product",
+      image: "/modern-apartment-balcony.png",
+      slug: "modernizing-notary-workflows-integration"
+    },
+    {
+      title: "Technical SEO for Real Estate: JSON-LD, Sitemaps, and Core Web Vitals",
+      excerpt: "A blueprint for dominating local real estate search results using Next.js SEO primitives and structured data.",
+      author: "Growth Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "SEO",
+      image: "/modern-office-building.png",
+      slug: "technical-seo-for-real-estate"
+    },
+    {
+      title: "Designing a Property Owner Portal: Managing Assets at Scale",
+      excerpt: "How we built a comprehensive dashboard for landlords to track performance, manage tenants, and organize documents.",
+      author: "Product Team",
+      date: "December 10, 2025",
+      readTime: "6 min read",
+      category: "Product",
+      image: "/modern-office-building.png",
+      slug: "designing-property-owner-portal"
+    },
+    {
+      title: "Mobile Notary in Utah County: Fees, Timing, and How to Book",
+      excerpt: "Transparent pricing, same-day scheduling, and where we travel for on-site notarization in Utah County.",
+      author: "ONDO Notary Team",
+      date: "January 10, 2025",
+      readTime: "6 min read",
+      category: "Notary",
+      image: "/modern-apartment-balcony.png",
+      slug: "mobile-notary-utah-county-guide"
+    },
+    {
+      title: "Remote Online Notary for Real Estate Closings",
+      excerpt: "Step-by-step RON workflow for purchases, refis, HELOCs, and investor deals with title-ready audit trails.",
+      author: "ONDO Notary Team",
+      date: "January 10, 2025",
+      readTime: "7 min read",
+      category: "Notary",
+      image: "/modern-townhouse-garage.png",
+      slug: "remote-online-notary-real-estate-closings"
+    },
+    {
+      title: "Checklist: Prepare for Your Remote Online Notary Session",
+      excerpt: "ID verification, tech checks, and witness tips to avoid rescheduling and get sealed PDFs instantly.",
+      author: "ONDO Notary Team",
+      date: "January 10, 2025",
+      readTime: "5 min read",
+      category: "Notary",
+      image: "/modern-office-building.png",
+      slug: "prepare-for-remote-online-notary-session"
+    },
     {
       title: "First-Time Home Buyer Guide: Everything You Need to Know",
       excerpt: "Complete guide to buying your first home in Utah, from pre-approval to closing day.",
@@ -84,14 +267,24 @@ export default function BlogPage() {
     }
   ]
 
-  const categories = [
-    { name: "Market Updates", count: 12, icon: <TrendingUp className="h-4 w-4" /> },
-    { name: "Buying Guide", count: 8, icon: <Home className="h-4 w-4" /> },
-    { name: "Property Management", count: 15, icon: <User className="h-4 w-4" /> },
-    { name: "Mortgage", count: 6, icon: <DollarSign className="h-4 w-4" /> },
-    { name: "Investment", count: 9, icon: <TrendingUp className="h-4 w-4" /> },
-    { name: "Selling", count: 7, icon: <Home className="h-4 w-4" /> }
-  ]
+  const categoryCounts = useMemo(() => {
+    return blogPosts.reduce<Record<string, number>>((acc, post) => {
+      acc[post.category] = (acc[post.category] || 0) + 1
+      return acc
+    }, {})
+  }, [blogPosts])
+
+  const categories = useMemo(() => {
+    const names = Object.keys(categoryCounts).sort()
+    return [{ name: "All", count: blogPosts.length }, ...names.map(name => ({ name, count: categoryCounts[name] }))]
+  }, [blogPosts.length, categoryCounts])
+
+  const [activeCategory, setActiveCategory] = useState<string>("All")
+
+  const filteredPosts = useMemo(
+    () => (activeCategory === "All" ? blogPosts : blogPosts.filter(post => post.category === activeCategory)),
+    [activeCategory, blogPosts]
+  )
 
   return (
     <main className="min-h-screen">
@@ -160,14 +353,15 @@ export default function BlogPage() {
               <div className="lg:col-span-3">
                 <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {blogPosts.map((post, index) => (
-                    <Card key={index} className="hover:shadow-lg transition-shadow">
+                  {filteredPosts.map((post, index) => (
+                    <Link key={index} href={`/blog/${post.slug}`} className="group block h-full">
+                      <Card className="h-full hover:shadow-lg transition-shadow group-hover:border-primary/60">
                       <div className="relative h-48">
                         <Image
                           src={post.image}
                           alt={post.title}
                           fill
-                          className="object-cover"
+                            className="object-cover transition-transform duration-200 group-hover:scale-[1.01]"
                         />
                       </div>
                       <CardContent className="p-6">
@@ -175,9 +369,11 @@ export default function BlogPage() {
                           <Badge variant="outline" className="text-xs">{post.category}</Badge>
                           <span className="text-xs text-muted-foreground">{post.readTime}</span>
                         </div>
-                        <CardTitle className="text-lg mb-2 line-clamp-2">{post.title}</CardTitle>
+                          <CardTitle className="text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                            {post.title}
+                          </CardTitle>
                         <CardDescription className="mb-4 line-clamp-2">{post.excerpt}</CardDescription>
-                        <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
+                          <div className="flex items-center gap-4 text-xs text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <User className="h-3 w-3" />
                             {post.author}
@@ -187,14 +383,9 @@ export default function BlogPage() {
                             {post.date}
                           </div>
                         </div>
-                        <Button asChild variant="outline" size="sm">
-                          <Link href={`/blog/${post.slug}`}>
-                            Read More
-                            <ArrowRight className="h-3 w-3 ml-1" />
-                          </Link>
-                        </Button>
                       </CardContent>
                     </Card>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -206,18 +397,25 @@ export default function BlogPage() {
                     <CardTitle>Categories</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
-                      {categories.map((category, index) => (
-                        <Link key={index} href={`/blog/category/${category.name.toLowerCase().replace(' ', '-')}`}>
-                          <div className="flex items-center justify-between p-2 rounded hover:bg-muted cursor-pointer">
-                            <div className="flex items-center gap-2">
-                              {category.icon}
-                              <span className="text-sm">{category.name}</span>
-                            </div>
-                            <Badge variant="secondary" className="text-xs">{category.count}</Badge>
-                          </div>
-                        </Link>
-                      ))}
+                    <div className="flex flex-wrap gap-2">
+                      {categories.map((category) => {
+                        const isActive = category.name === activeCategory
+                        return (
+                          <Button
+                            key={category.name}
+                            variant={isActive ? "secondary" : "outline"}
+                            size="sm"
+                            className="gap-2"
+                            onClick={() => setActiveCategory(category.name)}
+                            aria-pressed={isActive}
+                          >
+                            <span className="text-sm">{category.name}</span>
+                            <Badge variant={isActive ? "outline" : "secondary"} className="text-[11px]">
+                              {category.count}
+                            </Badge>
+                          </Button>
+                        )
+                      })}
                     </div>
                   </CardContent>
                 </Card>
@@ -252,7 +450,12 @@ export default function BlogPage() {
               <Button asChild size="lg" variant="secondary">
                 <Link href="/contact">Get Expert Advice</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-card hover:text-primary">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-border text-foreground hover:bg-muted dark:border-white dark:text-white dark:hover:bg-white/10"
+              >
                 <Link href="/properties">Browse Properties</Link>
               </Button>
             </div>

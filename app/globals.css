@@ -8,67 +8,15 @@
   :root {
     --gradient-from: var(--color-gradient-from);
     --gradient-to: var(--color-gradient-to);
-    --gradient-from-dark: #FF8C29;  /* kept for compatibility */
-    --gradient-to-dark: #FF5E1A;   /* kept for compatibility */
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-
-    --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 0%;
-
-    --secondary: 0 0% 0%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 75%;
-
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 25 95% 40%;
-
-    --radius: 0.75rem;
+    --gradient-overlay: var(--gradient-base);
+    --gradient-overlay-accent: var(--gradient-base-accent);
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
-
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 0%;
-
-    --secondary: 25 30% 20%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 25 15% 20%;
-    --muted-foreground: 0 0% 75%;
-
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 25 95% 40%;
+    --gradient-from: var(--color-gradient-from);
+    --gradient-to: var(--color-gradient-to);
+    --gradient-overlay: var(--gradient-base);
+    --gradient-overlay-accent: var(--gradient-base-accent);
   }
 }
 
@@ -85,7 +33,7 @@
   }
   
   html.dark {
-    background: linear-gradient(to bottom, #000000, #111827) !important;
+    background: var(--gradient-overlay) !important;
     background-attachment: fixed;
     min-height: 100%;
   }
@@ -125,6 +73,6 @@
   }
   
   .dark .btn-primary {
-    @apply bg-gradient-to-r from-[var(--gradient-from-dark)] to-[var(--gradient-to-dark)];
+    background-image: var(--gradient-overlay);
   }
 }

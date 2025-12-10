@@ -95,7 +95,7 @@ const ConsultationWidget: React.FC = () => {
       {/* Floating Widget */}
       <div className="fixed bottom-6 right-6 z-40">
         <Button
-          onClick={() => window.open('https://calendly.com/scheduleondo','_blank')}
+          onClick={() => setIsModalOpen(true)}
           className="group bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 h-16 w-16"
           aria-label="View available times and book now"
         >

@@ -27,7 +27,7 @@ const ConsultationCTA: React.FC<ConsultationCTAProps> = ({
       <>
         <div className={`flex flex-col sm:flex-row gap-3 ${className}`}>
           <Button 
-            onClick={() => window.open('https://calendly.com/scheduleondo','_blank')}
+            onClick={() => setIsModalOpen(true)}
             className="flex-1"
             size="lg"
           >
@@ -83,7 +83,7 @@ const ConsultationCTA: React.FC<ConsultationCTAProps> = ({
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button 
-                onClick={() => window.open('https://calendly.com/scheduleondo','_blank')}
+                onClick={() => setIsModalOpen(true)}
                 className="flex-1"
                 size="lg"
               >
@@ -123,7 +123,7 @@ const ConsultationCTA: React.FC<ConsultationCTAProps> = ({
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <Button 
-            onClick={() => window.open('https://calendly.com/scheduleondo','_blank')}
+            onClick={() => setIsModalOpen(true)}
             className="flex-1"
             size="lg"
           >

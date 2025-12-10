@@ -130,7 +130,7 @@ export function SidebarMenuButton({
   ...props
 }: {
   className?: string
-  children: React.ReactNode
+  children: React.ReactElement<{ className?: string }>
   isActive?: boolean
   tooltip?: string
   asChild?: boolean
@@ -140,7 +140,7 @@ export function SidebarMenuButton({
   if (asChild) {
     return (
       <div className="relative group w-full">
-        {React.cloneElement(children as React.ReactElement, {
+        {React.cloneElement(children as React.ReactElement<any>, {
           className: cn(
             "flex w-full items-center rounded-md px-3 py-3 text-sm font-medium transition-colors",
             isActive

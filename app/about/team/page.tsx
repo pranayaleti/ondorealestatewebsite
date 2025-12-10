@@ -155,7 +155,12 @@ export default function TeamPage() {
               <Button asChild size="lg" variant="secondary">
                 <Link href="/about/careers">View Open Positions</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-card hover:text-primary">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-border text-foreground hover:bg-muted dark:border-white dark:text-white dark:hover:bg-white/10"
+              >
                 <Link href="/contact">Contact Us</Link>
               </Button>
             </div>

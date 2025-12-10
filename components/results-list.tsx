@@ -39,6 +39,7 @@ const mockCompanies = [
     reviewCount: 124,
     address: "123 Main St, Salt Lake City, UT",
     phone: "(801) 555-1234",
+    email: "contact@elitepropertymanagement.com",
     specialties: ["single-family", "multi-family"],
     description:
       "Full-service property management company with over 15 years of experience in the Salt Lake City area.",

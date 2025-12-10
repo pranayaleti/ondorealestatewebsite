@@ -1,7 +1,20 @@
 "use client";
 
-import React, { useState } from 'react';
-import { X, Calendar, Clock, User, Mail, Phone, MessageCircle, CheckCircle, AlertCircle, Home, DollarSign } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import {
+  X,
+  Calendar,
+  Clock,
+  User,
+  Mail,
+  Phone,
+  MessageCircle,
+  CheckCircle,
+  AlertCircle,
+  Home,
+  DollarSign,
+  FileText,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,6 +24,7 @@ import { SITE_PHONE } from '@/lib/site';
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
+  variant?: 'default' | 'notary';
 }
 
 interface FormData {
@@ -26,7 +40,9 @@ interface FormData {
   timezone: string;
 }
 
-const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }) => {
+const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, variant = 'default' }) => {
+  const isNotary = variant === 'notary';
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -42,54 +58,78 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
 
-  const propertyTypes = [
-    'Single Family Home',
-    'Townhouse/Condo',
-    'Multi-Family Property',
-    'Commercial Property',
-    'Land/Lot',
-    'Investment Property',
-    'Other'
-  ];
+  const propertyTypes = useMemo(
+    () => [
+      'Single Family Home',
+      'Townhouse/Condo',
+      'Multi-Family Property',
+      'Commercial Property',
+      'Land/Lot',
+      'Investment Property',
+      'Other',
+    ],
+    []
+  );
 
-  const serviceTypes = [
-    'Property Management',
-    'Buying a Home',
-    'Selling a Home',
-    'Home Loans/Mortgage',
-    'Refinancing',
-    'Investment Consulting',
-    'Market Analysis',
-    'Other'
-  ];
+  const serviceTypes = useMemo(
+    () =>
+      isNotary
+        ? [
+            'Remote Online Notarization (RON)',
+            'Mobile Notary (Utah County)',
+            'In-Office Notary (Lehi)',
+            'Loan Signing (Real Estate)',
+            'Apostille Assistance (Utah docs)',
+            'Witness Services',
+            'I-9 Verification',
+            'General Notary',
+            'Other',
+          ]
+        : [
+            'Property Management',
+            'Buying a Home',
+            'Selling a Home',
+            'Home Loans/Mortgage',
+            'Refinancing',
+            'Investment Consulting',
+            'Market Analysis',
+            'Other',
+          ],
+    [isNotary]
+  );
 
-  const timelineOptions = [
-    'ASAP (Urgent)',
-    'Within 1 month',
-    'Within 3 months',
-    'Within 6 months',
-    'Just exploring options',
-    'Flexible timeline'
-  ];
+  const timelineOptions = useMemo(
+    () =>
+      isNotary
+        ? ['Within 2 hours', 'Today', 'Tomorrow', 'Within 3 days', 'Within a week', 'Flexible']
+        : ['ASAP (Urgent)', 'Within 1 month', 'Within 3 months', 'Within 6 months', 'Just exploring options', 'Flexible timeline'],
+    [isNotary]
+  );
 
-  const budgetRanges = [
-    'Under $300,000',
-    '$300,000 - $500,000',
-    '$500,000 - $750,000',
-    '$750,000 - $1,000,000',
-    '$1,000,000+',
-    'Let\'s discuss'
-  ];
+  const budgetRanges = useMemo(
+    () => [
+      'Under $300,000',
+      '$300,000 - $500,000',
+      '$500,000 - $750,000',
+      '$750,000 - $1,000,000',
+      '$1,000,000+',
+      "Let's discuss",
+    ],
+    []
+  );
 
-  const timeSlots = [
-    '9:00 AM - 10:00 AM',
-    '10:00 AM - 11:00 AM',
-    '11:00 AM - 12:00 PM',
-    '1:00 PM - 2:00 PM',
-    '2:00 PM - 3:00 PM',
-    '3:00 PM - 4:00 PM',
-    '4:00 PM - 5:00 PM'
-  ];
+  const timeSlots = useMemo(
+    () => [
+      '9:00 AM - 10:00 AM',
+      '10:00 AM - 11:00 AM',
+      '11:00 AM - 12:00 PM',
+      '1:00 PM - 2:00 PM',
+      '2:00 PM - 3:00 PM',
+      '3:00 PM - 4:00 PM',
+      '4:00 PM - 5:00 PM',
+    ],
+    []
+  );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -120,7 +160,8 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
         body: JSON.stringify({
           ...formData,
           type: 'consultation',
-          source: 'consultation_modal'
+          source: 'consultation_modal',
+          context: variant
         }),
       });
 
@@ -158,11 +199,21 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
         <div className="flex items-center justify-between p-6 border-b">
           <div className="flex items-center">
             <div className="bg-primary p-3 rounded-lg mr-4">
-              <Home className="h-6 w-6 text-primary-foreground" />
+              {isNotary ? (
+                <FileText className="h-6 w-6 text-primary-foreground" />
+              ) : (
+                <Home className="h-6 w-6 text-primary-foreground" />
+              )}
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-card-foreground">View Available Times & Book Now</h2>
-              <p className="text-muted-foreground">30-minute expert consultation</p>
+              <h2 className="text-2xl font-bold text-card-foreground">
+                {isNotary ? 'Book ONDO Notary' : 'View Available Times & Book Now'}
+              </h2>
+              <p className="text-muted-foreground">
+                {isNotary
+                  ? 'Remote online or Utah County mobile/in-office notarization'
+                  : '30-minute expert consultation'}
+              </p>
             </div>
           </div>
           <Button
@@ -246,11 +297,11 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
             {/* Service Type */}
             <div>
               <label htmlFor="serviceType" className="block text-sm font-medium text-card-foreground mb-2">
-                Service Needed *
+                {isNotary ? 'Notary Service Needed *' : 'Service Needed *'}
               </label>
               <Select value={formData.serviceType} onValueChange={(value) => handleSelectChange('serviceType', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select service type" />
+                  <SelectValue placeholder={isNotary ? 'Select notary service' : 'Select service type'} />
                 </SelectTrigger>
                 <SelectContent>
                   {serviceTypes.map(type => (
@@ -261,30 +312,32 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
             </div>
 
             {/* Property Type */}
-            <div>
-              <label htmlFor="propertyType" className="block text-sm font-medium text-card-foreground mb-2">
-                Property Type
-              </label>
-              <Select value={formData.propertyType} onValueChange={(value) => handleSelectChange('propertyType', value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select property type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {propertyTypes.map(type => (
-                    <SelectItem key={type} value={type}>{type}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            {!isNotary && (
+              <div>
+                <label htmlFor="propertyType" className="block text-sm font-medium text-card-foreground mb-2">
+                  Property Type
+                </label>
+                <Select value={formData.propertyType} onValueChange={(value) => handleSelectChange('propertyType', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select property type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {propertyTypes.map(type => (
+                      <SelectItem key={type} value={type}>{type}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
 
             {/* Timeline */}
             <div>
               <label htmlFor="timeline" className="block text-sm font-medium text-card-foreground mb-2">
-                Timeline
+                {isNotary ? 'Appointment Timing' : 'Timeline'}
               </label>
               <Select value={formData.timeline} onValueChange={(value) => handleSelectChange('timeline', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select timeline" />
+                  <SelectValue placeholder={isNotary ? 'When do you need this?' : 'Select timeline'} />
                 </SelectTrigger>
                 <SelectContent>
                   {timelineOptions.map(timeline => (
@@ -295,21 +348,23 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
             </div>
 
             {/* Budget */}
-            <div>
-              <label htmlFor="budget" className="block text-sm font-medium text-card-foreground mb-2">
-                Budget Range
-              </label>
-              <Select value={formData.budget} onValueChange={(value) => handleSelectChange('budget', value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select budget range" />
-                </SelectTrigger>
-                <SelectContent>
-                  {budgetRanges.map(budget => (
-                    <SelectItem key={budget} value={budget}>{budget}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            {!isNotary && (
+              <div>
+                <label htmlFor="budget" className="block text-sm font-medium text-card-foreground mb-2">
+                  Budget Range
+                </label>
+                <Select value={formData.budget} onValueChange={(value) => handleSelectChange('budget', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select budget range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {budgetRanges.map(budget => (
+                      <SelectItem key={budget} value={budget}>{budget}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
 
             {/* Preferred Time */}
             <div>
@@ -332,7 +387,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
           {/* Message */}
           <div className="mt-6">
             <label htmlFor="message" className="block text-sm font-medium text-card-foreground mb-2">
-              Tell us about your real estate needs *
+              {isNotary ? 'Tell us about your notarization *' : 'Tell us about your real estate needs *'}
             </label>
             <Textarea
               id="message"
@@ -341,30 +396,59 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
               onChange={handleInputChange}
               required
               rows={4}
-              placeholder="Tell us about your real estate goals, property preferences, timeline, and any specific questions you have..."
+              placeholder={
+                isNotary
+                  ? 'Documents, state, online vs. mobile, number of signers, preferred time...'
+                  : 'Tell us about your real estate goals, property preferences, timeline, and any specific questions you have...'
+              }
             />
           </div>
 
           {/* Benefits */}
           <div className="mt-6 p-4 bg-primary/10 rounded-lg">
-            <h3 className="font-semibold text-card-foreground mb-3">What you'll get from this consultation:</h3>
+            <h3 className="font-semibold text-card-foreground mb-3">
+              {isNotary ? 'What you get with ONDO Notary:' : "What you'll get from this consultation:"}
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-primary mr-2" />
-                <span>30-minute expert consultation</span>
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-primary mr-2" />
-                <span>Market analysis & pricing</span>
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-primary mr-2" />
-                <span>Property recommendations</span>
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-primary mr-2" />
-                <span>Next steps & timeline</span>
-              </div>
+              {isNotary ? (
+                <>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Remote online or Utah County mobile/in-office options</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Document + ID requirements confirmed before booking</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Secure video session with digital seal and audit trail</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Same-day and lender/title-ready execution</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>30-minute expert consultation</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Market analysis & pricing</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Property recommendations</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                    <span>Next steps & timeline</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -384,7 +468,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
               ) : (
                 <>
                   <Calendar className="h-5 w-5 mr-2" />
-                  View Available Times & Book Now
+                  {isNotary ? 'Book ONDO Notary' : 'View Available Times & Book Now'}
                 </>
               )}
             </Button>
@@ -401,7 +485,10 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }
 
           {/* Contact Info */}
           <div className="mt-6 text-center text-sm text-muted-foreground">
-            <p>Or call us directly: <a href={`tel:${SITE_PHONE}`} className="text-primary font-semibold">{SITE_PHONE}</a></p>
+            <p>
+              {isNotary ? 'For urgent notarization, call or text: ' : 'Or call us directly: '}
+              <a href={`tel:${SITE_PHONE}`} className="text-primary font-semibold">{SITE_PHONE}</a>
+            </p>
           </div>
         </form>
       </div>

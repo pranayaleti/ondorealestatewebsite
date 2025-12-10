@@ -7,18 +7,31 @@
     "generatedAt": "${NOW}"
   },
   "color": {
-    "bg-base": { "value": "#0D0D0D" },
-    "bg-elevated": { "value": "#111827" },
-    "text-primary": { "value": "#F2F2F2" },
-    "text-muted": { "value": "#D1D5DB" },
-    "link": { "value": "#F2F2F2" },
-    "border": { "value": "#1F2937" },
-    "border-strong": { "value": "#333333" },
+    "bg-base-light": { "value": "#F8FAFC" },
+    "bg-elevated-light": { "value": "#FFFFFF" },
+    "text-primary-light": { "value": "#0F172A" },
+    "text-muted-light": { "value": "#475569" },
+    "link-light": { "value": "#0F172A" },
+    "border-light": { "value": "#E2E8F0" },
+    "border-strong-light": { "value": "#CBD5E1" },
+
+    "bg-base-dark": { "value": "#0D0D0D" },
+    "bg-elevated-dark": { "value": "#111827" },
+    "text-primary-dark": { "value": "#F2F2F2" },
+    "text-muted-dark": { "value": "#D1D5DB" },
+    "link-dark": { "value": "#F2F2F2" },
+    "border-dark": { "value": "#1F2937" },
+    "border-strong-dark": { "value": "#333333" },
+
     "accent-1": { "value": "#F97316" },
     "accent-2": { "value": "#FB923C" },
-    "gradient-from": { "value": "#000000" },
-    "gradient-via": { "value": "#111827" },
-    "gradient-to": { "value": "#7C2D12" }
+    "accent-3": { "value": "#FDBA74" },
+
+    "gradient-light-from": { "value": "#FFFFFF" },
+    "gradient-light-to": { "value": "#F8FAFC" },
+    "gradient-dark-from": { "value": "#000000" },
+    "gradient-dark-to": { "value": "#111827" },
+    "gradient-dark-accent": { "value": "linear-gradient(180deg, rgba(249,115,22,0.08) 0%, rgba(17,24,39,0) 70%)" }
   },
   "font": {
     "family-base": { "value": "Inter, \"Inter Fallback\"" },

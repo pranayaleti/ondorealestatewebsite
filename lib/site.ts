@@ -1,6 +1,6 @@
 export const SITE_NAME = "Ondo Real Estate"
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ondorealestate.com"
-export const SITE_PHONE = "+1-800-365-4441"
+export const SITE_PHONE = process.env.NEXT_PUBLIC_SITE_PHONE || "+1-408-538-0420"
 export const SITE_HOURS = "Mo-Fr 09:00-17:00"
 export const SITE_ADDRESS = "2701 N Thanksgiving Way, Lehi, UT 84043"
 
@@ -33,6 +33,16 @@ export const SITE_EMAILS = {
   accessibility: "accessibility@ondorealestate.com",
   privacy: "privacy@ondorealestate.com",
   legal: "legal@ondorealestate.com",
+  notary: "notary@ondorealestate.com",
+  loanSigning: "loanSigning@ondorealestate.com",
+  estatePlanning: "estatePlanning@ondorealestate.com",
+  i9Verification: "i9Verification@ondorealestate.com",
+  generalNotarization: "generalNotarization@ondorealestate.com",
+  realEstate: "realEstate@ondorealestate.com",
+  mortgage: "mortgage@ondorealestate.com",
+  refinance: "refinance@ondorealestate.com",
+  heloc: "heloc@ondorealestate.com",
+  mortgagePackage: "mortgagePackage@ondorealestate.com",
 }
 
 

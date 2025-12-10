@@ -71,12 +71,12 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="OnDo Real Estate"
-              width={240}
-              height={80}
-              className="h-14 w-auto md:h-16"
+              width={200}
+              height={60}
+              className="h-10 w-auto md:h-12"
               priority
               quality={90}
-              sizes="(max-width: 768px) 120px, 160px"
+              sizes="(max-width: 768px) 160px, 200px"
             />
           </Link>
           <nav className="hidden md:flex gap-0.5 overflow-x-auto scrollbar-hide flex-1 min-w-0 max-w-full">

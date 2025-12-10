@@ -22,10 +22,22 @@ import {
 interface ChartContainerProps {
   className?: string
   children: React.ReactNode
+  title?: string
+  description?: string
 }
 
-export function ChartContainer({ className, children }: ChartContainerProps) {
-  return <div className={className}>{children}</div>
+export function ChartContainer({ className, children, title, description }: ChartContainerProps) {
+  return (
+    <div className={className}>
+      {(title || description) && (
+        <div className="mb-3">
+          {title && <h3 className="text-sm font-semibold text-foreground">{title}</h3>}
+          {description && <p className="text-xs text-muted-foreground">{description}</p>}
+        </div>
+      )}
+      {children}
+    </div>
+  )
 }
 
 interface ChartLineProps {
