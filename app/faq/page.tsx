@@ -2,10 +2,70 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { PageBanner } from "@/components/page-banner"
 import { Footer } from "@/components/footer"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateFAQJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_EMAILS } from "@/lib/site"
 
+const faqItems = [
+  {
+    question: "How do I apply for a property?",
+    answer:
+      'You can apply for a property by clicking the "View Details" button on any property listing. This will open an application form where you can provide your information. Once submitted, a property manager will review your application and contact you within 1-2 business days.',
+  },
+  {
+    question: "What documents do I need to apply?",
+    answer:
+      "For a complete rental application, you'll typically need proof of income (pay stubs, tax returns, or bank statements), photo ID, references from previous landlords, and authorization for a credit and background check. Having these documents ready will speed up your application process.",
+  },
+  {
+    question: "How much is the security deposit?",
+    answer:
+      "Security deposits typically equal one month's rent, but may vary based on the property and your application details. The exact amount will be specified in your lease agreement. Security deposits are fully refundable at the end of your lease, minus any charges for damages beyond normal wear and tear.",
+  },
+  {
+    question: "How do I report maintenance issues?",
+    answer:
+      "You can report maintenance issues through our tenant portal, by email, or by phone for emergencies. Our maintenance team responds to emergency requests within 24 hours and non-emergency requests within 2-3 business days. We provide 24/7 emergency maintenance support for issues like water leaks, heating failures, or security concerns.",
+  },
+  {
+    question: "Can I have pets in my rental?",
+    answer:
+      "Pet policies vary by property. Properties that allow pets typically require an additional pet deposit and/or monthly pet rent. Breed and size restrictions may apply. Service animals are accommodated according to fair housing laws and are exempt from pet fees.",
+  },
+  {
+    question: "What services do you offer property owners?",
+    answer:
+      "We offer comprehensive property management services including tenant screening and placement, rent collection, property maintenance, financial reporting, legal compliance, and property marketing. We can customize our services based on your specific needs and property requirements.",
+  },
+  {
+    question: "How do you screen potential tenants?",
+    answer:
+      "Our thorough screening process includes credit checks, criminal background checks, employment verification, income verification (requiring income of 3x the monthly rent), rental history verification, and personal references. This comprehensive approach helps us find reliable, responsible tenants for your property.",
+  },
+  {
+    question: "What are your management fees?",
+    answer:
+      "Our management fees typically range from 7-10% of monthly collected rent, depending on the property type, size, and services required. We also charge a leasing fee of 50-75% of the first month's rent for new tenant placement. We don't get paid unless you get paid, aligning our interests with yours.",
+  },
+  {
+    question: "How do you handle maintenance and repairs?",
+    answer:
+      "We have a network of licensed, insured, and vetted contractors who provide quality work at reasonable rates. For minor repairs (typically under $500), we handle them without owner approval to ensure prompt service. For larger repairs, we consult with you, provide estimates, and proceed with your approval.",
+  },
+  {
+    question: "How often will I receive statements and payments?",
+    answer:
+      "Property owners receive detailed monthly statements showing all income and expenses. Rent payments, minus management fees and any maintenance costs, are directly deposited to your bank account by the 15th of each month. You'll also receive annual statements for tax purposes and have 24/7 access to your property's financial information through our owner portal.",
+  },
+]
+
 export default function FAQPage() {
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: "Home", url: SITE_URL },
+    { name: "FAQ", url: `${SITE_URL}/faq` },
+  ])
+
+  const faqJsonLd = generateFAQJsonLd(faqItems)
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEO
@@ -13,10 +73,7 @@ export default function FAQPage() {
         description="Find answers to common questions about our property management services and renting with Ondo Real Estate."
         pathname="/faq"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "FAQ", url: `${SITE_URL}/faq` },
-        ])}
+        jsonLd={[breadcrumbJsonLd, faqJsonLd]}
       />
       <PageBanner
         title="Frequently Asked Questions"

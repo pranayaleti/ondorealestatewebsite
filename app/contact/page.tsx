@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Building, Mail, MapPin, Phone, Calendar, CheckCircle, AlertCircle } from "lucide-react"
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_PHONE, SITE_EMAILS, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE, SITE_HOURS_LABEL } from "@/lib/site"
 import ConsultationModal from "@/components/ConsultationModal"
 
@@ -104,10 +104,18 @@ export default function ContactPage() {
         description="Get in touch with Ondo Real Estate for property management, rentals, or real estate services across Utah."
         pathname="/contact"
         image={`${SITE_URL}/modern-office-building.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Contact", url: `${SITE_URL}/contact` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Contact", url: `${SITE_URL}/contact` },
+          ]),
+          generateServiceJsonLd({
+            name: "Contact Ondo Real Estate",
+            description: "Get help with Utah property management, buying, selling, and rentals.",
+            serviceType: "Customer Service",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       <PageBanner
         title="Contact Us"

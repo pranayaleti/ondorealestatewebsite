@@ -50,7 +50,7 @@ export const analytics = {
   },
 
   // Track calculator usage
-  trackCalculatorUsage: (calculatorName: string, inputs: Record<string, any>) => {
+  trackCalculatorUsage: (calculatorName: string, inputs: Record<string, unknown>) => {
     analytics.trackEvent('use_calculator', 'calculator_interaction', calculatorName)
   },
 
@@ -60,10 +60,17 @@ export const analytics = {
   },
 }
 
+// Define type for Web Vitals metric
+interface WebVitalsMetric {
+  name: string;
+  id: string;
+  value: number;
+}
+
 // Performance tracking
 export const performanceTracking = {
   // Track Core Web Vitals
-  trackWebVitals: (metric: any) => {
+  trackWebVitals: (metric: WebVitalsMetric) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', metric.name, {
         event_category: 'Web Vitals',
@@ -120,11 +127,4 @@ export const ecommerceTracking = {
       })
     }
   },
-}
-
-// Declare gtag for TypeScript
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void
-  }
 }

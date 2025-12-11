@@ -94,8 +94,9 @@ export const validateConfig = () => {
 
   const missing = required.filter(key => !process.env[key])
   
-  if (missing.length > 0) {
-    console.warn("Missing required environment variables:", missing)
+  if (missing.length > 0 && process.env.NODE_ENV === "development") {
+    // Only throw in development to help catch configuration issues early
+    throw new Error(`Missing required environment variables: ${missing.join(", ")}`)
   }
 
   return missing.length === 0

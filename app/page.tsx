@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import Loading from "@/components/loading"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 // Lazy load the landing page component
@@ -51,9 +51,16 @@ export default function Home() {
           "Utah housing market",
           "MLS listings Utah",
         ]}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([{ name: "Home", url: SITE_URL }]),
+          generateServiceJsonLd({
+            name: "Utah Property Management, Buying & Selling",
+            description:
+              "Full-service Utah real estate: property management, buying, selling, and loans across the Wasatch Front.",
+            serviceType: "Real Estate Services",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       <Suspense fallback={<Loading />}>
         <LandingPage />

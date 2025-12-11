@@ -9,13 +9,15 @@ import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import dynamic from "next/dynamic"
+import { JsonLd } from "@/components/json-ld"
+import { generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo"
 
 // Lazy load non-critical widgets
 // Note: Can't use ssr: false in Server Components, but static export doesn't need SSR anyway
 const ClientConsultationWidget = dynamic(() => import("@/components/ClientConsultationWidget"), {
   loading: () => null, // Don't show loading state for widget
 })
-import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS, SITE_ADDRESS } from "@/lib/site"
+import { SITE_NAME, SITE_URL } from "@/lib/site"
 // Vercel Analytics is disabled for static exports (GitHub Pages)
 // It only works on Vercel's platform, not with static site generation
 // const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
@@ -173,37 +175,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Toaster />
           </AuthProvider>
         </ThemeProvider>
-        {/* Site-wide JSON-LD for Organization/LocalBusiness/RealEstateAgent */}
-        <Script id="org-jsonld" type="application/ld+json" strategy="afterInteractive">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': ['Organization', 'LocalBusiness', 'RealEstateAgent'],
-            name: SITE_NAME,
-            url: SITE_URL,
-            telephone: SITE_PHONE,
-            image: `${SITE_URL}/logo-favicon.png`,
-            areaServed: 'Utah',
-            openingHours: SITE_HOURS,
-            sameAs: SITE_SOCIALS,
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: '2701 N Thanksgiving Way',
-              addressLocality: 'Lehi',
-              addressRegion: 'UT',
-              postalCode: '84043',
-              addressCountry: 'US',
-            },
-            makesOffer: [
-              {
-                '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: 'Property Management' },
-              },
-              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Buying' } },
-              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Selling' } },
-              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Home Loans' } },
-            ],
-          })}
-        </Script>
+        <JsonLd
+          id="global-jsonld"
+          data={[generateOrganizationJsonLd(), generateWebsiteJsonLd()].filter(Boolean)}
+        />
         {/* Google Analytics - Deferred to reduce render blocking and unused JS */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SSND5XGJ87"

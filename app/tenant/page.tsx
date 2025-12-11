@@ -17,7 +17,7 @@ import {
 import { useAuth } from "@/lib/auth-context"
 import { Badge } from "@/components/ui/badge"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateWebPageJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 export default function TenantDashboard() {
@@ -36,10 +36,17 @@ export default function TenantDashboard() {
         description="Manage your rental, payments, maintenance requests, and messages in the Ondo tenant portal."
         pathname="/tenant"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Tenant", url: `${SITE_URL}/tenant` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Tenant", url: `${SITE_URL}/tenant` },
+          ]),
+          generateWebPageJsonLd({
+            name: "Tenant Dashboard",
+            url: `${SITE_URL}/tenant`,
+            description: "Tenant portal for payments, maintenance, and messages.",
+          }),
+        ]}
       />
       <div className="flex items-center">
         <Breadcrumb className="mb-4">

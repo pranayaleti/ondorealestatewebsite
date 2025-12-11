@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { generateReferralCode, generateId } from "@/lib/sweepstakes-utils"
 import { emailValidation, phoneValidation } from "@/lib/validations"
+import { logError } from "@/lib/error-handler"
 
-// Configure for static export
-export const dynamic = "force-static";
-export const revalidate = 0;
+// API routes don't work in static exports - configure as dynamic error to prevent build issues
+export const dynamic = "error";
+export const revalidate = false;
 
 // Validation schema for sweepstakes entry
 const sweepstakesSchema = z.object({
@@ -18,8 +19,22 @@ const sweepstakesSchema = z.object({
   serviceDescription: z.string().optional(),
 })
 
+// Define proper type for sweepstakes entry
+interface SweepstakesEntry {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  referralCode: string;
+  referredBy: string | null;
+  services: string[];
+  serviceDescription?: string;
+  timestamp: string;
+  id: string;
+}
+
 // In-memory storage (in production, use a database)
-const sweepstakesEntries = new Map<string, any>()
+const sweepstakesEntries = new Map<string, SweepstakesEntry>()
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,8 +65,8 @@ export async function POST(request: NextRequest) {
     
     sweepstakesEntries.set(validatedData.email, entry)
     
-    // Log entry (in production, save to database)
-    console.log("Sweepstakes entry:", entry)
+    // In production, this should be saved to a database
+    // For now, we're using in-memory storage
     
     return NextResponse.json({
       success: true,
@@ -60,7 +75,7 @@ export async function POST(request: NextRequest) {
       entryId: entry.id,
     })
   } catch (error) {
-    console.error("Sweepstakes entry error:", error)
+    logError(error, 'sweepstakes-entry');
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -105,7 +120,7 @@ export async function GET(request: NextRequest) {
       totalEntries: sweepstakesEntries.size,
     })
   } catch (error) {
-    console.error("Error fetching referral:", error)
+    logError(error, 'sweepstakes-get');
     return NextResponse.json(
       { error: "An unexpected error occurred" },
       { status: 500 }

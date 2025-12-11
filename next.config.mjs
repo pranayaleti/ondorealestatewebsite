@@ -4,10 +4,10 @@ const nextConfig = {
   // Note: headers() and rewrites() are not supported with static export
   output: 'export',
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true, // Temporarily disable TypeScript checking
+    ignoreBuildErrors: false,
   },
   // Enable experimental features for better performance
   experimental: {

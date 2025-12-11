@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import Loading from "@/components/loading"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateWebPageJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -30,10 +30,17 @@ export default function DashboardPage() {
         description="Overview of leads, properties, tenants, maintenance, and finances."
         pathname="/dashboard"
         image={`${SITE_URL}/modern-office-building.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Dashboard", url: `${SITE_URL}/dashboard` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Dashboard", url: `${SITE_URL}/dashboard` },
+          ]),
+          generateWebPageJsonLd({
+            name: "Admin Dashboard",
+            url: `${SITE_URL}/dashboard`,
+            description: "Overview of leads, properties, tenants, maintenance, and finances.",
+          }),
+        ]}
       />
       <DashboardHeader heading="Dashboard" text="Overview of your property management business">
         <div className="flex items-center gap-2">

@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -139,10 +139,18 @@ export default function BuyPage() {
         description="Find your dream home in Utah with expert real estate agents. Browse homes for sale across the Wasatch Front."
         pathname="/buy/"
         image={`${SITE_URL}/suburban-house-garden.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Buy Homes in Utah", url: `${SITE_URL}/buy/` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Buy Homes in Utah", url: `${SITE_URL}/buy/` },
+          ]),
+          generateServiceJsonLd({
+            name: "Utah home buying services",
+            description: "Agent-led home searches, tours, and negotiations across Utah.",
+            serviceType: "Home Buying",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       <PageBanner
         title="Buy Homes in Utah"

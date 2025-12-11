@@ -30,13 +30,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Check for existing session on mount
   useEffect(() => {
     const checkSession = async () => {
+      // Only access localStorage on client-side
+      if (typeof window === 'undefined') {
+        setIsLoading(false)
+        return
+      }
+
       // In a real app, this would be a fetch to verify the session
       const savedUser = localStorage.getItem("Real EstateUser")
       if (savedUser) {
         try {
           setUser(JSON.parse(savedUser))
-        } catch (e) {
-          console.error("Failed to parse user data", e)
+        } catch (error) {
+          // Failed to parse user data, remove invalid entry
           localStorage.removeItem("Real EstateUser")
         }
       }
@@ -90,7 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               }
             }
 
-            if (userData) {
+            if (userData && typeof window !== 'undefined') {
               setUser(userData)
               localStorage.setItem("Real EstateUser", JSON.stringify(userData))
               setIsLoading(false)
@@ -100,14 +106,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               resolve(false)
             }
           } catch (error) {
-            console.error("Login error:", error)
             setIsLoading(false)
             resolve(false)
           }
         }, 1000)
       })
     } catch (error) {
-      console.error("Login error:", error)
       setIsLoading(false)
       return false
     }
@@ -115,7 +119,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = () => {
     setUser(null)
-    localStorage.removeItem("Real EstateUser")
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem("Real EstateUser")
+    }
     router.push("/")
   }
 

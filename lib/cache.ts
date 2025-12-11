@@ -12,7 +12,7 @@ interface CacheItem<T> {
   ttl: number
 }
 
-class MemoryCache<T = any> {
+class MemoryCache<T = unknown> {
   private cache = new Map<string, CacheItem<T>>()
   private maxSize: number
   private defaultTTL: number
@@ -89,28 +89,28 @@ class MemoryCache<T = any> {
 // Global cache instances
 export const caches = {
   // API response cache
-  api: new MemoryCache<any>({ ttl: 5 * 60 * 1000, maxSize: 50 }),
+  api: new MemoryCache<unknown>({ ttl: 5 * 60 * 1000, maxSize: 50 }),
   
   // User data cache
-  user: new MemoryCache<any>({ ttl: 10 * 60 * 1000, maxSize: 20 }),
+  user: new MemoryCache<unknown>({ ttl: 10 * 60 * 1000, maxSize: 20 }),
   
   // Property data cache
-  properties: new MemoryCache<any>({ ttl: 15 * 60 * 1000, maxSize: 100 }),
+  properties: new MemoryCache<unknown>({ ttl: 15 * 60 * 1000, maxSize: 100 }),
   
   // Search results cache
-  search: new MemoryCache<any>({ ttl: 2 * 60 * 1000, maxSize: 30 }),
+  search: new MemoryCache<unknown>({ ttl: 2 * 60 * 1000, maxSize: 30 }),
   
   // Static content cache
-  static: new MemoryCache<any>({ ttl: 60 * 60 * 1000, maxSize: 200 }), // 1 hour
+  static: new MemoryCache<unknown>({ ttl: 60 * 60 * 1000, maxSize: 200 }), // 1 hour
 }
 
 // Cache key generators
 export const cacheKeys = {
   // API cache keys
   api: {
-    properties: (filters?: any) => `api:properties:${JSON.stringify(filters || {})}`,
+    properties: (filters?: Record<string, unknown>) => `api:properties:${JSON.stringify(filters || {})}`,
     property: (id: string) => `api:property:${id}`,
-    search: (query: string, filters?: any) => `api:search:${query}:${JSON.stringify(filters || {})}`,
+    search: (query: string, filters?: Record<string, unknown>) => `api:search:${query}:${JSON.stringify(filters || {})}`,
     user: (id: string) => `api:user:${id}`,
   },
   
@@ -204,7 +204,11 @@ export const cacheUtils = {
       const value = await fetcher()
       cache.set(key, value, ttl)
     } catch (error) {
-      console.warn(`Failed to warm up cache for key ${key}:`, error)
+      // Silently fail cache warmup - it's not critical
+      if (process.env.NODE_ENV === 'development') {
+        // Only log in development
+        console.warn(`Failed to warm up cache for key ${key}:`, error)
+      }
     }
   },
 }
@@ -221,13 +225,13 @@ export const useCache = <T>(cache: MemoryCache<T>) => {
 }
 
 // Cache middleware for API routes
-export const withCache = <T>(
+export const withCache = <T, TReq = unknown, TRes = unknown>(
   cache: MemoryCache<T>,
-  keyGenerator: (req: any) => string,
+  keyGenerator: (req: TReq) => string,
   ttl?: number
 ) => {
-  return (handler: (req: any, res: any) => Promise<T>) => {
-    return async (req: any, res: any) => {
+  return (handler: (req: TReq, res: TRes) => Promise<T>) => {
+    return async (req: TReq, res: TRes & { json: (data: unknown) => unknown }) => {
       const key = keyGenerator(req)
       const cached = cache.get(key)
       

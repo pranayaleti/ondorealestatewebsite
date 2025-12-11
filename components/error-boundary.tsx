@@ -30,8 +30,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo)
-    
     // Log error to analytics or monitoring service
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'exception', {

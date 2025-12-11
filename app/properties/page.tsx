@@ -513,7 +513,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import SEO from '@/components/seo';
-import { generateBreadcrumbJsonLd } from '@/lib/seo';
+import { generateBreadcrumbJsonLd, generatePropertyJsonLd } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
 
 import type { Property } from '@/app/types/property';
@@ -555,24 +555,42 @@ export default function PropertiesPage() {
         setLoading(true);
         setError(null);
         console.log('[properties] fetching…');
-        // Call upstream server directly for static deployment
-        const res = await fetch('https://ondorealestateserver.onrender.com/api/properties/public', {
+        // #region agent log
+        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P1',location:'app/properties/page.tsx:useEffect:before-fetch',message:'properties fetch start',data:{url:'https://ondorealestateserver.onrender.com/api/properties/public'},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+        // Call via our API route (keeps instrumentation + avoids mixed-content)
+        const res = await fetch('/api/properties/public', {
           signal: controller.signal,
           cache: 'no-store',
         });
         console.log('[properties] status', res.status);
+        // #region agent log
+        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P2',location:'app/properties/page.tsx:useEffect:after-fetch',message:'properties fetch response',data:{status:res.status,ok:res.ok,contentType:res.headers.get('content-type')},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
         const json = await res.json();
+        // #region agent log
+        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P3',location:'app/properties/page.tsx:useEffect:json',message:'properties json parsed',data:{array:Array.isArray(json),length:Array.isArray(json)?json.length:undefined},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         const mapped: Property[] = (json as any[]).map(mapApiProperty);
         setAllApiProperties(mapped);
+        // #region agent log
+        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P4',location:'app/properties/page.tsx:useEffect:mapped',message:'properties mapped',data:{count:mapped.length},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
       } catch (e: any) {
         if (e?.name === 'AbortError') {
           // expected in React Strict Mode (first effect run is aborted)
+          // #region agent log
+          void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P5',location:'app/properties/page.tsx:useEffect:abort',message:'properties fetch aborted',data:{},timestamp:Date.now()})}).catch(()=>{});
+          // #endregion
           return;
         }
         console.error(e);
         setError(e.message ?? 'Failed to load properties');
         setAllApiProperties([]);
+        // #region agent log
+        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P6',location:'app/properties/page.tsx:useEffect:error',message:'properties fetch error',data:{errorName:e?.name,errorMessage:e?.message},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }
@@ -669,6 +687,44 @@ export default function PropertiesPage() {
   const handleFilterChange = (f: PropertyFilters) => setFilters(f);
   const handleSearch = (q: string) => setSearchQuery(q);
 
+  const propertySchemas = properties.slice(0, 5).map((p) => {
+    const addressParts = p.addressParts ?? {};
+    const streetAddress = [addressParts.line1, addressParts.line2].filter(Boolean).join(', ').trim();
+    const addressLocality = addressParts.city ?? '';
+    const addressRegion = addressParts.state ?? '';
+    const postalCode = addressParts.zipcode ?? '';
+    const addressCountry = addressParts.country ?? '';
+
+    if (!streetAddress || !addressLocality || !addressRegion || !postalCode || !addressCountry) return null;
+
+    return generatePropertyJsonLd({
+      name: p.title ?? 'Property',
+      description: p.description || 'Rental property listed by OnDo Real Estate.',
+      address: {
+        streetAddress,
+        addressLocality,
+        addressRegion,
+        postalCode,
+        addressCountry,
+      },
+      numberOfRooms: p.bedrooms ?? undefined,
+      floorSize: p.sqft
+        ? {
+            value: p.sqft,
+            unitCode: 'SQF',
+          }
+        : undefined,
+      image: p.images,
+      offers: p.price
+        ? {
+            price: p.price,
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+          }
+        : undefined,
+    });
+  }).filter(Boolean);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEO
@@ -676,10 +732,13 @@ export default function PropertiesPage() {
         description="Explore available rental homes, apartments, condos, and townhouses managed by OnDo Real Estate."
         pathname="/properties"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: 'Home', url: SITE_URL },
-          { name: 'Properties', url: `${SITE_URL}/properties` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: 'Home', url: SITE_URL },
+            { name: 'Properties', url: `${SITE_URL}/properties` },
+          ]),
+          ...propertySchemas,
+        ]}
       />
       {/* Banner unchanged */}
 

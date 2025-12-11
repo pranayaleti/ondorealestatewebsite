@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 import Image from "next/image"
 
@@ -13,10 +13,19 @@ export default function AboutPage() {
         description="Ondo Real Estate — one-stop real estate solution for buying, selling, property management (condo, townhouse, single-family home, land) and mortgage services. Tech-driven, Utah-focused, results-first."
         pathname="/about"
         image={`${SITE_URL}/placeholder.jpg`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "About", url: `${SITE_URL}/about` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "About", url: `${SITE_URL}/about` },
+          ]),
+          generateServiceJsonLd({
+            name: "Full-service real estate in Utah",
+            description:
+              "Buy, sell, manage, and finance properties in Utah with a tech-forward, results-driven team.",
+            serviceType: "Real Estate Services",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       {/* Hero Image */}
       <section className="relative h-96 md:h-[500px]">

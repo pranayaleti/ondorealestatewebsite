@@ -25,22 +25,23 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     openGraph: { title, description, url: canonical },
   }
 }
-export default async function Page({ params }: { params: { zip: string } }) {
-  const city = findCityByZip(params.zip)
+export default async function Page({ params }: { params: Params }) {
+  const { zip } = await params
+  const city = findCityByZip(zip)
   if (!city) {
     return <div className="container mx-auto px-4 py-10">Service area not found.</div>
   }
   return (
     <>
       <SEO
-        title={`Property Management ${params.zip} (${city.name}) | ${SITE_NAME}`}
-        description={`Professional property management services across ${params.zip} in ${city.name}, Utah.`}
-        pathname={`/property-management/zip/${params.zip}/`}
+        title={`Property Management ${zip} (${city.name}) | ${SITE_NAME}`}
+        description={`Professional property management services across ${zip} in ${city.name}, Utah.`}
+        pathname={`/property-management/zip/${zip}/`}
         image={`${SITE_URL}/property-manager-meeting.png`}
         jsonLd={generateBreadcrumbJsonLd([
           { name: "Home", url: SITE_URL },
           { name: "Property Management", url: `${SITE_URL}/property-management/` },
-          { name: `${params.zip} (${city.name})`, url: `${SITE_URL}/property-management/zip/${params.zip}/` },
+          { name: `${zip} (${city.name})`, url: `${SITE_URL}/property-management/zip/${zip}/` },
         ])}
       />
       <CityServicePage city={city} service="property-management" />

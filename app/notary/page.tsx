@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import SEO from "@/components/seo";
 import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site";
+import { generateBreadcrumbJsonLd, generateLocalBusinessJsonLd } from "@/lib/seo";
 import NOTARY_SERVICE_AREAS, {
   getAreaServedSchema,
 } from "@/lib/notary-service-areas";
@@ -73,84 +74,30 @@ export default function NotaryPage() {
         "apostille assistance",
         ...notaryKeywords,
       ]}
-      jsonLd={{
-        "@context": "[https://schema.org](https://schema.org)",
-        "@type": ["LocalBusiness", "NotaryPublic"],
-        "name": "ONDO Notary Services",
-        "description":
-          "Professional Remote Online Notary services across all 50 U.S. states, plus mobile and in-office notarization in Utah County. Specializing in real estate, loan signings, affidavits, and more.",
-        "url": `${SITE_URL}/notary`,
-        "telephone": SITE_PHONE,
-        "email": SITE_EMAILS.primary,
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Lehi",
-          "addressRegion": "UT",
-          "addressCountry": "US",
-        },
-        "openingHours": "Mo-Fr 09:00-19:00",
-        "serviceArea": [
-          {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-              "@type": "GeoCoordinates",
-              "latitude": 40.3916,
-              "longitude": -111.8508,
-            },
-            "geoRadius": "50",
-            "name": "Utah County",
+      jsonLd={[
+        generateBreadcrumbJsonLd([
+          { name: "Home", url: SITE_URL },
+          { name: "Notary", url: `${SITE_URL}/notary` },
+        ]),
+        generateLocalBusinessJsonLd({
+          name: "ONDO Notary Services",
+          url: `${SITE_URL}/notary`,
+          telephone: SITE_PHONE,
+          image: `${SITE_URL}/notary-cover.jpg`,
+          areaServed: "United States",
+          openingHours: "Mo-Fr 09:00-19:00",
+          address: {
+            addressLocality: "Lehi",
+            addressRegion: "UT",
+            addressCountry: "US",
           },
-          {
-            "@type": "Country",
-            "name": "United States",
-          },
-        ],
-        "priceRange": "$",
-        "parentOrganization": {
-          "@type": "Organization",
-          "name": "ONDO Real Estate",
-          "url": SITE_URL,
-        },
-        "offers": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Remote Online Notarization (RON)",
-              "description": "Remote notarization available to clients in all 50 U.S. states via secure online platform.",
-              "areaServed": {
-                "@type": "Country",
-                "name": "United States",
-              },
-            },
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Mobile Notary Service",
-              "description": "Professional mobile notarization available in Utah County, including homes, offices, and designated locations.",
-              "areaServed": {
-                "@type": "Place",
-                "name": "Utah County",
-              },
-            },
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Loan Signing Agent Services",
-              "description": "Certified signing agent handling real estate loan packages, refinances, HELOCs, and mortgage closings.",
-              "areaServed": {
-                "@type": "Place",
-                "name": "Utah County",
-              },
-            },
-          },
-        ],
-        "areaServed": serviceAreaSchema,
-      }}
+          makesOffer: [
+            { itemOffered: { name: "Remote Online Notarization (RON)" } },
+            { itemOffered: { name: "Mobile Notary" } },
+            { itemOffered: { name: "Loan Signing Agent" } },
+          ],
+        }),
+      ]}
     />
 
     {/* HERO */}

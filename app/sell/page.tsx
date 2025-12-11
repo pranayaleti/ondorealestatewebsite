@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -138,10 +138,18 @@ export default function SellPage() {
         description="Sell your Utah home for top dollar with expert real estate agents. Professional marketing and pricing strategy."
         pathname="/sell/"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Sell Your Utah Home", url: `${SITE_URL}/sell/` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Sell Your Utah Home", url: `${SITE_URL}/sell/` },
+          ]),
+          generateServiceJsonLd({
+            name: "Utah home selling services",
+            description: "Pricing strategy, marketing, and negotiations to sell Utah homes faster.",
+            serviceType: "Home Selling",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       <PageBanner
         title="Sell Your Utah Home"

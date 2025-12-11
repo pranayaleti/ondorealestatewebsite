@@ -12,7 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Search, MapPin, Home } from "lucide-react"
 import Link from "next/link"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateWebPageJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 // Mock data for properties
@@ -153,10 +153,17 @@ export default function SearchResultsPage() {
         description={`Browse available properties in ${city}. Filter by price, beds, baths, and amenities.`}
         pathname={`/search`}
         image={`${SITE_URL}/modern-apartment-balcony.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Search", url: `${SITE_URL}/search` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Search", url: `${SITE_URL}/search` },
+          ]),
+          generateWebPageJsonLd({
+            name: `Property Search in ${city}`,
+            url: `${SITE_URL}/search`,
+            description: `Browse available properties in ${city}. Filter by price, beds, baths, and amenities.`,
+          }),
+        ]}
       />
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>

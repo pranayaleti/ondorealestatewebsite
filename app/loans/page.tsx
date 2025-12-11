@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -139,10 +139,18 @@ export default function LoansPage() {
         description="Get pre-approved for Utah home loans including conventional, FHA, VA, and USDA mortgages."
         pathname="/loans/"
         image={`${SITE_URL}/modern-office-building.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Utah Home Loans & Mortgages", url: `${SITE_URL}/loans/` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Utah Home Loans & Mortgages", url: `${SITE_URL}/loans/` },
+          ]),
+          generateServiceJsonLd({
+            name: "Utah mortgage services",
+            description: "Conventional, FHA, VA, and USDA home loans with local expertise.",
+            serviceType: "Mortgage Lending",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       <PageBanner
         title="Utah Home Loans & Mortgages"

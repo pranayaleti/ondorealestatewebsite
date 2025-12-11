@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -135,10 +135,19 @@ export default function PropertyManagementPage() {
         description="Full-service property management in Utah. Tenant screening, rent collection, maintenance, and reporting. Serving Salt Lake City, Lehi, Provo, and surrounding areas."
         pathname="/property-management/"
         image={`${SITE_URL}/property-manager-meeting.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Utah Property Management Services", url: `${SITE_URL}/property-management/` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Utah Property Management Services", url: `${SITE_URL}/property-management/` },
+          ]),
+          generateServiceJsonLd({
+            name: "Utah Property Management",
+            description:
+              "Tenant placement, rent collection, maintenance coordination, and owner reporting across Utah.",
+            serviceType: "Property Management",
+            areaServed: "Utah",
+          }),
+        ]}
       />
       <PageBanner
         title="Utah Property Management Services"

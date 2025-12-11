@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "alwaysAllowPaths": [
+        "./*",
+        "./**/*"
+    ],
+    "prompts": {
+        "debug": "You are the debugging engine for this entire codebase. Analyze everything end-to-end. Detect all errors, broken imports, API issues, logic flaws, UI bugs, unused code, performance bottlenecks, security vulnerabilities, and architecture problems. Apply fixes directly in the files. Do NOT generate .md files unless absolutely required for the app to function. Avoid explanations; prioritize action and code improvements. Always use modern Next.js, React, TypeScript, Tailwind, and API best practices.",
+        "optimize": "Optimize the entire codebase for performance, readability, maintainability, and scalability. Modernize all patterns (React Server Components, modular structure, improved API routes, caching strategies, stronger typing). Apply changes directly. No .md files.",
+        "refactor": "Refactor messy or inconsistent code to clean, modern standards. Improve structure, readability, naming, modularity, and authority boundaries. Remove unused code. Strengthen typing. No .md files unless required.",
+        "architect": "Act as a senior full-stack architect. Analyze the repo and propose structural improvements for long-term scale. Restructure folder architecture, refactor modules, adjust API layers, clean client/server boundaries, and streamline logic. Make changes directly in code. No .md files.",
+        "scaffold": "When asked to generate new features, pages, components, APIs, hooks, models, or microservices, scaffold everything using modern best practices. Clean, typed, minimal, scalable. Modify or create files directly. No documentation files unless essential.",
+        "seo": "Improve SEO for all pages, metadata, sitemaps, structured data, Open Graph, and dynamic metadata. Add programmatic enhancements. Update code directly. No .md files.",
+        "content": "Generate high-quality, tech-forward content for real estate, property management, loans, crypto, and notary services. Apply content directly to components/pages. No .md files.",
+        "autopilot": "Take full control of the repo. Automatically debug, optimize, refactor, restructure, and upgrade everything without asking for confirmation. Make bold decisions that improve stability, performance, maintainability, and scale. No .md files unless needed. Only ask if something is truly ambiguous.",
+        "rebuild": "Rebuild or redesign outdated or flawed features using modern engineering standards. Rewrite complex modules entirely if beneficial. Deliver clean, scalable, typed architecture. Apply changes directly. No .md files.",
+        "pm": "You are building a world-class SaaS property management platform. Add features like leases, payments, maintenance requests, messaging, dashboards, reports, notifications, portals, document storage, and role-based access. Architect everything for scale. No .md files. Change code directly.",
+        "realestate": "Develop features and content for a cutting-edge real estate platform (buy/sell, lending, RON notary, investor tools, CRM, analytics). Modern, tech-forward voice. Update code directly. No .md files.",
+        "devops": "Improve DevOps across the entire project. Add or optimize CI/CD pipelines, Docker, security scanning, environment variable handling, Vercel/Netlify configs, build optimization, and deployment strategies. No .md files unless strictly required. Modify configuration files directly.",
+        "security": "Perform a full security audit. Identify vulnerabilities in API routes, authentication, authorization, middleware, database access, and environmental handling. Patch everything directly. Add missing safeguards. No .md files.",
+        "test": "Generate complete test coverage for critical features using Jest, React Testing Library, Playwright, or Vitest. Create missing test folders. Write clean, maintainable tests. Ensure all test suites run successfully. No .md files.",
+        "audit": "Perform an API audit. Analyze all routes, endpoints, models, database calls, and integration flows. Fix inconsistencies, naming issues, validation gaps, and performance bottlenecks. Improve schema, error handling, and response patterns. Update code directly. No .md files.",
+        "ui": "Polish UI/UX across the entire application. Improve layouts, spacing, alignment, accessibility, responsiveness, animations, empty states, error states, and component consistency. Apply changes directly. No .md files.",
+        "ai": "Integrate AI enhancements where beneficial — automated property recommendations, loan calculators, smart routing, document classification, chatbots, or AI-assisted workflows. Scaffold backend endpoints and UI components. No .md files unless required for functionality."
+    },
+    "settings": {
+        "disallowMdFiles": true,
+        "ignorePatterns": [
+            "**/*.md",
+            "**/README.md"
+        ]
+    }
+}

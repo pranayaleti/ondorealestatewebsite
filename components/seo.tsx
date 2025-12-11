@@ -1,5 +1,9 @@
-import type { Metadata } from "next"
-import Script from "next/script"
+import { JsonLd } from "@/components/json-ld"
+import {
+  generateBlogPostingJsonLd,
+  generateBreadcrumbJsonLd,
+  generateWebPageJsonLd,
+} from "@/lib/seo"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 type SEOProps = {
@@ -7,7 +11,7 @@ type SEOProps = {
   description: string
   pathname?: string
   image?: string
-  jsonLd?: object | null
+  jsonLd?: object | object[] | null
   keywords?: string[]
   noindex?: boolean
   publishedTime?: string
@@ -31,9 +35,15 @@ export default function SEO({
   section,
   tags = []
 }: SEOProps) {
-  const domain = SITE_URL
-  const url = `${domain.replace(/\/$/, "")}${pathname}`
-  const ogImage = image || `${domain}/modern-office-building.webp`
+  const domain = SITE_URL.replace(/\/$/, "")
+  const toAbsolute = (value?: string) => {
+    if (!value) return undefined
+    return value.startsWith("http://") || value.startsWith("https://") ? value : `${domain}${value}`
+  }
+
+  const url = `${domain}${pathname}`
+  const ogImage = toAbsolute(image) || `${domain}/modern-office-building.webp`
+  void noindex
   
   // Enhanced keywords with default real estate terms
   const defaultKeywords = [
@@ -76,53 +86,86 @@ export default function SEO({
   ]
   const allKeywords = [...new Set([...defaultKeywords, ...keywords])]
 
-  // Build additional Open Graph Article meta tags conditionally
-  const otherMeta: Record<string, string | number | (string | number)[]> = {}
-  if (publishedTime) otherMeta["article:published_time"] = publishedTime
-  if (modifiedTime) otherMeta["article:modified_time"] = modifiedTime
-  if (author) otherMeta["article:author"] = author
-  if (section) otherMeta["article:section"] = section
-  if (tags && tags.length > 0) otherMeta["article:tag"] = tags
+  const providedJsonLd = Array.isArray(jsonLd) ? jsonLd.filter(Boolean) : jsonLd ? [jsonLd] : []
 
-  const metadata: Metadata = {
-    title: `${title} | ${SITE_NAME}`,
-    description,
-    keywords: allKeywords,
-    robots: noindex ? "noindex,nofollow" : "index,follow",
-    openGraph: {
-      type: "website",
-      title: `${title} | ${SITE_NAME}`,
-      description,
-      url,
-      siteName: SITE_NAME,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | ${SITE_NAME}`,
-      description,
-      images: [ogImage],
-      creator: "@OnDoRealEstate",
-      site: "@OnDoRealEstate",
-    },
-    alternates: {
-      canonical: url,
-    },
-    other: otherMeta,
-  }
+  const hasType = (entries: object[], typeName: string) =>
+    entries.some((entry) => {
+      const type = (entry as any)?.["@type"]
+      if (Array.isArray(type)) return type.includes(typeName)
+      return type === typeName
+    })
 
-  return (
-    <>
-      <Script id="seo-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {jsonLd ? JSON.stringify(jsonLd) : '{}'}
-      </Script>
-    </>
-  )
+  const hasBlogPostingJsonLd = hasType(providedJsonLd, "BlogPosting")
+  const hasWebPageJsonLd = hasType(providedJsonLd, "WebPage")
+  const hasBreadcrumbJsonLd = hasType(providedJsonLd, "BreadcrumbList")
+
+  const blogPostingJsonLd =
+    !hasBlogPostingJsonLd && publishedTime
+      ? generateBlogPostingJsonLd({
+          title,
+          description,
+          url,
+          image: ogImage,
+          datePublished: publishedTime,
+          dateModified: modifiedTime,
+          authorName: author || SITE_NAME,
+          keywords: [...new Set([...(tags || []), ...allKeywords])],
+          articleSection: section,
+        })
+      : null
+
+  const webPageJsonLd = !hasWebPageJsonLd
+    ? generateWebPageJsonLd({
+        name: title,
+        url,
+        description,
+      })
+    : null
+
+  const breadcrumbJsonLd =
+    !hasBreadcrumbJsonLd && pathname
+      ? generateBreadcrumbJsonLd(buildBreadcrumbItems({ pathname, title, domain }))
+      : null
+
+  const payload = [
+    ...providedJsonLd,
+    ...(blogPostingJsonLd ? [blogPostingJsonLd] : []),
+    ...(webPageJsonLd ? [webPageJsonLd] : []),
+    ...(breadcrumbJsonLd ? [breadcrumbJsonLd] : []),
+  ].filter(Boolean)
+
+  if (!payload.length) return null
+
+  return <JsonLd data={payload.length === 1 ? payload[0] : payload} id="seo-jsonld" />
+}
+
+function buildBreadcrumbItems({
+  pathname,
+  title,
+  domain,
+}: {
+  pathname: string
+  title: string
+  domain: string
+}) {
+  const segments = pathname.split("/").filter(Boolean)
+  const items: Array<{ name: string; url: string }> = [{ name: "Home", url: `${domain}/` }]
+
+  let current = domain
+  segments.forEach((segment, index) => {
+    current += `/${segment}`
+    const isLast = index === segments.length - 1
+    const name = isLast ? title : humanizeSegment(segment)
+    items.push({ name, url: current })
+  })
+
+  return items
+}
+
+function humanizeSegment(segment: string) {
+  return segment
+    .replace(/[\[\]]/g, "")
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ")
 }

@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { useAuth } from "@/lib/auth-context"
 import SEO from "@/components/seo"
-import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { generateBreadcrumbJsonLd, generateWebPageJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 export default function OwnerDashboard() {
@@ -42,10 +42,17 @@ export default function OwnerDashboard() {
         description="Track revenue, occupancy, maintenance, and tenant activity in the Ondo owner portal."
         pathname="/owner"
         image={`${SITE_URL}/property-manager-meeting.png`}
-        jsonLd={generateBreadcrumbJsonLd([
-          { name: "Home", url: SITE_URL },
-          { name: "Owner", url: `${SITE_URL}/owner` },
-        ])}
+        jsonLd={[
+          generateBreadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Owner", url: `${SITE_URL}/owner` },
+          ]),
+          generateWebPageJsonLd({
+            name: "Owner Dashboard",
+            url: `${SITE_URL}/owner`,
+            description: "Owner portal overview of revenue, occupancy, maintenance, and tenant activity.",
+          }),
+        ]}
       />
       <div className="flex items-center">
         <Breadcrumb className="mb-4">

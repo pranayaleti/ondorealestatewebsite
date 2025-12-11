@@ -1,4 +1,12 @@
-import { SITE_NAME, SITE_URL } from "./site"
+import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_HOURS, SITE_SOCIALS, SITE_ADDRESS_OBJ, SITE_EMAILS } from "./site"
+
+const baseSiteUrl = SITE_URL.replace(/\/$/, "")
+
+const toAbsoluteUrl = (value?: string) => {
+  if (!value) return undefined
+  if (value.startsWith("http://") || value.startsWith("https://")) return value
+  return `${baseSiteUrl}${value.startsWith("/") ? value : `/${value}`}`
+}
 
 export interface FAQItem {
   question: string
@@ -20,16 +28,28 @@ export interface LocalBusinessData {
   url: string
   telephone?: string
   image?: string
+  logo?: string
   areaServed?: string
   openingHours?: string
+  sameAs?: string[]
   address?: {
     addressRegion: string
     addressCountry: string
+    streetAddress?: string
+    addressLocality?: string
+    postalCode?: string
   }
   makesOffer?: Array<{
     itemOffered: {
       name: string
     }
+  }>
+  contactPoint?: Array<{
+    contactType: string
+    telephone?: string
+    email?: string
+    areaServed?: string
+    availableLanguage?: string[]
   }>
 }
 
@@ -81,18 +101,59 @@ export function generateFAQJsonLd(faqs: FAQItem[]) {
  * Generate JSON-LD for LocalBusiness/RealEstateAgent
  */
 export function generateLocalBusinessJsonLd(business: LocalBusinessData) {
+  const absoluteUrl = toAbsoluteUrl(business.url)
+  if (!business.name || !absoluteUrl) return null
+
+  const absoluteImage = toAbsoluteUrl(business.image)
+  const absoluteLogo = toAbsoluteUrl(business.logo)
+
   return {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'LocalBusiness', 'RealEstateAgent'],
     name: business.name,
-    url: business.url,
+    url: absoluteUrl,
     telephone: business.telephone,
-    image: business.image,
+    image: absoluteImage,
+    logo: absoluteLogo,
     areaServed: business.areaServed,
     openingHours: business.openingHours,
     address: business.address,
+    sameAs: business.sameAs,
     makesOffer: business.makesOffer,
+    contactPoint: business.contactPoint,
   }
+}
+
+export function generateOrganizationJsonLd() {
+  return generateLocalBusinessJsonLd({
+    name: SITE_NAME,
+    url: SITE_URL,
+    telephone: SITE_PHONE,
+    image: `${SITE_URL}/logo-favicon.png`,
+    logo: `${SITE_URL}/logo-favicon.png`,
+    areaServed: "Utah",
+    openingHours: SITE_HOURS,
+    sameAs: SITE_SOCIALS,
+    address: {
+      ...SITE_ADDRESS_OBJ,
+    },
+    contactPoint: [
+      {
+        contactType: "customer support",
+        telephone: SITE_PHONE,
+        email: SITE_EMAILS?.primary,
+        areaServed: "Utah",
+        availableLanguage: ["en-US"],
+      },
+    ],
+    makesOffer: [
+      { itemOffered: { name: "Property Management" } },
+      { itemOffered: { name: "Home Buying" } },
+      { itemOffered: { name: "Home Selling" } },
+      { itemOffered: { name: "Home Loans" } },
+      { itemOffered: { name: "Mobile Notary" } },
+    ],
+  })
 }
 
 /**
@@ -186,6 +247,16 @@ export function generatePropertyJsonLd(property: {
     availability: string
   }
 }) {
+  const absoluteImages = property.image?.map(toAbsoluteUrl).filter(Boolean)
+  const hasAddress =
+    property.address?.streetAddress &&
+    property.address?.addressLocality &&
+    property.address?.addressRegion &&
+    property.address?.postalCode &&
+    property.address?.addressCountry
+
+  if (!property.name || !property.description || !hasAddress) return null
+
   return {
     '@context': 'https://schema.org',
     '@type': 'RealEstateListing',
@@ -206,12 +277,130 @@ export function generatePropertyJsonLd(property: {
       value: property.floorSize.value,
       unitCode: property.floorSize.unitCode,
     } : undefined,
-    image: property.image,
+    image: absoluteImages && absoluteImages.length ? absoluteImages : undefined,
     offers: property.offers ? {
       '@type': 'Offer',
       price: property.offers.price,
       priceCurrency: property.offers.priceCurrency,
       availability: property.offers.availability,
     } : undefined,
+  }
+}
+
+export function generateWebPageJsonLd(params: {
+  name: string
+  url: string
+  description?: string
+}) {
+  const { name, url, description } = params
+  const absoluteUrl = toAbsoluteUrl(url)
+  if (!name || !absoluteUrl) return null
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name,
+    url: absoluteUrl,
+    description,
+  }
+}
+
+export function generateBlogPostingJsonLd(params: {
+  title: string
+  description: string
+  url: string
+  image?: string
+  datePublished: string
+  dateModified?: string
+  authorName?: string
+  publisherName?: string
+  publisherLogo?: string
+  keywords?: string[]
+  articleSection?: string
+}) {
+  const { title, description, url, image, datePublished, dateModified, authorName, publisherName, publisherLogo, keywords, articleSection } = params
+
+  if (!title || !description || !url || !datePublished) return null
+
+  const absoluteUrl = toAbsoluteUrl(url)
+  if (!absoluteUrl) return null
+
+  const absoluteImage = toAbsoluteUrl(image)
+  const absolutePublisherLogo = toAbsoluteUrl(publisherLogo)
+
+  const keywordList = keywords?.filter(Boolean)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    ...(absoluteImage ? { image: [absoluteImage] } : {}),
+    datePublished,
+    dateModified: dateModified || datePublished,
+    mainEntityOfPage: absoluteUrl,
+    author: {
+      '@type': 'Person',
+      name: authorName || SITE_NAME,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: publisherName || SITE_NAME,
+      ...(absolutePublisherLogo
+        ? {
+            logo: {
+              '@type': 'ImageObject',
+              url: absolutePublisherLogo,
+            },
+          }
+        : {}),
+    },
+    ...(keywordList && keywordList.length ? { keywords: keywordList } : {}),
+    ...(articleSection ? { articleSection } : {}),
+  }
+}
+
+export function generateWebApplicationJsonLd(params: {
+  name: string
+  description: string
+  url: string
+  applicationCategory: string
+  operatingSystem?: string
+  image?: string
+  priceCurrency?: string
+  providerName?: string
+}) {
+  const { name, description, url, applicationCategory, operatingSystem = "Web", image, priceCurrency = "USD", providerName } = params
+
+  if (!name || !description || !url || !applicationCategory) return null
+
+  const absoluteUrl = toAbsoluteUrl(url)
+  if (!absoluteUrl) return null
+
+  const absoluteImage = toAbsoluteUrl(image)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name,
+    description,
+    url: absoluteUrl,
+    applicationCategory,
+    operatingSystem,
+    offers: {
+      '@type': 'Offer',
+      price: 0,
+      priceCurrency,
+    },
+    ...(absoluteImage ? { image: absoluteImage } : {}),
+    ...(providerName
+      ? {
+          provider: {
+            '@type': 'Organization',
+            name: providerName,
+            url: SITE_URL,
+          },
+        }
+      : {}),
   }
 }
