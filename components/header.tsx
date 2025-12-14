@@ -5,15 +5,17 @@ import Image from "next/image"
 import { useState, useEffect, useRef, useCallback, memo } from "react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Search } from "lucide-react"
 import UserMenu from "@/components/user-menu"
 import { Navigation } from "@/components/navigation"
 import { useAuth } from "@/lib/auth-context"
+import { SearchDialog } from "@/components/search-dialog"
 
 const Header = memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const { user } = useAuth()
 
@@ -27,6 +29,19 @@ const Header = memo(() => {
 
   useEffect(() => {
     setIsMounted(true)
+  }, [])
+
+  // Keyboard shortcut for search (Cmd/Ctrl + K)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault()
+        setIsSearchOpen(true)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   useEffect(() => {
@@ -82,6 +97,15 @@ const Header = memo(() => {
           />
         </div>
         <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden sm:flex"
+            onClick={() => setIsSearchOpen(true)}
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5" />
+          </Button>
           <ModeToggle />
           {user ? (
             <UserMenu />
@@ -109,6 +133,17 @@ const Header = memo(() => {
       {isMenuOpen && isMounted && (
         <div ref={menuRef} id="mobile-menu" className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg border-t md:hidden z-50 py-4 pb-6 max-h-[calc(100vh-4rem)] overflow-y-auto" role="navigation" aria-label="Mobile navigation">
           <div className="container">
+            <Button
+              variant="outline"
+              className="w-full mb-4 justify-start"
+              onClick={() => {
+                setIsSearchOpen(true)
+                handleMenuClose()
+              }}
+            >
+              <Search className="mr-2 h-4 w-4" />
+              Search
+            </Button>
             <Navigation
               className="flex flex-col gap-2"
               onLinkClick={handleMenuClose}
@@ -128,6 +163,7 @@ const Header = memo(() => {
           </div>
         </div>
       )}
+      <SearchDialog open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </header>
   )
 })
