@@ -5,6 +5,7 @@ import { SITE_URL, SITE_EMAILS, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { Calendar, User, Tag, ArrowRight, Phone, Mail } from "lucide-react"
 
 export default function NewsPage() {
@@ -114,10 +115,12 @@ export default function NewsPage() {
                   <div className="md:flex">
                     <div className="md:w-1/2">
                       <div className="h-64 md:h-full bg-muted dark:bg-card flex items-center justify-center">
-                        <img
+                        <Image
                           src={featuredArticle.image}
                           alt={featuredArticle.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       </div>
                     </div>
@@ -171,10 +174,12 @@ export default function NewsPage() {
               {regularArticles.map((article, index) => (
                 <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="h-48 bg-muted dark:bg-card flex items-center justify-center">
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                   <CardHeader>

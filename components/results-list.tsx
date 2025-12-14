@@ -1,12 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, memo } from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { BedDouble, Bath, SquareIcon as SquareFoot } from "lucide-react"
-import { useEffect } from "react"
 import { PropertyDetailsModal } from "@/components/property-details-modal"
 
 const ZIP_CODE_CACHE_KEY = "property-management-zipcode"
@@ -63,15 +62,17 @@ const mockCompanies = [
     website: "www.elitepropertymanagement.com",
   },
   // Other company data...
-]
+];
 
-export default function ResultsList({ properties }: ResultsListProps) {
+function ResultsList({ properties }: ResultsListProps) {
   // State to track which property details modal is open
-  const [selectedCompany, setSelectedCompany] = useState<number | null>(null)
+  const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
 
   useEffect(() => {
     // If we're viewing search results, we want to make sure the zip code is cached
     // This handles the case where someone navigates directly to the search page
+    if (typeof window === 'undefined') return;
+    
     const urlParams = new URLSearchParams(window.location.search)
     const zipFromUrl = urlParams.get("zip")
 
@@ -84,7 +85,7 @@ export default function ResultsList({ properties }: ResultsListProps) {
     <div className="space-y-4">
       {properties.length > 0 ? (
         properties.map((property) => (
-          <Card key={property.id}>
+          <Card key={property.id} className="hover:shadow-md transition-shadow duration-200">
             <CardContent className="p-0">
               <div className="flex flex-col md:flex-row">
                 <div className="relative h-48 md:h-auto md:w-1/3">
@@ -93,6 +94,9 @@ export default function ResultsList({ properties }: ResultsListProps) {
                     alt={property.title}
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                   />
                 </div>
 
@@ -166,3 +170,6 @@ export default function ResultsList({ properties }: ResultsListProps) {
     </div>
   )
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(ResultsList)

@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, Home, Search, DollarSign, Shield, Users, MapPin } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import ConsultationCTA from "@/components/ConsultationCTA"
 
 export const metadata: Metadata = {
@@ -217,10 +218,12 @@ export default function BuyPage() {
               </div>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/modern-townhouse-garage.png"
                 alt="Modern Utah townhouse for sale in Midvale featuring attached garage and contemporary design"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="100vw"
                 title="Modern Utah Townhouse for Sale - Midvale"
                 aria-label="Modern Utah townhouse for sale in Midvale featuring attached garage and contemporary design"
                 loading="lazy"

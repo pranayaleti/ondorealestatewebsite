@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, DollarSign, Shield, Clock, Users, Home, Calculator } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Utah Home Loans & Mortgages | Conventional, FHA, VA, USDA | Salt Lake City, Lehi, Provo",
@@ -227,10 +228,12 @@ export default function LoansPage() {
               </div>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/city-map-with-pin.png"
                 alt="Utah mortgage and loan service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by OnDo Real Estate"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="100vw"
                 title="OnDo Real Estate Utah Mortgage Service Areas"
                 aria-label="Map showing Utah mortgage and loan service areas including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities"
                 loading="lazy"

@@ -495,17 +495,21 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Building, Home, Search, ArrowUpDown } from 'lucide-react';
 import Image from 'next/image';
-import { PropertyDetailsModal } from '@/components/property-details-modal';
+
+// Lazy load the modal component for better performance
+const PropertyDetailsModal = lazy(() => import('@/components/property-details-modal').then(mod => ({ default: mod.PropertyDetailsModal })));
 import {
-  PropertyFilter,
   type PropertyFilters,
 } from '@/components/property-filter';
-import { PropertySearch } from '@/components/property-search';
+
+// Lazy load heavy components
+const PropertyFilter = lazy(() => import('@/components/property-filter').then(mod => ({ default: mod.PropertyFilter })));
+const PropertySearch = lazy(() => import('@/components/property-search').then(mod => ({ default: mod.PropertySearch })));
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -515,9 +519,7 @@ import {
 import SEO from '@/components/seo';
 import { generateBreadcrumbJsonLd, generatePropertyJsonLd } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
-
 import type { Property } from '@/app/types/property';
-// import type { SortOption } from "@/app/lib/propertiesQuery"; // or redefine here as before
 import { mapApiProperty } from '@/lib/mapProperty';
 import { backendUrl } from '@/lib/backend';
 
@@ -536,6 +538,7 @@ export default function PropertiesPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   const [filters, setFilters] = useState<PropertyFilters>({
     priceRange: [0, 20000], // NOTE: your API is INR; tune UI later if needed
@@ -559,25 +562,52 @@ export default function PropertiesPage() {
         const res = await fetch(backendUrl('/api/properties/public'), {
           signal: controller.signal,
           cache: 'no-store',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
         });
-        if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+
+        if (!res.ok) {
+          if (res.status === 429) {
+            throw new Error('Too many requests. Please try again in a moment.');
+          } else if (res.status >= 500) {
+            throw new Error('Server error. Please try again later.');
+          } else if (res.status === 404) {
+            throw new Error('Property data not found. Please contact support.');
+          } else {
+            throw new Error(`Failed to load properties (${res.status}). Please try again.`);
+          }
+        }
+
         const json = await res.json();
-        const mapped: Property[] = (json as any[]).map(mapApiProperty);
+        if (!Array.isArray(json)) {
+          throw new Error('Invalid response format. Please try again.');
+        }
+
+        const mapped: Property[] = json.map(mapApiProperty);
         setAllApiProperties(mapped);
-      } catch (e: any) {
-        if (e?.name === 'AbortError') {
+        setRetryCount(0); // Reset retry count on success
+      } catch (e: unknown) {
+        if (e instanceof Error && e.name === 'AbortError') {
           // expected in React Strict Mode (first effect run is aborted)
           return;
         }
-        console.error(e);
-        setError(e.message ?? 'Failed to load properties');
+
+        const errorMessage = e instanceof Error ? e.message : 'An unexpected error occurred while loading properties';
+
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Property fetch error:', e);
+        }
+
+        setError(errorMessage);
         setAllApiProperties([]);
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }
     })();
     return () => controller.abort();
-  }, []);
+  }, [retryCount]);
 
   // 3b) Apply your existing filter/sort/search on the fetched list
   useEffect(() => {
@@ -660,15 +690,30 @@ export default function PropertiesPage() {
     setProperties(filtered);
   }, [allApiProperties, filters, sortBy, searchQuery]);
 
-  const selectedPropertyData = selectedProperty
-    ? properties.find((p) => p.id === selectedProperty) ?? null
-    : null;
+  const selectedPropertyData = useMemo(() => {
+    return selectedProperty
+      ? properties.find((p) => p.id === selectedProperty) ?? null
+      : null;
+  }, [selectedProperty, properties]);
 
-  const handleViewDetails = (id: string) => setSelectedProperty(id);
-  const handleFilterChange = (f: PropertyFilters) => setFilters(f);
-  const handleSearch = (q: string) => setSearchQuery(q);
+  const handleViewDetails = useCallback((id: string) => {
+    setSelectedProperty(id);
+  }, []);
 
-  const propertySchemas = properties.slice(0, 5).map((p) => {
+  const handleFilterChange = useCallback((f: PropertyFilters) => {
+    setFilters(f);
+  }, []);
+
+  const handleSearch = useCallback((q: string) => {
+    setSearchQuery(q);
+  }, []);
+
+  const handleRetry = useCallback(() => {
+    setRetryCount(prev => prev + 1);
+  }, []);
+
+  const propertySchemas = useMemo(() => {
+    return properties.slice(0, 5).map((p) => {
     const addressParts = p.addressParts ?? {};
     const streetAddress = [addressParts.line1, addressParts.line2].filter(Boolean).join(', ').trim();
     const addressLocality = addressParts.city ?? '';
@@ -705,6 +750,7 @@ export default function PropertiesPage() {
         : undefined,
     });
   }).filter(Boolean);
+  }, [properties]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -723,7 +769,7 @@ export default function PropertiesPage() {
       />
       
       {/* Banner with search field */}
-      <section className="relative">
+      <section className="relative" aria-labelledby="properties-hero-heading">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-black/90 z-10" />
         <div className="relative h-[400px] overflow-hidden">
           <Image
@@ -732,18 +778,22 @@ export default function PropertiesPage() {
             fill
             className="object-cover"
             priority
+            quality={90}
+            sizes="100vw"
             title="Rental Properties"
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Find Your Perfect Home</h1>
-              <p className="text-xl text-white/90 mb-8">
+              <h1 id="properties-hero-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Find Your Perfect Home</h1>
+              <p className="text-lg sm:text-xl text-white/90 mb-8 px-4">
                 Browse our curated selection of quality rental properties
               </p>
-              <div className="flex justify-center">
-                <PropertySearch onSearch={handleSearch} />
+              <div className="flex justify-center px-4">
+                <Suspense fallback={<div className="h-12 w-full max-w-md bg-white/10 animate-pulse rounded"></div>}>
+                  <PropertySearch onSearch={handleSearch} />
+                </Suspense>
               </div>
             </div>
           </div>
@@ -751,42 +801,46 @@ export default function PropertiesPage() {
       </section>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24">
+        <section className="w-full py-12 md:py-24 fade-in" aria-labelledby="properties-section-heading">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 fade-in-up">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">
+                <h2 id="properties-section-heading" className="text-3xl font-bold tracking-tight">
                   Available Properties
                 </h2>
-                <p className="text-muted-foreground mt-2">
+                <p className="text-muted-foreground mt-2" aria-live="polite" aria-atomic="true">
                   {loading
                     ? 'Loading...'
                     : `${properties.length} properties available for rent`}
                 </p>
               </div>
-              <div className="flex gap-2">
-                <PropertyFilter
-                  onFilterChange={handleFilterChange}
-                  initialFilters={filters}
-                />
+              <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto" role="group" aria-label="Property filters and sorting">
+                <Suspense fallback={<div className="h-10 w-32 bg-muted animate-pulse rounded"></div>}>
+                  <PropertyFilter
+                    onFilterChange={handleFilterChange}
+                    initialFilters={filters}
+                  />
+                </Suspense>
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline">
-                      <ArrowUpDown className="mr-2 h-4 w-4" />
-                      Sort by:{' '}
-                      <span className="font-medium ml-1">
-                        {sortBy === 'newest'
-                          ? 'Newest'
-                          : sortBy === 'price-low'
-                          ? 'Price (Low to High)'
-                          : sortBy === 'price-high'
-                          ? 'Price (High to Low)'
-                          : sortBy === 'bedrooms'
-                          ? 'Bedrooms'
-                          : sortBy === 'bathrooms'
-                          ? 'Bathrooms'
-                          : 'Square Feet'}
+                    <Button variant="outline" className="justify-start sm:justify-center min-h-[44px]" aria-label={`Sort properties by ${sortBy === 'newest' ? 'newest' : sortBy === 'price-low' ? 'price low to high' : sortBy === 'price-high' ? 'price high to low' : sortBy === 'bedrooms' ? 'bedrooms' : sortBy === 'bathrooms' ? 'bathrooms' : 'square feet'}`}>
+                      <ArrowUpDown className="mr-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                      <span className="truncate">
+                        Sort by:{' '}
+                        <span className="font-medium ml-1">
+                          {sortBy === 'newest'
+                            ? 'Newest'
+                            : sortBy === 'price-low'
+                            ? 'Price (Low to High)'
+                            : sortBy === 'price-high'
+                            ? 'Price (High to Low)'
+                            : sortBy === 'bedrooms'
+                            ? 'Bedrooms'
+                            : sortBy === 'bathrooms'
+                            ? 'Bathrooms'
+                            : 'Square Feet'}
+                        </span>
                       </span>
                     </Button>
                   </DropdownMenuTrigger>
@@ -816,30 +870,55 @@ export default function PropertiesPage() {
 
             {loading ? (
               <div className="flex flex-col items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-                <p className="text-lg text-muted-foreground">Loading properties...</p>
+                <div className="relative">
+                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary/20 border-t-primary"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary/30 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+                </div>
+                <p className="text-lg text-muted-foreground mt-4">Finding the perfect properties for you...</p>
+                <p className="text-sm text-muted-foreground/70 mt-2">This may take a moment</p>
               </div>
             ) : error ? (
               <div className="flex flex-col items-center justify-center py-12">
                 <div className="max-w-md w-full">
                   <div className="bg-card p-6 rounded-lg shadow-sm border mb-6 border-destructive">
-                    <h3 className="text-lg font-semibold mb-4 text-destructive">Error Loading Properties</h3>
-                    <p className="text-muted-foreground mb-4">{error}</p>
-                    <Button
-                      onClick={() => window.location.reload()}
-                      className="w-full"
-                    >
-                      Try Again
-                    </Button>
+                    <div className="flex items-center mb-4">
+                      <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center mr-3">
+                        <svg className="w-5 h-5 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-destructive">Unable to Load Properties</h3>
+                    </div>
+                    <p className="text-muted-foreground mb-6">{error}</p>
+                    <div className="flex gap-3">
+                      <Button
+                        onClick={handleRetry}
+                        className="flex-1"
+                        variant="default"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Try Again
+                      </Button>
+                      <Button
+                        onClick={() => window.location.reload()}
+                        variant="outline"
+                        className="px-4"
+                      >
+                        Refresh Page
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
             ) : properties.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-fade-in" role="grid" aria-label="Available rental properties">
                 {properties.map((property) => (
                   <Card
                     key={property.id}
-                    className="overflow-hidden hover:shadow-lg transition-shadow"
+                    className="overflow-hidden card-hover hover-lift focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 btn-interactive"
+                    role="gridcell"
                   >
                     <div className="relative aspect-video">
                       <Image
@@ -847,6 +926,9 @@ export default function PropertiesPage() {
                         alt={property.title}
                         fill
                         className="object-cover"
+                        loading="lazy"
+                        quality={85}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                       {/* Switch to INR display */}
                       <div className="absolute top-2 right-2 bg-primary text-foreground px-3 py-1 rounded-md font-medium">
@@ -862,24 +944,25 @@ export default function PropertiesPage() {
                       <p className="text-muted-foreground text-sm mb-2">
                         {property.address}
                       </p>
-                      <div className="flex items-center gap-4 text-sm">
-                        <span className="flex items-center gap-1">
-                          <Home className="h-4 w-4" />{' '}
+                      <div className="flex items-center gap-4 text-sm" role="list" aria-label="Property specifications">
+                        <span className="flex items-center gap-1" role="listitem">
+                          <Home className="h-4 w-4" aria-hidden="true" />{' '}
                           {property.bedrooms === 0
                             ? 'Studio'
                             : `${property.bedrooms} Beds`}
                         </span>
-                        <span className="flex items-center gap-1">
-                          <Building className="h-4 w-4" /> {property.bathrooms}{' '}
+                        <span className="flex items-center gap-1" role="listitem">
+                          <Building className="h-4 w-4" aria-hidden="true" /> {property.bathrooms}{' '}
                           Baths
                         </span>
-                        <span className="flex items-center gap-1">
-                          <Search className="h-4 w-4" /> {property.sqft} sqft
+                        <span className="flex items-center gap-1" role="listitem">
+                          <Search className="h-4 w-4" aria-hidden="true" /> {property.sqft} sqft
                         </span>
                       </div>
                       <Button
-                        className="w-full mt-4"
+                        className="w-full mt-4 min-h-[44px] text-base btn-interactive hover-lift"
                         onClick={() => handleViewDetails(property.id)}
+                        aria-label={`View details for ${property.title} at ${property.address}, priced at ${property.price} per month`}
                       >
                         View Details
                       </Button>
@@ -923,29 +1006,38 @@ export default function PropertiesPage() {
 
       {/* Details modal */}
       {selectedPropertyData && (
-        <PropertyDetailsModal
-          company={{
-            id: selectedPropertyData.id as any,
-            name: selectedPropertyData.title,
-            logo: selectedPropertyData.logo,
-            rating: selectedPropertyData.rating,
-            reviewCount: selectedPropertyData.reviewCount,
-            address: selectedPropertyData.address,
-            phone: selectedPropertyData.contact.phone, // <- use mapped contact
-            email: selectedPropertyData.contact.email, // <- NEW
-            specialties: selectedPropertyData.specialties,
-            description: selectedPropertyData.description,
-            valueRanges: selectedPropertyData.valueRanges,
-            images: selectedPropertyData.images,
-            leaseTerms: selectedPropertyData.leaseTerms ?? '',
-            services: selectedPropertyData.services,
-            fees: selectedPropertyData.fees ?? '',
-            availability: selectedPropertyData.availability ?? '',
-            // website: selectedPropertyData.website ?? '',
-          }}
-          open={selectedProperty !== null}
-          onOpenChange={() => setSelectedProperty(null)}
-        />
+        <Suspense fallback={
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 flex items-center gap-3">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+              <span>Loading property details...</span>
+            </div>
+          </div>
+        }>
+          <PropertyDetailsModal
+            company={{
+              id: selectedPropertyData.id as any,
+              name: selectedPropertyData.title,
+              logo: selectedPropertyData.logo,
+              rating: selectedPropertyData.rating,
+              reviewCount: selectedPropertyData.reviewCount,
+              address: selectedPropertyData.address,
+              phone: selectedPropertyData.contact.phone, // <- use mapped contact
+              email: selectedPropertyData.contact.email, // <- NEW
+              specialties: selectedPropertyData.specialties,
+              description: selectedPropertyData.description,
+              valueRanges: selectedPropertyData.valueRanges,
+              images: selectedPropertyData.images,
+              leaseTerms: selectedPropertyData.leaseTerms ?? '',
+              services: selectedPropertyData.services,
+              fees: selectedPropertyData.fees ?? '',
+              availability: selectedPropertyData.availability ?? '',
+              // website: selectedPropertyData.website ?? '',
+            }}
+            open={selectedProperty !== null}
+            onOpenChange={() => setSelectedProperty(null)}
+          />
+        </Suspense>
       )}
     </div>
   );

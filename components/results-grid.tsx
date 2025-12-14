@@ -1,14 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import Image from "next/image"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { PropertyDetailsModal } from "@/components/property-details-modal"
-
-type PropertyType = "single-family" | "multi-family" | "association" | "commercial" | "vacation"
-type PropertyValue = "under-300k" | "300k-500k" | "500k-750k" | "750k-1m" | "over-1m"
 
 interface Property {
   id: number
@@ -207,16 +204,18 @@ const mockCompanies = [
     availability: "30-day notice",
     website: "www.mountainviewmanagement.com",
   },
-]
+];
 
-export default function ResultsGrid({ properties }: ResultsGridProps) {
+function ResultsGrid({ properties }: ResultsGridProps) {
   // State to track which property details modal is open
-  const [selectedCompany, setSelectedCompany] = useState<number | null>(null)
+  const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
 
   // Add this useEffect inside the ResultsGrid component, before the return statement
   useEffect(() => {
     // If we're viewing search results, we want to make sure the zip code is cached
     // This handles the case where someone navigates directly to the search page
+    if (typeof window === 'undefined') return;
+    
     const urlParams = new URLSearchParams(window.location.search)
     const zipFromUrl = urlParams.get("zip")
 
@@ -229,13 +228,16 @@ export default function ResultsGrid({ properties }: ResultsGridProps) {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {properties.length > 0 ? (
         properties.map((property) => (
-          <Card key={property.id} className="overflow-hidden">
+          <Card key={property.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-200">
             <div className="relative h-48 w-full">
               <Image
                 src={property.image || "/placeholder.svg?height=300&width=400"}
                 alt={property.title}
                 fill
-                className="object-cover"
+                className="object-cover transition-opacity duration-300"
+                loading="lazy"
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--gradient-from)]/70 to-transparent p-4">
                 <h3 className="font-bold text-lg text-foreground">{property.title}</h3>
@@ -272,7 +274,7 @@ export default function ResultsGrid({ properties }: ResultsGridProps) {
               </div>
             </CardContent>
 
-            <CardFooter className="bg-muted px-4 py-3">
+            <CardFooter className="bg-muted dark:bg-muted/50 px-4 py-3">
               <Button className="w-full" onClick={() => setSelectedCompany(property.id)}>
                 View Details
               </Button>
@@ -297,3 +299,6 @@ export default function ResultsGrid({ properties }: ResultsGridProps) {
     </div>
   )
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(ResultsGrid)
