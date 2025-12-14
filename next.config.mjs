@@ -36,12 +36,12 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    qualities: [75, 80, 85, 90, 95, 100], // Configure allowed quality values for Next.js 16
+    qualities: [75, 80, 85, 90, 95, 100],
     minimumCacheTTL: 31536000, // 1 year cache for static images
     dangerouslyAllowSVG: true,
     domains: ['images.unsplash.com'],
-    // Removed CSP from images config - CSP is now handled via meta tag in layout.tsx
-    // Disable image optimization for static export
+    // Required for static export (output: 'export') - Next.js Image Optimization API requires a server
+    // Images are pre-optimized during build via optimize:images script
     unoptimized: true,
   },
   trailingSlash: true,

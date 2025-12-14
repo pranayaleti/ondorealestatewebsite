@@ -1,58 +1,85 @@
-"use client"
+/**
+ * Session utility functions for managing user preferences and session data
+ */
 
-// Function to save user information to session storage
-export function saveUserInfo(zipCode: string, userData?: Record<string, any>) {
-  if (typeof window !== "undefined") {
-    // Save ZIP code
-    sessionStorage.setItem("userZipCode", zipCode)
-
-    // Save additional user data if provided
-    if (userData) {
-      sessionStorage.setItem("userData", JSON.stringify(userData))
+/**
+ * Save user information to session storage
+ */
+export function saveUserInfo(zipCode: string): void {
+  if (typeof window !== 'undefined') {
+    try {
+      sessionStorage.setItem('ondo_user_zipcode', zipCode)
+      sessionStorage.setItem('ondo_user_last_visit', new Date().toISOString())
+    } catch (error) {
+      console.warn('Failed to save user info to session storage:', error)
     }
-
-    // Set a flag indicating the user has completed the initial form
-    sessionStorage.setItem("formCompleted", "true")
   }
 }
 
-// Function to get user ZIP code from session storage
+/**
+ * Get user information from session storage
+ */
+export function getUserInfo(): { zipCode?: string; lastVisit?: string } {
+  if (typeof window === 'undefined') return {}
+
+  try {
+    const zipCode = sessionStorage.getItem('ondo_user_zipcode')
+    const lastVisit = sessionStorage.getItem('ondo_user_last_visit')
+
+    return {
+      zipCode: zipCode || undefined,
+      lastVisit: lastVisit || undefined,
+    }
+  } catch (error) {
+    console.warn('Failed to get user info from session storage:', error)
+    return {}
+  }
+}
+
+/**
+ * Get user ZIP code from session storage (legacy function for compatibility)
+ */
 export function getUserZipCode(): string | null {
-  if (typeof window !== "undefined") {
-    return sessionStorage.getItem("userZipCode")
-  }
-  return null
-}
+  if (typeof window === 'undefined') return null
 
-// Function to get user data from session storage
-export function getUserData(): Record<string, any> | null {
-  if (typeof window !== "undefined") {
-    const userData = sessionStorage.getItem("userData")
-    return userData ? JSON.parse(userData) : null
-  }
-  return null
-}
-
-// Function to check if user has completed the initial form
-export function hasCompletedForm(): boolean {
-  if (typeof window !== "undefined") {
-    return sessionStorage.getItem("formCompleted") === "true"
-  }
-  return false
-}
-
-// Function to clear user session
-export function clearUserSession() {
-  if (typeof window !== "undefined") {
-    sessionStorage.removeItem("userZipCode")
-    sessionStorage.removeItem("userData")
-    sessionStorage.removeItem("formCompleted")
+  try {
+    return sessionStorage.getItem('ondo_user_zipcode')
+  } catch (error) {
+    console.warn('Failed to get user ZIP code from session storage:', error)
+    return null
   }
 }
 
-export function hasActiveSession(): boolean {
-  if (typeof window !== "undefined") {
-    return !!sessionStorage.getItem("formCompleted")
+/**
+ * Clear user session data
+ */
+export function clearUserSession(): void {
+  if (typeof window !== 'undefined') {
+    try {
+      sessionStorage.removeItem('ondo_user_zipcode')
+      sessionStorage.removeItem('ondo_user_last_visit')
+      sessionStorage.removeItem('property-match-zipcode')
+    } catch (error) {
+      console.warn('Failed to clear user session:', error)
+    }
   }
-  return false
+}
+
+/**
+ * Check if user has an active session (visited recently)
+ */
+export function hasActiveSession(maxAgeHours: number = 24): boolean {
+  const { lastVisit } = getUserInfo()
+  if (!lastVisit) return false
+
+  try {
+    const lastVisitDate = new Date(lastVisit)
+    const now = new Date()
+    const hoursDiff = (now.getTime() - lastVisitDate.getTime()) / (1000 * 60 * 60)
+
+    return hoursDiff < maxAgeHours
+  } catch (error) {
+    console.warn('Failed to check session validity:', error)
+    return false
+  }
 }

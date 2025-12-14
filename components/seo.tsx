@@ -21,11 +21,11 @@ type SEOProps = {
   tags?: string[]
 }
 
-export default function SEO({ 
-  title, 
-  description, 
-  pathname = "/", 
-  image, 
+export default function SEO({
+  title,
+  description,
+  pathname = "/",
+  image,
   jsonLd = null,
   keywords = [],
   noindex = false,
@@ -44,7 +44,7 @@ export default function SEO({
   const url = `${domain}${pathname}`
   const ogImage = toAbsolute(image) || `${domain}/modern-office-building.webp`
   void noindex
-  
+
   // Enhanced keywords with default real estate terms
   const defaultKeywords = [
     // Core brand/market terms

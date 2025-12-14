@@ -1016,23 +1016,29 @@ export default function PropertiesPage() {
         }>
           <PropertyDetailsModal
             company={{
-              id: selectedPropertyData.id as any,
-              name: selectedPropertyData.title,
-              logo: selectedPropertyData.logo,
+              id: parseInt(selectedPropertyData.id) || 0,
+              title: selectedPropertyData.title,
+              address: selectedPropertyData.address,
+              price: selectedPropertyData.price,
+              bedrooms: selectedPropertyData.bedrooms,
+              bathrooms: selectedPropertyData.bathrooms,
+              sqft: selectedPropertyData.sqft,
+              type: selectedPropertyData.type,
+              image: selectedPropertyData.image,
+              description: selectedPropertyData.description,
+              features: selectedPropertyData.amenities || [],
+              availability: selectedPropertyData.availability || undefined,
+              leaseTerms: selectedPropertyData.leaseTerms || undefined,
+              services: selectedPropertyData.services || undefined,
+              fees: selectedPropertyData.fees || undefined,
               rating: selectedPropertyData.rating,
               reviewCount: selectedPropertyData.reviewCount,
-              address: selectedPropertyData.address,
-              phone: selectedPropertyData.contact.phone, // <- use mapped contact
-              email: selectedPropertyData.contact.email, // <- NEW
-              specialties: selectedPropertyData.specialties,
-              description: selectedPropertyData.description,
-              valueRanges: selectedPropertyData.valueRanges,
-              images: selectedPropertyData.images,
-              leaseTerms: selectedPropertyData.leaseTerms ?? '',
-              services: selectedPropertyData.services,
-              fees: selectedPropertyData.fees ?? '',
-              availability: selectedPropertyData.availability ?? '',
-              // website: selectedPropertyData.website ?? '',
+              phone: selectedPropertyData.contact?.phone || selectedPropertyData.phone,
+              website: selectedPropertyData.website || undefined,
+              logo: selectedPropertyData.logo,
+              specialties: selectedPropertyData.specialties || undefined,
+              valueRanges: selectedPropertyData.valueRanges || undefined,
+              images: selectedPropertyData.images || undefined,
             }}
             open={selectedProperty !== null}
             onOpenChange={() => setSelectedProperty(null)}

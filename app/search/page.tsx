@@ -1,15 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ResultsGrid from "@/components/results-grid"
 import ResultsList from "@/components/results-list"
 import { hasActiveSession, getUserZipCode, clearUserSession } from "@/lib/session-utils"
-import { useRouter } from "next/navigation"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Search, MapPin, Home } from "lucide-react"
+import { Search, Home, MapPin } from "lucide-react"
 import Link from "next/link"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd, generateWebPageJsonLd } from "@/lib/seo"
@@ -124,17 +123,27 @@ export default function SearchResultsPage() {
 
     // Simulate loading properties based on ZIP code
     setLoading(true)
-    setTimeout(() => {
-      // In a real app, you would fetch properties based on the ZIP code
-      // For demo purposes, we'll show properties for some ZIP codes and none for others
-      if (savedZipCode === "84101" || savedZipCode === "84102" || !savedZipCode) {
-        setProperties(mockProperties)
-      } else {
-        // No properties for this ZIP code
+    const loadProperties = async () => {
+      try {
+        // In a real app, you would fetch properties based on the ZIP code
+        // For demo purposes, we'll show properties for some ZIP codes and none for others
+        await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate network delay
+
+        if (savedZipCode === "84101" || savedZipCode === "84102" || !savedZipCode) {
+          setProperties(mockProperties)
+        } else {
+          // No properties for this ZIP code
+          setProperties([])
+        }
+      } catch (error) {
+        console.error('Failed to load properties:', error)
         setProperties([])
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
-    }, 1000)
+    }
+
+    loadProperties()
   }, [city, router])
 
   const handleClearSession = () => {
@@ -188,8 +197,9 @@ export default function SearchResultsPage() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center min-h-[400px]">
+        <div className="flex flex-col justify-center items-center min-h-[400px] space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          <p className="text-muted-foreground">Finding properties in your area...</p>
         </div>
       ) : properties.length > 0 ? (
         <>{viewMode === "grid" ? <ResultsGrid properties={properties} /> : <ResultsList properties={properties} />}</>
@@ -197,9 +207,9 @@ export default function SearchResultsPage() {
         <div className="py-12 flex flex-col items-center">
           <div className="max-w-md w-full">
             <Alert className="mb-6">
-              <Home className="h-5 w-5" />
+              <Search className="h-5 w-5" />
               <AlertTitle>No properties found</AlertTitle>
-              <AlertDescription>We couldn't find any available properties in ZIP code {zipCode}.</AlertDescription>
+              <AlertDescription>We couldn't find any available properties in ZIP code {zipCode}. Try searching in a nearby area or check back later as new listings are added regularly.</AlertDescription>
             </Alert>
 
             <div className="bg-card p-6 rounded-lg shadow-sm border mb-6">

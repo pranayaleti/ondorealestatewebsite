@@ -1,14 +1,10 @@
 "use client"
 
-import { useState, useEffect, memo } from "react"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { BedDouble, Bath, SquareIcon as SquareFoot } from "lucide-react"
-import { PropertyDetailsModal } from "@/components/property-details-modal"
-
-const ZIP_CODE_CACHE_KEY = "property-management-zipcode"
+import { LazyImage } from "@/components/lazy-image"
+import { Heart, MapPin, Bed, Bath, Square, Phone } from "lucide-react"
 
 interface Property {
   id: number
@@ -28,148 +24,94 @@ interface ResultsListProps {
   properties: Property[]
 }
 
-// Mock data for property management companies
-const mockCompanies = [
-  {
-    id: 1,
-    name: "Elite Property Management",
-    logo: "/placeholder.svg?height=80&width=80",
-    rating: 4.8,
-    reviewCount: 124,
-    address: "123 Main St, Salt Lake City, UT",
-    phone: "(801) 555-1234",
-    email: "contact@elitepropertymanagement.com",
-    specialties: ["single-family", "multi-family"],
-    description:
-      "Full-service property management company with over 15 years of experience in the Salt Lake City area.",
-    valueRanges: ["300k-500k", "500k-750k", "750k-1m"],
-    images: [
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
-    ],
-    leaseTerms:
-      "12-month minimum lease term with option to renew. $50 application fee per adult. Security deposit equal to one month's rent.",
-    services: [
-      "Tenant screening",
-      "Rent collection",
-      "Property maintenance",
-      "24/7 emergency support",
-      "Online owner portal",
-    ],
-    fees: "Management fee: 8% of monthly rent. Leasing fee: 50% of first month's rent.",
-    availability: "Immediate",
-    website: "www.elitepropertymanagement.com",
-  },
-  // Other company data...
-];
-
-function ResultsList({ properties }: ResultsListProps) {
-  // State to track which property details modal is open
-  const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
-
-  useEffect(() => {
-    // If we're viewing search results, we want to make sure the zip code is cached
-    // This handles the case where someone navigates directly to the search page
-    if (typeof window === 'undefined') return;
-    
-    const urlParams = new URLSearchParams(window.location.search)
-    const zipFromUrl = urlParams.get("zip")
-
-    if (zipFromUrl && zipFromUrl.length === 5 && /^\d+$/.test(zipFromUrl)) {
-      localStorage.setItem(ZIP_CODE_CACHE_KEY, zipFromUrl)
-    }
-  }, [])
-
+export default function ResultsList({ properties }: ResultsListProps) {
   return (
     <div className="space-y-4">
-      {properties.length > 0 ? (
-        properties.map((property) => (
-          <Card key={property.id} className="hover:shadow-md transition-shadow duration-200">
-            <CardContent className="p-0">
-              <div className="flex flex-col md:flex-row">
-                <div className="relative h-48 md:h-auto md:w-1/3">
-                  <Image
-                    src={property.image || "/placeholder.svg?height=300&width=400"}
-                    alt={property.title}
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    quality={85}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-                  />
-                </div>
+      {properties.map((property) => (
+        <Card key={property.id} className="group hover:shadow-lg transition-shadow duration-200">
+          <CardContent className="p-6">
+            <div className="flex gap-6">
+              {/* Property Image */}
+              <div className="relative h-32 w-48 flex-shrink-0 overflow-hidden rounded-lg">
+                <LazyImage
+                  src={property.image}
+                  alt={property.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-200"
+                  sizes="192px"
+                />
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="absolute top-2 right-2 h-8 w-8 p-0 bg-white/80 hover:bg-white text-gray-600 hover:text-red-500 rounded-full"
+                  aria-label="Add to favorites"
+                >
+                  <Heart className="h-4 w-4" />
+                </Button>
+                <Badge className="absolute top-2 left-2" variant="secondary">
+                  {property.type}
+                </Badge>
+              </div>
 
-                <div className="p-4 md:p-6 flex-1">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                    <div>
-                      <h3 className="font-bold text-lg mb-1">{property.title}</h3>
-                      <p className="text-muted-foreground text-sm mb-2">{property.address}</p>
-
-                      <div className="flex flex-wrap gap-3 mb-3">
-                        <div className="flex items-center text-foreground">
-                          <BedDouble className="h-4 w-4 mr-1" />
-                          <span>
-                            {property.bedrooms}{" "}
-                            {property.bedrooms === 0 ? "Studio" : property.bedrooms === 1 ? "Bed" : "Beds"}
-                          </span>
-                        </div>
-                        <div className="flex items-center text-foreground">
-                          <Bath className="h-4 w-4 mr-1" />
-                          <span>
-                            {property.bathrooms} {property.bathrooms === 1 ? "Bath" : "Baths"}
-                          </span>
-                        </div>
-                        <div className="flex items-center text-foreground">
-                          <SquareFoot className="h-4 w-4 mr-1" />
-                          <span>{property.sqft} sqft</span>
-                        </div>
-                      </div>
-
-                      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{property.description}</p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {property.features.slice(0, 4).map((feature, index) => (
-                          <Badge key={index} variant="secondary" className="text-xs">
-                            {feature}
-                          </Badge>
-                        ))}
-                        {property.features.length > 4 && (
-                          <Badge variant="secondary" className="text-xs">
-                            +{property.features.length - 4} more
-                          </Badge>
-                        )}
-                      </div>
+              {/* Property Details */}
+              <div className="flex-1 min-w-0">
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <CardTitle className="text-xl leading-tight mb-1">{property.title}</CardTitle>
+                    <CardDescription className="flex items-center gap-1">
+                      <MapPin className="h-4 w-4" />
+                      {property.address}
+                    </CardDescription>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-primary">
+                      ${property.price.toLocaleString()}
                     </div>
-
-                    <div className="flex flex-col items-end">
-                      <span className="text-xl font-bold mb-4">${property.price}/mo</span>
-                      <Button onClick={() => setSelectedCompany(property.id)}>View Details</Button>
-                    </div>
+                    <div className="text-sm text-muted-foreground">per month</div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))
-      ) : (
-        <div className="text-center py-12">
-          <h3 className="text-xl font-semibold mb-2">No properties found</h3>
-          <p className="text-muted-foreground">Try adjusting your search criteria to see more results.</p>
-        </div>
-      )}
 
-      {/* Property Details Modal */}
-      {selectedCompany && (
-        <PropertyDetailsModal
-          company={mockCompanies.find((c) => c.id === selectedCompany)!}
-          open={selectedCompany !== null}
-          onOpenChange={() => setSelectedCompany(null)}
-        />
-      )}
+                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                  <div className="flex items-center gap-1">
+                    <Bed className="h-4 w-4" />
+                    {property.bedrooms} bed{property.bedrooms !== 1 ? 's' : ''}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Bath className="h-4 w-4" />
+                    {property.bathrooms} bath{property.bathrooms !== 1 ? 's' : ''}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Square className="h-4 w-4" />
+                    {property.sqft.toLocaleString()} sqft
+                  </div>
+                </div>
+
+                <p className="text-muted-foreground mb-3 line-clamp-2">
+                  {property.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1 mb-4">
+                  {property.features.map((feature) => (
+                    <Badge key={feature} variant="outline" className="text-xs">
+                      {feature}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="flex gap-2">
+                  <Button size="sm">
+                    View Details
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Phone className="h-4 w-4 mr-1" />
+                    Contact
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   )
 }
-
-// Memoize component to prevent unnecessary re-renders
-export default memo(ResultsList)

@@ -1,5 +1,6 @@
 // Bundle optimization utilities
 import * as React from "react"
+import { lazy } from "react"
 
 // Dynamic imports for code splitting
 export const dynamicImports = {
@@ -62,8 +63,8 @@ export const lazyLoading = {
     importFunc: () => Promise<{ default: T }>,
     fallback?: React.ComponentType
   ) => {
-    const LazyComponent = React.lazy(importFunc)
-    
+    const LazyComponent = lazy(importFunc)
+
     return (props: React.ComponentProps<T>) =>
       React.createElement(
         React.Suspense,
@@ -72,39 +73,40 @@ export const lazyLoading = {
       )
   },
 
-  // Lazy load with intersection observer
-  withIntersectionObserver: <T extends React.ComponentType<any>>(
-    Component: T,
-    options?: IntersectionObserverInit
+  // Create lazy component with error boundary
+  createLazyComponentWithErrorBoundary: <T extends React.ComponentType<any>>(
+    importFunc: () => Promise<{ default: T }>,
+    fallback?: React.ComponentType,
+    errorFallback?: React.ComponentType<{ error: Error }>
   ) => {
-    return React.forwardRef<HTMLElement, React.ComponentProps<T>>((props, ref) => {
-      const [isVisible, setIsVisible] = React.useState(false)
-      const elementRef = React.useRef<HTMLElement>(null)
+    const LazyComponent = lazy(importFunc)
+
+    const ComponentWithErrorBoundary = (props: React.ComponentProps<T>) => {
+      const [hasError, setHasError] = React.useState(false)
+      const [error, setError] = React.useState<Error | null>(null)
 
       React.useEffect(() => {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setIsVisible(true)
-              observer.disconnect()
-            }
-          },
-          options
-        )
-
-        if (elementRef.current) {
-          observer.observe(elementRef.current)
+        const handleError = (event: ErrorEvent) => {
+          setHasError(true)
+          setError(event.error)
         }
 
-        return () => observer.disconnect()
+        window.addEventListener('error', handleError)
+        return () => window.removeEventListener('error', handleError)
       }, [])
 
+      if (hasError && errorFallback && error) {
+        return React.createElement(errorFallback, { error })
+      }
+
       return React.createElement(
-        "div",
-        { ref: elementRef as any },
-        isVisible ? React.createElement(Component, { ...props, ref }) : React.createElement("div", null, "Loading...")
+        React.Suspense,
+        { fallback: fallback ? React.createElement(fallback) : React.createElement("div", null, "Loading...") },
+        React.createElement(LazyComponent, props)
       )
-    })
+    }
+
+    return ComponentWithErrorBoundary
   },
 }
 
@@ -153,36 +155,18 @@ export const bundleAnalysis = {
   },
 }
 
-// Tree shaking utilities
+// Tree shaking utilities - proper examples of tree-shaken imports
 export const treeShaking = {
-  // Import only what you need from libraries
-  lodash: {
-    // Instead of: import _ from 'lodash'
-    // Use: import { debounce, throttle } from 'lodash'
-    debounce: () => import("lodash").then(m => m.debounce),
-    throttle: () => import("lodash").then(m => m.throttle),
-    isEmpty: () => import("lodash").then(m => m.isEmpty),
-    isEqual: () => import("lodash").then(m => m.isEqual),
-  },
+  // Example: Instead of importing entire lodash, import only what you need
+  // Correct: import { debounce, throttle } from 'lodash'
+  // Wrong: import _ from 'lodash'; _.debounce()
 
-  // Date utilities
-  dateFns: {
-    // Instead of: import { format, parseISO } from 'date-fns'
-    // Use individual imports
-    format: () => import("date-fns/format"),
-    parseISO: () => import("date-fns/parseISO"),
-    addDays: () => import("date-fns/addDays"),
-    subDays: () => import("date-fns/subDays"),
-  },
+  // Example: Instead of importing all date-fns functions, import individually
+  // Correct: import { format } from 'date-fns/format'
+  // Wrong: import { format } from 'date-fns'
 
-  // React utilities
-  react: {
-    // Use specific React hooks
-    useState: () => import("react").then(m => m.useState),
-    useEffect: () => import("react").then(m => m.useEffect),
-    useCallback: () => import("react").then(m => m.useCallback),
-    useMemo: () => import("react").then(m => m.useMemo),
-  },
+  // Note: React hooks are already tree-shaken by default
+  // import { useState, useEffect } from 'react' - already optimal
 }
 
 // Preloading utilities
@@ -274,44 +258,26 @@ export const resourceHints = {
   },
 }
 
-// Performance monitoring
+// Performance monitoring (simplified for production use)
 export const performanceMonitoring = {
-  // Measure component render time
-  measureRender: <T extends React.ComponentType<any>>(Component: T, name?: string) => {
-    return React.forwardRef<HTMLElement, React.ComponentProps<T>>((props, ref) => {
-      const startTime = performance.now()
-      
-      React.useEffect(() => {
-        const endTime = performance.now()
-        const renderTime = endTime - startTime
-        
-        if (process.env.NODE_ENV === "development") {
-          console.log(`Render time for ${name || Component.displayName || "Component"}: ${renderTime.toFixed(2)}ms`)
-        }
-      })
-
-      return React.createElement(Component, { ...props, ref })
-    })
-  },
-
-  // Measure async operations
+  // Simple performance measurement for development
   measureAsync: async <T>(operation: () => Promise<T>, name: string): Promise<T> => {
     const startTime = performance.now()
-    
+
     try {
       const result = await operation()
       const endTime = performance.now()
       const duration = endTime - startTime
-      
+
       if (process.env.NODE_ENV === "development") {
         console.log(`Async operation ${name} took ${duration.toFixed(2)}ms`)
       }
-      
+
       return result
     } catch (error) {
       const endTime = performance.now()
       const duration = endTime - startTime
-      
+
       console.error(`Async operation ${name} failed after ${duration.toFixed(2)}ms:`, error)
       throw error
     }

@@ -13,33 +13,58 @@ import { useRouter, useSearchParams } from "next/navigation"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import { useAuth } from "@/lib/auth-context"
 
 export default function AuthPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const userType = searchParams?.get("type") || "tenant"
+  const { login } = useAuth()
 
   const [activeTab, setActiveTab] = useState<string>(userType)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string>("")
 
-  const handleLogin = (e: React.FormEvent, type: string) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>, type: string) => {
     e.preventDefault()
     setIsLoading(true)
+    setError("")
 
-    // Simulate authentication
-    setTimeout(() => {
-      if (type === "owner") {
-        // In a real app, this would redirect to a subdomain
+    const formData = new FormData(e.currentTarget)
+    const email = formData.get("email") as string
+    const password = formData.get("password") as string
+
+    // Basic validation
+    if (!email?.trim()) {
+      setError("Please enter your email address")
+      setIsLoading(false)
+      return
+    }
+
+    if (!password?.trim()) {
+      setError("Please enter your password")
+      setIsLoading(false)
+      return
+    }
+
+    const result = await login(email.trim(), password, type as "tenant" | "owner" | "admin")
+
+    if (result.success) {
+      // Redirect based on user role
+      if (type === "owner" || type === "admin") {
         router.push("/dashboard")
       } else {
         router.push("/properties")
       }
-      setIsLoading(false)
-    }, 1000)
+    } else {
+      setError(result.error || "Login failed. Please check your credentials and try again.")
+    }
+
+    setIsLoading(false)
   }
 
   return (
-    <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
+    <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8 px-4 sm:px-6 lg:px-8">
       <SEO
         title="Sign In | OnDo Real Estate"
         description="Sign in to continue to your tenant or owner portal."
@@ -64,9 +89,22 @@ export default function AuthPage() {
             <TabsContent value="tenant">
               <form onSubmit={(e) => handleLogin(e, "tenant")}>
                 <div className="grid gap-4">
+                  {error && (
+                    <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md" role="alert">
+                      {error}
+                    </div>
+                  )}
                   <div className="grid gap-2">
                     <Label htmlFor="tenant-email">Email</Label>
-                    <Input id="tenant-email" type="email" placeholder="name@example.com" required />
+                    <Input
+                      id="tenant-email"
+                      name="email"
+                      type="email"
+                      placeholder="name@example.com"
+                      required
+                      disabled={isLoading}
+                      aria-describedby="tenant-email-error"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between">
@@ -75,10 +113,23 @@ export default function AuthPage() {
                         Forgot password?
                       </Link>
                     </div>
-                    <Input id="tenant-password" type="password" required />
+                    <Input
+                      id="tenant-password"
+                      name="password"
+                      type="password"
+                      required
+                      disabled={isLoading}
+                    />
                   </div>
-                  <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Signing in..." : "Sign In"}
+                  <Button type="submit" disabled={isLoading} className="w-full">
+                    {isLoading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        Signing in...
+                      </div>
+                    ) : (
+                      "Sign In"
+                    )}
                   </Button>
                 </div>
               </form>
@@ -86,9 +137,21 @@ export default function AuthPage() {
             <TabsContent value="owner">
               <form onSubmit={(e) => handleLogin(e, "owner")}>
                 <div className="grid gap-4">
+                  {error && (
+                    <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md" role="alert">
+                      {error}
+                    </div>
+                  )}
                   <div className="grid gap-2">
                     <Label htmlFor="owner-email">Email</Label>
-                    <Input id="owner-email" type="email" placeholder="name@example.com" required />
+                    <Input
+                      id="owner-email"
+                      name="email"
+                      type="email"
+                      placeholder="name@example.com"
+                      required
+                      disabled={isLoading}
+                    />
                   </div>
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between">
@@ -97,10 +160,23 @@ export default function AuthPage() {
                         Forgot password?
                       </Link>
                     </div>
-                    <Input id="owner-password" type="password" required />
+                    <Input
+                      id="owner-password"
+                      name="password"
+                      type="password"
+                      required
+                      disabled={isLoading}
+                    />
                   </div>
-                  <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Signing in..." : "Sign In"}
+                  <Button type="submit" disabled={isLoading} className="w-full">
+                    {isLoading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        Signing in...
+                      </div>
+                    ) : (
+                      "Sign In"
+                    )}
                   </Button>
                 </div>
               </form>

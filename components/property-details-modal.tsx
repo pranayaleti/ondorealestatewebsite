@@ -1,276 +1,235 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import {
-  Star,
-  MapPin,
-  Phone,
-  Globe,
-  Mail,
-  ChevronLeft,
-  ChevronRight,
-  Calendar,
-  DollarSign,
-  Clock,
-  Wrench,
-  Heart,
-} from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PropertyLeadForm } from "@/components/property-lead-form"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { LazyImage } from "@/components/lazy-image"
+import { Phone, ExternalLink, Star, MapPin, DollarSign } from "lucide-react"
+import { useState } from "react"
+import { Property, ModalProps } from "@/lib/types"
 
-interface PropertyDetailsModalProps {
-  company: {
-    id: number
-    name: string
-    logo: string
-    rating: number
-    reviewCount: number
-    address: string
-    phone: string
-    specialties: string[]
-    description: string
-    valueRanges: string[]
-    images: string[]
-    leaseTerms: string
-    services: string[]
-    fees: string
-    availability: string
-    email?: string
-    website?: string
-  }
-  open: boolean
-  onOpenChange: (open: boolean) => void
+interface PropertyDetailsModalProps extends ModalProps {
+  company: Property
 }
 
 export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDetailsModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [showLeadForm, setShowLeadForm] = useState(false)
+
+  const images = company.images || [company.image].filter(Boolean)
+  const hasMultipleImages = images.length > 1
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % company.images.length)
+    setCurrentImageIndex((prev) => (prev + 1) % images.length)
   }
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + company.images.length) % company.images.length)
-  }
-
-  const handleInterested = () => {
-    setShowLeadForm(true)
-  }
-
-  const handleFormClose = () => {
-    setShowLeadForm(false)
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
   return (
-    <>
-      <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto" style={{ zIndex: 9000 }}>
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">{company.name}</DialogTitle>
-          </DialogHeader>
-
-          <div className="mt-4">
-            {/* Image Slider */}
-            <div className="relative h-[300px] md:h-[400px] mb-6 rounded-lg overflow-hidden">
-              <Image
-                src={company.images[currentImageIndex] || "/placeholder.svg"}
-                alt={`${company.name} property image ${currentImageIndex + 1}`}
-                fill
-                className="object-cover"
-              />
-
-              {/* Navigation Arrows */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/30 text-foreground hover:bg-background/50 rounded-full h-10 w-10"
-                onClick={prevImage}
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/30 text-foreground hover:bg-background/50 rounded-full h-10 w-10"
-                onClick={nextImage}
-              >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
-
-              {/* Image Counter */}
-              <div className="absolute bottom-4 right-4 bg-background/50 text-foreground px-3 py-1 rounded-full text-sm">
-                {currentImageIndex + 1} / {company.images.length}
-              </div>
-            </div>
-
-            {/* Company Info */}
-            <div className="flex items-center mb-6">
-              <div className="relative h-20 w-20 rounded-md overflow-hidden bg-muted mr-4">
-                <Image
-                  src={company.logo || "/placeholder.svg"}
-                  alt={`${company.name} logo`}
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-3">
+            {company.logo && (
+              <div className="relative h-12 w-12 rounded-lg overflow-hidden">
+                <LazyImage
+                  src={company.logo}
+                  alt={`${company.title} logo`}
                   fill
-                  className="object-contain p-2"
+                  className="object-cover"
+                  sizes="48px"
                 />
               </div>
-              <div>
-                <h3 className="font-bold text-xl">{company.name}</h3>
-                <div className="flex items-center">
-                  <div className="flex items-center text-yellow-500 mr-2">
-                    <Star className="h-5 w-5 fill-current" />
-                    <span className="ml-1 text-base font-medium">{company.rating}</span>
-                  </div>
-                  <span className="text-muted-foreground">({company.reviewCount} reviews)</span>
+            )}
+            <div>
+              <h2 className="text-xl font-semibold">{company.title}</h2>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                {company.rating && company.reviewCount && (
+                  <>
+                    <div className="flex items-center gap-1">
+                      <Star className="h-4 w-4 fill-current text-yellow-500" />
+                      <span>{company.rating}</span>
+                      <span>({company.reviewCount} reviews)</span>
+                    </div>
+                    <span>•</span>
+                  </>
+                )}
+                <div className="flex items-center gap-1">
+                  <MapPin className="h-4 w-4" />
+                  <span>{company.address}</span>
                 </div>
               </div>
             </div>
+          </DialogTitle>
+          <DialogDescription>{company.description}</DialogDescription>
+        </DialogHeader>
 
-            <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid grid-cols-4 mb-6">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="services">Services</TabsTrigger>
-                <TabsTrigger value="terms">Terms & Fees</TabsTrigger>
-                <TabsTrigger value="contact">Contact</TabsTrigger>
-              </TabsList>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          {/* Image Gallery */}
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-lg overflow-hidden">
+              <LazyImage
+                src={images[currentImageIndex] || company.image}
+                alt={`${company.title} property ${currentImageIndex + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              {hasMultipleImages && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+            </div>
 
-              <TabsContent value="overview" className="space-y-4">
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">About</h4>
-                  <p className="text-foreground dark:text-muted-foreground">{company.description}</p>
+            {/* Thumbnail Gallery */}
+            {hasMultipleImages && (
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`relative aspect-video w-20 flex-shrink-0 rounded border-2 transition-colors ${
+                      index === currentImageIndex ? 'border-primary' : 'border-transparent'
+                    }`}
+                  >
+                    <LazyImage
+                      src={image}
+                      alt={`Thumbnail ${index + 1}`}
+                      fill
+                      className="object-cover rounded"
+                      sizes="80px"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Property Details */}
+          <div className="space-y-6">
+            {/* Specialties */}
+            {company.specialties && company.specialties.length > 0 && (
+              <div>
+                <h3 className="font-semibold mb-2">Specialties</h3>
+                <div className="flex flex-wrap gap-2">
+                  {company.specialties.map((specialty) => (
+                  <Badge key={specialty} variant="secondary">
+                    {specialty}
+                  </Badge>
+                  ))}
                 </div>
+              </div>
+            )}
 
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">Specialties</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {company.specialties.map((specialty) => (
-                      <Badge key={specialty} className="capitalize">
-                        {specialty.replace("-", " ")}
-                      </Badge>
-                    ))}
-                  </div>
+            {/* Value Ranges */}
+            {company.valueRanges && company.valueRanges.length > 0 && (
+              <div>
+                <h3 className="font-semibold mb-2">Property Value Ranges</h3>
+                <div className="flex flex-wrap gap-2">
+                  {company.valueRanges.map((range) => (
+                  <Badge key={range} variant="outline">
+                    <DollarSign className="h-3 w-3 mr-1" />
+                    {range}
+                  </Badge>
+                  ))}
                 </div>
+              </div>
+            )}
 
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">Property Value Ranges</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {company.valueRanges.map((value) => (
-                      <Badge key={value} variant="outline" className="capitalize">
-                        {value === "under-300k"
-                          ? "Under $300k"
-                          : value === "300k-500k"
-                            ? "$300k-$500k"
-                            : value === "500k-750k"
-                              ? "$500k-$750k"
-                              : value === "750k-1m"
-                                ? "$750k-$1M"
-                                : "Over $1M"}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="services" className="space-y-4">
-                <div>
-                  <h4 className="text-lg font-semibold mb-4">Services Offered</h4>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {/* Services */}
+            {company.services && company.services.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Services Offered</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-1 text-sm">
                     {company.services.map((service, index) => (
-                      <li key={index} className="flex items-center">
-                        <Wrench className="h-4 w-4 mr-2 text-primary" />
-                        <span>{service}</span>
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>{service}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
-              </TabsContent>
+                </CardContent>
+              </Card>
+            )}
 
-              <TabsContent value="terms" className="space-y-4">
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <Calendar className="h-5 w-5 mr-3 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-lg font-semibold">Lease Terms</h4>
-                      <p className="text-foreground dark:text-muted-foreground">{company.leaseTerms}</p>
-                    </div>
-                  </div>
+            {/* Lease Terms */}
+            {company.leaseTerms && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Lease Terms</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{company.leaseTerms}</p>
+                </CardContent>
+              </Card>
+            )}
 
-                  <div className="flex items-start">
-                    <DollarSign className="h-5 w-5 mr-3 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-lg font-semibold">Management Fees</h4>
-                      <p className="text-foreground dark:text-muted-foreground">{company.fees}</p>
-                    </div>
-                  </div>
+            {/* Fees */}
+            {company.fees && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Fees & Management</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{company.fees}</p>
+                </CardContent>
+              </Card>
+            )}
 
-                  <div className="flex items-start">
-                    <Clock className="h-5 w-5 mr-3 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-lg font-semibold">Availability</h4>
-                      <p className="text-foreground dark:text-muted-foreground">{company.availability}</p>
-                    </div>
-                  </div>
-                </div>
-              </TabsContent>
+            {/* Availability */}
+            {company.availability && (
+              <div className="flex items-center gap-2">
+                <Badge variant={company.availability.toLowerCase().includes('available') ? 'default' : 'secondary'}>
+                  {company.availability}
+                </Badge>
+              </div>
+            )}
 
-              <TabsContent value="contact" className="space-y-4">
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <MapPin className="h-5 w-5 mr-3 text-primary" />
-                    <span>{company.address}</span>
-                  </div>
+            {/* Contact Actions */}
+            <div className="flex flex-col gap-3">
+              <Button asChild className="w-full">
+                <a href={`tel:${company.phone}`} className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  Call {company.phone}
+                </a>
+              </Button>
 
-                  <div className="flex items-center">
-                    <Phone className="h-5 w-5 mr-3 text-primary" />
-                    <span>{company.phone}</span>
-                  </div>
-
-                  {company.email && (
-                    <div className="flex items-center">
-                      <Mail className="h-5 w-5 mr-3 text-primary" />
-                      <a
-                        href={`mailto:${company.email}`}
-                        className="text-primary hover:underline"
-                      >
-                        {company.email}
-                      </a>
-                    </div>
-                  )}
-
-                  {company.website && (
-                    <div className="flex items-center">
-                      <Globe className="h-5 w-5 mr-3 text-primary" />
-                      <a
-                        href={company.website.startsWith("http") ? company.website : `https://${company.website}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:underline"
-                      >
-                        {company.website}
-                      </a>
-                    </div>
-                  )}
-
-                  <div className="pt-4">
-                    <Button className="w-full" onClick={handleInterested}>
-                      <Heart className="h-4 w-4 mr-2" />
-                      I'm Interested
-                    </Button>
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
+              {company.website && (
+                <Button variant="outline" asChild className="w-full">
+                  <a
+                    href={company.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Visit Website
+                  </a>
+                </Button>
+              )}
+            </div>
           </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Lead Form Dialog */}
-      {showLeadForm && <PropertyLeadForm open={showLeadForm} onClose={handleFormClose} propertyName={company.name} publicId={String(company.id)}/>}
-    </>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }

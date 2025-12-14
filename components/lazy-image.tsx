@@ -48,6 +48,12 @@ export function LazyImage({
   useEffect(() => {
     if (priority || isInView) return
 
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
+      setIsInView(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -63,8 +69,9 @@ export function LazyImage({
       }
     )
 
-    if (imgRef.current) {
-      observer.observe(imgRef.current)
+    const currentRef = imgRef.current
+    if (currentRef) {
+      observer.observe(currentRef)
     }
 
     return () => {

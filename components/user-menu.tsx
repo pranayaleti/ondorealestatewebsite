@@ -1,44 +1,62 @@
 "use client"
 
-import { useAuth } from "@/lib/auth-context"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { LogOut, User, Settings, Home, Building, Shield } from "lucide-react"
-import Link from "next/link"
+import { User, Settings, LogOut, Home, FileText, MessageSquare } from "lucide-react"
+import { useAuth } from "@/lib/auth-context"
 
 export default function UserMenu() {
   const { user, logout } = useAuth()
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
-  if (!user) {
-    return null
+  const handleLogout = async () => {
+    setIsLoading(true)
+    await logout()
+    setIsLoading(false)
   }
-
-  // Determine dashboard path based on user role
-  const dashboardPath = user.role === "tenant" ? "/tenant" : user.role === "owner" ? "/owner" : "/dashboard"
 
   const getInitials = (name: string) => {
     return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
+      .split(' ')
+      .map(n => n[0])
+      .join('')
       .toUpperCase()
+      .slice(0, 2)
   }
+
+  const getDashboardLink = () => {
+    if (!user?.role) return '/dashboard'
+
+    switch (user.role) {
+      case 'owner':
+      case 'admin':
+        return '/dashboard'
+      case 'tenant':
+        return '/properties'
+      default:
+        return '/dashboard'
+    }
+  }
+
+  if (!user) return null
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.avatar || "/placeholder.svg?height=40&width=40&query=user"} alt={user.name} />
+            <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
           </Avatar>
         </Button>
@@ -47,40 +65,53 @@ export default function UserMenu() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.name}</p>
-            <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {user.email}
+            </p>
+            <p className="text-xs leading-none text-muted-foreground capitalize">
+              {user.role}
+            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem asChild>
-            <Link href={dashboardPath} className="cursor-pointer">
-              {user.role === "tenant" ? (
-                <Home className="mr-2 h-4 w-4" />
-              ) : user.role === "owner" ? (
-                <Building className="mr-2 h-4 w-4" />
-              ) : (
-                <Shield className="mr-2 h-4 w-4" />
-              )}
-              <span>Dashboard</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href={`${dashboardPath}/profile`} className="cursor-pointer">
-              <User className="mr-2 h-4 w-4" />
-              <span>My Profile</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href={`${dashboardPath}/settings`} className="cursor-pointer">
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
-            </Link>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+
+        <DropdownMenuItem onClick={() => router.push(getDashboardLink())}>
+          <Home className="mr-2 h-4 w-4" />
+          <span>Dashboard</span>
+        </DropdownMenuItem>
+
+        {(user.role === 'owner' || user.role === 'admin') && (
+          <>
+            <DropdownMenuItem onClick={() => router.push('/properties/manage')}>
+              <FileText className="mr-2 h-4 w-4" />
+              <span>Manage Properties</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push('/maintenance')}>
+              <MessageSquare className="mr-2 h-4 w-4" />
+              <span>Maintenance Requests</span>
+            </DropdownMenuItem>
+          </>
+        )}
+
+        <DropdownMenuItem onClick={() => router.push('/profile')}>
+          <User className="mr-2 h-4 w-4" />
+          <span>Profile</span>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem onClick={() => router.push('/settings')}>
+          <Settings className="mr-2 h-4 w-4" />
+          <span>Settings</span>
+        </DropdownMenuItem>
+
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={logout} className="cursor-pointer">
+
+        <DropdownMenuItem
+          onClick={handleLogout}
+          disabled={isLoading}
+          className="text-red-600 focus:text-red-600"
+        >
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+          <span>{isLoading ? 'Logging out...' : 'Log out'}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

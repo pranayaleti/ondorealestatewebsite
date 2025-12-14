@@ -8,13 +8,17 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast"
 import { saveUserInfo } from "@/lib/session-utils"
+import { sanitizeInput, isValidZipCode, RateLimiter } from "@/lib/security"
+import { SearchFormData } from "@/lib/types"
 
 // Session storage key
 const ZIP_CODE_SESSION_KEY = "property-match-zipcode"
 const USER_SESSION_KEY = "property-match-user"
 
+const searchRateLimiter = new RateLimiter(3, 30000) // 3 attempts per 30 seconds
+
 export function SearchForm() {
-  const [zipCode, setZipCode] = useState("")
+  const [formData, setFormData] = useState<SearchFormData>({ zipCode: "" })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
@@ -30,17 +34,16 @@ export function SearchForm() {
         "84044": "Magna",
         "84047": "Midvale",
         "84117": "Holladay",
-        "98101": "seattle",
-        "98004": "bellevue",
-        "98052": "redmond",
+        "98101": "Seattle",
+        "98004": "Bellevue",
+        "98052": "Redmond",
         // Add more zip codes as needed
       }
 
       const city = cityMap[zip]
       if (!city) {
-        const city = cityMap[zipCode] || "nearby"
-        return city
-        //throw new Error("City not found for zip code")
+        // Return a default city for unknown ZIP codes
+        return "nearby"
       }
       return city
     } catch (error) {
@@ -50,9 +53,9 @@ export function SearchForm() {
   }
 
   const handleZipCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow digits and limit to 5 characters
-    const value = e.target.value.replace(/\D/g, "").slice(0, 5)
-    setZipCode(value)
+    // Sanitize input: only allow digits and limit to 5 characters
+    const value = sanitizeInput(e.target.value).replace(/\D/g, "").slice(0, 5)
+    setFormData(prev => ({ ...prev, zipCode: value }))
 
     // Clear error when user starts typing again
     if (error) {
@@ -64,8 +67,20 @@ export function SearchForm() {
     e.preventDefault()
     setError("")
 
-    // Basic ZIP code validation
-    if (!zipCode || !/^\d{5}(-\d{4})?$/.test(zipCode)) {
+    // Rate limiting check
+    if (!searchRateLimiter.isAllowed('search-form')) {
+      setError("Too many search attempts. Please wait before trying again.")
+      toast({
+        title: "Rate Limited",
+        description: "Please wait 30 seconds before searching again.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    // Sanitize and validate ZIP code
+    const sanitizedZipCode = sanitizeInput(formData.zipCode)
+    if (!sanitizedZipCode || !isValidZipCode(sanitizedZipCode)) {
       setError("Please enter a valid ZIP code")
       toast({
         title: "Invalid ZIP Code",
@@ -77,29 +92,15 @@ export function SearchForm() {
 
     setIsLoading(true)
 
-    // In a real app, you would validate the ZIP code against a database
-    // For now, we'll simulate a city lookup
-    const cityMap: Record<string, string> = {
-      "98101": "seattle",
-      "98004": "bellevue",
-      "98052": "redmond",
-      "84101": "Salt-Lake-City",
-      "84108": "Salt-Lake-City",
-      "84044": "Magna",
-      "84047": "Midvale",
-      "84117": "Holladay",
-      // Add more ZIP codes as needed
-    }
-
-    // Default to a generic city if ZIP code is not in our map
-    const city = cityMap[zipCode] || "nearby"
+    // Get city from zip code
+    const city = await getCityFromZipCode(sanitizedZipCode)
 
     // Save the ZIP code to session storage
-    saveUserInfo(zipCode)
+    saveUserInfo(sanitizedZipCode)
 
     try {
       // Store the zip code in sessionStorage (clears when browser is closed)
-      sessionStorage.setItem("property-match-zipcode", zipCode)
+      sessionStorage.setItem("property-match-zipcode", sanitizedZipCode)
 
       // Get city from zip code
       //const city = await getCityFromZipCode(zipCode)
@@ -122,19 +123,21 @@ export function SearchForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-sm items-center space-x-2">
+    <form onSubmit={handleSubmit} className="flex w-full max-w-sm items-center gap-2">
       <Input
         type="text"
-        placeholder="Enter ZIP code"
-        value={zipCode}
+        placeholder="Enter ZIP code (e.g., 84101)"
+        value={formData.zipCode}
         onChange={handleZipCodeChange}
         className="flex-1"
         maxLength={5}
+        disabled={isLoading}
+        aria-describedby={error ? "zip-error" : undefined}
       />
       <Button type="submit" disabled={isLoading}>
         {isLoading ? "Searching..." : "Search"}
       </Button>
-      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
+      {error && <p id="zip-error" className="text-sm text-red-500 mt-1" role="alert">{error}</p>}
     </form>
   )
 }
