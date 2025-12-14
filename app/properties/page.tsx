@@ -721,7 +721,34 @@ export default function PropertiesPage() {
           ...propertySchemas,
         ]}
       />
-      {/* Banner unchanged */}
+      
+      {/* Banner with search field */}
+      <section className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-black/90 z-10" />
+        <div className="relative h-[400px] overflow-hidden">
+          <Image
+            src="/modern-apartment-balcony.png"
+            alt="Modern apartment building representing rental properties"
+            fill
+            className="object-cover"
+            priority
+            title="Rental Properties"
+          />
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Find Your Perfect Home</h1>
+              <p className="text-xl text-white/90 mb-8">
+                Browse our curated selection of quality rental properties
+              </p>
+              <div className="flex justify-center">
+                <PropertySearch onSearch={handleSearch} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <main className="flex-1">
         <section className="w-full py-12 md:py-24">
@@ -743,13 +770,69 @@ export default function PropertiesPage() {
                   initialFilters={filters}
                 />
 
-                {/* Sort dropdown (unchanged) */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline">
+                      <ArrowUpDown className="mr-2 h-4 w-4" />
+                      Sort by:{' '}
+                      <span className="font-medium ml-1">
+                        {sortBy === 'newest'
+                          ? 'Newest'
+                          : sortBy === 'price-low'
+                          ? 'Price (Low to High)'
+                          : sortBy === 'price-high'
+                          ? 'Price (High to Low)'
+                          : sortBy === 'bedrooms'
+                          ? 'Bedrooms'
+                          : sortBy === 'bathrooms'
+                          ? 'Bathrooms'
+                          : 'Square Feet'}
+                      </span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => setSortBy('newest')}>
+                      Newest
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSortBy('price-low')}>
+                      Price (Low to High)
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSortBy('price-high')}>
+                      Price (High to Low)
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSortBy('bedrooms')}>
+                      Bedrooms
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSortBy('bathrooms')}>
+                      Bathrooms
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSortBy('sqft')}>
+                      Square Feet
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
 
             {loading ? (
-              <div className="text-sm text-muted-foreground">
-                Fetching properties…
+              <div className="flex flex-col items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+                <p className="text-lg text-muted-foreground">Loading properties...</p>
+              </div>
+            ) : error ? (
+              <div className="flex flex-col items-center justify-center py-12">
+                <div className="max-w-md w-full">
+                  <div className="bg-card p-6 rounded-lg shadow-sm border mb-6 border-destructive">
+                    <h3 className="text-lg font-semibold mb-4 text-destructive">Error Loading Properties</h3>
+                    <p className="text-muted-foreground mb-4">{error}</p>
+                    <Button
+                      onClick={() => window.location.reload()}
+                      className="w-full"
+                    >
+                      Try Again
+                    </Button>
+                  </div>
+                </div>
               </div>
             ) : properties.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

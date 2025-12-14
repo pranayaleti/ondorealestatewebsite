@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
+import { memo } from "react"
 import { SITE_SOCIALS, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE } from "@/lib/site"
 import {
   Facebook,
@@ -96,7 +97,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
   )
 }
 
-export function Footer() {
+const Footer = memo(() => {
   // Define social media mapping in a deterministic order to prevent hydration issues
   const socialMediaMap = [
     { pattern: "facebook.com", name: "Facebook", Component: Facebook, hover: "hover:text-primary" },
@@ -401,6 +402,9 @@ export function Footer() {
       </div>
     </footer>
   )
-}
+})
 
+Footer.displayName = 'Footer'
+
+export { Footer }
 export default Footer

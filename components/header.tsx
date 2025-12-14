@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback, memo } from "react"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react"
 import UserMenu from "@/components/user-menu"
 import { useAuth } from "@/lib/auth-context"
 
-export default function Header() {
+const Header = memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
@@ -19,13 +19,17 @@ export default function Header() {
   const pathname = usePathname()
 
   // Helper function to check if a link is active
-  const isActive = (href: string) => {
+  const isActive = useCallback((href: string) => {
     if (!pathname) return false
     if (href === "/") {
       return pathname === "/"
     }
     return pathname.startsWith(href)
-  }
+  }, [pathname])
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev)
+  }, [])
 
   useEffect(() => {
     setIsMounted(true)
@@ -212,18 +216,17 @@ export default function Header() {
           )}
           <button
             className="block md:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring flex-shrink-0"
-            onClick={() => {
-              setIsMenuOpen(!isMenuOpen)
-            }}
-            aria-label="Toggle menu"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
       </div>
       {isMenuOpen && isMounted && (
-        <div ref={menuRef} className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg border-t md:hidden z-50 py-4 pb-6">
+        <div ref={menuRef} id="mobile-menu" className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg border-t md:hidden z-50 py-4 pb-6" role="navigation" aria-label="Mobile navigation">
           <div className="container">
             <nav className="flex flex-col gap-2">
               <Link
@@ -373,4 +376,8 @@ export default function Header() {
       )}
     </header>
   )
-}
+})
+
+Header.displayName = 'Header'
+
+export default Header

@@ -263,19 +263,19 @@ export default function ContactPage() {
                 <CardContent>
                   {/* Success/Error Messages */}
                   {submitStatus === 'success' && (
-                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-                      <CheckCircle className="text-green-500 mr-3" />
+                    <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center">
+                      <CheckCircle className="text-green-500 dark:text-green-400 mr-3 flex-shrink-0" />
                       <div>
-                        <p className="text-green-700 font-semibold">Message sent successfully!</p>
-                        <p className="text-green-600 text-sm">We'll get back to you within 24 hours.</p>
+                        <p className="text-green-700 dark:text-green-300 font-semibold">Message sent successfully!</p>
+                        <p className="text-green-600 dark:text-green-400 text-sm">We'll get back to you within 24 hours.</p>
                       </div>
                     </div>
                   )}
                   
                   {submitStatus === 'error' && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
-                      <AlertCircle className="text-red-500 mr-3" />
-                      <p className="text-red-700">Something went wrong. Please try again or call us directly.</p>
+                    <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center">
+                      <AlertCircle className="text-red-500 dark:text-red-400 mr-3 flex-shrink-0" />
+                      <p className="text-red-700 dark:text-red-300">Something went wrong. Please try again or call us directly.</p>
                     </div>
                   )}
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback, memo } from 'react';
 import {
   X,
   Calendar,
@@ -41,7 +41,7 @@ interface FormData {
   timezone: string;
 }
 
-const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, variant = 'default' }) => {
+const ConsultationModal: React.FC<ConsultationModalProps> = memo(({ isOpen, onClose, variant = 'default' }) => {
   const isNotary = variant === 'notary';
 
   const [formData, setFormData] = useState<FormData>({
@@ -132,22 +132,22 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, 
     []
   );
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleSelectChange = (name: string, value: string) => {
+  const handleSelectChange = useCallback((name: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
@@ -206,7 +206,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, 
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData, variant]);
 
   if (!isOpen) return null;
 
@@ -248,19 +248,19 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Success/Error Messages */}
           {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-              <CheckCircle className="text-green-500 mr-3" />
+            <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center">
+              <CheckCircle className="text-green-500 dark:text-green-400 mr-3 flex-shrink-0" />
               <div>
-                <p className="text-green-700 font-semibold">Consultation Booked Successfully!</p>
-                <p className="text-green-600 text-sm">We'll send you a calendar invite and confirmation email shortly.</p>
+                <p className="text-green-700 dark:text-green-300 font-semibold">Consultation Booked Successfully!</p>
+                <p className="text-green-600 dark:text-green-400 text-sm">We'll send you a calendar invite and confirmation email shortly.</p>
               </div>
             </div>
           )}
           
           {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
-              <AlertCircle className="text-red-500 mr-3" />
-              <p className="text-red-700">Something went wrong. Please try again or contact us directly.</p>
+            <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center">
+              <AlertCircle className="text-red-500 dark:text-red-400 mr-3 flex-shrink-0" />
+              <p className="text-red-700 dark:text-red-300">Something went wrong. Please try again or contact us directly.</p>
             </div>
           )}
 
@@ -512,6 +512,8 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, 
       </div>
     </div>
   );
-};
+});
+
+ConsultationModal.displayName = 'ConsultationModal';
 
 export default ConsultationModal;
