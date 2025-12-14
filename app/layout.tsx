@@ -139,6 +139,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const rb2bKey = process.env.NEXT_PUBLIC_RB2B_KEY
   return (
     <html lang="en" suppressHydrationWarning className="dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
       <head>
@@ -194,23 +195,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         {/* Vercel Analytics disabled for static exports - only works on Vercel platform */}
         {/* {process.env.NEXT_PUBLIC_VERCEL && <Analytics />} */}
-        {/* rb2b Script - Deferred to reduce render blocking */}
-        <Script
-          id="rb2b-script"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(key) {
-                if (window.reb2b) return;
-                window.reb2b = {loaded: true};
-                var s = document.createElement("script");
-                s.async = true;
-                s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
-                document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
-              }("961Y0H4259NG");
-            `,
-          }}
-        />
+        {/* rb2b Script (optional) - keep off by default for static export */}
+        {rb2bKey ? (
+          <Script
+            id="rb2b-script"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                !function(key) {
+                  if (window.reb2b) return;
+                  window.reb2b = {loaded: true};
+                  var s = document.createElement("script");
+                  s.async = true;
+                  s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";
+                  document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);
+                }("${rb2bKey}");
+              `,
+            }}
+          />
+        ) : null}
       </body>
     </html>
   )

@@ -14,6 +14,7 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_PHONE, SITE_EMAILS, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE, SITE_HOURS_LABEL } from "@/lib/site"
 import ConsultationModal from "@/components/ConsultationModal"
+import { backendUrl } from "@/lib/backend"
 
 export default function ContactPage() {
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
@@ -61,18 +62,31 @@ export default function ContactPage() {
     setSubmitStatus(null);
     
     try {
-      const response = await fetch('/api/leads/submit', {
+      const nowIso = new Date().toISOString();
+      const fallbackPublicId = '5b3aba39-51f2-48b5-b3a0-db948cfde010';
+      const payload = {
+        ...formData,
+        name: `${formData.firstName} ${formData.lastName}`,
+        type: 'contact_form',
+        source: 'contact_page',
+        leadType: 'general_inquiry',
+        timestamp: nowIso,
+        publicId: fallbackPublicId,
+        tenantName: `${formData.firstName} ${formData.lastName}`,
+        tenantEmail: formData.email ?? '',
+        tenantPhone: formData.phone ?? '',
+        moveInDate: nowIso,
+        monthlyBudget: 1,
+        occupants: 1,
+        hasPets: false,
+      };
+
+      const response = await fetch(backendUrl('/api/leads/submit'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          name: `${formData.firstName} ${formData.lastName}`,
-          type: 'contact_form',
-          source: 'contact_page',
-          leadType: 'general_inquiry'
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {

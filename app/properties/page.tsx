@@ -519,6 +519,7 @@ import { SITE_URL } from '@/lib/site';
 import type { Property } from '@/app/types/property';
 // import type { SortOption } from "@/app/lib/propertiesQuery"; // or redefine here as before
 import { mapApiProperty } from '@/lib/mapProperty';
+import { backendUrl } from '@/lib/backend';
 
 // keep your SortOption union if not importing
 type LocalSortOption =
@@ -554,43 +555,23 @@ export default function PropertiesPage() {
       try {
         setLoading(true);
         setError(null);
-        console.log('[properties] fetching…');
-        // #region agent log
-        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P1',location:'app/properties/page.tsx:useEffect:before-fetch',message:'properties fetch start',data:{url:'https://ondorealestateserver.onrender.com/api/properties/public'},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-        // Call via our API route (keeps instrumentation + avoids mixed-content)
-        const res = await fetch('/api/properties/public', {
+        // Static export can't run Next.js Route Handlers; fetch upstream directly.
+        const res = await fetch(backendUrl('/api/properties/public'), {
           signal: controller.signal,
           cache: 'no-store',
         });
-        console.log('[properties] status', res.status);
-        // #region agent log
-        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P2',location:'app/properties/page.tsx:useEffect:after-fetch',message:'properties fetch response',data:{status:res.status,ok:res.ok,contentType:res.headers.get('content-type')},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
         if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
         const json = await res.json();
-        // #region agent log
-        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P3',location:'app/properties/page.tsx:useEffect:json',message:'properties json parsed',data:{array:Array.isArray(json),length:Array.isArray(json)?json.length:undefined},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
         const mapped: Property[] = (json as any[]).map(mapApiProperty);
         setAllApiProperties(mapped);
-        // #region agent log
-        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P4',location:'app/properties/page.tsx:useEffect:mapped',message:'properties mapped',data:{count:mapped.length},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
       } catch (e: any) {
         if (e?.name === 'AbortError') {
           // expected in React Strict Mode (first effect run is aborted)
-          // #region agent log
-          void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P5',location:'app/properties/page.tsx:useEffect:abort',message:'properties fetch aborted',data:{},timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
           return;
         }
         console.error(e);
         setError(e.message ?? 'Failed to load properties');
         setAllApiProperties([]);
-        // #region agent log
-        void fetch('http://127.0.0.1:7242/ingest/49ffbf2a-f4c5-4424-a401-0cb95371d96d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'investigation-client-1',hypothesisId:'P6',location:'app/properties/page.tsx:useEffect:error',message:'properties fetch error',data:{errorName:e?.name,errorMessage:e?.message},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }

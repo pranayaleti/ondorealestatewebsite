@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { SITE_PHONE } from '@/lib/site';
+import { backendUrl } from '@/lib/backend';
 
 interface FormData {
   name: string;
@@ -55,16 +56,35 @@ const ConsultationWidget: React.FC = () => {
     setSubmitStatus(null);
     
     try {
-      const response = await fetch('/api/consultation/submit', {
+      // Static export (GitHub Pages) can't run Next.js Route Handlers.
+      // Send directly to the backend used in production.
+      const nowIso = new Date().toISOString();
+      const fallbackPublicId = '5b3aba39-51f2-48b5-b3a0-db948cfde010';
+      const payload = {
+        ...formData,
+        type: 'consultation',
+        source: 'consultation_widget',
+        leadType: 'consultation',
+        timestamp: nowIso,
+        utm_source: 'consultation_widget',
+        utm_medium: 'website',
+        utm_campaign: 'consultation_booking',
+        publicId: fallbackPublicId,
+        tenantName: formData.name ?? '',
+        tenantEmail: formData.email ?? '',
+        tenantPhone: formData.phone ?? '',
+        moveInDate: nowIso,
+        monthlyBudget: 1,
+        occupants: 1,
+        hasPets: false,
+      };
+
+      const response = await fetch(backendUrl('/api/leads/submit'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          type: 'consultation',
-          source: 'consultation_widget'
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {

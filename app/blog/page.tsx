@@ -24,7 +24,7 @@ export default function BlogPage() {
     slug: "remote-online-notary-all-50-states"
   }
 
-  const blogPosts = [
+  const blogPosts = useMemo(() => ([
     {
       title: "The Hidden Math Behind Renting vs Owning",
       excerpt: "Opportunity cost, equity velocity, and inflation-adjusted rent modeled by a developer-landlord.",
@@ -265,7 +265,7 @@ export default function BlogPage() {
       image: "/placeholder.jpg",
       slug: "understanding-property-taxes-utah"
     }
-  ]
+  ]), [])
 
   const categoryCounts = useMemo(() => {
     return blogPosts.reduce<Record<string, number>>((acc, post) => {

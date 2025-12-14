@@ -1,6 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { PageBanner } from "@/components/page-banner"
-import { Footer } from "@/components/footer"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd, generateFAQJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_EMAILS } from "@/lib/site"

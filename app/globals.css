@@ -26,10 +26,14 @@
   }
   html {
     @apply bg-background;
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
   
   html.dark {
@@ -44,6 +48,17 @@
   
   html.dark > body {
     background: transparent !important;
+  }
+  
+  /* Fix for Next.js portal elements - ensure they don't interfere with layout */
+  nextjs-portal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 9999;
   }
 }
 
