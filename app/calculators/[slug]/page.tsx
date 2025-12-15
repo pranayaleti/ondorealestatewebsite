@@ -1,3 +1,4 @@
+import type { ComponentType } from "react"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
 import SEO from "@/components/seo"
@@ -5,7 +6,7 @@ import { generateBreadcrumbJsonLd, generateWebApplicationJsonLd } from "@/lib/se
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import Loading from "@/components/loading"
 
-const slugToComponent: Record<string, any> = {
+const slugToComponent: Record<string, ComponentType> = {
   "mortgage-payment": dynamic(() => import("@/pages/calculators/MortgagePaymentCalculator"), { 
     loading: () => <Loading />
   }),

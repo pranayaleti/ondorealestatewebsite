@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { MapPin, Clock, Users, Heart, Briefcase, Award, GraduationCap, DollarSign } from "lucide-react"
+import { MapPin, Clock, Users, Heart, Award, GraduationCap, DollarSign } from "lucide-react"
 
 export default function CareersPage() {
   const openPositions = [

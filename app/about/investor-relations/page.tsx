@@ -5,7 +5,7 @@ import { SITE_URL, SITE_EMAILS, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { TrendingUp, BarChart3, FileText, Download, Phone, Mail, Calendar, Users } from "lucide-react"
+import { FileText, Download, Phone, Mail, Calendar } from "lucide-react"
 
 export default function InvestorRelationsPage() {
   const financialHighlights = [

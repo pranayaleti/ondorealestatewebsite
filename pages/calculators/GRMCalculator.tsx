@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -27,11 +27,7 @@ const GRMCalculator: React.FC = () => {
   const [results, setResults] = useState<GRMResults | null>(null);
   const [targetGRM, setTargetGRM] = useState(12);
 
-  useEffect(() => {
-    calculateGRM();
-  }, [formData, targetGRM]);
-
-  const calculateGRM = () => {
+  const calculateGRM = useCallback(() => {
     const { purchasePrice, monthlyRent, annualRent } = formData;
 
     // Use annual rent if provided, otherwise calculate from monthly
@@ -52,7 +48,11 @@ const GRMCalculator: React.FC = () => {
       recommendedPrice,
       recommendedRent
     });
-  };
+  }, [formData, targetGRM]);
+
+  useEffect(() => {
+    calculateGRM();
+  }, [calculateGRM]);
 
   const handleInputChange = (field: keyof GRMData, value: number) => {
     setFormData({ ...formData, [field]: value });

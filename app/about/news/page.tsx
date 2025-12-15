@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { Calendar, User, Tag, ArrowRight, Phone, Mail } from "lucide-react"
+import { Calendar, User, ArrowRight, Phone, Mail } from "lucide-react"
 
 export default function NewsPage() {
   const newsArticles = [

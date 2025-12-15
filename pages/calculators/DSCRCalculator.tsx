@@ -48,11 +48,7 @@ const DSCRCalculator: React.FC = () => {
 
   const [results, setResults] = useState<DSCRResults | null>(null);
 
-  useEffect(() => {
-    calculateDSCR();
-  }, [formData]);
-
-  const calculateDSCR = () => {
+  const calculateDSCR = React.useCallback(() => {
     const {
       monthlyRent,
       annualRent,
@@ -123,7 +119,11 @@ const DSCRCalculator: React.FC = () => {
       maxLoanAmount,
       maxPurchasePrice
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateDSCR();
+  }, [calculateDSCR]);
 
   const handleInputChange = (field: keyof DSCRData, value: number) => {
     setFormData({ ...formData, [field]: value });

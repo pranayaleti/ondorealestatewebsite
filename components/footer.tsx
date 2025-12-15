@@ -10,8 +10,6 @@ import {
   Instagram,
   Linkedin,
   MessageCircle,
-  Share2,
-  Globe,
   Phone,
   Mail,
   MapPin,
@@ -20,9 +18,6 @@ import {
   Building,
   Users,
   HelpCircle,
-  FileText,
-  Shield,
-  Award,
   TrendingUp
 } from "lucide-react"
 

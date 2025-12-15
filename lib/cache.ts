@@ -253,7 +253,7 @@ if (typeof window !== "undefined") {
   }, 5 * 60 * 1000) // Clean up every 5 minutes
 }
 
-export default {
+const cacheLib = {
   MemoryCache,
   caches,
   cacheKeys,
@@ -261,3 +261,5 @@ export default {
   useCache,
   withCache,
 }
+
+export default cacheLib

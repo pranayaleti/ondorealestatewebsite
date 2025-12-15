@@ -5,7 +5,7 @@ import { SITE_URL, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Calculator, FileText, Phone, Mail, Clock, CheckCircle, DollarSign, AlertCircle } from "lucide-react"
+import { FileText, Phone, DollarSign, Calculator, AlertCircle } from "lucide-react"
 
 export default function LoanPayoffsPage() {
   const payoffMethods = [
@@ -118,8 +118,8 @@ export default function LoanPayoffsPage() {
             <div className="mb-12">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Payoff Options</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {payoffMethods.map((method, index) => (
-                  <Card key={index}>
+                {payoffMethods.map((method) => (
+                  <Card key={method.title}>
                     <CardHeader>
                       <div className="flex items-center gap-3 mb-2">
                         <div className="h-8 w-8 bg-muted dark:bg-card rounded-lg flex items-center justify-center text-primary dark:text-primary">
@@ -157,7 +157,7 @@ export default function LoanPayoffsPage() {
             <div className="mb-12">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">How to Pay Off Your Loan</h3>
               <div className="space-y-6">
-                {payoffSteps.map((step, index) => (
+                {payoffSteps.map((step) => (
                   <div key={step.number} className="flex gap-6">
                     <div className="flex-shrink-0">
                       <div className="h-12 w-12 bg-muted dark:bg-card rounded-full flex items-center justify-center text-primary dark:text-primary font-bold">
@@ -197,8 +197,8 @@ export default function LoanPayoffsPage() {
             <div className="mb-12">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Frequently Asked Questions</h3>
               <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <Card key={index}>
+                {faqs.map((faq) => (
+                  <Card key={faq.question}>
                     <CardHeader>
                       <CardTitle className="text-lg dark:text-foreground">{faq.question}</CardTitle>
                       <CardDescription className="text-base">{faq.answer}</CardDescription>

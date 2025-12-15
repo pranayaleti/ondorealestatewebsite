@@ -5,7 +5,7 @@ import { SITE_URL, SITE_PHONE } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { AlertTriangle, Phone, FileText, Shield, Home, Heart, Clock, CheckCircle } from "lucide-react"
+import { AlertTriangle, Phone, FileText, Shield, Home, Heart, CheckCircle } from "lucide-react"
 
 export default function DisasterResourcesPage() {
   const disasterTypes = [

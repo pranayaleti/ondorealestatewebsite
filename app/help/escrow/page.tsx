@@ -2,10 +2,10 @@ import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Shield, FileText, Calculator, Phone, Mail, Clock, AlertCircle, CheckCircle } from "lucide-react"
+import { Shield, FileText, CheckCircle } from "lucide-react"
 
 export default function EscrowPage() {
   const escrowSteps = [
@@ -93,7 +93,7 @@ export default function EscrowPage() {
             </div>
 
             <div className="space-y-8 mb-12">
-              {escrowSteps.map((step, index) => (
+              {escrowSteps.map((step) => (
                 <div key={step.number} className="flex gap-6">
                   <div className="flex-shrink-0">
                     <div className="h-12 w-12 bg-muted dark:bg-card rounded-full flex items-center justify-center text-primary dark:text-primary font-bold">
@@ -150,8 +150,8 @@ export default function EscrowPage() {
             <div className="mb-12">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Frequently Asked Questions</h3>
               <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <Card key={index}>
+                {faqs.map((faq, idx) => (
+                  <Card key={idx}>
                     <CardHeader>
                       <CardTitle className="text-lg dark:text-foreground">{faq.question}</CardTitle>
                       <CardDescription className="text-base">{faq.answer}</CardDescription>

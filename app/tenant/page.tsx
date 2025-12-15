@@ -153,14 +153,14 @@ export default function TenantDashboard() {
             ) : (
               <div className="space-y-4">
                 <div className="flex flex-col md:flex-row gap-4">
-                  <div className="w-full md:w-1/3 h-48 bg-muted rounded-md overflow-hidden">
-                    <img 
-                      src="/modern-apartment-balcony.png" 
-                      alt="Modern apartment building with balcony in Salt Lake City representing quality rental properties" 
-                      className="w-full h-full object-cover"
-                      title="Modern Apartment Building - Salt Lake City"
-                      aria-label="Modern apartment building with balcony in Salt Lake City representing quality rental properties" 
+                  <div className="relative w-full md:w-1/3 h-48 bg-muted rounded-md overflow-hidden">
+                    <img
+                      src="/modern-apartment-balcony.png"
+                      alt="Modern apartment building with balcony in Salt Lake City representing quality rental properties"
+                      className="object-cover w-full h-full"
+                      style={{ objectFit: "cover" }}
                       loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
                   <div className="flex-1 space-y-4">

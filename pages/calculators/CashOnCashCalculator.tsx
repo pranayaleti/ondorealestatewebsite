@@ -59,11 +59,7 @@ const CashOnCashCalculator: React.FC = () => {
 
   const [results, setResults] = useState<CashOnCashResults | null>(null);
 
-  useEffect(() => {
-    calculateCashOnCash();
-  }, [formData]);
-
-  const calculateCashOnCash = () => {
+  const calculateCashOnCash = React.useCallback(() => {
     const {
       purchasePrice,
       downPayment,
@@ -132,7 +128,11 @@ const CashOnCashCalculator: React.FC = () => {
       capRate,
       grossRentMultiplier
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateCashOnCash();
+  }, [calculateCashOnCash]);
 
   const handleInputChange = (field: keyof CashOnCashData, value: number) => {
     const newData = { ...formData, [field]: value };

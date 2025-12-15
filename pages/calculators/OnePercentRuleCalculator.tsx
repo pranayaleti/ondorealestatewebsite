@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -28,11 +28,7 @@ const OnePercentRuleCalculator: React.FC = () => {
 
   const [results, setResults] = useState<OnePercentRuleResults | null>(null);
 
-  useEffect(() => {
-    calculateOnePercentRule();
-  }, [formData]);
-
-  const calculateOnePercentRule = () => {
+  const calculateOnePercentRule = useCallback(() => {
     const { purchasePrice, monthlyRent, afterRepairValue } = formData;
 
     // 1% Rule: Monthly rent should be at least 1% of purchase price
@@ -53,7 +49,11 @@ const OnePercentRuleCalculator: React.FC = () => {
       meetsRuleARV,
       requiredRentARV
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateOnePercentRule();
+  }, [calculateOnePercentRule]);
 
   const handleInputChange = (field: keyof OnePercentRuleData, value: number) => {
     setFormData({ ...formData, [field]: value });

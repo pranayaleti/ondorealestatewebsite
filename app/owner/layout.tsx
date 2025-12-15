@@ -25,18 +25,6 @@ interface OwnerLayoutProps {
   children: React.ReactNode
 }
 
-const navigationItems = [
-  { name: "Dashboard", href: "/owner", icon: Home },
-  { name: "Properties", href: "/owner/properties", icon: Building },
-  { name: "Tenants", href: "/owner/tenants", icon: Users },
-  { name: "Maintenance", href: "/owner/maintenance", icon: Wrench },
-  { name: "Finances", href: "/owner/finances", icon: DollarSign },
-  { name: "Documents", href: "/owner/documents", icon: FileText },
-  { name: "Messages", href: "/owner/messages", icon: MessageSquare },
-  { name: "Profile", href: "/owner/profile", icon: User },
-  { name: "Settings", href: "/owner/settings", icon: Settings },
-]
-
 export default function OwnerLayout({ children }: OwnerLayoutProps) {
   return (
     <AuthGuard requiredRole="owner">

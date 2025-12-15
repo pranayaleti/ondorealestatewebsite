@@ -35,13 +35,8 @@ export function LeadForm() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitError, setSubmitError] = useState("")
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitError("")
     
     try {
       const res = await fetch("https://ondorealestateserver.onrender.com/api/leads/submit", {
@@ -71,11 +66,8 @@ export function LeadForm() {
         source: "",
         comments: "",
       })
-    } catch (err: any) {
-      setSubmitError(err?.message || "Failed to submit lead. Please try again.")
-      console.error("Lead submission error:", err)
-    } finally {
-      setIsSubmitting(false)
+    } catch (_err) {
+      alert("Failed to submit lead. Please try again.")
     }
   }
 

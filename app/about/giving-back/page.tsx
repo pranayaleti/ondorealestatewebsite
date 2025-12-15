@@ -5,7 +5,7 @@ import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Heart, Users, Home, DollarSign, Clock, Award, Phone, Mail } from "lucide-react"
+import { Heart, Users, Home, Clock, Award, Phone, Mail } from "lucide-react"
 
 export default function GivingBackPage() {
   const initiatives = [

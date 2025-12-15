@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SITE_URL } from "@/lib/site";
-import { generateBreadcrumbJsonLd } from "@/lib/seo";
 
 const published = "2025-12-10";
 const modified = "2025-12-10";

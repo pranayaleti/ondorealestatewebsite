@@ -44,11 +44,7 @@ const AffordabilityCalculator: React.FC = () => {
 
   const [results, setResults] = useState<AffordabilityResults | null>(null);
 
-  useEffect(() => {
-    calculateAffordability();
-  }, [formData]);
-
-  const calculateAffordability = () => {
+  const calculateAffordability = React.useCallback(() => {
     const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate } = formData;
     
     const monthlyIncome = annualIncome / 12;
@@ -130,7 +126,11 @@ const AffordabilityCalculator: React.FC = () => {
       backEndRatio,
       recommendedHomePrice
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateAffordability();
+  }, [calculateAffordability]);
 
   const handleInputChange = <K extends keyof AffordabilityData>(field: K, value: AffordabilityData[K]) => {
     setFormData({ ...formData, [field]: value });

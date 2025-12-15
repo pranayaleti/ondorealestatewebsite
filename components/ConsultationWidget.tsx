@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, memo } from 'react';
-import { X, Calendar, Clock, CheckCircle, AlertCircle, Send, Home } from 'lucide-react';
+import { X, CheckCircle, AlertCircle, Send, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -102,8 +102,7 @@ const ConsultationWidget: React.FC = memo(() => {
         budget: '',
         message: ''
       });
-    } catch (error) {
-      console.error('Consultation submission error:', error);
+    } catch (_error) {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

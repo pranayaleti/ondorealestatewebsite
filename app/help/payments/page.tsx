@@ -5,7 +5,7 @@ import { SITE_URL, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL } from "@/lib/site"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { CreditCard, Calendar, AlertCircle, Phone, Mail, Clock } from "lucide-react"
+import { CreditCard, AlertCircle, Phone, Mail, Clock } from "lucide-react"
 
 export default function PaymentQuestionsPage() {
   const paymentMethods = [

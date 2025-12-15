@@ -15,7 +15,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Download,
   FileText,
   Shield,
   Users,
@@ -42,15 +41,6 @@ export default function NotaryPage() {
         .split(",")
         .map((keyword) => keyword.trim())
         .filter(Boolean),
-    []
-  );
-  const serviceAreaSchema = useMemo(
-    () =>
-      getAreaServedSchema({
-        includeAllStates: true,
-        includeAllCities: true,
-        includeZipCodes: false,
-      }),
     []
   );
 

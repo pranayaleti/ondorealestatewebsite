@@ -40,11 +40,7 @@ const CapRateCalculator: React.FC = () => {
   const [results, setResults] = useState<CapRateResults | null>(null);
   const [targetCapRate, setTargetCapRate] = useState(8);
 
-  useEffect(() => {
-    calculateCapRate();
-  }, [formData, targetCapRate]);
-
-  const calculateCapRate = () => {
+  const calculateCapRate = React.useCallback(() => {
     const {
       purchasePrice,
       monthlyRent,
@@ -88,7 +84,11 @@ const CapRateCalculator: React.FC = () => {
       capRate,
       propertyValue
     });
-  };
+  }, [formData, targetCapRate]);
+
+  useEffect(() => {
+    calculateCapRate();
+  }, [calculateCapRate]);
 
   const handleInputChange = (field: keyof CapRateData, value: number) => {
     setFormData({ ...formData, [field]: value });

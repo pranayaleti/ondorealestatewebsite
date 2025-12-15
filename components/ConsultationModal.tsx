@@ -4,11 +4,9 @@ import React, { useMemo, useState, useCallback, memo } from 'react';
 import {
   X,
   Calendar,
-  Clock,
   User,
   Mail,
   Phone,
-  MessageCircle,
   CheckCircle,
   AlertCircle,
   Home,

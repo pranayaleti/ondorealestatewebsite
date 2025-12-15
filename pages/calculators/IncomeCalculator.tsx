@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
@@ -43,11 +43,7 @@ const IncomeCalculator: React.FC = () => {
 
   const [results, setResults] = useState<IncomeResults | null>(null);
 
-  useEffect(() => {
-    calculateRequiredIncome();
-  }, [formData]);
-
-  const calculateRequiredIncome = () => {
+  const calculateRequiredIncome = useCallback(() => {
     const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, monthlyDebts, program, creditScore } = formData;
 
     // Calculate monthly mortgage payment (P&I) using utility function
@@ -86,7 +82,11 @@ const IncomeCalculator: React.FC = () => {
       monthlyPayment: totalHousingPayment,
       debtToIncomeRatio
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateRequiredIncome();
+  }, [calculateRequiredIncome]);
 
   const handleInputChange = <K extends keyof IncomeData>(field: K, value: IncomeData[K]) => {
     const newData = { ...formData, [field]: value } as IncomeData;

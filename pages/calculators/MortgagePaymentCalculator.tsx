@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Download } from 'lucide-react';
 import html2canvas from 'html2canvas';
@@ -59,11 +59,7 @@ const MortgagePaymentCalculator: React.FC = () => {
   const [results, setResults] = useState<PaymentBreakdown | null>(null);
   const [showAmortization, setShowAmortization] = useState(false);
 
-  useEffect(() => {
-    calculateMortgage();
-  }, [formData]);
-
-  const calculateMortgage = () => {
+  const calculateMortgage = useCallback(() => {
     const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, program } = formData;
     
     // Calculate monthly interest rate
@@ -127,7 +123,11 @@ const MortgagePaymentCalculator: React.FC = () => {
       totalInterest,
       amortizationSchedule
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateMortgage();
+  }, [calculateMortgage]);
 
   const handleInputChange = (field: keyof MortgageData, value: any) => {
     const newData = { ...formData, [field]: value };

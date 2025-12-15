@@ -39,14 +39,15 @@ export function PropertyValueDistribution() {
           />
           <Tooltip
             content={({ active, payload }) => {
-              if (active && payload && payload.length) {
+              const revenue = payload?.[0]?.value
+              if (active && typeof revenue === "number") {
                 return (
                   <ChartTooltip>
                     <ChartTooltipContent
                       content={[
                         {
                           label: "Revenue",
-                          value: `$${payload[0].value.toLocaleString()}`,
+                          value: `$${revenue.toLocaleString()}`,
                         },
                       ]}
                     />

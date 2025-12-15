@@ -40,14 +40,17 @@ export function PropertyTypeDistribution() {
           </Pie>
           <Tooltip
             content={({ active, payload }) => {
-              if (active && payload && payload.length) {
+              const item = payload?.[0]
+              if (active && item && item.name && item.value !== undefined && item.value !== null) {
+                const label = typeof item.name === "string" ? item.name : String(item.name)
+                const value = typeof item.value === "number" ? item.value : Number(item.value)
                 return (
                   <ChartTooltip>
                     <ChartTooltipContent
                       content={[
                         {
-                          label: payload[0].name,
-                          value: `${payload[0].value}%`,
+                          label,
+                          value: `${value}%`,
                         },
                       ]}
                     />

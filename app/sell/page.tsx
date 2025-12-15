@@ -7,9 +7,8 @@ import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, Home, DollarSign, Camera, Users, Shield, TrendingUp } from "lucide-react"
+import { CheckCircle, Camera, Users, Shield, TrendingUp } from "lucide-react"
 import Link from "next/link"
 import ConsultationCTA from "@/components/ConsultationCTA"
 
@@ -220,9 +219,9 @@ export default function SellPage() {
                 src="/modern-office-building.png"
                 alt="Professional OnDo Real Estate office building in Utah representing expert home selling services"
                 className="w-full h-full object-cover"
-                title="OnDo Real Estate Professional Office - Utah Home Selling Services"
-                aria-label="Professional OnDo Real Estate office building in Utah representing expert home selling services"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>

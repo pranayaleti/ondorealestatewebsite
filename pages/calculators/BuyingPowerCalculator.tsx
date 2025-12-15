@@ -40,11 +40,7 @@ const BuyingPowerCalculator: React.FC = () => {
 
   const [results, setResults] = useState<BuyingPowerResults | null>(null);
 
-  useEffect(() => {
-    calculateBuyingPower();
-  }, [formData]);
-
-  const calculateBuyingPower = () => {
+  const calculateBuyingPower = React.useCallback(() => {
     const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate, creditScore, program } = formData;
 
     const monthlyIncome = annualIncome / 12;
@@ -118,7 +114,11 @@ const BuyingPowerCalculator: React.FC = () => {
       debtToIncomeRatio,
       recommendedHomePrice
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateBuyingPower();
+  }, [calculateBuyingPower]);
 
   const handleInputChange = <K extends keyof BuyingPowerData>(field: K, value: BuyingPowerData[K]) => {
     setFormData({ ...formData, [field]: value });

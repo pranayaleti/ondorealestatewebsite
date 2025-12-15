@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -39,11 +39,7 @@ const HomeSaleCalculator: React.FC = () => {
 
   const [results, setResults] = useState<HomeSaleResults | null>(null);
 
-  useEffect(() => {
-    calculateHomeSale();
-  }, [formData]);
-
-  const calculateHomeSale = () => {
+  const calculateHomeSale = useCallback(() => {
     const { homeValue, mortgageBalance, realtorCommission, closingCosts, repairs, movingCosts, capitalGainsTax } = formData;
     
     // Calculate realtor commission
@@ -69,7 +65,11 @@ const HomeSaleCalculator: React.FC = () => {
       profit,
       basisUsed: costBasis
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateHomeSale();
+  }, [calculateHomeSale]);
 
   const handleInputChange = (field: keyof HomeSaleData, value: number) => {
     setFormData({ ...formData, [field]: value });

@@ -28,7 +28,17 @@ import {
 } from "@/components/ui/dialog"
 
 // Mock data for documents
-const documents = [
+type DocumentItem = {
+  id: number
+  name: string
+  type: string
+  size: string
+  uploadedBy: string
+  uploadedAt: string
+  category: string
+}
+
+const documents: DocumentItem[] = [
   {
     id: 1,
     name: "Lease Agreement.pdf",
@@ -79,7 +89,7 @@ const documents = [
 export default function TenantDocumentsPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [viewDocumentDialog, setViewDocumentDialog] = useState(false)
-  const [selectedDocument, setSelectedDocument] = useState<any>(null)
+  const [selectedDocument, setSelectedDocument] = useState<DocumentItem | null>(null)
 
   const filteredDocuments = documents.filter(
     (doc) =>
@@ -87,7 +97,7 @@ export default function TenantDocumentsPage() {
       doc.category.toLowerCase().includes(searchQuery.toLowerCase()),
   )
 
-  const handleViewDocument = (document: any) => {
+  const handleViewDocument = (document: DocumentItem) => {
     setSelectedDocument(document)
     setViewDocumentDialog(true)
   }

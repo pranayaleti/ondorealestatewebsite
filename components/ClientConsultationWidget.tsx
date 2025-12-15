@@ -118,9 +118,6 @@ export default function ClientConsultationWidget() {
         return
       }
 
-      // In a real app, this would send to your backend
-      console.log('Consultation request:', form)
-
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
 
@@ -136,7 +133,7 @@ export default function ClientConsultationWidget() {
       // Mark as submitted to prevent auto-show
       localStorage.setItem('consultation-widget-dismissed', 'true')
 
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: "Error",
         description: "Failed to submit consultation request. Please try again.",

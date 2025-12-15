@@ -1,10 +1,7 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import DashboardShell from "@/components/dashboard/dashboard-shell";
 import DashboardHeader from "@/components/dashboard/dashboard-header";
-import { PropertyEditForm } from "@/components/dashboard/property-edit-form";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Loading from "@/components/loading";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import SEO from "@/components/seo";
 import { generateBreadcrumbJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";

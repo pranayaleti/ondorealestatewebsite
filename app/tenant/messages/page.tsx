@@ -34,7 +34,27 @@ import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 // Mock data for messages
-const messages = [
+type ConversationEntry = {
+  id: number
+  sender: string
+  avatar: string
+  content: string
+  timestamp: string
+  isOwn: boolean
+}
+
+type MessageThread = {
+  id: number
+  sender: string
+  avatar: string
+  subject: string
+  preview: string
+  date: string
+  read: boolean
+  conversation: ConversationEntry[]
+}
+
+const messages: MessageThread[] = [
   {
     id: 1,
     sender: "Property Manager",
@@ -134,7 +154,7 @@ const messages = [
 
 export default function TenantMessagesPage() {
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedMessage, setSelectedMessage] = useState<any>(null)
+  const [selectedMessage, setSelectedMessage] = useState<MessageThread | null>(null)
   const [messageContent, setMessageContent] = useState("")
   const [composeDialogOpen, setComposeDialogOpen] = useState(false)
   const [newMessageSubject, setNewMessageSubject] = useState("")
@@ -166,9 +186,6 @@ export default function TenantMessagesPage() {
   const handleSendMessage = () => {
     if (!messageContent.trim()) return
 
-    // In a real app, you would send this to your API
-    console.log("Sending message:", messageContent)
-
     // For demo purposes, we'll just add it to the conversation locally
     if (selectedMessage) {
       const updatedMessages = messages.map((msg) => {
@@ -193,7 +210,7 @@ export default function TenantMessagesPage() {
 
       // Update the selected message with the new conversation
       const updatedSelectedMessage = updatedMessages.find((msg) => msg.id === selectedMessage.id)
-      setSelectedMessage(updatedSelectedMessage)
+      setSelectedMessage(updatedSelectedMessage ?? null)
 
       // Clear the message input
       setMessageContent("")
@@ -202,13 +219,6 @@ export default function TenantMessagesPage() {
 
   const handleComposeMessage = () => {
     if (!newMessageSubject.trim() || !newMessageContent.trim() || !newMessageRecipient) return
-
-    // In a real app, you would send this to your API
-    console.log("Composing message:", {
-      recipient: newMessageRecipient,
-      subject: newMessageSubject,
-      content: newMessageContent,
-    })
 
     // Close the dialog and reset form
     setComposeDialogOpen(false)
@@ -475,7 +485,7 @@ export default function TenantMessagesPage() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                {selectedMessage.conversation.map((msg: any) => (
+                {selectedMessage.conversation.map((msg) => (
                   <div key={msg.id} className={`flex ${msg.isOwn ? "justify-end" : "justify-start"}`}>
                     <div
                       className={`max-w-[80%] p-3 rounded-lg ${

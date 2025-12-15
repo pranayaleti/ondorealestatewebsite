@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -39,11 +39,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
 
   const [results, setResults] = useState<FiftyPercentRuleResults | null>(null);
 
-  useEffect(() => {
-    calculateFiftyPercentRule();
-  }, [formData]);
-
-  const calculateFiftyPercentRule = () => {
+  const calculateFiftyPercentRule = useCallback(() => {
     const {
       monthlyRent,
       annualRent,
@@ -84,7 +80,11 @@ const FiftyPercentRuleCalculator: React.FC = () => {
       meetsRule,
       expenseRatio
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateFiftyPercentRule();
+  }, [calculateFiftyPercentRule]);
 
   const handleInputChange = (field: keyof FiftyPercentRuleData, value: number) => {
     setFormData({ ...formData, [field]: value });

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { calculateMonthlyPI } from '@/lib/mortgage-utils';
@@ -63,11 +63,7 @@ const ROICalculator: React.FC = () => {
 
   const [results, setResults] = useState<ROIResults | null>(null);
 
-  useEffect(() => {
-    calculateROI();
-  }, [formData]);
-
-  const calculateROI = () => {
+  const calculateROI = useCallback(() => {
     const {
       purchasePrice,
       downPayment,
@@ -163,7 +159,11 @@ const ROICalculator: React.FC = () => {
       totalROI,
       cashOnCashReturn
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    calculateROI();
+  }, [calculateROI]);
 
   const handleInputChange = (field: keyof ROIData, value: number) => {
     const newData = { ...formData, [field]: value };

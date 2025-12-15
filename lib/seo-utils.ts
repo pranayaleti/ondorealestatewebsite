@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SITE_NAME, SITE_URL, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_SOCIALS, SITE_ADDRESS_OBJ, SITE_HOURS } from "./site"
+import { SITE_NAME, SITE_URL, SITE_PHONE, SITE_EMAILS, SITE_SOCIALS, SITE_ADDRESS_OBJ, SITE_HOURS } from "./site"
 
 // Generate structured data for different page types
 export const generateStructuredData = {

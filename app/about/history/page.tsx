@@ -2,10 +2,10 @@ import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Calendar, Users, TrendingUp, Award, Home, Building } from "lucide-react"
+import { Users, TrendingUp, Award, Home, Building } from "lucide-react"
 
 export default function HistoryPage() {
   const milestones = [
