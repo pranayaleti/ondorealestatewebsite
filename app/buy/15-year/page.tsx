@@ -32,7 +32,7 @@ export default function FifteenYearPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Why Choose a 15-Year Mortgage?</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/70">
                 Pay off your home in half the time with a 15-year mortgage. While monthly payments are higher, you'll save significantly on interest and build equity faster.
               </p>
             </div>
@@ -84,7 +84,7 @@ export default function FifteenYearPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3">15-Year Mortgage</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Higher monthly payment</li>
                     <li>• Less interest paid overall</li>
                     <li>• Build equity faster</li>
@@ -94,7 +94,7 @@ export default function FifteenYearPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3">30-Year Mortgage</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Lower monthly payment</li>
                     <li>• More interest paid over time</li>
                     <li>• More cash flow flexibility</li>

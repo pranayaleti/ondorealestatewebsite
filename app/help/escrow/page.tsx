@@ -87,7 +87,7 @@ export default function EscrowPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">What is Escrow?</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Escrow is a crucial part of the real estate transaction process that protects both buyers and sellers by ensuring all conditions are met before funds and property change hands.
               </p>
             </div>
@@ -122,25 +122,25 @@ export default function EscrowPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Earnest Money</h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground">
+                  <p className="text-foreground/70 dark:text-foreground/70">
                     A deposit made by the buyer to show good faith and commitment to the purchase. Typically 1-3% of the purchase price.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Contingencies</h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground">
+                  <p className="text-foreground/70 dark:text-foreground/70">
                     Conditions that must be met for the sale to proceed, such as inspection, appraisal, and loan approval.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Title Insurance</h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground">
+                  <p className="text-foreground/70 dark:text-foreground/70">
                     Protection against title defects that could affect ownership rights to the property.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Closing Costs</h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground">
+                  <p className="text-foreground/70 dark:text-foreground/70">
                     Various fees and expenses associated with finalizing the real estate transaction.
                   </p>
                 </div>
@@ -163,7 +163,7 @@ export default function EscrowPage() {
 
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Need Help with Your Transaction?</h3>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                 Our experienced team can guide you through every step of the escrow process.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

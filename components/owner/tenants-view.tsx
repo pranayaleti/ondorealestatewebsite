@@ -158,7 +158,7 @@ export function TenantsView() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
           <Input
             placeholder="Search tenants..."
             className="pl-8"
@@ -186,9 +186,9 @@ export function TenantsView() {
           {filteredTenants.length === 0 ? (
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <User className="h-12 w-12 text-muted-foreground mb-4" />
+                <User className="h-12 w-12 text-foreground/70 mb-4" />
                 <h3 className="text-lg font-medium mb-2">No tenants found</h3>
-                <p className="text-muted-foreground text-center mb-6">
+                <p className="text-foreground/70 text-center mb-6">
                   {searchTerm ? "Try adjusting your search or filters" : "Add your first tenant to get started"}
                 </p>
                 <AddTenantDialog onAddTenant={handleAddTenant} />
@@ -224,11 +224,11 @@ export function TenantsView() {
                             </Avatar>
                             <div>
                               <div className="font-medium">{tenant.name}</div>
-                              <div className="text-sm text-muted-foreground flex items-center">
+                              <div className="text-sm text-foreground/70 flex items-center">
                                 <Mail className="h-3 w-3 mr-1" />
                                 {tenant.email}
                               </div>
-                              <div className="text-sm text-muted-foreground flex items-center">
+                              <div className="text-sm text-foreground/70 flex items-center">
                                 <Phone className="h-3 w-3 mr-1" />
                                 {tenant.phone}
                               </div>
@@ -237,14 +237,14 @@ export function TenantsView() {
                         </TableCell>
                         <TableCell>
                           <div className="font-medium">{tenant.property}</div>
-                          <div className="text-sm text-muted-foreground flex items-center">
+                          <div className="text-sm text-foreground/70 flex items-center">
                             <Building className="h-3 w-3 mr-1" />
                             {tenant.unit}
                           </div>
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-1 text-muted-foreground" />
+                            <Calendar className="h-4 w-4 mr-1 text-foreground/70" />
                             <span>
                               {new Date(tenant.leaseStart).toLocaleDateString()} -{" "}
                               {new Date(tenant.leaseEnd).toLocaleDateString()}

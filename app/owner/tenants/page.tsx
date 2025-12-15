@@ -50,7 +50,7 @@ export default function TenantsPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Tenants</h1>
-        <p className="text-muted-foreground">Manage your tenants and leases</p>
+        <p className="text-foreground/70">Manage your tenants and leases</p>
       </div>
 
       <TenantsView />

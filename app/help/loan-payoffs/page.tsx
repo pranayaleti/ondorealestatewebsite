@@ -110,7 +110,7 @@ export default function LoanPayoffsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Pay Off Your Loan</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Whether you're ready to pay off your entire loan or want to make extra payments, we're here to help you through the process.
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function LoanPayoffsPage() {
                       <div className="space-y-4">
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300 mb-2">Benefits:</p>
-                          <ul className="text-sm text-muted-foreground dark:text-muted-foreground space-y-1">
+                          <ul className="text-sm text-foreground/70 dark:text-foreground/70 space-y-1">
                             {method.benefits.map((benefit, idx) => (
                               <li key={idx}>• {benefit}</li>
                             ))}
@@ -141,7 +141,7 @@ export default function LoanPayoffsPage() {
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300 mb-2">Considerations:</p>
-                          <ul className="text-sm text-muted-foreground dark:text-muted-foreground space-y-1">
+                          <ul className="text-sm text-foreground/70 dark:text-foreground/70 space-y-1">
                             {method.considerations.map((consideration, idx) => (
                               <li key={idx}>• {consideration}</li>
                             ))}
@@ -210,7 +210,7 @@ export default function LoanPayoffsPage() {
 
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Ready to Pay Off Your Loan?</h3>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                 Get a payoff quote or speak with our team about your options.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

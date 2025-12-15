@@ -34,7 +34,7 @@ export function FeatureUnavailable({
           <CardTitle className="text-xl">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent className="text-muted-foreground text-center">
+        <CardContent className="text-foreground/70 text-center">
           Please check back later or contact support if you need immediate assistance.
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row gap-2 justify-center">

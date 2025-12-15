@@ -47,7 +47,7 @@ export default function TenantProfile() {
       />
       <div>
         <h1 className="text-3xl font-bold">My Profile</h1>
-        <p className="text-muted-foreground">Manage your personal information and preferences</p>
+        <p className="text-foreground/70">Manage your personal information and preferences</p>
       </div>
 
       <Tabs defaultValue="personal">
@@ -172,7 +172,7 @@ export default function TenantProfile() {
                 </div>
               </div>
 
-              <div className="pt-2 text-sm text-muted-foreground">
+              <div className="pt-2 text-sm text-foreground/70">
                 * Address information is linked to your lease and cannot be changed here.
               </div>
             </CardContent>

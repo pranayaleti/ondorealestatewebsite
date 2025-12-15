@@ -246,7 +246,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Purchase Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.purchasePrice}
@@ -263,7 +263,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
@@ -280,7 +280,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Loan Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.loanAmount}
@@ -328,7 +328,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -345,7 +345,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Annual Rent (optional, leave 0 to use monthly × 12)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualRent}
@@ -362,7 +362,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -379,7 +379,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Annual Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -396,7 +396,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Annual Maintenance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.maintenance}
@@ -413,7 +413,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Property Management (annual $ or % as decimal, e.g., 0.10 for 10%)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     step="0.01"
@@ -446,7 +446,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Other Annual Expenses
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.otherExpenses}
@@ -463,7 +463,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Closing Costs
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.closingCosts}
@@ -480,7 +480,7 @@ const CashOnCashCalculator: React.FC = () => {
                   Initial Repairs/Rehab
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.repairs}
@@ -507,7 +507,7 @@ const CashOnCashCalculator: React.FC = () => {
                         <p className={`text-4xl font-bold ${getReturnColor(results.cashOnCashReturn)}`}>
                           {formatPercent(results.cashOnCashReturn)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Annual cash flow ÷ Total cash invested
                         </p>
                       </div>
@@ -515,13 +515,13 @@ const CashOnCashCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Annual Cash Flow</p>
+                        <p className="text-sm text-foreground/70 mb-1">Annual Cash Flow</p>
                         <p className={`text-lg font-semibold ${results.annualCashFlow >= 0 ? 'text-primary' : 'text-destructive'}`}>
                           {formatCurrency(results.annualCashFlow)}
                         </p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Monthly Cash Flow</p>
+                        <p className="text-sm text-foreground/70 mb-1">Monthly Cash Flow</p>
                         <p className={`text-lg font-semibold ${results.monthlyCashFlow >= 0 ? 'text-primary' : 'text-destructive'}`}>
                           {formatCurrency(results.monthlyCashFlow)}
                         </p>
@@ -535,20 +535,20 @@ const CashOnCashCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Income & Expenses</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Rental Income:</span>
+                      <span className="text-foreground/70">Annual Rental Income:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.annualRentalIncome)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Operating Expenses:</span>
+                      <span className="text-foreground/70">Operating Expenses:</span>
                       <span className="font-semibold text-destructive">{formatCurrency(results.annualOperatingExpenses)}</span>
                     </div>
                     <hr className="my-3" />
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Net Operating Income (NOI):</span>
+                      <span className="text-foreground/70">Net Operating Income (NOI):</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.netOperatingIncome)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Debt Service:</span>
+                      <span className="text-foreground/70">Annual Debt Service:</span>
                       <span className="font-semibold text-destructive">{formatCurrency(results.annualDebtService)}</span>
                     </div>
                     <hr className="my-3" />
@@ -566,19 +566,19 @@ const CashOnCashCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Investment Summary</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total Cash Invested:</span>
+                      <span className="text-foreground/70">Total Cash Invested:</span>
                       <span className="font-semibold">{formatCurrency(results.totalCashInvested)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">• Down Payment:</span>
+                      <span className="text-foreground/70">• Down Payment:</span>
                       <span className="text-sm">{formatCurrency(formData.downPayment)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">• Closing Costs:</span>
+                      <span className="text-foreground/70">• Closing Costs:</span>
                       <span className="text-sm">{formatCurrency(formData.closingCosts)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">• Repairs/Rehab:</span>
+                      <span className="text-foreground/70">• Repairs/Rehab:</span>
                       <span className="text-sm">{formatCurrency(formData.repairs)}</span>
                     </div>
                   </div>
@@ -589,11 +589,11 @@ const CashOnCashCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Additional Metrics</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Cap Rate:</span>
+                      <span className="text-foreground/70">Cap Rate:</span>
                       <span className="font-semibold text-primary">{formatPercent(results.capRate)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Gross Rent Multiplier:</span>
+                      <span className="text-foreground/70">Gross Rent Multiplier:</span>
                       <span className="font-semibold">{results.grossRentMultiplier.toFixed(2)}</span>
                     </div>
                   </div>
@@ -602,7 +602,7 @@ const CashOnCashCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.cashOnCashReturn >= 10 ? (
                       <p className="text-primary font-medium">✓ Excellent return! This property shows strong cash flow potential.</p>
                     ) : results.cashOnCashReturn >= 6 ? (
@@ -626,7 +626,7 @@ const CashOnCashCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Cash-on-Cash Return</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Measures:</h3>
               <ul className="space-y-1 list-disc list-inside">

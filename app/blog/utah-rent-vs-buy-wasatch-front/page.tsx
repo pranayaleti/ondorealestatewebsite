@@ -62,7 +62,7 @@ export default function UtahRentVsBuy() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               The Wasatch Front isn’t one market. Salt Lake urban cores, Silicon Slopes (Lehi/Draper), and Ogden value plays have different rent-to-price ratios, taxes, and maintenance realities. Here’s how I frame the decision for locals.
             </p>
 

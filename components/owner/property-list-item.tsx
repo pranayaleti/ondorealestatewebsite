@@ -32,7 +32,7 @@ export function PropertyListItem({ property, getPropertyTypeIcon }: PropertyList
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
               <div>
                 <h3 className="font-semibold text-lg">{property.name}</h3>
-                <div className="flex items-center text-muted-foreground text-sm">
+                <div className="flex items-center text-foreground/70 text-sm">
                   <MapPin className="h-3.5 w-3.5 mr-1" />
                   <span>
                     {property.address}, {property.city}, {property.state} {property.zipCode}
@@ -47,7 +47,7 @@ export function PropertyListItem({ property, getPropertyTypeIcon }: PropertyList
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
               <div>
-                <div className="text-muted-foreground text-sm">Occupancy</div>
+                <div className="text-foreground/70 text-sm">Occupancy</div>
                 <div className="mt-1">
                   <div className="flex justify-between text-sm mb-1">
                     <span className="font-medium">{property.occupancy}</span>
@@ -58,7 +58,7 @@ export function PropertyListItem({ property, getPropertyTypeIcon }: PropertyList
               </div>
 
               <div>
-                <div className="text-muted-foreground text-sm">Monthly Income</div>
+                <div className="text-foreground/70 text-sm">Monthly Income</div>
                 <div className="font-medium flex items-center mt-1">
                   <DollarSign className="h-3.5 w-3.5 mr-1" />
                   {property.monthlyIncome.toLocaleString()}
@@ -66,14 +66,14 @@ export function PropertyListItem({ property, getPropertyTypeIcon }: PropertyList
               </div>
 
               <div>
-                <div className="text-muted-foreground text-sm">Units</div>
+                <div className="text-foreground/70 text-sm">Units</div>
                 <div className="font-medium mt-1">
                   {property.units} {property.units > 1 ? "units" : "unit"}
                 </div>
               </div>
 
               <div>
-                <div className="text-muted-foreground text-sm">Lease Ends</div>
+                <div className="text-foreground/70 text-sm">Lease Ends</div>
                 <div className="font-medium flex items-center mt-1">
                   <Calendar className="h-3.5 w-3.5 mr-1" />
                   {property.leaseEnd ? new Date(property.leaseEnd).toLocaleDateString() : "N/A"}

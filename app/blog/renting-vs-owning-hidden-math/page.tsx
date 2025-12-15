@@ -62,7 +62,7 @@ export default function RentingVsOwningHiddenMath() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               As both a full-stack developer and landlord, I model rent-vs-own the way I model systems: identify inputs, define flows, stress-test failure modes. Here is the practical math I use for clients along the Wasatch Front.
             </p>
 

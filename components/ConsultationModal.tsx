@@ -227,7 +227,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = memo(({ isOpen, onCl
               <h2 className="text-2xl font-bold text-card-foreground">
                 {isNotary ? 'Book ONDO Notary' : 'View Available Times & Book Now'}
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/70">
                 {isNotary
                   ? 'Remote online or Utah County mobile/in-office notarization'
                   : '30-minute expert consultation'}
@@ -238,7 +238,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = memo(({ isOpen, onCl
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-foreground/70 hover:text-foreground"
           >
             <X className="h-6 w-6" />
           </Button>
@@ -427,7 +427,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = memo(({ isOpen, onCl
             <h3 className="font-semibold text-card-foreground mb-3">
               {isNotary ? 'What you get with ONDO Notary:' : "What you'll get from this consultation:"}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-foreground/70">
               {isNotary ? (
                 <>
                   <div className="flex items-center">
@@ -502,7 +502,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = memo(({ isOpen, onCl
           </div>
 
           {/* Contact Info */}
-          <div className="mt-6 text-center text-sm text-muted-foreground">
+          <div className="mt-6 text-center text-sm text-foreground/70">
             <p>
               {isNotary ? 'For urgent notarization, call or text: ' : 'Or call us directly: '}
               <a href={`tel:${SITE_PHONE}`} className="text-primary font-semibold">{SITE_PHONE}</a>

@@ -9,11 +9,11 @@ export function DashboardOverview() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Properties</CardTitle>
-          <Building className="h-4 w-4 text-muted-foreground" />
+          <Building className="h-4 w-4 text-foreground/70" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">342</div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-foreground/70">
             <span className="text-emerald-500 flex items-center">
               +8% <ArrowUpIcon className="h-4 w-4 ml-1" />
             </span>{" "}
@@ -24,11 +24,11 @@ export function DashboardOverview() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Occupancy Rate</CardTitle>
-          <Home className="h-4 w-4 text-muted-foreground" />
+          <Home className="h-4 w-4 text-foreground/70" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">92.4%</div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-foreground/70">
             <span className="text-emerald-500 flex items-center">
               +3.2% <ArrowUpIcon className="h-4 w-4 ml-1" />
             </span>{" "}
@@ -39,11 +39,11 @@ export function DashboardOverview() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Rent Collection</CardTitle>
-          <DollarSign className="h-4 w-4 text-muted-foreground" />
+          <DollarSign className="h-4 w-4 text-foreground/70" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">$487,293</div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-foreground/70">
             <span className="text-emerald-500 flex items-center">
               +5.4% <ArrowUpIcon className="h-4 w-4 ml-1" />
             </span>{" "}
@@ -54,11 +54,11 @@ export function DashboardOverview() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Maintenance Requests</CardTitle>
-          <Wrench className="h-4 w-4 text-muted-foreground" />
+          <Wrench className="h-4 w-4 text-foreground/70" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">48</div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-foreground/70">
             <span className="text-rose-500 flex items-center">
               +12% <ArrowUpIcon className="h-4 w-4 ml-1" />
             </span>{" "}

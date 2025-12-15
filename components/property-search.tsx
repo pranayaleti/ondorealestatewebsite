@@ -42,7 +42,7 @@ export function PropertySearch({ onSearch }: PropertySearchProps) {
       <Input
         type="text"
         placeholder="Search properties..."
-        className="w-full px-4 py-2 rounded-l-md border border-input dark:border-border focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background bg-background dark:bg-card text-foreground dark:text-foreground placeholder:text-muted-foreground dark:placeholder:text-muted-foreground"
+        className="w-full px-4 py-2 rounded-l-md border border-input dark:border-border focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background bg-background dark:bg-card text-foreground dark:text-foreground placeholder:text-foreground/70 dark:placeholder:text-foreground/70"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />

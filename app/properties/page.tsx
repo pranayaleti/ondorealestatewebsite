@@ -355,7 +355,7 @@
 //             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
 //               <div>
 //                 <h2 className="text-3xl font-bold tracking-tight">Available Properties</h2>
-//                 <p className="text-muted-foreground mt-2">{properties.length} properties available for rent</p>
+//                 <p className="text-foreground/70 mt-2">{properties.length} properties available for rent</p>
 //               </div>
 //               <div className="flex gap-2">
 //                 <PropertyFilter onFilterChange={handleFilterChange} initialFilters={filters} />
@@ -411,7 +411,7 @@
 //                       <div className="flex justify-between items-center mb-2">
 //                         <h3 className="font-semibold text-lg">{property.title}</h3>
 //                       </div>
-//                       <p className="text-muted-foreground text-sm mb-2">{property.address}</p>
+//                       <p className="text-foreground/70 text-sm mb-2">{property.address}</p>
 //                       <div className="flex items-center gap-4 text-sm">
 //                         <span className="flex items-center gap-1">
 //                           <Home className="h-4 w-4" />{" "}
@@ -436,7 +436,7 @@
 //                 <div className="max-w-md w-full">
 //                   <div className="bg-card p-6 rounded-lg shadow-sm border mb-6 dark:bg-muted dark:border-border">
 //                     <h3 className="text-lg font-semibold mb-4 dark:text-foreground">No properties found</h3>
-//                     <p className="text-muted-foreground mb-4 dark:text-muted-foreground">
+//                     <p className="text-foreground/70 mb-4 dark:text-foreground/70">
 //                       We couldn't find any properties matching your search criteria.
 //                     </p>
 //                     <Button
@@ -808,7 +808,7 @@ export default function PropertiesPage() {
                 <h2 id="properties-section-heading" className="text-3xl font-bold tracking-tight">
                   Available Properties
                 </h2>
-                <p className="text-muted-foreground mt-2" aria-live="polite" aria-atomic="true">
+                <p className="text-foreground/70 mt-2" aria-live="polite" aria-atomic="true">
                   {loading
                     ? 'Loading...'
                     : `${properties.length} properties available for rent`}
@@ -874,8 +874,8 @@ export default function PropertiesPage() {
                   <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary/20 border-t-primary"></div>
                   <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary/30 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
                 </div>
-                <p className="text-lg text-muted-foreground mt-4">Finding the perfect properties for you...</p>
-                <p className="text-sm text-muted-foreground/70 mt-2">This may take a moment</p>
+                <p className="text-lg text-foreground/70 mt-4">Finding the perfect properties for you...</p>
+                <p className="text-sm text-foreground/70/70 mt-2">This may take a moment</p>
               </div>
             ) : error ? (
               <div className="flex flex-col items-center justify-center py-12">
@@ -889,7 +889,7 @@ export default function PropertiesPage() {
                       </div>
                       <h3 className="text-lg font-semibold text-destructive">Unable to Load Properties</h3>
                     </div>
-                    <p className="text-muted-foreground mb-6">{error}</p>
+                    <p className="text-foreground/70 mb-6">{error}</p>
                     <div className="flex gap-3">
                       <Button
                         onClick={handleRetry}
@@ -941,7 +941,7 @@ export default function PropertiesPage() {
                           {property.title}
                         </h3>
                       </div>
-                      <p className="text-muted-foreground text-sm mb-2">
+                      <p className="text-foreground/70 text-sm mb-2">
                         {property.address}
                       </p>
                       <div className="flex items-center gap-4 text-sm" role="list" aria-label="Property specifications">
@@ -977,7 +977,7 @@ export default function PropertiesPage() {
                     <h3 className="text-lg font-semibold mb-4 dark:text-foreground">
                       No properties found
                     </h3>
-                    <p className="text-muted-foreground mb-4 dark:text-muted-foreground">
+                    <p className="text-foreground/70 mb-4 dark:text-foreground/70">
                       We couldn't find any properties matching your search
                       criteria.
                     </p>

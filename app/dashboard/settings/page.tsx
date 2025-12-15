@@ -67,7 +67,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">New Lead Notifications</p>
-                        <p className="text-sm text-muted-foreground">Receive an email when a new lead is created</p>
+                        <p className="text-sm text-foreground/70">Receive an email when a new lead is created</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="new-lead" className="mr-2" defaultChecked />
@@ -77,7 +77,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">Lead Status Updates</p>
-                        <p className="text-sm text-muted-foreground">Receive an email when a lead's status changes</p>
+                        <p className="text-sm text-foreground/70">Receive an email when a lead's status changes</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="lead-status" className="mr-2" defaultChecked />
@@ -87,7 +87,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">Property Updates</p>
-                        <p className="text-sm text-muted-foreground">Receive an email when a property is updated</p>
+                        <p className="text-sm text-foreground/70">Receive an email when a property is updated</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="property-updates" className="mr-2" />
@@ -103,7 +103,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">Urgent Lead Notifications</p>
-                        <p className="text-sm text-muted-foreground">Receive a text message for high-priority leads</p>
+                        <p className="text-sm text-foreground/70">Receive a text message for high-priority leads</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="urgent-lead" className="mr-2" />
@@ -113,7 +113,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">Appointment Reminders</p>
-                        <p className="text-sm text-muted-foreground">Receive a text message reminder before appointments</p>
+                        <p className="text-sm text-foreground/70">Receive a text message reminder before appointments</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="appointment-reminder" className="mr-2" defaultChecked />
@@ -159,7 +159,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">Compact View</p>
-                        <p className="text-sm text-muted-foreground">Display more information in less space</p>
+                        <p className="text-sm text-foreground/70">Display more information in less space</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="compact-view" className="mr-2" />
@@ -169,7 +169,7 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">Show Welcome Message</p>
-                        <p className="text-sm text-muted-foreground">Display a welcome message on the dashboard</p>
+                        <p className="text-sm text-foreground/70">Display a welcome message on the dashboard</p>
                       </div>
                       <div className="flex items-center">
                         <input type="checkbox" id="welcome-message" className="mr-2" defaultChecked />
@@ -203,7 +203,7 @@ export default function SettingsPage() {
                         </div>
                         <div>
                           <p className="font-medium">Facebook</p>
-                          <p className="text-sm text-muted-foreground">Connected on Apr 12, 2023</p>
+                          <p className="text-sm text-foreground/70">Connected on Apr 12, 2023</p>
                         </div>
                       </div>
                       <button className="px-3 py-1 bg-red-100 text-destructive rounded-md text-sm">Disconnect</button>
@@ -218,7 +218,7 @@ export default function SettingsPage() {
                         </div>
                         <div>
                           <p className="font-medium">Twitter</p>
-                          <p className="text-sm text-muted-foreground">Connected on Mar 4, 2023</p>
+                          <p className="text-sm text-foreground/70">Connected on Mar 4, 2023</p>
                         </div>
                       </div>
                       <button className="px-3 py-1 bg-red-100 text-destructive rounded-md text-sm">Disconnect</button>
@@ -242,7 +242,7 @@ export default function SettingsPage() {
                         </div>
                         <div>
                           <p className="font-medium">Google</p>
-                          <p className="text-sm text-muted-foreground">Connect your Google account</p>
+                          <p className="text-sm text-foreground/70">Connect your Google account</p>
                         </div>
                       </div>
                       <button className="px-3 py-1 bg-primary text-foreground rounded-md text-sm">Connect</button>
@@ -257,7 +257,7 @@ export default function SettingsPage() {
                         </div>
                         <div>
                           <p className="font-medium">LinkedIn</p>
-                          <p className="text-sm text-muted-foreground">Connect your LinkedIn account</p>
+                          <p className="text-sm text-foreground/70">Connect your LinkedIn account</p>
                         </div>
                       </div>
                       <button className="px-3 py-1 bg-primary text-foreground rounded-md text-sm">Connect</button>

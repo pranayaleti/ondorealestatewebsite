@@ -149,7 +149,7 @@ export default function LoginPage() {
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground/70 hover:text-foreground"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
@@ -214,7 +214,7 @@ export default function LoginPage() {
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground/70 hover:text-foreground"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
@@ -244,7 +244,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-6 text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/70">
             Don&apos;t have an account?{" "}
             <Link href="/contact" className="text-primary hover:underline">
               Contact us

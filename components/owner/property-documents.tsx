@@ -156,7 +156,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
       case "spreadsheet":
         return <FileSpreadsheet className="h-6 w-6 text-green-500" />
       default:
-        return <File className="h-6 w-6 text-muted-foreground" />
+        return <File className="h-6 w-6 text-foreground/70" />
     }
   }
 
@@ -174,11 +174,11 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h3 className="text-lg font-medium">Property Documents</h3>
-          <p className="text-sm text-muted-foreground">Store and manage important property documents</p>
+          <p className="text-sm text-foreground/70">Store and manage important property documents</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
             <Input
               placeholder="Search documents..."
               className="pl-8 w-[200px]"
@@ -208,9 +208,9 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
         {filteredDocuments.length === 0 ? (
           <Card className="col-span-full">
             <CardContent className="flex flex-col items-center justify-center py-12">
-              <FileText className="h-12 w-12 text-muted-foreground mb-4" />
+              <FileText className="h-12 w-12 text-foreground/70 mb-4" />
               <h3 className="text-lg font-medium mb-2">No documents found</h3>
-              <p className="text-muted-foreground text-center mb-6">
+              <p className="text-foreground/70 text-center mb-6">
                 {searchTerm || categoryFilter !== "all"
                   ? "Try adjusting your search or filters"
                   : "Upload your first document to get started"}
@@ -226,7 +226,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
                   {getFileIcon(document.type)}
                   <div className="ml-3 flex-1 overflow-hidden">
                     <h4 className="font-medium truncate">{document.name}</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground/70">
                       {document.size} • {new Date(document.uploadedAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -264,7 +264,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
                     <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 capitalize">
                       {document.category}
                     </span>
-                    <span className="text-xs text-muted-foreground">Uploaded by {document.uploadedBy}</span>
+                    <span className="text-xs text-foreground/70">Uploaded by {document.uploadedBy}</span>
                   </div>
                 </div>
               </CardContent>
@@ -320,9 +320,9 @@ function AddDocumentDialog({ onAddDocument }: { onAddDocument: (data: any) => vo
             <div className="grid gap-2">
               <Label htmlFor="file">File</Label>
               <div className="border-2 border-dashed rounded-md p-6 flex flex-col items-center justify-center">
-                <Upload className="h-8 w-8 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground mb-1">Drag and drop your file here</p>
-                <p className="text-xs text-muted-foreground mb-4">PDF, JPG, PNG, or Excel files up to 10MB</p>
+                <Upload className="h-8 w-8 text-foreground/70 mb-2" />
+                <p className="text-sm text-foreground/70 mb-1">Drag and drop your file here</p>
+                <p className="text-xs text-foreground/70 mb-4">PDF, JPG, PNG, or Excel files up to 10MB</p>
                 <Button type="button" variant="secondary" size="sm">
                   Browse Files
                 </Button>

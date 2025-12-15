@@ -199,7 +199,7 @@ export function ProfileView() {
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name</Label>
                       <div className="relative">
-                        <User className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <User className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                         <Input
                           id="name"
                           name="name"
@@ -213,7 +213,7 @@ export function ProfileView() {
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address</Label>
                       <div className="relative">
-                        <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                         <Input
                           id="email"
                           name="email"
@@ -228,7 +228,7 @@ export function ProfileView() {
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
                       <div className="relative">
-                        <Phone className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Phone className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                         <Input
                           id="phone"
                           name="phone"
@@ -244,7 +244,7 @@ export function ProfileView() {
                   <div className="space-y-2">
                     <Label htmlFor="company">Company</Label>
                     <div className="relative">
-                      <Building className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Building className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                       <Input
                         id="company"
                         name="company"
@@ -299,7 +299,7 @@ export function ProfileView() {
                 <div className="space-y-2">
                   <Label htmlFor="currentPassword">Current Password</Label>
                   <div className="relative">
-                    <Key className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Key className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                     <Input
                       id="currentPassword"
                       name="currentPassword"
@@ -314,7 +314,7 @@ export function ProfileView() {
                 <div className="space-y-2">
                   <Label htmlFor="newPassword">New Password</Label>
                   <div className="relative">
-                    <Shield className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Shield className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                     <Input
                       id="newPassword"
                       name="newPassword"
@@ -329,7 +329,7 @@ export function ProfileView() {
                 <div className="space-y-2">
                   <Label htmlFor="confirmPassword">Confirm New Password</Label>
                   <div className="relative">
-                    <Shield className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Shield className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                     <Input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -359,7 +359,7 @@ export function ProfileView() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <p className="text-sm font-medium leading-none">Two-Factor Authentication</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground/70">
                     Add an extra layer of security to your account by enabling two-factor authentication.
                   </p>
                 </div>
@@ -406,7 +406,7 @@ export function ProfileView() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <p className="text-sm font-medium leading-none">Email Notifications</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground/70">
                     Receive important updates and announcements via email.
                   </p>
                 </div>
@@ -420,7 +420,7 @@ export function ProfileView() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <p className="text-sm font-medium leading-none">SMS Notifications</p>
-                  <p className="text-sm text-muted-foreground">Get notified about urgent matters via SMS.</p>
+                  <p className="text-sm text-foreground/70">Get notified about urgent matters via SMS.</p>
                 </div>
                 <Switch
                   id="smsNotifications"
@@ -432,7 +432,7 @@ export function ProfileView() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <p className="text-sm font-medium leading-none">App Notifications</p>
-                  <p className="text-sm text-muted-foreground">Receive in-app notifications for real-time updates.</p>
+                  <p className="text-sm text-foreground/70">Receive in-app notifications for real-time updates.</p>
                 </div>
                 <Switch
                   id="appNotifications"
@@ -457,7 +457,7 @@ export function ProfileView() {
                     <p className="text-sm font-medium leading-none">
                       {paymentMethod.brand} ending in {paymentMethod.last4}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground/70">
                       Expires {paymentMethod.expMonth}/{paymentMethod.expYear}
                     </p>
                   </div>

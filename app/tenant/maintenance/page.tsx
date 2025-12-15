@@ -41,7 +41,7 @@ export default function TenantMaintenancePage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">My Maintenance Requests</h1>
-        <p className="text-muted-foreground">View and manage your maintenance requests</p>
+        <p className="text-foreground/70">View and manage your maintenance requests</p>
       </div>
       <MaintenanceRequestList />
     </div>

@@ -32,7 +32,7 @@ export default function AdjustableRatePage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">What is an Adjustable-Rate Mortgage?</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/70">
                 An ARM starts with a fixed interest rate for an initial period, then adjusts periodically based on market conditions. This can offer lower initial payments.
               </p>
             </div>
@@ -84,15 +84,15 @@ export default function AdjustableRatePage() {
               <div className="space-y-4">
                 <div>
                   <h4 className="text-lg font-semibold mb-2">5/1 ARM</h4>
-                  <p className="text-muted-foreground">Fixed rate for 5 years, then adjusts annually. Popular for buyers planning to move or refinance within 5-7 years.</p>
+                  <p className="text-foreground/70">Fixed rate for 5 years, then adjusts annually. Popular for buyers planning to move or refinance within 5-7 years.</p>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-2">7/1 ARM</h4>
-                  <p className="text-muted-foreground">Fixed rate for 7 years, then adjusts annually. Good middle ground between 5/1 and fixed-rate mortgages.</p>
+                  <p className="text-foreground/70">Fixed rate for 7 years, then adjusts annually. Good middle ground between 5/1 and fixed-rate mortgages.</p>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-2">10/1 ARM</h4>
-                  <p className="text-muted-foreground">Fixed rate for 10 years, then adjusts annually. Offers longer stability with ARM benefits.</p>
+                  <p className="text-foreground/70">Fixed rate for 10 years, then adjusts annually. Offers longer stability with ARM benefits.</p>
                 </div>
               </div>
             </div>

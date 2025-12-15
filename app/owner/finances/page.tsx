@@ -50,7 +50,7 @@ export default function FinancesPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Financial Management</h1>
-        <p className="text-muted-foreground">Track income, expenses, and financial performance</p>
+        <p className="text-foreground/70">Track income, expenses, and financial performance</p>
       </div>
 
       <FinancesView />

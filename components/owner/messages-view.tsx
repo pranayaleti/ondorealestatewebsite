@@ -360,7 +360,7 @@ export function MessagesView() {
               <NewMessageDialog onCreateConversation={handleCreateConversation} />
             </div>
             <div className="relative mt-2">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
               <Input
                 placeholder="Search messages..."
                 className="pl-8"
@@ -381,9 +381,9 @@ export function MessagesView() {
             <ScrollArea className="h-[calc(100vh-300px)]">
               {filteredConversations.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                  <MessageSquare className="h-12 w-12 text-muted-foreground mb-4" />
+                  <MessageSquare className="h-12 w-12 text-foreground/70 mb-4" />
                   <h3 className="text-lg font-medium mb-2">No conversations found</h3>
-                  <p className="text-muted-foreground text-center mb-6">
+                  <p className="text-foreground/70 text-center mb-6">
                     {searchTerm
                       ? "Try adjusting your search"
                       : activeTab === "unread"
@@ -412,12 +412,12 @@ export function MessagesView() {
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between items-start">
                           <div className="font-medium truncate">{conversation.recipient.name}</div>
-                          <div className="text-xs text-muted-foreground">
+                          <div className="text-xs text-foreground/70">
                             {formatTimestamp(conversation.lastMessage.timestamp)}
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
-                          <div className="text-sm text-muted-foreground truncate">
+                          <div className="text-sm text-foreground/70 truncate">
                             {conversation.lastMessage.sender === "owner" ? "You: " : ""}
                             {conversation.lastMessage.content}
                           </div>
@@ -458,7 +458,7 @@ export function MessagesView() {
                     <div className="font-medium">
                       {conversations.find((c) => c.id === selectedConversation)?.recipient.name}
                     </div>
-                    <div className="flex items-center text-xs text-muted-foreground">
+                    <div className="flex items-center text-xs text-foreground/70">
                       <Badge variant="outline" className="text-xs font-normal rounded-sm h-5 px-1 mr-2 capitalize">
                         {conversations.find((c) => c.id === selectedConversation)?.recipient.role}
                       </Badge>
@@ -504,7 +504,7 @@ export function MessagesView() {
                         className={`max-w-[80%] rounded-lg p-3 ${
                           message.sender === "owner"
                             ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground"
+                            : "bg-muted text-foreground/70"
                         }`}
                       >
                         <div className="text-sm">{message.content}</div>
@@ -544,9 +544,9 @@ export function MessagesView() {
           </Card>
         ) : (
           <Card className="flex flex-col items-center justify-center h-full py-12">
-            <MessageSquare className="h-16 w-16 text-muted-foreground mb-6" />
+            <MessageSquare className="h-16 w-16 text-foreground/70 mb-6" />
             <h2 className="text-xl font-medium mb-2">No Conversation Selected</h2>
-            <p className="text-muted-foreground text-center mb-6 max-w-md">
+            <p className="text-foreground/70 text-center mb-6 max-w-md">
               Select a conversation from the list or start a new one to begin messaging.
             </p>
             <NewMessageDialog onCreateConversation={handleCreateConversation} />

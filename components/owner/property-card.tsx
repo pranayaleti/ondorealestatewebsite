@@ -55,7 +55,7 @@ export function PropertyCard({ property, getPropertyTypeIcon }: PropertyCardProp
         <div className="flex items-start justify-between mb-2">
           <div>
             <h3 className="font-semibold text-lg">{property.name}</h3>
-            <div className="flex items-center text-muted-foreground text-sm">
+            <div className="flex items-center text-foreground/70 text-sm">
               <MapPin className="h-3.5 w-3.5 mr-1" />
               <span>
                 {property.city}, {property.state}
@@ -79,21 +79,21 @@ export function PropertyCard({ property, getPropertyTypeIcon }: PropertyCardProp
 
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <div className="text-muted-foreground">Monthly Income</div>
+              <div className="text-foreground/70">Monthly Income</div>
               <div className="font-medium flex items-center">
                 <DollarSign className="h-3.5 w-3.5 mr-1" />
                 {property.monthlyIncome.toLocaleString()}
               </div>
             </div>
             <div>
-              <div className="text-muted-foreground">Units</div>
+              <div className="text-foreground/70">Units</div>
               <div className="font-medium">
                 {property.units} {property.units > 1 ? "units" : "unit"}
               </div>
             </div>
             {property.leaseEnd && (
               <div className="col-span-2">
-                <div className="text-muted-foreground">Lease Ends</div>
+                <div className="text-foreground/70">Lease Ends</div>
                 <div className="font-medium flex items-center">
                   <Calendar className="h-3.5 w-3.5 mr-1" />
                   {new Date(property.leaseEnd).toLocaleDateString()}

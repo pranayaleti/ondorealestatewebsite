@@ -32,7 +32,7 @@ export default function ThirtyYearPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Why Choose a 30-Year Mortgage?</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/70">
                 The 30-year fixed-rate mortgage is America's most popular home loan, offering affordable monthly payments and long-term stability.
               </p>
             </div>
@@ -84,7 +84,7 @@ export default function ThirtyYearPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3">30-Year Mortgage</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Lower monthly payment</li>
                     <li>• More interest paid over time</li>
                     <li>• More cash flow flexibility</li>
@@ -93,7 +93,7 @@ export default function ThirtyYearPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3">15-Year Mortgage</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Higher monthly payment</li>
                     <li>• Less interest paid overall</li>
                     <li>• Build equity faster</li>

@@ -233,7 +233,7 @@ const AffordabilityCalculator: React.FC = () => {
                   Annual Income
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualIncome}
@@ -250,7 +250,7 @@ const AffordabilityCalculator: React.FC = () => {
                   Monthly Debt Payments
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyDebts}
@@ -259,7 +259,7 @@ const AffordabilityCalculator: React.FC = () => {
                     placeholder="500"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Credit cards, car loans, student loans, etc.
                 </p>
               </div>
@@ -270,7 +270,7 @@ const AffordabilityCalculator: React.FC = () => {
                   Available Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
@@ -390,11 +390,11 @@ const AffordabilityCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Max Loan Amount</p>
+                        <p className="text-sm text-foreground/70 mb-1">Max Loan Amount</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.maxLoanAmount)}</p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Monthly Payment</p>
+                        <p className="text-sm text-foreground/70 mb-1">Monthly Payment</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.monthlyPayment)}</p>
                       </div>
                     </div>
@@ -406,20 +406,20 @@ const AffordabilityCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Debt-to-Income Ratios</h2>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Front-End Ratio (Housing):</span>
+                      <span className="text-foreground/70">Front-End Ratio (Housing):</span>
                       <span className={`font-semibold ${getRatioStatus(results.frontEndRatio, 'front')}`}>
                         {formatPercent(results.frontEndRatio)}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Back-End Ratio (Total Debt):</span>
+                      <span className="text-foreground/70">Back-End Ratio (Total Debt):</span>
                       <span className={`font-semibold ${getRatioStatus(results.backEndRatio, 'back')}`}>
                         {formatPercent(results.backEndRatio)}
                       </span>
                     </div>
                     
                     <div className="mt-4 p-3 bg-muted rounded-lg">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/70">
                         <strong>Front-End:</strong> Housing expenses ÷ Gross monthly income (target: ≤28%)<br/>
                         <strong>Back-End:</strong> Total debt payments ÷ Gross monthly income (target: ≤36%)
                       </p>
@@ -439,7 +439,7 @@ const AffordabilityCalculator: React.FC = () => {
                       </p>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Consider a 20% down payment to avoid PMI</p>
                       <p>• Keep emergency savings separate from down payment</p>
                       <p>• Factor in maintenance costs (1-2% of home value annually)</p>
@@ -455,7 +455,7 @@ const AffordabilityCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">How It Works:</h3>
               <ul className="space-y-1 list-disc list-inside">

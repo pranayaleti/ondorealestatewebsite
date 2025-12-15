@@ -94,7 +94,7 @@ export function PropertyFilters({ onClose }: PropertyFiltersProps) {
           <div className="space-y-2">
             <div className="flex justify-between">
               <Label>Monthly Income Range</Label>
-              <span className="text-sm text-muted-foreground">$0 - $5,000+</span>
+              <span className="text-sm text-foreground/70">$0 - $5,000+</span>
             </div>
             <Slider defaultValue={[0, 5000]} min={0} max={5000} step={100} />
           </div>

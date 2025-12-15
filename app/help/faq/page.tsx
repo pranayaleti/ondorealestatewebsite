@@ -115,7 +115,7 @@ export default function FAQPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Get Your Questions Answered</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Can't find what you're looking for? Contact us directly and we'll be happy to help.
               </p>
             </div>
@@ -134,7 +134,7 @@ export default function FAQPage() {
                           <span className="font-medium dark:text-foreground">{faq.question}</span>
                         </AccordionTrigger>
                         <AccordionContent className="px-4 pb-3">
-                          <p className="text-muted-foreground dark:text-muted-foreground">{faq.answer}</p>
+                          <p className="text-foreground/70 dark:text-foreground/70">{faq.answer}</p>
                         </AccordionContent>
                       </AccordionItem>
                     ))}
@@ -146,7 +146,7 @@ export default function FAQPage() {
             <div className="bg-muted dark:bg-muted rounded-lg p-8">
               <div className="text-center">
                 <h3 className="text-2xl font-bold mb-4 dark:text-foreground">Still Have Questions?</h3>
-                <p className="text-muted-foreground dark:text-muted-foreground mb-6">
+                <p className="text-foreground/70 dark:text-foreground/70 mb-6">
                   Our team is here to help with any questions you may have about our services.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

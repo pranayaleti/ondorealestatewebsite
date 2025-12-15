@@ -68,7 +68,7 @@ export default function PaymentsPage() {
 
       <div>
         <h1 className="text-3xl font-bold">Payments</h1>
-        <p className="text-muted-foreground">Manage your rent payments and view payment history</p>
+        <p className="text-foreground/70">Manage your rent payments and view payment history</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
@@ -89,7 +89,7 @@ export default function PaymentsPage() {
                     <div className="space-y-2">
                       <Label htmlFor="amount">Payment Amount</Label>
                       <div className="relative">
-                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
                         <Input id="amount" placeholder="1,250.00" className="pl-9" defaultValue="1,250.00" />
                       </div>
                     </div>
@@ -100,7 +100,7 @@ export default function PaymentsPage() {
                     <div className="space-y-2">
                       <Label htmlFor="card">Card Number</Label>
                       <div className="relative">
-                        <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
                         <Input id="card" placeholder="4242 4242 4242 4242" className="pl-9" />
                       </div>
                     </div>
@@ -126,7 +126,7 @@ export default function PaymentsPage() {
                     <div className="space-y-2">
                       <Label htmlFor="bank-amount">Payment Amount</Label>
                       <div className="relative">
-                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
                         <Input id="bank-amount" placeholder="1,250.00" className="pl-9" defaultValue="1,250.00" />
                       </div>
                     </div>
@@ -159,15 +159,15 @@ export default function PaymentsPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Current Balance</span>
+                <span className="text-sm text-foreground/70">Current Balance</span>
                 <span className="font-medium">$1,250.00</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Due Date</span>
+                <span className="text-sm text-foreground/70">Due Date</span>
                 <span className="font-medium">June 1, 2023</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Status</span>
+                <span className="text-sm text-foreground/70">Status</span>
                 <Badge variant="outline" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
                   Pending
                 </Badge>
@@ -203,12 +203,12 @@ export default function PaymentsPage() {
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
+                <Calendar className="h-4 w-4 text-foreground/70" />
                 <div className="text-sm font-medium">May 1, 2023</div>
               </div>
               <div className="md:col-span-2">
                 <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
-                <div className="text-xs text-muted-foreground">Payment #12458</div>
+                <div className="text-xs text-foreground/70">Payment #12458</div>
               </div>
               <div>
                 <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
@@ -219,12 +219,12 @@ export default function PaymentsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
+                <Calendar className="h-4 w-4 text-foreground/70" />
                 <div className="text-sm font-medium">April 1, 2023</div>
               </div>
               <div className="md:col-span-2">
                 <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
-                <div className="text-xs text-muted-foreground">Payment #12345</div>
+                <div className="text-xs text-foreground/70">Payment #12345</div>
               </div>
               <div>
                 <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
@@ -235,12 +235,12 @@ export default function PaymentsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
+                <Calendar className="h-4 w-4 text-foreground/70" />
                 <div className="text-sm font-medium">March 1, 2023</div>
               </div>
               <div className="md:col-span-2">
                 <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
-                <div className="text-xs text-muted-foreground">Payment #12234</div>
+                <div className="text-xs text-foreground/70">Payment #12234</div>
               </div>
               <div>
                 <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">

@@ -22,7 +22,7 @@ export function HeroSection() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
             Make life easy
           </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground">
+          <p className="mx-auto mb-8 max-w-2xl text-xl text-foreground/70">
             OnDo Real Estate helps you find the ideal rental home with professional property management services and makes
             your life easier.
           </p>

@@ -63,7 +63,7 @@ const ConsultationCTA: React.FC<ConsultationCTAProps> = ({
             <CardDescription>{description}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-foreground/70">
               <div className="flex items-center">
                 <CheckCircle className="h-4 w-4 text-primary mr-2" />
                 <span>30-minute expert consultation</span>
@@ -118,7 +118,7 @@ const ConsultationCTA: React.FC<ConsultationCTAProps> = ({
           </div>
           <div>
             <h3 className="text-xl font-semibold text-card-foreground">{title}</h3>
-            <p className="text-muted-foreground">{description}</p>
+            <p className="text-foreground/70">{description}</p>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">

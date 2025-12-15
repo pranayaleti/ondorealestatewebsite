@@ -127,7 +127,7 @@ export default function TestimonialsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Client Testimonials</h2>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-foreground/70">
                 Don't just take our word for it - hear from the people we serve every day.
               </p>
             </div>
@@ -168,9 +168,9 @@ export default function TestimonialsPage() {
                   <CardContent>
                     <div className="relative">
                       <Quote className="h-6 w-6 text-gray-300 absolute -top-2 -left-2" />
-                      <p className="text-muted-foreground italic pl-4">"{testimonial.text}"</p>
+                      <p className="text-foreground/70 italic pl-4">"{testimonial.text}"</p>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-2">{testimonial.location}</p>
+                    <p className="text-sm text-foreground/70 mt-2">{testimonial.location}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -190,7 +190,7 @@ export default function TestimonialsPage() {
                     {stat.icon}
                   </div>
                   <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-muted-foreground">{stat.label}</div>
+                  <div className="text-foreground/70">{stat.label}</div>
                 </div>
               ))}
             </div>

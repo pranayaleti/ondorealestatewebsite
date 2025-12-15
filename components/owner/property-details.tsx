@@ -72,7 +72,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold">{property.name}</h1>
-          <div className="flex items-center text-muted-foreground mt-1">
+          <div className="flex items-center text-foreground/70 mt-1">
             <MapPin className="h-4 w-4 mr-1" />
             <span>
               {property.address}, {property.city}, {property.state} {property.zipCode}
@@ -140,7 +140,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
               </Badge>
             </div>
 
-            <p className="text-muted-foreground">{property.description}</p>
+            <p className="text-foreground/70">{property.description}</p>
           </CardContent>
         </Card>
 
@@ -150,7 +150,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <div className="text-sm text-muted-foreground mb-1">Occupancy</div>
+              <div className="text-sm text-foreground/70 mb-1">Occupancy</div>
               <div className="flex justify-between text-sm mb-1">
                 <span className="font-medium">{property.occupancy}</span>
                 <span>{property.occupancyRate}%</span>
@@ -160,7 +160,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="text-sm text-muted-foreground">Monthly Income</div>
+                <div className="text-sm text-foreground/70">Monthly Income</div>
                 <div className="font-medium flex items-center">
                   <DollarSign className="h-4 w-4 mr-1" />
                   {property.monthlyIncome.toLocaleString()}
@@ -168,25 +168,25 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
               </div>
 
               <div>
-                <div className="text-sm text-muted-foreground">Units</div>
+                <div className="text-sm text-foreground/70">Units</div>
                 <div className="font-medium">
                   {property.units.length} {property.units.length > 1 ? "units" : "unit"}
                 </div>
               </div>
 
               <div>
-                <div className="text-sm text-muted-foreground">Year Built</div>
+                <div className="text-sm text-foreground/70">Year Built</div>
                 <div className="font-medium">{property.yearBuilt}</div>
               </div>
 
               <div>
-                <div className="text-sm text-muted-foreground">Square Feet</div>
+                <div className="text-sm text-foreground/70">Square Feet</div>
                 <div className="font-medium">{property.squareFeet.toLocaleString()}</div>
               </div>
             </div>
 
             <div>
-              <div className="text-sm text-muted-foreground mb-1">Next Lease Expiration</div>
+              <div className="text-sm text-foreground/70 mb-1">Next Lease Expiration</div>
               <div className="font-medium flex items-center">
                 <Calendar className="h-4 w-4 mr-1" />
                 {property.leaseEnd ? new Date(property.leaseEnd).toLocaleDateString() : "N/A"}

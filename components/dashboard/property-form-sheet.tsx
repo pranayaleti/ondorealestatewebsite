@@ -356,8 +356,8 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                     className="border border-dashed rounded-md flex flex-col items-center justify-center h-32 cursor-pointer hover:bg-muted"
                     onClick={triggerFileInput}
                   >
-                    <Upload className="h-8 w-8 text-muted-foreground mb-2" />
-                    <span className="text-sm text-muted-foreground">Upload Images</span>
+                    <Upload className="h-8 w-8 text-foreground/70 mb-2" />
+                    <span className="text-sm text-foreground/70">Upload Images</span>
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -371,9 +371,9 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
 
                 {images.length === 0 && (
                   <div className="flex flex-col items-center justify-center p-8 border border-dashed rounded-md">
-                    <ImageIcon className="h-12 w-12 text-muted-foreground mb-4" />
-                    <p className="text-muted-foreground mb-2">No images uploaded yet</p>
-                    <p className="text-sm text-muted-foreground mb-4">Upload property images to enhance your listing</p>
+                    <ImageIcon className="h-12 w-12 text-foreground/70 mb-4" />
+                    <p className="text-foreground/70 mb-2">No images uploaded yet</p>
+                    <p className="text-sm text-foreground/70 mb-4">Upload property images to enhance your listing</p>
                     <Button type="button" variant="outline" onClick={triggerFileInput}>
                       <Upload className="h-4 w-4 mr-2" />
                       Select Images

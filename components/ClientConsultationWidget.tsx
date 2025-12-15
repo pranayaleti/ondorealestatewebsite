@@ -280,7 +280,7 @@ export default function ClientConsultationWidget() {
             </div>
           </form>
 
-          <div className="text-center text-sm text-muted-foreground pt-4 border-t">
+          <div className="text-center text-sm text-foreground/70 pt-4 border-t">
             <p>Or call us directly:</p>
             <a
               href="tel:+1-408-538-0420"

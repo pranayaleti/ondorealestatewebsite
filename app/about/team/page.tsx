@@ -108,12 +108,12 @@ export default function TeamPage() {
                     <Badge variant="outline">{member.department}</Badge>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
+                    <p className="text-foreground/70 text-sm mb-4">{member.bio}</p>
                     <div className="space-y-2">
                       <h4 className="font-semibold text-sm">Credentials:</h4>
                       <div className="space-y-1">
                         {member.credentials.map((cred, credIndex) => (
-                          <div key={credIndex} className="text-xs text-muted-foreground flex items-center">
+                          <div key={credIndex} className="text-xs text-foreground/70 flex items-center">
                             <Award className="h-3 w-3 mr-1 text-yellow-500" />
                             {cred}
                           </div>
@@ -136,7 +136,7 @@ export default function TeamPage() {
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-muted-foreground">{stat.label}</div>
+                  <div className="text-foreground/70">{stat.label}</div>
                 </div>
               ))}
             </div>

@@ -24,7 +24,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 </div>
                 <div>
                   <CardTitle className="text-lg dark:text-foreground">Sarah J.</CardTitle>
-                  <CardDescription className="dark:text-muted-foreground">Tenant</CardDescription>
+                  <CardDescription className="dark:text-foreground/70">Tenant</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -36,7 +36,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 <Star className="h-4 w-4 fill-current text-yellow-500" />
                 <Star className="h-4 w-4 fill-current text-yellow-500" />
               </div>
-              <p className="text-muted-foreground dark:text-muted-foreground">
+              <p className="text-foreground/70 dark:text-foreground/70">
                 "OnDo Real Estate made finding my new apartment so easy. Their team was responsive and helped me find
                 exactly what I was looking for in my price range."
               </p>
@@ -58,7 +58,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 </div>
                 <div>
                   <CardTitle className="text-lg dark:text-foreground">Michael T.</CardTitle>
-                  <CardDescription className="dark:text-muted-foreground">Property Owner</CardDescription>
+                  <CardDescription className="dark:text-foreground/70">Property Owner</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -70,7 +70,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 <Star className="h-4 w-4 fill-current text-yellow-500" />
                 <Star className="h-4 w-4 fill-current text-yellow-500" />
               </div>
-              <p className="text-muted-foreground dark:text-muted-foreground">
+              <p className="text-foreground/70 dark:text-foreground/70">
                 "Since hiring OnDo Real Estate to manage my rental properties, I've had zero stress. They handle
                 everything professionally and my income has actually increased."
               </p>
@@ -92,7 +92,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 </div>
                 <div>
                   <CardTitle className="text-lg dark:text-foreground">Jennifer L.</CardTitle>
-                  <CardDescription className="dark:text-muted-foreground">Tenant</CardDescription>
+                  <CardDescription className="dark:text-foreground/70">Tenant</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -104,7 +104,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 <Star className="h-4 w-4 fill-current text-yellow-500" />
                 <Star className="h-4 w-4 fill-current text-yellow-500" />
               </div>
-              <p className="text-muted-foreground dark:text-muted-foreground">
+              <p className="text-foreground/70 dark:text-foreground/70">
                 "The maintenance service through OnDo Real Estate is outstanding. Any issue I've had has been resolved
                 within 24 hours. Best property management I've experienced."
               </p>

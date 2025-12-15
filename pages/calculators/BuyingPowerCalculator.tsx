@@ -171,7 +171,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   Annual Income
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualIncome}
@@ -188,7 +188,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   Monthly Debt Payments
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyDebts}
@@ -197,7 +197,7 @@ const BuyingPowerCalculator: React.FC = () => {
                     placeholder="500"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Credit cards, car loans, student loans, etc.
                 </p>
               </div>
@@ -208,7 +208,7 @@ const BuyingPowerCalculator: React.FC = () => {
                   Available Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
@@ -335,11 +335,11 @@ const BuyingPowerCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Max Loan Amount</p>
+                        <p className="text-sm text-foreground/70 mb-1">Max Loan Amount</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.maxLoanAmount)}</p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Monthly Payment</p>
+                        <p className="text-sm text-foreground/70 mb-1">Monthly Payment</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.monthlyPayment)}</p>
                       </div>
                     </div>
@@ -351,14 +351,14 @@ const BuyingPowerCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Debt-to-Income Analysis</h2>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Total Debt Ratio:</span>
+                      <span className="text-foreground/70">Total Debt Ratio:</span>
                       <span className={`font-semibold ${results.debtToIncomeRatio <= 36 ? 'text-primary' : 'text-destructive'}`}>
                         {formatPercent(results.debtToIncomeRatio)}
                       </span>
                     </div>
                     
                     <div className="mt-4 p-3 bg-muted rounded-lg">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/70">
                         <strong>Target:</strong> ≤36% for conventional loans<br/>
                         <strong>Current:</strong> {formatPercent(results.debtToIncomeRatio)}
                       </p>
@@ -378,7 +378,7 @@ const BuyingPowerCalculator: React.FC = () => {
                       </p>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Consider a 20% down payment to avoid PMI</p>
                       <p>• Keep emergency savings separate from down payment</p>
                       <p>• Factor in maintenance costs (1-2% of home value annually)</p>
@@ -394,7 +394,7 @@ const BuyingPowerCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Buying Power</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">How It Works:</h3>
               <ul className="space-y-1 list-disc list-inside">

@@ -79,7 +79,7 @@ export default function ModernizingNotaryWorkflows() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-8">
+            <p className="lead text-xl text-foreground/70 mb-8">
               Real estate transactions are 90% digital—until you need a signature. At <strong>Ondo</strong>, we bridged this gap by integrating <strong>Remote Online Notary (RON)</strong> and mobile notary booking directly into our platform.
             </p>
 
@@ -192,7 +192,7 @@ function KeyLine({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/60 px-4 py-3 h-full">
       <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="text-sm text-muted-foreground">{detail}</p>
+      <p className="text-sm text-foreground/70">{detail}</p>
     </div>
   );
 }

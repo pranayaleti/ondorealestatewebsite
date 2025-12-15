@@ -119,7 +119,7 @@ export default function GivingBackPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Our Community Impact</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 At OnDo Real Estate, we believe that success is measured not just by our business achievements, 
                 but by the positive impact we make in our communities. We're committed to giving back and 
                 helping create a better Utah for everyone.
@@ -131,7 +131,7 @@ export default function GivingBackPage() {
                 <Card key={index} className="text-center">
                   <CardContent className="p-6">
                     <div className="text-3xl font-bold text-primary mb-2">{stat.number}</div>
-                    <div className="text-sm text-muted-foreground dark:text-muted-foreground">{stat.label}</div>
+                    <div className="text-sm text-foreground/70 dark:text-foreground/70">{stat.label}</div>
                   </CardContent>
                 </Card>
               ))}
@@ -157,7 +157,7 @@ export default function GivingBackPage() {
                           <Award className="h-4 w-4 text-primary" />
                           <span className="font-medium text-primary">{initiative.impact}</span>
                         </div>
-                        <p className="text-sm text-muted-foreground dark:text-muted-foreground">{initiative.details}</p>
+                        <p className="text-sm text-foreground/70 dark:text-foreground/70">{initiative.details}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -167,7 +167,7 @@ export default function GivingBackPage() {
 
             <div className="mb-16">
               <h3 className="text-2xl font-bold mb-8 text-center dark:text-foreground">Volunteer Opportunities</h3>
-              <p className="text-center text-muted-foreground dark:text-muted-foreground mb-8">
+              <p className="text-center text-foreground/70 dark:text-foreground/70 mb-8">
                 Join us in making a difference in our community. We welcome volunteers from all backgrounds and skill levels.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -180,12 +180,12 @@ export default function GivingBackPage() {
                     <CardContent>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4 text-muted-foreground" />
+                          <Clock className="h-4 w-4 text-foreground/70" />
                           <span className="text-sm font-medium">Time Commitment: {opportunity.timeCommitment}</span>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300">Skills Needed:</p>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{opportunity.skills}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{opportunity.skills}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -196,7 +196,7 @@ export default function GivingBackPage() {
 
             <div className="mb-16">
               <h3 className="text-2xl font-bold mb-8 text-center dark:text-foreground">Community Partners</h3>
-              <p className="text-center text-muted-foreground dark:text-muted-foreground mb-8">
+              <p className="text-center text-foreground/70 dark:text-foreground/70 mb-8">
                 We're proud to partner with these organizations to maximize our community impact.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -207,7 +207,7 @@ export default function GivingBackPage() {
                         <div className="text-3xl">{partner.logo}</div>
                         <div>
                           <h4 className="font-semibold dark:text-foreground">{partner.name}</h4>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{partner.description}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{partner.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -219,7 +219,7 @@ export default function GivingBackPage() {
             <div className="bg-primary/5 rounded-lg p-8 mb-12">
               <h3 className="text-2xl font-bold mb-6 text-center dark:text-foreground">How You Can Help</h3>
               <div className="max-w-4xl mx-auto text-center">
-                <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+                <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                   There are many ways to get involved and make a difference in our community. 
                   Whether you're interested in volunteering, donating, or learning more about our programs, we'd love to hear from you.
                 </p>
@@ -239,7 +239,7 @@ export default function GivingBackPage() {
 
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Ready to Make a Difference?</h3>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                 Join us in our mission to create positive change in Utah communities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

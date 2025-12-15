@@ -32,7 +32,7 @@ export function ChartContainer({ className, children, title, description }: Char
       {(title || description) && (
         <div className="mb-3">
           {title && <h3 className="text-sm font-semibold text-foreground">{title}</h3>}
-          {description && <p className="text-xs text-muted-foreground">{description}</p>}
+          {description && <p className="text-xs text-foreground/70">{description}</p>}
         </div>
       )}
       {children}
@@ -162,7 +162,7 @@ const ChartTooltipContent = ({ content }: ChartTooltipContentProps) => {
     <div className="grid gap-1">
       {content.map((item, i) => (
         <div key={i} className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">{item.label}</span>
+          <span className="text-foreground/70">{item.label}</span>
           <span className="font-medium">{item.value}</span>
         </div>
       ))}

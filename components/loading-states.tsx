@@ -21,7 +21,7 @@ export function PageLoading() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <LoadingSpinner size="lg" className="mx-auto mb-4" />
-        <p className="text-muted-foreground">Loading...</p>
+        <p className="text-foreground/70">Loading...</p>
       </div>
     </div>
   )
@@ -145,7 +145,7 @@ export function InlineLoading({ text = "Loading..." }: { text?: string }) {
   return (
     <div className="flex items-center justify-center py-8">
       <LoadingSpinner className="mr-2" />
-      <span className="text-muted-foreground">{text}</span>
+      <span className="text-foreground/70">{text}</span>
     </div>
   )
 }
@@ -170,7 +170,7 @@ export function ErrorState({
         </svg>
       </div>
       <h3 className="text-lg font-medium text-foreground mb-2">{title}</h3>
-      <p className="text-muted-foreground mb-4">{description}</p>
+      <p className="text-foreground/70 mb-4">{description}</p>
       {action && (
         <button
           onClick={action}
@@ -203,7 +203,7 @@ export function EmptyState({
         </svg>
       </div>
       <h3 className="text-lg font-medium text-foreground mb-2">{title}</h3>
-      <p className="text-muted-foreground mb-4">{description}</p>
+      <p className="text-foreground/70 mb-4">{description}</p>
       {action && (
         <button
           onClick={action}

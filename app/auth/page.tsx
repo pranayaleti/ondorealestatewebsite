@@ -185,7 +185,7 @@ export default function AuthPage() {
         </CardContent>
         <CardFooter className="flex flex-col">
           {/* Sign up is currently disabled
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-center text-sm text-foreground/70">
             Don't have an account?{" "}
             <Link href="/auth?type=owner" className="text-primary hover:underline">
               Sign up

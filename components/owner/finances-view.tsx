@@ -257,11 +257,11 @@ export function FinancesView() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Monthly Income</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
+                <DollarSign className="h-4 w-4 text-foreground/70" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">${FINANCIAL_SUMMARY.currentMonth.income.toLocaleString()}</div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-foreground/70">
                   <TrendingUp className="inline h-3 w-3 text-green-500 mr-1" />
                   {(
                     ((FINANCIAL_SUMMARY.currentMonth.income - FINANCIAL_SUMMARY.previousMonth.income) /
@@ -276,11 +276,11 @@ export function FinancesView() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Monthly Expenses</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
+                <DollarSign className="h-4 w-4 text-foreground/70" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">${FINANCIAL_SUMMARY.currentMonth.expenses.toLocaleString()}</div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-foreground/70">
                   <TrendingDown className="inline h-3 w-3 text-red-500 mr-1" />
                   {(
                     ((FINANCIAL_SUMMARY.currentMonth.expenses - FINANCIAL_SUMMARY.previousMonth.expenses) /
@@ -295,11 +295,11 @@ export function FinancesView() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Net Cash Flow</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
+                <DollarSign className="h-4 w-4 text-foreground/70" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">${FINANCIAL_SUMMARY.currentMonth.netIncome.toLocaleString()}</div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-foreground/70">
                   <TrendingUp className="inline h-3 w-3 text-green-500 mr-1" />
                   {(
                     ((FINANCIAL_SUMMARY.currentMonth.netIncome - FINANCIAL_SUMMARY.previousMonth.netIncome) /
@@ -405,7 +405,7 @@ export function FinancesView() {
                     <TableRow key={transaction.id}>
                       <TableCell>
                         <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                          <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                           {new Date(transaction.date).toLocaleDateString()}
                         </div>
                       </TableCell>
@@ -444,7 +444,7 @@ export function FinancesView() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex-1 flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
                 <Input
                   placeholder="Search transactions..."
                   className="pl-8"
@@ -532,7 +532,7 @@ export function FinancesView() {
                   {filteredTransactions.length === 0 ? (
                     <TableRow>
                       <TableCell colSpan={6} className="text-center py-8">
-                        <div className="flex flex-col items-center justify-center text-muted-foreground">
+                        <div className="flex flex-col items-center justify-center text-foreground/70">
                           <Filter className="h-8 w-8 mb-2" />
                           <p>No transactions found</p>
                           <p className="text-sm">Try adjusting your filters</p>
@@ -544,14 +544,14 @@ export function FinancesView() {
                       <TableRow key={transaction.id}>
                         <TableCell>
                           <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                             {new Date(transaction.date).toLocaleDateString()}
                           </div>
                         </TableCell>
                         <TableCell>{transaction.description}</TableCell>
                         <TableCell>
                           <div className="flex items-center">
-                            <Building className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Building className="h-4 w-4 mr-2 text-foreground/70" />
                             {transaction.property}
                           </div>
                         </TableCell>
@@ -595,7 +595,7 @@ export function FinancesView() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h3 className="text-lg font-medium">Financial Reports</h3>
-              <p className="text-sm text-muted-foreground">Generate and view financial reports</p>
+              <p className="text-sm text-foreground/70">Generate and view financial reports</p>
             </div>
             <div className="flex gap-2">
               <DatePickerWithRange date={date} setDate={setDate} />
@@ -614,7 +614,7 @@ export function FinancesView() {
                     <CardTitle>Income Statement</CardTitle>
                     <CardDescription>Summary of income and expenses</CardDescription>
                   </div>
-                  <BarChart className="h-5 w-5 text-muted-foreground" />
+                  <BarChart className="h-5 w-5 text-foreground/70" />
                 </div>
               </CardHeader>
               <CardContent>
@@ -695,7 +695,7 @@ export function FinancesView() {
                     <CardTitle>Cash Flow Analysis</CardTitle>
                     <CardDescription>Monthly cash flow trends</CardDescription>
                   </div>
-                  <TrendingUp className="h-5 w-5 text-muted-foreground" />
+                  <TrendingUp className="h-5 w-5 text-foreground/70" />
                 </div>
               </CardHeader>
               <CardContent>
@@ -717,7 +717,7 @@ export function FinancesView() {
                     <CardTitle>Expense Distribution</CardTitle>
                     <CardDescription>Breakdown of expenses by category</CardDescription>
                   </div>
-                  <PieChart className="h-5 w-5 text-muted-foreground" />
+                  <PieChart className="h-5 w-5 text-foreground/70" />
                 </div>
               </CardHeader>
               <CardContent>
@@ -739,7 +739,7 @@ export function FinancesView() {
                     <CardTitle>Property Performance</CardTitle>
                     <CardDescription>Financial metrics by property</CardDescription>
                   </div>
-                  <Building className="h-5 w-5 text-muted-foreground" />
+                  <Building className="h-5 w-5 text-foreground/70" />
                 </div>
               </CardHeader>
               <CardContent>

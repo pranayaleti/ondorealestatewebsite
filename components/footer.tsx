@@ -146,7 +146,7 @@ const Footer = memo(() => {
             </div>
             <div>
               <p className="text-sm font-semibold leading-tight">Got ideas?</p>
-              <p className="text-sm text-muted-foreground leading-tight">We&apos;re listening! Share feedback.</p>
+              <p className="text-sm text-foreground/70 leading-tight">We&apos;re listening! Share feedback.</p>
             </div>
           </div>
           <Link
@@ -169,13 +169,13 @@ const Footer = memo(() => {
               Buying a Home
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/buy/first-time" className="text-muted-foreground hover:text-foreground">First-time homebuyer</Link></li>
-              <li><Link href="/buy/second-home" className="text-muted-foreground hover:text-foreground">Buying a second home</Link></li>
-              <li><Link href="/buy/fixed-rate" className="text-muted-foreground hover:text-foreground">Fixed-rate mortgage</Link></li>
-              <li><Link href="/buy/adjustable-rate" className="text-muted-foreground hover:text-foreground">Adjustable-rate mortgage</Link></li>
-              <li><Link href="/buy/30-year" className="text-muted-foreground hover:text-foreground">30 year mortgage</Link></li>
-              <li><Link href="/buy/15-year" className="text-muted-foreground hover:text-foreground">15 year mortgage</Link></li>
-              <li><Link href="/buy/rates" className="text-muted-foreground hover:text-foreground">Mortgage rates explained</Link></li>
+              <li><Link href="/buy/first-time" className="text-foreground/70 hover:text-foreground">First-time homebuyer</Link></li>
+              <li><Link href="/buy/second-home" className="text-foreground/70 hover:text-foreground">Buying a second home</Link></li>
+              <li><Link href="/buy/fixed-rate" className="text-foreground/70 hover:text-foreground">Fixed-rate mortgage</Link></li>
+              <li><Link href="/buy/adjustable-rate" className="text-foreground/70 hover:text-foreground">Adjustable-rate mortgage</Link></li>
+              <li><Link href="/buy/30-year" className="text-foreground/70 hover:text-foreground">30 year mortgage</Link></li>
+              <li><Link href="/buy/15-year" className="text-foreground/70 hover:text-foreground">15 year mortgage</Link></li>
+              <li><Link href="/buy/rates" className="text-foreground/70 hover:text-foreground">Mortgage rates explained</Link></li>
             </ul>
           </div>
 
@@ -186,10 +186,10 @@ const Footer = memo(() => {
               Refinance
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/refinance/process" className="text-muted-foreground hover:text-foreground">Mortgage refinance process</Link></li>
-              <li><Link href="/refinance/rate-term" className="text-muted-foreground hover:text-foreground">Rate-and-term refinance</Link></li>
-              <li><Link href="/refinance/cash-out" className="text-muted-foreground hover:text-foreground">Cash-out refinance</Link></li>
-              <li><Link href="/refinance/blog" className="text-muted-foreground hover:text-foreground">Mortgage blog – Refinance</Link></li>
+              <li><Link href="/refinance/process" className="text-foreground/70 hover:text-foreground">Mortgage refinance process</Link></li>
+              <li><Link href="/refinance/rate-term" className="text-foreground/70 hover:text-foreground">Rate-and-term refinance</Link></li>
+              <li><Link href="/refinance/cash-out" className="text-foreground/70 hover:text-foreground">Cash-out refinance</Link></li>
+              <li><Link href="/refinance/blog" className="text-foreground/70 hover:text-foreground">Mortgage blog – Refinance</Link></li>
             </ul>
           </div>
 
@@ -200,13 +200,13 @@ const Footer = memo(() => {
               Mortgage Loans
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/loans/conventional" className="text-muted-foreground hover:text-foreground">Conventional</Link></li>
-              <li><Link href="/loans/fha" className="text-muted-foreground hover:text-foreground">FHA</Link></li>
-              <li><Link href="/loans/usda" className="text-muted-foreground hover:text-foreground">USDA</Link></li>
-              <li><Link href="/loans/va" className="text-muted-foreground hover:text-foreground">VA</Link></li>
-              <li><Link href="/loans/heloc" className="text-muted-foreground hover:text-foreground">HELOC / HELOAN</Link></li>
-              <li><Link href="/loans/reverse" className="text-muted-foreground hover:text-foreground">Reverse Mortgage</Link></li>
-              <li><Link href="/loans/jumbo" className="text-muted-foreground hover:text-foreground">Jumbo Loans</Link></li>
+              <li><Link href="/loans/conventional" className="text-foreground/70 hover:text-foreground">Conventional</Link></li>
+              <li><Link href="/loans/fha" className="text-foreground/70 hover:text-foreground">FHA</Link></li>
+              <li><Link href="/loans/usda" className="text-foreground/70 hover:text-foreground">USDA</Link></li>
+              <li><Link href="/loans/va" className="text-foreground/70 hover:text-foreground">VA</Link></li>
+              <li><Link href="/loans/heloc" className="text-foreground/70 hover:text-foreground">HELOC / HELOAN</Link></li>
+              <li><Link href="/loans/reverse" className="text-foreground/70 hover:text-foreground">Reverse Mortgage</Link></li>
+              <li><Link href="/loans/jumbo" className="text-foreground/70 hover:text-foreground">Jumbo Loans</Link></li>
             </ul>
           </div>
 
@@ -217,13 +217,13 @@ const Footer = memo(() => {
               Calculators
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/calculators/mortgage-payment" className="text-muted-foreground hover:text-foreground">Mortgage payment calculator</Link></li>
-              <li><Link href="/calculators/affordability" className="text-muted-foreground hover:text-foreground">Affordability calculator</Link></li>
-              <li><Link href="/calculators/income" className="text-muted-foreground hover:text-foreground">Income calculator</Link></li>
-              <li><Link href="/calculators/closing-cost" className="text-muted-foreground hover:text-foreground">Closing cost calculator</Link></li>
-              <li><Link href="/calculators/refinance" className="text-muted-foreground hover:text-foreground">Refinance calculator</Link></li>
-              <li><Link href="/calculators/home-sale" className="text-muted-foreground hover:text-foreground">Home sale calculator</Link></li>
-              <li><Link href="/calculators/buying-power" className="text-muted-foreground hover:text-foreground">Buying power calculator</Link></li>
+              <li><Link href="/calculators/mortgage-payment" className="text-foreground/70 hover:text-foreground">Mortgage payment calculator</Link></li>
+              <li><Link href="/calculators/affordability" className="text-foreground/70 hover:text-foreground">Affordability calculator</Link></li>
+              <li><Link href="/calculators/income" className="text-foreground/70 hover:text-foreground">Income calculator</Link></li>
+              <li><Link href="/calculators/closing-cost" className="text-foreground/70 hover:text-foreground">Closing cost calculator</Link></li>
+              <li><Link href="/calculators/refinance" className="text-foreground/70 hover:text-foreground">Refinance calculator</Link></li>
+              <li><Link href="/calculators/home-sale" className="text-foreground/70 hover:text-foreground">Home sale calculator</Link></li>
+              <li><Link href="/calculators/buying-power" className="text-foreground/70 hover:text-foreground">Buying power calculator</Link></li>
             </ul>
           </div>
 
@@ -234,11 +234,11 @@ const Footer = memo(() => {
               About Us
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/about/history" className="text-muted-foreground hover:text-foreground">History</Link></li>
-              <li><Link href="/about/giving-back" className="text-muted-foreground hover:text-foreground">Giving back</Link></li>
-              <li><Link href="/about/careers" className="text-muted-foreground hover:text-foreground">Careers</Link></li>
-              <li><Link href="/about/news" className="text-muted-foreground hover:text-foreground">News</Link></li>
-              <li><Link href="/about/investor-relations" className="text-muted-foreground hover:text-foreground">Investor relations</Link></li>
+              <li><Link href="/about/history" className="text-foreground/70 hover:text-foreground">History</Link></li>
+              <li><Link href="/about/giving-back" className="text-foreground/70 hover:text-foreground">Giving back</Link></li>
+              <li><Link href="/about/careers" className="text-foreground/70 hover:text-foreground">Careers</Link></li>
+              <li><Link href="/about/news" className="text-foreground/70 hover:text-foreground">News</Link></li>
+              <li><Link href="/about/investor-relations" className="text-foreground/70 hover:text-foreground">Investor relations</Link></li>
             </ul>
           </div>
 
@@ -249,12 +249,12 @@ const Footer = memo(() => {
               Help Center
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/help/payments" className="text-muted-foreground hover:text-foreground">Payment questions</Link></li>
-              <li><Link href="/help/hardship" className="text-muted-foreground hover:text-foreground">Hardship assistance</Link></li>
-              <li><Link href="/help/loan-payoffs" className="text-muted-foreground hover:text-foreground">Loan payoffs</Link></li>
-              <li><Link href="/help/faq" className="text-muted-foreground hover:text-foreground">Mortgage FAQs</Link></li>
-              <li><Link href="/help/escrow" className="text-muted-foreground hover:text-foreground">Escrow</Link></li>
-              <li><Link href="/help/disaster" className="text-muted-foreground hover:text-foreground">Natural Disaster Resources</Link></li>
+              <li><Link href="/help/payments" className="text-foreground/70 hover:text-foreground">Payment questions</Link></li>
+              <li><Link href="/help/hardship" className="text-foreground/70 hover:text-foreground">Hardship assistance</Link></li>
+              <li><Link href="/help/loan-payoffs" className="text-foreground/70 hover:text-foreground">Loan payoffs</Link></li>
+              <li><Link href="/help/faq" className="text-foreground/70 hover:text-foreground">Mortgage FAQs</Link></li>
+              <li><Link href="/help/escrow" className="text-foreground/70 hover:text-foreground">Escrow</Link></li>
+              <li><Link href="/help/disaster" className="text-foreground/70 hover:text-foreground">Natural Disaster Resources</Link></li>
             </ul>
           </div>
         </div>
@@ -268,12 +268,12 @@ const Footer = memo(() => {
                 <p className="text-sm font-medium">Loan Servicing Help Center</p>
                 <a
                   href={`tel:${SITE_PHONE.replace(/[^+\d]/g, "")}`}
-                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                  className="text-foreground/70 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label={`Call ${SITE_PHONE}`}
                 >
                   {SITE_PHONE}
                 </a>
-                <p className="text-xs text-muted-foreground">{SITE_HOURS_LABEL}</p>
+                <p className="text-xs text-foreground/70">{SITE_HOURS_LABEL}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -282,7 +282,7 @@ const Footer = memo(() => {
                 <p className="text-sm font-medium">Email Us</p>
                 <a
                   href={`mailto:${SITE_EMAILS.primary}`}
-                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                  className="text-foreground/70 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label={`Email ${SITE_EMAILS.primary}`}
                 >
                   {SITE_EMAILS.primary}
@@ -297,7 +297,7 @@ const Footer = memo(() => {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE_ADDRESS)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                  className="text-foreground/70 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
                   aria-label="Open address in Google Maps"
                 >
                   <span className="block">{SITE_ADDRESS_STREET}</span>
@@ -313,7 +313,7 @@ const Footer = memo(() => {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             {/* Social Media */}
             <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground">Follow us:</span>
+              <span className="text-sm text-foreground/70">Follow us:</span>
               {socials.map(({ name, Component, href, hover, key }) => (
                 <Link
                   key={key}
@@ -321,7 +321,7 @@ const Footer = memo(() => {
                   aria-label={name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-muted-foreground transition-colors ${hover}`}
+                  className={`text-foreground/70 transition-colors ${hover}`}
                 >
                   <Component className="h-5 w-5" aria-hidden="true" />
                 </Link>
@@ -331,7 +331,7 @@ const Footer = memo(() => {
                   href="https://linktr.ee/ondorealestate"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-foreground/70 hover:text-foreground transition-colors"
                   aria-label="Scan QR code to access all social media links"
                 >
                   <Image
@@ -344,16 +344,16 @@ const Footer = memo(() => {
                     sizes="32px"
                   />
                 </a>
-                <span className="text-xs text-muted-foreground hidden sm:block">
+                <span className="text-xs text-foreground/70 hidden sm:block">
                   Click or Scan for all links
                 </span>
               </div>
             </div>
 
             {/* Legal Information */}
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-foreground/70">
               <div className="flex items-center gap-2">
-                <EqualHousingIcon className="text-muted-foreground" />
+                <EqualHousingIcon className="text-foreground/70" />
                 <span>Equal Housing Opportunity</span>
               </div>
               <span className="h-4 w-px bg-gray-600" />
@@ -374,11 +374,11 @@ const Footer = memo(() => {
       {/* Bottom Footer */}
       <div className="bg-gray-950 py-4">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-foreground/70">
             <div className="flex flex-col md:flex-row items-center gap-2">
               <p>© {new Date().getFullYear()} OnDo Real Estate. All rights reserved.</p>
               <p className="flex items-center gap-1">
-                <span className="text-muted-foreground/80">Designed. Developed. Deployed by</span>
+                <span className="text-foreground/70/80">Designed. Developed. Deployed by</span>
                 <Link 
                   href="https://www.ondosoft.com/?utm_source=ondorealestate" 
                   target="_blank" 
@@ -387,7 +387,7 @@ const Footer = memo(() => {
                 >
                   OnDoSoft
                 </Link>
-                <span className="text-muted-foreground/80">The digital engine behind <Link href="/" className="text-primary hover:text-primary/80 hover:underline">Ondo Real Estate</Link>.</span>
+                <span className="text-foreground/70/80">The digital engine behind <Link href="/" className="text-primary hover:text-primary/80 hover:underline">Ondo Real Estate</Link>.</span>
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-4">

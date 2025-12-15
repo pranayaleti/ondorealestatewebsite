@@ -67,7 +67,7 @@ export function ProfileForm() {
               <Camera className="h-4 w-4" />
             </button>
           </div>
-          <p className="text-sm text-muted-foreground">Recommended: 300x300px, max 2MB</p>
+          <p className="text-sm text-foreground/70">Recommended: 300x300px, max 2MB</p>
         </div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -141,7 +141,7 @@ export function ProfileForm() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label htmlFor="email-notifications">Email Notifications</Label>
-              <p className="text-sm text-muted-foreground">Receive email notifications for new leads and updates</p>
+              <p className="text-sm text-foreground/70">Receive email notifications for new leads and updates</p>
             </div>
             <Switch
               id="email-notifications"
@@ -153,7 +153,7 @@ export function ProfileForm() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label htmlFor="sms-notifications">SMS Notifications</Label>
-              <p className="text-sm text-muted-foreground">Receive text messages for urgent notifications</p>
+              <p className="text-sm text-foreground/70">Receive text messages for urgent notifications</p>
             </div>
             <Switch
               id="sms-notifications"

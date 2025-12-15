@@ -372,7 +372,7 @@ export function SettingsView() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="two-factor">Two-factor authentication</Label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-foreground/70">
                   Add an extra layer of security to your account with two-factor authentication
                 </p>
               </div>
@@ -387,7 +387,7 @@ export function SettingsView() {
 
             <div className="space-y-2">
               <Label htmlFor="session-timeout">Session timeout</Label>
-              <p className="text-sm text-muted-foreground">Automatically log out after a period of inactivity</p>
+              <p className="text-sm text-foreground/70">Automatically log out after a period of inactivity</p>
               <Select
                 value={settings.security.sessionTimeout}
                 onValueChange={(value) => handleSelectChange("security", "sessionTimeout", value)}
@@ -410,7 +410,7 @@ export function SettingsView() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="login-alerts">Login alerts</Label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-foreground/70">
                   Receive email notifications for new logins to your account
                 </p>
               </div>
@@ -429,7 +429,7 @@ export function SettingsView() {
                 <div className="flex items-center p-4">
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">Salt Lake City, UT, USA</p>
-                    <div className="flex items-center text-xs text-muted-foreground">
+                    <div className="flex items-center text-xs text-foreground/70">
                       <CheckCircle className="h-3 w-3 mr-1 text-green-500" />
                       <span>Current session</span>
                       <span className="mx-2">•</span>
@@ -443,7 +443,7 @@ export function SettingsView() {
                 <div className="flex items-center p-4">
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">Salt Lake City, UT, USA</p>
-                    <div className="flex items-center text-xs text-muted-foreground">
+                    <div className="flex items-center text-xs text-foreground/70">
                       <span>Safari on iPhone</span>
                       <span className="mx-2">•</span>
                       <span>Yesterday, 10:30 AM</span>
@@ -481,7 +481,7 @@ export function SettingsView() {
                   <SelectItem value="enterprise">Enterprise Plan - $99/month</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="text-sm text-muted-foreground">Your current billing cycle ends on June 1, 2023</p>
+              <p className="text-sm text-foreground/70">Your current billing cycle ends on June 1, 2023</p>
             </div>
 
             <Separator />
@@ -492,7 +492,7 @@ export function SettingsView() {
                 <CreditCard className="h-5 w-5" />
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium">Visa ending in 4242</p>
-                  <p className="text-xs text-muted-foreground">Expires 04/2024</p>
+                  <p className="text-xs text-foreground/70">Expires 04/2024</p>
                 </div>
                 <Button variant="outline" size="sm">
                   Update
@@ -505,7 +505,7 @@ export function SettingsView() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="auto-renew">Auto-renew subscription</Label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-foreground/70">
                   Automatically renew your subscription at the end of the billing cycle
                 </p>
               </div>
@@ -524,7 +524,7 @@ export function SettingsView() {
                 <div className="flex items-center p-4">
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">Professional Plan - May 2023</p>
-                    <p className="text-xs text-muted-foreground">May 1, 2023 • $49.00</p>
+                    <p className="text-xs text-foreground/70">May 1, 2023 • $49.00</p>
                   </div>
                   <Button variant="ghost" size="sm">
                     Download
@@ -534,7 +534,7 @@ export function SettingsView() {
                 <div className="flex items-center p-4">
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">Professional Plan - April 2023</p>
-                    <p className="text-xs text-muted-foreground">April 1, 2023 • $49.00</p>
+                    <p className="text-xs text-foreground/70">April 1, 2023 • $49.00</p>
                   </div>
                   <Button variant="ghost" size="sm">
                     Download
@@ -544,7 +544,7 @@ export function SettingsView() {
                 <div className="flex items-center p-4">
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">Professional Plan - March 2023</p>
-                    <p className="text-xs text-muted-foreground">March 1, 2023 • $49.00</p>
+                    <p className="text-xs text-foreground/70">March 1, 2023 • $49.00</p>
                   </div>
                   <Button variant="ghost" size="sm">
                     Download

@@ -44,7 +44,7 @@ export default function NotFound() {
           </div>
           <h1 className="text-6xl font-bold text-primary mb-4">404</h1>
           <h2 className="text-3xl font-bold text-foreground mb-4">Oops! Page Not Found</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
             The page you're looking for seems to have wandered off like a lost property key. 
             Don't worry - we'll help you find what you need!
           </p>
@@ -85,7 +85,7 @@ export default function NotFound() {
                       <div className="text-primary">{page.icon}</div>
                       <div>
                         <h3 className="font-semibold text-foreground">{page.name}</h3>
-                        <p className="text-sm text-muted-foreground">{page.description}</p>
+                        <p className="text-sm text-foreground/70">{page.description}</p>
                       </div>
                     </div>
                   </div>
@@ -103,7 +103,7 @@ export default function NotFound() {
               <CardTitle className="text-lg">Need Help Finding Something?</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-muted-foreground mb-4">Our team is here to help you navigate our services.</p>
+              <p className="text-foreground/70 mb-4">Our team is here to help you navigate our services.</p>
               <Button asChild variant="outline" className="w-full">
                 <Link href="/contact">Contact Support</Link>
               </Button>
@@ -116,7 +116,7 @@ export default function NotFound() {
               <CardTitle className="text-lg">Try Our Search</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-muted-foreground mb-4">Use our search feature to find properties or information.</p>
+              <p className="text-foreground/70 mb-4">Use our search feature to find properties or information.</p>
               <Button asChild variant="outline" className="w-full">
                 <Link href="/search">Search Now</Link>
               </Button>
@@ -129,7 +129,7 @@ export default function NotFound() {
               <CardTitle className="text-lg">Call Us Directly</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-muted-foreground mb-4">Speak with our team for immediate assistance.</p>
+              <p className="text-foreground/70 mb-4">Speak with our team for immediate assistance.</p>
               <Button asChild variant="outline" className="w-full">
                 <Link href={`tel:${SITE_PHONE.replace(/[^+\\d]/g, "")}`}>{SITE_PHONE}</Link>
               </Button>
@@ -151,7 +151,7 @@ export default function NotFound() {
             </Button>
           </div>
           
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-foreground/70">
             <p>Still can't find what you're looking for?</p>
             <p>Email us at <a href={`mailto:${SITE_EMAILS.support}`} className="text-primary hover:underline">{SITE_EMAILS.support}</a></p>
           </div>

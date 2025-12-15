@@ -50,7 +50,7 @@ export default function ProfilePage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">My Profile</h1>
-        <p className="text-muted-foreground">Manage your personal information and account settings</p>
+        <p className="text-foreground/70">Manage your personal information and account settings</p>
       </div>
 
       <ProfileView />

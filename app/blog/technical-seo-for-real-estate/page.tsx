@@ -79,7 +79,7 @@ export default function TechnicalSEOForRealEstate() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-8">
+            <p className="lead text-xl text-foreground/70 mb-8">
               In real estate, if you aren't on Page 1, you don't exist. Ondo Real Estate utilizes a &quot;Programmatic SEO&quot; approach built on Next.js to ensure our listings and services dominate local search results in Utah.
             </p>
 
@@ -199,7 +199,7 @@ function KeyLine({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/60 px-4 py-3 h-full">
       <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="text-sm text-muted-foreground">{detail}</p>
+      <p className="text-sm text-foreground/70">{detail}</p>
     </div>
   );
 }

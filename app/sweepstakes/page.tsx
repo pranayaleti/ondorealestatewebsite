@@ -73,7 +73,7 @@ export default function SweepstakesPage() {
                         <Trophy className="h-8 w-8 text-primary" />
                       </div>
                       <h3 className="font-bold text-lg mb-1">Prize Info</h3>
-                      <p className="text-sm text-muted-foreground">3 Winners</p>
+                      <p className="text-sm text-foreground/70">3 Winners</p>
                       <div className="space-y-1 text-sm">
                         <p className="font-semibold text-primary">1st Prize: MacBook Pro</p>
                         <p className="font-semibold text-primary">2nd Prize: iPhone 17</p>
@@ -85,7 +85,7 @@ export default function SweepstakesPage() {
                         <Gift className="h-8 w-8 text-primary" />
                       </div>
                       <h3 className="font-bold text-lg mb-1">How to Enter</h3>
-                      <p className="text-sm text-muted-foreground mb-2">Enter anytime - no deadlines!</p>
+                      <p className="text-sm text-foreground/70 mb-2">Enter anytime - no deadlines!</p>
                       <ul className="text-left space-y-1 text-sm">
                         <li>✓ Enter your email for your first free entry</li>
                         <li>✓ View and agree to our Official Rules</li>
@@ -105,25 +105,25 @@ export default function SweepstakesPage() {
                   <div className="text-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-8">
                     <div className="text-6xl mb-4">💻</div>
                     <h3 className="text-xl font-bold mb-2">MacBook Pro</h3>
-                    <p className="text-sm text-muted-foreground">Latest model with M3 chip</p>
+                    <p className="text-sm text-foreground/70">Latest model with M3 chip</p>
                     <p className="text-lg font-semibold text-primary mt-2">1st Prize</p>
                   </div>
                   <div className="text-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-8">
                     <div className="text-6xl mb-4">📱</div>
                     <h3 className="text-xl font-bold mb-2">iPhone 17</h3>
-                    <p className="text-sm text-muted-foreground">Latest iPhone with Pro features</p>
+                    <p className="text-sm text-foreground/70">Latest iPhone with Pro features</p>
                     <p className="text-lg font-semibold text-primary mt-2">2nd Prize</p>
                   </div>
                   <div className="text-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-8">
                     <div className="text-6xl mb-4">🎧</div>
                     <h3 className="text-xl font-bold mb-2">AirPods Pro</h3>
-                    <p className="text-sm text-muted-foreground">Active noise cancellation</p>
+                    <p className="text-sm text-foreground/70">Active noise cancellation</p>
                     <p className="text-lg font-semibold text-primary mt-2">3rd Prize</p>
                   </div>
                 </div>
                 <CardContent className="text-center p-6 bg-primary/5">
                   <h3 className="text-2xl font-bold mb-2">Win Apple's Latest Tech</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     Three amazing prizes up for grabs! Enter now for your chance to win.
                   </p>
                 </CardContent>
@@ -146,23 +146,23 @@ export default function SweepstakesPage() {
                   <CardContent className="space-y-4 text-sm">
                     <div className="p-3 bg-primary/5 rounded-lg">
                       <p className="font-semibold mb-2">📋 Eligibility</p>
-                      <p className="text-muted-foreground">Must be 18 years or older and a legal resident of the United States.</p>
+                      <p className="text-foreground/70">Must be 18 years or older and a legal resident of the United States.</p>
                     </div>
                     <div className="p-3 bg-primary/5 rounded-lg">
                       <p className="font-semibold mb-2">🎯 How to Enter</p>
-                      <p className="text-muted-foreground">Enter your email for your first free entry. Complete bonus actions to earn more entries.</p>
+                      <p className="text-foreground/70">Enter your email for your first free entry. Complete bonus actions to earn more entries.</p>
                     </div>
                     <div className="p-3 bg-primary/5 rounded-lg">
                       <p className="font-semibold mb-2">🏆 Prizes</p>
-                      <p className="text-muted-foreground">MacBook Pro, iPhone 17, AirPods Pro. Winners will be contacted via email.</p>
+                      <p className="text-foreground/70">MacBook Pro, iPhone 17, AirPods Pro. Winners will be contacted via email.</p>
                     </div>
                     <div className="p-3 bg-primary/5 rounded-lg">
                       <p className="font-semibold mb-2">🎲 Drawing</p>
-                      <p className="text-muted-foreground">Winners will be selected randomly from all entries. Odds depend on number of entries. Winners will be announced soon!!</p>
+                      <p className="text-foreground/70">Winners will be selected randomly from all entries. Odds depend on number of entries. Winners will be announced soon!!</p>
                     </div>
                     <div className="p-3 bg-primary/5 rounded-lg">
                       <p className="font-semibold mb-2">⚖️ Terms</p>
-                      <p className="text-muted-foreground">No purchase necessary. Void where prohibited. By entering, you agree to receive promotional emails from Ondo Real Estate.</p>
+                      <p className="text-foreground/70">No purchase necessary. Void where prohibited. By entering, you agree to receive promotional emails from Ondo Real Estate.</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -220,7 +220,7 @@ export default function SweepstakesPage() {
                       />
                       <div>
                         <h4 className="font-semibold">JOHN M.</h4>
-                        <p className="text-muted-foreground text-xs">MacBook Pro Winner</p>
+                        <p className="text-foreground/70 text-xs">MacBook Pro Winner</p>
                         <p className="text-xs text-primary">Recent Winner</p>
                       </div>
                     </div>
@@ -234,7 +234,7 @@ export default function SweepstakesPage() {
                       />
                       <div>
                         <h4 className="font-semibold">SARAH K.</h4>
-                        <p className="text-muted-foreground text-xs">iPhone 16 Winner</p>
+                        <p className="text-foreground/70 text-xs">iPhone 16 Winner</p>
                         <p className="text-xs text-primary">Recent Winner</p>
                       </div>
                     </div>
@@ -248,7 +248,7 @@ export default function SweepstakesPage() {
                       />
                       <div>
                         <h4 className="font-semibold">EMILY R.</h4>
-                        <p className="text-muted-foreground text-xs">AirPods Pro Winner</p>
+                        <p className="text-foreground/70 text-xs">AirPods Pro Winner</p>
                         <p className="text-xs text-primary">Recent Winner</p>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export default function SweepstakesPage() {
                 <Card>
                   <CardContent className="pt-6">
                     <div className="text-4xl mb-4">⭐ 4.9/5</div>
-                    <p className="text-sm text-muted-foreground mb-4">85,000+ Customer Reviews</p>
+                    <p className="text-sm text-foreground/70 mb-4">85,000+ Customer Reviews</p>
                     <div className="flex items-start gap-2">
                       <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                       <p className="text-sm">Excellent service! Perfect home, great customer support. Couldn't be happier with my experience!</p>
@@ -280,7 +280,7 @@ export default function SweepstakesPage() {
                 <Card>
                   <CardContent className="pt-6">
                     <div className="text-4xl mb-4">🏆 Top Rated</div>
-                    <p className="text-sm text-muted-foreground mb-4">Best in Property Management</p>
+                    <p className="text-sm text-foreground/70 mb-4">Best in Property Management</p>
                     <div className="flex items-start gap-2">
                       <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                       <p className="text-sm">Professional team, responsive management. They truly care about their clients and properties.</p>
@@ -290,7 +290,7 @@ export default function SweepstakesPage() {
                 <Card>
                   <CardContent className="pt-6">
                     <div className="text-4xl mb-4">🎯 Trusted</div>
-                    <p className="text-sm text-muted-foreground mb-4">Serving Utah Since 2010</p>
+                    <p className="text-sm text-foreground/70 mb-4">Serving Utah Since 2010</p>
                     <div className="flex items-start gap-2">
                       <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                       <p className="text-sm">Fast, reliable, and trustworthy. Made the entire process smooth and stress-free!</p>

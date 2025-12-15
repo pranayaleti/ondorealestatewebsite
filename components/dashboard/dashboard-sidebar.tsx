@@ -128,7 +128,7 @@ export function DashboardSidebar() {
                 </Avatar>
                 <div className="flex flex-col items-start">
                   <span className="font-medium">Admin User</span>
-                  <span className="text-xs text-muted-foreground">admin@example.com</span>
+                  <span className="text-xs text-foreground/70">admin@example.com</span>
                 </div>
                 <ChevronDown className="ml-auto h-4 w-4" />
               </Button>

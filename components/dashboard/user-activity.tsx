@@ -119,7 +119,7 @@ export function UserActivity() {
             <div className={`p-2 rounded-full ${getActivityColor(activity.type)} text-white mt-1`}>{activity.icon}</div>
             <div className="flex-1">
               <p className="font-medium">{activity.description}</p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground/70">
                 {new Date(activity.timestamp).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -140,7 +140,7 @@ export function UserActivity() {
             <div className={`p-2 rounded-full ${getActivityColor(activity.type)} text-white mt-1`}>{activity.icon}</div>
             <div className="flex-1">
               <p className="font-medium">{activity.description}</p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground/70">
                 {new Date(activity.timestamp).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",

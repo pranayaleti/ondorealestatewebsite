@@ -236,7 +236,7 @@ export function MaintenanceRequestForm() {
               <button
                 type="button"
                 onClick={handlePhotoUpload}
-                className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center text-muted-foreground hover:text-foreground hover:border-gray-400 transition-colors"
+                className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-md flex flex-col items-center justify-center text-foreground/70 hover:text-foreground hover:border-gray-400 transition-colors"
                 aria-label="Add photo"
               >
                 <Camera className="h-6 w-6 mb-1" />

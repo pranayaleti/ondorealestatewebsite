@@ -177,7 +177,7 @@ export function SettingsForm() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="enable-analytics">Analytics Tracking</Label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-foreground/70">
                   Enable analytics to track user activity and system performance
                 </p>
               </div>
@@ -191,7 +191,7 @@ export function SettingsForm() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="enable-lead-tracking">Lead Tracking</Label>
-                <p className="text-sm text-muted-foreground">Enable automatic lead tracking and source attribution</p>
+                <p className="text-sm text-foreground/70">Enable automatic lead tracking and source attribution</p>
               </div>
               <Switch
                 id="enable-lead-tracking"

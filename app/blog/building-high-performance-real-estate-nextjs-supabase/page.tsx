@@ -80,7 +80,7 @@ export default function BuildingHighPerformanceRealEstatePlatform() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-8">
+            <p className="lead text-xl text-foreground/70 mb-8">
               In the competitive proptech landscape, speed and reliability are not just &quot;nice-to-haves&quot;—they are conversion drivers. At <strong>Ondo Real Estate</strong>, we rebuilt our core infrastructure using <strong>Next.js 15</strong> and <strong>Supabase</strong> to deliver a seamless experience for buyers, sellers, and property owners.
             </p>
 
@@ -229,7 +229,7 @@ function KeyLine({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/60 px-4 py-3 h-full">
       <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="text-sm text-muted-foreground">{detail}</p>
+      <p className="text-sm text-foreground/70">{detail}</p>
     </div>
   );
 }

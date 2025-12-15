@@ -137,7 +137,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -154,7 +154,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Annual Rent (optional, leave 0 to use monthly × 12)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualRent}
@@ -171,7 +171,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -188,7 +188,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Annual Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -205,7 +205,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Annual Maintenance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.maintenance}
@@ -222,7 +222,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Property Management (annual $ or % as decimal)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     step="0.01"
@@ -255,7 +255,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   Other Annual Expenses
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.otherExpenses}
@@ -282,7 +282,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                         <p className={`text-4xl font-bold ${getExpenseRatioColor(results.expenseRatio)}`}>
                           {formatPercent(results.expenseRatio)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Operating Expenses ÷ Gross Rent
                         </p>
                       </div>
@@ -290,11 +290,11 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">50% Rule Estimate</p>
+                        <p className="text-sm text-foreground/70 mb-1">50% Rule Estimate</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.estimatedOperatingExpenses)}</p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Actual Expenses</p>
+                        <p className="text-sm text-foreground/70 mb-1">Actual Expenses</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.actualOperatingExpenses)}</p>
                       </div>
                     </div>
@@ -306,15 +306,15 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Net Operating Income</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Gross Rent:</span>
+                      <span className="text-foreground/70">Annual Gross Rent:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.annualRent)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Estimated NOI (50% rule):</span>
+                      <span className="text-foreground/70">Estimated NOI (50% rule):</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.estimatedNOI)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Actual NOI:</span>
+                      <span className="text-foreground/70">Actual NOI:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.actualNOI)}</span>
                     </div>
                     <hr className="my-3" />
@@ -330,7 +330,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.expenseRatio <= 40 ? (
                       <p className="text-primary font-medium">✓ Excellent! Expenses are lower than the 50% rule estimate.</p>
                     ) : results.expenseRatio <= 50 ? (
@@ -356,7 +356,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About the 50% Rule</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Is:</h3>
               <ul className="space-y-1 list-disc list-inside">

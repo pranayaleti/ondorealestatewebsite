@@ -62,7 +62,7 @@ export default function CommercialRE101() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               Commercial real estate looks complex until you anchor on three ideas: cap rates, lease structure, and tenant mix. Once you see those levers, underwriting gets repeatable.
             </p>
 

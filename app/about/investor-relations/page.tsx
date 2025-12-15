@@ -134,7 +134,7 @@ export default function InvestorRelationsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Financial Performance</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 OnDo Real Estate continues to demonstrate strong financial performance and growth in the Utah real estate market.
               </p>
             </div>
@@ -149,7 +149,7 @@ export default function InvestorRelationsPage() {
                     <CardDescription>{highlight.period}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground dark:text-muted-foreground text-center">
+                    <p className="text-sm text-foreground/70 dark:text-foreground/70 text-center">
                       {highlight.description}
                     </p>
                   </CardContent>
@@ -179,7 +179,7 @@ export default function InvestorRelationsPage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center justify-between text-sm text-foreground/70">
                         <div className="flex items-center gap-4">
                           <span>{report.type}</span>
                           <span>{report.size}</span>
@@ -205,8 +205,8 @@ export default function InvestorRelationsPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold dark:text-foreground mb-2">{event.title}</h4>
-                          <p className="text-muted-foreground dark:text-muted-foreground mb-2">{event.description}</p>
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <p className="text-foreground/70 dark:text-foreground/70 mb-2">{event.description}</p>
+                          <div className="flex items-center gap-4 text-sm text-foreground/70">
                             <div className="flex items-center gap-1">
                               <Calendar className="h-4 w-4" />
                               {new Date(event.date).toLocaleDateString()}
@@ -240,13 +240,13 @@ export default function InvestorRelationsPage() {
                     <CardContent>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm">
-                          <Mail className="h-4 w-4 text-muted-foreground" />
+                          <Mail className="h-4 w-4 text-foreground/70" />
                           <a href={`mailto:${person.email}`} className="text-primary hover:underline">
                             {person.email}
                           </a>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
-                          <Phone className="h-4 w-4 text-muted-foreground" />
+                          <Phone className="h-4 w-4 text-foreground/70" />
                           <a href={`tel:${person.phone}`} className="text-primary hover:underline">
                             {person.phone}
                           </a>
@@ -262,7 +262,7 @@ export default function InvestorRelationsPage() {
             <div className="bg-muted dark:bg-muted rounded-lg p-8 mb-12">
               <h3 className="text-2xl font-bold mb-6 text-center dark:text-foreground">Investor Inquiries</h3>
               <div className="max-w-4xl mx-auto text-center">
-                <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+                <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                   For investor inquiries, financial information requests, or to schedule a meeting with our leadership team, 
                   please contact our investor relations department.
                 </p>
@@ -289,7 +289,7 @@ export default function InvestorRelationsPage() {
             {/* Disclaimer */}
             <div className="text-center">
               <h3 className="text-xl font-bold mb-4 dark:text-foreground">Important Information</h3>
-              <p className="text-sm text-muted-foreground dark:text-muted-foreground max-w-4xl mx-auto">
+              <p className="text-sm text-foreground/70 dark:text-foreground/70 max-w-4xl mx-auto">
                 The information provided on this page is for informational purposes only and does not constitute 
                 investment advice. Past performance does not guarantee future results. Please consult with a 
                 qualified financial advisor before making any investment decisions.

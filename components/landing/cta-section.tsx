@@ -13,7 +13,7 @@ export function CTASection() {
             <input
               type="text"
               placeholder="Enter ZIP code"
-              className="flex-1 px-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background dark:bg-card dark:border-border dark:placeholder:text-muted-foreground"
+              className="flex-1 px-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-foreground/70 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background dark:bg-card dark:border-border dark:placeholder:text-foreground/70"
             />
             <Button type="submit" className="bg-background hover:bg-muted dark:hover:bg-muted text-foreground">
               Search

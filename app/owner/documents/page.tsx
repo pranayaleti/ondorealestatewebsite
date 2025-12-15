@@ -50,7 +50,7 @@ export default function DocumentsPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Document Management</h1>
-        <p className="text-muted-foreground">Store, organize, and share important documents</p>
+        <p className="text-foreground/70">Store, organize, and share important documents</p>
       </div>
 
       <DocumentsView />

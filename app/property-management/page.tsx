@@ -159,7 +159,7 @@ export default function PropertyManagementPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Complete Property Management Solutions</h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-foreground/70">
               Let us handle the day-to-day management of your rental properties while you enjoy passive income. 
               Our comprehensive services cover everything from tenant placement to maintenance coordination.
             </p>
@@ -173,7 +173,7 @@ export default function PropertyManagementPage() {
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
+                  <CardDescription className="text-foreground/70">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -187,28 +187,28 @@ export default function PropertyManagementPage() {
                   <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Local Expertise</h4>
-                    <p className="text-muted-foreground">Deep knowledge of Utah real estate market and local regulations</p>
+                    <p className="text-foreground/70">Deep knowledge of Utah real estate market and local regulations</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Technology-Driven</h4>
-                    <p className="text-muted-foreground">Online portals for owners and tenants with real-time reporting</p>
+                    <p className="text-foreground/70">Online portals for owners and tenants with real-time reporting</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Proven Track Record</h4>
-                    <p className="text-muted-foreground">Over 95% tenant retention rate and 99% on-time rent collection</p>
+                    <p className="text-foreground/70">Over 95% tenant retention rate and 99% on-time rent collection</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">24/7 Support</h4>
-                    <p className="text-muted-foreground">Round-the-clock emergency response and tenant support</p>
+                    <p className="text-foreground/70">Round-the-clock emergency response and tenant support</p>
                   </div>
                 </div>
               </div>

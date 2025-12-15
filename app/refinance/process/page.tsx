@@ -70,7 +70,7 @@ export default function RefinanceProcessPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">How Refinancing Works</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Refinancing your mortgage can help you lower your monthly payment, reduce your interest rate, or access your home's equity. Here's how the process works:
               </p>
             </div>
@@ -105,10 +105,10 @@ export default function RefinanceProcessPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Rate-and-Term Refinance</h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground mb-3">
+                  <p className="text-foreground/70 dark:text-foreground/70 mb-3">
                     Lower your interest rate or change your loan term without taking cash out.
                   </p>
-                  <ul className="space-y-1 text-sm text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-1 text-sm text-foreground/70 dark:text-foreground/70">
                     <li>• Reduce monthly payments</li>
                     <li>• Pay off loan faster</li>
                     <li>• Switch from ARM to fixed rate</li>
@@ -116,10 +116,10 @@ export default function RefinanceProcessPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground">Cash-Out Refinance</h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground mb-3">
+                  <p className="text-foreground/70 dark:text-foreground/70 mb-3">
                     Access your home's equity to get cash for major expenses or investments.
                   </p>
-                  <ul className="space-y-1 text-sm text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-1 text-sm text-foreground/70 dark:text-foreground/70">
                     <li>• Home improvements</li>
                     <li>• Debt consolidation</li>
                     <li>• Major purchases</li>

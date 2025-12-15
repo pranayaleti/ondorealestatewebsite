@@ -44,7 +44,7 @@ export default function OwnerSettingsPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Account Settings</h1>
-        <p className="text-muted-foreground">Manage your account preferences and settings</p>
+        <p className="text-foreground/70">Manage your account preferences and settings</p>
       </div>
 
       <UnderMaintenance

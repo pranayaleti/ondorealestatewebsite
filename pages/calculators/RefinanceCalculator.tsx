@@ -130,7 +130,7 @@ const RefinanceCalculator: React.FC = () => {
                   Current Loan Balance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.currentBalance}
@@ -162,7 +162,7 @@ const RefinanceCalculator: React.FC = () => {
                   Current Monthly Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.currentPayment}
@@ -212,7 +212,7 @@ const RefinanceCalculator: React.FC = () => {
                   Refinancing Closing Costs
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.closingCosts}
@@ -229,7 +229,7 @@ const RefinanceCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -246,7 +246,7 @@ const RefinanceCalculator: React.FC = () => {
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -275,7 +275,7 @@ const RefinanceCalculator: React.FC = () => {
                       <div className="text-center p-3 bg-muted rounded-lg">
                         <p className="text-sm text-primary mb-1">New Payment</p>
                         <p className="text-lg font-semibold text-green-700">{formatCurrency(results.newMonthlyPayment)}</p>
-                        <p className="text-xs text-muted-foreground mt-1">P&I: {formatCurrency(results.newPI)} • Escrows: {formatCurrency(results.newEscrows)}</p>
+                        <p className="text-xs text-foreground/70 mt-1">P&I: {formatCurrency(results.newPI)} • Escrows: {formatCurrency(results.newEscrows)}</p>
                       </div>
                     </div>
                     
@@ -304,7 +304,7 @@ const RefinanceCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Closing costs: {formatCurrency(formData.closingCosts)}</p>
                       <p>• Monthly savings: {formatCurrency(results.monthlySavings)}</p>
                       <p>• Break-even: {results.breakEvenMonths.toFixed(1)} months</p>
@@ -326,7 +326,7 @@ const RefinanceCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Interest savings (PI-only est.): {formatCurrency(results.interestSavings)}</p>
                       <p>• Closing costs: {formatCurrency(formData.closingCosts)}</p>
                       <p>• Net savings: {formatCurrency(results.totalSavings)}</p>
@@ -337,7 +337,7 @@ const RefinanceCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Recommendations</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.breakEvenMonths < 24 ? (
                       <p className="text-primary font-medium">✓ Refinancing looks beneficial with a quick break-even period</p>
                     ) : (
@@ -357,7 +357,7 @@ const RefinanceCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Refinancing</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">When to Consider Refinancing:</h3>
               <ul className="space-y-1 list-disc list-inside">

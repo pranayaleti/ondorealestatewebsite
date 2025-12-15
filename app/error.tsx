@@ -41,7 +41,7 @@ export default function Error({
           <CardTitle className="text-xl">Something went wrong!</CardTitle>
           <CardDescription>We apologize for the inconvenience. An unexpected error has occurred.</CardDescription>
         </CardHeader>
-        <CardContent className="text-muted-foreground text-center">
+        <CardContent className="text-foreground/70 text-center">
           <p>Error code: {error.digest}</p>
           <p className="mt-2">Please try again or contact support if the problem persists.</p>
         </CardContent>

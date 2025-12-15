@@ -163,7 +163,7 @@ export default function BuyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Your Utah Home Buying Journey Starts Here</h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-foreground/70">
               Whether you're a first-time buyer or looking to upgrade, our experienced agents will guide you 
               through every step of finding and purchasing your perfect Utah home.
             </p>
@@ -177,7 +177,7 @@ export default function BuyPage() {
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
+                  <CardDescription className="text-foreground/70">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -191,28 +191,28 @@ export default function BuyPage() {
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Local Market Expertise</h4>
-                    <p className="text-muted-foreground">Deep knowledge of Utah neighborhoods, schools, and market trends</p>
+                    <p className="text-foreground/70">Deep knowledge of Utah neighborhoods, schools, and market trends</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Advanced Search Tools</h4>
-                    <p className="text-muted-foreground">Access to exclusive listings and advanced MLS search capabilities</p>
+                    <p className="text-foreground/70">Access to exclusive listings and advanced MLS search capabilities</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Negotiation Excellence</h4>
-                    <p className="text-muted-foreground">Proven track record of securing the best deals for our clients</p>
+                    <p className="text-foreground/70">Proven track record of securing the best deals for our clients</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Full-Service Support</h4>
-                    <p className="text-muted-foreground">Complete guidance from initial search through closing and beyond</p>
+                    <p className="text-foreground/70">Complete guidance from initial search through closing and beyond</p>
                   </div>
                 </div>
               </div>

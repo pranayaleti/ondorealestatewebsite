@@ -223,7 +223,7 @@ const ROICalculator: React.FC = () => {
                   Purchase Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.purchasePrice}
@@ -240,7 +240,7 @@ const ROICalculator: React.FC = () => {
                   Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
@@ -288,7 +288,7 @@ const ROICalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -305,7 +305,7 @@ const ROICalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -322,7 +322,7 @@ const ROICalculator: React.FC = () => {
                   Annual Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -339,7 +339,7 @@ const ROICalculator: React.FC = () => {
                   Annual Maintenance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.maintenance}
@@ -371,7 +371,7 @@ const ROICalculator: React.FC = () => {
                   Closing Costs
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.closingCosts}
@@ -388,7 +388,7 @@ const ROICalculator: React.FC = () => {
                   Initial Repairs/Rehab
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.repairs}
@@ -434,7 +434,7 @@ const ROICalculator: React.FC = () => {
                   Sale Price (optional, leave 0 to use appreciation)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.salePrice}
@@ -461,7 +461,7 @@ const ROICalculator: React.FC = () => {
                         <p className={`text-4xl font-bold ${getROIColor(results.totalROI)}`}>
                           {formatPercent(results.totalROI)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Over {formData.holdingPeriod} years
                         </p>
                       </div>
@@ -469,13 +469,13 @@ const ROICalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Annual ROI</p>
+                        <p className="text-sm text-foreground/70 mb-1">Annual ROI</p>
                         <p className={`text-lg font-semibold ${getROIColor(results.annualROI)}`}>
                           {formatPercent(results.annualROI)}
                         </p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Cash-on-Cash</p>
+                        <p className="text-sm text-foreground/70 mb-1">Cash-on-Cash</p>
                         <p className={`text-lg font-semibold ${getROIColor(results.cashOnCashReturn)}`}>
                           {formatPercent(results.cashOnCashReturn)}
                         </p>
@@ -489,19 +489,19 @@ const ROICalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Return Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total Cash Invested:</span>
+                      <span className="text-foreground/70">Total Cash Invested:</span>
                       <span className="font-semibold">{formatCurrency(results.totalCashInvested)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total Cash Flow ({formData.holdingPeriod} years):</span>
+                      <span className="text-foreground/70">Total Cash Flow ({formData.holdingPeriod} years):</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.totalCashFlow)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Equity at Sale:</span>
+                      <span className="text-foreground/70">Equity at Sale:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.equityAtSale)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Equity Gain:</span>
+                      <span className="text-foreground/70">Equity Gain:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.equityAtSale - formData.downPayment)}</span>
                     </div>
                     <hr className="my-3" />
@@ -519,11 +519,11 @@ const ROICalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Sale Analysis</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Property Value at Sale:</span>
+                      <span className="text-foreground/70">Property Value at Sale:</span>
                       <span className="font-semibold">{formatCurrency(results.propertyValueAtSale)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Loan Balance at Sale:</span>
+                      <span className="text-foreground/70">Loan Balance at Sale:</span>
                       <span className="font-semibold text-destructive">{formatCurrency(results.loanBalanceAtSale)}</span>
                     </div>
                     <hr className="my-3" />
@@ -537,7 +537,7 @@ const ROICalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.totalROI >= 15 ? (
                       <p className="text-primary font-medium">✓ Excellent ROI! This investment shows strong return potential.</p>
                     ) : results.totalROI >= 10 ? (
@@ -561,7 +561,7 @@ const ROICalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About ROI</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Measures:</h3>
               <ul className="space-y-1 list-disc list-inside">

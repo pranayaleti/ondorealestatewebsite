@@ -30,7 +30,7 @@ export const criticalCSS = {
     'font-bold',
     'text-center',
     'text-foreground',
-    'text-muted-foreground',
+    'text-foreground/70',
     
     // Backgrounds
     'bg-background',

@@ -62,7 +62,7 @@ export default function PropertyManagementAutomationChecklist() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               Automations should remove toil, not add opacity. Here are the flows that consistently pay off across small portfolios.
             </p>
 

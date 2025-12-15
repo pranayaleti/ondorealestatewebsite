@@ -64,7 +64,7 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Edit Property</h1>
-        <p className="text-muted-foreground">Update your property details</p>
+        <p className="text-foreground/70">Update your property details</p>
       </div>
 
       <UnderMaintenance

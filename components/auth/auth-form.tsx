@@ -45,7 +45,7 @@ export function AuthForm() {
             </CardContent>
             <CardFooter className="flex flex-col space-y-2">
               <Button className="w-full">Sign In</Button>
-              <div className="text-sm text-center text-muted-foreground">
+              <div className="text-sm text-center text-foreground/70">
                 <Link href="#" className="hover:underline">
                   Forgot password?
                 </Link>

@@ -32,7 +32,7 @@ export default function FixedRatePage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">What is a Fixed-Rate Mortgage?</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/70">
                 A fixed-rate mortgage keeps your interest rate and monthly payment the same for the entire loan term, providing stability and predictability.
               </p>
             </div>
@@ -84,7 +84,7 @@ export default function FixedRatePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3">30-Year Fixed</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Lower monthly payments</li>
                     <li>• More interest paid over time</li>
                     <li>• Most popular option</li>
@@ -93,7 +93,7 @@ export default function FixedRatePage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3">15-Year Fixed</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Higher monthly payments</li>
                     <li>• Less interest paid overall</li>
                     <li>• Build equity faster</li>

@@ -128,16 +128,16 @@ export function FeaturedPropertiesSection() {
                 </div>
                 <CardHeader>
                   <CardTitle className="dark:text-foreground">{property.name}</CardTitle>
-                  <CardDescription className="dark:text-muted-foreground">{property.description}</CardDescription>
+                  <CardDescription className="dark:text-foreground/70">{property.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm dark:text-muted-foreground">
+                    <span className="text-sm dark:text-foreground/70">
                       {property.bedrooms} bed • {property.bathrooms} bath
                     </span>
                     <span className="font-semibold dark:text-foreground">${property.price}/mo</span>
                   </div>
-                  <p className="text-sm text-muted-foreground dark:text-muted-foreground">{property.shortDescription}</p>
+                  <p className="text-sm text-foreground/70 dark:text-foreground/70">{property.shortDescription}</p>
                 </CardContent>
                 <CardFooter>
                   <Button

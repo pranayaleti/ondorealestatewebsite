@@ -50,7 +50,7 @@ export default function MessagesPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Messages</h1>
-        <p className="text-muted-foreground">Communicate with tenants and service providers</p>
+        <p className="text-foreground/70">Communicate with tenants and service providers</p>
       </div>
 
       <MessagesView />

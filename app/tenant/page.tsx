@@ -65,10 +65,10 @@ export default function TenantDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
         <div>
           <h1 className="text-3xl font-bold">Welcome, {user?.name || "Tenant"}</h1>
-          <p className="text-muted-foreground">Manage your rental and payments</p>
+          <p className="text-foreground/70">Manage your rental and payments</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Last login: Today, 9:45 AM</span>
+          <span className="text-sm text-foreground/70">Last login: Today, 9:45 AM</span>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export default function TenantDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Next Rent Due</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -84,7 +84,7 @@ export default function TenantDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">$1,250.00</div>
-                <p className="text-xs text-muted-foreground">Due on June 1, 2023</p>
+                <p className="text-xs text-foreground/70">Due on June 1, 2023</p>
               </>
             )}
           </CardContent>
@@ -92,7 +92,7 @@ export default function TenantDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Lease Status</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
+            <FileText className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -100,7 +100,7 @@ export default function TenantDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">Active</div>
-                <p className="text-xs text-muted-foreground">Expires on Dec 31, 2023</p>
+                <p className="text-xs text-foreground/70">Expires on Dec 31, 2023</p>
               </>
             )}
           </CardContent>
@@ -108,7 +108,7 @@ export default function TenantDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Maintenance Requests</CardTitle>
-            <Tool className="h-4 w-4 text-muted-foreground" />
+            <Tool className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -116,7 +116,7 @@ export default function TenantDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">2 Active</div>
-                <p className="text-xs text-muted-foreground">1 completed this month</p>
+                <p className="text-xs text-foreground/70">1 completed this month</p>
               </>
             )}
           </CardContent>
@@ -124,7 +124,7 @@ export default function TenantDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Messages</CardTitle>
-            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            <MessageSquare className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -132,7 +132,7 @@ export default function TenantDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">3 Unread</div>
-                <p className="text-xs text-muted-foreground">From property manager</p>
+                <p className="text-xs text-foreground/70">From property manager</p>
               </>
             )}
           </CardContent>
@@ -166,23 +166,23 @@ export default function TenantDashboard() {
                   <div className="flex-1 space-y-4">
                     <div>
                       <h3 className="text-xl font-bold">2701 N Thanksgiving Way, Apt 4B</h3>
-                      <p className="text-muted-foreground">Lehi, UT 84043</p>
+                      <p className="text-foreground/70">Lehi, UT 84043</p>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-sm text-muted-foreground">Bedrooms</p>
+                        <p className="text-sm text-foreground/70">Bedrooms</p>
                         <p className="font-medium">2</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Bathrooms</p>
+                        <p className="text-sm text-foreground/70">Bathrooms</p>
                         <p className="font-medium">1</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Square Feet</p>
+                        <p className="text-sm text-foreground/70">Square Feet</p>
                         <p className="font-medium">950</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Parking</p>
+                        <p className="text-sm text-foreground/70">Parking</p>
                         <p className="font-medium">1 Space (#15)</p>
                       </div>
                     </div>
@@ -269,7 +269,7 @@ export default function TenantDashboard() {
                         In Progress
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">Submitted: May 3, 2023</p>
+                    <p className="text-sm text-foreground/70">Submitted: May 3, 2023</p>
                     <p className="text-sm mt-1">Scheduled repair: May 15, 2023</p>
                   </div>
                 </div>
@@ -284,7 +284,7 @@ export default function TenantDashboard() {
                         Pending
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">Submitted: May 10, 2023</p>
+                    <p className="text-sm text-foreground/70">Submitted: May 10, 2023</p>
                     <p className="text-sm mt-1">Awaiting scheduling</p>
                   </div>
                 </div>
@@ -315,22 +315,22 @@ export default function TenantDashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center p-3 bg-muted/50 rounded-lg">
                   <div>
                     <div className="text-sm font-medium">May 1, 2023</div>
-                    <div className="text-xs text-muted-foreground">Monthly Rent</div>
+                    <div className="text-xs text-foreground/70">Monthly Rent</div>
                   </div>
                   <div className="md:col-span-2">
                     <div className="text-sm">123 Main St, Apt 4B</div>
-                    <div className="text-xs text-muted-foreground">Payment #12458</div>
+                    <div className="text-xs text-foreground/70">Payment #12458</div>
                   </div>
                   <div className="text-sm font-medium">$1,250.00</div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center p-3 bg-muted/50 rounded-lg">
                   <div>
                     <div className="text-sm font-medium">April 1, 2023</div>
-                    <div className="text-xs text-muted-foreground">Monthly Rent</div>
+                    <div className="text-xs text-foreground/70">Monthly Rent</div>
                   </div>
                   <div className="md:col-span-2">
                     <div className="text-sm">123 Main St, Apt 4B</div>
-                    <div className="text-xs text-muted-foreground">Payment #12345</div>
+                    <div className="text-xs text-foreground/70">Payment #12345</div>
                   </div>
                   <div className="text-sm font-medium">$1,250.00</div>
                 </div>
@@ -362,24 +362,24 @@ export default function TenantDashboard() {
           ) : (
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <Calendar className="mt-1 h-5 w-5 text-muted-foreground" />
+                <Calendar className="mt-1 h-5 w-5 text-foreground/70" />
                 <div>
                   <p className="font-medium">Rent Due</p>
-                  <p className="text-sm text-muted-foreground">June 1, 2023</p>
+                  <p className="text-sm text-foreground/70">June 1, 2023</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Calendar className="mt-1 h-5 w-5 text-muted-foreground" />
+                <Calendar className="mt-1 h-5 w-5 text-foreground/70" />
                 <div>
                   <p className="font-medium">Maintenance Visit</p>
-                  <p className="text-sm text-muted-foreground">May 15, 2023 - Kitchen Faucet Repair</p>
+                  <p className="text-sm text-foreground/70">May 15, 2023 - Kitchen Faucet Repair</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Calendar className="mt-1 h-5 w-5 text-muted-foreground" />
+                <Calendar className="mt-1 h-5 w-5 text-foreground/70" />
                 <div>
                   <p className="font-medium">Building Inspection</p>
-                  <p className="text-sm text-muted-foreground">May 25, 2023 - 10:00 AM to 2:00 PM</p>
+                  <p className="text-sm text-foreground/70">May 25, 2023 - 10:00 AM to 2:00 PM</p>
                 </div>
               </div>
             </div>

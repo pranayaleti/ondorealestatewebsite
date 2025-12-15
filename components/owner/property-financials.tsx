@@ -75,11 +75,11 @@ export function PropertyFinancials({ property }: PropertyFinancialsProps) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Monthly Income</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${financials.monthlyRent.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               <TrendingUp className="inline h-3 w-3 text-green-500 mr-1" />$
               {(financials.monthlyRent * 12).toLocaleString()} annually
             </p>
@@ -89,11 +89,11 @@ export function PropertyFinancials({ property }: PropertyFinancialsProps) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Monthly Expenses</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${totalExpenses.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               <TrendingDown className="inline h-3 w-3 text-red-500 mr-1" />${(totalExpenses * 12).toLocaleString()}{" "}
               annually
             </p>
@@ -103,11 +103,11 @@ export function PropertyFinancials({ property }: PropertyFinancialsProps) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Net Cash Flow</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${netIncome.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               <TrendingUp className="inline h-3 w-3 text-green-500 mr-1" />${(netIncome * 12).toLocaleString()} annually
             </p>
           </CardContent>
@@ -193,7 +193,7 @@ export function PropertyFinancials({ property }: PropertyFinancialsProps) {
                 <TableRow key={transaction.id}>
                   <TableCell>
                     <div className="flex items-center">
-                      <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                      <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                       {new Date(transaction.date).toLocaleDateString()}
                     </div>
                   </TableCell>
@@ -229,21 +229,21 @@ export function PropertyFinancials({ property }: PropertyFinancialsProps) {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <div className="text-sm text-muted-foreground mb-1">Cash Flow</div>
+              <div className="text-sm text-foreground/70 mb-1">Cash Flow</div>
               <div className="text-2xl font-bold">${netIncome.toLocaleString()}/mo</div>
-              <p className="text-sm text-muted-foreground">{cashFlowPercentage.toFixed(1)}% of rental income</p>
+              <p className="text-sm text-foreground/70">{cashFlowPercentage.toFixed(1)}% of rental income</p>
             </div>
 
             <div>
-              <div className="text-sm text-muted-foreground mb-1">Cap Rate</div>
+              <div className="text-sm text-foreground/70 mb-1">Cap Rate</div>
               <div className="text-2xl font-bold">{capRate.toFixed(2)}%</div>
-              <p className="text-sm text-muted-foreground">Based on annual net income</p>
+              <p className="text-sm text-foreground/70">Based on annual net income</p>
             </div>
 
             <div>
-              <div className="text-sm text-muted-foreground mb-1">Cash on Cash Return</div>
+              <div className="text-sm text-foreground/70 mb-1">Cash on Cash Return</div>
               <div className="text-2xl font-bold">12.4%</div>
-              <p className="text-sm text-muted-foreground">Based on initial investment</p>
+              <p className="text-sm text-foreground/70">Based on initial investment</p>
             </div>
           </div>
         </CardContent>

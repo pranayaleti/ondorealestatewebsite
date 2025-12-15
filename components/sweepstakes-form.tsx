@@ -162,7 +162,7 @@ export function SweepstakesForm({ initialReferralCode }: SweepstakesFormProps) {
           </div>
 
           <div className="bg-primary/5 rounded-lg p-4 border border-primary/10">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/70">
               <strong className="text-primary">Referral Benefits:</strong> For each person you refer who enters the sweepstakes, you get an extra entry!
             </p>
           </div>
@@ -233,7 +233,7 @@ export function SweepstakesForm({ initialReferralCode }: SweepstakesFormProps) {
               placeholder="(555) 123-4567"
               required
             />
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               We'll use this to contact you if you win!
             </p>
           </div>
@@ -283,7 +283,7 @@ export function SweepstakesForm({ initialReferralCode }: SweepstakesFormProps) {
               onChange={handleChange}
               placeholder="Describe the specific services or assistance you're looking for..."
               rows={4}
-              className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 

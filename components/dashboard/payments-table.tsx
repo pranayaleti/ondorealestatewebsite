@@ -215,7 +215,7 @@ export function PaymentsTable({ status }: { status?: string }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="relative w-64">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-foreground/70" />
           <Input
             placeholder="Search payments..."
             className="pl-8"
@@ -259,7 +259,7 @@ export function PaymentsTable({ status }: { status?: string }) {
               <TableCell>${payment.amount.toLocaleString()}</TableCell>
               <TableCell>
                 <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                   <span>{new Date(payment.dueDate).toLocaleDateString()}</span>
                 </div>
               </TableCell>
@@ -275,7 +275,7 @@ export function PaymentsTable({ status }: { status?: string }) {
                     <span className="capitalize">{payment.method.replace("-", " ")}</span>
                   </div>
                 ) : (
-                  <span className="text-muted-foreground">-</span>
+                  <span className="text-foreground/70">-</span>
                 )}
               </TableCell>
               <TableCell className="text-right">
@@ -316,7 +316,7 @@ export function PaymentsTable({ status }: { status?: string }) {
       </Table>
 
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/70">
           Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredPayments.length)} of{" "}
           {filteredPayments.length} payments
         </div>

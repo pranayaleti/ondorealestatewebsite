@@ -62,7 +62,7 @@ export default function DashboardsForLandlords() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               A dashboard is a mirror: it shows whether your systems are healthy. Here’s what to track and why.
             </p>
 

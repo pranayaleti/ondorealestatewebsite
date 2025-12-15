@@ -110,7 +110,7 @@ export default function HardshipPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">You're Not Alone</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Life can bring unexpected challenges. We offer several assistance programs to help you through difficult times and keep you in your home.
               </p>
             </div>
@@ -132,7 +132,7 @@ export default function HardshipPage() {
                     <CardContent>
                       <div className="space-y-2">
                         <p className="text-sm font-medium text-foreground dark:text-gray-300">Available Options:</p>
-                        <ul className="text-sm text-muted-foreground dark:text-muted-foreground space-y-1">
+                        <ul className="text-sm text-foreground/70 dark:text-foreground/70 space-y-1">
                           {hardship.options.map((option, idx) => (
                             <li key={idx}>• {option}</li>
                           ))}
@@ -162,11 +162,11 @@ export default function HardshipPage() {
                       <div className="space-y-2">
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300">Duration:</p>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{option.duration}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{option.duration}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300">Requirements:</p>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{option.requirements}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{option.requirements}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -216,7 +216,7 @@ export default function HardshipPage() {
 
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Ready to Get Help?</h3>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                 Our compassionate team is here to help you find the right solution for your situation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

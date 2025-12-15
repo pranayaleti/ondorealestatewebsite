@@ -46,7 +46,7 @@ export default function NewMaintenanceRequestPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Submit a Maintenance Request</h1>
-        <p className="text-muted-foreground">Report an issue with your property</p>
+        <p className="text-foreground/70">Report an issue with your property</p>
       </div>
       <MaintenanceRequestForm />
     </div>

@@ -55,7 +55,7 @@ export default function AddPropertyPage() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold">Add Property</h1>
-        <p className="text-muted-foreground">Add a new property to your portfolio</p>
+        <p className="text-foreground/70">Add a new property to your portfolio</p>
       </div>
 
       <AddPropertyForm />

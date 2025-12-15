@@ -62,7 +62,7 @@ export default function FullStackDevLandlordGaps() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               Most landlord software is built around ledgers, not people. Tenants want simple, mobile-first interactions; owners want accurate, drillable numbers. Both groups get friction because the workflows aren’t designed end-to-end.
             </p>
 

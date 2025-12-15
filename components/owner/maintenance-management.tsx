@@ -85,7 +85,7 @@ export function OwnerMaintenanceManagement() {
       case "completed":
         return <CheckCircle className="h-5 w-5 text-green-500" />
       default:
-        return <Clock className="h-5 w-5 text-muted-foreground" />
+        return <Clock className="h-5 w-5 text-foreground/70" />
     }
   }
 
@@ -179,7 +179,7 @@ export function OwnerMaintenanceManagement() {
       <CardContent className="p-4 sm:p-6">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
             <Input
               placeholder="Search by title, property, or tenant..."
               className="pl-8"
@@ -229,9 +229,9 @@ export function OwnerMaintenanceManagement() {
             <TabsContent key={status} value={status} className="space-y-4">
               {filterRequestsByStatus(status).length === 0 ? (
                 <div className="text-center py-12 bg-muted/20 rounded-lg">
-                  <AlertCircle className="h-12 w-12 mx-auto text-muted-foreground mb-3" />
-                  <h3 className="text-lg font-medium text-muted-foreground">No maintenance requests found</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <AlertCircle className="h-12 w-12 mx-auto text-foreground/70 mb-3" />
+                  <h3 className="text-lg font-medium text-foreground/70">No maintenance requests found</h3>
+                  <p className="text-sm text-foreground/70 mt-1">
                     {searchTerm || filterProperty || filterCategory
                       ? "Try adjusting your filters"
                       : "No maintenance requests in this category"}
@@ -245,7 +245,7 @@ export function OwnerMaintenanceManagement() {
                         <div className="mt-1">{getStatusIcon(request.status)}</div>
                         <div>
                           <h3 className="font-medium">{request.title}</h3>
-                          <div className="flex flex-col sm:flex-row sm:items-center text-sm text-muted-foreground mt-1 gap-y-1 gap-x-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center text-sm text-foreground/70 mt-1 gap-y-1 gap-x-2">
                             <div className="flex items-center">
                               <Home className="h-3 w-3 mr-1 flex-shrink-0" />
                               <span>{request.property}</span>
@@ -269,7 +269,7 @@ export function OwnerMaintenanceManagement() {
                         </Button>
                       </Link>
                     </div>
-                    <div className="mt-3 pt-3 border-t text-sm text-muted-foreground flex flex-wrap gap-x-4 gap-y-1">
+                    <div className="mt-3 pt-3 border-t text-sm text-foreground/70 flex flex-wrap gap-x-4 gap-y-1">
                       <span>Submitted: {request.dateSubmitted}</span>
                       <span>Last Updated: {request.lastUpdated}</span>
                       {request.scheduledDate && <span>Scheduled: {request.scheduledDate}</span>}

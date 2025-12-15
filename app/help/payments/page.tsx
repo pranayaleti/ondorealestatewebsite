@@ -79,7 +79,7 @@ export default function PaymentQuestionsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Payment Methods</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Choose the payment method that works best for you. All methods are secure and convenient.
               </p>
             </div>
@@ -99,7 +99,7 @@ export default function PaymentQuestionsPage() {
                   <CardContent>
                     <ul className="space-y-2">
                       {method.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-sm text-muted-foreground dark:text-muted-foreground flex items-center gap-2">
+                        <li key={featureIndex} className="text-sm text-foreground/70 dark:text-foreground/70 flex items-center gap-2">
                           <div className="h-1.5 w-1.5 bg-primary rounded-full"></div>
                           {feature}
                         </li>
@@ -115,7 +115,7 @@ export default function PaymentQuestionsPage() {
                 <AlertCircle className="h-6 w-6 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-lg font-semibold mb-2 dark:text-foreground">Important Payment Information</h3>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• Payments are due on the 1st of each month</li>
                     <li>• 15-day grace period before late fees</li>
                     <li>• Late fees are typically $25-$50</li>
@@ -134,7 +134,7 @@ export default function PaymentQuestionsPage() {
                       <CardTitle className="text-lg dark:text-foreground">{faq.question}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground dark:text-muted-foreground">{faq.answer}</p>
+                      <p className="text-foreground/70 dark:text-foreground/70">{faq.answer}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -144,7 +144,7 @@ export default function PaymentQuestionsPage() {
             <div className="bg-muted dark:bg-muted rounded-lg p-8">
               <div className="text-center">
                 <h3 className="text-2xl font-bold mb-4 dark:text-foreground">Need More Help?</h3>
-                <p className="text-muted-foreground dark:text-muted-foreground mb-6">
+                <p className="text-foreground/70 dark:text-foreground/70 mb-6">
                   Our customer service team is here to help with any payment questions or concerns.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -161,7 +161,7 @@ export default function PaymentQuestionsPage() {
                     </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground dark:text-muted-foreground mt-4">
+                <p className="text-sm text-foreground/70 dark:text-foreground/70 mt-4">
                   <Clock className="h-4 w-4 inline mr-1" />
                   {SITE_HOURS_LABEL}
                 </p>

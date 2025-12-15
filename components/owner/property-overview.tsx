@@ -28,27 +28,27 @@ export function PropertyOverview({ property }: PropertyOverviewProps) {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <div className="text-sm text-muted-foreground">Property Type</div>
+              <div className="text-sm text-foreground/70">Property Type</div>
               <div className="font-medium capitalize">{property.type.replace("-", " ")}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Year Built</div>
+              <div className="text-sm text-foreground/70">Year Built</div>
               <div className="font-medium">{property.yearBuilt}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Total Square Feet</div>
+              <div className="text-sm text-foreground/70">Total Square Feet</div>
               <div className="font-medium">{property.squareFeet.toLocaleString()}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Total Units</div>
+              <div className="text-sm text-foreground/70">Total Units</div>
               <div className="font-medium">{property.units.length}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Total Bedrooms</div>
+              <div className="text-sm text-foreground/70">Total Bedrooms</div>
               <div className="font-medium">{property.bedrooms}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Total Bathrooms</div>
+              <div className="text-sm text-foreground/70">Total Bathrooms</div>
               <div className="font-medium">{property.bathrooms}</div>
             </div>
           </div>
@@ -77,19 +77,19 @@ export function PropertyOverview({ property }: PropertyOverviewProps) {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <div className="text-sm text-muted-foreground">Status</div>
+              <div className="text-sm text-foreground/70">Status</div>
               <div className="font-medium">{property.occupancy}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Occupancy Rate</div>
+              <div className="text-sm text-foreground/70">Occupancy Rate</div>
               <div className="font-medium">{property.occupancyRate}%</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Total Tenants</div>
+              <div className="text-sm text-foreground/70">Total Tenants</div>
               <div className="font-medium">{property.tenants}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Next Lease Expiration</div>
+              <div className="text-sm text-foreground/70">Next Lease Expiration</div>
               <div className="font-medium flex items-center">
                 <Calendar className="h-4 w-4 mr-1" />
                 {property.leaseEnd ? new Date(property.leaseEnd).toLocaleDateString() : "N/A"}
@@ -105,7 +105,7 @@ export function PropertyOverview({ property }: PropertyOverviewProps) {
               <div key={unit.id} className="flex justify-between items-center py-2 border-b last:border-0">
                 <div>
                   <div className="font-medium">{unit.name}</div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-foreground/70">
                     {unit.bedrooms} bed, {unit.bathrooms} bath
                   </div>
                 </div>

@@ -112,7 +112,7 @@ export default function DashboardPage() {
                 <CardDescription>Detailed property metrics and analytics</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-[400px] flex items-center justify-center text-muted-foreground">
+                <div className="h-[400px] flex items-center justify-center text-foreground/70">
                   Property performance metrics will appear here
                 </div>
               </CardContent>
@@ -126,7 +126,7 @@ export default function DashboardPage() {
                 <CardDescription>Tenant information and lease details</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-[400px] flex items-center justify-center text-muted-foreground">
+                <div className="h-[400px] flex items-center justify-center text-foreground/70">
                   Tenant management content will appear here
                 </div>
               </CardContent>
@@ -140,7 +140,7 @@ export default function DashboardPage() {
                 <CardDescription>Revenue, expenses, and financial analytics</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-[400px] flex items-center justify-center text-muted-foreground">
+                <div className="h-[400px] flex items-center justify-center text-foreground/70">
                   Financial reports will appear here
                 </div>
               </CardContent>

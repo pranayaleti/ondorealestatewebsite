@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { ScrollProgress } from "@/components/scroll-progress"
 import dynamic from "next/dynamic"
 import { JsonLd } from "@/components/json-ld"
 import { generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo"
@@ -150,13 +151,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-
-        {/* Preload critical resources */}
-        <link rel="preload" href="/logo-favicon.png" as="image" type="image/png" />
-
-        {/* Preload critical fonts */}
-        <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         
         <meta
           httpEquiv="Content-Security-Policy"
@@ -168,6 +162,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <AuthProvider>
+            <ScrollProgress />
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">{children}</main>

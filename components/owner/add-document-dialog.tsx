@@ -120,9 +120,9 @@ export function AddDocumentDialog({ onAddDocument, folders = [] }: AddDocumentDi
             <div className="grid gap-2">
               <Label htmlFor="document-file">Upload File</Label>
               <div className="border-2 border-dashed rounded-md p-6 flex flex-col items-center justify-center">
-                <FileUp className="h-8 w-8 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground mb-1">Drag and drop your file here or click to browse</p>
-                <p className="text-xs text-muted-foreground">PDF, DOC, DOCX, XLS, XLSX up to 10MB</p>
+                <FileUp className="h-8 w-8 text-foreground/70 mb-2" />
+                <p className="text-sm text-foreground/70 mb-1">Drag and drop your file here or click to browse</p>
+                <p className="text-xs text-foreground/70">PDF, DOC, DOCX, XLS, XLSX up to 10MB</p>
                 <div className="mt-4 w-full">
                   <Input id="document-file" type="file" className="cursor-pointer" />
                 </div>

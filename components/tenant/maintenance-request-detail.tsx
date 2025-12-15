@@ -193,12 +193,12 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
                 <span>Category</span>
               </div>
               <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2 text-muted-foreground" />
+                <Clock className="h-4 w-4 mr-2 text-foreground/70" />
                 <span>Last Updated: {request.lastUpdated}</span>
               </div>
               {request.scheduledDate && (
                 <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                   <span>
                     Scheduled: {request.scheduledDate} ({request.scheduledTime})
                   </span>
@@ -211,7 +211,7 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
 
           <div>
             <div className="flex items-center mb-4">
-              <MessageSquare className="h-5 w-5 mr-2 text-muted-foreground" />
+              <MessageSquare className="h-5 w-5 mr-2 text-foreground/70" />
               <h3 className="font-medium">Communication & Updates</h3>
             </div>
 
@@ -221,7 +221,7 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
                   key={update.id}
                   className={`p-3 rounded-lg ${
                     update.type === "status-change"
-                      ? "bg-muted text-center text-sm text-muted-foreground"
+                      ? "bg-muted text-center text-sm text-foreground/70"
                       : update.user === "Tenant"
                         ? "bg-muted ml-0 sm:ml-12"
                         : "bg-muted mr-0 sm:mr-12"
@@ -239,7 +239,7 @@ export function MaintenanceRequestDetail({ requestId = "req-001" }: { requestId?
                           </Avatar>
                           <span className="font-medium">{update.user}</span>
                         </div>
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs text-foreground/70">
                           {update.date} at {update.time}
                         </span>
                       </div>

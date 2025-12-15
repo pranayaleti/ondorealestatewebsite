@@ -209,7 +209,7 @@ export function LeasesTable({ status }: { status?: string }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="relative w-64">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-foreground/70" />
           <Input
             placeholder="Search leases..."
             className="pl-8"
@@ -250,16 +250,16 @@ export function LeasesTable({ status }: { status?: string }) {
               </TableCell>
               <TableCell>
                 <div className="flex items-center">
-                  <Building className="h-4 w-4 mr-2 text-muted-foreground" />
+                  <Building className="h-4 w-4 mr-2 text-foreground/70" />
                   <span>{lease.property}</span>
                 </div>
               </TableCell>
               <TableCell>
                 <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                   <div>
                     <div>{new Date(lease.startDate).toLocaleDateString()}</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-foreground/70">
                       to {new Date(lease.endDate).toLocaleDateString()}
                     </div>
                   </div>
@@ -303,7 +303,7 @@ export function LeasesTable({ status }: { status?: string }) {
       </Table>
 
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/70">
           Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredLeases.length)} of{" "}
           {filteredLeases.length} leases
         </div>

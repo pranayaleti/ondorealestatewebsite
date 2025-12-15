@@ -125,7 +125,7 @@ export default function TenantDocumentsPage() {
         </div>
         <div className="flex items-center gap-2 w-full md:w-auto">
           <div className="relative w-full md:w-64">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
             <Input
               type="search"
               placeholder="Search documents..."
@@ -166,7 +166,7 @@ export default function TenantDocumentsPage() {
                         </div>
                         <div>
                           <p className="font-medium">{doc.name}</p>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2 text-sm text-foreground/70">
                             <span>{doc.type}</span>
                             <span>•</span>
                             <span>{doc.size}</span>
@@ -188,9 +188,9 @@ export default function TenantDocumentsPage() {
                   ))
                 ) : (
                   <div className="text-center py-8">
-                    <FileText className="h-12 w-12 mx-auto text-muted-foreground" />
+                    <FileText className="h-12 w-12 mx-auto text-foreground/70" />
                     <h3 className="mt-4 text-lg font-medium">No documents found</h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-foreground/70">
                       {searchQuery ? `No documents matching "${searchQuery}"` : "You don't have any documents yet."}
                     </p>
                   </div>
@@ -221,7 +221,7 @@ export default function TenantDocumentsPage() {
                         </div>
                         <div>
                           <p className="font-medium">{doc.name}</p>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2 text-sm text-foreground/70">
                             <span>{doc.type}</span>
                             <span>•</span>
                             <span>{doc.size}</span>
@@ -267,7 +267,7 @@ export default function TenantDocumentsPage() {
                         </div>
                         <div>
                           <p className="font-medium">{doc.name}</p>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2 text-sm text-foreground/70">
                             <span>{doc.type}</span>
                             <span>•</span>
                             <span>{doc.size}</span>
@@ -303,7 +303,7 @@ export default function TenantDocumentsPage() {
           </DialogHeader>
           <div className="bg-muted/30 border rounded-md p-4 min-h-[400px] flex items-center justify-center">
             <div className="text-center">
-              <FileText className="h-16 w-16 mx-auto text-muted-foreground" />
+              <FileText className="h-16 w-16 mx-auto text-foreground/70" />
               <p className="mt-4">Document preview not available</p>
               <Button className="mt-4" onClick={() => setViewDocumentDialog(false)}>
                 <Download className="h-4 w-4 mr-2" />

@@ -204,7 +204,7 @@ export function PropertiesTable() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="relative w-64">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-foreground/70" />
           <Input
             placeholder="Search properties..."
             className="pl-8"
@@ -236,7 +236,7 @@ export function PropertiesTable() {
             <TableRow key={property.id}>
               <TableCell className="font-medium">
                 <div>{property.address}</div>
-                <div className="text-sm text-muted-foreground">{property.id}</div>
+                <div className="text-sm text-foreground/70">{property.id}</div>
               </TableCell>
               <TableCell>
                 {property.city}, {property.state} {property.zipCode}
@@ -303,7 +303,7 @@ export function PropertiesTable() {
       </Table>
 
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/70">
           Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredProperties.length)} of{" "}
           {filteredProperties.length} properties
         </div>

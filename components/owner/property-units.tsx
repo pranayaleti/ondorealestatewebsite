@@ -51,14 +51,14 @@ export function PropertyUnits({ property }: { property?: any }) {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-medium">Unit 101</h3>
-                    <p className="text-sm text-muted-foreground">2 bed, 1 bath • 950 sq ft</p>
+                    <p className="text-sm text-foreground/70">2 bed, 1 bath • 950 sq ft</p>
                   </div>
                   <Badge className="bg-muted text-green-800 hover:bg-muted">Occupied</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
                     <p className="text-sm font-medium">$1,250/month</p>
-                    <p className="text-xs text-muted-foreground">Lease ends: Dec 31, 2023</p>
+                    <p className="text-xs text-foreground/70">Lease ends: Dec 31, 2023</p>
                   </div>
                   <Button variant="outline" size="sm" onClick={handleManageTenants}>
                     <Users className="h-4 w-4 mr-2" />
@@ -70,14 +70,14 @@ export function PropertyUnits({ property }: { property?: any }) {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-medium">Unit 102</h3>
-                    <p className="text-sm text-muted-foreground">1 bed, 1 bath • 650 sq ft</p>
+                    <p className="text-sm text-foreground/70">1 bed, 1 bath • 650 sq ft</p>
                   </div>
                   <Badge className="bg-red-100 text-red-800 hover:bg-red-100">Vacant</Badge>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <div>
                     <p className="text-sm font-medium">$950/month</p>
-                    <p className="text-xs text-muted-foreground">Available now</p>
+                    <p className="text-xs text-foreground/70">Available now</p>
                   </div>
                   <Button variant="outline" size="sm" onClick={handleManageTenants}>
                     <Users className="h-4 w-4 mr-2" />
@@ -93,7 +93,7 @@ export function PropertyUnits({ property }: { property?: any }) {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-medium">John Smith</h3>
-                    <p className="text-sm text-muted-foreground">Unit 101 • Primary tenant</p>
+                    <p className="text-sm text-foreground/70">Unit 101 • Primary tenant</p>
                   </div>
                   <Badge className="bg-muted text-foreground hover:bg-muted">Active</Badge>
                 </div>
@@ -111,7 +111,7 @@ export function PropertyUnits({ property }: { property?: any }) {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-medium">Sarah Johnson</h3>
-                    <p className="text-sm text-muted-foreground">Unit 101 • Co-tenant</p>
+                    <p className="text-sm text-foreground/70">Unit 101 • Co-tenant</p>
                   </div>
                   <Badge className="bg-muted text-foreground hover:bg-muted">Active</Badge>
                 </div>

@@ -62,7 +62,7 @@ export default function CryptoAndRealEstateHedge() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               I hold volatile assets (crypto) and slow, cashflowing assets (rentals) for different jobs. The trick is letting each leg do its job without forcing them into the same risk bucket.
             </p>
 

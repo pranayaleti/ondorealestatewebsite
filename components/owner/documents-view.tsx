@@ -339,7 +339,7 @@ export function DocumentsView() {
       case "spreadsheet":
         return <FileSpreadsheet className="h-6 w-6 text-green-500" />
       default:
-        return <File className="h-6 w-6 text-muted-foreground" />
+        return <File className="h-6 w-6 text-foreground/70" />
     }
   }
 
@@ -364,7 +364,7 @@ export function DocumentsView() {
           </TabsList>
           <div className="flex flex-wrap gap-2">
             <div className="relative flex-1 min-w-[200px]">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
               <Input
                 placeholder="Search documents..."
                 className="pl-8"
@@ -465,9 +465,9 @@ export function DocumentsView() {
           {filteredDocuments.length === 0 ? (
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <FileText className="h-12 w-12 text-muted-foreground mb-4" />
+                <FileText className="h-12 w-12 text-foreground/70 mb-4" />
                 <h3 className="text-lg font-medium mb-2">No documents found</h3>
-                <p className="text-muted-foreground text-center mb-6">
+                <p className="text-foreground/70 text-center mb-6">
                   {searchTerm || propertyFilter !== "all" || categoryFilter !== "all" || folderFilter !== "all"
                     ? "Try adjusting your search or filters"
                     : "Upload your first document to get started"}
@@ -484,7 +484,7 @@ export function DocumentsView() {
                       {getFileIcon(document.type)}
                       <div className="ml-3 flex-1 overflow-hidden">
                         <h4 className="font-medium truncate">{document.name}</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-foreground/70">
                           {document.size} • {new Date(document.uploadedAt).toLocaleDateString()}
                         </p>
                       </div>
@@ -523,7 +523,7 @@ export function DocumentsView() {
                           <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 capitalize">
                             {document.category}
                           </span>
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs text-foreground/70">
                             {document.folder ? (
                               <span className="flex items-center">
                                 <FolderOpen className="h-3 w-3 mr-1" />
@@ -534,7 +534,7 @@ export function DocumentsView() {
                             )}
                           </span>
                         </div>
-                        <div className="flex items-center text-xs text-muted-foreground">
+                        <div className="flex items-center text-xs text-foreground/70">
                           <Building className="h-3 w-3 mr-1" />
                           {document.property}
                         </div>
@@ -570,7 +570,7 @@ export function DocumentsView() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center">
-                            <Building className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Building className="h-4 w-4 mr-2 text-foreground/70" />
                             {document.property}
                           </div>
                         </TableCell>
@@ -582,7 +582,7 @@ export function DocumentsView() {
                         <TableCell>
                           {document.folder ? (
                             <span className="flex items-center">
-                              <FolderOpen className="h-4 w-4 mr-1 text-muted-foreground" />
+                              <FolderOpen className="h-4 w-4 mr-1 text-foreground/70" />
                               {document.folder}
                             </span>
                           ) : (
@@ -591,7 +591,7 @@ export function DocumentsView() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                             {new Date(document.uploadedAt).toLocaleDateString()}
                           </div>
                         </TableCell>
@@ -639,9 +639,9 @@ export function DocumentsView() {
           {filteredDocuments.length === 0 ? (
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <FileText className="h-12 w-12 text-muted-foreground mb-4" />
+                <FileText className="h-12 w-12 text-foreground/70 mb-4" />
                 <h3 className="text-lg font-medium mb-2">No recent documents found</h3>
-                <p className="text-muted-foreground text-center mb-6">
+                <p className="text-foreground/70 text-center mb-6">
                   {searchTerm || propertyFilter !== "all" || categoryFilter !== "all" || folderFilter !== "all"
                     ? "Try adjusting your search or filters"
                     : "Upload a document to get started"}
@@ -662,9 +662,9 @@ export function DocumentsView() {
           {filteredDocuments.length === 0 ? (
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <Share2 className="h-12 w-12 text-muted-foreground mb-4" />
+                <Share2 className="h-12 w-12 text-foreground/70 mb-4" />
                 <h3 className="text-lg font-medium mb-2">No shared documents found</h3>
-                <p className="text-muted-foreground text-center mb-6">
+                <p className="text-foreground/70 text-center mb-6">
                   {searchTerm || propertyFilter !== "all" || categoryFilter !== "all" || folderFilter !== "all"
                     ? "Try adjusting your search or filters"
                     : "Share a document to get started"}
@@ -687,9 +687,9 @@ export function DocumentsView() {
           {folders.length === 0 ? (
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12">
-                <FolderOpen className="h-12 w-12 text-muted-foreground mb-4" />
+                <FolderOpen className="h-12 w-12 text-foreground/70 mb-4" />
                 <h3 className="text-lg font-medium mb-2">No folders found</h3>
-                <p className="text-muted-foreground text-center mb-6">Create a folder to organize your documents</p>
+                <p className="text-foreground/70 text-center mb-6">Create a folder to organize your documents</p>
                 <CreateFolderDialog onCreateFolder={handleCreateFolder} />
               </CardContent>
             </Card>
@@ -702,7 +702,7 @@ export function DocumentsView() {
                       <FolderOpen className="h-6 w-6 text-amber-500" />
                       <div className="ml-3 flex-1">
                         <h4 className="font-medium">{folder.name}</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-foreground/70">
                           {folder.documentCount} {folder.documentCount === 1 ? "document" : "documents"}
                         </p>
                       </div>
@@ -738,8 +738,8 @@ export function DocumentsView() {
                     </div>
                     <div className="p-4 bg-muted/30">
                       <div className="flex flex-col gap-2">
-                        <p className="text-sm text-muted-foreground">{folder.description}</p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-sm text-foreground/70">{folder.description}</p>
+                        <p className="text-xs text-foreground/70">
                           Last updated: {new Date(folder.lastUpdated).toLocaleDateString()}
                         </p>
                       </div>

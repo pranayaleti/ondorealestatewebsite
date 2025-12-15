@@ -120,7 +120,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   Loan Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.loanAmount}
@@ -159,7 +159,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="4.5"
                 />
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Must be lower than base rate
                 </p>
               </div>
@@ -186,7 +186,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   Buydown Cost
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.buydownCost}
@@ -195,7 +195,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     placeholder="6,000"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Cost to buy down the interest rate
                 </p>
               </div>
@@ -238,7 +238,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Base Rate Payment</p>
+                        <p className="text-sm text-foreground/70 mb-1">Base Rate Payment</p>
                         <p className="text-lg font-semibold text-foreground">
                           {formatCurrency(formData.loanAmount * 
                             ((formData.baseRate / 100 / 12) * Math.pow(1 + formData.baseRate / 100 / 12, formData.loanTerm * 12)) / 
@@ -246,7 +246,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                         </p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Buydown Payment</p>
+                        <p className="text-sm text-foreground/70 mb-1">Buydown Payment</p>
                         <p className="text-lg font-semibold text-foreground">
                           {formatCurrency(formData.loanAmount * 
                             ((formData.buydownRate / 100 / 12) * Math.pow(1 + formData.buydownRate / 100 / 12, formData.loanTerm * 12)) / 
@@ -271,7 +271,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Monthly savings: {formatCurrency(results.monthlySavings)}</p>
                       <p>• Buydown period: {formData.buydownYears} year{formData.buydownYears > 1 ? 's' : ''}</p>
                       <p>• Total savings: {formatCurrency(results.totalSavings)}</p>
@@ -295,7 +295,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Buydown cost: {formatCurrency(results.buydownCost)}</p>
                       <p>• Monthly savings: {formatCurrency(results.monthlySavings)}</p>
                       <p>• Break-even: {results.breakEvenMonths.toFixed(1)} months</p>
@@ -317,7 +317,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Base rate: {formatPercent(formData.baseRate)}</p>
                       <p>• Buydown rate: {formatPercent(formData.buydownRate)}</p>
                       <p>• Effective rate: {formatPercent(results.effectiveRate)}</p>
@@ -328,7 +328,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Recommendations</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.breakEvenMonths < formData.buydownYears * 12 ? (
                       <p className="text-primary font-medium">✓ Buydown looks beneficial - you'll break even before the buydown period ends</p>
                     ) : (
@@ -348,7 +348,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Temporary Buydowns</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">How It Works:</h3>
               <ul className="space-y-1 list-disc list-inside">

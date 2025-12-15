@@ -37,7 +37,7 @@ export function TestCredentials({ onFill }: TestCredentialsProps) {
     <div className="w-full space-y-4">
       <div className="mb-4">
         <h3 className="text-lg font-semibold text-primary mb-1">Test Credentials</h3>
-        <p className="text-sm text-muted-foreground">Use these credentials to sign in for testing purposes</p>
+        <p className="text-sm text-foreground/70">Use these credentials to sign in for testing purposes</p>
       </div>
 
       {credentials.map((cred) => (
@@ -56,15 +56,15 @@ export function TestCredentials({ onFill }: TestCredentialsProps) {
             </div>
             <div className="space-y-2 text-sm">
               <div className="flex">
-                <span className="text-muted-foreground w-20">Email:</span>
+                <span className="text-foreground/70 w-20">Email:</span>
                 <span className="text-foreground font-mono">{cred.email}</span>
               </div>
               <div className="flex">
-                <span className="text-muted-foreground w-20">Password:</span>
+                <span className="text-foreground/70 w-20">Password:</span>
                 <span className="text-foreground font-mono">{cred.password}</span>
               </div>
               <div className="flex">
-                <span className="text-muted-foreground w-20">Role:</span>
+                <span className="text-foreground/70 w-20">Role:</span>
                 <span className="text-foreground">{cred.role}</span>
               </div>
             </div>

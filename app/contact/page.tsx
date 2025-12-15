@@ -143,7 +143,7 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div>
                   <h2 className="text-3xl font-bold tracking-tighter">Get in Touch</h2>
-                  <p className="text-muted-foreground mt-2">
+                  <p className="text-foreground/70 mt-2">
                     Fill out the form and our team will get back to you within 24 hours.
                   </p>
                 </div>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                     <MapPin className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Our Office</h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/70">
                         {SITE_ADDRESS_STREET}
                         <br />
                         {`${SITE_ADDRESS_CITY}, ${SITE_ADDRESS_REGION} ${SITE_ADDRESS_POSTAL_CODE}`}
@@ -163,21 +163,21 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Email</h3>
-                      <p className="text-sm text-muted-foreground">{SITE_EMAILS.primary}</p>
+                      <p className="text-sm text-foreground/70">{SITE_EMAILS.primary}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Phone</h3>
-                      <p className="text-sm text-muted-foreground">{SITE_PHONE}</p>
+                      <p className="text-sm text-foreground/70">{SITE_PHONE}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Building className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Business Hours</h3>
-                      <p className="text-sm text-muted-foreground">{SITE_HOURS_LABEL}</p>
+                      <p className="text-sm text-foreground/70">{SITE_HOURS_LABEL}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -188,7 +188,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold">Follow Us</h3>
-                      <p className="text-sm text-muted-foreground mb-2">
+                      <p className="text-sm text-foreground/70 mb-2">
                         Connect with us on social media for updates and insights
                       </p>
                       <div className="flex items-center gap-2">
@@ -208,7 +208,7 @@ export default function ContactPage() {
                             sizes="64px"
                           />
                         </a>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-xs text-foreground/70">
                           <p>Scan QR code or visit</p>
                           <a 
                             href="https://linktr.ee/ondorealestate" 
@@ -232,7 +232,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-card-foreground">Need Expert Advice?</h3>
-                      <p className="text-muted-foreground">View available times and book a free 30-minute consultation</p>
+                      <p className="text-foreground/70">View available times and book a free 30-minute consultation</p>
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">

@@ -108,7 +108,7 @@ export default function MobileNotaryUtahCountyGuide() {
                 </Card>
               ))}
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-foreground/70">
               Additional nearby stops available. Travel fees are quoted upfront based on distance
               and urgency.
             </p>
@@ -182,7 +182,7 @@ function KeyLine({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/60 px-4 py-3 h-full">
       <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="text-sm text-muted-foreground">{detail}</p>
+      <p className="text-sm text-foreground/70">{detail}</p>
     </div>
   );
 }

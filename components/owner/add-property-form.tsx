@@ -382,9 +382,9 @@ export function AddPropertyForm() {
             </CardHeader>
             <CardContent>
               <div className="border-2 border-dashed rounded-md p-6 flex flex-col items-center justify-center">
-                <Upload className="h-8 w-8 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground mb-1">Drag and drop your image here</p>
-                <p className="text-xs text-muted-foreground mb-4">JPG, PNG or GIF up to 10MB</p>
+                <Upload className="h-8 w-8 text-foreground/70 mb-2" />
+                <p className="text-sm text-foreground/70 mb-1">Drag and drop your image here</p>
+                <p className="text-xs text-foreground/70 mb-4">JPG, PNG or GIF up to 10MB</p>
                 <Button type="button" variant="secondary" size="sm">
                   Browse Files
                 </Button>

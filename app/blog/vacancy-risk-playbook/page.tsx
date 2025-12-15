@@ -62,7 +62,7 @@ export default function VacancyRiskPlaybook() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-6">
+            <p className="lead text-xl text-foreground/70 mb-6">
               Vacancy kills cashflow faster than any single expense. Treat it as a modeled, managed risk.
             </p>
 

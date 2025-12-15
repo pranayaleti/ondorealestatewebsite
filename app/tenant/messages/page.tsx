@@ -250,7 +250,7 @@ export default function TenantMessagesPage() {
         </div>
         <div className="flex items-center gap-2 w-full md:w-auto">
           <div className="relative w-full md:w-64">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
             <Input
               type="search"
               placeholder="Search messages..."
@@ -376,12 +376,12 @@ export default function TenantMessagesPage() {
                               <p className={`font-medium truncate ${!message.read ? "font-semibold" : ""}`}>
                                 {message.sender}
                               </p>
-                              <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                              <span className="text-xs text-foreground/70 whitespace-nowrap ml-2">
                                 {formatDate(message.date)}
                               </span>
                             </div>
                             <p className="text-sm font-medium truncate">{message.subject}</p>
-                            <p className="text-xs text-muted-foreground truncate">{message.preview}</p>
+                            <p className="text-xs text-foreground/70 truncate">{message.preview}</p>
                           </div>
                         </div>
                         {!message.read && (
@@ -395,9 +395,9 @@ export default function TenantMessagesPage() {
                     ))
                   ) : (
                     <div className="text-center py-8">
-                      <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground" />
+                      <MessageSquare className="h-12 w-12 mx-auto text-foreground/70" />
                       <h3 className="mt-4 text-lg font-medium">No messages found</h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-foreground/70">
                         {searchQuery ? `No messages matching "${searchQuery}"` : "Your inbox is empty."}
                       </p>
                     </div>
@@ -432,12 +432,12 @@ export default function TenantMessagesPage() {
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between items-start">
                                 <p className="font-semibold truncate">{message.sender}</p>
-                                <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                                <span className="text-xs text-foreground/70 whitespace-nowrap ml-2">
                                   {formatDate(message.date)}
                                 </span>
                               </div>
                               <p className="text-sm font-medium truncate">{message.subject}</p>
-                              <p className="text-xs text-muted-foreground truncate">{message.preview}</p>
+                              <p className="text-xs text-foreground/70 truncate">{message.preview}</p>
                             </div>
                           </div>
                           <div className="flex justify-end mt-1">
@@ -449,9 +449,9 @@ export default function TenantMessagesPage() {
                       ))
                   ) : (
                     <div className="text-center py-8">
-                      <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground" />
+                      <MessageSquare className="h-12 w-12 mx-auto text-foreground/70" />
                       <h3 className="mt-4 text-lg font-medium">No unread messages</h3>
-                      <p className="text-muted-foreground">You've read all your messages.</p>
+                      <p className="text-foreground/70">You've read all your messages.</p>
                     </div>
                   )}
                 </TabsContent>

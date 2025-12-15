@@ -30,7 +30,7 @@ export default function WhyUtahPage() {
               <h1 className="text-5xl md:text-6xl font-extrabold text-foreground leading-tight">
                 Why Invest in <span className="text-primary">Utah</span>
               </h1>
-              <p className="text-xl text-muted-foreground mt-6 max-w-2xl">
+              <p className="text-xl text-foreground/70 mt-6 max-w-2xl">
                 Utah combines a resilient economy, nation‑leading job growth, a booming tech corridor, and
                 quality‑of‑life advantages that continue to attract people and capital. Here is a clear,
                 investor‑focused view of the opportunity—and how to act on it.
@@ -62,22 +62,22 @@ export default function WhyUtahPage() {
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
               <div className="text-4xl font-bold text-primary-foreground">Top 5</div>
               <div className="text-foreground mt-2">Job Growth</div>
-              <div className="text-muted-foreground text-sm">Consistently in the U.S.</div>
+              <div className="text-foreground/70 text-sm">Consistently in the U.S.</div>
             </div>
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
               <div className="text-4xl font-bold text-primary-foreground">Silicon Slopes</div>
               <div className="text-foreground mt-2">Tech Corridor</div>
-              <div className="text-muted-foreground text-sm">Lehi–SLC–Provo</div>
+              <div className="text-foreground/70 text-sm">Lehi–SLC–Provo</div>
             </div>
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
               <div className="text-4xl font-bold text-primary-foreground">2034</div>
               <div className="text-foreground mt-2">Winter Olympics</div>
-              <div className="text-muted-foreground text-sm">Tourism & Infra boost</div>
+              <div className="text-foreground/70 text-sm">Tourism & Infra boost</div>
             </div>
             <div className="bg-primary backdrop-blur-lg rounded-lg p-6 border border-primary">
               <div className="text-4xl font-bold text-primary-foreground">Landlord</div>
               <div className="text-foreground mt-2">Friendly</div>
-              <div className="text-muted-foreground text-sm">Predictable processes</div>
+              <div className="text-foreground/70 text-sm">Predictable processes</div>
             </div>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function WhyUtahPage() {
             <Building2 className="text-primary h-7 w-7 mr-4" />
             <h2 className="text-3xl font-bold text-foreground">Operator Playbook</h2>
           </div>
-          <ul className="space-y-4 text-muted-foreground">
+          <ul className="space-y-4 text-foreground/70">
             <li>
               <span className="text-foreground font-semibold">Focus on durable demand:</span> Class B apartments, townhomes,
               and well‑located single‑family rentals near major corridors and universities.
@@ -175,9 +175,9 @@ export default function WhyUtahPage() {
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-8 border border-primary">
-          <p className="text-muted-foreground text-lg mb-4">Ready to capitalize on Utah’s momentum?</p>
+          <p className="text-foreground/70 text-lg mb-4">Ready to capitalize on Utah’s momentum?</p>
           <div className="text-2xl font-bold text-foreground mb-2">Invest with Confidence</div>
-          <p className="text-muted-foreground mb-6 max-w-3xl">
+          <p className="text-foreground/70 mb-6 max-w-3xl">
             We combine local expertise with a modern, technology‑driven platform to help owners achieve better returns with
             less friction.
           </p>
@@ -202,7 +202,7 @@ function Reason({ icon, title, children }: { icon: React.ReactNode; title: strin
         <span className="text-primary">{icon}</span>
         <h3 className="font-semibold text-lg">{title}</h3>
       </div>
-      <p className="text-muted-foreground text-sm leading-relaxed">{children}</p>
+      <p className="text-foreground/70 text-sm leading-relaxed">{children}</p>
     </div>
   )
 }
@@ -211,7 +211,7 @@ function MarketCard({ title, note }: { title: string; note: string }) {
   return (
     <div className="bg-muted rounded-lg p-5 border border-border">
       <h4 className="text-foreground font-semibold mb-1">{title}</h4>
-      <p className="text-muted-foreground text-sm">{note}</p>
+      <p className="text-foreground/70 text-sm">{note}</p>
     </div>
   )
 }

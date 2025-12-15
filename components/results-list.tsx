@@ -67,11 +67,11 @@ export default function ResultsList({ properties }: ResultsListProps) {
                     <div className="text-3xl font-bold text-primary">
                       ${property.price.toLocaleString()}
                     </div>
-                    <div className="text-sm text-muted-foreground">per month</div>
+                    <div className="text-sm text-foreground/70">per month</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                <div className="flex items-center gap-4 text-sm text-foreground/70 mb-3">
                   <div className="flex items-center gap-1">
                     <Bed className="h-4 w-4" />
                     {property.bedrooms} bed{property.bedrooms !== 1 ? 's' : ''}
@@ -86,7 +86,7 @@ export default function ResultsList({ properties }: ResultsListProps) {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground mb-3 line-clamp-2">
+                <p className="text-foreground/70 mb-3 line-clamp-2">
                   {property.description}
                 </p>
 

@@ -172,7 +172,7 @@ const DSCRCalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -189,7 +189,7 @@ const DSCRCalculator: React.FC = () => {
                   Annual Rent (optional, leave 0 to use monthly × 12)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualRent}
@@ -206,7 +206,7 @@ const DSCRCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -223,7 +223,7 @@ const DSCRCalculator: React.FC = () => {
                   Annual Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -240,7 +240,7 @@ const DSCRCalculator: React.FC = () => {
                   Annual Maintenance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.maintenance}
@@ -257,7 +257,7 @@ const DSCRCalculator: React.FC = () => {
                   Property Management (annual $ or % as decimal)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     step="0.01"
@@ -290,7 +290,7 @@ const DSCRCalculator: React.FC = () => {
                   Other Annual Expenses
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.otherExpenses}
@@ -307,7 +307,7 @@ const DSCRCalculator: React.FC = () => {
                   Loan Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.loanAmount}
@@ -362,7 +362,7 @@ const DSCRCalculator: React.FC = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="1.25"
                 />
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Lenders typically require 1.20-1.35 DSCR for investment properties
                 </p>
               </div>
@@ -383,7 +383,7 @@ const DSCRCalculator: React.FC = () => {
                         <p className={`text-4xl font-bold ${getDSCRColor(results.dscr)}`}>
                           {results.dscr.toFixed(2)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           NOI ÷ Annual Debt Service
                         </p>
                       </div>
@@ -396,11 +396,11 @@ const DSCRCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Net Operating Income</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Rental Income:</span>
+                      <span className="text-foreground/70">Annual Rental Income:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.annualRentalIncome)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Operating Expenses:</span>
+                      <span className="text-foreground/70">Operating Expenses:</span>
                       <span className="font-semibold text-destructive">{formatCurrency(results.annualOperatingExpenses)}</span>
                     </div>
                     <hr className="my-3" />
@@ -416,11 +416,11 @@ const DSCRCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Debt Service</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Debt Service:</span>
+                      <span className="text-foreground/70">Annual Debt Service:</span>
                       <span className="font-semibold text-destructive">{formatCurrency(results.annualDebtService)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Monthly Payment:</span>
+                      <span className="text-foreground/70">Monthly Payment:</span>
                       <span className="font-semibold">{formatCurrency(results.annualDebtService / 12)}</span>
                     </div>
                   </div>
@@ -441,7 +441,7 @@ const DSCRCalculator: React.FC = () => {
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Estimated Max Purchase Price</p>
                         <p className="text-2xl font-bold text-foreground">{formatCurrency(results.maxPurchasePrice)}</p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Assuming 75% LTV
                         </p>
                       </div>
@@ -452,7 +452,7 @@ const DSCRCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.dscr >= 1.5 ? (
                       <p className="text-primary font-medium">✓ Excellent DSCR! Property generates strong cash flow relative to debt.</p>
                     ) : results.dscr >= 1.25 ? (
@@ -477,7 +477,7 @@ const DSCRCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About DSCR</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Measures:</h3>
               <ul className="space-y-1 list-disc list-inside">

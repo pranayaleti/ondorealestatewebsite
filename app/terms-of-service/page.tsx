@@ -98,10 +98,10 @@ export default function TermsOfServicePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <p className="text-lg text-muted-foreground mb-4">
+              <p className="text-lg text-foreground/70 mb-4">
                 Last updated: <strong>{lastUpdated}</strong>
               </p>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/70">
                 These Terms of Service govern your use of OnDo Real Estate's website and services. 
                 Please read them carefully before using our services.
               </p>
@@ -121,7 +121,7 @@ export default function TermsOfServicePage() {
                       {section.content.map((item, itemIndex) => (
                         <li key={itemIndex} className="flex items-start gap-2">
                           <span className="text-primary mt-1">•</span>
-                          <span className="text-muted-foreground">{item}</span>
+                          <span className="text-foreground/70">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -136,12 +136,12 @@ export default function TermsOfServicePage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     These Terms of Service are governed by the laws of the State of Utah, United States. 
                     Any disputes arising from these terms or your use of our services will be resolved 
                     through binding arbitration in accordance with the rules of the American Arbitration Association.
                   </p>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     If any provision of these terms is found to be unenforceable, the remaining provisions 
                     will remain in full force and effect.
                   </p>
@@ -154,21 +154,21 @@ export default function TermsOfServicePage() {
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-foreground/70 mb-4">
                   If you have any questions about these Terms of Service, please contact us:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p className="text-sm text-muted-foreground">{SITE_EMAILS.legal}</p>
+                    <p className="text-sm text-foreground/70">{SITE_EMAILS.legal}</p>
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p className="text-sm text-muted-foreground">{SITE_PHONE}</p>
+                    <p className="text-sm text-foreground/70">{SITE_PHONE}</p>
                   </div>
                   <div>
                     <p className="font-semibold">Address</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground/70">
                       OnDo Real Estate<br />
                       {SITE_ADDRESS_STREET}<br />
                       {`${SITE_ADDRESS_CITY}, ${SITE_ADDRESS_REGION} ${SITE_ADDRESS_POSTAL_CODE}`}
@@ -180,7 +180,7 @@ export default function TermsOfServicePage() {
 
             <div className="text-center mt-12">
               <h3 className="text-2xl font-bold mb-4">Need Help Understanding These Terms?</h3>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-foreground/70 mb-6">
                 Our legal team is available to answer any questions you may have about these terms and conditions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

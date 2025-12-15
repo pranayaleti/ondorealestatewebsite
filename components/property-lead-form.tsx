@@ -241,7 +241,7 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
                       "flex items-center justify-center w-10 h-10 rounded-full",
                       step === i
                         ? "bg-background text-foreground dark:bg-muted dark:text-foreground"
-                        : "bg-muted text-muted-foreground dark:bg-gray-700 dark:text-muted-foreground"
+                        : "bg-muted text-foreground/70 dark:bg-gray-700 dark:text-foreground/70"
                     )}
                   >
                     {i}
@@ -256,7 +256,7 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
                   <CheckCircle className="h-8 w-8" />
                 </div>
                 <h3 className="mb-2 text-xl font-semibold">Application Submitted</h3>
-                <p className="mb-6 text-muted-foreground">
+                <p className="mb-6 text-foreground/70">
                   Thank you for your interest! A property manager will contact you shortly.
                 </p>
                 <Button onClick={handleClose}>Close</Button>

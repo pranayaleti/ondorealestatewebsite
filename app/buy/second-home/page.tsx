@@ -32,7 +32,7 @@ export default function SecondHomePage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Why Buy a Second Home in Utah?</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/70">
                 Whether you're looking for a vacation retreat, rental income, or a future retirement home, Utah offers excellent opportunities for second home ownership.
               </p>
             </div>
@@ -81,7 +81,7 @@ export default function SecondHomePage() {
 
             <div className="bg-muted rounded-lg p-8 mb-12">
               <h3 className="text-2xl font-bold mb-6">Financing Your Second Home</h3>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="space-y-4 text-foreground/70">
                 <p>
                   Financing a second home typically requires a larger down payment (usually 10-20%) and may have slightly higher interest rates than a primary residence. However, if you plan to rent the property, you may qualify for investment property financing.
                 </p>

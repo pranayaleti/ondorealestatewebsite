@@ -141,7 +141,7 @@ const CapRateCalculator: React.FC = () => {
                   Purchase Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.purchasePrice}
@@ -158,7 +158,7 @@ const CapRateCalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -175,7 +175,7 @@ const CapRateCalculator: React.FC = () => {
                   Annual Rent (optional, leave 0 to use monthly × 12)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualRent}
@@ -192,7 +192,7 @@ const CapRateCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -209,7 +209,7 @@ const CapRateCalculator: React.FC = () => {
                   Annual Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -226,7 +226,7 @@ const CapRateCalculator: React.FC = () => {
                   Annual Maintenance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.maintenance}
@@ -243,7 +243,7 @@ const CapRateCalculator: React.FC = () => {
                   Property Management (annual $ or % as decimal, e.g., 0.10 for 10%)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     step="0.01"
@@ -276,7 +276,7 @@ const CapRateCalculator: React.FC = () => {
                   Other Annual Expenses
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.otherExpenses}
@@ -318,7 +318,7 @@ const CapRateCalculator: React.FC = () => {
                         <p className={`text-4xl font-bold ${getCapRateColor(results.capRate)}`}>
                           {formatPercent(results.capRate)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           NOI ÷ Purchase Price
                         </p>
                       </div>
@@ -331,11 +331,11 @@ const CapRateCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Net Operating Income</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Rental Income:</span>
+                      <span className="text-foreground/70">Annual Rental Income:</span>
                       <span className="font-semibold text-primary">{formatCurrency(results.annualRentalIncome)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Operating Expenses:</span>
+                      <span className="text-foreground/70">Operating Expenses:</span>
                       <span className="font-semibold text-destructive">{formatCurrency(results.annualOperatingExpenses)}</span>
                     </div>
                     <hr className="my-3" />
@@ -354,13 +354,13 @@ const CapRateCalculator: React.FC = () => {
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Property Value at {targetCapRate}% Cap Rate</p>
                         <p className="text-2xl font-bold text-foreground">{formatCurrency(results.propertyValue)}</p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           NOI ÷ Target Cap Rate
                         </p>
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Current purchase price: {formatCurrency(formData.purchasePrice)}</p>
                       <p>• Value at {targetCapRate}% cap rate: {formatCurrency(results.propertyValue)}</p>
                       <p>• Difference: {formatCurrency(results.propertyValue - formData.purchasePrice)}</p>
@@ -371,7 +371,7 @@ const CapRateCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.capRate >= 10 ? (
                       <p className="text-primary font-medium">✓ Excellent cap rate! This property shows strong income potential.</p>
                     ) : results.capRate >= 7 ? (
@@ -396,7 +396,7 @@ const CapRateCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Cap Rate</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Measures:</h3>
               <ul className="space-y-1 list-disc list-inside">

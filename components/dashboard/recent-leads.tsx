@@ -113,13 +113,13 @@ export function RecentLeads() {
                 </Avatar>
                 <div>
                   <div>{lead.name}</div>
-                  <div className="text-sm text-muted-foreground">{lead.id}</div>
+                  <div className="text-sm text-foreground/70">{lead.id}</div>
                 </div>
               </div>
             </TableCell>
             <TableCell>
               <div className="capitalize">{lead.propertyType.replace(/-/g, " ")}</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-foreground/70">
                 {lead.propertyValue === "under-300k"
                   ? "Under $300k"
                   : lead.propertyValue === "300k-500k"

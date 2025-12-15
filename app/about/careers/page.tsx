@@ -101,7 +101,7 @@ export default function CareersPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Why Work at OnDo Real Estate?</h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-foreground/70">
               We're building the future of property management in Utah, and we need passionate people to help us get there.
             </p>
           </div>
@@ -114,7 +114,7 @@ export default function CareersPage() {
                   <CardTitle className="text-xl">{benefit.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-muted-foreground">{benefit.description}</CardDescription>
+                  <CardDescription className="text-foreground/70">{benefit.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -150,11 +150,11 @@ export default function CareersPage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground mb-4">{position.description}</p>
+                    <p className="text-foreground/70 mb-4">{position.description}</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-2">Requirements:</h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
+                        <ul className="text-sm text-foreground/70 space-y-1">
                           {position.requirements.map((req, reqIndex) => (
                             <li key={reqIndex}>• {req}</li>
                           ))}
@@ -162,7 +162,7 @@ export default function CareersPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-2">Benefits:</h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
+                        <ul className="text-sm text-foreground/70 space-y-1">
                           {position.benefits.map((benefit, benIndex) => (
                             <li key={benIndex}>• {benefit}</li>
                           ))}
@@ -186,7 +186,7 @@ export default function CareersPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Don't See Your Perfect Role?</h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-foreground/70 mb-8">
               We're always looking for talented individuals to join our team. Send us your resume and let us know how you'd like to contribute.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

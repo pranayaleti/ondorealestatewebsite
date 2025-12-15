@@ -101,7 +101,7 @@ const GRMCalculator: React.FC = () => {
                   Purchase Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.purchasePrice}
@@ -118,7 +118,7 @@ const GRMCalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -135,7 +135,7 @@ const GRMCalculator: React.FC = () => {
                   Annual Rent (optional, leave 0 to use monthly × 12)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.annualRent}
@@ -159,7 +159,7 @@ const GRMCalculator: React.FC = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="12.0"
                 />
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Typical GRM: 8-12 for good deals, 12-15 average, 15+ may be overpriced
                 </p>
               </div>
@@ -180,7 +180,7 @@ const GRMCalculator: React.FC = () => {
                         <p className={`text-4xl font-bold ${getGRMColor(results.grossRentMultiplier)}`}>
                           {results.grossRentMultiplier.toFixed(2)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Purchase Price ÷ Annual Rent
                         </p>
                       </div>
@@ -188,11 +188,11 @@ const GRMCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Purchase Price</p>
+                        <p className="text-sm text-foreground/70 mb-1">Purchase Price</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(formData.purchasePrice)}</p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Annual Rent</p>
+                        <p className="text-sm text-foreground/70 mb-1">Annual Rent</p>
                         <p className="text-lg font-semibold text-primary">{formatCurrency(results.annualRent)}</p>
                       </div>
                     </div>
@@ -207,7 +207,7 @@ const GRMCalculator: React.FC = () => {
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Recommended Price at {targetGRM} GRM</p>
                         <p className="text-2xl font-bold text-foreground">{formatCurrency(results.recommendedPrice)}</p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Based on current rent
                         </p>
                       </div>
@@ -217,7 +217,7 @@ const GRMCalculator: React.FC = () => {
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Required Rent for {targetGRM} GRM</p>
                         <p className="text-2xl font-bold text-foreground">{formatCurrency(results.recommendedRent)}</p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Monthly: {formatCurrency(results.recommendedRent / 12)}
                         </p>
                       </div>
@@ -228,7 +228,7 @@ const GRMCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.grossRentMultiplier <= 10 ? (
                       <p className="text-primary font-medium">✓ Excellent GRM! This property shows strong income potential relative to price.</p>
                     ) : results.grossRentMultiplier <= 15 ? (
@@ -253,7 +253,7 @@ const GRMCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Gross Rent Multiplier</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Measures:</h3>
               <ul className="space-y-1 list-disc list-inside">

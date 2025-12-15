@@ -45,7 +45,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
             )}
             <div>
               <h2 className="text-xl font-semibold">{company.title}</h2>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2 text-sm text-foreground/70">
                 {company.rating && company.reviewCount && (
                   <>
                     <div className="flex items-center gap-1">
@@ -178,7 +178,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                   <CardTitle className="text-lg">Lease Terms</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{company.leaseTerms}</p>
+                  <p className="text-sm text-foreground/70">{company.leaseTerms}</p>
                 </CardContent>
               </Card>
             )}
@@ -190,7 +190,7 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
                   <CardTitle className="text-lg">Fees & Management</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{company.fees}</p>
+                  <p className="text-sm text-foreground/70">{company.fees}</p>
                 </CardContent>
               </Card>
             )}

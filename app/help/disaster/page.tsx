@@ -126,7 +126,7 @@ export default function DisasterResourcesPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">We're Here to Help</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Natural disasters can be devastating, but you don't have to face them alone. We provide support and resources to help you recover.
               </p>
             </div>
@@ -142,8 +142,8 @@ export default function DisasterResourcesPage() {
                         <Phone className="h-4 w-4 text-destructive dark:text-destructive" />
                         <div>
                           <p className="font-medium dark:text-foreground">{contact.name}</p>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{contact.number}</p>
-                          <p className="text-xs text-muted-foreground dark:text-gray-400">{contact.description}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{contact.number}</p>
+                          <p className="text-xs text-foreground/70 dark:text-gray-400">{contact.description}</p>
                         </div>
                       </div>
                     ))}
@@ -170,7 +170,7 @@ export default function DisasterResourcesPage() {
                       <div className="space-y-4">
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300 mb-2">Immediate Actions:</p>
-                          <ul className="text-sm text-muted-foreground dark:text-muted-foreground space-y-1">
+                          <ul className="text-sm text-foreground/70 dark:text-foreground/70 space-y-1">
                             {disaster.immediate.map((action, idx) => (
                               <li key={idx}>• {action}</li>
                             ))}
@@ -178,7 +178,7 @@ export default function DisasterResourcesPage() {
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300 mb-2">After the Event:</p>
-                          <ul className="text-sm text-muted-foreground dark:text-muted-foreground space-y-1">
+                          <ul className="text-sm text-foreground/70 dark:text-foreground/70 space-y-1">
                             {disaster.after.map((action, idx) => (
                               <li key={idx}>• {action}</li>
                             ))}
@@ -208,15 +208,15 @@ export default function DisasterResourcesPage() {
                     <CardContent>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <Phone className="h-4 w-4 text-muted-foreground" />
+                          <Phone className="h-4 w-4 text-foreground/70" />
                           <span className="text-sm font-medium">{program.contact}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <FileText className="h-4 w-4 text-muted-foreground" />
+                          <FileText className="h-4 w-4 text-foreground/70" />
                           <span className="text-sm text-primary dark:text-primary">{program.website}</span>
                         </div>
                         <div>
-                          <p className="text-xs text-muted-foreground dark:text-gray-400">Eligibility: {program.eligibility}</p>
+                          <p className="text-xs text-foreground/70 dark:text-gray-400">Eligibility: {program.eligibility}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -238,11 +238,11 @@ export default function DisasterResourcesPage() {
                       <div className="space-y-2">
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300">Duration:</p>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{assistance.duration}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{assistance.duration}</p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground dark:text-gray-300">Requirements:</p>
-                          <p className="text-sm text-muted-foreground dark:text-muted-foreground">{assistance.requirements}</p>
+                          <p className="text-sm text-foreground/70 dark:text-foreground/70">{assistance.requirements}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -270,7 +270,7 @@ export default function DisasterResourcesPage() {
 
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Need Immediate Help?</h3>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                 If you've been affected by a natural disaster, we're here to help with mortgage assistance and recovery resources.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

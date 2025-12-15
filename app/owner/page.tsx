@@ -71,10 +71,10 @@ export default function OwnerDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
         <div>
           <h1 className="text-3xl font-bold">Welcome, {user?.name || "Owner"}</h1>
-          <p className="text-muted-foreground">Manage your properties and tenants</p>
+          <p className="text-foreground/70">Manage your properties and tenants</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Last login: Today, 10:15 AM</span>
+          <span className="text-sm text-foreground/70">Last login: Today, 10:15 AM</span>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ export default function OwnerDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Properties</CardTitle>
-            <Building className="h-4 w-4 text-muted-foreground" />
+            <Building className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -90,7 +90,7 @@ export default function OwnerDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">7</div>
-                <p className="text-xs text-muted-foreground">2 single-family, 5 apartments</p>
+                <p className="text-xs text-foreground/70">2 single-family, 5 apartments</p>
               </>
             )}
           </CardContent>
@@ -98,7 +98,7 @@ export default function OwnerDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Monthly Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -106,7 +106,7 @@ export default function OwnerDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">$8,750.00</div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-foreground/70">
                   <span className="text-green-500">↑ 4.3%</span> from last month
                 </p>
               </>
@@ -116,7 +116,7 @@ export default function OwnerDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Maintenance Requests</CardTitle>
-            <Tool className="h-4 w-4 text-muted-foreground" />
+            <Tool className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -124,7 +124,7 @@ export default function OwnerDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">5 Active</div>
-                <p className="text-xs text-muted-foreground">3 completed this month</p>
+                <p className="text-xs text-foreground/70">3 completed this month</p>
               </>
             )}
           </CardContent>
@@ -132,7 +132,7 @@ export default function OwnerDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Occupancy Rate</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -140,7 +140,7 @@ export default function OwnerDashboard() {
             ) : (
               <>
                 <div className="text-2xl font-bold">85%</div>
-                <p className="text-xs text-muted-foreground">6 of 7 units occupied</p>
+                <p className="text-xs text-foreground/70">6 of 7 units occupied</p>
               </>
             )}
           </CardContent>
@@ -223,28 +223,28 @@ export default function OwnerDashboard() {
                   <div className="flex items-center justify-between border-b pb-2">
                     <div>
                       <p className="font-medium">123 Main St</p>
-                      <p className="text-sm text-muted-foreground">Single Family</p>
+                      <p className="text-sm text-foreground/70">Single Family</p>
                     </div>
                     <div className="font-medium text-primary">Occupied</div>
                   </div>
                   <div className="flex items-center justify-between border-b pb-2">
                     <div>
                       <p className="font-medium">456 Oak Ave</p>
-                      <p className="text-sm text-muted-foreground">Single Family</p>
+                      <p className="text-sm text-foreground/70">Single Family</p>
                     </div>
                     <div className="font-medium text-primary">Occupied</div>
                   </div>
                   <div className="flex items-center justify-between border-b pb-2">
                     <div>
                       <p className="font-medium">Sunset Apts #101</p>
-                      <p className="text-sm text-muted-foreground">Apartment</p>
+                      <p className="text-sm text-foreground/70">Apartment</p>
                     </div>
                     <div className="font-medium text-primary">Occupied</div>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">Sunset Apts #205</p>
-                      <p className="text-sm text-muted-foreground">Apartment</p>
+                      <p className="text-sm text-foreground/70">Apartment</p>
                     </div>
                     <div className="font-medium text-destructive">Vacant</div>
                   </div>
@@ -273,21 +273,21 @@ export default function OwnerDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">John Smith</p>
-                    <p className="text-sm text-muted-foreground">May 1, 2023</p>
+                    <p className="text-sm text-foreground/70">May 1, 2023</p>
                   </div>
                   <div className="font-medium">$1,250.00</div>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Sarah Johnson</p>
-                    <p className="text-sm text-muted-foreground">May 1, 2023</p>
+                    <p className="text-sm text-foreground/70">May 1, 2023</p>
                   </div>
                   <div className="font-medium">$950.00</div>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Michael Brown</p>
-                    <p className="text-sm text-muted-foreground">May 2, 2023</p>
+                    <p className="text-sm text-foreground/70">May 2, 2023</p>
                   </div>
                   <div className="font-medium">$1,100.00</div>
                 </div>
@@ -351,24 +351,24 @@ export default function OwnerDashboard() {
             ) : (
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <Calendar className="mt-1 h-5 w-5 text-muted-foreground" />
+                  <Calendar className="mt-1 h-5 w-5 text-foreground/70" />
                   <div>
                     <p className="font-medium">Lease Renewal</p>
-                    <p className="text-sm text-muted-foreground">123 Main St - May 15, 2023</p>
+                    <p className="text-sm text-foreground/70">123 Main St - May 15, 2023</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Calendar className="mt-1 h-5 w-5 text-muted-foreground" />
+                  <Calendar className="mt-1 h-5 w-5 text-foreground/70" />
                   <div>
                     <p className="font-medium">Property Inspection</p>
-                    <p className="text-sm text-muted-foreground">456 Oak Ave - May 20, 2023</p>
+                    <p className="text-sm text-foreground/70">456 Oak Ave - May 20, 2023</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Calendar className="mt-1 h-5 w-5 text-muted-foreground" />
+                  <Calendar className="mt-1 h-5 w-5 text-foreground/70" />
                   <div>
                     <p className="font-medium">Insurance Payment Due</p>
-                    <p className="text-sm text-muted-foreground">All Properties - May 31, 2023</p>
+                    <p className="text-sm text-foreground/70">All Properties - May 31, 2023</p>
                   </div>
                 </div>
               </div>

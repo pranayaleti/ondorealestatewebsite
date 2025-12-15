@@ -158,7 +158,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Home Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.homePrice}
@@ -175,7 +175,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
@@ -192,7 +192,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Loan Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.loanAmount}
@@ -209,7 +209,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -226,7 +226,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -289,7 +289,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Title Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.titleInsurance}
@@ -306,7 +306,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Appraisal Fee
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.appraisal}
@@ -323,7 +323,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Home Inspection
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.inspection}
@@ -340,7 +340,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Origination Fee
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.originationFee}
@@ -386,7 +386,7 @@ const ClosingCostCalculator: React.FC = () => {
                   Escrow Reserves
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.escrowReserves}
@@ -428,15 +428,15 @@ const ClosingCostCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Cost Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Lender Costs:</span>
+                      <span className="text-foreground/70">Lender Costs:</span>
                       <span className="font-semibold">{formatCurrency(results.lenderCosts)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Third-Party Costs:</span>
+                      <span className="text-foreground/70">Third-Party Costs:</span>
                       <span className="font-semibold">{formatCurrency(results.thirdPartyCosts)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Prepaid Costs:</span>
+                      <span className="text-foreground/70">Prepaid Costs:</span>
                       <span className="font-semibold">{formatCurrency(results.prepaidCosts)}</span>
                     </div>
                     <hr className="my-3" />
@@ -463,7 +463,7 @@ const ClosingCostCalculator: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Closing costs typically range from 2-5% of home price</p>
                       {results.monthlyPI && (
                         <p>• Estimated P&I payment: {formatCurrency(results.monthlyPI)}</p>
@@ -482,7 +482,7 @@ const ClosingCostCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About Closing Costs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">Lender Costs:</h3>
               <ul className="space-y-1 list-disc list-inside">

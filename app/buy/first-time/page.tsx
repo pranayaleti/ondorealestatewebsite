@@ -32,7 +32,7 @@ export default function FirstTimeBuyerPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Your Journey to Homeownership Starts Here</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/70">
                 Buying your first home is exciting, but it can also feel overwhelming. We're here to guide you through every step of the process.
               </p>
             </div>
@@ -74,7 +74,7 @@ export default function FirstTimeBuyerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3">FHA Loans</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Low down payment (3.5%)</li>
                     <li>• Flexible credit requirements</li>
                     <li>• Government-backed</li>
@@ -83,7 +83,7 @@ export default function FirstTimeBuyerPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3">USDA Loans</h4>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70">
                     <li>• Zero down payment</li>
                     <li>• Rural and suburban areas</li>
                     <li>• Income limits apply</li>

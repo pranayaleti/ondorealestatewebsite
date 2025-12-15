@@ -99,7 +99,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                   Purchase Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.purchasePrice}
@@ -116,7 +116,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                   Monthly Rent
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyRent}
@@ -133,7 +133,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                   After Repair Value (ARV) - optional
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.afterRepairValue}
@@ -142,7 +142,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                     placeholder="0"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Use ARV for fix-and-flip or rehab properties
                 </p>
               </div>
@@ -165,7 +165,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                         <p className={`text-3xl font-bold ${results.meetsRule ? 'text-green-600' : 'text-red-600'}`}>
                           {formatPercent(results.actualPercent)}
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-sm text-foreground/70 mt-1">
                           Actual rent as % of purchase price
                         </p>
                       </div>
@@ -173,11 +173,11 @@ const OnePercentRuleCalculator: React.FC = () => {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Required Rent</p>
+                        <p className="text-sm text-foreground/70 mb-1">Required Rent</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(results.requiredMonthlyRent)}</p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Actual Rent</p>
+                        <p className="text-sm text-foreground/70 mb-1">Actual Rent</p>
                         <p className="text-lg font-semibold text-foreground">{formatCurrency(formData.monthlyRent)}</p>
                       </div>
                     </div>
@@ -197,7 +197,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                           <p className="text-2xl font-bold text-foreground">
                             {formatCurrency(results.requiredRentARV)}
                           </p>
-                          <p className="text-sm text-muted-foreground mt-1">
+                          <p className="text-sm text-foreground/70 mt-1">
                             Required rent based on ARV
                           </p>
                         </div>
@@ -209,7 +209,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Analysis</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     {results.meetsRule ? (
                       <p className="text-primary font-medium">✓ Property meets the 1% rule! This is a good starting point for evaluation.</p>
                     ) : (
@@ -231,7 +231,7 @@ const OnePercentRuleCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About the 1% Rule</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What It Is:</h3>
               <ul className="space-y-1 list-disc list-inside">

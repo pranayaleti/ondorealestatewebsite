@@ -102,7 +102,7 @@ export default function NewsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Latest News</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Stay updated with our latest company news, market insights, and community initiatives.
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function NewsPage() {
                         <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
                           {featuredArticle.category}
                         </span>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2 text-sm text-foreground/70">
                           <Calendar className="h-4 w-4" />
                           {new Date(featuredArticle.date).toLocaleDateString()}
                         </div>
@@ -137,7 +137,7 @@ export default function NewsPage() {
                       <CardTitle className="text-2xl mb-4 dark:text-foreground">{featuredArticle.title}</CardTitle>
                       <CardDescription className="text-base mb-4">{featuredArticle.excerpt}</CardDescription>
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2 text-sm text-foreground/70">
                           <User className="h-4 w-4" />
                           {featuredArticle.author}
                         </div>
@@ -187,7 +187,7 @@ export default function NewsPage() {
                       <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
                         {article.category}
                       </span>
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1 text-xs text-foreground/70">
                         <Calendar className="h-3 w-3" />
                         {new Date(article.date).toLocaleDateString()}
                       </div>
@@ -197,7 +197,7 @@ export default function NewsPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1 text-xs text-foreground/70">
                         <User className="h-3 w-3" />
                         {article.author}
                       </div>
@@ -215,7 +215,7 @@ export default function NewsPage() {
             <div className="bg-muted dark:bg-muted rounded-lg p-8 mb-12">
               <div className="max-w-2xl mx-auto text-center">
                 <h3 className="text-2xl font-bold mb-4 dark:text-foreground">Stay Updated</h3>
-                <p className="text-muted-foreground dark:text-muted-foreground mb-6">
+                <p className="text-foreground/70 dark:text-foreground/70 mb-6">
                   Subscribe to our newsletter to receive the latest news, market updates, and insights directly in your inbox.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -232,7 +232,7 @@ export default function NewsPage() {
             {/* Contact for Media */}
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-6 dark:text-foreground">Media Inquiries</h3>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70 mb-6">
                 For media inquiries, press releases, or interview requests, please contact our communications team.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

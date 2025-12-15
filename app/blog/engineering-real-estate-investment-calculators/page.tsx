@@ -79,7 +79,7 @@ export default function EngineeringInvestmentCalculators() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-8">
+            <p className="lead text-xl text-foreground/70 mb-8">
               Real estate investing isn't about guessing; it's about math. At Ondo Real Estate, we didn't just embed a widget—we engineered a comprehensive <strong>ROI Calculator</strong> from scratch.
             </p>
 
@@ -209,7 +209,7 @@ function KeyLine({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/60 px-4 py-3 h-full">
       <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="text-sm text-muted-foreground">{detail}</p>
+      <p className="text-sm text-foreground/70">{detail}</p>
     </div>
   );
 }

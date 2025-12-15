@@ -588,18 +588,18 @@ const RetirementCalculator: React.FC = () => {
                     <table className="min-w-full divide-y divide-gray-200">
                       <thead className="bg-muted">
                         <tr>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Age</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Year</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Savings</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Real Estate</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Total Assets</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Age</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Year</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Savings</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Real Estate</th>
+                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Total Assets</th>
                         </tr>
                       </thead>
                       <tbody className="bg-card divide-y divide-gray-200">
                         {results.yearByYearProjection.slice(0, 10).map((projection) => (
                           <tr key={projection.year}>
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{projection.age}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-muted-foreground">{projection.year}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-foreground/70">{projection.year}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.savings)}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.realEstateValue)}</td>
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{formatCurrency(projection.totalAssets)}</td>

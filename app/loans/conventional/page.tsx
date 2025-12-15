@@ -54,7 +54,7 @@ export default function ConventionalLoanPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">What is a Conventional Loan?</h2>
-              <p className="text-lg text-muted-foreground dark:text-muted-foreground">
+              <p className="text-lg text-foreground/70 dark:text-foreground/70">
                 Conventional loans are traditional mortgages not backed by government agencies like FHA, VA, or USDA. 
                 They offer flexibility and competitive rates for qualified borrowers.
               </p>
@@ -81,7 +81,7 @@ export default function ConventionalLoanPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="text-lg font-semibold mb-4 dark:text-foreground">Credit Score</h4>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• Minimum 620 for most programs</li>
                     <li>• 740+ for best rates</li>
                     <li>• Higher scores = better terms</li>
@@ -89,7 +89,7 @@ export default function ConventionalLoanPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-4 dark:text-foreground">Down Payment</h4>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• As low as 3% for qualified buyers</li>
                     <li>• 20% to avoid PMI</li>
                     <li>• Gift funds allowed</li>
@@ -97,7 +97,7 @@ export default function ConventionalLoanPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-4 dark:text-foreground">Debt-to-Income Ratio</h4>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• Maximum 43% DTI</li>
                     <li>• Lower DTI = better approval odds</li>
                     <li>• Consider all monthly debts</li>
@@ -105,7 +105,7 @@ export default function ConventionalLoanPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-4 dark:text-foreground">Employment</h4>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• 2+ years employment history</li>
                     <li>• Stable income required</li>
                     <li>• Self-employed options available</li>
@@ -119,7 +119,7 @@ export default function ConventionalLoanPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground text-primary">Conventional Advantages</h4>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• No upfront mortgage insurance</li>
                     <li>• PMI can be removed</li>
                     <li>• Higher loan limits</li>
@@ -128,7 +128,7 @@ export default function ConventionalLoanPage() {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-3 dark:text-foreground text-primary">FHA Advantages</h4>
-                  <ul className="space-y-2 text-muted-foreground dark:text-muted-foreground">
+                  <ul className="space-y-2 text-foreground/70 dark:text-foreground/70">
                     <li>• Lower credit score requirements</li>
                     <li>• Lower down payment (3.5%)</li>
                     <li>• More lenient DTI ratios</li>

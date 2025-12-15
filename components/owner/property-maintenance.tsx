@@ -66,11 +66,11 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h3 className="text-lg font-medium">Maintenance History</h3>
-          <p className="text-sm text-muted-foreground">Track repairs, upgrades, and routine maintenance</p>
+          <p className="text-sm text-foreground/70">Track repairs, upgrades, and routine maintenance</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/70" />
             <Input
               placeholder="Search maintenance..."
               className="pl-8 w-[200px]"
@@ -86,24 +86,24 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Maintenance Costs</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${totalCost.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">Lifetime maintenance expenses</p>
+            <p className="text-xs text-foreground/70">Lifetime maintenance expenses</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Recent Maintenance</CardTitle>
-            <Wrench className="h-4 w-4 text-muted-foreground" />
+            <Wrench className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {maintenanceHistory.length > 0 ? maintenanceHistory[0].type : "No records"}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               {maintenanceHistory.length > 0
                 ? `${new Date(maintenanceHistory[0].date).toLocaleDateString()} - $${maintenanceHistory[0].cost}`
                 : "Add your first maintenance record"}
@@ -114,11 +114,11 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Upcoming Maintenance</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+            <Calendar className="h-4 w-4 text-foreground/70" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">HVAC Service</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-foreground/70">
               Scheduled for {new Date().toLocaleDateString(undefined, { month: "long", day: "numeric" })}
             </p>
           </CardContent>
@@ -133,9 +133,9 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
         <CardContent>
           {filteredHistory.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8">
-              <Wrench className="h-12 w-12 text-muted-foreground mb-4" />
+              <Wrench className="h-12 w-12 text-foreground/70 mb-4" />
               <h3 className="text-lg font-medium mb-2">No maintenance records found</h3>
-              <p className="text-muted-foreground text-center mb-6">
+              <p className="text-foreground/70 text-center mb-6">
                 {searchTerm ? "Try adjusting your search" : "Add your first maintenance record to start tracking"}
               </p>
               <AddMaintenanceDialog onAddMaintenance={handleAddMaintenance} />
@@ -156,7 +156,7 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
                   <TableRow key={record.id}>
                     <TableCell>
                       <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                        <Calendar className="h-4 w-4 mr-2 text-foreground/70" />
                         {new Date(record.date).toLocaleDateString()}
                       </div>
                     </TableCell>

@@ -120,7 +120,7 @@ export default function RemoteOnlineNotaryRealEstateClosings() {
                 <Card key={item.title} className="bg-muted border-border">
                   <CardContent className="p-4">
                     <p className="font-semibold text-foreground">{item.title}</p>
-                    <p className="text-sm text-muted-foreground">{item.detail}</p>
+                    <p className="text-sm text-foreground/70">{item.detail}</p>
                   </CardContent>
                 </Card>
               ))}

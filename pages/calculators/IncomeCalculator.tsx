@@ -139,7 +139,7 @@ const IncomeCalculator: React.FC = () => {
                   Home Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.homePrice}
@@ -156,7 +156,7 @@ const IncomeCalculator: React.FC = () => {
                   Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.downPayment}
@@ -204,7 +204,7 @@ const IncomeCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -221,7 +221,7 @@ const IncomeCalculator: React.FC = () => {
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -238,7 +238,7 @@ const IncomeCalculator: React.FC = () => {
                   Monthly Debt Payments
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.monthlyDebts}
@@ -247,7 +247,7 @@ const IncomeCalculator: React.FC = () => {
                     placeholder="500"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   Credit cards, car loans, student loans, etc.
                 </p>
               </div>
@@ -312,16 +312,16 @@ const IncomeCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Payment Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Monthly Housing Payment:</span>
+                      <span className="text-foreground/70">Monthly Housing Payment:</span>
                       <span className="font-semibold">{formatCurrency(results.monthlyPayment)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Monthly Debts:</span>
+                      <span className="text-foreground/70">Monthly Debts:</span>
                       <span className="font-semibold">{formatCurrency(formData.monthlyDebts)}</span>
                     </div>
                     <hr className="my-3" />
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total Monthly Debt:</span>
+                      <span className="text-foreground/70">Total Monthly Debt:</span>
                       <span className="font-semibold">{formatCurrency(results.monthlyPayment + formData.monthlyDebts)}</span>
                     </div>
                   </div>
@@ -332,16 +332,16 @@ const IncomeCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Debt-to-Income Ratios</h2>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Front-End Ratio (Housing):</span>
+                      <span className="text-foreground/70">Front-End Ratio (Housing):</span>
                       <span className="font-semibold text-primary">{formatPercent(results.frontEndRatio)}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Back-End Ratio (Total Debt):</span>
+                      <span className="text-foreground/70">Back-End Ratio (Total Debt):</span>
                       <span className="font-semibold text-primary">{formatPercent(results.backEndRatio)}</span>
                     </div>
                     
                     <div className="mt-4 p-3 bg-muted rounded-lg">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/70">
                         <strong>Front-End:</strong> Housing expenses ÷ Gross monthly income (target: ≤28%)<br/>
                         <strong>Back-End:</strong> Total debt payments ÷ Gross monthly income (target: ≤36%)
                       </p>
@@ -352,7 +352,7 @@ const IncomeCalculator: React.FC = () => {
                 {/* Recommendations */}
                 <div className="bg-card rounded-lg shadow-lg p-6 border border-border">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Recommendations</h2>
-                  <div className="space-y-3 text-sm text-muted-foreground">
+                  <div className="space-y-3 text-sm text-foreground/70">
                     <p>• This calculation uses conservative 28/36 debt-to-income ratios</p>
                     <p>• Consider additional expenses like maintenance and utilities</p>
                     <p>• Factor in emergency savings and other financial goals</p>
@@ -367,7 +367,7 @@ const IncomeCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6 border border-border">
           <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">How It Works:</h3>
               <ul className="space-y-1 list-disc list-inside">

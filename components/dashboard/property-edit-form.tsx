@@ -398,8 +398,8 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
               ))}
               <div className="border border-dashed rounded-md flex items-center justify-center h-48 cursor-pointer hover:bg-muted">
                 <div className="text-center">
-                  <Plus className="h-8 w-8 mx-auto text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Add Image</span>
+                  <Plus className="h-8 w-8 mx-auto text-foreground/70" />
+                  <span className="text-sm text-foreground/70">Add Image</span>
                 </div>
               </div>
             </div>
@@ -440,19 +440,19 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
               <div className="border rounded-md mt-2">
                 <div className="p-4 border-b">
                   <p className="font-medium">Property created</p>
-                  <p className="text-sm text-muted-foreground">April 25, 2023 at 9:24 AM by Admin User</p>
+                  <p className="text-sm text-foreground/70">April 25, 2023 at 9:24 AM by Admin User</p>
                 </div>
                 <div className="p-4 border-b">
                   <p className="font-medium">Property details updated</p>
-                  <p className="text-sm text-muted-foreground">April 26, 2023 at 11:15 AM by Admin User</p>
+                  <p className="text-sm text-foreground/70">April 26, 2023 at 11:15 AM by Admin User</p>
                 </div>
                 <div className="p-4 border-b">
                   <p className="font-medium">Owner information updated</p>
-                  <p className="text-sm text-muted-foreground">April 27, 2023 at 2:30 PM by Admin User</p>
+                  <p className="text-sm text-foreground/70">April 27, 2023 at 2:30 PM by Admin User</p>
                 </div>
                 <div className="p-4">
                   <p className="font-medium">Property status changed to Active</p>
-                  <p className="text-sm text-muted-foreground">April 28, 2023 at 2:30 PM by Admin User</p>
+                  <p className="text-sm text-foreground/70">April 28, 2023 at 2:30 PM by Admin User</p>
                 </div>
               </div>
             </div>

@@ -114,7 +114,7 @@ export default function PrepareForRemoteOnlineNotarySession() {
                 <Card key={step.title} className="bg-muted border-border">
                   <CardContent className="p-4">
                     <p className="font-semibold text-foreground">{step.title}</p>
-                    <p className="text-sm text-muted-foreground">{step.detail}</p>
+                    <p className="text-sm text-foreground/70">{step.detail}</p>
                   </CardContent>
                 </Card>
               ))}

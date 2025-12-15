@@ -177,7 +177,7 @@ export default function SearchResultsPage() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold mb-2">Available Properties in {city}</h1>
-          <p className="text-muted-foreground">{properties.length} properties found in your area</p>
+          <p className="text-foreground/70">{properties.length} properties found in your area</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-2">
           <Tabs defaultValue="grid" className="w-[200px]">
@@ -199,7 +199,7 @@ export default function SearchResultsPage() {
       {loading ? (
         <div className="flex flex-col justify-center items-center min-h-[400px] space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          <p className="text-muted-foreground">Finding properties in your area...</p>
+          <p className="text-foreground/70">Finding properties in your area...</p>
         </div>
       ) : properties.length > 0 ? (
         <>{viewMode === "grid" ? <ResultsGrid properties={properties} /> : <ResultsList properties={properties} />}</>

@@ -10,26 +10,26 @@ export function PropertyOwnerSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Property Owners</h2>
-            <p className="text-lg mb-6 dark:text-muted-foreground">
+            <p className="text-lg mb-6 dark:text-foreground/70">
               Let OnDo Real Estate handle the day-to-day management of your rental property. We provide comprehensive
               property management services so you can enjoy passive income without the hassle.
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
-                <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
-                <span className="dark:text-muted-foreground">Professional tenant screening and placement</span>
+                <Shield className="h-6 w-6 text-foreground dark:text-foreground/70 mr-2 flex-shrink-0" />
+                <span className="dark:text-foreground/70">Professional tenant screening and placement</span>
               </li>
               <li className="flex items-start">
-                <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
-                <span className="dark:text-muted-foreground">Rent collection and financial reporting</span>
+                <Shield className="h-6 w-6 text-foreground dark:text-foreground/70 mr-2 flex-shrink-0" />
+                <span className="dark:text-foreground/70">Rent collection and financial reporting</span>
               </li>
               <li className="flex items-start">
-                <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
-                <span className="dark:text-muted-foreground">Maintenance coordination and 24/7 emergency response</span>
+                <Shield className="h-6 w-6 text-foreground dark:text-foreground/70 mr-2 flex-shrink-0" />
+                <span className="dark:text-foreground/70">Maintenance coordination and 24/7 emergency response</span>
               </li>
               <li className="flex items-start">
-                <Shield className="h-6 w-6 text-foreground dark:text-muted-foreground mr-2 flex-shrink-0" />
-                <span className="dark:text-muted-foreground">Regular property inspections and detailed reports</span>
+                <Shield className="h-6 w-6 text-foreground dark:text-foreground/70 mr-2 flex-shrink-0" />
+                <span className="dark:text-foreground/70">Regular property inspections and detailed reports</span>
               </li>
             </ul>
             <Button asChild className="bg-background hover:bg-muted dark:hover:bg-muted text-foreground">

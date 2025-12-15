@@ -139,7 +139,7 @@ PDF + audit trail delivered`}
                 <Card key={state.slug} className="bg-muted border-border">
                   <CardContent className="p-4">
                     <p className="font-semibold text-foreground">{state.name}</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground/70">
                       Remote online notarization with ID verification, electronic seal, and download-ready PDFs.
                     </p>
                   </CardContent>

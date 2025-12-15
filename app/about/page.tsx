@@ -54,7 +54,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             {/* Intro */}
             <div className="text-center mb-16">
-              <p className="text-xl md:text-2xl leading-relaxed mb-8 dark:text-muted-foreground">
+              <p className="text-xl md:text-2xl leading-relaxed mb-8 dark:text-foreground/70">
                 Ondo Real Estate combines elite real estate expertise with cutting-edge technology to give owners, buyers, tenants, and investors a single place to get things done. Whether you're buying or selling a condo, townhouse, single-family home, or land — or need thorough property management and loan solutions — Ondo moves fast, thinks ahead, and protects your returns.
               </p>
             </div>
@@ -65,19 +65,19 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-muted p-6 rounded-lg border border-border">
                   <h3 className="text-xl font-semibold mb-3 text-foreground">Skip the noise</h3>
-                  <p className="text-muted-foreground">One contract, one portal, one trusted partner.</p>
+                  <p className="text-foreground/70">One contract, one portal, one trusted partner.</p>
                 </div>
                 <div className="bg-muted p-6 rounded-lg border border-border">
                   <h3 className="text-xl font-semibold mb-3 text-foreground">Built for outcomes</h3>
-                  <p className="text-muted-foreground">More leased properties, faster sales, higher NOI.</p>
+                  <p className="text-foreground/70">More leased properties, faster sales, higher NOI.</p>
                 </div>
                 <div className="bg-muted p-6 rounded-lg border border-border">
                   <h3 className="text-xl font-semibold mb-3 text-foreground">Tech-first approach</h3>
-                  <p className="text-muted-foreground">Dashboards, tenant-owner workflows, and automated reporting.</p>
+                  <p className="text-foreground/70">Dashboards, tenant-owner workflows, and automated reporting.</p>
                 </div>
                 <div className="bg-muted p-6 rounded-lg border border-border">
                   <h3 className="text-xl font-semibold mb-3 text-foreground">Local expertise</h3>
-                  <p className="text-muted-foreground">Utah-native market knowledge with national reach.</p>
+                  <p className="text-foreground/70">Utah-native market knowledge with national reach.</p>
                 </div>
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
                   <h3 className="text-2xl font-semibold mb-4 text-primary">Buying & Selling</h3>
-                  <ul className="space-y-3 dark:text-muted-foreground">
+                  <ul className="space-y-3 dark:text-foreground/70">
                     <li>• Strategic listing & acquisition services for condos, townhouses, single-family homes (SFH), and land</li>
                     <li>• Market-driven pricing, premium staging guidance, and negotiators who close</li>
                   </ul>
@@ -96,7 +96,7 @@ export default function AboutPage() {
 
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
                   <h3 className="text-2xl font-semibold mb-4 text-primary">Property Management</h3>
-                  <ul className="space-y-3 dark:text-muted-foreground">
+                  <ul className="space-y-3 dark:text-foreground/70">
                     <li>• Full-service property management: tenant sourcing, screening, rent collection, maintenance coordination</li>
                     <li>• Owner dashboard & tenant portal — transparent, real-time, no surprises</li>
                   </ul>
@@ -104,7 +104,7 @@ export default function AboutPage() {
 
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
                   <h3 className="text-2xl font-semibold mb-4 text-primary">Loans & Financing</h3>
-                  <ul className="space-y-3 dark:text-muted-foreground">
+                  <ul className="space-y-3 dark:text-foreground/70">
                     <li>• End-to-end mortgage and loan services for purchases, refinance, and investment properties</li>
                     <li>• Fast pre-approvals, competitive partners, and loan officers who think like investors</li>
                   </ul>
@@ -112,7 +112,7 @@ export default function AboutPage() {
 
                 <div className="bg-muted dark:bg-muted p-8 rounded-lg">
                   <h3 className="text-2xl font-semibold mb-4 text-primary">Investor Services</h3>
-                  <ul className="space-y-3 dark:text-muted-foreground">
+                  <ul className="space-y-3 dark:text-foreground/70">
                     <li>• Portfolio optimization, cashflow modeling, and hands-off management for multi-property owners</li>
                     <li>• Strategic acquisition sourcing tailored to yield and value-add opportunities</li>
                   </ul>
@@ -130,7 +130,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 dark:text-foreground">We're multidisciplinary</h3>
-                    <p className="dark:text-muted-foreground">Real estate agents, property managers, and mortgage experts working as one team.</p>
+                    <p className="dark:text-foreground/70">Real estate agents, property managers, and mortgage experts working as one team.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -139,7 +139,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 dark:text-foreground">We ship results</h3>
-                    <p className="dark:text-muted-foreground">Faster leasing, higher sale prices, lower vacancy, and streamlined financing.</p>
+                    <p className="dark:text-foreground/70">Faster leasing, higher sale prices, lower vacancy, and streamlined financing.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -148,7 +148,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 dark:text-foreground">We protect value</h3>
-                    <p className="dark:text-muted-foreground">Proactive maintenance, legal compliance, and smart tenant selection.</p>
+                    <p className="dark:text-foreground/70">Proactive maintenance, legal compliance, and smart tenant selection.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -157,7 +157,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 dark:text-foreground">We use data</h3>
-                    <p className="dark:text-muted-foreground">Market insights, rent comps, and predictive analytics guide every decision.</p>
+                    <p className="dark:text-foreground/70">Market insights, rent comps, and predictive analytics guide every decision.</p>
                   </div>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
             {/* Local Roots */}
             <div className="mb-16 text-center">
               <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Local Roots, Scale-Driven</h2>
-              <p className="text-xl leading-relaxed dark:text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl leading-relaxed dark:text-foreground/70 max-w-3xl mx-auto">
                 We know Utah — its neighborhoods, regulatory landscape, and investment pockets. That local knowledge is combined with national networks and enterprise-level technology so you get the best of both worlds: hometown intuition and institutional efficiency.
               </p>
             </div>
@@ -174,7 +174,7 @@ export default function AboutPage() {
             {/* Our Promise */}
             <div className="mb-16 text-center bg-muted p-8 rounded-lg border border-border">
               <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Our Promise</h2>
-              <p className="text-xl leading-relaxed dark:text-muted-foreground">
+              <p className="text-xl leading-relaxed dark:text-foreground/70">
                 Clear communication. Relentless execution. Real returns. We don't do busywork — we produce predictable outcomes and measurable value.
               </p>
             </div>
@@ -182,7 +182,7 @@ export default function AboutPage() {
             {/* Social Proof */}
             <div className="mb-16 text-center">
               <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Trusted by Utah</h2>
-              <p className="text-xl leading-relaxed dark:text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl leading-relaxed dark:text-foreground/70 max-w-3xl mx-auto">
                 Trusted by homeowners, investors, and tenants across Utah. Success stories include faster-than-market sales, reduced vacancy times, and consistent rent growth for managed portfolios.
               </p>
             </div>
@@ -193,28 +193,28 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <div className="bg-background dark:bg-background p-4 rounded-lg border">
                   <h3 className="font-semibold mb-2 dark:text-foreground">Owners</h3>
-                  <p className="text-sm dark:text-muted-foreground mb-3">Schedule a free portfolio evaluation</p>
+                  <p className="text-sm dark:text-foreground/70 mb-3">Schedule a free portfolio evaluation</p>
                   <Button asChild size="sm" className="w-full">
                     <Link href="/contact">Get Started</Link>
                   </Button>
                 </div>
                 <div className="bg-background dark:bg-background p-4 rounded-lg border">
                   <h3 className="font-semibold mb-2 dark:text-foreground">Sellers & Buyers</h3>
-                  <p className="text-sm dark:text-muted-foreground mb-3">Get a market analysis or property match</p>
+                  <p className="text-sm dark:text-foreground/70 mb-3">Get a market analysis or property match</p>
                   <Button asChild size="sm" className="w-full">
                     <Link href="/contact">Get Started</Link>
                   </Button>
                 </div>
                 <div className="bg-background dark:bg-background p-4 rounded-lg border">
                   <h3 className="font-semibold mb-2 dark:text-foreground">Investors</h3>
-                  <p className="text-sm dark:text-muted-foreground mb-3">Request cashflow modelling</p>
+                  <p className="text-sm dark:text-foreground/70 mb-3">Request cashflow modelling</p>
                   <Button asChild size="sm" className="w-full">
                     <Link href="/contact">Get Started</Link>
                   </Button>
                 </div>
                 <div className="bg-background dark:bg-background p-4 rounded-lg border">
                   <h3 className="font-semibold mb-2 dark:text-foreground">Loans</h3>
-                  <p className="text-sm dark:text-muted-foreground mb-3">Get pre-qualified today</p>
+                  <p className="text-sm dark:text-foreground/70 mb-3">Get pre-qualified today</p>
                   <Button asChild size="sm" className="w-full">
                     <Link href="/loans">Get Started</Link>
                   </Button>

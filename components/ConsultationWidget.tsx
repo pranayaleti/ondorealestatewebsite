@@ -143,13 +143,13 @@ const ConsultationWidget: React.FC = memo(() => {
             <div className="flex items-center justify-between p-6 border-b">
               <div>
                 <h2 className="text-2xl font-bold text-card-foreground">Book Your Free Real Estate Consultation</h2>
-                <p className="text-muted-foreground mt-1">Get expert advice on your real estate needs in 30 minutes</p>
+                <p className="text-foreground/70 mt-1">Get expert advice on your real estate needs in 30 minutes</p>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsModalOpen(false)}
-                className="text-muted-foreground hover:text-foreground"
+                className="text-foreground/70 hover:text-foreground"
                 aria-label="Close modal"
               >
                 <X className="h-6 w-6" />
@@ -318,7 +318,7 @@ const ConsultationWidget: React.FC = memo(() => {
               {/* Benefits */}
               <div className="mt-6 p-4 bg-primary/10 rounded-lg">
                 <h3 className="font-semibold text-card-foreground mb-3">What you'll get:</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-foreground/70">
                   <div className="flex items-center">
                     <CheckCircle className="h-4 w-4 text-primary mr-2" />
                     <span>30-minute expert consultation</span>
@@ -370,7 +370,7 @@ const ConsultationWidget: React.FC = memo(() => {
               </div>
 
               {/* Contact Info */}
-              <div className="mt-6 text-center text-sm text-muted-foreground">
+              <div className="mt-6 text-center text-sm text-foreground/70">
                 <p>Or call us directly: <a href={`tel:${SITE_PHONE}`} className="text-primary font-semibold">{SITE_PHONE}</a></p>
               </div>
             </form>

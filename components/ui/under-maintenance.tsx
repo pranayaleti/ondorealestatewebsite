@@ -34,7 +34,7 @@ export function UnderMaintenance({
           <CardTitle className="text-xl">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent className="flex items-center justify-center text-muted-foreground text-center">
+        <CardContent className="flex items-center justify-center text-foreground/70 text-center">
           <div className="flex items-center gap-2">
             <Wrench className="h-4 w-4" />
             <span>Our team is actively working on this section</span>

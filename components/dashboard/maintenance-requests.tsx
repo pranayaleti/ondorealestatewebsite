@@ -61,7 +61,7 @@ const getPriorityIcon = (priority: string) => {
     case "low":
       return <Clock className="h-4 w-4 text-primary" />
     default:
-      return <Clock className="h-4 w-4 text-muted-foreground" />
+      return <Clock className="h-4 w-4 text-foreground/70" />
   }
 }
 
@@ -117,10 +117,10 @@ export function MaintenanceRequests() {
                     {request.status.replace("-", " ")}
                   </Badge>
                 </div>
-                <p className="text-xs text-muted-foreground">{request.property}</p>
+                <p className="text-xs text-foreground/70">{request.property}</p>
                 <p className="text-sm">{request.issue}</p>
                 <div className="flex items-center justify-between pt-2">
-                  <div className="flex items-center text-xs text-muted-foreground">
+                  <div className="flex items-center text-xs text-foreground/70">
                     {getPriorityIcon(request.priority)}
                     <span className="ml-1 capitalize">{request.priority} Priority</span>
                   </div>

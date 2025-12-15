@@ -81,9 +81,9 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
         <CommandEmpty>
           {query.trim().length === 0 ? (
             <div className="py-6 text-center text-sm">
-              <p className="text-muted-foreground mb-2">Start typing to search...</p>
+              <p className="text-foreground/70 mb-2">Start typing to search...</p>
               <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                <span className="text-xs text-muted-foreground">Try:</span>
+                <span className="text-xs text-foreground/70">Try:</span>
                 <button
                   onClick={() => setQuery("mortgage")}
                   className="text-xs px-2 py-1 rounded-md bg-muted hover:bg-muted/80 transition-colors"
@@ -112,7 +112,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
             </div>
           ) : (
             <div className="py-6 text-center text-sm">
-              <p className="text-muted-foreground">No results found for "{query}"</p>
+              <p className="text-foreground/70">No results found for "{query}"</p>
             </div>
           )}
         </CommandEmpty>
@@ -127,14 +127,14 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
                   onSelect={() => handleSelect(result.href)}
                   className="flex items-center gap-3 cursor-pointer group/item"
                 >
-                  <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  <Icon className="h-4 w-4 text-foreground/70 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="font-medium truncate">{result.title}</div>
-                    <div className="text-xs text-muted-foreground truncate">
+                    <div className="text-xs text-foreground/70 truncate">
                       {result.description}
                     </div>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground flex-shrink-0 opacity-0 group-data-[selected=true]/item:opacity-100 transition-opacity" />
+                  <ArrowRight className="h-4 w-4 text-foreground/70 flex-shrink-0 opacity-0 group-data-[selected=true]/item:opacity-100 transition-opacity" />
                 </CommandItem>
               ))}
             </CommandGroup>

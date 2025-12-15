@@ -97,7 +97,7 @@ export default function WhyUtahBestInvestment() {
           </div>
 
           <div className="prose prose-lg prose-invert max-w-none">
-            <p className="lead text-xl text-muted-foreground mb-8">
+            <p className="lead text-xl text-foreground/70 mb-8">
               Utah combines job growth, net in-migration, and landlord-friendly regulation into a unique investment landscape. Whether you target cash flow in Ogden or appreciation in Lehi, the Wasatch Front offers diversified entry points for investors.
             </p>
 
@@ -120,7 +120,7 @@ export default function WhyUtahBestInvestment() {
                 <Card key={m.name} className="bg-card border-border">
                   <CardContent className="p-4">
                     <h3 className="font-semibold text-foreground">{m.name}</h3>
-                    <p className="text-sm text-muted-foreground">{m.drivers}</p>
+                    <p className="text-sm text-foreground/70">{m.drivers}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -221,7 +221,7 @@ function KeyLine({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="rounded-md border border-border bg-muted/60 px-4 py-3 h-full">
       <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="text-sm text-muted-foreground">{detail}</p>
+      <p className="text-sm text-foreground/70">{detail}</p>
     </div>
   )
 }

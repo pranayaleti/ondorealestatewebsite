@@ -200,7 +200,7 @@ export default function NotaryPage() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
           ONDO Notary Services Offered
         </h2>
-        <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+        <p className="text-center text-foreground/70 mb-8 max-w-2xl mx-auto">
           Remote‑first ONDO Notary services with Utah-specific mobile and in-office options.
         </p>
 
@@ -224,7 +224,7 @@ export default function NotaryPage() {
           {/* In‑Office */}
           <div className="p-6 bg-muted border border-border rounded-lg">
             <h3 className="text-xl font-semibold mb-3">In‑Office Notarization (Utah)</h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-foreground/70 mb-4">
               Quick appointments at the Lehi office.
             </p>
             <ul className="text-foreground text-sm space-y-2">
@@ -239,7 +239,7 @@ export default function NotaryPage() {
           {/* Mobile */}
           <div className="p-6 bg-muted border border-border rounded-lg">
             <h3 className="text-xl font-semibold mb-3">Mobile Notary (Utah County)</h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-foreground/70 mb-4">
               We travel to your home, office, or preferred location in Utah County.
             </p>
             <ul className="text-foreground text-sm space-y-2">
@@ -376,7 +376,7 @@ export default function NotaryPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
             ONDO Notary Loan Signing Expertise
           </h2>
-          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-center text-foreground/70 mb-8 max-w-2xl mx-auto">
             Professional, accurate mortgage signing services.
           </p>
 

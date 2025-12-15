@@ -220,7 +220,7 @@ export function LeadsTable() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="relative w-64">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-foreground/70" />
           <Input
             placeholder="Search applications..."
             className="pl-8"
@@ -257,17 +257,17 @@ export function LeadsTable() {
                   </Avatar>
                   <div>
                     <div>{application.name}</div>
-                    <div className="text-sm text-muted-foreground">{application.id}</div>
+                    <div className="text-sm text-foreground/70">{application.id}</div>
                   </div>
                 </div>
               </TableCell>
               <TableCell>
                 <div>{application.email}</div>
-                <div className="text-sm text-muted-foreground">{application.phone}</div>
+                <div className="text-sm text-foreground/70">{application.phone}</div>
               </TableCell>
               <TableCell>
                 <div className="capitalize">{application.propertyType.replace(/-/g, " ")}</div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm text-foreground/70">
                   {application.bedrooms} BR • Move-in: {new Date(application.moveInDate).toLocaleDateString()}
                 </div>
               </TableCell>
@@ -278,7 +278,7 @@ export function LeadsTable() {
               </TableCell>
               <TableCell>
                 <div>Income: {application.income}</div>
-                <div className="text-sm text-muted-foreground">Credit: {application.creditScore}</div>
+                <div className="text-sm text-foreground/70">Credit: {application.creditScore}</div>
               </TableCell>
               <TableCell>
                 {new Date(application.date).toLocaleDateString("en-US", {
@@ -327,7 +327,7 @@ export function LeadsTable() {
       </Table>
 
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/70">
           Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredApplications.length)} of{" "}
           {filteredApplications.length} applications
         </div>

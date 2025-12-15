@@ -61,7 +61,7 @@ export function CustomDrawer({ isOpen, onClose, children, title, description }: 
           {/* Header */}
           <div className="flex flex-col space-y-2 text-center sm:text-left mb-6">
             {title && <h2 className="text-lg font-semibold text-foreground">{title}</h2>}
-            {description && <p className="text-sm text-muted-foreground">{description}</p>}
+            {description && <p className="text-sm text-foreground/70">{description}</p>}
           </div>
 
           {/* Close button */}

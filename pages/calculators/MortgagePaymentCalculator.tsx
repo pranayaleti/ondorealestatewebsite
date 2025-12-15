@@ -229,7 +229,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   Home Price
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.homePrice}
@@ -247,7 +247,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                 </label>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative">
-                    <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                    <span className="absolute left-3 top-3 text-foreground/70">$</span>
                     <input
                       type="number"
                       value={formData.downPayment}
@@ -268,10 +268,10 @@ const MortgagePaymentCalculator: React.FC = () => {
                       className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                       placeholder="20.0"
                     />
-                    <span className="absolute right-3 top-3 text-muted-foreground">%</span>
+                    <span className="absolute right-3 top-3 text-foreground/70">%</span>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-foreground/70 mt-1">
                   {formData.downPayment < formData.homePrice * 0.2 && 
                     "Note: Less than 20% down payment will require PMI"
                   }
@@ -284,7 +284,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   Loan Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.loanAmount}
@@ -332,7 +332,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   Annual Property Tax
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.propertyTax}
@@ -349,7 +349,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-3 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
                     value={formData.insurance}
@@ -416,28 +416,28 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Monthly Payment Breakdown</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Principal & Interest:</span>
+                      <span className="text-foreground/70">Principal & Interest:</span>
                       <span className="font-semibold">{formatCurrency(results.monthlyPI)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">• Principal (first month):</span>
+                      <span className="text-foreground/70">• Principal (first month):</span>
                       <span className="text-primary">{formatCurrency(results.principal)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">• Interest (first month):</span>
+                      <span className="text-foreground/70">• Interest (first month):</span>
                       <span className="text-destructive">{formatCurrency(results.interest)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Property Tax:</span>
+                      <span className="text-foreground/70">Property Tax:</span>
                       <span className="font-semibold">{formatCurrency(results.tax)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Insurance:</span>
+                      <span className="text-foreground/70">Insurance:</span>
                       <span className="font-semibold">{formatCurrency(results.insurance)}</span>
                     </div>
                     {results.pmi > 0 && (
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">PMI:</span>
+                        <span className="text-foreground/70">PMI:</span>
                         <span className="font-semibold">{formatCurrency(results.pmi)}</span>
                       </div>
                     )}
@@ -454,15 +454,15 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <h2 className="text-xl font-semibold text-foreground mb-4">Cost Summary</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Annual Payment:</span>
+                      <span className="text-foreground/70">Annual Payment:</span>
                       <span className="font-semibold">{formatCurrency(results.totalYearly)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total Cost ({formData.loanTerm} years):</span>
+                      <span className="text-foreground/70">Total Cost ({formData.loanTerm} years):</span>
                       <span className="font-semibold">{formatCurrency(results.totalCost)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total Interest:</span>
+                      <span className="text-foreground/70">Total Interest:</span>
                       <span className="font-semibold">{formatCurrency(results.totalInterest)}</span>
                     </div>
                   </div>
@@ -495,16 +495,16 @@ const MortgagePaymentCalculator: React.FC = () => {
                         <tbody>
                           {results.amortizationSchedule.slice(0, 60).map((row) => (
                             <tr key={row.month} className="border-b border-gray-100">
-                              <td className="px-2 py-2 text-muted-foreground">{row.month}</td>
+                              <td className="px-2 py-2 text-foreground/70">{row.month}</td>
                               <td className="px-2 py-2 text-right font-medium">{formatCurrency(row.payment)}</td>
                               <td className="px-2 py-2 text-right text-primary">{formatCurrency(row.principal)}</td>
                               <td className="px-2 py-2 text-right text-destructive">{formatCurrency(row.interest)}</td>
-                              <td className="px-2 py-2 text-right text-muted-foreground">{formatCurrency(row.remainingBalance)}</td>
+                              <td className="px-2 py-2 text-right text-foreground/70">{formatCurrency(row.remainingBalance)}</td>
                             </tr>
                           ))}
                           {results.amortizationSchedule.length > 60 && (
                             <tr className="bg-muted">
-                              <td colSpan={5} className="px-2 py-2 text-center text-muted-foreground text-sm">
+                              <td colSpan={5} className="px-2 py-2 text-center text-foreground/70 text-sm">
                                 ... and {results.amortizationSchedule.length - 60} more months
                               </td>
                             </tr>
@@ -522,7 +522,7 @@ const MortgagePaymentCalculator: React.FC = () => {
         {/* Additional Information */}
         <div className="mt-12 bg-card rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">About This Calculator</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-foreground/70">
             <div>
               <h3 className="font-medium text-foreground mb-2">What This Calculator Shows:</h3>
               <ul className="space-y-1 list-disc list-inside">

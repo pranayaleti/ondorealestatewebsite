@@ -225,9 +225,9 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
         <PropertyDetails property={property} />
       ) : (
         <div className="flex flex-col items-center justify-center py-12">
-          <Building className="h-12 w-12 text-muted-foreground mb-4" />
+          <Building className="h-12 w-12 text-foreground/70 mb-4" />
           <h3 className="text-lg font-medium mb-2">Property not found</h3>
-          <p className="text-muted-foreground text-center mb-6">
+          <p className="text-foreground/70 text-center mb-6">
             The property you're looking for doesn't exist or you don't have access to it.
           </p>
         </div>

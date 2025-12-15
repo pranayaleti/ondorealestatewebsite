@@ -177,7 +177,7 @@ export function LeadFormSheet({ open, onOpenChange }: { open: boolean; onOpenCha
               <div>
                 <Label htmlFor="moveInDate">Desired Move-in Date</Label>
                 <div className="relative">
-                  <Calendar className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Calendar className="absolute left-2 top-2.5 h-4 w-4 text-foreground/70" />
                   <Input
                     id="moveInDate"
                     name="moveInDate"
