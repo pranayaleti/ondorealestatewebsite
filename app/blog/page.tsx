@@ -289,8 +289,8 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Real Estate Blog | OnDo Real Estate"
-        description="Stay updated with the latest Utah real estate news, market insights, and expert advice from OnDo Real Estate professionals."
+        title="Real Estate Blog | Ondo Real Estate"
+        description="Stay updated with the latest Utah real estate news, market insights, and expert advice from Ondo Real Estate professionals."
         pathname="/blog"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([

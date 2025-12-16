@@ -19,7 +19,7 @@ export default function PaymentsPage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Payments | OnDo Real Estate"
+        title="Dashboard Payments | Ondo Real Estate"
         description="Manage rent payments and financial transactions in the dashboard."
         pathname="/dashboard/payments"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

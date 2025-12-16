@@ -17,7 +17,7 @@ export default function TestimonialsPage() {
       location: "Salt Lake City, UT",
       image: "/professional-woman-smiling.png",
       rating: 5,
-      text: "OnDo Real Estate has been managing my rental properties for over 3 years. Their attention to detail and tenant screening process is outstanding. My rental income has increased by 15% since they took over management.",
+      text: "Ondo Real Estate has been managing my rental properties for over 3 years. Their attention to detail and tenant screening process is outstanding. My rental income has increased by 15% since they took over management.",
       propertyType: "Single Family Homes",
       yearsWithUs: "3+ years"
     },
@@ -27,7 +27,7 @@ export default function TestimonialsPage() {
       location: "Lehi, UT",
       image: "/professional-man-suit.png",
       rating: 5,
-      text: "The maintenance team at OnDo is incredible. Any issue I've had has been resolved within 24 hours. The online portal makes paying rent and submitting requests so easy. I've been a happy tenant for 2 years.",
+      text: "The maintenance team at Ondo is incredible. Any issue I've had has been resolved within 24 hours. The online portal makes paying rent and submitting requests so easy. I've been a happy tenant for 2 years.",
       propertyType: "Apartment",
       yearsWithUs: "2 years"
     },
@@ -37,7 +37,7 @@ export default function TestimonialsPage() {
       location: "Provo, UT",
       image: "/professional-woman-glasses.png",
       rating: 5,
-      text: "I was hesitant to use a property management company, but OnDo has exceeded all my expectations. They handle everything professionally and I never have to worry about my investment. Highly recommended!",
+      text: "I was hesitant to use a property management company, but Ondo has exceeded all my expectations. They handle everything professionally and I never have to worry about my investment. Highly recommended!",
       propertyType: "Townhouse",
       yearsWithUs: "1 year"
     },
@@ -57,7 +57,7 @@ export default function TestimonialsPage() {
       location: "Sandy, UT",
       image: "/placeholder-user.jpg",
       rating: 5,
-      text: "OnDo's financial reporting is detailed and transparent. I always know exactly what's happening with my properties. Their tenant retention rate is impressive, which means less turnover and more stable income.",
+      text: "Ondo's financial reporting is detailed and transparent. I always know exactly what's happening with my properties. Their tenant retention rate is impressive, which means less turnover and more stable income.",
       propertyType: "Multi-family",
       yearsWithUs: "2+ years"
     },
@@ -67,7 +67,7 @@ export default function TestimonialsPage() {
       location: "Midvale, UT",
       image: "/placeholder-user.jpg",
       rating: 5,
-      text: "The online system is user-friendly and the customer service is top-notch. I've lived in several rental properties over the years, and OnDo's management is by far the best I've experienced.",
+      text: "The online system is user-friendly and the customer service is top-notch. I've lived in several rental properties over the years, and Ondo's management is by far the best I've experienced.",
       propertyType: "Apartment",
       yearsWithUs: "1.5 years"
     }
@@ -106,8 +106,8 @@ export default function TestimonialsPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Testimonials | OnDo Real Estate"
-        description="Read what our property owners and tenants say about OnDo Real Estate's property management services across Utah."
+        title="Testimonials | Ondo Real Estate"
+        description="Read what our property owners and tenants say about Ondo Real Estate's property management services across Utah."
         pathname="/about/testimonials"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -225,7 +225,7 @@ export default function TestimonialsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Experience the Difference?</h2>
             <p className="text-xl mb-8">
-              Join hundreds of satisfied property owners and tenants who trust OnDo Real Estate with their real estate needs.
+              Join hundreds of satisfied property owners and tenants who trust Ondo Real Estate with their real estate needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary">

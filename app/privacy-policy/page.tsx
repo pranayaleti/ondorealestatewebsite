@@ -58,8 +58,8 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Privacy Policy | OnDo Real Estate"
-        description="Learn how OnDo Real Estate protects your personal information and privacy. Read our comprehensive privacy policy."
+        title="Privacy Policy | Ondo Real Estate"
+        description="Learn how Ondo Real Estate protects your personal information and privacy. Read our comprehensive privacy policy."
         pathname="/privacy-policy"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -81,7 +81,7 @@ export default function PrivacyPolicyPage() {
                 Last updated: <strong>{lastUpdated}</strong>
               </p>
               <p className="text-foreground/70">
-                This Privacy Policy describes how OnDo Real Estate collects, uses, and protects your personal information 
+                This Privacy Policy describes how Ondo Real Estate collects, uses, and protects your personal information 
                 when you use our services or visit our website.
               </p>
             </div>

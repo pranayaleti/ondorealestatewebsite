@@ -19,7 +19,7 @@ export default function LeasesPage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Leases | OnDo Real Estate"
+        title="Dashboard Leases | Ondo Real Estate"
         description="Manage and track property leases from a centralized dashboard."
         pathname="/dashboard/leases"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

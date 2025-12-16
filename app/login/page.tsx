@@ -80,7 +80,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
       <SEO
-        title="Login | OnDo Real Estate"
+        title="Login | Ondo Real Estate"
         description="Access your tenant or owner portal to manage rentals, payments, maintenance, and more."
         pathname="/login"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
@@ -93,7 +93,7 @@ export default function LoginPage() {
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-2">
             <Building className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold">OnDo Real Estate</span>
+            <span className="text-2xl font-bold">Ondo Real Estate</span>
           </div>
         </div>
 

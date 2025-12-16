@@ -79,8 +79,8 @@ export default function TermsOfServicePage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Terms of Service | OnDo Real Estate"
-        description="Read the terms and conditions for using OnDo Real Estate's services. Understand your rights and responsibilities."
+        title="Terms of Service | Ondo Real Estate"
+        description="Read the terms and conditions for using Ondo Real Estate's services. Understand your rights and responsibilities."
         pathname="/terms-of-service"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -102,7 +102,7 @@ export default function TermsOfServicePage() {
                 Last updated: <strong>{lastUpdated}</strong>
               </p>
               <p className="text-foreground/70">
-                These Terms of Service govern your use of OnDo Real Estate's website and services. 
+                These Terms of Service govern your use of Ondo Real Estate's website and services. 
                 Please read them carefully before using our services.
               </p>
             </div>
@@ -169,7 +169,7 @@ export default function TermsOfServicePage() {
                   <div>
                     <p className="font-semibold">Address</p>
                     <p className="text-sm text-foreground/70">
-                      OnDo Real Estate<br />
+                      Ondo Real Estate<br />
                       {SITE_ADDRESS_STREET}<br />
                       {`${SITE_ADDRESS_CITY}, ${SITE_ADDRESS_REGION} ${SITE_ADDRESS_POSTAL_CODE}`}
                     </p>

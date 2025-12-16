@@ -71,8 +71,8 @@ export default function TeamPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Our Team | OnDo Real Estate"
-        description="Meet the experienced professionals at OnDo Real Estate who are dedicated to providing exceptional property management services across Utah."
+        title="Our Team | Ondo Real Estate"
+        description="Meet the experienced professionals at Ondo Real Estate who are dedicated to providing exceptional property management services across Utah."
         pathname="/about/team"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([

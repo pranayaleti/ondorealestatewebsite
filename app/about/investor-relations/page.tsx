@@ -114,8 +114,8 @@ export default function InvestorRelationsPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Investor Relations | OnDo Real Estate"
-        description="Access financial reports, earnings information, and investor resources for OnDo Real Estate. Learn about our growth strategy and financial performance."
+        title="Investor Relations | Ondo Real Estate"
+        description="Access financial reports, earnings information, and investor resources for Ondo Real Estate. Learn about our growth strategy and financial performance."
         pathname="/about/investor-relations"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -135,7 +135,7 @@ export default function InvestorRelationsPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Financial Performance</h2>
               <p className="text-lg text-foreground/70 dark:text-foreground/70">
-                OnDo Real Estate continues to demonstrate strong financial performance and growth in the Utah real estate market.
+                Ondo Real Estate continues to demonstrate strong financial performance and growth in the Utah real estate market.
               </p>
             </div>
 

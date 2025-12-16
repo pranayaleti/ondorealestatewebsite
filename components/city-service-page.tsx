@@ -35,6 +35,12 @@ export function CityServicePage({ city, service }: CityServicePageProps) {
     return "Get Pre-Qualified"
   }, [service])
 
+  const faqHref = useMemo(() => {
+    if (service === "property-management") return "/faq/owner-faqs"
+    if (service === "buy-sell") return "/faq/buying-selling-faqs"
+    return "/faq/loans-faqs"
+  }, [service])
+
   const businessJsonLd = {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness", "RealEstateAgent"],
@@ -194,15 +200,15 @@ export function CityServicePage({ city, service }: CityServicePageProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Frequently Asked Questions</CardTitle>
+          <CardTitle>Have more questions?</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {faqList.map((f) => (
-            <div key={f.q}>
-              <p className="font-medium">{f.q}</p>
-              <p>{f.a}</p>
-            </div>
-          ))}
+          <p>
+            For detailed FAQs on buying, selling, property management, payments, Notary, and more, visit our centralized Help Center.
+          </p>
+          <Link href={faqHref}>
+            <Button size="lg">View FAQs</Button>
+          </Link>
         </CardContent>
       </Card>
     </div>

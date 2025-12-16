@@ -1,5 +1,9 @@
+"use client"
+
 import dynamic from "next/dynamic"
 import Link from "next/link"
+import { useEffect } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone } from "lucide-react"
@@ -9,6 +13,33 @@ import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
 const SEO = dynamic(() => import("@/components/seo"), { ssr: true })
 
 export default function NotFound() {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  // Automatically step back one breadcrumb level for unknown routes.
+  useEffect(() => {
+    if (!pathname) return
+
+    // Normalize path by removing trailing slashes (except for root)
+    const normalizedPath =
+      pathname !== "/" ? pathname.replace(/\/+$/, "") : pathname
+
+    if (!normalizedPath || normalizedPath === "/") return
+
+    // Find parent path (e.g. /about/careers/kl -> /about/careers)
+    const lastSlashIndex = normalizedPath.lastIndexOf("/")
+
+    // If we're already at root or there's no parent, do nothing
+    if (lastSlashIndex <= 0) return
+
+    const parentPath = normalizedPath.slice(0, lastSlashIndex) || "/"
+
+    // Avoid redirect loops: only redirect if the parent is different
+    if (parentPath !== normalizedPath) {
+      router.replace(parentPath)
+    }
+  }, [pathname, router])
+
   const popularPages = [
     { name: "Properties", href: "/properties", icon: <Building className="h-4 w-4" />, description: "Browse available rentals" },
     { name: "Property Management", href: "/property-management", icon: <Users className="h-4 w-4" />, description: "Professional management services" },
@@ -30,7 +61,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4">
       <SEO
-        title="404 - Page Not Found | OnDo Real Estate"
+        title="404 - Page Not Found | Ondo Real Estate"
         description="The page you're looking for doesn't exist. Explore our popular pages and find what you need."
         pathname="/404"
         image={`${SITE_URL}/modern-apartment-balcony.webp`}

@@ -16,7 +16,7 @@ export default function AddLeadPage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Add Lead | OnDo Real Estate"
+        title="Dashboard Add Lead | Ondo Real Estate"
         description="Add a new lead to your dashboard CRM."
         pathname="/dashboard/leads/add"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

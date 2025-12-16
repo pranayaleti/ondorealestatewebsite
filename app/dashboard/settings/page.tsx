@@ -19,7 +19,7 @@ export default function SettingsPage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Settings | OnDo Real Estate"
+        title="Dashboard Settings | Ondo Real Estate"
         description="Manage system settings, notifications, appearance, and integrations."
         pathname="/dashboard/settings"
         image={`${SITE_URL}/modern-office-building.png`}

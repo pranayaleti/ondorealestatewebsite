@@ -80,57 +80,6 @@ const loanTypes = [
   },
 ]
 
-const faqs = [
-  {
-    question: "What types of home loans do you offer in Utah?",
-    answer: "We offer conventional, FHA, VA, USDA, and jumbo loans. Our loan officers help you find the best program based on your financial situation, property location, and goals.",
-  },
-  {
-    question: "How do I get pre-approved for a mortgage?",
-    answer: "Start by completing our online application or contacting our loan officers. We'll review your income, credit, and assets to provide a pre-approval letter that strengthens your buying power.",
-  },
-  {
-    question: "What are current Utah mortgage rates?",
-    answer: "Mortgage rates change daily and vary by loan type, credit score, and down payment. Contact our loan officers for current rates and personalized quotes based on your situation.",
-  },
-  {
-    question: "How long does the loan process take?",
-    answer: "Typically 30-45 days from application to closing, though this can vary based on loan type and complexity. We work efficiently to meet your timeline and closing date.",
-  },
-  {
-    question: "Do you offer first-time home buyer programs?",
-    answer: "Yes, we work with various first-time buyer programs including down payment assistance, low down payment options, and special rate programs available in Utah.",
-  },
-  {
-    question: "Can I refinance my existing Utah mortgage?",
-    answer: "Absolutely! We offer rate and term refinancing, cash-out refinancing, and streamline refinancing for FHA and VA loans to help you lower payments or access equity.",
-  },
-  {
-    question: "What down payment do I need?",
-    answer: "Conventional loans can start at 3% down, FHA at 3.5%, and VA/USDA may be 0% for eligible borrowers. We’ll confirm your options.",
-  },
-  {
-    question: "How are closing costs calculated?",
-    answer: "Expect 2–3% of price for lender/title/prepaids. We can explore seller credits and lender options to reduce cash to close.",
-  },
-  {
-    question: "When does PMI apply and can I remove it?",
-    answer: "PMI typically applies to conventional loans with <20% down and can be removed as equity grows per investor rules.",
-  },
-  {
-    question: "I’m self‑employed—what documents are needed?",
-    answer: "Usually two years of returns, YTD P&L, and bank statements. Some programs allow alternatives with conditions.",
-  },
-  {
-    question: "Should I buy points or use a temporary buydown?",
-    answer: "Points lower the rate for the life of the loan; buydowns reduce payments for 1–3 years. We’ll model both to compare.",
-  },
-  {
-    question: "How long does underwriting take?",
-    answer: "Underwriting commonly takes 24–72 hours after a complete file. Clear communication and fast document turnarounds keep things moving.",
-  },
-]
-
 export default function LoansPage() {
   return (
     <>
@@ -229,31 +178,15 @@ export default function LoansPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <Image
                 src="/city-map-with-pin.png"
-                alt="Utah mortgage and loan service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by OnDo Real Estate"
+                alt="Utah mortgage and loan service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by Ondo Real Estate"
                 fill
                 className="object-cover"
                 sizes="100vw"
-                title="OnDo Real Estate Utah Mortgage Service Areas"
+                title="Ondo Real Estate Utah Mortgage Service Areas"
                 aria-label="Map showing Utah mortgage and loan service areas including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities"
                 loading="lazy"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left text-white">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-300">{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
           </div>
         </div>
       </section>
@@ -311,21 +244,18 @@ export default function LoansPage() {
         })}
       </Script>
 
-      {/* FAQ JSON-LD */}
-      <Script id="loans-faq-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map(faq => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        })}
-      </Script>
+      {/* Centralized FAQs live on /faq */}
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Questions about loans or refinancing?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+            Visit our Help Center for detailed FAQs on loans, payments, escrow, and assistance options.
+          </p>
+          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+            <Link href="/faq/loans-faqs">View Loans FAQs</Link>
+          </Button>
+        </div>
+      </section>
     </>
   )
 }

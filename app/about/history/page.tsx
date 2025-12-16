@@ -12,7 +12,7 @@ export default function HistoryPage() {
     {
       year: "2020",
       title: "Company Founded",
-      description: "OnDo Real Estate was founded with a vision to revolutionize property management in Utah.",
+      description: "Ondo Real Estate was founded with a vision to revolutionize property management in Utah.",
       icon: <Home className="h-6 w-6" />
     },
     {
@@ -67,8 +67,8 @@ export default function HistoryPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Our History | OnDo Real Estate"
-        description="Explore the milestones and values that shaped OnDo Real Estate into Utah's trusted property management company."
+        title="Our History | Ondo Real Estate"
+        description="Explore the milestones and values that shaped Ondo Real Estate into Utah's trusted property management company."
         pathname="/about/history"
         image={`${SITE_URL}/placeholder.jpg`}
         jsonLd={generateBreadcrumbJsonLd([

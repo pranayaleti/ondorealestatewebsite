@@ -312,7 +312,7 @@
 //     <div className="flex flex-col min-h-screen">
 //       <SEO
 //         title="Browse Rental Properties in Utah"
-//         description="Explore available rental homes, apartments, condos, and townhouses managed by OnDo Real Estate across Utah."
+//         description="Explore available rental homes, apartments, condos, and townhouses managed by Ondo Real Estate across Utah."
 //         pathname="/properties"
 //         image={`${SITE_URL}/modern-apartment-balcony.png`}
 //         jsonLd={generateBreadcrumbJsonLd([
@@ -326,12 +326,12 @@
 //         <div className="relative h-[400px] overflow-hidden">
 //           <Image
 //             src="/modern-apartment-balcony.png"
-//             alt="Modern apartment building representing Utah rental properties available through OnDo Real Estate"
+//             alt="Modern apartment building representing Utah rental properties available through Ondo Real Estate"
 //             fill
 //             className="object-cover"
 //             priority
-//             title="Utah Rental Properties - OnDo Real Estate"
-//             aria-label="Modern apartment building representing Utah rental properties available through OnDo Real Estate"
+//             title="Utah Rental Properties - Ondo Real Estate"
+//             aria-label="Modern apartment building representing Utah rental properties available through Ondo Real Estate"
 //           />
 //         </div>
 //         <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -339,7 +339,7 @@
 //             <div className="max-w-3xl mx-auto text-center">
 //               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Find Your Perfect Home</h1>
 //               <p className="text-xl text-foreground/90 mb-8">
-//                 Browse our curated selection of quality rental properties managed by OnDo Real Estate
+//                 Browse our curated selection of quality rental properties managed by Ondo Real Estate
 //               </p>
 //               <div className="flex justify-center">
 //                 <PropertySearch onSearch={handleSearch} />
@@ -725,7 +725,7 @@ export default function PropertiesPage() {
 
     return generatePropertyJsonLd({
       name: p.title ?? 'Property',
-      description: p.description || 'Rental property listed by OnDo Real Estate.',
+      description: p.description || 'Rental property listed by Ondo Real Estate.',
       address: {
         streetAddress,
         addressLocality,
@@ -756,7 +756,7 @@ export default function PropertiesPage() {
     <div className="flex flex-col min-h-screen">
       <SEO
         title="Browse Rental Properties in India"
-        description="Explore available rental homes, apartments, condos, and townhouses managed by OnDo Real Estate."
+        description="Explore available rental homes, apartments, condos, and townhouses managed by Ondo Real Estate."
         pathname="/properties"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
         jsonLd={[

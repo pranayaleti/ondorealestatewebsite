@@ -74,61 +74,6 @@ const services = [
   },
 ]
 
-const faqs = [
-  {
-    question: "How do you determine the right price for my home?",
-    answer: "We conduct a comprehensive comparative market analysis (CMA) using recent sales data, current market conditions, and your home's unique features to determine the optimal listing price for maximum return.",
-  },
-  {
-    question: "What areas do you serve for home selling?",
-    answer: "We serve the entire Wasatch Front including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper, American Fork, Pleasant Grove, and surrounding Utah communities.",
-  },
-  {
-    question: "How long does it typically take to sell a home in Utah?",
-    answer: "The average time on market varies by location and price point, but well-priced homes in good condition typically sell within 30-60 days. Our marketing strategies help accelerate the selling process.",
-  },
-  {
-    question: "What marketing strategies do you use?",
-    answer: "We use professional photography, virtual tours, MLS listings, social media marketing, targeted online advertising, and traditional marketing methods to reach the widest pool of qualified buyers.",
-  },
-  {
-    question: "Do you help with home staging and preparation?",
-    answer: "Yes, we provide staging recommendations and can connect you with professional stagers. We also offer guidance on repairs, improvements, and decluttering to maximize your home's appeal.",
-  },
-  {
-    question: "What are your commission rates?",
-    answer: "Our commission rates are competitive and vary based on the services provided. We offer flexible pricing options and always provide transparent, upfront information about all costs.",
-  },
-  {
-    question: "How should I prepare my home before listing?",
-    answer: "Declutter, deep clean, complete minor repairs, refresh paint where needed, and enhance curb appeal. We provide a customized prep checklist.",
-  },
-  {
-    question: "Do you recommend staging?",
-    answer: "Yes—professional staging or light styling often increases buyer interest and sale price. We offer tailored recommendations and vendor referrals.",
-  },
-  {
-    question: "How do showings and open houses work?",
-    answer: "We coordinate private showings and strategic open houses aligned to buyer traffic patterns, with feedback shared through your client portal.",
-  },
-  {
-    question: "What happens after we receive an offer?",
-    answer: "We review terms (price, financing, appraisal, concessions, timelines) and negotiate for strongest net and certainty to close.",
-  },
-  {
-    question: "Who pays for repairs after inspection?",
-    answer: "It’s negotiable. We recommend focusing on health/safety and major systems. Credits, repairs, or warranties can resolve concerns efficiently.",
-  },
-  {
-    question: "How long is a typical listing period?",
-    answer: "Most listings run 60–90 days to cover market exposure and seasonal patterns. We review performance every two weeks and adjust strategy.",
-  },
-  {
-    question: "Can I cancel the listing?",
-    answer: "We believe in flexible, performance-driven agreements. If expectations aren’t met, we discuss options and next steps transparently.",
-  },
-]
-
 export default function SellPage() {
   return (
     <>
@@ -217,7 +162,7 @@ export default function SellPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <img
                 src="/modern-office-building.png"
-                alt="Professional OnDo Real Estate office building in Utah representing expert home selling services"
+                alt="Professional Ondo Real Estate office building in Utah representing expert home selling services"
                 className="w-full h-full object-cover"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 loading="lazy"
@@ -237,22 +182,6 @@ export default function SellPage() {
               description="Get a free home valuation and expert selling strategy from our Utah real estate professionals. Learn how to maximize your home's value and selling potential."
               variant="card"
             />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left text-white">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-300">{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
           </div>
         </div>
       </section>
@@ -310,21 +239,18 @@ export default function SellPage() {
         })}
       </Script>
 
-      {/* FAQ JSON-LD */}
-      <Script id="sell-faq-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map(faq => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        })}
-      </Script>
+      {/* Centralized FAQs live on /faq */}
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Questions about selling your home?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+            Explore our Help Center for detailed FAQs on selling strategy, timelines, pricing, and more.
+          </p>
+          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+            <Link href="/faq/buying-selling-faqs">View Selling FAQs</Link>
+          </Button>
+        </div>
+      </section>
     </>
   )
 }

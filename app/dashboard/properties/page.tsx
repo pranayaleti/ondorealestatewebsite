@@ -13,7 +13,7 @@ export default function PropertiesPage() {
   return (
     <>
       <SEO
-        title="Dashboard Properties | OnDo Real Estate"
+        title="Dashboard Properties | Ondo Real Estate"
         description="Manage and view properties within the dashboard."
         pathname="/dashboard/properties"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

@@ -72,17 +72,17 @@ export default function CareersPage() {
   ]
 
   const values = [
-    "Integrity in all our dealings",
-    "Innovation in property management",
-    "Excellence in customer service",
-    "Community involvement and support"
+    "Experience — we learn from every deal and every door",
+    "Expertise — deep Utah real estate, lending, and notary knowledge",
+    "Efficiency — we move fast without cutting corners",
+    "Ownership — we take responsibility for outcomes, not just tasks",
   ]
 
   return (
     <main className="min-h-screen">
       <SEO
-        title="Careers at OnDo Real Estate | Join Our Team"
-        description="Join OnDo Real Estate and help us provide exceptional property management services across Utah. View open positions and benefits."
+        title="Careers at Ondo Real Estate | High-Performance Real Estate, Loans & Notary"
+        description="Join Ondo Real Estate — a tech-forward team focused on Utah real estate, property management, home loans, and notary services. Grow your career where grit, service, and execution matter."
         pathname="/about/careers"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -92,17 +92,19 @@ export default function CareersPage() {
         ])}
       />
       <PageBanner
-        title="Join Our Team"
-        subtitle="Build your career with Utah's leading property management company"
+        title="Careers at Ondo Real Estate"
+        subtitle="Join a high-performance team where Utah real estate, lending, and notary work together as one engine."
         backgroundImage="/modern-office-building.png"
       />
 
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Work at OnDo Real Estate?</h2>
+            <h2 className="text-3xl font-bold mb-4">Why Work at Ondo Real Estate?</h2>
             <p className="text-xl text-foreground/70">
-              We're building the future of property management in Utah, and we need passionate people to help us get there.
+              Ondo isn’t a “clock in, clock out” shop — we’re building a lean, tech-forward real estate platform that
+              helps clients buy, sell, manage, finance, and close smarter. If you like ownership, clear standards, and
+              seeing your work show up in real outcomes for Utah families and investors, you’ll fit in here.
             </p>
           </div>
 

@@ -64,8 +64,8 @@ export default function AccessibilityPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Accessibility Statement | OnDo Real Estate"
-        description="Learn about OnDo Real Estate's commitment to web accessibility and the features we provide for users with disabilities."
+        title="Accessibility Statement | Ondo Real Estate"
+        description="Learn about Ondo Real Estate's commitment to web accessibility and the features we provide for users with disabilities."
         pathname="/accessibility"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -85,7 +85,7 @@ export default function AccessibilityPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Our Accessibility Commitment</h2>
               <p className="text-xl text-foreground/70">
-                OnDo Real Estate is committed to ensuring digital accessibility for people with disabilities. 
+                Ondo Real Estate is committed to ensuring digital accessibility for people with disabilities. 
                 We continually improve the user experience for everyone and apply the relevant accessibility standards.
               </p>
             </div>

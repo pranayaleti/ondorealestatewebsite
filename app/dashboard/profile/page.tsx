@@ -20,7 +20,7 @@ export default function ProfilePage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Profile | OnDo Real Estate"
+        title="Dashboard Profile | Ondo Real Estate"
         description="Manage your account settings, recent activity, and security preferences."
         pathname="/dashboard/profile"
         image={`${SITE_URL}/modern-office-building.png`}

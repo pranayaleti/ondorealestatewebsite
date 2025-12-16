@@ -159,9 +159,14 @@ const Footer = memo(() => {
           
           {/* Buying a Home */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Home className="h-5 w-5" />
-              Buying a Home
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/buy"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Home className="h-5 w-5" />
+                <span>Buying a Home</span>
+              </Link>
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/buy/first-time" className="text-foreground/70 hover:text-foreground">First-time homebuyer</Link></li>
@@ -176,9 +181,14 @@ const Footer = memo(() => {
 
           {/* Refinance */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <TrendingUp className="h-5 w-5" />
-              Refinance
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/refinance/process"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <TrendingUp className="h-5 w-5" />
+                <span>Refinance</span>
+              </Link>
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/refinance/process" className="text-foreground/70 hover:text-foreground">Mortgage refinance process</Link></li>
@@ -190,9 +200,14 @@ const Footer = memo(() => {
 
           {/* Mortgage Loans */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Building className="h-5 w-5" />
-              Mortgage Loans
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/loans"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Building className="h-5 w-5" />
+                <span>Mortgage Loans</span>
+              </Link>
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/loans/conventional" className="text-foreground/70 hover:text-foreground">Conventional</Link></li>
@@ -207,9 +222,14 @@ const Footer = memo(() => {
 
           {/* Mortgage Calculators */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Calculator className="h-5 w-5" />
-              Calculators
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/calculators"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Calculator className="h-5 w-5" />
+                <span>Calculators</span>
+              </Link>
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/calculators/mortgage-payment" className="text-foreground/70 hover:text-foreground">Mortgage payment calculator</Link></li>
@@ -224,9 +244,14 @@ const Footer = memo(() => {
 
           {/* About Us */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              About Us
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/about"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Users className="h-5 w-5" />
+                <span>About Us</span>
+              </Link>
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about/history" className="text-foreground/70 hover:text-foreground">History</Link></li>
@@ -239,17 +264,22 @@ const Footer = memo(() => {
 
           {/* Help Center */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <HelpCircle className="h-5 w-5" />
-              Help Center
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/faq"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <HelpCircle className="h-5 w-5" />
+                <span>Help Center</span>
+              </Link>
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/help/payments" className="text-foreground/70 hover:text-foreground">Payment questions</Link></li>
-              <li><Link href="/help/hardship" className="text-foreground/70 hover:text-foreground">Hardship assistance</Link></li>
-              <li><Link href="/help/loan-payoffs" className="text-foreground/70 hover:text-foreground">Loan payoffs</Link></li>
-              <li><Link href="/help/faq" className="text-foreground/70 hover:text-foreground">Mortgage FAQs</Link></li>
-              <li><Link href="/help/escrow" className="text-foreground/70 hover:text-foreground">Escrow</Link></li>
-              <li><Link href="/help/disaster" className="text-foreground/70 hover:text-foreground">Natural Disaster Resources</Link></li>
+              <li><Link href="/faq/payments-faqs" className="text-foreground/70 hover:text-foreground">Payment questions</Link></li>
+              <li><Link href="/faq/hardship-faqs" className="text-foreground/70 hover:text-foreground">Hardship assistance</Link></li>
+              <li><Link href="/faq/loan-payoffs-faqs" className="text-foreground/70 hover:text-foreground">Loan payoffs</Link></li>
+              <li><Link href="/faq/general-faqs" className="text-foreground/70 hover:text-foreground">Mortgage FAQs</Link></li>
+              <li><Link href="/faq/escrow-faqs" className="text-foreground/70 hover:text-foreground">Escrow</Link></li>
+              <li><Link href="/faq/disaster-faqs" className="text-foreground/70 hover:text-foreground">Natural Disaster Resources</Link></li>
             </ul>
           </div>
         </div>
@@ -371,7 +401,7 @@ const Footer = memo(() => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-foreground/70">
             <div className="flex flex-col md:flex-row items-center gap-2">
-              <p>© {new Date().getFullYear()} OnDo Real Estate. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} Ondo Real Estate. All rights reserved.</p>
               <p className="flex items-center gap-1">
                 <span className="text-foreground/70/80">Designed. Developed. Deployed by</span>
                 <Link 
@@ -380,7 +410,7 @@ const Footer = memo(() => {
                   rel="noopener noreferrer"
                   className="font-semibold text-primary hover:text-primary transition-colors duration-200 hover:underline decoration-primary underline-offset-2"
                 >
-                  OnDoSoft
+                  OndoSoft
                 </Link>
                 <span className="text-foreground/70/80">The digital engine behind <Link href="/" className="text-primary hover:text-primary/80 hover:underline">Ondo Real Estate</Link>.</span>
               </p>

@@ -11,7 +11,7 @@ import { Calendar, User, ArrowRight, Phone, Mail } from "lucide-react"
 export default function NewsPage() {
   const newsArticles = [
     {
-      title: "OnDo Real Estate Expands to Utah County",
+      title: "Ondo Real Estate Expands to Utah County",
       excerpt: "We're excited to announce our expansion into Utah County, bringing our exceptional property management and real estate services to Provo, Orem, and surrounding areas.",
       date: "2024-01-15",
       author: "Pranay Reddy Aleti",
@@ -29,7 +29,7 @@ export default function NewsPage() {
       featured: false
     },
     {
-      title: "OnDo Real Estate Wins 'Best Property Management Company' Award",
+      title: "Ondo Real Estate Wins 'Best Property Management Company' Award",
       excerpt: "We're honored to receive the 'Best Property Management Company' award from Utah Business Magazine for the second consecutive year.",
       date: "2024-01-05",
       author: "Emily Rodriguez",
@@ -82,8 +82,8 @@ export default function NewsPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="News & Updates | OnDo Real Estate"
-        description="Stay updated with the latest news, market insights, and company updates from OnDo Real Estate. Read about our growth, awards, and community initiatives."
+        title="News & Updates | Ondo Real Estate"
+        description="Stay updated with the latest news, market insights, and company updates from Ondo Real Estate. Read about our growth, awards, and community initiatives."
         pathname="/about/news"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -94,7 +94,7 @@ export default function NewsPage() {
       />
       <PageBanner
         title="News & Updates"
-        subtitle="Stay informed with the latest news and insights from OnDo Real Estate"
+        subtitle="Stay informed with the latest news and insights from Ondo Real Estate"
       />
 
       <section className="py-16 bg-background">

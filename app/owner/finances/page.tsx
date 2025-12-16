@@ -13,7 +13,7 @@ import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Finances | OnDo Real Estate",
+  title: "Finances | Ondo Real Estate",
   description: "Manage your property finances",
 }
 

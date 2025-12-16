@@ -18,15 +18,15 @@ import { generateBreadcrumbJsonLd, generateWebPageJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Dashboard | OnDo Real Estate",
-  description: "Dashboard for OnDo Real Estate",
+  title: "Dashboard | Ondo Real Estate",
+  description: "Dashboard for Ondo Real Estate",
 }
 
 export default function DashboardPage() {
   return (
     <DashboardShell>
       <SEO
-        title="Admin Dashboard | OnDo Real Estate"
+        title="Admin Dashboard | Ondo Real Estate"
         description="Overview of leads, properties, tenants, maintenance, and finances."
         pathname="/dashboard"
         image={`${SITE_URL}/modern-office-building.png`}

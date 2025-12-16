@@ -11,7 +11,7 @@ export function FoundersNoteSection() {
             <div className="relative h-60 w-60 md:h-80 md:w-80 rounded-full border-4 border-primary overflow-hidden bg-background">
               <LazyImage
                 src="/founder-image.webp"
-                alt="Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate, professional headshot"
+                alt="Pranay Reddy Aleti, Founder and CEO of Ondo Real Estate, professional headshot"
                 fill
                 className="rounded-full object-cover"
                 quality={90}

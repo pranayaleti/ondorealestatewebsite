@@ -25,7 +25,6 @@ import {
   Award,
   Building2,
 } from "lucide-react";
-import { NotaryFAQ } from "@/components/notary-faq";
 import { NotaryBooking } from "@/components/notary-booking";
 import ConsultationModal from "@/components/ConsultationModal";
 
@@ -525,13 +524,23 @@ export default function NotaryPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Centralized FAQs live on /faq */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-            ONDO Notary – Frequently Asked Questions
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Questions about ONDO Notary services?
           </h2>
-          <NotaryFAQ />
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Visit our Help Center to browse detailed FAQs on notary services, RON, mobile notary, and document signing.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-white text-white hover:bg-white hover:text-black"
+          >
+            <Link href="/faq/notary-faqs">View Notary FAQs</Link>
+          </Button>
         </div>
       </section>
 

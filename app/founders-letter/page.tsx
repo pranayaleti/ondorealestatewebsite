@@ -71,15 +71,15 @@ export default function FoundersLetterPage() {
                 <div className="relative h-32 w-32 rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
                   <Image 
                     src="/founder-image.png" 
-                    alt="Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate, professional headshot" 
+                    alt="Pranay Reddy Aleti, Founder and CEO of Ondo Real Estate, professional headshot" 
                     fill 
                     style={{ objectFit: "cover" }}
                     className="rounded-full"
                     quality={100}
                     priority
                     sizes="(max-width: 768px) 128px, 128px"
-                    title="Pranay Reddy Aleti - OnDo Real Estate Founder"
-                    aria-label="Professional headshot of Pranay Reddy Aleti, Founder and CEO of OnDo Real Estate"
+                    title="Pranay Reddy Aleti - Ondo Real Estate Founder"
+                    aria-label="Professional headshot of Pranay Reddy Aleti, Founder and CEO of Ondo Real Estate"
                   />
                 </div>
                 <div>

@@ -23,7 +23,7 @@ export default function SitemapPage() {
       title: "About Us",
       icon: <Users className="h-5 w-5" />,
       links: [
-        { name: "About OnDo Real Estate", href: "/about", description: "Learn about our company and mission" },
+        { name: "About Ondo Real Estate", href: "/about", description: "Learn about our company and mission" },
         { name: "Our Team", href: "/about/team", description: "Meet our experienced professionals" },
         { name: "Careers", href: "/about/careers", description: "Join our team" },
         { name: "Testimonials", href: "/about/testimonials", description: "What our clients say" },
@@ -76,8 +76,8 @@ export default function SitemapPage() {
   return (
     <main className="min-h-screen bg-background dark:bg-transparent">
       <SEO
-        title="Sitemap | OnDo Real Estate"
-        description="Complete sitemap of OnDo Real Estate website. Find all our pages, services, and resources in one place."
+        title="Sitemap | Ondo Real Estate"
+        description="Complete sitemap of Ondo Real Estate website. Find all our pages, services, and resources in one place."
         pathname="/sitemap"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([

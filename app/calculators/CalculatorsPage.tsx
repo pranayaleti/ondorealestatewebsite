@@ -41,7 +41,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/mortgage-payment',
       icon: <CalcIcon className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-primary to-primary'
+      color: 'from-primary to-primary',
     },
     {
       id: 'affordability',
@@ -50,7 +50,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/affordability',
       icon: <HomeIcon className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-green-500 to-green-600'
+      color: 'from-green-500 to-green-600',
     },
     {
       id: 'income',
@@ -59,7 +59,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/income',
       icon: <TrendingUpIcon className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-purple-500 to-purple-600'
+      color: 'from-purple-500 to-purple-600',
     },
     {
       id: 'closing-cost',
@@ -68,7 +68,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/closing-cost',
       icon: <Landmark className="h-8 w-8" />,
       category: 'Purchase',
-      color: 'from-primary to-primary'
+      color: 'from-primary to-primary',
     },
     {
       id: 'refinance',
@@ -77,7 +77,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/refinance',
       icon: <ArrowLeftRight className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-indigo-500 to-indigo-600'
+      color: 'from-indigo-500 to-indigo-600',
     },
     {
       id: 'home-sale',
@@ -86,7 +86,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/home-sale',
       icon: <Tag className="h-8 w-8" />,
       category: 'Sale',
-      color: 'from-red-500 to-red-600'
+      color: 'from-red-500 to-red-600',
     },
     {
       id: 'buying-power',
@@ -95,7 +95,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/buying-power',
       icon: <ShoppingCartIcon className="h-8 w-8" />,
       category: 'Purchase',
-      color: 'from-teal-500 to-teal-600'
+      color: 'from-teal-500 to-teal-600',
     },
     {
       id: 'temporary-buydown',
@@ -104,7 +104,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/temporary-buydown',
       icon: <PiggyBank className="h-8 w-8" />,
       category: 'Mortgage',
-      color: 'from-pink-500 to-pink-600'
+      color: 'from-pink-500 to-pink-600',
     },
     {
       id: 'rent-vs-own',
@@ -113,16 +113,16 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/rent-vs-own',
       icon: <CompareIcon className="h-8 w-8" />,
       category: 'Analysis',
-      color: 'from-amber-500 to-amber-600'
+      color: 'from-amber-500 to-amber-600',
     },
     {
       id: 'retirement',
       name: 'Retirement Calculator',
-      description: 'Plan your retirement savings and investment strategy for real estate.',
+      description: 'Shows how real estate and savings can support your income needs in retirement.',
       path: '/calculators/retirement',
       icon: <Landmark className="h-8 w-8" />,
       category: 'Planning', 
-      color: 'from-emerald-500 to-emerald-600'
+      color: 'from-emerald-500 to-emerald-600',
     },
     {
       id: 'cash-on-cash',
@@ -131,7 +131,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/cash-on-cash',
       icon: <DollarSign className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-blue-500 to-blue-600'
+      color: 'from-blue-500 to-blue-600',
     },
     {
       id: 'cap-rate',
@@ -140,7 +140,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/cap-rate',
       icon: <Percent className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-cyan-500 to-cyan-600'
+      color: 'from-cyan-500 to-cyan-600',
     },
     {
       id: 'roi',
@@ -149,7 +149,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/roi',
       icon: <TrendingUpIcon className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-violet-500 to-violet-600'
+      color: 'from-violet-500 to-violet-600',
     },
     {
       id: 'grm',
@@ -158,7 +158,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/grm',
       icon: <Building2 className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-slate-500 to-slate-600'
+      color: 'from-slate-500 to-slate-600',
     },
     {
       id: 'dscr',
@@ -167,7 +167,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/dscr',
       icon: <TrendingDown className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-rose-500 to-rose-600'
+      color: 'from-rose-500 to-rose-600',
     },
     {
       id: 'one-percent-rule',
@@ -176,7 +176,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/one-percent-rule',
       icon: <CalcIcon className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-lime-500 to-lime-600'
+      color: 'from-lime-500 to-lime-600',
     },
     {
       id: 'fifty-percent-rule',
@@ -185,7 +185,7 @@ const CalculatorsPage: React.FC = () => {
       path: '/calculators/fifty-percent-rule',
       icon: <Percent className="h-8 w-8" />,
       category: 'Investment',
-      color: 'from-orange-500 to-orange-600'
+      color: 'from-orange-500 to-orange-600',
     }
   ]
 
@@ -339,21 +339,16 @@ const CalculatorsPage: React.FC = () => {
                   <p className="text-gray-300 text-sm leading-relaxed">Compare scenarios and understand the financial impact of your choices</p>
                 </div>
               </div>
+              <div className="mt-8 text-center">
+                <p className="text-xs text-gray-400 leading-relaxed max-w-3xl mx-auto">
+                  <span className="text-yellow-400 mr-1">*</span>
+                  Please verify all calculations with a qualified professional. We are not responsible for financial decisions made based on these calculators.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Disclaimer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="text-center">
-          <p className="text-sm text-gray-400 flex items-center justify-center gap-1">
-            <span className="text-yellow-400">*</span>
-            <span>AI-generated content. Please verify all calculations with a qualified professional. We are not responsible for financial decisions made based on these calculators.</span>
-          </p>
-        </div>
-      </div>
-
     </div>
   )
 }

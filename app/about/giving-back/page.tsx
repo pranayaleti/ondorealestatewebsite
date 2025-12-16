@@ -99,8 +99,8 @@ export default function GivingBackPage() {
   return (
     <main className="min-h-screen">
       <SEO
-        title="Giving Back to Our Community | OnDo Real Estate"
-        description="Learn about OnDo Real Estate's community initiatives, volunteer opportunities, and commitment to giving back to Utah communities."
+        title="Giving Back to Our Community | Ondo Real Estate"
+        description="Learn about Ondo Real Estate's community initiatives, volunteer opportunities, and commitment to giving back to Utah communities."
         pathname="/about/giving-back"
         image={`${SITE_URL}/modern-office-building.png`}
         jsonLd={generateBreadcrumbJsonLd([
@@ -120,7 +120,7 @@ export default function GivingBackPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 dark:text-foreground">Our Community Impact</h2>
               <p className="text-lg text-foreground/70 dark:text-foreground/70">
-                At OnDo Real Estate, we believe that success is measured not just by our business achievements, 
+                At Ondo Real Estate, we believe that success is measured not just by our business achievements, 
                 but by the positive impact we make in our communities. We're committed to giving back and 
                 helping create a better Utah for everyone.
               </p>

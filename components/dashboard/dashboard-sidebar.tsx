@@ -94,7 +94,7 @@ export function DashboardSidebar() {
           <Link href="/" className="flex items-center space-x-2 px-2 hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
-              alt="OnDo Real Estate"
+              alt="Ondo Real Estate"
               width={200}
               height={60}
               className="h-10 w-auto"

@@ -16,7 +16,7 @@ export default function Home() {
     <main className="min-h-screen">
       <SEO
         title="Utah Property Management, Buying & Selling"
-        description="OnDo Real Estate provides professional property management, home buying, and selling services across Utah. Explore listings, loans, and expert guidance."
+        description="Ondo Real Estate provides professional property management, home buying, and selling services across Utah. Explore listings, loans, and expert guidance."
         pathname="/"
         image={`${SITE_URL}/modern-office-building.webp`}
         keywords={[

@@ -19,7 +19,7 @@ export default function MaintenancePage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Maintenance | OnDo Real Estate"
+        title="Dashboard Maintenance | Ondo Real Estate"
         description="Manage and track maintenance requests across properties."
         pathname="/dashboard/maintenance"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

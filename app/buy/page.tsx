@@ -80,57 +80,6 @@ const services = [
   },
 ]
 
-const faqs = [
-  {
-    question: "How do I get started with buying a home in Utah?",
-    answer: "Start by getting pre-approved for a mortgage, then work with our agents to define your criteria and search areas. We'll help you navigate the entire process from search to closing.",
-  },
-  {
-    question: "What areas do you serve for home buying?",
-    answer: "We serve the entire Wasatch Front including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper, American Fork, Pleasant Grove, and surrounding Utah communities.",
-  },
-  {
-    question: "Do you help with first-time home buyers?",
-    answer: "Absolutely! We specialize in guiding first-time buyers through the entire process, including down payment assistance programs, first-time buyer incentives, and educational resources.",
-  },
-  {
-    question: "What's the current Utah real estate market like?",
-    answer: "The Utah market varies by location, but generally offers good value with strong appreciation potential. Our agents provide current market analysis and pricing guidance for your target areas.",
-  },
-  {
-    question: "How much do your real estate services cost for buyers?",
-    answer: "Our buyer representation is typically free to you - the seller pays the commission. We're committed to providing excellent service without additional fees to buyers.",
-  },
-  {
-    question: "Can you help with new construction homes?",
-    answer: "Yes, we work with both existing homes and new construction. We can help you navigate builder contracts, upgrades, and the construction timeline process.",
-  },
-  {
-    question: "How much should I budget for closing costs?",
-    answer: "Plan for roughly 2–3% of the purchase price for lender, title, and prepaid items. We can also negotiate seller credits when appropriate.",
-  },
-  {
-    question: "How do I compete in multiple-offer situations?",
-    answer: "We tailor terms like escalation clauses, appraisal gap strategies, timelines, and earnest money while protecting key contingencies.",
-  },
-  {
-    question: "What inspections are recommended?",
-    answer: "General home inspection plus specialty inspections as needed (radon, sewer, roof, structural). We coordinate and advise on findings.",
-  },
-  {
-    question: "What is earnest money and is it refundable?",
-    answer: "Earnest money is a good-faith deposit applied at closing. It is typically refundable if you cancel within contractual contingency timelines.",
-  },
-  {
-    question: "How long does a typical purchase take?",
-    answer: "Most financed purchases close in 30–45 days after acceptance. Cash purchases can close faster depending on title and inspections.",
-  },
-  {
-    question: "Can I buy before I sell my current home?",
-    answer: "Yes. We explore bridge loans, HELOCs, or contract terms like leasebacks to align both timelines with minimal risk.",
-  },
-]
-
 export default function BuyPage() {
   return (
     <>
@@ -245,22 +194,6 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left text-white">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-300">{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
       <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Find Your Utah Dream Home?</h2>
@@ -314,21 +247,18 @@ export default function BuyPage() {
         })}
       </Script>
 
-      {/* FAQ JSON-LD */}
-      <Script id="buy-faq-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map(faq => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        })}
-      </Script>
+      {/* Centralized FAQs live on /faq */}
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Questions about buying in Utah?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+            Browse our dedicated Help Center for detailed FAQs on buying, financing, payments, and more.
+          </p>
+          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+            <Link href="/faq/buying-selling-faqs">View Buying FAQs</Link>
+          </Button>
+        </div>
+      </section>
     </>
   )
 }

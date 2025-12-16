@@ -26,7 +26,7 @@ export default function Error({
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-background dark:bg-transparent">
       <SEO
-        title="Error | OnDo Real Estate"
+        title="Error | Ondo Real Estate"
         description="An unexpected error occurred. Please try again or return home."
         pathname="/error"
         image={`${SITE_URL}/modern-apartment-balcony.webp`}

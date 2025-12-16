@@ -13,7 +13,7 @@ export default function TenantApplicationsPage() {
   return (
     <>
       <SEO
-        title="Dashboard Leads | OnDo Real Estate"
+        title="Dashboard Leads | Ondo Real Estate"
         description="Manage tenant applications and leads in your dashboard."
         pathname="/dashboard/leads"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

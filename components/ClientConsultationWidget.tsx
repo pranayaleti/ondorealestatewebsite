@@ -164,7 +164,7 @@ export default function ClientConsultationWidget() {
         <Button
           size="lg"
           className="rounded-full h-14 w-14 shadow-lg hover:shadow-xl transition-shadow"
-          aria-label="Schedule a free consultation with OnDo Real Estate"
+          aria-label="Schedule a free consultation with Ondo Real Estate"
           aria-haspopup="dialog"
         >
           <MessageCircle className="h-6 w-6" aria-hidden="true" />

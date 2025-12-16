@@ -75,57 +75,6 @@ const services = [
   },
 ]
 
-const faqs = [
-  {
-    question: "What areas do you serve for property management?",
-    answer: "We provide property management services across the Wasatch Front, including Salt Lake City, Lehi, Provo, Orem, Sandy, Draper, and surrounding Utah communities.",
-  },
-  {
-    question: "What percentage do you charge for property management?",
-    answer: "Our management fees typically range from 7-10% of monthly rent, depending on property type and services required. We provide transparent pricing with no hidden fees.",
-  },
-  {
-    question: "How do you handle maintenance requests?",
-    answer: "We provide 24/7 emergency response, coordinate with trusted local vendors, and offer online maintenance request systems for tenants. All repairs are tracked and reported to property owners.",
-  },
-  {
-    question: "Do you screen tenants thoroughly?",
-    answer: "Yes, we conduct comprehensive tenant screening including credit checks, background verification, employment verification, and reference checks to ensure quality tenants.",
-  },
-  {
-    question: "How often do you inspect properties?",
-    answer: "We perform regular property inspections quarterly, plus move-in and move-out inspections. Additional inspections can be scheduled as needed.",
-  },
-  {
-    question: "What reporting do you provide to property owners?",
-    answer: "Property owners receive detailed monthly financial reports, maintenance summaries, tenant communication logs, and annual property performance analysis.",
-  },
-  {
-    question: "How quickly can you lease my property?",
-    answer: "Well-presented, well-priced homes often lease within 7–21 days depending on seasonality and local comps. We share weekly activity updates.",
-  },
-  {
-    question: "What are your management and leasing fees?",
-    answer: "Management typically ranges 7–10% of collected rent and leasing is a one-time fee at tenant placement. Portfolio size and property type can adjust pricing.",
-  },
-  {
-    question: "Do you require a maintenance reserve?",
-    answer: "We maintain a small operating reserve to cover routine repairs. You approve non-emergency work above your chosen threshold.",
-  },
-  {
-    question: "How do you handle evictions?",
-    answer: "We follow Utah law for notices and timelines, coordinate with legal partners, and aim to minimize downtime and costs for owners.",
-  },
-  {
-    question: "Do you allow pets at my property?",
-    answer: "Pet policies are your choice. If allowed, we use pet screening, deposits, and pet rent to reduce risk and widen the applicant pool.",
-  },
-  {
-    question: "When do I receive owner payouts?",
-    answer: "Owner disbursements are processed monthly after rent clears and expenses are reconciled. Detailed statements are provided in your portal.",
-  },
-]
-
 export default function PropertyManagementPage() {
   return (
     <>
@@ -215,7 +164,7 @@ export default function PropertyManagementPage() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <img
                 src="/city-map-with-pin.png"
-                alt="Utah property management service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by OnDo Real Estate"
+                alt="Utah property management service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by Ondo Real Estate"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -234,22 +183,6 @@ export default function PropertyManagementPage() {
               description="Get a free property management consultation and learn how our services can increase your rental income while reducing your workload."
               variant="card"
             />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left text-white">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-gray-300">{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
           </div>
         </div>
       </section>
@@ -307,21 +240,18 @@ export default function PropertyManagementPage() {
         })}
       </Script>
 
-      {/* FAQ JSON-LD */}
-      <Script id="property-management-faq-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map(faq => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        })}
-      </Script>
+      {/* Centralized FAQs live on /faq */}
+      <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Questions about property management?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+            Head to our Help Center for detailed FAQs for owners, tenants, payments, and more.
+          </p>
+          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+            <Link href="/faq/owner-faqs">View Owner FAQs</Link>
+          </Button>
+        </div>
+      </section>
     </>
   )
 }

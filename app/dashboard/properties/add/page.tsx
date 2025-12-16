@@ -16,7 +16,7 @@ export default function AddPropertyPage() {
   return (
     <DashboardShell>
       <SEO
-        title="Dashboard Add Property | OnDo Real Estate"
+        title="Dashboard Add Property | Ondo Real Estate"
         description="Add a new property to your dashboard CRM."
         pathname="/dashboard/properties/add"
         image={`${SITE_URL}/modern-apartment-balcony.png`}

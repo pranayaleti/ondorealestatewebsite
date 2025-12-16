@@ -9,7 +9,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
         <LazyImage
           src="/modern-office-building.webp"
-          alt="Modern professional office building representing OnDo Real Estate's headquarters and property management services in Utah"
+          alt="Modern professional office building representing Ondo Real Estate's headquarters and property management services in Utah"
           fill
           className="object-cover"
           priority
@@ -23,11 +23,11 @@ export function HeroSection() {
             Make life easy
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-foreground/70">
-            OnDo Real Estate helps you find the ideal rental home with professional property management services and makes
+            Ondo Real Estate helps you find the ideal rental home with professional property management services and makes
             your life easier.
           </p>
         </header>
-        <section aria-label="Property search">
+        <section aria-label="Property search" className="flex justify-center">
           <SearchForm />
         </section>
       </div>

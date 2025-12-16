@@ -66,7 +66,7 @@ export default function AuthPage() {
   return (
     <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8 px-4 sm:px-6 lg:px-8">
       <SEO
-        title="Sign In | OnDo Real Estate"
+        title="Sign In | Ondo Real Estate"
         description="Sign in to continue to your tenant or owner portal."
         pathname="/auth"
         image={`${SITE_URL}/modern-apartment-balcony.png`}
@@ -77,7 +77,7 @@ export default function AuthPage() {
       />
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Welcome to <span className="text-primary">OnDo</span> Real Estate</CardTitle>
+          <CardTitle className="text-2xl text-center">Welcome to <span className="text-primary">Ondo</span> Real Estate</CardTitle>
           <CardDescription className="text-center">Sign in to your account to continue</CardDescription>
         </CardHeader>
         <CardContent>

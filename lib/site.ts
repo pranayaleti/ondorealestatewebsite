@@ -48,12 +48,12 @@ export const SITE_EMAILS = {
 
 // Centralized social profile URLs used across footer, metadata, and JSON-LD
 export const SITE_SOCIALS = [
-  "https://www.facebook.com/OnDoRealEstate",
-  "https://www.youtube.com/@OnDoRealEstate",
-  "https://www.instagram.com/OnDoRealEstate",
-  "https://www.tiktok.com/@OnDoRealEstate",
-  "https://www.linkedin.com/company/OnDoRealEstate",
-  "https://x.com/OnDoRealEstate",
+  "https://www.facebook.com/OndoRealEstate",
+  "https://www.youtube.com/@OndoRealEstate",
+  "https://www.instagram.com/OndoRealEstate",
+  "https://www.tiktok.com/@OndoRealEstate",
+  "https://www.linkedin.com/company/OndoRealEstate",
+  "https://x.com/OndoRealEstate",
   "https://www.pinterest.com/ondorealestate",
   "https://yelp.com/biz/ondo-real-estate-lehi",
   "https://linktr.ee/ondorealestate",

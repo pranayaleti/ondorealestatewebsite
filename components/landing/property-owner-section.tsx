@@ -11,7 +11,7 @@ export function PropertyOwnerSection() {
           <div>
             <h2 className="text-3xl font-bold mb-6 dark:text-foreground">Property Owners</h2>
             <p className="text-lg mb-6 dark:text-foreground/70">
-              Let OnDo Real Estate handle the day-to-day management of your rental property. We provide comprehensive
+              Let Ondo Real Estate handle the day-to-day management of your rental property. We provide comprehensive
               property management services so you can enjoy passive income without the hassle.
             </p>
             <ul className="space-y-4 mb-8">
@@ -39,7 +39,7 @@ export function PropertyOwnerSection() {
           <div className="relative h-[400px] rounded-lg overflow-hidden">
             <LazyImage
               src="/city-map-with-pin.webp"
-              alt="Utah property management service areas map showing Salt Lake City, Holladay, Midvale and surrounding communities served by OnDo Real Estate"
+              alt="Utah property management service areas map showing Salt Lake City, Holladay, Midvale and surrounding communities served by Ondo Real Estate"
               fill
               className="object-cover"
               quality={80}
