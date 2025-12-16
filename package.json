@@ -4,10 +4,13 @@
   "private": true,
   "homepage": "https://pranayaleti.github.io/ondorealestate",
   "scripts": {
+    "clean": "rm -rf .next node_modules/.cache",
+    "clean:all": "rm -rf .next node_modules/.cache out",
     "build": "next build",
     "build:full": "npm run optimize:images && npm run optimize:all-images && next build",
     "postbuild": "next-sitemap && npm run copy:headers",
     "dev": "next dev",
+    "dev:clean": "npm run clean && next dev",
     "lint": "next lint",
     "start": "next start",
     "sitemap": "next-sitemap",

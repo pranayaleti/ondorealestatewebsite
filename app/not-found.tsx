@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -15,30 +15,52 @@ const SEO = dynamic(() => import("@/components/seo"), { ssr: true })
 export default function NotFound() {
   const router = useRouter()
   const pathname = usePathname()
+  const hasRedirected = useRef(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Track when component is mounted (client-side only)
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   // Automatically step back one breadcrumb level for unknown routes.
+  // Only runs on client side after mount to avoid build/SSR issues
   useEffect(() => {
-    if (!pathname) return
-
-    // Normalize path by removing trailing slashes (except for root)
-    const normalizedPath =
-      pathname !== "/" ? pathname.replace(/\/+$/, "") : pathname
-
-    if (!normalizedPath || normalizedPath === "/") return
-
-    // Find parent path (e.g. /about/careers/kl -> /about/careers)
-    const lastSlashIndex = normalizedPath.lastIndexOf("/")
-
-    // If we're already at root or there's no parent, do nothing
-    if (lastSlashIndex <= 0) return
-
-    const parentPath = normalizedPath.slice(0, lastSlashIndex) || "/"
-
-    // Avoid redirect loops: only redirect if the parent is different
-    if (parentPath !== normalizedPath) {
-      router.replace(parentPath)
+    // Only run after component is mounted and in browser
+    if (!isMounted || typeof window === "undefined" || hasRedirected.current || !pathname) {
+      return
     }
-  }, [pathname, router])
+
+    // Use requestAnimationFrame to ensure this runs after initial render
+    const timeoutId = setTimeout(() => {
+      // Double-check we haven't redirected and still have a valid pathname
+      if (hasRedirected.current || !pathname) return
+
+      // Normalize path by removing trailing slashes (except for root)
+      const normalizedPath = pathname !== "/" ? pathname.replace(/\/+$/, "") : pathname
+
+      if (!normalizedPath || normalizedPath === "/") return
+
+      // Find parent path (e.g. /about/careers/kl -> /about/careers)
+      const lastSlashIndex = normalizedPath.lastIndexOf("/")
+
+      // If we're already at root or there's no parent, do nothing
+      if (lastSlashIndex <= 0) return
+
+      const parentPath = normalizedPath.slice(0, lastSlashIndex) || "/"
+
+      // Avoid redirect loops: only redirect if the parent is different and valid
+      if (parentPath !== normalizedPath && parentPath !== pathname) {
+        hasRedirected.current = true
+        // Use replace to avoid adding to history
+        router.replace(parentPath)
+      }
+    }, 100) // Small delay to ensure hydration is complete
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [isMounted, pathname, router])
 
   const popularPages = [
     { name: "Properties", href: "/properties", icon: <Building className="h-4 w-4" />, description: "Browse available rentals" },

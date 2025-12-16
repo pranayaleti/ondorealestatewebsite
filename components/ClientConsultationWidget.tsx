@@ -172,17 +172,19 @@ export default function ClientConsultationWidget() {
       </DialogTrigger>
 
         <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2" id="consultation-title">
-            <Calendar className="h-5 w-5 text-primary" aria-hidden="true" />
-            Schedule a Free Consultation
-          </DialogTitle>
-          <DialogDescription id="consultation-description">
-            Get expert advice on buying, selling, or property management in Utah. We'll contact you within 24 hours.
-          </DialogDescription>
-        </DialogHeader>
+          <DialogHeader>
+            <div className="flex items-center gap-2 mb-2">
+              <Calendar className="h-5 w-5 text-primary" aria-hidden="true" />
+              <DialogTitle>
+                Schedule a Free Consultation
+              </DialogTitle>
+            </div>
+            <DialogDescription>
+              Get expert advice on buying, selling, or property management in Utah. We'll contact you within 24 hours.
+            </DialogDescription>
+          </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="consultation-title" aria-describedby="consultation-description">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="consultation-name">Name *</Label>

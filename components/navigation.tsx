@@ -26,8 +26,8 @@ export const allNavigationItems: NavigationItem[] = [
   // Discovery & tools
   { href: "/calculators", label: "Calculators" },
   { href: "/resources", label: "Resources" },
+  { href: "/news", label: "News" },
   { href: "/blog", label: "Blog" },
-  { href: "/search", label: "Search" },
 
   // Utah positioning
   { href: "/why-utah", label: "Why Utah" },

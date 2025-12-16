@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -228,6 +228,11 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
             <DialogTitle className="sr-only">
               {isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              {isSubmitted 
+                ? "Your application has been submitted successfully. We'll contact you soon." 
+                : `Submit your application to apply for ${propertyName}.`}
+            </DialogDescription>
             <h2 className="text-xl font-semibold mb-6">
               {isSubmitted ? "Thank You!" : `Apply for ${propertyName}`}
             </h2>

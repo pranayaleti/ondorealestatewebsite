@@ -176,18 +176,10 @@ const Header = memo(() => {
           </div>
 
           <ModeToggle />
-          {user ? (
-            <UserMenu />
-          ) : (
-            <div className="hidden sm:flex items-center gap-2">
-              <Button variant="ghost" asChild>
-                <Link href="/auth">Log in</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/auth">Sign up</Link>
-              </Button>
-            </div>
-          )}
+          <Button variant="ghost" asChild>
+            <Link href="/dashboard">Dashboard</Link>
+          </Button>
+          {user && <UserMenu />}
           {/* Mobile hamburger for full navigation */}
           <button
             className="block md:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring flex-shrink-0"
@@ -218,18 +210,13 @@ const Header = memo(() => {
               className="flex flex-col gap-2"
               onLinkClick={handleMenuClose}
             />
-            {!user && (
-              <div className="flex gap-2 mt-4">
-                <Link href="/auth" onClick={handleMenuClose}>
-                  <Button variant="outline" size="sm" className="flex-1">
-                    Log in
-                  </Button>
-                </Link>
-                <Link href="/auth" onClick={handleMenuClose}>
-                  <Button size="sm" className="flex-1">Sign up</Button>
-                </Link>
-              </div>
-            )}
+            <div className="mt-4">
+              <Link href="/dashboard" onClick={handleMenuClose}>
+                <Button variant="outline" size="sm" className="w-full">
+                  Dashboard
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       )}

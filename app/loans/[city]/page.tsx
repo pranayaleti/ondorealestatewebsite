@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
+import { notFound } from "next/navigation"
 
 type Params = Promise<{ city: string }>
 
@@ -24,7 +25,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function Page({ params }: { params: Params }) {
   const { city: citySlug } = await params
   const city = findCityBySlug(citySlug)
-  if (!city) return <div className="container mx-auto px-4 py-10">City not found.</div>
+  if (!city) {
+    notFound() // Triggers the not-found.tsx page, which will redirect to /loans
+  }
   return (
     <>
       <SEO
