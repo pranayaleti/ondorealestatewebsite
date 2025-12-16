@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export for GitHub Pages
-  // Note: headers() and rewrites() are not supported with static export
-  output: 'export',
+  // Dynamic Next.js application with API routes and server-side functionality
   eslint: {
     ignoreDuringBuilds: false,
   },
@@ -40,11 +38,7 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year cache for static images
     dangerouslyAllowSVG: true,
     domains: ['images.unsplash.com'],
-    // Required for static export (output: 'export') - Next.js Image Optimization API requires a server
-    // Images are pre-optimized during build via optimize:images script
-    unoptimized: true,
   },
-  trailingSlash: true,
   // Production optimizations
   productionBrowserSourceMaps: false,
   compress: true,

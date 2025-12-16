@@ -92,7 +92,7 @@ const Header = memo(() => {
     <header className={`sticky top-0 z-50 w-full transition-all duration-200 bg-background ${isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : ""}`}>
       <div className="container relative flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo (left) */}
-        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
+        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0 relative z-20">
           <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
@@ -108,15 +108,22 @@ const Header = memo(() => {
         </div>
 
         {/* Centered desktop navigation */}
-        <div className="pointer-events-none absolute inset-x-0 flex justify-center">
-          <Navigation
-            className="pointer-events-auto hidden md:flex gap-0.5 overflow-x-auto scrollbar-hide max-w-full"
-            items={primaryNavigationItems}
-          />
+        <div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center z-0 overflow-hidden">
+          <div className="hidden md:flex w-full items-center justify-center">
+            <div className="w-full max-w-full min-w-0 px-4 sm:px-6 lg:px-8" style={{ 
+              paddingLeft: 'max(200px, 20vw)', 
+              paddingRight: 'max(280px, 25vw)' 
+            }}>
+              <Navigation
+                className="pointer-events-auto flex gap-0.5 overflow-x-auto scrollbar-hide justify-center"
+                items={primaryNavigationItems}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Right-side controls */}
-        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0 relative z-10">
+        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0 relative z-20">
           <Button
             variant="ghost"
             size="icon"

@@ -24,6 +24,7 @@ import {
   LayoutDashboard,
   LogOut,
   Settings,
+  Shield,
   User,
   Users,
   Wrench,
@@ -71,6 +72,11 @@ export const navItems: NavItem[] = [
     title: "Leases",
     href: "/dashboard/leases",
     icon: <FileText className="h-5 w-5" />,
+  },
+  {
+    title: "Blacklist",
+    href: "/dashboard/blacklist",
+    icon: <Shield className="h-5 w-5" />,
   },
   {
     title: "Payments",

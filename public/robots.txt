@@ -26,6 +26,13 @@ Disallow: /login/
 Disallow: /api/
 Disallow: /_next/
 
+# Block Next.js user agents
+User-agent: Next.js
+Disallow: /
+
+User-agent: nextjs
+Disallow: /
+
 Sitemap: https://ondorealestate.com/sitemap.xml
 
 

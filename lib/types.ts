@@ -140,3 +140,144 @@ export interface FieldValidation {
   isValid: boolean
   message?: string
 }
+
+// Blacklist types
+export type BlacklistType = 'user' | 'property' | 'ip' | 'email_domain' | 'content'
+
+export interface BaseBlacklistEntry {
+  id: string
+  reason: string
+  blockedBy: string
+  blockedAt: string
+  expiresAt?: string
+  isActive: boolean
+  notes?: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface UserBlacklistEntry extends BaseBlacklistEntry {
+  userId: string
+  email?: string
+}
+
+export interface PropertyBlacklistEntry extends BaseBlacklistEntry {
+  propertyId: number
+}
+
+export interface IPBlacklistEntry extends BaseBlacklistEntry {
+  ipAddress: string
+}
+
+export interface EmailDomainBlacklistEntry extends BaseBlacklistEntry {
+  domain: string
+}
+
+export interface ContentFilterEntry {
+  id: string
+  pattern: string
+  reason: string
+  blockedBy: string
+  blockedAt: string
+  isActive: boolean
+  notes?: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface BlacklistAuditEntry {
+  id: string
+  blacklistType: BlacklistType
+  blacklistId: string
+  action: 'created' | 'updated' | 'deactivated' | 'reactivated' | 'expired'
+  performedBy: string
+  oldValues?: any
+  newValues?: any
+  performedAt: string
+  reason?: string
+}
+
+// Blacklist API types
+export interface CreateUserBlacklistRequest {
+  userId: string
+  email?: string
+  reason: string
+  expiresAt?: string
+  notes?: string
+}
+
+export interface CreatePropertyBlacklistRequest {
+  propertyId: number
+  reason: string
+  expiresAt?: string
+  notes?: string
+}
+
+export interface CreateIPBlacklistRequest {
+  ipAddress: string
+  reason: string
+  expiresAt?: string
+  notes?: string
+}
+
+export interface CreateEmailDomainBlacklistRequest {
+  domain: string
+  reason: string
+  expiresAt?: string
+  notes?: string
+}
+
+export interface CreateContentFilterRequest {
+  pattern: string
+  reason: string
+  notes?: string
+}
+
+export interface UpdateBlacklistRequest {
+  reason?: string
+  expiresAt?: string
+  isActive?: boolean
+  notes?: string
+}
+
+export interface BlacklistQueryParams {
+  page?: number
+  limit?: number
+  isActive?: boolean
+  type?: BlacklistType
+  search?: string
+}
+
+export interface BlacklistResponse<T = any> {
+  success: boolean
+  data?: T
+  error?: string
+  message?: string
+}
+
+export interface BlacklistListResponse<T> extends BlacklistResponse<T[]> {
+  total: number
+  page: number
+  limit: number
+  hasMore: boolean
+}
+
+// Blacklist check types
+export interface BlacklistCheckResult {
+  isBlacklisted: boolean
+  reason?: string
+  expiresAt?: string
+  blockedAt?: string
+}
+
+export interface UserBlacklistCheck extends BlacklistCheckResult {
+  type: 'user' | 'email_domain'
+}
+
+export interface PropertyBlacklistCheck extends BlacklistCheckResult {
+  type: 'property'
+}
+
+export interface IPBlacklistCheck extends BlacklistCheckResult {
+  type: 'ip'
+}

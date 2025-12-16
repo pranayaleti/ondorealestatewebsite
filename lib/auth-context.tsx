@@ -5,6 +5,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { backendUrl } from "@/lib/backend"
 import { SecureStorage, sanitizeInput, isValidEmail, RateLimiter } from "@/lib/security"
+import { checkUserBlacklist } from "@/lib/blacklist"
 
 type UserRole = "tenant" | "owner" | "admin" | null
 type UserData = {
@@ -182,6 +183,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (data.token && data.user) {
+        // Check if user is blacklisted before allowing login
+        const blacklistCheck = await checkUserBlacklist(data.user.id, data.user.email)
+        if (blacklistCheck.isBlacklisted) {
+          setIsLoading(false)
+          return {
+            success: false,
+            error: `Account access blocked. ${blacklistCheck.reason || 'Contact support for assistance.'}`
+          }
+        }
+
         // Store token and user data securely
         const tokenStored = SecureStorage.setItem(TOKEN_KEY, data.token)
         const userStored = SecureStorage.setItem(USER_KEY, JSON.stringify(data.user))

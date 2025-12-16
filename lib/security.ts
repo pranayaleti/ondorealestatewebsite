@@ -170,3 +170,78 @@ export class RateLimiter {
     this.attempts.delete(key)
   }
 }
+
+/**
+ * Blacklist utility for blocking specific user agents, domains, or patterns
+ */
+export class Blacklist {
+  private static readonly NEXTJS_PATTERNS = [
+    /nextjs/i,
+    /next\.js/i,
+    /nextjs-bot/i,
+    /vercel/i,
+  ]
+
+  private static readonly BLOCKED_USER_AGENTS = [
+    'nextjs',
+    'next.js',
+    'nextjs-bot',
+    'vercel',
+  ]
+
+  /**
+   * Check if a user agent is blacklisted
+   */
+  static isUserAgentBlacklisted(userAgent: string): boolean {
+    if (!userAgent) return false
+
+    const lowerUserAgent = userAgent.toLowerCase()
+    
+    // Check against blocked user agents
+    if (this.BLOCKED_USER_AGENTS.some(blocked => lowerUserAgent.includes(blocked))) {
+      return true
+    }
+
+    // Check against patterns
+    return this.NEXTJS_PATTERNS.some(pattern => pattern.test(userAgent))
+  }
+
+  /**
+   * Check if a domain or URL is blacklisted
+   */
+  static isDomainBlacklisted(url: string): boolean {
+    if (!url) return false
+
+    try {
+      const urlObj = new URL(url)
+      const hostname = urlObj.hostname.toLowerCase()
+      
+      // Block Next.js related domains
+      return hostname.includes('nextjs') || 
+             hostname.includes('vercel') ||
+             hostname.includes('next.js')
+    } catch {
+      // If URL parsing fails, check if string contains blacklisted patterns
+      const lowerUrl = url.toLowerCase()
+      return lowerUrl.includes('nextjs') || 
+             lowerUrl.includes('vercel') ||
+             lowerUrl.includes('next.js')
+    }
+  }
+
+  /**
+   * Add a custom pattern to the blacklist
+   */
+  static addPattern(pattern: RegExp): void {
+    this.NEXTJS_PATTERNS.push(pattern)
+  }
+
+  /**
+   * Add a custom user agent to the blacklist
+   */
+  static addUserAgent(userAgent: string): void {
+    if (!this.BLOCKED_USER_AGENTS.includes(userAgent.toLowerCase())) {
+      this.BLOCKED_USER_AGENTS.push(userAgent.toLowerCase())
+    }
+  }
+}
