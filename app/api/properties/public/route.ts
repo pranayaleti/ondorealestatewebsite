@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 0
+
 // GET /api/properties/public - Get public properties with blacklist filtering
 export async function GET(request: NextRequest) {
   try {

@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { UpdateBlacklistRequest, BlacklistResponse } from '@/lib/types'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 0
+
 // Helper function to get user from token
 async function getUserFromToken(request: NextRequest) {
   const authHeader = request.headers.get('authorization')

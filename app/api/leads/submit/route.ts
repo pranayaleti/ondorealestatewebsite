@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { checkUserBlacklist, checkIPBlacklist, validateContent } from '@/lib/blacklist'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 0
+
 // POST /api/leads/submit - Submit a lead with blacklist checking
 export async function POST(request: NextRequest) {
   try {

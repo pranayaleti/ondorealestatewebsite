@@ -8,6 +8,10 @@ import {
   BlacklistResponse
 } from '@/lib/types'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 0
+
 // POST /api/blacklist/check - Check if user/property/IP is blacklisted
 export async function POST(request: NextRequest) {
   try {
