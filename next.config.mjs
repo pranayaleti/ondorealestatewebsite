@@ -30,6 +30,9 @@ const nextConfig = {
   // Headers and rewrites are not compatible with static export
   // They have been removed for GitHub Pages deployment
   
+  // Static export for GitHub Pages deployment
+  output: 'export',
+  
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
