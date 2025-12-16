@@ -1,0 +1,55 @@
+# Cache headers for GitHub Pages
+# Note: GitHub Pages supports _headers file for custom headers
+
+# Cache static assets for 1 year
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 year
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache fonts for 1 year
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+/*.otf
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS and JS for 1 year (with versioning)
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - optimized for bfcache (back/forward cache)
+# Note: bfcache works best with no-store or short cache with revalidation
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# JSON and XML files
+/*.json
+  Cache-Control: public, max-age=86400
+/*.xml
+  Cache-Control: public, max-age=86400
+
+# Security headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
