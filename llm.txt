@@ -1,0 +1,19 @@
+Project: Ondo Real Estate Website (Next.js app router, TypeScript, Tailwind, Supabase).
+
+Preferred style:
+- Use modern, accessible, responsive UI patterns.
+- Keep answers concise and information-dense; avoid unnecessary explanation.
+- When suggesting code, prefer small, focused diffs and reuse existing helpers from `lib/` and `components/` when possible.
+- Follow existing patterns for SEO (`lib/seo.ts`, `lib/site.ts`) and analytics (`lib/analytics.ts`, `lib/supabase-analytics.ts`) when touching those areas.
+
+Conventions:
+- Framework: Next.js 14+ app router with React Server Components where appropriate.
+- Styling: Tailwind CSS plus design tokens from `src/styles/_design-tokens.css` / `design-tokens.json`.
+- Components live under `components/` and are generally colocated by domain (search, dashboard, calculators, etc.).
+- Use TypeScript strictly; fix type errors instead of using `any`.
+- Prefer functional, composable utilities in `lib/` over duplicating logic.
+
+Editing rules:
+- Do NOT create extra markdown docs for humans unless explicitly requested.
+- Keep new files small and cohesive; avoid large "god" modules.
+- When changing behavior, look for existing usage patterns in this repo and match them.

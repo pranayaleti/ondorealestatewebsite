@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 function Calendar({
   className,
   showOutsideDays = true,
-  captionLayout = 'buttons' as const,
+  captionLayout = 'dropdown' as const,
   ...props
 }: React.ComponentProps<typeof DayPicker>) {
   return (
