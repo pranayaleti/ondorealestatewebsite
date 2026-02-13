@@ -1,6 +1,8 @@
 "use client"
 
 // Performance monitoring utilities
+// For bfcache compatibility: use pagehide/pageshow (see lib/bfcache-optimization.ts),
+// not beforeunload/unload, for cleanup or analytics.
 export const performanceMonitor = {
   // Measure page load time
   measurePageLoad: () => {

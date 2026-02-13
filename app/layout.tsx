@@ -9,6 +9,7 @@ import { AuthProvider } from "@/lib/auth-context"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ScrollProgress } from "@/components/scroll-progress"
+import { BfcacheProvider } from "@/components/bfcache-provider"
 import dynamic from "next/dynamic"
 import { JsonLd } from "@/components/json-ld"
 import { generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo"
@@ -19,6 +20,7 @@ const ClientConsultationWidget = dynamic(() => import("@/components/ClientConsul
   loading: () => null, // Don't show loading state for widget
 })
 import { SITE_NAME, SITE_URL } from "@/lib/site"
+import { getSpeculationRulesJson } from "@/lib/speculation-rules"
 // Vercel Analytics is disabled for static exports (GitHub Pages)
 // It only works on Vercel's platform, not with static site generation
 // const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
@@ -150,7 +152,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://supabase.co" />
+        <link rel="preconnect" href="https://ondorealestateserver.onrender.com" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Speculation Rules API: prefetch same-origin pages for faster navigation */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{ __html: getSpeculationRulesJson() }}
+        />
         
         <meta
           httpEquiv="Content-Security-Policy"
@@ -161,6 +170,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <BfcacheProvider>
           <AuthProvider>
             <ScrollProgress />
             <div className="min-h-screen flex flex-col">
@@ -171,6 +181,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ClientConsultationWidget />
             <Toaster />
           </AuthProvider>
+          </BfcacheProvider>
         </ThemeProvider>
         <JsonLd
           id="global-jsonld"

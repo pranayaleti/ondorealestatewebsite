@@ -84,6 +84,7 @@ export const Navigation = memo(function Navigation({
         <Link
           key={item.href}
           href={item.href}
+          prefetch={true}
           className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
             item.special
               ? "bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-primary-foreground font-bold"
