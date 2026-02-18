@@ -1,8 +1,13 @@
 "use client"
 
 // Performance monitoring utilities
-// For bfcache compatibility: use pagehide/pageshow (see lib/bfcache-optimization.ts),
-// not beforeunload/unload, for cleanup or analytics.
+//
+// bfcache: Use pagehide/pageshow (lib/bfcache-optimization.ts), not beforeunload/unload,
+// for cleanup or analytics. Use sendBeaconOnPagehide() for flushing data on exit.
+//
+// Prefetch/prerender: Speculation Rules API is configured in root layout (lib/speculation-rules.ts)
+// with eager/moderate/conservative eagerness; prefetch link fallbacks for key same-origin URLs.
+// Prefer replaceState for in-page state so history entries stay bfcache-friendly.
 export const performanceMonitor = {
   // Measure page load time
   measurePageLoad: () => {

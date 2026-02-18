@@ -1,11 +1,20 @@
 /**
  * Back/Forward Cache (bfcache) optimization utilities
  * Ensures pages can be restored from bfcache for instant navigation.
- * Use pagehide/pageshow (not beforeunload/unload) for bfcache compatibility.
+ *
+ * Rules:
+ * - Use pagehide (with event.persisted) for cleanup or analytics; avoid beforeunload/unload.
+ * - Use pageshow with event.persisted === true to detect bfcache restore and re-initialize.
+ * - For sending data on exit, use visibilitychange, pagehide, or sendBeacon in pagehide —
+ *   never rely on beforeunload/unload (they break bfcache and are unreliable).
+ * - Avoid: unload listeners, Cache API during unload, closing WebSockets in unload,
+ *   or setting history.state right before navigation.
  */
 
 type BfcacheRestoreCallback = () => void
 const restoreCallbacks: Set<BfcacheRestoreCallback> = new Set()
+const pagehideCallbacks: Set<() => void> = new Set()
+let pagehideListenerAttached = false
 
 /**
  * Register a callback to run when the page is restored from bfcache (pageshow + persisted).
@@ -41,14 +50,35 @@ export function initBfcacheOptimization() {
     { passive: true }
   )
 
-  // Use pagehide for minimal cleanup only; avoid heavy work or storage that blocks bfcache.
-  window.addEventListener(
-    "pagehide",
-    () => {
-      // No heavy cleanup here – keeps page bfcache-eligible.
-    },
-    { passive: true }
-  )
+  // Pagehide: run lightweight callbacks only (e.g. sendBeacon). No heavy work or storage.
+  function handlePagehide() {
+    pagehideCallbacks.forEach((cb) => {
+      try {
+        cb()
+      } catch (_) {
+        // ignore so one callback does not break others
+      }
+    })
+  }
+  if (!pagehideListenerAttached) {
+    pagehideListenerAttached = true
+    window.addEventListener("pagehide", handlePagehide, { passive: true })
+  }
+}
+
+/**
+ * Register a callback to run when the page is hidden (pagehide).
+ * Use for sending analytics via sendBeacon only; keep the callback lightweight
+ * so the page stays bfcache-eligible. Returns an unregister function.
+ */
+export function onPagehide(callback: () => void): () => void {
+  pagehideCallbacks.add(callback)
+  if (typeof window !== "undefined" && !pagehideListenerAttached) {
+    initBfcacheOptimization()
+  }
+  return () => {
+    pagehideCallbacks.delete(callback)
+  }
 }
 
 /**
@@ -86,5 +116,22 @@ export function onPageHidden(callback: () => void): () => void {
   }
   document.addEventListener("visibilitychange", handler, { passive: true })
   return () => document.removeEventListener("visibilitychange", handler)
+}
+
+/**
+ * Send a beacon on pagehide. Use for analytics or last-event flush without blocking bfcache.
+ * Keeps the callback minimal (only sendBeacon); do not do heavy work or storage here.
+ */
+export function sendBeaconOnPagehide(url: string, payload?: string | Blob): () => void {
+  return onPagehide(() => {
+    if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+      if (payload !== undefined) {
+        const blob = typeof payload === "string" ? new Blob([payload], { type: "text/plain" }) : payload
+        navigator.sendBeacon(url, blob)
+      } else {
+        navigator.sendBeacon(url)
+      }
+    }
+  })
 }
 

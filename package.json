@@ -12,6 +12,9 @@
     "dev": "next dev",
     "dev:clean": "npm run clean && next dev",
     "lint": "next lint",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "start": "next start",
     "sitemap": "next-sitemap",
     "predeploy": "npm run build:full && cp CNAME out/ && touch out/.nojekyll",
@@ -83,6 +86,12 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@vitest/coverage-v8": "^2.1.8",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.8",
     "@axe-core/cli": "^4.10.2",
     "@playwright/test": "^1.55.1",
     "@types/lodash": "^4.17.20",

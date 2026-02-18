@@ -1,0 +1,64 @@
+import { describe, it, expect, vi } from "vitest"
+import { render, screen, fireEvent } from "@testing-library/react"
+import ErrorBoundary from "./error-boundary"
+
+const Throw = () => {
+  throw new Error("test error")
+}
+
+describe("ErrorBoundary", () => {
+  it("renders children when no error", () => {
+    render(
+      <ErrorBoundary>
+        <span>Child</span>
+      </ErrorBoundary>
+    )
+    expect(screen.getByText("Child")).toBeInTheDocument()
+  })
+  it("renders fallback when child throws", () => {
+    render(
+      <ErrorBoundary
+        fallback={({ resetError }) => (
+          <div>
+            <span>Fallback</span>
+            <button onClick={resetError}>Reset</button>
+          </div>
+        )}
+      >
+        <Throw />
+      </ErrorBoundary>
+    )
+    expect(screen.getByText("Fallback")).toBeInTheDocument()
+  })
+  it("resetError is callable from fallback", () => {
+    const resetSpy = vi.fn()
+    render(
+      <ErrorBoundary
+        fallback={({ resetError }) => (
+          <button
+            onClick={() => {
+              resetSpy()
+              resetError()
+            }}
+          >
+            Reset
+          </button>
+        )}
+      >
+        <Throw />
+      </ErrorBoundary>
+    )
+    fireEvent.click(screen.getByText("Reset"))
+    expect(resetSpy).toHaveBeenCalledTimes(1)
+  })
+  it("renders default Card UI when no fallback provided", () => {
+    render(
+      <ErrorBoundary>
+        <Throw />
+      </ErrorBoundary>
+    )
+    expect(screen.getByText(/Something went wrong/i)).toBeInTheDocument()
+    expect(screen.getByText(/Try Again/)).toBeInTheDocument()
+    expect(screen.getByText(/Go Home/)).toBeInTheDocument()
+  })
+})

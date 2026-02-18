@@ -1,10 +1,15 @@
 /**
  * Speculation Rules API – prefetch and prerender rules for same-origin navigation.
  * Used in root layout to improve perceived performance (instant navigations).
- * Only public, same-origin URLs; no auth/dashboard/owner/tenant.
+ *
+ * Rules:
+ * - Only public, same-origin URLs; no auth/dashboard/owner/tenant (user-specific).
+ * - No prerender for pages that trigger side effects or reflect authenticated state.
+ * - Eager: above-the-fold / primary CTAs. Moderate: visible/near-viewport links.
+ * - Conservative: prefetch on hover or when link becomes visible (footer, secondary).
  */
 
-/** Primary nav and home – prefetch as soon as possible (eager). */
+/** Primary nav and home – prefetch as soon as the rule is seen (eager). */
 export const EAGER_PREFETCH_URLS: string[] = [
   "/",
   "/buy",
@@ -13,9 +18,10 @@ export const EAGER_PREFETCH_URLS: string[] = [
   "/property-management",
   "/loans",
   "/notary",
-];
+  "/contact",
+]
 
-/** Secondary nav – prefetch when link is visible (moderate). */
+/** Secondary nav and high-traffic pages – prefetch when link is visible (moderate). */
 export const MODERATE_PREFETCH_URLS: string[] = [
   "/calculators",
   "/resources",
@@ -27,15 +33,64 @@ export const MODERATE_PREFETCH_URLS: string[] = [
   "/faq",
   "/refinance/process",
   "/sweepstakes",
-  "/contact",
   "/accessibility",
   "/privacy-policy",
   "/terms-of-service",
-];
+  "/sitemap",
+  "/login",
+  "/auth",
+  "/buy/first-time",
+  "/buy/second-home",
+  "/buy/fixed-rate",
+  "/buy/rates",
+  "/loans/conventional",
+  "/about/history",
+  "/about/team",
+  "/about/careers",
+  "/faq/general-faqs",
+  "/faq/payments-faqs",
+]
+
+/**
+ * Footer and secondary links – prefetch on hover or when visible (conservative).
+ * Keeps bandwidth usage low while still speeding up likely next navigations.
+ */
+export const CONSERVATIVE_PREFETCH_URLS: string[] = [
+  "/buy/30-year",
+  "/buy/15-year",
+  "/buy/adjustable-rate",
+  "/loans/fha",
+  "/loans/va",
+  "/loans/usda",
+  "/loans/heloc",
+  "/loans/reverse",
+  "/loans/jumbo",
+  "/calculators/mortgage-payment",
+  "/calculators/affordability",
+  "/calculators/income",
+  "/calculators/closing-cost",
+  "/calculators/refinance",
+  "/calculators/home-sale",
+  "/calculators/buying-power",
+  "/about/giving-back",
+  "/about/news",
+  "/about/investor-relations",
+  "/about/testimonials",
+  "/faq/tenant-faqs",
+  "/faq/owner-faqs",
+  "/faq/notary-faqs",
+  "/faq/loans-faqs",
+  "/faq/loan-payoffs-faqs",
+  "/faq/hardship-faqs",
+  "/faq/escrow-faqs",
+  "/faq/disaster-faqs",
+  "/faq/buying-selling-faqs",
+]
 
 /**
  * Build speculation rules JSON for script type="speculationrules".
- * Prefetch only; no prerender for user-specific or dynamic pages.
+ * Prefetch only (no prerender) to avoid side effects and double analytics.
+ * Same-origin only; no user-specific or token-bearing URLs.
  */
 export function getSpeculationRulesJson(): string {
   const rules: {
@@ -48,6 +103,7 @@ export function getSpeculationRulesJson(): string {
     prefetch: [
       { source: "document", urls: EAGER_PREFETCH_URLS, eagerness: "eager" },
       { source: "document", urls: MODERATE_PREFETCH_URLS, eagerness: "moderate" },
+      { source: "document", urls: CONSERVATIVE_PREFETCH_URLS, eagerness: "conservative" },
     ],
   };
   return JSON.stringify(rules);

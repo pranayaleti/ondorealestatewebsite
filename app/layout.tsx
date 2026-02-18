@@ -155,12 +155,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://supabase.co" />
         <link rel="preconnect" href="https://ondorealestateserver.onrender.com" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        {/* Speculation Rules API: prefetch same-origin pages for faster navigation */}
+        {/* Speculation Rules API: prefetch/prerender same-origin pages for faster navigation */}
         <script
           type="speculationrules"
           dangerouslySetInnerHTML={{ __html: getSpeculationRulesJson() }}
         />
-        
+        {/* Prefetch fallback for browsers without Speculation Rules (same-origin, high-probability only) */}
+        <link rel="prefetch" href="/buy" />
+        <link rel="prefetch" href="/sell" />
+        <link rel="prefetch" href="/contact" />
         <meta
           httpEquiv="Content-Security-Policy"
           content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://ondorealestateserver.onrender.com; frame-src 'self';"
