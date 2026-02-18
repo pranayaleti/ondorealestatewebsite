@@ -126,6 +126,17 @@ describe("blacklist", () => {
       const result = await validateContent("anything")
       expect(result.isValid).toBe(true)
     })
+    it("returns valid when response success is false or data missing", async () => {
+      vi.stubGlobal(
+        "fetch",
+        vi.fn().mockResolvedValue({
+          ok: true,
+          json: () => Promise.resolve({ success: false }),
+        })
+      )
+      const result = await validateContent("anything")
+      expect(result.isValid).toBe(true)
+    })
     it("returns valid when no filters match", async () => {
       vi.stubGlobal(
         "fetch",
@@ -156,6 +167,11 @@ describe("blacklist", () => {
       const result = await validateContent("this is spam content")
       expect(result.isValid).toBe(false)
       expect(result.blockedPattern).toBe("spam")
+    })
+    it("returns valid on fetch throw (fail open)", async () => {
+      vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("network")))
+      const result = await validateContent("anything")
+      expect(result.isValid).toBe(true)
     })
   })
 })

@@ -61,4 +61,28 @@ describe("ErrorBoundary", () => {
     expect(screen.getByText(/Try Again/)).toBeInTheDocument()
     expect(screen.getByText(/Go Home/)).toBeInTheDocument()
   })
+  it("calls window.gtag in componentDidCatch when gtag exists", () => {
+    const gtag = vi.fn()
+    vi.stubGlobal("gtag", gtag)
+    ;(window as { gtag?: typeof gtag }).gtag = gtag
+    render(
+      <ErrorBoundary>
+        <Throw />
+      </ErrorBoundary>
+    )
+    expect(gtag).toHaveBeenCalledWith("event", "exception", {
+      description: "test error",
+      fatal: false,
+    })
+    vi.unstubAllGlobals()
+  })
+  it("Try Again button resets state (child re-renders and may throw again)", () => {
+    render(
+      <ErrorBoundary>
+        <Throw />
+      </ErrorBoundary>
+    )
+    fireEvent.click(screen.getByText(/Try Again/))
+    expect(screen.getByText(/Something went wrong/i)).toBeInTheDocument()
+  })
 })

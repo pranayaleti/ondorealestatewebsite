@@ -135,11 +135,25 @@ describe("security", () => {
     it("isUserAgentBlacklisted allows normal UA", () => {
       expect(Blacklist.isUserAgentBlacklisted("Mozilla/5.0 Chrome")).toBe(false)
     })
+    it("isUserAgentBlacklisted returns false for empty", () => {
+      expect(Blacklist.isUserAgentBlacklisted("")).toBe(false)
+    })
     it("isDomainBlacklisted blocks nextjs/vercel domains", () => {
       expect(Blacklist.isDomainBlacklisted("https://vercel.com/page")).toBe(true)
     })
     it("isDomainBlacklisted allows other domains", () => {
       expect(Blacklist.isDomainBlacklisted("https://example.com")).toBe(false)
+    })
+    it("isDomainBlacklisted handles invalid URL via catch", () => {
+      expect(Blacklist.isDomainBlacklisted("not-a-url")).toBe(false)
+    })
+    it("addPattern adds custom pattern", () => {
+      Blacklist.addPattern(/custom-bot/i)
+      expect(Blacklist.isUserAgentBlacklisted("custom-bot")).toBe(true)
+    })
+    it("addUserAgent adds custom UA", () => {
+      Blacklist.addUserAgent("my-bot")
+      expect(Blacklist.isUserAgentBlacklisted("my-bot")).toBe(true)
     })
   })
 })

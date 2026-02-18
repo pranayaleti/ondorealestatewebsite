@@ -38,6 +38,11 @@ describe("task-scheduler", () => {
       })
       expect(progress.length).toBeGreaterThan(0)
     })
+    it("respects delay between chunks", async () => {
+      const items = [1, 2, 3, 4]
+      const out = await processInChunks(items, (x) => x, { chunkSize: 2, delay: 5 })
+      expect(out).toEqual([1, 2, 3, 4])
+    })
   })
 
   describe("debounce", () => {

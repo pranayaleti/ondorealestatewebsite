@@ -12,7 +12,9 @@ export const performanceMonitor = {
   // Measure page load time
   measurePageLoad: () => {
     if (typeof window !== "undefined" && "performance" in window) {
-      const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming
+      const entries = performance.getEntriesByType("navigation")
+      const navigation = entries[0] as PerformanceNavigationTiming | undefined
+      if (!navigation) return null
       return {
         domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
         loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
