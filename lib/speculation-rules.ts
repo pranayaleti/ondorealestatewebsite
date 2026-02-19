@@ -90,20 +90,21 @@ export const CONSERVATIVE_PREFETCH_URLS: string[] = [
 /**
  * Build speculation rules JSON for script type="speculationrules".
  * Prefetch only (no prerender) to avoid side effects and double analytics.
- * Same-origin only; no user-specific or token-bearing URLs.
+ * Same-origin only (relative URLs); no user-specific or token-bearing URLs.
+ * source "list" = explicit URLs; eagerness: eager = immediately, moderate = when visible, conservative = on hover/visible.
  */
 export function getSpeculationRulesJson(): string {
   const rules: {
     prefetch?: Array<{
-      source: "document";
+      source: "list";
       urls: string[];
       eagerness: "eager" | "moderate" | "conservative";
     }>;
   } = {
     prefetch: [
-      { source: "document", urls: EAGER_PREFETCH_URLS, eagerness: "eager" },
-      { source: "document", urls: MODERATE_PREFETCH_URLS, eagerness: "moderate" },
-      { source: "document", urls: CONSERVATIVE_PREFETCH_URLS, eagerness: "conservative" },
+      { source: "list", urls: EAGER_PREFETCH_URLS, eagerness: "eager" },
+      { source: "list", urls: MODERATE_PREFETCH_URLS, eagerness: "moderate" },
+      { source: "list", urls: CONSERVATIVE_PREFETCH_URLS, eagerness: "conservative" },
     ],
   };
   return JSON.stringify(rules);

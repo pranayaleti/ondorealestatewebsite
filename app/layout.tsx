@@ -161,8 +161,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: getSpeculationRulesJson() }}
         />
         {/* Prefetch fallback for browsers without Speculation Rules (same-origin, high-probability only) */}
+        <link rel="prefetch" href="/" />
         <link rel="prefetch" href="/buy" />
         <link rel="prefetch" href="/sell" />
+        <link rel="prefetch" href="/properties" />
         <link rel="prefetch" href="/contact" />
         <meta
           httpEquiv="Content-Security-Policy"

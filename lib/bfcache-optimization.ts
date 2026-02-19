@@ -9,6 +9,8 @@
  *   never rely on beforeunload/unload (they break bfcache and are unreliable).
  * - Avoid: unload listeners, Cache API during unload, closing WebSockets in unload,
  *   or setting history.state right before navigation.
+ * - Prefer replaceState for in-page state updates so the history entry stays bfcache-eligible;
+ *   avoid pushState right before the user navigates away.
  */
 
 type BfcacheRestoreCallback = () => void

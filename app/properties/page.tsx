@@ -522,6 +522,8 @@ import { SITE_URL } from '@/lib/site';
 import type { Property } from '@/app/types/property';
 import { mapApiProperty } from '@/lib/mapProperty';
 import { backendUrl } from '@/lib/backend';
+import { caches, cacheKeys } from '@/lib/cache';
+import { registerBfcacheRestoreCallback } from '@/lib/bfcache-optimization';
 
 // keep your SortOption union if not importing
 type LocalSortOption =
@@ -551,14 +553,24 @@ export default function PropertiesPage() {
   const [sortBy, setSortBy] = useState<LocalSortOption>('newest');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // 3a) Fetch from your Render API (server already public)
+  // 3a) Fetch from your Render API; use in-memory cache for repeat visits and bfcache-friendly behavior
+  const PROPERTIES_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
+  const propertiesCacheKey = cacheKeys.api.properties();
+
   useEffect(() => {
     const controller = new AbortController();
     (async () => {
       try {
+        const cached = caches.properties.get(propertiesCacheKey) as Property[] | null;
+        if (Array.isArray(cached) && cached.length >= 0 && retryCount === 0) {
+          setAllApiProperties(cached);
+          setLoading(false);
+          setError(null);
+          return;
+        }
+
         setLoading(true);
         setError(null);
-        // Static export can't run Next.js Route Handlers; fetch upstream directly.
         const res = await fetch(backendUrl('/api/properties/public'), {
           signal: controller.signal,
           cache: 'no-store',
@@ -586,11 +598,11 @@ export default function PropertiesPage() {
         }
 
         const mapped: Property[] = json.map(mapApiProperty);
+        caches.properties.set(propertiesCacheKey, mapped, PROPERTIES_CACHE_TTL);
         setAllApiProperties(mapped);
-        setRetryCount(0); // Reset retry count on success
+        setRetryCount(0);
       } catch (e: unknown) {
         if (e instanceof Error && e.name === 'AbortError') {
-          // expected in React Strict Mode (first effect run is aborted)
           return;
         }
 
@@ -607,7 +619,29 @@ export default function PropertiesPage() {
       }
     })();
     return () => controller.abort();
-  }, [retryCount]);
+  }, [retryCount, propertiesCacheKey]);
+
+  // Revalidate on bfcache restore so returning users see fresh data without full loading state
+  useEffect(() => {
+    const handleRestore = () => {
+      fetch(backendUrl('/api/properties/public'), {
+        cache: 'no-store',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      })
+        .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+        .then((json: unknown) => {
+          if (!Array.isArray(json)) return;
+          const mapped: Property[] = json.map(mapApiProperty);
+          caches.properties.set(propertiesCacheKey, mapped, PROPERTIES_CACHE_TTL);
+          setAllApiProperties(mapped);
+          setError(null);
+        })
+        .catch(() => { /* ignore background revalidate errors */ });
+    };
+
+    const unregister = registerBfcacheRestoreCallback(handleRestore);
+    return unregister;
+  }, [propertiesCacheKey]);
 
   // 3b) Apply your existing filter/sort/search on the fetched list
   useEffect(() => {

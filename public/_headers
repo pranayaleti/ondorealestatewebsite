@@ -35,8 +35,7 @@
 /*.js
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML files - short cache with revalidation; supports bfcache (back/forward cache)
-# Avoid long-lived cache for HTML so back/forward can restore from bfcache when possible
+# HTML files - short cache with revalidation; keeps pages bfcache-eligible
 /*.html
   Cache-Control: public, max-age=0, must-revalidate, stale-while-revalidate=3600
 
@@ -46,8 +45,9 @@
 /*.xml
   Cache-Control: public, max-age=86400
 
-# Security headers
+# Security and document cache (root); short cache keeps HTML bfcache-eligible
 /*
+  Cache-Control: public, max-age=0, must-revalidate, stale-while-revalidate=3600
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block

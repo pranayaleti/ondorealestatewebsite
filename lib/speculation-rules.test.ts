@@ -37,10 +37,10 @@ describe("speculation-rules", () => {
       expect(eagernesses).toContain("moderate")
       expect(eagernesses).toContain("conservative")
     })
-    it("each entry has source document and urls", () => {
+    it("each entry has source list and urls", () => {
       const parsed = JSON.parse(getSpeculationRulesJson())
       for (const rule of parsed.prefetch) {
-        expect(rule.source).toBe("document")
+        expect(rule.source).toBe("list")
         expect(Array.isArray(rule.urls)).toBe(true)
       }
     })
