@@ -102,7 +102,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.purchasePrice}
+                    value={formData.purchasePrice || ''}
                     onChange={(e) => handleInputChange('purchasePrice', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="100,000"
@@ -119,7 +119,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.monthlyRent}
+                    value={formData.monthlyRent || ''}
                     onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,000"
@@ -136,7 +136,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.afterRepairValue}
+                    value={formData.afterRepairValue || ''}
                     onChange={(e) => handleInputChange('afterRepairValue', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"

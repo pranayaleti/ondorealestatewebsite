@@ -100,36 +100,39 @@ const RetirementCalculator: React.FC = () => {
       otherIncome
     } = formData;
 
-    const yearsToRetirement = retirementAge - currentAge;
-    const yearsOfRetirement = lifeExpectancy - retirementAge;
+    const yearsToRetirement = Math.max(0, retirementAge - currentAge);
+    const yearsOfRetirement = Math.max(0, lifeExpectancy - retirementAge);
 
-    // Calculate future value of current savings
+    const netRealEstateIncome = Math.max(0, realEstateIncome - realEstateExpenses);
+
     const futureValueOfSavings = currentSavings * Math.pow(1 + investmentReturn / 100, yearsToRetirement);
 
-    // Calculate future value of monthly contributions
     const monthlyRate = investmentReturn / 100 / 12;
     const totalMonths = yearsToRetirement * 12;
-    const futureValueOfContributions = monthlyContribution * 
-      (Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate;
+    const futureValueOfContributions = monthlyRate > 0
+      ? monthlyContribution * (Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate
+      : monthlyContribution * totalMonths;
 
-    // Calculate total retirement savings
-    const totalRetirementSavings = futureValueOfSavings + futureValueOfContributions;
+    // Net rental income reinvested annually (FV of annuity)
+    const annualReturn = investmentReturn / 100;
+    const futureValueOfRentalIncome = annualReturn > 0
+      ? netRealEstateIncome * ((Math.pow(1 + annualReturn, yearsToRetirement) - 1) / annualReturn)
+      : netRealEstateIncome * yearsToRetirement;
 
-    // Calculate real estate value at retirement
+    const totalRetirementSavings = futureValueOfSavings + futureValueOfContributions + futureValueOfRentalIncome;
+
     const realEstateValueAtRetirement = currentRealEstateValue * 
       Math.pow(1 + realEstateAppreciation / 100, yearsToRetirement);
 
-    // Calculate total retirement assets
     const totalRetirementAssets = totalRetirementSavings + realEstateValueAtRetirement;
 
-    // Calculate retirement income from assets (using 4% rule)
     const retirementIncomeFromAssets = totalRetirementAssets * 0.04;
 
-    // Calculate total retirement income
     const annualRetirementIncome = retirementIncomeFromAssets + socialSecurityIncome + otherIncome;
 
-    // Calculate retirement income gap
-    const retirementIncomeGap = desiredRetirementIncome - annualRetirementIncome;
+    // Inflate desired income to future dollars for an apples-to-apples comparison
+    const inflatedDesiredIncome = desiredRetirementIncome * Math.pow(1 + inflationRate / 100, yearsToRetirement);
+    const retirementIncomeGap = inflatedDesiredIncome - annualRetirementIncome;
 
     // Calculate monthly retirement budget
     const monthlyRetirementBudget = annualRetirementIncome / 12;
@@ -138,14 +141,14 @@ const RetirementCalculator: React.FC = () => {
     let retirementReadiness = '';
     let recommendations: string[] = [];
 
-    if (annualRetirementIncome >= desiredRetirementIncome) {
+    if (annualRetirementIncome >= inflatedDesiredIncome) {
       retirementReadiness = 'On Track';
       recommendations = [
         'You\'re on track for retirement! Consider increasing real estate investments for additional income.',
         'Review your investment allocation to ensure optimal returns.',
         'Consider early retirement options if desired.'
       ];
-    } else if (annualRetirementIncome >= desiredRetirementIncome * 0.8) {
+    } else if (annualRetirementIncome >= inflatedDesiredIncome * 0.8) {
       retirementReadiness = 'Close to Target';
       recommendations = [
         'You\'re close to your retirement goal. Consider increasing monthly contributions.',
@@ -170,16 +173,15 @@ const RetirementCalculator: React.FC = () => {
     for (let year = 1; year <= yearsToRetirement; year++) {
       const age = currentAge + year;
       
-      // Calculate savings growth
-      currentSavingsAmount = currentSavingsAmount * (1 + investmentReturn / 100) + (monthlyContribution * 12);
+      // Monthly compounding for savings + contributions + net rental income
+      for (let m = 0; m < 12; m++) {
+        currentSavingsAmount = currentSavingsAmount * (1 + monthlyRate) + monthlyContribution;
+      }
+      currentSavingsAmount += netRealEstateIncome;
       
-      // Calculate real estate value growth
       currentRealEstateValueAmount = currentRealEstateValueAmount * (1 + realEstateAppreciation / 100);
       
-      // Calculate total assets
       const totalAssets = currentSavingsAmount + currentRealEstateValueAmount;
-      
-      // Calculate projected income (4% rule)
       const projectedIncome = totalAssets * 0.04;
 
       yearByYearProjection.push({
@@ -302,7 +304,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.currentAge}
+                      value={formData.currentAge || ''}
                       onChange={(e) => handleInputChange('currentAge', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -313,7 +315,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.retirementAge}
+                      value={formData.retirementAge || ''}
                       onChange={(e) => handleInputChange('retirementAge', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -324,7 +326,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.lifeExpectancy}
+                      value={formData.lifeExpectancy || ''}
                       onChange={(e) => handleInputChange('lifeExpectancy', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -345,7 +347,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.currentSavings}
+                      value={formData.currentSavings || ''}
                       onChange={(e) => handleInputChange('currentSavings', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -356,7 +358,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.currentIncome}
+                      value={formData.currentIncome || ''}
                       onChange={(e) => handleInputChange('currentIncome', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -367,7 +369,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.currentExpenses}
+                      value={formData.currentExpenses || ''}
                       onChange={(e) => handleInputChange('currentExpenses', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -388,7 +390,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.currentRealEstateValue}
+                      value={formData.currentRealEstateValue || ''}
                       onChange={(e) => handleInputChange('currentRealEstateValue', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -399,7 +401,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.realEstateIncome}
+                      value={formData.realEstateIncome || ''}
                       onChange={(e) => handleInputChange('realEstateIncome', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -410,7 +412,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.realEstateExpenses}
+                      value={formData.realEstateExpenses || ''}
                       onChange={(e) => handleInputChange('realEstateExpenses', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -422,7 +424,7 @@ const RetirementCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.realEstateAppreciation}
+                      value={formData.realEstateAppreciation || ''}
                       onChange={(e) => handleInputChange('realEstateAppreciation', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -443,7 +445,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.monthlyContribution}
+                      value={formData.monthlyContribution || ''}
                       onChange={(e) => handleInputChange('monthlyContribution', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -455,7 +457,7 @@ const RetirementCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.investmentReturn}
+                      value={formData.investmentReturn || ''}
                       onChange={(e) => handleInputChange('investmentReturn', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -467,7 +469,7 @@ const RetirementCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.inflationRate}
+                      value={formData.inflationRate || ''}
                       onChange={(e) => handleInputChange('inflationRate', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -488,7 +490,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.desiredRetirementIncome}
+                      value={formData.desiredRetirementIncome || ''}
                       onChange={(e) => handleInputChange('desiredRetirementIncome', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -499,7 +501,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.socialSecurityIncome}
+                      value={formData.socialSecurityIncome || ''}
                       onChange={(e) => handleInputChange('socialSecurityIncome', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -510,7 +512,7 @@ const RetirementCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.otherIncome}
+                      value={formData.otherIncome || ''}
                       onChange={(e) => handleInputChange('otherIncome', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />

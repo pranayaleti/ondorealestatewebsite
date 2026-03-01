@@ -110,10 +110,6 @@ const RentVsOwnCalculator: React.FC = () => {
       (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / 
       (Math.pow(1 + monthlyRate, totalPayments) - 1);
 
-    // Calculate PMI if down payment is less than 20%
-    const downPaymentPercent = (downPayment / homePrice) * 100;
-    const monthlyPmi = downPaymentPercent < 20 ? (loanAmount * 0.005) / 12 : 0;
-
     // Calculate monthly costs for buying
     const monthlyTax = propertyTax / 12;
     const monthlyInsurance = homeownersInsurance / 12;
@@ -171,7 +167,7 @@ const RentVsOwnCalculator: React.FC = () => {
       });
     }
 
-    // Calculate break-even point
+    // Break-even: year when net cost of buying (costs minus equity) drops below renting
     let breakEvenYears = 0;
     let cumulativeRent = 0;
     let cumulativeBuy = 0;
@@ -179,8 +175,9 @@ const RentVsOwnCalculator: React.FC = () => {
     for (let year = 1; year <= analysisYears; year++) {
       cumulativeRent += annualComparison[year - 1].rentCost;
       cumulativeBuy += annualComparison[year - 1].buyCost;
+      const equityBuilt = annualComparison[year - 1].equity - downPayment;
       
-      if (cumulativeBuy <= cumulativeRent) {
+      if ((cumulativeBuy - equityBuilt) <= cumulativeRent) {
         breakEvenYears = year;
         break;
       }
@@ -312,7 +309,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.monthlyRent}
+                      value={formData.monthlyRent || ''}
                       onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -324,7 +321,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.rentIncrease}
+                      value={formData.rentIncrease || ''}
                       onChange={(e) => handleInputChange('rentIncrease', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -335,7 +332,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.securityDeposit}
+                      value={formData.securityDeposit || ''}
                       onChange={(e) => handleInputChange('securityDeposit', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -346,7 +343,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.rentersInsurance}
+                      value={formData.rentersInsurance || ''}
                       onChange={(e) => handleInputChange('rentersInsurance', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -367,7 +364,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.homePrice}
+                      value={formData.homePrice || ''}
                       onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -378,7 +375,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.downPayment}
+                      value={formData.downPayment || ''}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -390,7 +387,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.interestRate}
+                      value={formData.interestRate || ''}
                       onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -418,7 +415,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     type="number"
                     min={300}
                     max={850}
-                    value={formData.creditScore}
+                    value={formData.creditScore || ''}
                     onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   />
@@ -429,7 +426,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.loanTerm}
+                      value={formData.loanTerm || ''}
                       onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -440,7 +437,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.propertyTax}
+                      value={formData.propertyTax || ''}
                       onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -451,7 +448,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.homeownersInsurance}
+                      value={formData.homeownersInsurance || ''}
                       onChange={(e) => handleInputChange('homeownersInsurance', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -462,7 +459,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.maintenance}
+                      value={formData.maintenance || ''}
                       onChange={(e) => handleInputChange('maintenance', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -473,7 +470,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.hoa}
+                      value={formData.hoa || ''}
                       onChange={(e) => handleInputChange('hoa', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -494,7 +491,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={formData.analysisYears}
+                      value={formData.analysisYears || ''}
                       onChange={(e) => handleInputChange('analysisYears', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -506,7 +503,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.investmentReturn}
+                      value={formData.investmentReturn || ''}
                       onChange={(e) => handleInputChange('investmentReturn', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
@@ -518,7 +515,7 @@ const RentVsOwnCalculator: React.FC = () => {
                     <input
                       type="number"
                       step="0.1"
-                      value={formData.homeAppreciation}
+                      value={formData.homeAppreciation || ''}
                       onChange={(e) => handleInputChange('homeAppreciation', Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />

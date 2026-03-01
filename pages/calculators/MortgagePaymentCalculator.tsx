@@ -71,26 +71,18 @@ const MortgagePaymentCalculator: React.FC = () => {
     const { monthlyMI, upfrontFee, description: _miDesc } = getProgramMI(program, loanAmount, homePrice, credit, loanTerm, downPayment);
     const financedLoanAmount = formData.financeUpfront ? loanAmount + upfrontFee : loanAmount;
 
-    // Calculate monthly mortgage payment (P&I) on base loan amount (not financed amount)
-    const monthlyPayment = calculateMonthlyPI(loanAmount, formData.interestRate, formData.loanTerm);
+    // P&I computed on the actual financed amount (includes rolled-in upfront fee)
+    const monthlyPayment = calculateMonthlyPI(financedLoanAmount, formData.interestRate, formData.loanTerm);
 
-    // Calculate monthly property tax and insurance
     const monthlyTax = propertyTax / 12;
     const monthlyInsurance = insurance / 12;
-
-    // Monthly MI from program rules
     const monthlyPmi = monthlyMI;
 
-    // Calculate total monthly payment
     const totalMonthly = monthlyPayment + monthlyTax + monthlyInsurance + monthlyPmi;
-
-    // Calculate yearly totals
     const totalYearly = totalMonthly * 12;
     const totalCost = totalYearly * loanTerm;
-    // Total interest is on the base loan amount (not financed amount for interest calculation)
-    const totalInterest = (monthlyPayment * totalPayments) - loanAmount;
+    const totalInterest = (monthlyPayment * totalPayments) - financedLoanAmount;
 
-    // Generate amortization schedule starting with financed amount
     const amortizationSchedule = [];
     let remainingBalance = financedLoanAmount;
     
@@ -109,10 +101,12 @@ const MortgagePaymentCalculator: React.FC = () => {
         remainingBalance: Math.max(0, remainingBalance)
       });
     }
+
+    const firstMonthInterest = financedLoanAmount * monthlyRate;
     
     setResults({
-      principal: monthlyPayment - (financedLoanAmount * monthlyRate),
-      interest: financedLoanAmount * monthlyRate,
+      principal: monthlyPayment - firstMonthInterest,
+      interest: firstMonthInterest,
       tax: monthlyTax,
       insurance: monthlyInsurance,
       pmi: monthlyPmi,
@@ -232,7 +226,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.homePrice}
+                    value={formData.homePrice || ''}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="300,000"
@@ -250,7 +244,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     <span className="absolute left-3 top-3 text-foreground/70">$</span>
                     <input
                       type="number"
-                      value={formData.downPayment}
+                      value={formData.downPayment || ''}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
                       className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                       placeholder="60,000"
@@ -287,7 +281,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.loanAmount}
+                    value={formData.loanAmount || ''}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="240,000"
@@ -303,7 +297,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.01"
-                  value={formData.interestRate}
+                  value={formData.interestRate || ''}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="4.5"
@@ -335,7 +329,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.propertyTax}
+                    value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="3,000"
@@ -352,7 +346,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.insurance}
+                    value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
@@ -386,7 +380,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   type="number"
                   min={300}
                   max={850}
-                  value={formData.creditScore}
+                  value={formData.creditScore || ''}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="740"

@@ -123,7 +123,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.loanAmount}
+                    value={formData.loanAmount || ''}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="300,000"
@@ -139,7 +139,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.01"
-                  value={formData.baseRate}
+                  value={formData.baseRate || ''}
                   onChange={(e) => handleInputChange('baseRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="6.5"
@@ -154,7 +154,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.01"
-                  value={formData.buydownRate}
+                  value={formData.buydownRate || ''}
                   onChange={(e) => handleInputChange('buydownRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="4.5"
@@ -189,7 +189,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.buydownCost}
+                    value={formData.buydownCost || ''}
                     onChange={(e) => handleInputChange('buydownCost', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="6,000"

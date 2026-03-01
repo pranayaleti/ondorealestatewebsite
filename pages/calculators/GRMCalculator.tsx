@@ -104,7 +104,7 @@ const GRMCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.purchasePrice}
+                    value={formData.purchasePrice || ''}
                     onChange={(e) => handleInputChange('purchasePrice', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="300,000"
@@ -121,7 +121,7 @@ const GRMCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.monthlyRent}
+                    value={formData.monthlyRent || ''}
                     onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="2,500"
@@ -138,7 +138,7 @@ const GRMCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.annualRent}
+                    value={formData.annualRent || ''}
                     onChange={(e) => handleInputChange('annualRent', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"
@@ -154,7 +154,7 @@ const GRMCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.1"
-                  value={targetGRM}
+                  value={targetGRM || ''}
                   onChange={(e) => setTargetGRM(Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="12.0"

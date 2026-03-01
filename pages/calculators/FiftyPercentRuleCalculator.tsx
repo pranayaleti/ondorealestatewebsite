@@ -140,7 +140,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.monthlyRent}
+                    value={formData.monthlyRent || ''}
                     onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="2,000"
@@ -157,7 +157,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.annualRent}
+                    value={formData.annualRent || ''}
                     onChange={(e) => handleInputChange('annualRent', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"
@@ -174,7 +174,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.propertyTax}
+                    value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="2,400"
@@ -191,7 +191,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.insurance}
+                    value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
@@ -208,7 +208,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.maintenance}
+                    value={formData.maintenance || ''}
                     onChange={(e) => handleInputChange('maintenance', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="2,400"
@@ -226,7 +226,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <input
                     type="number"
                     step="0.01"
-                    value={formData.propertyManagement}
+                    value={formData.propertyManagement || ''}
                     onChange={(e) => handleInputChange('propertyManagement', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"
@@ -242,7 +242,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.1"
-                  value={formData.vacancyRate}
+                  value={formData.vacancyRate || ''}
                   onChange={(e) => handleInputChange('vacancyRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="5.0"
@@ -258,7 +258,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.otherExpenses}
+                    value={formData.otherExpenses || ''}
                     onChange={(e) => handleInputChange('otherExpenses', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"

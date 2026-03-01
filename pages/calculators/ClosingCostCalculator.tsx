@@ -77,16 +77,17 @@ const ClosingCostCalculator: React.FC = () => {
     // Calculate third-party costs
     const thirdPartyCosts = titleInsurance + appraisal + inspection;
 
-    // Calculate prepaid costs
-    const prepaidCosts = prepaidInterest + escrowReserves + (monthlyTax * 2) + (monthlyInsurance * 2);
+    // Convert prepaid interest from days to dollars
+    const dailyInterest = formData.interestRate
+      ? (loanAmount * (formData.interestRate / 100)) / 365
+      : 0;
+    const prepaidInterestDollars = dailyInterest * prepaidInterest;
 
-    // Total closing costs
+    const prepaidCosts = prepaidInterestDollars + escrowReserves + (monthlyTax * 2) + (monthlyInsurance * 2);
+
     const totalClosingCosts = lenderCosts + thirdPartyCosts + prepaidCosts;
-
-    // Out of pocket costs (down payment + closing costs)
     const outOfPocket = downPayment + totalClosingCosts;
 
-    // Calculate monthly payment for break-even analysis using P&I if rate/term present
     let monthlyPI = 0;
     if (formData.interestRate && formData.loanTerm) {
       const r = (formData.interestRate / 100) / 12;
@@ -95,9 +96,12 @@ const ClosingCostCalculator: React.FC = () => {
     }
     const monthlyPayment = monthlyTax + monthlyInsurance + (monthlyPI || (loanAmount * 0.005));
 
-    // Break-even analysis (how many months to recoup closing costs)
-    const principalAssumption = monthlyPI ? (monthlyPI * 0.3) : (monthlyPayment * 0.1);
-    const breakEvenMonths = principalAssumption > 0 ? (totalClosingCosts / principalAssumption) : 0;
+    // First-month principal = P&I payment minus first month's interest
+    const firstMonthInterest = formData.interestRate
+      ? loanAmount * ((formData.interestRate / 100) / 12)
+      : 0;
+    const firstMonthPrincipal = monthlyPI > 0 ? monthlyPI - firstMonthInterest : 0;
+    const breakEvenMonths = firstMonthPrincipal > 0 ? (totalClosingCosts / firstMonthPrincipal) : 0;
 
     setResults({
       totalClosingCosts,
@@ -161,7 +165,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.homePrice}
+                    value={formData.homePrice || ''}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="300,000"
@@ -178,7 +182,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.downPayment}
+                    value={formData.downPayment || ''}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="60,000"
@@ -195,7 +199,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.loanAmount}
+                    value={formData.loanAmount || ''}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="240,000"
@@ -212,7 +216,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.propertyTax}
+                    value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="3,000"
@@ -229,7 +233,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.insurance}
+                    value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
@@ -245,7 +249,7 @@ const ClosingCostCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.01"
-                  value={formData.interestRate}
+                  value={formData.interestRate || ''}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="6.5"
@@ -292,7 +296,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.titleInsurance}
+                    value={formData.titleInsurance || ''}
                     onChange={(e) => handleInputChange('titleInsurance', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,000"
@@ -309,7 +313,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.appraisal}
+                    value={formData.appraisal || ''}
                     onChange={(e) => handleInputChange('appraisal', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="500"
@@ -326,7 +330,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.inspection}
+                    value={formData.inspection || ''}
                     onChange={(e) => handleInputChange('inspection', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="400"
@@ -343,7 +347,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.originationFee}
+                    value={formData.originationFee || ''}
                     onChange={(e) => handleInputChange('originationFee', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
@@ -359,7 +363,7 @@ const ClosingCostCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.125"
-                  value={formData.discountPoints}
+                  value={formData.discountPoints || ''}
                   onChange={(e) => handleInputChange('discountPoints', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="0"
@@ -373,7 +377,7 @@ const ClosingCostCalculator: React.FC = () => {
                 </label>
                 <input
                   type="number"
-                  value={formData.prepaidInterest}
+                  value={formData.prepaidInterest || ''}
                   onChange={(e) => handleInputChange('prepaidInterest', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="0"
@@ -389,7 +393,7 @@ const ClosingCostCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.escrowReserves}
+                    value={formData.escrowReserves || ''}
                     onChange={(e) => handleInputChange('escrowReserves', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="0"

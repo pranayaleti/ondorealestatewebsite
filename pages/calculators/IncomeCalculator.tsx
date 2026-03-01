@@ -142,7 +142,7 @@ const IncomeCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.homePrice}
+                    value={formData.homePrice || ''}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="300,000"
@@ -159,7 +159,7 @@ const IncomeCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.downPayment}
+                    value={formData.downPayment || ''}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="60,000"
@@ -175,7 +175,7 @@ const IncomeCalculator: React.FC = () => {
                 <input
                   type="number"
                   step="0.01"
-                  value={formData.interestRate}
+                  value={formData.interestRate || ''}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="4.5"
@@ -207,7 +207,7 @@ const IncomeCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.propertyTax}
+                    value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="3,000"
@@ -224,7 +224,7 @@ const IncomeCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.insurance}
+                    value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="1,200"
@@ -241,7 +241,7 @@ const IncomeCalculator: React.FC = () => {
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
                     type="number"
-                    value={formData.monthlyDebts}
+                    value={formData.monthlyDebts || ''}
                     onChange={(e) => handleInputChange('monthlyDebts', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                     placeholder="500"
@@ -274,7 +274,7 @@ const IncomeCalculator: React.FC = () => {
                   type="number"
                   min={300}
                   max={850}
-                  value={formData.creditScore}
+                  value={formData.creditScore || ''}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="740"
