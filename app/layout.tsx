@@ -10,6 +10,9 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { BfcacheProvider } from "@/components/bfcache-provider"
+import { PwaProvider } from "@/components/pwa/pwa-provider"
+import { RoutePrefetch } from "@/components/route-prefetch"
+import { WebVitalsReporter } from "@/components/web-vitals-reporter"
 import dynamic from "next/dynamic"
 import { JsonLd } from "@/components/json-ld"
 import { generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo"
@@ -150,12 +153,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://ondorealestateserver.onrender.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://supabase.co" />
-        <link rel="preconnect" href="https://ondorealestateserver.onrender.com" />
+
+        {/* High-priority preloads for above-the-fold resources */}
+        <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" fetchPriority="high" />
+
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        {/* Speculation Rules API: prefetch/prerender same-origin pages for faster navigation */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        {/* Speculation Rules API: prefetch + prerender same-origin pages for faster navigation */}
         <script
           type="speculationrules"
           dangerouslySetInnerHTML={{ __html: getSpeculationRulesJson() }}
@@ -170,23 +184,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           httpEquiv="Content-Security-Policy"
           content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://ondorealestateserver.onrender.com; frame-src 'self';"
         />
-        {/* Bfcache optimization - ensure pages can be cached for instant back/forward navigation */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <BfcacheProvider>
-          <AuthProvider>
-            <ScrollProgress />
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <ClientConsultationWidget />
-            <Toaster />
-          </AuthProvider>
-          </BfcacheProvider>
+          <PwaProvider>
+            <BfcacheProvider>
+              <AuthProvider>
+                <ScrollProgress />
+                <div className="min-h-screen flex flex-col">
+                  <Header />
+                  <main className="flex-1">{children}</main>
+                  <Footer />
+                </div>
+                <RoutePrefetch />
+                <WebVitalsReporter />
+                <ClientConsultationWidget />
+                <Toaster />
+              </AuthProvider>
+            </BfcacheProvider>
+          </PwaProvider>
         </ThemeProvider>
         <JsonLd
           id="global-jsonld"

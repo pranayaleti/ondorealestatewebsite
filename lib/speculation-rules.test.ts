@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import {
+  PRERENDER_URLS,
   EAGER_PREFETCH_URLS,
   MODERATE_PREFETCH_URLS,
   CONSERVATIVE_PREFETCH_URLS,
@@ -8,14 +9,18 @@ import {
 
 describe("speculation-rules", () => {
   describe("URL arrays", () => {
-    it("eager includes home and main nav", () => {
-      expect(EAGER_PREFETCH_URLS).toContain("/")
-      expect(EAGER_PREFETCH_URLS).toContain("/buy")
-      expect(EAGER_PREFETCH_URLS).toContain("/contact")
+    it("prerender includes safe static pages", () => {
+      expect(PRERENDER_URLS).toContain("/")
+      expect(PRERENDER_URLS).toContain("/buy")
+      expect(PRERENDER_URLS).toContain("/contact")
     })
-    it("moderate includes calculators and about", () => {
-      expect(MODERATE_PREFETCH_URLS).toContain("/calculators")
-      expect(MODERATE_PREFETCH_URLS).toContain("/about")
+    it("eager includes main nav pages", () => {
+      expect(EAGER_PREFETCH_URLS).toContain("/loans")
+      expect(EAGER_PREFETCH_URLS).toContain("/about")
+    })
+    it("moderate includes secondary pages", () => {
+      expect(MODERATE_PREFETCH_URLS).toContain("/resources")
+      expect(MODERATE_PREFETCH_URLS).toContain("/blog")
     })
     it("conservative includes calculator slugs", () => {
       expect(CONSERVATIVE_PREFETCH_URLS).toContain("/calculators/mortgage-payment")
@@ -27,20 +32,46 @@ describe("speculation-rules", () => {
       const json = getSpeculationRulesJson()
       expect(() => JSON.parse(json)).not.toThrow()
     })
-    it("includes prefetch with three eagerness levels", () => {
+
+    it("includes prerender rules", () => {
+      const parsed = JSON.parse(getSpeculationRulesJson())
+      expect(parsed.prerender).toBeDefined()
+      expect(Array.isArray(parsed.prerender)).toBe(true)
+      expect(parsed.prerender.length).toBeGreaterThan(0)
+      expect(parsed.prerender[0].source).toBe("list")
+      expect(parsed.prerender[0].urls.length).toBeGreaterThan(0)
+    })
+
+    it("includes prefetch with list and document sources", () => {
       const parsed = JSON.parse(getSpeculationRulesJson())
       expect(parsed.prefetch).toBeDefined()
       expect(Array.isArray(parsed.prefetch)).toBe(true)
-      expect(parsed.prefetch.length).toBe(3)
-      const eagernesses = parsed.prefetch.map((p: { eagerness: string }) => p.eagerness)
+
+      const listRules = parsed.prefetch.filter((p: { source: string }) => p.source === "list")
+      const docRules = parsed.prefetch.filter((p: { source: string }) => p.source === "document")
+      expect(listRules.length).toBe(3)
+      expect(docRules.length).toBe(1)
+
+      const eagernesses = listRules.map((p: { eagerness: string }) => p.eagerness)
       expect(eagernesses).toContain("eager")
       expect(eagernesses).toContain("moderate")
       expect(eagernesses).toContain("conservative")
     })
-    it("each entry has source list and urls", () => {
+
+    it("document rule excludes user-specific paths", () => {
       const parsed = JSON.parse(getSpeculationRulesJson())
-      for (const rule of parsed.prefetch) {
-        expect(rule.source).toBe("list")
+      const docRule = parsed.prefetch.find((p: { source: string }) => p.source === "document")
+      expect(docRule).toBeDefined()
+      expect(docRule.where).toBeDefined()
+    })
+
+    it("list entries have urls arrays", () => {
+      const parsed = JSON.parse(getSpeculationRulesJson())
+      const listRules = [
+        ...parsed.prefetch.filter((r: { source: string }) => r.source === "list"),
+        ...parsed.prerender.filter((r: { source: string }) => r.source === "list"),
+      ]
+      for (const rule of listRules) {
         expect(Array.isArray(rule.urls)).toBe(true)
       }
     })

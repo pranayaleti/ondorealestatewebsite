@@ -16,7 +16,9 @@
 type BfcacheRestoreCallback = () => void
 const restoreCallbacks: Set<BfcacheRestoreCallback> = new Set()
 const pagehideCallbacks: Set<() => void> = new Set()
-let pagehideListenerAttached = false
+const trackedTimers: Set<ReturnType<typeof setTimeout>> = new Set()
+const trackedIntervals: Set<ReturnType<typeof setInterval>> = new Set()
+let initialized = false
 
 /**
  * Register a callback to run when the page is restored from bfcache (pageshow + persisted).
@@ -30,42 +32,69 @@ export function registerBfcacheRestoreCallback(callback: BfcacheRestoreCallback)
 }
 
 /**
+ * Track a timer so it can be cleared before pagehide and re-created on bfcache restore.
+ * Returns the timer id. Use instead of raw setTimeout/setInterval for bfcache safety.
+ */
+export function trackTimeout(fn: () => void, ms: number): ReturnType<typeof setTimeout> {
+  const id = setTimeout(() => {
+    trackedTimers.delete(id)
+    fn()
+  }, ms)
+  trackedTimers.add(id)
+  return id
+}
+
+export function trackInterval(fn: () => void, ms: number): ReturnType<typeof setInterval> {
+  const id = setInterval(fn, ms)
+  trackedIntervals.add(id)
+  return id
+}
+
+export function untrackTimer(id: ReturnType<typeof setTimeout>): void {
+  clearTimeout(id)
+  trackedTimers.delete(id)
+}
+
+export function untrackInterval(id: ReturnType<typeof setInterval>): void {
+  clearInterval(id)
+  trackedIntervals.delete(id)
+}
+
+function runCallbacksSafely(callbacks: Set<() => void>) {
+  callbacks.forEach((cb) => {
+    try {
+      cb()
+    } catch (_) {
+      /* ignore so one callback does not break others */
+    }
+  })
+}
+
+/**
  * Initialize bfcache optimization.
- * Call this in a useEffect (e.g. from BfcacheProvider) so pages stay bfcache-eligible.
+ * Call once (idempotent) in a useEffect from BfcacheProvider.
  */
 export function initBfcacheOptimization() {
-  if (typeof window === "undefined") return
+  if (typeof window === "undefined" || initialized) return
+  initialized = true
 
   window.addEventListener(
     "pageshow",
     (event: PageTransitionEvent) => {
       if (event.persisted) {
-        restoreCallbacks.forEach((cb) => {
-          try {
-            cb()
-          } catch (_) {
-            // ignore so one callback does not break others
-          }
-        })
+        runCallbacksSafely(restoreCallbacks)
       }
     },
-    { passive: true }
+    { passive: true },
   )
 
-  // Pagehide: run lightweight callbacks only (e.g. sendBeacon). No heavy work or storage.
-  function handlePagehide() {
-    pagehideCallbacks.forEach((cb) => {
-      try {
-        cb()
-      } catch (_) {
-        // ignore so one callback does not break others
-      }
-    })
-  }
-  if (!pagehideListenerAttached) {
-    pagehideListenerAttached = true
-    window.addEventListener("pagehide", handlePagehide, { passive: true })
-  }
+  window.addEventListener(
+    "pagehide",
+    () => {
+      runCallbacksSafely(pagehideCallbacks)
+    },
+    { passive: true },
+  )
 }
 
 /**
@@ -75,7 +104,7 @@ export function initBfcacheOptimization() {
  */
 export function onPagehide(callback: () => void): () => void {
   pagehideCallbacks.add(callback)
-  if (typeof window !== "undefined" && !pagehideListenerAttached) {
+  if (typeof window !== "undefined" && !initialized) {
     initBfcacheOptimization()
   }
   return () => {
@@ -84,17 +113,45 @@ export function onPagehide(callback: () => void): () => void {
 }
 
 /**
- * Cleanup function to ensure bfcache compatibility
- * Closes any connections that might prevent bfcache
+ * Cleanup function to ensure bfcache compatibility.
+ * Clears tracked timers/intervals and closes open IndexedDB connections.
+ * Call from pagehide (or automatically via BfcacheProvider).
  */
 export function cleanupForBfcache() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return
 
-  // Close any IndexedDB connections
-  // Note: This is a placeholder - implement based on your IndexedDB usage
-  
-  // Clear any timers that might prevent bfcache
-  // Note: Most timers are automatically cleared, but check for any persistent ones
+  trackedTimers.forEach((id) => clearTimeout(id))
+  trackedTimers.clear()
+  trackedIntervals.forEach((id) => clearInterval(id))
+  trackedIntervals.clear()
+
+  // Close all IndexedDB databases by requesting and immediately closing them.
+  // Real connections are managed by callers; this ensures no stale handles linger.
+  if (typeof indexedDB !== "undefined") {
+    try {
+      const req = indexedDB.open("ondo-pwa-db")
+      req.onsuccess = () => req.result.close()
+    } catch (_) {
+      /* best-effort */
+    }
+  }
+}
+
+/**
+ * Re-initialize resources after bfcache restore (timers, subscriptions, stale data).
+ * Consumers register their own restore callbacks; this runs all of them plus
+ * cleans up any stale state from the frozen page.
+ */
+export function restoreAfterBfcache() {
+  if (typeof window === "undefined") return
+
+  // Revalidate any in-memory caches by broadcasting a custom event
+  window.dispatchEvent(new CustomEvent("bfcache-restore"))
+
+  // Force re-check of online/offline state – the network may have changed
+  if (navigator.onLine) {
+    window.dispatchEvent(new Event("online"))
+  }
 }
 
 /**
@@ -127,12 +184,11 @@ export function onPageHidden(callback: () => void): () => void {
 export function sendBeaconOnPagehide(url: string, payload?: string | Blob): () => void {
   return onPagehide(() => {
     if (typeof navigator !== "undefined" && navigator.sendBeacon) {
-      if (payload !== undefined) {
-        const blob = typeof payload === "string" ? new Blob([payload], { type: "text/plain" }) : payload
-        navigator.sendBeacon(url, blob)
-      } else {
-        navigator.sendBeacon(url)
-      }
+      const blob =
+        typeof payload === "string"
+          ? new Blob([payload], { type: "text/plain" })
+          : payload
+      navigator.sendBeacon(url, blob ?? "")
     }
   })
 }

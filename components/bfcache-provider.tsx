@@ -1,7 +1,13 @@
 "use client"
 
 import { useEffect } from "react"
-import { initBfcacheOptimization, registerBfcacheRestoreCallback } from "@/lib/bfcache-optimization"
+import {
+  initBfcacheOptimization,
+  registerBfcacheRestoreCallback,
+  onPagehide,
+  cleanupForBfcache,
+  restoreAfterBfcache,
+} from "@/lib/bfcache-optimization"
 
 /**
  * Client component that initializes bfcache optimization and restores state
@@ -13,19 +19,22 @@ export function BfcacheProvider({ children }: { children?: React.ReactNode }) {
   useEffect(() => {
     initBfcacheOptimization()
 
-    const unregister = registerBfcacheRestoreCallback(() => {
+    const unregisterRestore = registerBfcacheRestoreCallback(() => {
       if (typeof window === "undefined") return
       if (process.env.NODE_ENV === "development") {
-        // Minimal dev-only log to verify bfcache restore (strip in production)
-        window.__bfcacheRestoreCount = (window.__bfcacheRestoreCount ?? 0) + 1
+        const w = window as Window & { __bfcacheRestoreCount?: number }
+        w.__bfcacheRestoreCount = (w.__bfcacheRestoreCount ?? 0) + 1
       }
-      if (window.document.visibilityState === "visible") {
-        window.dispatchEvent(new CustomEvent("bfcache-restore"))
-      }
+      restoreAfterBfcache()
+    })
+
+    const unregisterHide = onPagehide(() => {
+      cleanupForBfcache()
     })
 
     return () => {
-      unregister()
+      unregisterRestore()
+      unregisterHide()
     }
   }, [])
 

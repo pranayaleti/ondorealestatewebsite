@@ -4,33 +4,38 @@
  *
  * Rules:
  * - Only public, same-origin URLs; no auth/dashboard/owner/tenant (user-specific).
- * - No prerender for pages that trigger side effects or reflect authenticated state.
+ * - Prerender only for static, side-effect-free pages (no analytics that must fire once).
  * - Eager: above-the-fold / primary CTAs. Moderate: visible/near-viewport links.
  * - Conservative: prefetch on hover or when link becomes visible (footer, secondary).
+ * - Document-level rules catch any same-origin <a> href not covered by explicit lists.
  */
 
-/** Primary nav and home – prefetch as soon as the rule is seen (eager). */
-export const EAGER_PREFETCH_URLS: string[] = [
+/** Pages safe for full prerender (static, no side effects, no auth state). */
+export const PRERENDER_URLS: string[] = [
   "/",
   "/buy",
   "/sell",
   "/properties",
+  "/contact",
+]
+
+/** Primary nav – prefetch eagerly as soon as the rule is seen. */
+export const EAGER_PREFETCH_URLS: string[] = [
   "/property-management",
   "/loans",
   "/notary",
-  "/contact",
+  "/calculators",
+  "/about",
+  "/faq",
 ]
 
 /** Secondary nav and high-traffic pages – prefetch when link is visible (moderate). */
 export const MODERATE_PREFETCH_URLS: string[] = [
-  "/calculators",
   "/resources",
   "/news",
   "/blog",
   "/why-utah",
   "/founders-letter",
-  "/about",
-  "/faq",
   "/refinance/process",
   "/sweepstakes",
   "/accessibility",
@@ -87,25 +92,57 @@ export const CONSERVATIVE_PREFETCH_URLS: string[] = [
   "/faq/buying-selling-faqs",
 ]
 
+/** Paths that must never be prefetched or prerendered (user-specific, auth, side effects). */
+const EXCLUDED_PATH_PREFIXES = [
+  "/platform/owner",
+  "/platform/tenant",
+  "/platform/admin",
+  "/api/",
+  "/auth/callback",
+]
+
+interface SpeculationRule {
+  source: "list" | "document"
+  urls?: string[]
+  eagerness: "eager" | "moderate" | "conservative" | "immediate"
+  where?: Record<string, unknown>
+}
+
+interface SpeculationRules {
+  prefetch: SpeculationRule[]
+  prerender: SpeculationRule[]
+}
+
 /**
  * Build speculation rules JSON for script type="speculationrules".
- * Prefetch only (no prerender) to avoid side effects and double analytics.
- * Same-origin only (relative URLs); no user-specific or token-bearing URLs.
- * source "list" = explicit URLs; eagerness: eager = immediately, moderate = when visible, conservative = on hover/visible.
+ *
+ * - Prerender: top-level static pages for instant navigation (eager).
+ * - Prefetch (list): explicit URLs at eager/moderate/conservative eagerness.
+ * - Prefetch (document): catch-all for any same-origin <a> not in the lists,
+ *   excluding user-specific/auth paths. Uses moderate eagerness so links are
+ *   prefetched when they scroll into the viewport.
  */
 export function getSpeculationRulesJson(): string {
-  const rules: {
-    prefetch?: Array<{
-      source: "list";
-      urls: string[];
-      eagerness: "eager" | "moderate" | "conservative";
-    }>;
-  } = {
+  const rules: SpeculationRules = {
+    prerender: [
+      { source: "list", urls: PRERENDER_URLS, eagerness: "moderate" },
+    ],
     prefetch: [
       { source: "list", urls: EAGER_PREFETCH_URLS, eagerness: "eager" },
       { source: "list", urls: MODERATE_PREFETCH_URLS, eagerness: "moderate" },
       { source: "list", urls: CONSERVATIVE_PREFETCH_URLS, eagerness: "conservative" },
+      {
+        source: "document",
+        eagerness: "conservative",
+        where: {
+          and: [
+            { href_matches: "/*" },
+            { not: { href_matches: EXCLUDED_PATH_PREFIXES.map((p) => `${p}*`) } },
+            { not: { selector_matches: "[data-no-prefetch]" } },
+          ],
+        },
+      },
     ],
-  };
-  return JSON.stringify(rules);
+  }
+  return JSON.stringify(rules)
 }
