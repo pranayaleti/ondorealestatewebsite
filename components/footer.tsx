@@ -98,8 +98,6 @@ const Footer = memo(() => {
     { pattern: "pinterest.com", name: "Pinterest", Component: PinterestIcon, hover: "hover:text-red-500" },
     { pattern: "yelp.com", name: "Yelp", Component: YelpIcon, hover: "hover:text-red-500" },
     { pattern: "linktr.ee", name: "Linktree", Component: LinktreeIcon, hover: "hover:text-green-500" },
-    // TODO: Implement WhatsApp group integration - temporarily commented out
-    // { pattern: "chat.whatsapp.com", name: "WhatsApp", Component: WhatsAppIcon, hover: "hover:text-green-500" },
     { pattern: "google.com/maps", name: "Google Business", Component: GoogleBusinessIcon, hover: "hover:text-green-500" },
     { pattern: "google.com/business", name: "Google Business", Component: GoogleBusinessIcon, hover: "hover:text-green-500" },
     { pattern: "g.page", name: "Google Business", Component: GoogleBusinessIcon, hover: "hover:text-green-500" },
