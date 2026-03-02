@@ -222,6 +222,7 @@ export function FinancesView() {
     { income: 0, expenses: 0 },
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAddTransaction = (data: any) => {
     // In a real app, this would call an API to add the transaction
     const newTransaction = {

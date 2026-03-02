@@ -59,7 +59,7 @@ describe("accessibility", () => {
     it("trapFocus Tab cycles from last to first", () => {
       document.body.innerHTML = '<div id="c"><button id="b1">A</button><button id="b2">B</button></div>'
       const container = document.getElementById("c")!
-      const [b1, b2] = [document.getElementById("b1")!, document.getElementById("b2")!]
+      const [_b1, b2] = [document.getElementById("b1")!, document.getElementById("b2")!]
       accessibility.focus.trapFocus(container)
       b2.focus()
       const e = new KeyboardEvent("keydown", { key: "Tab", bubbles: true })

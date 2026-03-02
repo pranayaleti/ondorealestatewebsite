@@ -69,7 +69,7 @@ const AffordabilityCalculator: React.FC = () => {
     
     // Calculate property tax and insurance based on home price
     // We need to iterate to find the right home price
-    let maxHomePrice = maxLoanAmount + downPayment;
+    const maxHomePrice = maxLoanAmount + downPayment;
     let adjustedMaxHomePrice = maxHomePrice;
     
     // Iterate to find the correct home price that fits within the payment constraints

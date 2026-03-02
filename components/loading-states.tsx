@@ -131,7 +131,7 @@ export function PropertiesGridLoading({ count = 6 }: { count?: number }) {
 }
 
 // Button loading state
-export function ButtonLoading({ children, loading, ...props }: { children: React.ReactNode; loading: boolean; [key: string]: any }) {
+export function ButtonLoading({ children, loading, ...props }: { children: React.ReactNode; loading: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button {...props} disabled={loading || props.disabled}>
       {loading && <LoadingSpinner size="sm" className="mr-2" />}

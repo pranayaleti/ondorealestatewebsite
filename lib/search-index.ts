@@ -440,7 +440,7 @@ export function search(query: string): SearchResult[] {
       const title = item.title.toLowerCase()
       const description = item.description.toLowerCase()
       const keywords = item.keywords?.join(' ').toLowerCase() || ''
-      const searchableText = `${title} ${description} ${keywords}`
+      const _searchableText = `${title} ${description} ${keywords}`
 
       // Calculate relevance score
       let score = 0

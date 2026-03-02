@@ -62,7 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             SecureStorage.removeItem(TOKEN_KEY)
             SecureStorage.removeItem(USER_KEY)
           }
-        } catch (error) {
+        } catch {
           // Failed to parse user data or verify token
           SecureStorage.removeItem(TOKEN_KEY)
           SecureStorage.removeItem(USER_KEY)

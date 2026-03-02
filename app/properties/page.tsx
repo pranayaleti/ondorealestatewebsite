@@ -619,6 +619,7 @@ export default function PropertiesPage() {
       }
     })();
     return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [retryCount, propertiesCacheKey]);
 
   // Revalidate on bfcache restore so returning users see fresh data without full loading state
@@ -641,6 +642,7 @@ export default function PropertiesPage() {
 
     const unregister = registerBfcacheRestoreCallback(handleRestore);
     return unregister;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [propertiesCacheKey]);
 
   // 3b) Apply your existing filter/sort/search on the fetched list

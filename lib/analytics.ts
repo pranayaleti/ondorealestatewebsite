@@ -50,7 +50,7 @@ export const analytics = {
   },
 
   // Track calculator usage
-  trackCalculatorUsage: (calculatorName: string, inputs: Record<string, unknown>) => {
+  trackCalculatorUsage: (calculatorName: string, _inputs: Record<string, unknown>) => {
     analytics.trackEvent('use_calculator', 'calculator_interaction', calculatorName)
   },
 

@@ -11,10 +11,6 @@ import { saveUserInfo } from "@/lib/session-utils"
 import { sanitizeInput, isValidZipCode, RateLimiter } from "@/lib/security"
 import { SearchFormData } from "@/lib/types"
 
-// Session storage key
-const ZIP_CODE_SESSION_KEY = "property-match-zipcode"
-const USER_SESSION_KEY = "property-match-user"
-
 const searchRateLimiter = new RateLimiter(3, 30000) // 3 attempts per 30 seconds
 
 export function SearchForm() {
@@ -112,7 +108,7 @@ export function SearchForm() {
         router.push(`/search/${city}`)
         setIsLoading(false)
       }, 1000) // Simulate network delay
-    } catch (error) {
+    } catch {
       setIsLoading(false)
       toast({
         title: "Location Error",

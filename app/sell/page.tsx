@@ -7,9 +7,9 @@ import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, Camera, Users, Shield, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import ConsultationCTA from "@/components/ConsultationCTA"
 
 export const metadata: Metadata = {
@@ -160,12 +160,13 @@ export default function SellPage() {
               </div>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/modern-office-building.png"
                 alt="Professional Ondo Real Estate office building in Utah representing expert home selling services"
                 className="w-full h-full object-cover"
+                width={600}
+                height={384}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                loading="lazy"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

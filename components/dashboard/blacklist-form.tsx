@@ -64,7 +64,7 @@ export function BlacklistForm({ onSuccess, onCancel }: BlacklistFormProps) {
     setError(null)
 
     try {
-    const requestData: Record<string, any> = {
+    const requestData: Record<string, unknown> = {
       type,
       reason: formData.reason,
       notes: formData.notes

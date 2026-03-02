@@ -44,14 +44,14 @@ export function isValidZipCode(zipCode: string): boolean {
 /**
  * Sanitize and validate form data
  */
-export function sanitizeFormData<T extends Record<string, any>>(data: T): T {
-  const sanitized = { ...data } as Record<string, any>
+export function sanitizeFormData<T extends Record<string, unknown>>(data: T): T {
+  const sanitized = { ...data } as Record<string, unknown>
 
   for (const [key, value] of Object.entries(sanitized)) {
     if (typeof value === 'string') {
       sanitized[key] = sanitizeInput(value)
     } else if (typeof value === 'object' && value !== null) {
-      sanitized[key] = sanitizeFormData(value)
+      sanitized[key] = sanitizeFormData(value as Record<string, unknown>)
     }
   }
 

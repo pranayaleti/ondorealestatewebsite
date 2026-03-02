@@ -6,7 +6,6 @@ import {
   leadFormSchema,
   maintenanceRequestSchema,
   propertyFormSchema,
-  userProfileSchema,
   loginSchema,
   registrationSchema,
   searchSchema,

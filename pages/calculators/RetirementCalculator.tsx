@@ -78,6 +78,7 @@ const RetirementCalculator: React.FC = () => {
 
   useEffect(() => {
     calculateRetirement();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const calculateRetirement = () => {
@@ -86,8 +87,6 @@ const RetirementCalculator: React.FC = () => {
       retirementAge,
       lifeExpectancy,
       currentSavings,
-      currentIncome,
-      currentExpenses,
       currentRealEstateValue,
       realEstateIncome,
       realEstateExpenses,

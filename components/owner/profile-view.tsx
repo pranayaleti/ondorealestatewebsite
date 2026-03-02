@@ -148,7 +148,7 @@ export function ProfileView() {
     }, 1000)
   }
 
-  const handleLogout = () => {
+  const _handleLogout = () => {
     // In a real app, this would call an API to log the user out
     toast({
       title: "Logged out",

@@ -289,6 +289,7 @@ export function MessagesView() {
     setNewMessage("")
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCreateConversation = (data: any) => {
     // In a real app, this would call an API to create a new conversation
     const newConversation = {

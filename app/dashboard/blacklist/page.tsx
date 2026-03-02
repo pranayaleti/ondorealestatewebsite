@@ -1,13 +1,12 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useAuth } from "@/lib/auth-context"
 import { BlacklistTable } from "@/components/dashboard/blacklist-table"
 import { BlacklistForm } from "@/components/dashboard/blacklist-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
 import { Shield, Users, Building, Globe, Mail, FileText, Plus } from "lucide-react"
 import { BlacklistType } from "@/lib/types"
 

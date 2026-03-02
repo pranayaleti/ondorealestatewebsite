@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import type { Property } from "@/lib/types"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -162,7 +163,7 @@ export function FeaturedPropertiesSection() {
       {/* Property Details Modal */}
       {selectedPropertyData && (
         <PropertyDetailsModal
-          company={selectedPropertyData as any}
+          company={selectedPropertyData as unknown as Property}
           open={selectedProperty !== null}
           onOpenChange={() => setSelectedProperty(null)}
         />

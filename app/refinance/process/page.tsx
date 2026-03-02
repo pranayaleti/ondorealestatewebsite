@@ -1,8 +1,8 @@
 import { PageBanner } from "@/components/page-banner"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { TrendingUp, Calculator, FileText, Clock, CheckCircle } from "lucide-react"
+import { TrendingUp, FileText, Clock, CheckCircle } from "lucide-react"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
@@ -76,7 +76,7 @@ export default function RefinanceProcessPage() {
             </div>
 
             <div className="space-y-8 mb-12">
-              {steps.map((step, index) => (
+              {steps.map((step, _index) => (
                 <div key={step.number} className="flex gap-6">
                   <div className="flex-shrink-0">
                     <div className="h-12 w-12 bg-muted rounded-full flex items-center justify-center text-primary font-bold">

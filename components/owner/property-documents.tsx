@@ -43,6 +43,7 @@ import {
 import { useToast } from "@/hooks/use-toast"
 
 interface PropertyDocumentsProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   property: any
 }
 
@@ -104,7 +105,7 @@ const DOCUMENTS = [
   },
 ]
 
-export function PropertyDocuments({ property }: PropertyDocumentsProps) {
+export function PropertyDocuments({ property: _property }: PropertyDocumentsProps) {
   const [documents, setDocuments] = useState(DOCUMENTS)
   const [searchTerm, setSearchTerm] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("all")
@@ -117,6 +118,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
     return matchesSearch && matchesCategory
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAddDocument = (data: any) => {
     // In a real app, this would call an API to upload the document
     const newDocument = {
@@ -276,6 +278,7 @@ export function PropertyDocuments({ property }: PropertyDocumentsProps) {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AddDocumentDialog({ onAddDocument }: { onAddDocument: (data: any) => void }) {
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({

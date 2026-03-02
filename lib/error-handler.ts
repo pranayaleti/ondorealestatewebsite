@@ -66,12 +66,14 @@ export const handleApiError = (error: unknown) => {
     return {
       error: "Validation failed",
       statusCode: 400,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       details: (error as any).issues,
     }
   }
 
   // Handle Prisma errors
   if (error && typeof error === "object" && "code" in error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const prismaError = error as any
     switch (prismaError.code) {
       case "P2002":
@@ -135,7 +137,7 @@ export const handleErrorBoundaryError = (error: Error, errorInfo: React.ErrorInf
 }
 
 // Async error wrapper
-export const asyncHandler = <T extends any[], R>(
+export const asyncHandler = <T extends unknown[], R>(
   fn: (...args: T) => Promise<R>
 ) => {
   return async (...args: T): Promise<R> => {
@@ -174,7 +176,7 @@ export const withRetry = async <T>(
 }
 
 // Error logging utility
-export const logError = (error: unknown, context?: string, metadata?: Record<string, any>) => {
+export const logError = (error: unknown, context?: string, metadata?: Record<string, unknown>) => {
   const errorInfo = {
     message: error instanceof Error ? error.message : String(error),
     stack: error instanceof Error ? error.stack : undefined,
@@ -194,7 +196,7 @@ export const logError = (error: unknown, context?: string, metadata?: Record<str
   }
 }
 
-export default {
+const errorHandler = {
   AppError,
   ValidationError,
   AuthenticationError,
@@ -209,3 +211,5 @@ export default {
   withRetry,
   logError,
 }
+
+export default errorHandler

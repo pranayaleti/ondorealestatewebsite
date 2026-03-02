@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -75,7 +76,7 @@ const MOCK_REQUEST = {
   ],
 }
 
-export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: string }) {
+export function OwnerMaintenanceDetail({ requestId: _requestId = "req-001" }: { requestId?: string }) {
   const { toast } = useToast()
   const [request, setRequest] = useState(MOCK_REQUEST)
   const [newMessage, setNewMessage] = useState("")
@@ -209,13 +210,14 @@ export function OwnerMaintenanceDetail({ requestId = "req-001" }: { requestId?: 
                   <h3 className="font-medium mb-2">Photos</h3>
                   <div className="flex flex-wrap gap-4">
                     {request.photos.map((photo, index) => (
-                      <img
+                      <Image
                         key={index}
                         src={photo || "/placeholder.svg"}
                         alt={`Maintenance issue photo ${index + 1}`}
                         className="w-32 h-32 object-cover rounded-md border hover:opacity-90 transition-opacity cursor-pointer"
                         onClick={() => window.open(photo, "_blank")}
-                        loading="lazy"
+                        width={128}
+                        height={128}
                       />
                     ))}
                   </div>

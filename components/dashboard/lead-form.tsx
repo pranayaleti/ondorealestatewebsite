@@ -66,7 +66,7 @@ export function LeadForm() {
         source: "",
         comments: "",
       })
-    } catch (_err) {
+    } catch {
       alert("Failed to submit lead. Please try again.")
     }
   }

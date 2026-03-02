@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -217,11 +218,12 @@ export function MaintenanceRequestForm() {
             <div className="flex flex-wrap gap-2 mt-2">
               {photos.map((photo, index) => (
                 <div key={index} className="relative">
-                  <img
+                  <Image
                     src={photo || "/placeholder.svg"}
                     alt={`Maintenance issue photo ${index + 1}`}
                     className="w-24 h-24 object-cover rounded-md border"
-                    loading="lazy"
+                    width={96}
+                    height={96}
                   />
                   <button
                     type="button"

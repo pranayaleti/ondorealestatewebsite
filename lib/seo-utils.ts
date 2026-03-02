@@ -339,9 +339,11 @@ Disallow: /api/
 `
 }
 
-export default {
+const seoUtils = {
   generateStructuredData,
   generateMetadata,
   generateSitemapData,
   generateRobotsTxt,
 }
+
+export default seoUtils

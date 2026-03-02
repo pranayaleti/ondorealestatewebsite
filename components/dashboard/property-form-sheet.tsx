@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -336,11 +337,12 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                 <div className="grid grid-cols-3 gap-4">
                   {images.map((image, index) => (
                     <div key={index} className="relative border rounded-md overflow-hidden h-32">
-                      <img
+                      <Image
                         src={image || "/placeholder.svg"}
                         alt={`Property image ${index + 1}`}
                         className="w-full h-full object-cover"
-                        loading="lazy"
+                        width={400}
+                        height={128}
                       />
                       <button
                         type="button"

@@ -44,6 +44,7 @@ export interface Property {
 }
 
 // API Response types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface ApiResponse<T = any> {
   success: boolean
   data?: T
@@ -126,6 +127,7 @@ export interface ModalProps extends BaseComponentProps {
 export interface AppError {
   code: string
   message: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   details?: any
 }
 
@@ -191,7 +193,9 @@ export interface BlacklistAuditEntry {
   blacklistId: string
   action: 'created' | 'updated' | 'deactivated' | 'reactivated' | 'expired'
   performedBy: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   oldValues?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   newValues?: any
   performedAt: string
   reason?: string
@@ -248,6 +252,7 @@ export interface BlacklistQueryParams {
   search?: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface BlacklistResponse<T = any> {
   success: boolean
   data?: T

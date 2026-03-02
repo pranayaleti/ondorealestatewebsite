@@ -35,6 +35,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
 
   useEffect(() => {
     calculateBuydown();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const calculateBuydown = () => {

@@ -90,7 +90,7 @@ export default function SEO({
 
   const hasType = (entries: object[], typeName: string) =>
     entries.some((entry) => {
-      const type = (entry as any)?.["@type"]
+      const type = (entry as Record<string, unknown>)?.["@type"]
       if (Array.isArray(type)) return type.includes(typeName)
       return type === typeName
     })

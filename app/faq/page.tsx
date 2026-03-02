@@ -1,6 +1,6 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
-import { AlertCircle, DollarSign, Home, Building2, AlertTriangle, CheckCircle, ChevronRight, FileText, TrendingUp } from "lucide-react"
+import { AlertCircle, DollarSign, Home, Building2, AlertTriangle, CheckCircle, ChevronRight, FileText } from "lucide-react"
 import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd, generateFAQJsonLd } from "@/lib/seo"

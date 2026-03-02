@@ -42,6 +42,7 @@ const RefinanceCalculator: React.FC = () => {
 
   useEffect(() => {
     calculateRefinance();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const calculateRefinance = () => {
@@ -96,10 +97,6 @@ const RefinanceCalculator: React.FC = () => {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     }).format(amount);
-  };
-
-  const formatPercent = (value: number) => {
-    return `${value.toFixed(2)}%`;
   };
 
   return (

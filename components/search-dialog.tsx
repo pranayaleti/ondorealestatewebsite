@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { Search, Calculator, FileText, Building, ArrowRight } from "lucide-react"
+import { Calculator, FileText, Building, ArrowRight } from "lucide-react"
 import {
   CommandDialog,
   CommandEmpty,

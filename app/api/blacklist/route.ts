@@ -137,7 +137,7 @@ export async function GET(request: NextRequest) {
         const total = filteredData.length
         const paginatedData = filteredData.slice(offset, offset + queryParams.limit!)
 
-        const response: BlacklistListResponse<any> = {
+        const response: BlacklistListResponse<unknown> = {
           success: true,
           data: paginatedData,
           total,
@@ -183,7 +183,7 @@ export async function GET(request: NextRequest) {
     const { data, error, count } = await query
     if (error) throw error
 
-    const response: BlacklistListResponse<any> = {
+    const response: BlacklistListResponse<unknown> = {
       success: true,
       data: data || [],
       total: count || 0,

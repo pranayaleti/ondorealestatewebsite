@@ -257,6 +257,7 @@ export function DocumentsView() {
     return matchesSearch && matchesProperty && matchesCategory && matchesFolder
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAddDocument = (data: any) => {
     // In a real app, this would call an API to upload the document
     const newDocument = {
@@ -279,6 +280,7 @@ export function DocumentsView() {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCreateFolder = (data: any) => {
     // In a real app, this would call an API to create the folder
     const newFolder = {

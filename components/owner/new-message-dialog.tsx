@@ -21,6 +21,7 @@ import { Plus } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 interface NewMessageDialogProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onCreateConversation: (data: any) => void
 }
 
@@ -67,7 +68,7 @@ export function NewMessageDialog({ onCreateConversation }: NewMessageDialogProps
         property: "",
         message: "",
       })
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",

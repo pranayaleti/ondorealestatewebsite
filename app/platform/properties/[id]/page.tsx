@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   description: "Detailed listing view with offline favorites and queued inquiry submission.",
 }
 
+export async function generateStaticParams() {
+  return [{ id: "placeholder" }]
+}
+
 export default async function PlatformPropertyDetailsPage({
   params,
 }: {

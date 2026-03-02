@@ -106,7 +106,7 @@ export function OwnerPropertiesView() {
   const [searchTerm, setSearchTerm] = useState("")
   const [showFilters, setShowFilters] = useState(false)
   const [activeTab, setActiveTab] = useState("all")
-  const { toast } = useToast()
+  const { toast: _toast } = useToast()
 
   // Filter properties based on search term and active tab
   const filteredProperties = PROPERTIES.filter((property) => {

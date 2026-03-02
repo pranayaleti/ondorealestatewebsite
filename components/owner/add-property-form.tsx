@@ -112,7 +112,7 @@ export function AddPropertyForm() {
 
       // Redirect to properties page
       router.push("/owner/properties")
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "There was an error adding the property. Please try again.",

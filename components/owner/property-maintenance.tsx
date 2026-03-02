@@ -24,6 +24,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from "@/hooks/use-toast"
 
 interface PropertyMaintenanceProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   property: any
 }
 
@@ -34,13 +35,14 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
 
   // Filter maintenance history based on search term
   const filteredHistory = maintenanceHistory.filter(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (item: any) =>
       item.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.description.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAddMaintenance = (data: any) => {
-    // In a real app, this would call an API to add the maintenance record
     const newRecord = {
       id: `maint${maintenanceHistory.length + 1}`,
       date: data.date,
@@ -59,6 +61,7 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
   }
 
   // Calculate total maintenance costs
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const totalCost = maintenanceHistory.reduce((sum: number, item: any) => sum + item.cost, 0)
 
   return (
@@ -152,6 +155,7 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
                 </TableRow>
               </TableHeader>
               <TableBody>
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {filteredHistory.map((record: any) => (
                   <TableRow key={record.id}>
                     <TableCell>
@@ -192,6 +196,7 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AddMaintenanceDialog({ onAddMaintenance }: { onAddMaintenance: (data: any) => void }) {
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({

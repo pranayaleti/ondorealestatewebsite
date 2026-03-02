@@ -1,4 +1,4 @@
-import { Gift, Trophy, Users, Sparkles, Share2, Star, Award, Calendar } from "lucide-react"
+import { Gift, Trophy, Sparkles, Star, Award } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"

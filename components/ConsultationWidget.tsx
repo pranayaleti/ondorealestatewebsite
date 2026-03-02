@@ -102,7 +102,7 @@ const ConsultationWidget: React.FC = memo(() => {
         budget: '',
         message: ''
       });
-    } catch (_error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

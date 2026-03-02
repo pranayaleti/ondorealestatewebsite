@@ -59,7 +59,8 @@ interface BlacklistTableProps {
 
 export function BlacklistTable({ type, refreshTrigger }: BlacklistTableProps) {
   const { user } = useAuth()
-  const [entries, setEntries] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const [entries, setEntries] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
@@ -96,6 +97,7 @@ export function BlacklistTable({ type, refreshTrigger }: BlacklistTableProps) {
         throw new Error('Failed to fetch blacklist entries')
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const data: BlacklistListResponse<any> = await response.json()
 
       if (data.success && data.data) {
@@ -118,6 +120,7 @@ export function BlacklistTable({ type, refreshTrigger }: BlacklistTableProps) {
 
   useEffect(() => {
     fetchEntries()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, type, currentPage, searchTerm, showActiveOnly, refreshTrigger])
 
   const handleToggleActive = async (entryId: string, entryType: BlacklistType, currentlyActive: boolean) => {
@@ -192,6 +195,7 @@ export function BlacklistTable({ type, refreshTrigger }: BlacklistTableProps) {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formatValue = (entry: any) => {
     switch (entry.type) {
       case 'user':

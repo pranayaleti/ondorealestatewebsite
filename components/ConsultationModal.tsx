@@ -4,13 +4,9 @@ import React, { useMemo, useState, useCallback, memo } from 'react';
 import {
   X,
   Calendar,
-  User,
-  Mail,
-  Phone,
   CheckCircle,
   AlertCircle,
   Home,
-  DollarSign,
   FileText,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';

@@ -16,7 +16,7 @@ export function scheduleTask<T>(
   } = {}
 ): Promise<T> {
   return new Promise((resolve, reject) => {
-    const { chunkSize = 10, timeout = 5, onProgress } = options;
+    const { chunkSize: _chunkSize = 10, timeout: _timeout = 5, onProgress: _onProgress } = options;
 
     try {
       const result = task();
@@ -73,7 +73,7 @@ export async function processInChunks<T, R>(
 /**
  * Debounces a function to prevent excessive calls
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
@@ -95,7 +95,7 @@ export function debounce<T extends (...args: any[]) => any>(
 /**
  * Throttles a function to limit execution frequency
  */
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
@@ -150,6 +150,7 @@ export async function measureTask<T>(
   const duration = end - start;
 
   if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
     console.log(
       `Task ${label || 'execution'} took ${duration.toFixed(2)}ms`
     );

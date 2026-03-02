@@ -7,9 +7,9 @@ import { generateBreadcrumbJsonLd, generateServiceJsonLd } from "@/lib/seo"
 import { PageBanner } from "@/components/page-banner"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, Shield, DollarSign, Users, Building } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import ConsultationCTA from "@/components/ConsultationCTA"
 
 export const metadata: Metadata = {
@@ -162,11 +162,12 @@ export default function PropertyManagementPage() {
               </div>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/city-map-with-pin.png"
                 alt="Utah property management service areas map showing Salt Lake City, Lehi, Provo, Orem, Sandy, Draper and surrounding communities served by Ondo Real Estate"
                 className="w-full h-full object-cover"
-                loading="lazy"
+                width={600}
+                height={384}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>

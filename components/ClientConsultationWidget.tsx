@@ -133,7 +133,7 @@ export default function ClientConsultationWidget() {
       // Mark as submitted to prevent auto-show
       localStorage.setItem('consultation-widget-dismissed', 'true')
 
-    } catch (_error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to submit consultation request. Please try again.",

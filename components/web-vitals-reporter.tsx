@@ -70,7 +70,7 @@ export function WebVitalsReporter() {
         const po = new PerformanceObserver((list) => callback(list.getEntries()))
         po.observe({ type, buffered: true, ...opts })
         observers.push(po)
-      } catch (_) {
+      } catch {
         /* unsupported entry type – skip */
       }
     }
@@ -110,8 +110,8 @@ export function WebVitalsReporter() {
     // CLS
     observe("layout-shift", (entries) => {
       for (const entry of entries) {
-        if (!(entry as any).hadRecentInput) {
-          clsRef.current += (entry as any).value
+        if (!(entry as unknown as { hadRecentInput: boolean }).hadRecentInput) {
+          clsRef.current += (entry as unknown as { value: number }).value
         }
       }
       reportVital({ name: "CLS", value: clsRef.current, rating: rate("CLS", clsRef.current) })

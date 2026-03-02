@@ -28,6 +28,7 @@ export function ValidatedForm<T extends FieldValues>({
   isLoading = false,
 }: ValidatedFormProps<T>) {
   const form = useForm<T>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(schema as any),
     defaultValues,
     mode: "onChange",

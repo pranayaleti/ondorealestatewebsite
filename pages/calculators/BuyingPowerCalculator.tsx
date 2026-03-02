@@ -41,7 +41,7 @@ const BuyingPowerCalculator: React.FC = () => {
   const [results, setResults] = useState<BuyingPowerResults | null>(null);
 
   const calculateBuyingPower = React.useCallback(() => {
-    const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate, creditScore, program } = formData;
+    const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate } = formData;
 
     const monthlyIncome = annualIncome / 12;
     const monthlyRate = interestRate / 100 / 12;
@@ -62,7 +62,7 @@ const BuyingPowerCalculator: React.FC = () => {
       (1 - Math.pow(1 + monthlyRate, -totalPayments)) / monthlyRate;
     
     // Calculate property tax and insurance based on home price
-    let maxHomePrice = maxLoanAmount + downPayment;
+    const maxHomePrice = maxLoanAmount + downPayment;
     let adjustedMaxHomePrice = maxHomePrice;
     
     // Iterate to find the correct home price that fits within the payment constraints

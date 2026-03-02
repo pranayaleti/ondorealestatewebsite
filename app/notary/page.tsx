@@ -6,9 +6,7 @@ import Link from "next/link";
 import SEO from "@/components/seo";
 import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site";
 import { generateBreadcrumbJsonLd, generateLocalBusinessJsonLd } from "@/lib/seo";
-import NOTARY_SERVICE_AREAS, {
-  getAreaServedSchema,
-} from "@/lib/notary-service-areas";
+import NOTARY_SERVICE_AREAS from "@/lib/notary-service-areas";
 import {
   CheckCircle,
   Clock,

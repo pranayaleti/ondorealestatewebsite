@@ -63,13 +63,13 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
   };
 
   const handleSelectChange = (name: keyof FormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value as any }));
+    setFormData((prev) => ({ ...prev, [name]: value as FormData[typeof name] }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleCheckboxChange = (checked: boolean) => {
     setFormData((prev) => ({ ...prev, termsAccepted: !!checked }));
-    setErrors((prev) => ({ ...prev, termsAccepted: "" as any }));
+    setErrors((prev) => ({ ...prev, termsAccepted: "" }));
   };
 
   // --- Validation helpers ---
@@ -182,8 +182,8 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
       }
 
       setIsSubmitted(true);
-    } catch (err: any) {
-      setErrors({ form: err?.message ?? "Something went wrong. Please try again." });
+    } catch (err: unknown) {
+      setErrors({ form: (err instanceof Error ? err.message : null) ?? "Something went wrong. Please try again." });
     } finally {
       setIsSubmitting(false);
     }

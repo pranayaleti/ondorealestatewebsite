@@ -123,7 +123,7 @@ const MortgagePaymentCalculator: React.FC = () => {
     calculateMortgage();
   }, [calculateMortgage]);
 
-  const handleInputChange = (field: keyof MortgageData, value: any) => {
+  const handleInputChange = (field: keyof MortgageData, value: number | string) => {
     const newData = { ...formData, [field]: value };
     
     // Auto-calculate loan amount if home price or down payment changes
@@ -179,10 +179,6 @@ const MortgagePaymentCalculator: React.FC = () => {
     } catch (error) {
       console.error('Error generating PDF:', error);
     }
-  };
-
-  const formatPercent = (value: number) => {
-    return `${value.toFixed(2)}%`;
   };
 
   return (

@@ -1,12 +1,10 @@
 "use client"
 
-import { Calendar } from "@/components/ui/calendar"
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, CheckCircle, AlertTriangle } from "lucide-react"
+import { Clock, AlertTriangle } from "lucide-react"
 
 // Sample data for maintenance requests
 const maintenanceRequests = [

@@ -157,7 +157,7 @@ export async function PUT(
     const body: UpdateBlacklistRequest = await request.json()
 
     // Build update object
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       updated_at: new Date().toISOString()
     }
 

@@ -64,7 +64,7 @@ function runCallbacksSafely(callbacks: Set<() => void>) {
   callbacks.forEach((cb) => {
     try {
       cb()
-    } catch (_) {
+    } catch {
       /* ignore so one callback does not break others */
     }
   })
@@ -131,7 +131,7 @@ export function cleanupForBfcache() {
     try {
       const req = indexedDB.open("ondo-pwa-db")
       req.onsuccess = () => req.result.close()
-    } catch (_) {
+    } catch {
       /* best-effort */
     }
   }

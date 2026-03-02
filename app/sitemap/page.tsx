@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Home, Building, Users, Calculator, FileText, Phone, MapPin, Search } from "lucide-react"
+import { Building, Users, Calculator, FileText, Phone, MapPin, Search } from "lucide-react"
 
 export default function SitemapPage() {
   const siteSections = [

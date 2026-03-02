@@ -80,6 +80,7 @@ const RentVsOwnCalculator: React.FC = () => {
 
   useEffect(() => {
     calculateRentVsOwn();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const calculateRentVsOwn = () => {
@@ -94,7 +95,6 @@ const RentVsOwnCalculator: React.FC = () => {
       loanTerm,
       propertyTax,
       homeownersInsurance,
-      pmi,
       maintenance,
       hoa,
       analysisYears,

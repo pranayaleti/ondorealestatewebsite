@@ -99,7 +99,7 @@ export async function triggerSync(tag: SyncQueueType): Promise<void> {
 
   if ("sync" in registration) {
     try {
-      await registration.sync.register(tag)
+      await (registration as unknown as { sync: { register(tag: string): Promise<void> } }).sync.register(tag)
       return
     } catch {
       // Fallback below for browsers without Background Sync support.

@@ -16,6 +16,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 interface PropertyCardProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   property: any
   getPropertyTypeIcon: (type: string) => React.ReactNode
 }

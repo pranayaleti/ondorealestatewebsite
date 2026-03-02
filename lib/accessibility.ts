@@ -189,7 +189,7 @@ export const aria = {
   }),
 
   // Generate ARIA attributes for modals
-  modal: (id: string, title: string) => ({
+  modal: (id: string, _title: string) => ({
     id,
     role: "dialog",
     "aria-modal": "true",

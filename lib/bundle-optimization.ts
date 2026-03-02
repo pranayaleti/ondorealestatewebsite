@@ -59,6 +59,7 @@ export const dynamicImports = {
 // Lazy loading utilities
 export const lazyLoading = {
   // Create lazy component with loading fallback
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createLazyComponent: <T extends React.ComponentType<any>>(
     importFunc: () => Promise<{ default: T }>,
     fallback?: React.ComponentType
@@ -74,6 +75,7 @@ export const lazyLoading = {
   },
 
   // Create lazy component with error boundary
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createLazyComponentWithErrorBoundary: <T extends React.ComponentType<any>>(
     importFunc: () => Promise<{ default: T }>,
     fallback?: React.ComponentType,
@@ -275,9 +277,8 @@ export const performanceMonitoring = {
       if (process.env.NODE_ENV === "development") {
         // Instead of returning a typed object, log the duration and return the result as-is to avoid type errors
         // You can customize this to fit your monitoring/logging solution as well
-        if (typeof console !== "undefined" && console.debug) {
-          console.debug(`[Perf] ${name} took ${duration.toFixed(2)}ms`)
-        }
+        // eslint-disable-next-line no-console
+        if (typeof console !== "undefined" && console.debug) console.debug(`[Perf] ${name} took ${duration.toFixed(2)}ms`)
       }
 
       return result

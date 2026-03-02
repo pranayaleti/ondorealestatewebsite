@@ -101,14 +101,13 @@ export async function GET(request: NextRequest) {
   }
 }
 
-function getClientIP(request: NextRequest): string | null {
-  // Check various headers that might contain the real IP
+function _getClientIP(request: NextRequest): string | null {
   const headers = [
     'x-forwarded-for',
     'x-real-ip',
     'x-client-ip',
-    'cf-connecting-ip', // Cloudflare
-    'x-cluster-client-ip', // Rackspace
+    'cf-connecting-ip',
+    'x-cluster-client-ip',
     'x-forwarded',
     'forwarded-for',
     'forwarded'
@@ -117,7 +116,6 @@ function getClientIP(request: NextRequest): string | null {
   for (const header of headers) {
     const value = request.headers.get(header)
     if (value) {
-      // Take the first IP if there are multiple (comma-separated)
       const ip = value.split(',')[0].trim()
       if (ip && ip !== 'unknown') {
         return ip

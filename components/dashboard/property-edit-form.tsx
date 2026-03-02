@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -59,6 +60,7 @@ const getPropertyById = (id: string) => {
 export function PropertyEditForm({ propertyId }: { propertyId: string }) {
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [property, setProperty] = useState<any>(null)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
 
@@ -73,19 +75,22 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setProperty((prev: any) => ({ ...prev, [name]: value }))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setProperty((prev: any) => prev ? { ...prev, [name]: value } : prev)
   }
 
   const handleSelectChange = (name: string, value: string) => {
-    setProperty((prev: any) => ({ ...prev, [name]: value }))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setProperty((prev: any) => prev ? { ...prev, [name]: value } : prev)
   }
 
   const handleSwitchChange = (name: string, checked: boolean) => {
-    // For amenities which are in an array
     if (name.startsWith("amenity-")) {
       const amenity = name.replace("amenity-", "")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setProperty((prev: any) => {
-        const currentAmenities = [...prev.amenities]
+        if (!prev) return prev
+        const currentAmenities = [...(prev.amenities as string[])]
         if (checked && !currentAmenities.includes(amenity)) {
           currentAmenities.push(amenity)
         } else if (!checked && currentAmenities.includes(amenity)) {
@@ -95,7 +100,8 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
         return { ...prev, amenities: currentAmenities }
       })
     } else {
-      setProperty((prev: any) => ({ ...prev, [name]: checked }))
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setProperty((prev: any) => prev ? { ...prev, [name]: checked } : prev)
     }
   }
 
@@ -378,10 +384,12 @@ export function PropertyEditForm({ propertyId }: { propertyId: string }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {property.images.map((image: string, index: number) => (
                 <div key={index} className="relative border rounded-md overflow-hidden">
-                  <img
+                  <Image
                     src={image || "/placeholder.svg"}
                     alt={`Property ${index + 1}`}
                     className="w-full h-48 object-cover"
+                    width={500}
+                    height={192}
                   />
                   <button
                     type="button"

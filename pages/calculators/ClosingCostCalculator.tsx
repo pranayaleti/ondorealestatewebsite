@@ -57,6 +57,7 @@ const ClosingCostCalculator: React.FC = () => {
 
   useEffect(() => {
     calculateClosingCosts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const calculateClosingCosts = () => {
@@ -115,7 +116,7 @@ const ClosingCostCalculator: React.FC = () => {
     });
   };
 
-  const handleInputChange = (field: keyof ClosingCostData, value: any) => {
+  const handleInputChange = (field: keyof ClosingCostData, value: number | string) => {
     const newData = { ...formData, [field]: value };
     
     // Auto-calculate loan amount if home price or down payment changes

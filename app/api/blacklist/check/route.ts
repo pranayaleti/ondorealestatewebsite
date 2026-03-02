@@ -16,7 +16,7 @@ export const revalidate = 0
 export async function POST(request: NextRequest) {
   try {
     // Initialize Supabase client inside function to avoid build-time issues
-    const supabase = createClient(
+    const _supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     )

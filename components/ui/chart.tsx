@@ -41,10 +41,10 @@ export function ChartContainer({ className, children, title, description }: Char
 }
 
 interface ChartLineProps {
-  data: any[]
+  data: Record<string, unknown>[]
   x: string
   y: string
-  valueFormatter?: (value: any) => string
+  valueFormatter?: (value: unknown) => string
   showGridLines?: boolean
   showXAxis?: boolean
   showYAxis?: boolean
@@ -77,10 +77,10 @@ export function ChartLine({
 }
 
 interface ChartPieProps {
-  data: any[]
+  data: Record<string, unknown>[]
   index: string
   category: string
-  valueFormatter?: (value: any) => string
+  valueFormatter?: (value: unknown) => string
   className?: string
 }
 
@@ -102,10 +102,10 @@ export function ChartPie({ data, index, category, valueFormatter, className }: C
 }
 
 interface ChartBarProps {
-  data: any[]
+  data: Record<string, unknown>[]
   x: string
   y: string
-  valueFormatter?: (value: any) => string
+  valueFormatter?: (value: unknown) => string
   className?: string
   colors?: string[]
 }
@@ -127,7 +127,8 @@ export function ChartBar({ data, x, y, valueFormatter, className, colors = ["#88
 
 interface ChartLegendProps {
   className?: string
-  data: any[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: Record<string, any>[]
   index: string
   color: string
 }
