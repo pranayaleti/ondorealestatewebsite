@@ -27,6 +27,10 @@ export const EAGER_PREFETCH_URLS: string[] = [
   "/calculators",
   "/about",
   "/faq",
+  "/investments",
+  "/investments/commercial-real-estate",
+  "/investments/fractional",
+  "/investments/opportunities",
 ]
 
 /** Secondary nav and high-traffic pages – prefetch when link is visible (moderate). */

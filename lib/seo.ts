@@ -83,6 +83,7 @@ export function generateServiceJsonLd(service: ServiceData) {
  * Generate JSON-LD for FAQPage
  */
 export function generateFAQJsonLd(faqs: FAQItem[]) {
+  if (!Array.isArray(faqs) || faqs.length === 0) return null
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

@@ -24,6 +24,7 @@ export const allNavigationItems: NavigationItem[] = [
   { href: "/notary", label: "Notary" },
 
   // Discovery & tools
+  { href: "/investments", label: "Investments" },
   { href: "/calculators", label: "Calculators" },
   { href: "/resources", label: "Resources" },
   { href: "/news", label: "News" },
