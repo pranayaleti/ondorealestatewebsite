@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import Image from "next/image"
 import { User, Building2, Lightbulb, TrendingUp, Handshake, Rocket, Code, Home, Zap, Target } from "lucide-react"
 import SEO from "@/components/seo"
@@ -109,7 +110,7 @@ export default function FoundersLetterPage() {
                 Estate</strong>.
               </p>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
-                I purchased my first home in <strong className="text-primary">2019</strong> — that experience sparked something in me. Since then, I’ve been helping friends and family purchase their own homes, place tenants, and navigate the real estate journey confidently.
+                I purchased my first home in <strong className="text-primary">2019</strong>, that experience sparked something in me. Since then, I've been helping friends and family purchase their own homes, place tenants, and navigate the real estate journey confidently.
               </p>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 What started as a personal passion evolved into a full-time vision: to invest in real estate and eventually dedicate my career to it. In early <strong className="text-primary">2022</strong>, I launched both <a href="https://ondosoft.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 font-semibold decoration-2 underline-offset-2 transition-colors">OndoSoft</a> and <strong className="text-primary">Ondo Real Estate</strong>, blending technology and real estate innovation.
@@ -239,28 +240,13 @@ export default function FoundersLetterPage() {
             <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-6 border border-primary">
               <h3 className="text-xl font-bold text-foreground mb-4">Let's Connect</h3>
               <p className="text-foreground/70 text-sm mb-4">Ready to experience the future of property management?</p>
-              <button className="w-full bg-primary hover:bg-primary text-foreground px-6 py-3 rounded-lg font-semibold transition-colors">
+              <Link
+                href="/contact"
+                className="inline-flex w-full items-center justify-center bg-primary hover:bg-primary text-foreground px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
                 Schedule a Consultation
-              </button>
+              </Link>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-gradient-to-b from-black to-gray-900 py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ready to Experience Ondo?</h2>
-          <p className="text-xl text-foreground mb-8 opacity-90">
-            Join the revolution in property management. Whether you're an owner looking for smarter solutions or a tenant seeking a better
-            experience, Ondo is here for you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-black hover:bg-black/90 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
-              Start Your Journey
-            </button>
-            <button className="bg-black hover:bg-black/90 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors">
-              Learn More About Ondo
-            </button>
           </div>
         </div>
       </div>
@@ -394,25 +380,32 @@ export default function FoundersLetterPage() {
       </div>
     </div>
   </div>
+  </div>
   
   {/* Bottom CTA */}
-  <div className="text-center mt-16">
-    <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
-      <h3 className="text-2xl font-bold text-foreground mb-4">Ready to Be Part of Our Story?</h3>
-      <p className="text-foreground/70 mb-6 max-w-2xl mx-auto">
-        Join thousands of property owners and tenants who are already experiencing the future of real estate management.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="bg-black hover:bg-black/90 text-primary px-8 py-3 rounded-lg font-semibold transition-colors">
-          Start Your Journey
-        </button>
-        <button className="bg-black hover:bg-black/90 text-primary px-8 py-3 rounded-lg font-semibold transition-colors">
-          Learn More
-        </button>
+  <div className="bg-gradient-to-b from-black to-gray-900 py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ready to Experience Ondo?</h2>
+          <p className="text-xl text-foreground mb-8 opacity-90">
+            Join the revolution in property management. Whether you're an owner looking for smarter solutions or a tenant seeking a better
+            experience, Ondo is here for you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="bg-black hover:bg-black/90 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors text-center"
+            >
+              Start Your Journey
+            </Link>
+            <Link
+              href="/about"
+              className="bg-black hover:bg-black/90 text-primary px-8 py-4 rounded-lg text-lg font-bold transition-colors text-center"
+            >
+              Learn More About Ondo
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
     </div>
   )
 }

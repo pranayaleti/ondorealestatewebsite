@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import { LazyImage } from "@/components/lazy-image"
 import dynamic from "next/dynamic"
+import { Eye, EyeOff } from "lucide-react"
+import { useFinancialVisibility } from "@/lib/financial-visibility"
 
 // Lazy load the modal component
 const PropertyDetailsModal = dynamic(() => import("@/components/property-details-modal").then(m => ({ default: m.PropertyDetailsModal })), {
@@ -100,6 +102,7 @@ const featuredProperties = [
 
 export function FeaturedPropertiesSection() {
   const [selectedProperty, setSelectedProperty] = useState<number | null>(null)
+  const { showValues, toggle } = useFinancialVisibility()
 
   const handleViewDetails = (propertyId: number) => {
     setSelectedProperty(propertyId)
@@ -113,7 +116,22 @@ export function FeaturedPropertiesSection() {
     <>
     <section className="py-16 bg-muted dark:bg-[var(--gradient-overlay)]" aria-labelledby="properties-heading">
       <div className="container mx-auto px-4">
-        <h2 id="properties-heading" className="text-3xl font-bold text-center mb-12 dark:text-foreground">Featured Rental Properties</h2>
+        <div className="mb-12 flex items-center justify-between gap-4">
+          <h2 id="properties-heading" className="text-3xl font-bold dark:text-foreground">
+            Featured Rental Properties
+          </h2>
+          <button
+            type="button"
+            onClick={toggle}
+            className="inline-flex items-center rounded-full border border-border px-3 py-1 text-xs text-foreground/70 hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            aria-label={showValues ? "Hide rental prices" : "Show rental prices"}
+          >
+            {showValues ? <EyeOff className="h-3 w-3 mr-1" /> : <Eye className="h-3 w-3 mr-1" />}
+            <span className="hidden sm:inline">
+              {showValues ? "Hide amounts" : "Show amounts"}
+            </span>
+          </button>
+        </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {featuredProperties.map((property) => (
               <Card key={property.id} className="dark:bg-card" aria-label={`${property.name} - ${property.price}/month rental property`}>
@@ -136,7 +154,9 @@ export function FeaturedPropertiesSection() {
                     <span className="text-sm dark:text-foreground/70">
                       {property.bedrooms} bed • {property.bathrooms} bath
                     </span>
-                    <span className="font-semibold dark:text-foreground">${property.price}/mo</span>
+                    <span className="font-semibold dark:text-foreground">
+                      {showValues ? `$${property.price}/mo` : "••••"}
+                    </span>
                   </div>
                   <p className="text-sm text-foreground/70 dark:text-foreground/70">{property.shortDescription}</p>
                 </CardContent>

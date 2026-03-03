@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { useFinancialVisibility } from '@/lib/financial-visibility';
 
 interface RefinanceData {
   currentBalance: number;
@@ -39,6 +40,7 @@ const RefinanceCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<RefinanceResults | null>(null);
+  const { showValues, toggle } = useFinancialVisibility();
 
   useEffect(() => {
     calculateRefinance();
@@ -104,11 +106,24 @@ const RefinanceCalculator: React.FC = () => {
       {/* Header */}
       <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center space-x-4">
-            <Link href="/calculators" className="text-primary hover:text-primary">
-              <ArrowLeft className="h-6 w-6" />
-            </Link>
-            <h1 className="text-2xl font-bold text-foreground">Refinance Calculator</h1>
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center space-x-4">
+              <Link href="/calculators" className="text-primary hover:text-primary">
+                <ArrowLeft className="h-6 w-6" />
+              </Link>
+              <h1 className="text-2xl font-bold text-foreground">Refinance Calculator</h1>
+            </div>
+            <button
+              type="button"
+              onClick={toggle}
+              className="inline-flex items-center rounded-full border border-gray-300 px-3 py-1 text-xs text-foreground/70 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label={showValues ? "Hide financial amounts" : "Show financial amounts"}
+            >
+              {showValues ? <EyeOff className="h-3 w-3 mr-1" /> : <Eye className="h-3 w-3 mr-1" />}
+              <span className="hidden sm:inline">
+                {showValues ? "Hide amounts" : "Show amounts"}
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -266,19 +281,28 @@ const RefinanceCalculator: React.FC = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
                         <p className="text-sm text-destructive mb-1">Current Payment</p>
-                        <p className="text-lg font-semibold text-red-700">{formatCurrency(formData.currentPayment)}</p>
+                        <p className="text-lg font-semibold text-red-700">
+                          {showValues ? formatCurrency(formData.currentPayment) : '••••'}
+                        </p>
                       </div>
                       <div className="text-center p-3 bg-muted rounded-lg">
                         <p className="text-sm text-primary mb-1">New Payment</p>
-                        <p className="text-lg font-semibold text-green-700">{formatCurrency(results.newMonthlyPayment)}</p>
-                        <p className="text-xs text-foreground/70 mt-1">P&I: {formatCurrency(results.newPI)} • Escrows: {formatCurrency(results.newEscrows)}</p>
+                        <p className="text-lg font-semibold text-green-700">
+                          {showValues ? formatCurrency(results.newMonthlyPayment) : '••••'}
+                        </p>
+                        <p className="text-xs text-foreground/70 mt-1">
+                          P&I: {showValues ? formatCurrency(results.newPI) : '••••'} • Escrows:{" "}
+                          {showValues ? formatCurrency(results.newEscrows) : '••••'}
+                        </p>
                       </div>
                     </div>
                     
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Monthly Savings</p>
-                        <p className="text-2xl font-bold text-foreground">{formatCurrency(results.monthlySavings)}</p>
+                        <p className="text-2xl font-bold text-foreground">
+                          {showValues ? formatCurrency(results.monthlySavings) : '••••'}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -301,8 +325,8 @@ const RefinanceCalculator: React.FC = () => {
                     </div>
                     
                     <div className="space-y-2 text-sm text-foreground/70">
-                      <p>• Closing costs: {formatCurrency(formData.closingCosts)}</p>
-                      <p>• Monthly savings: {formatCurrency(results.monthlySavings)}</p>
+                      <p>• Closing costs: {showValues ? formatCurrency(formData.closingCosts) : '••••'}</p>
+                      <p>• Monthly savings: {showValues ? formatCurrency(results.monthlySavings) : '••••'}</p>
                       <p>• Break-even: {results.breakEvenMonths.toFixed(1)} months</p>
                     </div>
                   </div>
@@ -315,7 +339,9 @@ const RefinanceCalculator: React.FC = () => {
                     <div className="bg-muted p-4 rounded-lg">
                       <div className="text-center">
                         <p className="text-sm text-primary mb-1">Total Savings</p>
-                        <p className="text-2xl font-bold text-green-700">{formatCurrency(results.totalSavings)}</p>
+                        <p className="text-2xl font-bold text-green-700">
+                          {showValues ? formatCurrency(results.totalSavings) : '••••'}
+                        </p>
                         <p className="text-sm text-primary mt-1">
                           Over {formData.newTerm} years (minus closing costs)
                         </p>
@@ -323,9 +349,9 @@ const RefinanceCalculator: React.FC = () => {
                     </div>
                     
                     <div className="space-y-2 text-sm text-foreground/70">
-                      <p>• Interest savings (PI-only est.): {formatCurrency(results.interestSavings)}</p>
-                      <p>• Closing costs: {formatCurrency(formData.closingCosts)}</p>
-                      <p>• Net savings: {formatCurrency(results.totalSavings)}</p>
+                      <p>• Interest savings (PI-only est.): {showValues ? formatCurrency(results.interestSavings) : '••••'}</p>
+                      <p>• Closing costs: {showValues ? formatCurrency(formData.closingCosts) : '••••'}</p>
+                      <p>• Net savings: {showValues ? formatCurrency(results.totalSavings) : '••••'}</p>
                     </div>
                   </div>
                 </div>

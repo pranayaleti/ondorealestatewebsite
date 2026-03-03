@@ -22,6 +22,7 @@ import {
   AlertTriangle,
   CheckCircle,
   ArrowLeft,
+  Lightbulb,
 } from "lucide-react"
 
 const statusConfig: Record<
@@ -185,6 +186,65 @@ export default async function InvestmentDetailPage({
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Creative Financing (if available) */}
+                {opportunity.creativeFinancing && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2 dark:text-foreground">
+                        <Lightbulb className="h-5 w-5 text-primary" />
+                        Creative Financing Options
+                      </CardTitle>
+                      <CardDescription>
+                        High-level overview of how this opportunity may be financed. Final terms are always
+                        defined in the official offering documents and subject to lender and regulatory approval.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <p className="text-sm font-semibold text-foreground dark:text-foreground">
+                          {opportunity.creativeFinancing.headline}
+                        </p>
+                        <p className="mt-2 text-sm text-foreground/70 dark:text-foreground/70">
+                          {opportunity.creativeFinancing.overview}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-semibold text-foreground dark:text-foreground mb-2">
+                          Potential structures
+                        </p>
+                        <ul className="space-y-2">
+                          {opportunity.creativeFinancing.structures.map((item) => (
+                            <li
+                              key={item}
+                              className="flex items-start gap-2 text-sm text-foreground/70 dark:text-foreground/70"
+                            >
+                              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {opportunity.creativeFinancing.notes && opportunity.creativeFinancing.notes.length > 0 && (
+                        <div className="rounded-md border border-border/60 bg-muted/40 p-3">
+                          <p className="text-xs font-semibold text-foreground mb-1">Important considerations</p>
+                          <ul className="space-y-1">
+                            {opportunity.creativeFinancing.notes.map((note) => (
+                              <li
+                                key={note}
+                                className="text-xs text-foreground/70 dark:text-foreground/70"
+                              >
+                                • {note}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
 
                 {/* Highlights */}
                 <Card>

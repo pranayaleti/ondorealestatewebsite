@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Download, TrendingUp, Home, Building2 } from 'lucide-react';
+import { ArrowLeft, Download, TrendingUp, Home, Building2, Eye, EyeOff } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { LoanProgram, getProgramMI, clampCreditScore } from '@/lib/mortgage-utils';
+import { useFinancialVisibility } from '@/lib/financial-visibility';
 
 interface RentVsOwnData {
   // Rent scenario
@@ -77,6 +78,7 @@ const RentVsOwnCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<RentVsOwnResults | null>(null);
+  const { showValues, toggle } = useFinancialVisibility();
 
   useEffect(() => {
     calculateRentVsOwn();
@@ -269,22 +271,35 @@ const RentVsOwnCalculator: React.FC = () => {
       {/* Header */}
       <div className="bg-card shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
             <div className="flex items-center space-x-4">
               <Link href="/calculators" className="text-primary hover:text-primary">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Rent vs Own Calculator</h1>
             </div>
-            {results && (
+            <div className="flex items-center gap-3">
               <button
-                onClick={downloadPDF}
-                className="bg-primary hover:opacity-90 text-primary-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                type="button"
+                onClick={toggle}
+                className="inline-flex items-center rounded-full border border-gray-300 px-3 py-1 text-xs text-foreground/70 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label={showValues ? "Hide financial amounts" : "Show financial amounts"}
               >
-                <Download className="h-5 w-5" />
-                <span>Download PDF</span>
+                {showValues ? <EyeOff className="h-3 w-3 mr-1" /> : <Eye className="h-3 w-3 mr-1" />}
+                <span className="hidden sm:inline">
+                  {showValues ? "Hide amounts" : "Show amounts"}
+                </span>
               </button>
-            )}
+              {results && (
+                <button
+                  onClick={downloadPDF}
+                  className="bg-primary hover:opacity-90 text-primary-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+                >
+                  <Download className="h-5 w-5" />
+                  <span>Download PDF</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -535,11 +550,15 @@ const RentVsOwnCalculator: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-foreground mb-2">Total Rent Cost ({formData.analysisYears} years)</h3>
-                    <p className="text-2xl font-bold text-foreground">{formatCurrency(results.rentTotalCost)}</p>
+                    <p className="text-2xl font-bold text-foreground">
+                      {showValues ? formatCurrency(results.rentTotalCost) : '••••'}
+                    </p>
                   </div>
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="text-sm font-medium text-green-900 mb-2">Total Buy Cost ({formData.analysisYears} years)</h3>
-                    <p className="text-2xl font-bold text-green-900">{formatCurrency(results.buyTotalCost)}</p>
+                    <p className="text-2xl font-bold text-green-900">
+                      {showValues ? formatCurrency(results.buyTotalCost) : '••••'}
+                    </p>
                   </div>
                 </div>
 
@@ -550,7 +569,8 @@ const RentVsOwnCalculator: React.FC = () => {
                     <strong>Break-even point:</strong> {results.breakEvenYears} years
                   </p>
                   <p className="text-sm text-yellow-800">
-                    <strong>Monthly rent equivalent:</strong> {formatCurrency(results.monthlyRentEquivalent)}
+                    <strong>Monthly rent equivalent:</strong>{" "}
+                    {showValues ? formatCurrency(results.monthlyRentEquivalent) : '••••'}
                   </p>
                 </div>
 
@@ -580,14 +600,22 @@ const RentVsOwnCalculator: React.FC = () => {
                         {results.annualComparison.slice(0, 10).map((year) => (
                           <tr key={year.year}>
                             <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{year.year}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(year.rentCost)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(year.buyCost)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-green-700">{formatCurrency(year.principalPaid)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-indigo-600">{formatCurrency(year.equity)}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">
+                              {showValues ? formatCurrency(year.rentCost) : '••••'}
+                            </td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">
+                              {showValues ? formatCurrency(year.buyCost) : '••••'}
+                            </td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-green-700">
+                              {showValues ? formatCurrency(year.principalPaid) : '••••'}
+                            </td>
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-indigo-600">
+                              {showValues ? formatCurrency(year.equity) : '••••'}
+                            </td>
                             <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${
                               year.difference > 0 ? 'text-destructive' : 'text-primary'
                             }`}>
-                              {year.difference > 0 ? '+' : ''}{formatCurrency(year.difference)}
+                              {showValues ? `${year.difference > 0 ? '+' : ''}${formatCurrency(year.difference)}` : '••••'}
                             </td>
                           </tr>
                         ))}

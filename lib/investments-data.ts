@@ -1,3 +1,10 @@
+export interface CreativeFinancing {
+  headline: string
+  overview: string
+  structures: string[]
+  notes?: string[]
+}
+
 export interface InvestmentOpportunity {
   slug: string
   title: string
@@ -12,6 +19,7 @@ export interface InvestmentOpportunity {
   description: string
   highlights: string[]
   riskFactors: string[]
+  creativeFinancing?: CreativeFinancing
 }
 
 export interface AssetClass {
@@ -85,6 +93,20 @@ export const MOCK_OPPORTUNITIES: InvestmentOpportunity[] = [
       "Local market supply additions could impact occupancy",
       "Economic downturn may reduce demand for office space",
     ],
+    creativeFinancing: {
+      headline: "Institutional senior loan with room for preferred equity",
+      overview:
+        "The sponsor has secured a conventional senior loan with competitive terms. For qualified investors, Ondo may structure a preferred equity tranche or co-invest alongside the sponsor to optimize leverage while maintaining conservative coverage ratios.",
+      structures: [
+        "Senior loan at fixed rate with 5-year term and 25-year amortization",
+        "Potential preferred equity slice for larger check sizes seeking priority distributions",
+        "Capital call flexibility for value‑add leasing or future tenant improvements",
+      ],
+      notes: [
+        "Lender approval is required for any material changes to capital structure.",
+        "Future refinancing terms will depend on interest rate environment and asset performance.",
+      ],
+    },
   },
   {
     slug: "provo-student-housing-complex",
@@ -111,6 +133,20 @@ export const MOCK_OPPORTUNITIES: InvestmentOpportunity[] = [
       "Potential for new student housing competition",
       "Regulatory changes affecting student rental properties",
     ],
+    creativeFinancing: {
+      headline: "Blend of agency debt and investor equity",
+      overview:
+        "Given the stabilized student housing performance, this asset is well suited for agency-style financing with attractive leverage and longer amortization schedules. Ondo structures LP interests so investors can participate alongside the sponsor with lower minimums.",
+      structures: [
+        "Agency-style loan with interest‑only period during initial years",
+        "Limited partner equity interests through an LLC or SPV for investors",
+        "Optional DRIP-style (distribution reinvestment) program for select investors subject to offering terms",
+      ],
+      notes: [
+        "Loan assumptions are subject to lender underwriting and prevailing market conditions.",
+        "Some investors may elect to receive cash distributions rather than reinvest.",
+      ],
+    },
   },
   {
     slug: "salt-lake-industrial-warehouse",
@@ -137,6 +173,20 @@ export const MOCK_OPPORTUNITIES: InvestmentOpportunity[] = [
       "Logistics industry disruption could affect tenant demand",
       "Long hold period limits liquidity options",
     ],
+    creativeFinancing: {
+      headline: "Conservative leverage with potential supplemental financing",
+      overview:
+        "The industrial distribution center is financed with a conservative senior loan to preserve cash flow resilience. If NOI grows meaningfully, the sponsor may pursue supplemental financing or refinancing to return capital while maintaining healthy coverage ratios.",
+      structures: [
+        "Senior term loan with moderate loan‑to‑value and NNN-backed cash flow",
+        "Potential supplemental loan or refinance once value creation milestones are reached",
+        "Equity interests structured through a manager‑led LLC with waterfall distributions",
+      ],
+      notes: [
+        "Any supplemental financing is contingent on lender approval and property performance.",
+        "Distributions may fluctuate based on occupancy, rental rates, and financing costs.",
+      ],
+    },
   },
   {
     slug: "draper-medical-office-park",
@@ -163,6 +213,20 @@ export const MOCK_OPPORTUNITIES: InvestmentOpportunity[] = [
       "Tenant renewal risk at lease expiration",
       "Rising construction costs may affect capital improvements",
     ],
+    creativeFinancing: {
+      headline: "Staggered capital calls aligned with lease-up milestones",
+      overview:
+        "Because medical office build-outs can be capital intensive, Ondo may structure investor commitments with staged capital calls. This helps align funding with construction and leasing milestones while reducing idle capital.",
+      structures: [
+        "Senior loan sized to in‑place income with additional TI/LC reserves",
+        "Staged equity capital calls tied to build‑out, occupancy, and stabilization targets",
+        "Option for co‑GP or larger LP positions for strategic healthcare investors",
+      ],
+      notes: [
+        "Capital call schedules and amounts are defined in the final offering documents.",
+        "Failure to fund capital calls may result in dilution or other remedies under the operating agreement.",
+      ],
+    },
   },
   {
     slug: "orem-grocery-anchored-retail",
@@ -189,6 +253,20 @@ export const MOCK_OPPORTUNITIES: InvestmentOpportunity[] = [
       "Inline tenant turnover may create periodic vacancy",
       "Property tax reassessment risk upon acquisition",
     ],
+    creativeFinancing: {
+      headline: "Anchor-backed loan with potential mezzanine tranche",
+      overview:
+        "The long-term grocery anchor lease supports a primary loan with attractive terms. For certain offerings, Ondo may introduce a small mezzanine or preferred equity tranche to enhance returns while managing risk through conservative sizing.",
+      structures: [
+        "Primary senior loan underwritten to anchor tenant cash flows",
+        "Optional mezzanine or preferred equity for investors seeking higher target yields",
+        "Ability to re‑tenant inline suites using reserves and additional capital when needed",
+      ],
+      notes: [
+        "Any mezzanine or preferred equity is subject to intercreditor agreements with the senior lender.",
+        "Anchor lease renewals and co‑tenancy clauses are key drivers of long‑term financing flexibility.",
+      ],
+    },
   },
   {
     slug: "american-fork-self-storage",
@@ -215,5 +293,19 @@ export const MOCK_OPPORTUNITIES: InvestmentOpportunity[] = [
       "Fully funded — this opportunity is no longer accepting investors",
       "Operational costs may increase with utility rate changes",
     ],
+    creativeFinancing: {
+      headline: "Stabilized permanent loan with potential recapitalization",
+      overview:
+        "This self-storage facility has already been fully capitalized and placed into a long-term financing structure. While no new equity is being accepted, investors may benefit from future recapitalization or sale should performance continue to outperform underwriting.",
+      structures: [
+        "Long-term permanent loan sized to stabilized NOI",
+        "Equity interests already fully subscribed through prior offering",
+        "Potential recapitalization event or sale providing liquidity in the medium term",
+      ],
+      notes: [
+        "No additional investor capital is being raised for this opportunity at this time.",
+        "Any recapitalization or sale will be evaluated based on market conditions and investor approval thresholds.",
+      ],
+    },
   },
 ]

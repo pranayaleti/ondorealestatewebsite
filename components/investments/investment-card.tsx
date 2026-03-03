@@ -3,8 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { LazyImage } from "@/components/lazy-image"
-import { MapPin, TrendingUp, DollarSign } from "lucide-react"
+import { MapPin, TrendingUp, DollarSign, Eye, EyeOff } from "lucide-react"
 import type { InvestmentOpportunity } from "@/lib/investments-data"
+import { useFinancialVisibility } from "@/lib/financial-visibility"
 
 const statusConfig: Record<
   InvestmentOpportunity["status"],
@@ -21,6 +22,7 @@ interface InvestmentCardProps {
 
 export function InvestmentCard({ opportunity }: InvestmentCardProps) {
   const status = statusConfig[opportunity.status]
+  const { showValues, toggle } = useFinancialVisibility()
 
   return (
     <Card className="group hover:shadow-lg transition-shadow duration-200 flex flex-col">
@@ -43,24 +45,36 @@ export function InvestmentCard({ opportunity }: InvestmentCardProps) {
       </div>
 
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg leading-tight dark:text-foreground">
-          {opportunity.title}
-        </CardTitle>
-        <CardDescription className="flex items-center gap-1 mt-1">
-          <MapPin className="h-3 w-3" />
-          {opportunity.location}
-        </CardDescription>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <CardTitle className="text-lg leading-tight dark:text-foreground">
+              {opportunity.title}
+            </CardTitle>
+            <CardDescription className="flex items-center gap-1 mt-1">
+              <MapPin className="h-3 w-3" />
+              {opportunity.location}
+            </CardDescription>
+          </div>
+          <button
+            type="button"
+            onClick={toggle}
+            className="inline-flex items-center rounded-full border border-border px-2 py-1 text-xs text-foreground/70 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            aria-label={showValues ? "Hide investment amounts" : "Show investment amounts"}
+          >
+            {showValues ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+          </button>
+        </div>
       </CardHeader>
 
       <CardContent className="pt-0 flex flex-col flex-1">
         <div className="flex items-center gap-4 text-sm text-foreground/70 mb-3">
           <div className="flex items-center gap-1">
             <DollarSign className="h-4 w-4" />
-            ${opportunity.minInvestment.toLocaleString()} min
+            {showValues ? `$${opportunity.minInvestment.toLocaleString()} min` : "••••"}
           </div>
           <div className="flex items-center gap-1">
             <TrendingUp className="h-4 w-4" />
-            {opportunity.targetReturn} target
+            {showValues ? `${opportunity.targetReturn} target` : "••••"}
           </div>
         </div>
 
