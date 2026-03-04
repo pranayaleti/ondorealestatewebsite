@@ -43,6 +43,7 @@ const PaginationLink = ({
   className,
   isActive,
   size = "icon",
+  children,
   ...props
 }: PaginationLinkProps) => (
   <a
@@ -52,10 +53,12 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
-      className
+      className,
     )}
     {...props}
-  />
+  >
+    {children ?? <span className="sr-only">Page link</span>}
+  </a>
 )
 PaginationLink.displayName = "PaginationLink"
 

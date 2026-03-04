@@ -12,13 +12,17 @@ export default function FeedbackPage() {
   const [phone, setPhone] = useState("")
   const [submittedCount, setSubmittedCount] = useState(0)
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
     if (!suggestion.trim()) {
+      setErrorMessage("Please enter a suggestion before submitting.")
+      setStatus("error")
       return
     }
 
+    setErrorMessage(null)
     setStatus("submitting")
 
     // For now we just simulate a successful submission on the client.
@@ -72,17 +76,23 @@ export default function FeedbackPage() {
       {/* Content */}
       <div className="mx-auto max-w-7xl px-4 py-16">
         <section className="grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1.2fr)]">
-          <div className="space-y-6 rounded-xl border border-border bg-card p-8 shadow-sm">
+          <div className="space-y-6 rounded-xl border border-border bg-card p-8 shadow-sm" aria-labelledby="feedback-form-heading">
             <div className="flex items-center gap-2">
               <MessageCircle className="h-5 w-5 text-primary" aria-hidden="true" />
-              <h2 className="text-xl font-semibold text-foreground">Send us your suggestion</h2>
+              <h2 id="feedback-form-heading" className="text-xl font-semibold text-foreground">
+                Send us your suggestion
+              </h2>
             </div>
             <p className="text-base text-foreground/70">
               Share anything—from product ideas and UX improvements to new services you&apos;d love to see. Short,
               direct, and honest feedback is perfect.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4"
+              aria-describedby="feedback-status"
+            >
               <div className="space-y-2">
                 <label htmlFor="suggestion" className="block text-sm font-medium text-foreground">
                   Your suggestion
@@ -96,7 +106,13 @@ export default function FeedbackPage() {
                   className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-sm outline-none ring-offset-background placeholder:text-foreground/40 focus:border-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   placeholder="Tell us what would make Ondo even better for you..."
                   required
+                  aria-describedby={errorMessage ? "suggestion-error" : undefined}
                 />
+                {errorMessage && (
+                  <p id="suggestion-error" className="text-sm text-red-500">
+                    {errorMessage}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -141,11 +157,24 @@ export default function FeedbackPage() {
                 {status === "submitting" ? "Submitting..." : "Submit suggestion"}
               </button>
 
-              {status === "success" && (
-                <p className="text-sm font-medium text-emerald-500">
-                  Thank you for sharing your idea — it&apos;s been added to our suggestion tracker.
-                </p>
-              )}
+              <p
+                id="feedback-status"
+                role="status"
+                aria-live="polite"
+                className="text-sm"
+              >
+                {status === "success" && (
+                  <span className="font-medium text-emerald-500">
+                    Thank you for sharing your idea — it&apos;s been added to our suggestion tracker.
+                  </span>
+                )}
+                {status === "submitting" && (
+                  <span className="text-foreground/70">Submitting your suggestion…</span>
+                )}
+                {status === "error" && errorMessage && (
+                  <span className="text-red-500">{errorMessage}</span>
+                )}
+              </p>
             </form>
           </div>
 

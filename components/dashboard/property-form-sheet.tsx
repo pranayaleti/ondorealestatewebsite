@@ -354,7 +354,8 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                     </div>
                   ))}
 
-                  <div
+                  <button
+                    type="button"
                     className="border border-dashed rounded-md flex flex-col items-center justify-center h-32 cursor-pointer hover:bg-muted"
                     onClick={triggerFileInput}
                   >
@@ -368,7 +369,7 @@ export function PropertyFormSheet({ open, onOpenChange }: { open: boolean; onOpe
                       multiple
                       onChange={handleImageUpload}
                     />
-                  </div>
+                  </button>
                 </div>
 
                 {images.length === 0 && (

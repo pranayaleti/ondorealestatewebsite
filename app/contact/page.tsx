@@ -112,7 +112,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" aria-labelledby="contact-page-heading">
       <SEO
         title="Contact Ondo Real Estate"
         description="Get in touch with Ondo Real Estate for property management, rentals, or real estate services across Utah."
@@ -142,14 +142,19 @@ export default function ContactPage() {
             <div className="grid gap-10 lg:grid-cols-2">
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold tracking-tighter">Get in Touch</h2>
+                  <h2
+                    id="contact-page-heading"
+                    className="text-3xl font-bold tracking-tighter"
+                  >
+                    Get in Touch
+                  </h2>
                   <p className="text-foreground/70 mt-2">
                     Fill out the form and our team will get back to you within 24 hours.
                   </p>
                 </div>
-                <div className="grid gap-6">
+                  <div className="grid gap-6">
                   <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-primary" />
+                    <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
                     <div>
                       <h3 className="font-semibold">Our Office</h3>
                       <p className="text-sm text-foreground/70">
@@ -160,21 +165,21 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-primary" />
+                    <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
                     <div>
                       <h3 className="font-semibold">Email</h3>
                       <p className="text-sm text-foreground/70">{SITE_EMAILS.primary}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-primary" />
+                    <Phone className="h-6 w-6 text-primary" aria-hidden="true" />
                     <div>
                       <h3 className="font-semibold">Phone</h3>
                       <p className="text-sm text-foreground/70">{SITE_PHONE}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <Building className="h-6 w-6 text-primary" />
+                    <Building className="h-6 w-6 text-primary" aria-hidden="true" />
                     <div>
                       <h3 className="font-semibold">Business Hours</h3>
                       <p className="text-sm text-foreground/70">{SITE_HOURS_LABEL}</p>
@@ -262,24 +267,35 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent>
                   {/* Success/Error Messages */}
-                  {submitStatus === 'success' && (
-                    <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center">
-                      <CheckCircle className="text-green-500 dark:text-green-400 mr-3 flex-shrink-0" />
-                      <div>
-                        <p className="text-green-700 dark:text-green-300 font-semibold">Message sent successfully!</p>
-                        <p className="text-green-600 dark:text-green-400 text-sm">We'll get back to you within 24 hours.</p>
+                  <div
+                    id="contact-form-status"
+                    role="status"
+                    aria-live="polite"
+                    className="mb-6"
+                  >
+                    {submitStatus === 'success' && (
+                      <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center">
+                        <CheckCircle className="text-green-500 dark:text-green-400 mr-3 flex-shrink-0" aria-hidden="true" />
+                        <div>
+                          <p className="text-green-700 dark:text-green-300 font-semibold">Message sent successfully!</p>
+                          <p className="text-green-600 dark:text-green-400 text-sm">We'll get back to you within 24 hours.</p>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  
-                  {submitStatus === 'error' && (
-                    <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center">
-                      <AlertCircle className="text-red-500 dark:text-red-400 mr-3 flex-shrink-0" />
-                      <p className="text-red-700 dark:text-red-300">Something went wrong. Please try again or call us directly.</p>
-                    </div>
-                  )}
+                    )}
+                    
+                    {submitStatus === 'error' && (
+                      <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center">
+                        <AlertCircle className="text-red-500 dark:text-red-400 mr-3 flex-shrink-0" aria-hidden="true" />
+                        <p className="text-red-700 dark:text-red-300">Something went wrong. Please try again or call us directly.</p>
+                      </div>
+                    )}
+                  </div>
 
-                  <form onSubmit={handleSubmit} className="grid gap-4">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="grid gap-4"
+                    aria-describedby="contact-form-status"
+                  >
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name *</Label>

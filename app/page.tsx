@@ -13,7 +13,7 @@ const LandingPage = dynamic(() => import("@/components/landing-page"), {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <SEO
         title="Utah Property Management, Buying & Selling"
         description="Ondo Real Estate provides professional property management, home buying, and selling services across Utah. Explore listings, loans, and expert guidance."
@@ -65,6 +65,6 @@ export default function Home() {
       <Suspense fallback={<Loading />}>
         <LandingPage />
       </Suspense>
-    </main>
+    </>
   )
 }

@@ -14,7 +14,7 @@ export default function FoundersLetterPage() {
   const yearsInUtah = currentYear - 2019;
 
   return (
-    <div className="min-h-screen bg-background dark:bg-transparent">
+    <div className="min-h-screen bg-background dark:bg-transparent" aria-labelledby="founders-letter-heading">
       <SEO
         title="Founder's Letter | Ondo Real Estate"
         description="A personal letter from the founder of Ondo Real Estate on our mission, values, and the future of property management."
@@ -28,7 +28,10 @@ export default function FoundersLetterPage() {
       <div className="relative bg-gradient-to-br from-[var(--gradient-from)] via-[var(--color-gradient-via)] to-[var(--color-gradient-to)]">
         <div className="absolute inset-0 bg-background opacity-50"></div>
         <div className="relative max-w-7xl mx-auto px-4 py-24">
-          <h1 className="text-6xl md:text-7xl font-bold text-foreground mb-6">
+          <h1
+            id="founders-letter-heading"
+            className="text-6xl md:text-7xl font-bold text-foreground mb-6"
+          >
             A Letter From the <span className="text-primary">Founder</span>
           </h1>
           <p className="text-2xl text-foreground/70 max-w-3xl">
@@ -64,12 +67,12 @@ export default function FoundersLetterPage() {
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-card rounded-xl p-8 border border-border">
-              <div className="flex items-center mb-6">
-                <User className="text-primary h-7 w-7 mr-4" />
-                <h2 className="text-3xl font-bold text-foreground">Meet the Founder</h2>
-              </div>
+            <header className="flex items-center mb-6">
+              <User className="text-primary h-7 w-7 mr-4" aria-hidden="true" />
+              <h2 className="text-3xl font-bold text-foreground">Meet the Founder</h2>
+            </header>
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
-                <div className="relative h-32 w-32 rounded-full border-4 border-primary overflow-hidden flex-shrink-0">
+                <div className="relative h-32 w-32 rounded-full border-4 border-primary overflow-hidden flex-shrink-0" aria-hidden="true">
                   <Image 
                     src="/founder-image.png" 
                     alt="Pranay Reddy Aleti, Founder and CEO of Ondo Real Estate, professional headshot" 
@@ -98,11 +101,16 @@ export default function FoundersLetterPage() {
               </p>
             </div>
 
-            <div className="bg-card rounded-xl p-8 border border-border">
-              <div className="flex items-center mb-6">
-                <TrendingUp className="text-primary h-7 w-7 mr-4" />
-                <h2 className="text-3xl font-bold text-foreground">The Journey</h2>
-              </div>
+            <section
+              className="bg-card rounded-xl p-8 border border-border"
+              aria-labelledby="founders-journey-heading"
+            >
+              <header className="flex items-center mb-6">
+                <TrendingUp className="text-primary h-7 w-7 mr-4" aria-hidden="true" />
+                <h2 id="founders-journey-heading" className="text-3xl font-bold text-foreground">
+                  The Journey
+                </h2>
+              </header>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 As an immigrant, homeowner, and now a <strong className="text-primary">real estate professional in Utah</strong>, I know
                 firsthand how much real estate impacts people's lives. It's not just about transactions; it's about finding stability,
@@ -118,13 +126,18 @@ export default function FoundersLetterPage() {
               <p className="text-foreground/70 text-lg leading-relaxed">
                 Around the same time, I began building this very website — a continuous work in progress that evolves as I do. Every update reflects a step forward in our mission to make property management smarter, more transparent, and deeply human.
               </p>
-            </div>
+            </section>
 
-            <div className="bg-card rounded-xl p-8 border border-border">
-              <div className="flex items-center mb-6">
-                <Lightbulb className="text-primary h-7 w-7 mr-4" />
-                <h2 className="text-3xl font-bold text-foreground">Why Ondo?</h2>
-              </div>
+            <section
+              className="bg-card rounded-xl p-8 border border-border"
+              aria-labelledby="why-ondo-heading"
+            >
+              <header className="flex items-center mb-6">
+                <Lightbulb className="text-primary h-7 w-7 mr-4" aria-hidden="true" />
+                <h2 id="why-ondo-heading" className="text-3xl font-bold text-foreground">
+                  Why Ondo?
+                </h2>
+              </header>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 "Ondo" means <em className="text-primary">foundation and rhythm.</em> To me, real estate is exactly that - the foundation for
                 families and the rhythm that keeps communities thriving. I created Ondo because I saw a gap: property management was stuck in
@@ -134,13 +147,18 @@ export default function FoundersLetterPage() {
                 Owners were frustrated. Tenants were frustrated. And with my background in <strong className="text-primary">technology</strong>,
                 I knew there was a better way.
               </p>
-            </div>
+            </section>
 
-            <div className="bg-card rounded-xl p-8 border border-border">
-              <div className="flex items-center mb-6">
-                <Rocket className="text-primary h-7 w-7 mr-4" />
-                <h2 className="text-3xl font-bold text-foreground">Our Mission</h2>
-              </div>
+            <section
+              className="bg-card rounded-xl p-8 border border-border"
+              aria-labelledby="our-mission-heading"
+            >
+              <header className="flex items-center mb-6">
+                <Rocket className="text-primary h-7 w-7 mr-4" aria-hidden="true" />
+                <h2 id="our-mission-heading" className="text-3xl font-bold text-foreground">
+                  Our Mission
+                </h2>
+              </header>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 Ondo isn't just another property management company - it's a <strong className="text-primary">modern platform built on trust,
                 transparency, and technology.</strong> My goal is simple: make property ownership stress-free, and make renting a home feel fair
@@ -150,13 +168,18 @@ export default function FoundersLetterPage() {
                 I want owners to feel confident that their investments are taken care of, and tenants to feel like they're more than just a
                 number in a system. We're building the future of property management, one relationship at a time.
               </p>
-            </div>
+            </section>
 
-            <div className="bg-card rounded-xl p-8 border border-border">
-              <div className="flex items-center mb-6">
-                <Handshake className="text-primary h-7 w-7 mr-4" />
-                <h2 className="text-3xl font-bold text-foreground">A Personal Note</h2>
-              </div>
+            <section
+              className="bg-card rounded-xl p-8 border border-border"
+              aria-labelledby="personal-note-heading"
+            >
+              <header className="flex items-center mb-6">
+                <Handshake className="text-primary h-7 w-7 mr-4" aria-hidden="true" />
+                <h2 id="personal-note-heading" className="text-3xl font-bold text-foreground">
+                  A Personal Note
+                </h2>
+              </header>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 I'm not building Ondo from a distance - I live this. I own and manage rental property myself, so I understand the real challenges on
                 both sides. I've also taken risks, whether in <strong className="text-primary">real estate, technology, or investing in the
@@ -167,13 +190,18 @@ export default function FoundersLetterPage() {
                 of the day, Ondo is about <strong className="text-primary">creating long-term value</strong> - for owners, for tenants, and for the
                 communities we serve.
               </p>
-            </div>
+            </section>
 
-            <div className="bg-card rounded-xl p-8 border border-border">
-              <div className="flex items-center mb-6">
-                <Building2 className="text-primary h-7 w-7 mr-4" />
-                <h2 className="text-3xl font-bold text-foreground">Looking Ahead</h2>
-              </div>
+            <section
+              className="bg-card rounded-xl p-8 border border-border"
+              aria-labelledby="looking-ahead-heading"
+            >
+              <header className="flex items-center mb-6">
+                <Building2 className="text-primary h-7 w-7 mr-4" aria-hidden="true" />
+                <h2 id="looking-ahead-heading" className="text-3xl font-bold text-foreground">
+                  Looking Ahead
+                </h2>
+              </header>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 I believe the future of real estate lies in combining <strong className="text-primary">human connection</strong> with
                 <strong className="text-primary"> technology.</strong> That's what Ondo stands for. And if you're reading this, I'd love for you
@@ -183,7 +211,7 @@ export default function FoundersLetterPage() {
               <p className="text-foreground/70 text-lg leading-relaxed">
                 Thank you for being here. The future is bright, and this is just the beginning.
               </p>
-            </div>
+            </section>
 
             <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-8 border border-primary">
               <p className="text-foreground/70 text-lg mb-4">Sincerely,</p>
@@ -193,8 +221,13 @@ export default function FoundersLetterPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-card rounded-xl p-6 border border-border">
-              <h3 className="text-xl font-bold text-primary mb-4">Core Values</h3>
+            <section
+              className="bg-card rounded-xl p-6 border border-border"
+              aria-labelledby="core-values-heading"
+            >
+              <h3 id="core-values-heading" className="text-xl font-bold text-primary mb-4">
+                Core Values
+              </h3>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <span className="text-primary mr-3">✓</span>
@@ -213,10 +246,15 @@ export default function FoundersLetterPage() {
                   <span className="text-foreground/70">Community Focus</span>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="bg-card rounded-xl p-6 border border-border">
-              <h3 className="text-xl font-bold text-primary mb-4">Expertise</h3>
+            <section
+              className="bg-card rounded-xl p-6 border border-border"
+              aria-labelledby="expertise-heading"
+            >
+              <h3 id="expertise-heading" className="text-xl font-bold text-primary mb-4">
+                Expertise
+              </h3>
               <div className="space-y-3">
                 <div className="bg-muted rounded-lg p-3">
                   <div className="text-foreground font-semibold">Full Stack Development</div>
@@ -235,10 +273,15 @@ export default function FoundersLetterPage() {
                   <div className="text-foreground/70 text-sm">AI & Automation Solutions</div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-6 border border-primary">
-              <h3 className="text-xl font-bold text-foreground mb-4">Let's Connect</h3>
+            <section
+              className="bg-gradient-to-r from-[var(--color-gradient-to)] to-background rounded-xl p-6 border border-primary"
+              aria-labelledby="lets-connect-heading"
+            >
+              <h3 id="lets-connect-heading" className="text-xl font-bold text-foreground mb-4">
+                Let&apos;s Connect
+              </h3>
               <p className="text-foreground/70 text-sm mb-4">Ready to experience the future of property management?</p>
               <Link
                 href="/contact"
@@ -246,14 +289,17 @@ export default function FoundersLetterPage() {
               >
                 Schedule a Consultation
               </Link>
-            </div>
+            </section>
           </div>
         </div>
       </div>
 
 <div className="max-w-7xl mx-auto px-4 py-24">
   <div className="text-center mb-16">
-    <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+    <h2
+      id="ondo-journey-heading"
+      className="text-4xl md:text-6xl font-bold text-foreground mb-6"
+    >
       The <span className="text-primary">Ondo</span> Journey
     </h2>
     <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
@@ -261,7 +307,7 @@ export default function FoundersLetterPage() {
     </p>
   </div>
   
-  <div className="relative">
+  <div className="relative" aria-labelledby="ondo-journey-heading">
     {/* Timeline line */}
     <div className="hidden md:block absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
     
@@ -273,7 +319,7 @@ export default function FoundersLetterPage() {
           {/* Icon and year circle */}
           <div className="relative mb-6">
             <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Code className="h-8 w-8" />
+              <Code className="h-8 w-8" aria-hidden="true" />
             </div>
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
               2013
@@ -301,7 +347,7 @@ export default function FoundersLetterPage() {
           {/* Icon and year circle */}
           <div className="relative mb-6">
             <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Home className="h-8 w-8" />
+              <Home className="h-8 w-8" aria-hidden="true" />
             </div>
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
               2019
@@ -329,7 +375,7 @@ export default function FoundersLetterPage() {
           {/* Icon and year circle */}
           <div className="relative mb-6">
             <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Zap className="h-8 w-8" />
+              <Zap className="h-8 w-8" aria-hidden="true" />
             </div>
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
               2022
@@ -357,7 +403,7 @@ export default function FoundersLetterPage() {
           {/* Icon and year circle */}
           <div className="relative mb-6">
             <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-background font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Target className="h-8 w-8" />
+              <Target className="h-8 w-8" aria-hidden="true" />
             </div>
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-background px-3 py-1 rounded-full text-sm font-bold">
               2025+

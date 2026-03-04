@@ -93,8 +93,12 @@ export function CustomDrawerTrigger({
   className?: string
 }) {
   return (
-    <div onClick={onClick} className={cn("cursor-pointer", className)}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn("cursor-pointer", className)}
+    >
       {children}
-    </div>
+    </button>
   )
 }

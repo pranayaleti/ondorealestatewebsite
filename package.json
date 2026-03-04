@@ -24,7 +24,9 @@
     "optimize:all-images": "node scripts/optimize-all-images.mjs",
     "copy:headers": "cp public/_headers out/_headers 2>/dev/null || true",
     "analyze:bundle": "node scripts/analyze-bundle.mjs",
-    "check:unused": "node scripts/check-unused-deps.mjs"
+    "check:unused": "node scripts/check-unused-deps.mjs",
+    "a11y:axe": "axe out --dir -q --exit 1 || axe .next/static/chunks -q || true",
+    "test:a11y": "playwright test tests/a11y.spec.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
@@ -88,6 +90,7 @@
   },
   "devDependencies": {
     "@axe-core/cli": "^4.10.2",
+    "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.55.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
@@ -97,6 +100,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^4.0.18",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.2.0",
     "gh-pages": "^6.3.0",

@@ -215,12 +215,13 @@ const MortgagePaymentCalculator: React.FC = () => {
             <div className="space-y-6">
               {/* Home Price */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="homePrice" className="block text-sm font-medium text-foreground mb-2">
                   Home Price
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="homePrice"
                     type="number"
                     value={formData.homePrice || ''}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
@@ -232,13 +233,14 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Down Payment */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="downPaymentAmount" className="block text-sm font-medium text-foreground mb-2">
                   Down Payment
                 </label>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative">
                     <span className="absolute left-3 top-3 text-foreground/70">$</span>
                     <input
+                      id="downPaymentAmount"
                       type="number"
                       value={formData.downPayment || ''}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
@@ -248,6 +250,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   </div>
                   <div className="relative">
                     <input
+                      id="downPaymentPercent"
                       type="number"
                       value={((formData.downPayment / formData.homePrice) * 100).toFixed(1)}
                       onChange={(e) => {
@@ -270,12 +273,13 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Loan Amount */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="loanAmount" className="block text-sm font-medium text-foreground mb-2">
                   Loan Amount
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="loanAmount"
                     type="number"
                     value={formData.loanAmount || ''}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
@@ -287,10 +291,11 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Interest Rate */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="interestRate" className="block text-sm font-medium text-foreground mb-2">
                   Interest Rate (%)
                 </label>
                 <input
+                  id="interestRate"
                   type="number"
                   step="0.01"
                   value={formData.interestRate || ''}
@@ -302,10 +307,11 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Loan Term */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="loanTerm" className="block text-sm font-medium text-foreground mb-2">
                   Loan Term (years)
                 </label>
                 <select
+                  id="loanTerm"
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -318,12 +324,13 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Property Tax */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="propertyTax" className="block text-sm font-medium text-foreground mb-2">
                   Annual Property Tax
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="propertyTax"
                     type="number"
                     value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
@@ -335,12 +342,13 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Insurance */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="insurance" className="block text-sm font-medium text-foreground mb-2">
                   Annual Homeowners Insurance
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="insurance"
                     type="number"
                     value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
@@ -352,10 +360,11 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Loan Program */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="loanProgram" className="block text-sm font-medium text-foreground mb-2">
                   Loan Program
                 </label>
                 <select
+                  id="loanProgram"
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -369,10 +378,11 @@ const MortgagePaymentCalculator: React.FC = () => {
 
               {/* Credit Score */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="creditScore" className="block text-sm font-medium text-foreground mb-2">
                   Credit Score
                 </label>
                 <input
+                  id="creditScore"
                   type="number"
                   min={300}
                   max={850}

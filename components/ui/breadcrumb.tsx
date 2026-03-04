@@ -34,9 +34,15 @@ const BreadcrumbLink = React.forwardRef<
   React.ComponentPropsWithoutRef<"a"> & {
     asChild?: boolean
   }
->(({ className, asChild: _asChild = false, ...props }, ref) => {
+>(({ className, children, asChild: _asChild = false, ...props }, ref) => {
   return (
-    <a ref={ref} className={cn("transition-colors hover:text-foreground flex items-center", className)} {...props} />
+    <a
+      ref={ref}
+      className={cn("transition-colors hover:text-foreground flex items-center", className)}
+      {...props}
+    >
+      {children ?? <span className="sr-only">Breadcrumb link</span>}
+    </a>
   )
 })
 BreadcrumbLink.displayName = "BreadcrumbLink"

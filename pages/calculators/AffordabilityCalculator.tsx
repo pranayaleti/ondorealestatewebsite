@@ -229,12 +229,13 @@ const AffordabilityCalculator: React.FC = () => {
             <div className="space-y-6">
               {/* Annual Income */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="annualIncome" className="block text-sm font-medium text-foreground mb-2">
                   Annual Income
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="annualIncome"
                     type="number"
                     value={formData.annualIncome || ''}
                     onChange={(e) => handleInputChange('annualIncome', Number(e.target.value))}
@@ -246,12 +247,13 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Monthly Debts */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="monthlyDebts" className="block text-sm font-medium text-foreground mb-2">
                   Monthly Debt Payments
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="monthlyDebts"
                     type="number"
                     value={formData.monthlyDebts || ''}
                     onChange={(e) => handleInputChange('monthlyDebts', Number(e.target.value))}
@@ -266,12 +268,13 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Down Payment */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="downPayment" className="block text-sm font-medium text-foreground mb-2">
                   Available Down Payment
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-foreground/70">$</span>
                   <input
+                    id="downPayment"
                     type="number"
                     value={formData.downPayment || ''}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
@@ -283,10 +286,11 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Interest Rate */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="interestRate" className="block text-sm font-medium text-foreground mb-2">
                   Expected Interest Rate (%)
                 </label>
                 <input
+                  id="interestRate"
                   type="number"
                   step="0.01"
                   value={formData.interestRate || ''}
@@ -298,10 +302,11 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Loan Term */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="loanTerm" className="block text-sm font-medium text-foreground mb-2">
                   Loan Term (years)
                 </label>
                 <select
+                  id="loanTerm"
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -314,10 +319,11 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Property Tax Rate */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="propertyTaxRate" className="block text-sm font-medium text-foreground mb-2">
                   Property Tax Rate (% of home value)
                 </label>
                 <input
+                  id="propertyTaxRate"
                   type="number"
                   step="0.1"
                   value={formData.propertyTaxRate || ''}
@@ -329,10 +335,11 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Insurance Rate */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="insuranceRate" className="block text-sm font-medium text-foreground mb-2">
                   Homeowners Insurance Rate (% of home value)
                 </label>
                 <input
+                  id="insuranceRate"
                   type="number"
                   step="0.1"
                   value={formData.insuranceRate || ''}
@@ -344,8 +351,11 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Loan Program */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Loan Program</label>
+                <label htmlFor="loanProgram" className="block text-sm font-medium text-foreground mb-2">
+                  Loan Program
+                </label>
                 <select
+                  id="loanProgram"
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -359,8 +369,11 @@ const AffordabilityCalculator: React.FC = () => {
 
               {/* Credit Score */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Credit Score</label>
+                <label htmlFor="creditScore" className="block text-sm font-medium text-foreground mb-2">
+                  Credit Score
+                </label>
                 <input
+                  id="creditScore"
                   type="number"
                   min={300}
                   max={850}

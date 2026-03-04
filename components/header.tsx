@@ -177,7 +177,7 @@ const Header = memo(() => {
 
           <ModeToggle />
           <Button variant="ghost" asChild>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href={user ? "/dashboard" : "/login"}>Dashboard</Link>
           </Button>
           {user && <UserMenu />}
           {/* Mobile hamburger for full navigation */}
@@ -211,7 +211,7 @@ const Header = memo(() => {
               onLinkClick={handleMenuClose}
             />
             <div className="mt-4">
-              <Link href="/dashboard" onClick={handleMenuClose}>
+              <Link href={user ? "/dashboard" : "/login"} onClick={handleMenuClose}>
                 <Button variant="outline" size="sm" className="w-full">
                   Dashboard
                 </Button>

@@ -146,11 +146,11 @@ const Footer = memo(() => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12" aria-label="Ondo Real Estate footer navigation">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           
           {/* Buying a Home */}
-          <div>
+          <nav aria-label="Buying a Home" className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">
               <Link
                 href="/buy"
@@ -169,10 +169,10 @@ const Footer = memo(() => {
               <li><Link href="/buy/15-year" className="text-foreground/70 hover:text-foreground">15 year mortgage</Link></li>
               <li><Link href="/buy/rates" className="text-foreground/70 hover:text-foreground">Mortgage rates explained</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Refinance */}
-          <div>
+          <nav aria-label="Refinance" className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">
               <Link
                 href="/refinance/process"
@@ -188,10 +188,10 @@ const Footer = memo(() => {
               <li><Link href="/refinance/cash-out" className="text-foreground/70 hover:text-foreground">Cash-out refinance</Link></li>
               <li><Link href="/refinance/blog" className="text-foreground/70 hover:text-foreground">Mortgage blog – Refinance</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Mortgage Loans */}
-          <div>
+          <nav aria-label="Mortgage Loans" className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">
               <Link
                 href="/loans"
@@ -210,10 +210,10 @@ const Footer = memo(() => {
               <li><Link href="/loans/reverse" className="text-foreground/70 hover:text-foreground">Reverse Mortgage</Link></li>
               <li><Link href="/loans/jumbo" className="text-foreground/70 hover:text-foreground">Jumbo Loans</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Mortgage Calculators */}
-          <div>
+          <nav aria-label="Calculators" className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">
               <Link
                 href="/calculators"
@@ -232,10 +232,10 @@ const Footer = memo(() => {
               <li><Link href="/calculators/home-sale" className="text-foreground/70 hover:text-foreground">Home sale calculator</Link></li>
               <li><Link href="/calculators/buying-power" className="text-foreground/70 hover:text-foreground">Buying power calculator</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* About Us */}
-          <div>
+          <nav aria-label="About Us" className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">
               <Link
                 href="/about"
@@ -252,10 +252,10 @@ const Footer = memo(() => {
               <li><Link href="/about/news" className="text-foreground/70 hover:text-foreground">News</Link></li>
               <li><Link href="/about/investor-relations" className="text-foreground/70 hover:text-foreground">Investor relations</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Help Center */}
-          <div>
+          <nav aria-label="Help Center" className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">
               <Link
                 href="/faq"
@@ -273,14 +273,14 @@ const Footer = memo(() => {
               <li><Link href="/faq/escrow-faqs" className="text-foreground/70 hover:text-foreground">Escrow</Link></li>
               <li><Link href="/faq/disaster-faqs" className="text-foreground/70 hover:text-foreground">Natural Disaster Resources</Link></li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Contact Information */}
         <div className="mt-12 pt-8 border-t border-border">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center gap-3">
-              <Phone className="h-5 w-5 text-primary" />
+              <Phone className="h-5 w-5 text-primary" aria-hidden="true" />
               <div>
                 <p className="text-sm font-medium">Loan Servicing Help Center</p>
                 <a
@@ -294,7 +294,7 @@ const Footer = memo(() => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Mail className="h-5 w-5 text-primary" />
+              <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
               <div>
                 <p className="text-sm font-medium">Email Us</p>
                 <a
@@ -307,7 +307,7 @@ const Footer = memo(() => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="h-5 w-5 text-primary" />
+              <MapPin className="h-5 w-5 text-primary" aria-hidden="true" />
               <div>
                 <p className="text-sm font-medium">Our Location</p>
                 <a

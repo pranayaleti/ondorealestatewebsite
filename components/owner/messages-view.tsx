@@ -20,6 +20,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { NewMessageDialog } from "@/components/owner/new-message-dialog"
 import { useToast } from "@/hooks/use-toast"
+import { cn } from "@/lib/utils"
 
 // Mock conversations data
 const CONVERSATIONS = [
@@ -396,11 +397,13 @@ export function MessagesView() {
               ) : (
                 <div>
                   {filteredConversations.map((conversation) => (
-                    <div
+                    <button
                       key={conversation.id}
-                      className={`flex items-center gap-3 p-4 hover:bg-muted/50 cursor-pointer ${
-                        selectedConversation === conversation.id ? "bg-muted" : ""
-                      }`}
+                      type="button"
+                      className={cn(
+                        "flex w-full items-center gap-3 p-4 hover:bg-muted/50 cursor-pointer text-left",
+                        selectedConversation === conversation.id ? "bg-muted" : "",
+                      )}
                       onClick={() => setSelectedConversation(conversation.id)}
                     >
                       <Avatar className="h-10 w-10">
@@ -429,7 +432,7 @@ export function MessagesView() {
                           )}
                         </div>
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}

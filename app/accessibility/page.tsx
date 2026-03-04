@@ -12,37 +12,37 @@ export default function AccessibilityPage() {
   const accessibilityFeatures = [
     {
       title: "Screen Reader Compatibility",
-      icon: <Volume2 className="h-6 w-6" />,
+      icon: <Volume2 className="h-6 w-6" aria-hidden="true" />,
       description: "Our website is fully compatible with screen readers and assistive technologies",
       features: ["Semantic HTML structure", "Alt text for all images", "ARIA labels and roles", "Proper heading hierarchy"]
     },
     {
       title: "Keyboard Navigation",
-      icon: <Keyboard className="h-6 w-6" />,
+      icon: <Keyboard className="h-6 w-6" aria-hidden="true" />,
       description: "All interactive elements can be accessed using only a keyboard",
       features: ["Tab navigation support", "Skip links for main content", "Focus indicators", "Keyboard shortcuts"]
     },
     {
       title: "Visual Accessibility",
-      icon: <Eye className="h-6 w-6" />,
+      icon: <Eye className="h-6 w-6" aria-hidden="true" />,
       description: "High contrast and clear visual design for users with visual impairments",
       features: ["WCAG AA compliant color contrast", "Resizable text", "Clear typography", "Consistent visual hierarchy"]
     },
     {
       title: "Motor Accessibility",
-      icon: <MousePointer className="h-6 w-6" />,
+      icon: <MousePointer className="h-6 w-6" aria-hidden="true" />,
       description: "Large click targets and alternative input methods for users with motor disabilities",
       features: ["Large touch targets", "Alternative input methods", "Drag and drop alternatives", "Voice control support"]
     },
     {
       title: "Mobile Accessibility",
-      icon: <Smartphone className="h-6 w-6" />,
+      icon: <Smartphone className="h-6 w-6" aria-hidden="true" />,
       description: "Fully responsive design that works on all devices and screen sizes",
       features: ["Responsive design", "Touch-friendly interfaces", "Mobile screen reader support", "Gesture alternatives"]
     },
     {
       title: "Cognitive Accessibility",
-      icon: <Monitor className="h-6 w-6" />,
+      icon: <Monitor className="h-6 w-6" aria-hidden="true" />,
       description: "Clear, simple design that's easy to understand and navigate",
       features: ["Simple language", "Clear navigation", "Consistent layout", "Error prevention"]
     }
@@ -90,10 +90,13 @@ export default function AccessibilityPage() {
               </p>
             </div>
 
-            <Card className="mb-12">
+            <Card className="mb-12" aria-labelledby="accessibility-features-heading">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <Accessibility className="h-6 w-6" />
+                <CardTitle
+                  id="accessibility-features-heading"
+                  className="flex items-center gap-3"
+                >
+                  <Accessibility className="h-6 w-6" aria-hidden="true" />
                   Accessibility Features
                 </CardTitle>
               </CardHeader>

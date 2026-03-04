@@ -361,9 +361,10 @@ export default function TenantMessagesPage() {
                 <TabsContent value="all" className="space-y-2">
                   {filteredMessages.length > 0 ? (
                     filteredMessages.map((message) => (
-                      <div
+                      <button
                         key={message.id}
-                        className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                        type="button"
+                        className={`w-full text-left p-3 border rounded-lg cursor-pointer transition-colors ${
                           selectedMessage?.id === message.id ? "bg-muted" : "hover:bg-muted/50"
                         } ${!message.read ? "border-primary" : ""}`}
                         onClick={() => setSelectedMessage(message)}
@@ -401,7 +402,7 @@ export default function TenantMessagesPage() {
                             </Badge>
                           </div>
                         )}
-                      </div>
+                      </button>
                     ))
                   ) : (
                     <div className="text-center py-8">
@@ -419,9 +420,10 @@ export default function TenantMessagesPage() {
                     filteredMessages
                       .filter((m) => !m.read)
                       .map((message) => (
-                        <div
+                        <button
                           key={message.id}
-                          className={`p-3 border rounded-lg cursor-pointer transition-colors border-primary ${
+                          type="button"
+                          className={`w-full text-left p-3 border rounded-lg cursor-pointer transition-colors border-primary ${
                             selectedMessage?.id === message.id ? "bg-muted" : "hover:bg-muted/50"
                           }`}
                           onClick={() => setSelectedMessage(message)}
@@ -455,7 +457,7 @@ export default function TenantMessagesPage() {
                               New
                             </Badge>
                           </div>
-                        </div>
+                        </button>
                       ))
                   ) : (
                     <div className="text-center py-8">
