@@ -1,15 +1,12 @@
 "use client"
 
 import { useEffect } from "react"
-import dynamic from "next/dynamic"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertTriangle } from "lucide-react"
 import { SITE_URL } from "@/lib/site"
-
-// Lazy load SEO component (only needed for metadata)
-const SEO = dynamic(() => import("@/components/seo"), { ssr: true })
+import SEO from "@/components/seo"
 
 export default function Error({
   error,

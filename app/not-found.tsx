@@ -1,6 +1,5 @@
 "use client"
 
-import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
@@ -8,9 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone } from "lucide-react"
 import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
-
-// Lazy load SEO component to reduce initial bundle size
-const SEO = dynamic(() => import("@/components/seo"), { ssr: true })
+import SEO from "@/components/seo"
 
 export default function NotFound() {
   const router = useRouter()

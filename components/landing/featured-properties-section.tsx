@@ -10,10 +10,11 @@ import dynamic from "next/dynamic"
 import { Eye, EyeOff } from "lucide-react"
 import { useFinancialVisibility } from "@/lib/financial-visibility"
 
-// Lazy load the modal component
-const PropertyDetailsModal = dynamic(() => import("@/components/property-details-modal").then(m => ({ default: m.PropertyDetailsModal })), {
-  ssr: true,
-})
+// Lazy load the modal component (client-only to avoid chunk resolution errors)
+const PropertyDetailsModal = dynamic(
+  () => import("@/components/property-details-modal").then((m) => m.PropertyDetailsModal),
+  { ssr: false, loading: () => null }
+)
 
 // Mock data for featured properties
 const featuredProperties = [

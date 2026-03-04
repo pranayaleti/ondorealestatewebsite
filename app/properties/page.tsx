@@ -495,21 +495,29 @@
 
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Building, Home, Search, ArrowUpDown } from 'lucide-react';
 import Image from 'next/image';
-
-// Lazy load the modal component for better performance
-const PropertyDetailsModal = lazy(() => import('@/components/property-details-modal').then(mod => ({ default: mod.PropertyDetailsModal })));
 import {
   type PropertyFilters,
 } from '@/components/property-filter';
 
-// Lazy load heavy components
-const PropertyFilter = lazy(() => import('@/components/property-filter').then(mod => ({ default: mod.PropertyFilter })));
-const PropertySearch = lazy(() => import('@/components/property-search').then(mod => ({ default: mod.PropertySearch })));
+// Dynamic load with Next.js (avoids React.lazy + webpack "reading 'call'" issues)
+const PropertyDetailsModal = dynamic(
+  () => import('@/components/property-details-modal').then((mod) => mod.PropertyDetailsModal),
+  { ssr: false, loading: () => <div className="min-h-[200px] animate-pulse rounded-lg bg-muted" /> }
+);
+const PropertyFilter = dynamic(
+  () => import('@/components/property-filter').then((mod) => mod.PropertyFilter),
+  { ssr: false, loading: () => <div className="h-10 w-32 bg-muted animate-pulse rounded" /> }
+);
+const PropertySearch = dynamic(
+  () => import('@/components/property-search').then((mod) => mod.PropertySearch),
+  { ssr: false, loading: () => <div className="h-12 w-full max-w-md bg-muted animate-pulse rounded" /> }
+);
 import {
   DropdownMenu,
   DropdownMenuContent,
