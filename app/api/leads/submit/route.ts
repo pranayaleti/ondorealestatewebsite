@@ -3,6 +3,45 @@ import { createClient } from '@supabase/supabase-js'
 import { checkUserBlacklist, checkIPBlacklist, validateContent } from '@/lib/blacklist'
 import { z } from 'zod'
 
+// ---- HubSpot & Zapier helpers (lightweight, no heavy SDK) ----
+
+async function syncLeadToHubSpot(lead: { name: string; email: string; phone?: string; message?: string; source?: string }) {
+  const token = process.env.HUBSPOT_ACCESS_TOKEN
+  if (!token) return
+
+  const nameParts = lead.name.trim().split(/\s+/)
+  const firstname = nameParts[0] ?? ''
+  const lastname = nameParts.slice(1).join(' ') || ''
+
+  await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      properties: {
+        email: lead.email,
+        firstname,
+        lastname,
+        phone: lead.phone ?? '',
+        hs_lead_status: 'NEW',
+      },
+    }),
+  })
+}
+
+function notifyZapierNewLead(data: Record<string, unknown>) {
+  const url = process.env.ZAPIER_NEW_LEAD_WEBHOOK
+  if (!url) return
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...data, timestamp: new Date().toISOString(), event: 'new_lead' }),
+  }).catch(() => {})
+}
+
 // POST routes must be force-dynamic — static export excludes this file at build time,
 // but it works in development and any server-rendered deployment.
 export const dynamic = 'force-dynamic'
@@ -107,6 +146,12 @@ export async function POST(request: NextRequest) {
       console.error('Lead insert failed:', insertError.code)
       return NextResponse.json({ error: 'Failed to submit lead' }, { status: 500 })
     }
+
+    // Sync to HubSpot (non-blocking, best-effort)
+    syncLeadToHubSpot({ name, email, phone, message, source }).catch(() => {})
+
+    // Notify Zapier (fire-and-forget)
+    notifyZapierNewLead({ name, email, phone, message, source, leadId: lead.id })
 
     return NextResponse.json({ success: true, message: 'Lead submitted successfully', leadId: lead.id })
 
