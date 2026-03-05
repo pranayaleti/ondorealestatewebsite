@@ -5,6 +5,7 @@ import SEO from "@/components/seo"
 import { SITE_URL } from "@/lib/site"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { Gift, MessageCircle, Sparkles } from "lucide-react"
+import { backendUrl } from "@/lib/backend"
 
 export default function FeedbackPage() {
   const [suggestion, setSuggestion] = useState("")
@@ -14,7 +15,7 @@ export default function FeedbackPage() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     if (!suggestion.trim()) {
       setErrorMessage("Please enter a suggestion before submitting.")
@@ -25,19 +26,34 @@ export default function FeedbackPage() {
     setErrorMessage(null)
     setStatus("submitting")
 
-    // For now we just simulate a successful submission on the client.
-    // This can be wired to an API route or external tool later.
-    setTimeout(() => {
+    try {
+      const res = await fetch(backendUrl("/api/feedback"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          suggestion: suggestion.trim(),
+          email: email.trim() || undefined,
+          phone: phone.trim() || undefined,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        setErrorMessage(data?.message ?? "Something went wrong. Please try again.")
+        setStatus("error")
+        return
+      }
+
       setSubmittedCount((prev) => prev + 1)
       setSuggestion("")
       setEmail("")
       setPhone("")
       setStatus("success")
-      // Clear success after a short delay
-      setTimeout(() => {
-        setStatus("idle")
-      }, 3000)
-    }, 600)
+      setTimeout(() => setStatus("idle"), 3000)
+    } catch {
+      setErrorMessage("Failed to submit. Please check your connection and try again.")
+      setStatus("error")
+    }
   }
 
   return (
