@@ -6,6 +6,18 @@ import { SITE_URL } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, FileText } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Notary & Closings FAQs | Ondo Real Estate",
+  description: "Get answers to common questions about notary services, Remote Online Notarization (RON), mobile notary, and what to expect during document signing.",
+  alternates: { canonical: `${SITE_URL}/faq/notary-faqs/` },
+  openGraph: {
+    title: "Notary & Closings FAQs | Ondo Real Estate",
+    description: "Get answers to common questions about notary services, Remote Online Notarization (RON), mobile notary, and what to expect during document signing.",
+  },
+}
+
 
 export default function NotaryFAQPage() {
   const faqs = [

@@ -6,6 +6,18 @@ import { SITE_URL, SITE_PHONE } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, AlertTriangle } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Disaster & Emergency Help FAQs | Ondo Real Estate",
+  description: "Find answers to questions about disaster assistance, emergency help, mortgage forbearance, and what to do after a disaster.",
+  alternates: { canonical: `${SITE_URL}/faq/disaster-faqs/` },
+  openGraph: {
+    title: "Disaster & Emergency Help FAQs | Ondo Real Estate",
+    description: "Find answers to questions about disaster assistance, emergency help, mortgage forbearance, and what to do after a disaster.",
+  },
+}
+
 
 export default function DisasterFAQPage() {
   const faqs = [

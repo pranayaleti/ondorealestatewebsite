@@ -5,6 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Real Estate Resources | Guides, Formulas, Calculators & Glossary | Ondo Real Estate",
+  description: "Central hub for Ondo Real Estate resources: buyer & seller guides, property management playbooks, loan education, notary help, key investment formulas, and glossary.",
+  alternates: { canonical: `${SITE_URL}/resources/` },
+  openGraph: {
+    title: "Real Estate Resources | Guides, Formulas, Calculators & Glossary | Ondo Real Estate",
+    description: "Central hub for Ondo Real Estate resources: buyer & seller guides, property management playbooks, loan education, notary help, key investment formulas, and glossary.",
+  },
+}
+
 
 const formulaSections = [
   {
@@ -247,7 +259,7 @@ export default function ResourcesPage() {
                       <Link href="/sell">See selling options</Link>
                     </Button>
                     <Button asChild size="sm" variant="outline">
-                      <Link href="/pages/calculators/HomeSaleCalculator">Estimate sale</Link>
+                      <Link href="/calculators/home-sale">Estimate sale</Link>
                     </Button>
                     <Button asChild size="sm" variant="ghost">
                       <Link href="/blog">Seller & pricing tips</Link>
@@ -385,7 +397,7 @@ export default function ResourcesPage() {
                     <li>Impact of points and temporary buydowns</li>
                   </ul>
                   <Button asChild size="sm" className="mt-4">
-                    <Link href="/pages/calculators/MortgagePaymentCalculator">Open payment calculator</Link>
+                    <Link href="/calculators/mortgage-payment">Open payment calculator</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -403,7 +415,7 @@ export default function ResourcesPage() {
                   </ul>
                   <div className="mt-4 flex flex-wrap gap-2">
                     <Button asChild size="sm">
-                      <Link href="/pages/calculators/AffordabilityCalculator">Affordability</Link>
+                      <Link href="/calculators/affordability">Affordability</Link>
                     </Button>
                     <Button asChild size="sm" variant="outline">
                       <Link href="/blog/rent-vs-owning-hidden-math">Rent vs. own guide</Link>
@@ -428,7 +440,7 @@ export default function ResourcesPage() {
                       <Link href="/calculators">All calculators</Link>
                     </Button>
                     <Button asChild size="sm" variant="outline">
-                      <Link href="/pages/calculators/CapRateCalculator">Cap rate tool</Link>
+                      <Link href="/calculators/cap-rate">Cap rate tool</Link>
                     </Button>
                   </div>
                 </CardContent>

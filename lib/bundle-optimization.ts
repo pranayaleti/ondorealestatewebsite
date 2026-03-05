@@ -6,16 +6,16 @@ import { lazy } from "react"
 export const dynamicImports = {
   // Calculator components
   calculators: {
-    mortgagePayment: () => import("@/pages/calculators/MortgagePaymentCalculator"),
-    affordability: () => import("@/pages/calculators/AffordabilityCalculator"),
-    income: () => import("@/pages/calculators/IncomeCalculator"),
-    closingCost: () => import("@/pages/calculators/ClosingCostCalculator"),
-    refinance: () => import("@/pages/calculators/RefinanceCalculator"),
-    homeSale: () => import("@/pages/calculators/HomeSaleCalculator"),
-    buyingPower: () => import("@/pages/calculators/BuyingPowerCalculator"),
-    temporaryBuydown: () => import("@/pages/calculators/TemporaryBuydownCalculator"),
-    rentVsOwn: () => import("@/pages/calculators/RentVsOwnCalculator"),
-    retirement: () => import("@/pages/calculators/RetirementCalculator"),
+    mortgagePayment: () => import("@/pages/calculators/mortgage-payment-calculator"),
+    affordability: () => import("@/pages/calculators/affordability-calculator"),
+    income: () => import("@/pages/calculators/income-calculator"),
+    closingCost: () => import("@/pages/calculators/closing-cost-calculator"),
+    refinance: () => import("@/pages/calculators/refinance-calculator"),
+    homeSale: () => import("@/pages/calculators/home-sale-calculator"),
+    buyingPower: () => import("@/pages/calculators/buying-power-calculator"),
+    temporaryBuydown: () => import("@/pages/calculators/temporary-buydown-calculator"),
+    rentVsOwn: () => import("@/pages/calculators/rent-vs-own-calculator"),
+    retirement: () => import("@/pages/calculators/retirement-calculator"),
   },
 
   // Dashboard components

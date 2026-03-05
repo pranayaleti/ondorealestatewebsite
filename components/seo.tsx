@@ -6,6 +6,10 @@ import {
 } from "@/lib/seo"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
+// NOTE: This component only generates JSON-LD structured data.
+// For <title>, <meta name="description">, robots, and OG tags, use Next.js
+// `export const metadata` or `generateMetadata` in the page/layout file.
+// To noindex a page, add `robots: { index: false }` to its metadata export.
 type SEOProps = {
   title: string
   description: string
@@ -13,7 +17,6 @@ type SEOProps = {
   image?: string
   jsonLd?: object | object[] | null
   keywords?: string[]
-  noindex?: boolean
   publishedTime?: string
   modifiedTime?: string
   author?: string
@@ -28,7 +31,6 @@ export default function SEO({
   image,
   jsonLd = null,
   keywords = [],
-  noindex = false,
   publishedTime,
   modifiedTime,
   author,
@@ -43,7 +45,6 @@ export default function SEO({
 
   const url = `${domain}${pathname}`
   const ogImage = toAbsolute(image) || `${domain}/modern-office-building.webp`
-  void noindex
 
   // Enhanced keywords with default real estate terms
   const defaultKeywords = [

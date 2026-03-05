@@ -5,6 +5,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SITE_EMAILS, SITE_PHONE, SITE_URL } from "@/lib/site";
 import Link from "next/link";
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Remote Online Notary for Real Estate Closings | Ondo Real Estate",
+  description: "Use ONDO Remote Online Notary for purchases, refinances, HELOCs, and investor closings with compliant ID checks, audit trails, and title-ready documents.",
+  alternates: { canonical: `${SITE_URL}/blog/remote-online-notary-real-estate-closings/` },
+  openGraph: {
+    title: "Remote Online Notary for Real Estate Closings | Ondo Real Estate",
+    description: "Use ONDO Remote Online Notary for purchases, refinances, HELOCs, and investor closings with compliant ID checks, audit trails, and title-ready documents.",
+    type: "article",
+    publishedTime: "2025-01-10",
+    modifiedTime: "2025-01-10",
+    authors: ["ONDO Notary Team"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Remote Online Notary for Real Estate Closings | Ondo Real Estate",
+    description: "Use ONDO Remote Online Notary for purchases, refinances, HELOCs, and investor closings with compliant ID checks, audit trails, and title-ready documents.",
+  },
+}
+
 
 const published = "2025-01-10";
 const modified = "2025-01-10";

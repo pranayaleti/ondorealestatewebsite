@@ -6,6 +6,18 @@ import { SITE_URL } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, Home } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Buying & Selling FAQs | Ondo Real Estate",
+  description: "Get answers to common questions about buying homes, selling properties, renting vs buying, home valuations, and the Utah real estate market.",
+  alternates: { canonical: `${SITE_URL}/faq/buying-selling-faqs/` },
+  openGraph: {
+    title: "Buying & Selling FAQs | Ondo Real Estate",
+    description: "Get answers to common questions about buying homes, selling properties, renting vs buying, home valuations, and the Utah real estate market.",
+  },
+}
+
 
 export default function BuyingSellingFAQPage() {
   const faqs = [

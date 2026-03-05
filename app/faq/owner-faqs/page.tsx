@@ -6,6 +6,18 @@ import { SITE_URL } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, Building2 } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Owner FAQs | Ondo Real Estate",
+  description: "Find answers to property owner questions about management services, fees, tenant screening, maintenance, and reporting.",
+  alternates: { canonical: `${SITE_URL}/faq/owner-faqs/` },
+  openGraph: {
+    title: "Owner FAQs | Ondo Real Estate",
+    description: "Find answers to property owner questions about management services, fees, tenant screening, maintenance, and reporting.",
+  },
+}
+
 
 export default function OwnerFAQPage() {
   const faqs = [

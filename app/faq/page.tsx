@@ -5,6 +5,18 @@ import { PageBanner } from "@/components/page-banner"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd, generateFAQJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_EMAILS } from "@/lib/site"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "FAQs | Property Management & Rentals | Ondo Real Estate",
+  description: "Find answers to common questions about our property management services and renting with Ondo Real Estate.",
+  alternates: { canonical: `${SITE_URL}/faq/` },
+  openGraph: {
+    title: "FAQs | Property Management & Rentals | Ondo Real Estate",
+    description: "Find answers to common questions about our property management services and renting with Ondo Real Estate.",
+  },
+}
+
 
 const faqItems = [
   {

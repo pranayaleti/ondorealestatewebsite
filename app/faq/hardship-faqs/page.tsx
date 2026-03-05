@@ -6,6 +6,18 @@ import { SITE_URL, SITE_PHONE } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Hardship & Assistance Options FAQs | Ondo Real Estate",
+  description: "Find answers to questions about hardship assistance, mortgage forbearance, loan modification, and payment relief options.",
+  alternates: { canonical: `${SITE_URL}/faq/hardship-faqs/` },
+  openGraph: {
+    title: "Hardship & Assistance Options FAQs | Ondo Real Estate",
+    description: "Find answers to questions about hardship assistance, mortgage forbearance, loan modification, and payment relief options.",
+  },
+}
+
 
 export default function HardshipFAQPage() {
   const faqs = [

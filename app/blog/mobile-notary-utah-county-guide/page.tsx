@@ -5,6 +5,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SITE_EMAILS, SITE_PHONE, SITE_URL } from "@/lib/site";
 import Link from "next/link";
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Mobile Notary in Utah County: Fees, Timing, and How to Book | Ondo Real Estate",
+  description: "ONDO Notary offers mobile notarization across Utah County with transparent pricing, same-day scheduling, and real estate-ready loan signing expertise.",
+  alternates: { canonical: `${SITE_URL}/blog/mobile-notary-utah-county-guide/` },
+  openGraph: {
+    title: "Mobile Notary in Utah County: Fees, Timing, and How to Book | Ondo Real Estate",
+    description: "ONDO Notary offers mobile notarization across Utah County with transparent pricing, same-day scheduling, and real estate-ready loan signing expertise.",
+    type: "article",
+    publishedTime: "2025-01-10",
+    modifiedTime: "2025-01-10",
+    authors: ["ONDO Notary Team"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mobile Notary in Utah County: Fees, Timing, and How to Book | Ondo Real Estate",
+    description: "ONDO Notary offers mobile notarization across Utah County with transparent pricing, same-day scheduling, and real estate-ready loan signing expertise.",
+  },
+}
+
 
 const published = "2025-01-10";
 const modified = "2025-01-10";

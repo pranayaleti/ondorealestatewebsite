@@ -6,6 +6,18 @@ import { SITE_URL } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, DollarSign } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Loans & Financing FAQs | Ondo Real Estate",
+  description: "Get answers to common questions about Utah home loans, mortgages, pre-approval, down payments, and refinancing options.",
+  alternates: { canonical: `${SITE_URL}/faq/loans-faqs/` },
+  openGraph: {
+    title: "Loans & Financing FAQs | Ondo Real Estate",
+    description: "Get answers to common questions about Utah home loans, mortgages, pre-approval, down payments, and refinancing options.",
+  },
+}
+
 
 export default function LoansFAQPage() {
   const faqs = [

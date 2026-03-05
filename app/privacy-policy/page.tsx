@@ -6,6 +6,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Shield, Eye, Lock, Database, Mail, Phone } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Ondo Real Estate",
+  description: "Learn how Ondo Real Estate protects your personal information and privacy. Read our comprehensive privacy policy.",
+  alternates: { canonical: `${SITE_URL}/privacy-policy/` },
+  openGraph: {
+    title: "Privacy Policy | Ondo Real Estate",
+    description: "Learn how Ondo Real Estate protects your personal information and privacy. Read our comprehensive privacy policy.",
+  },
+}
+
 
 export default function PrivacyPolicyPage() {
   const lastUpdated = "December 15, 2024"

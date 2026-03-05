@@ -6,6 +6,27 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SITE_EMAILS, SITE_PHONE, SITE_URL } from "@/lib/site";
 import NOTARY_SERVICE_AREAS from "@/lib/notary-service-areas";
 import Link from "next/link";
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Remote Online Notary in All 50 States | Ondo Real Estate",
+  description: "How ONDO Notary delivers secure Remote Online Notarization (RON) across all 50 U.S. states with identity verification, compliant records, and fast scheduling.",
+  alternates: { canonical: `${SITE_URL}/blog/remote-online-notary-all-50-states/` },
+  openGraph: {
+    title: "Remote Online Notary in All 50 States | Ondo Real Estate",
+    description: "How ONDO Notary delivers secure Remote Online Notarization (RON) across all 50 U.S. states with identity verification, compliant records, and fast scheduling.",
+    type: "article",
+    publishedTime: "2025-01-10",
+    modifiedTime: "2025-01-10",
+    authors: ["ONDO Notary Team"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Remote Online Notary in All 50 States | Ondo Real Estate",
+    description: "How ONDO Notary delivers secure Remote Online Notarization (RON) across all 50 U.S. states with identity verification, compliant records, and fast scheduling.",
+  },
+}
+
 
 const published = "2025-01-10";
 const modified = "2025-01-10";

@@ -6,6 +6,18 @@ import { TrendingUp, FileText, Clock, CheckCircle } from "lucide-react"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Mortgage Refinance Process | Ondo Real Estate",
+  description: "Step-by-step guide to refinancing your home loan in Utah, from evaluation to closing.",
+  alternates: { canonical: `${SITE_URL}/refinance/process/` },
+  openGraph: {
+    title: "Mortgage Refinance Process | Ondo Real Estate",
+    description: "Step-by-step guide to refinancing your home loan in Utah, from evaluation to closing.",
+  },
+}
+
 
 export default function RefinanceProcessPage() {
   const steps = [

@@ -6,6 +6,18 @@ import { SITE_URL } from "@/lib/site"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle } from "lucide-react"
 import Script from "next/script"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Escrow, Taxes & Insurance FAQs | Ondo Real Estate",
+  description: "Find answers to questions about escrow accounts, property taxes, homeowners insurance, and how escrow works.",
+  alternates: { canonical: `${SITE_URL}/faq/escrow-faqs/` },
+  openGraph: {
+    title: "Escrow, Taxes & Insurance FAQs | Ondo Real Estate",
+    description: "Find answers to questions about escrow accounts, property taxes, homeowners insurance, and how escrow works.",
+  },
+}
+
 
 export default function EscrowFAQPage() {
   const faqs = [

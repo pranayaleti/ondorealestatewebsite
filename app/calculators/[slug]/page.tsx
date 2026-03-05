@@ -7,55 +7,55 @@ import { SITE_NAME, SITE_URL } from "@/lib/site"
 import Loading from "@/components/loading"
 
 const slugToComponent: Record<string, ComponentType> = {
-  "mortgage-payment": dynamic(() => import("@/pages/calculators/MortgagePaymentCalculator"), { 
+  "mortgage-payment": dynamic(() => import("@/pages/calculators/mortgage-payment-calculator"), {
     loading: () => <Loading />
   }),
-  "affordability": dynamic(() => import("@/pages/calculators/AffordabilityCalculator"), { 
+  "affordability": dynamic(() => import("@/pages/calculators/affordability-calculator"), {
     loading: () => <Loading />
   }),
-  "income": dynamic(() => import("@/pages/calculators/IncomeCalculator"), { 
+  "income": dynamic(() => import("@/pages/calculators/income-calculator"), {
     loading: () => <Loading />
   }),
-  "closing-cost": dynamic(() => import("@/pages/calculators/ClosingCostCalculator"), { 
+  "closing-cost": dynamic(() => import("@/pages/calculators/closing-cost-calculator"), {
     loading: () => <Loading />
   }),
-  "refinance": dynamic(() => import("@/pages/calculators/RefinanceCalculator"), { 
+  "refinance": dynamic(() => import("@/pages/calculators/refinance-calculator"), {
     loading: () => <Loading />
   }),
-  "home-sale": dynamic(() => import("@/pages/calculators/HomeSaleCalculator"), { 
+  "home-sale": dynamic(() => import("@/pages/calculators/home-sale-calculator"), {
     loading: () => <Loading />
   }),
-  "buying-power": dynamic(() => import("@/pages/calculators/BuyingPowerCalculator"), { 
+  "buying-power": dynamic(() => import("@/pages/calculators/buying-power-calculator"), {
     loading: () => <Loading />
   }),
-  "temporary-buydown": dynamic(() => import("@/pages/calculators/TemporaryBuydownCalculator"), { 
+  "temporary-buydown": dynamic(() => import("@/pages/calculators/temporary-buydown-calculator"), {
     loading: () => <Loading />
   }),
-  "rent-vs-own": dynamic(() => import("@/pages/calculators/RentVsOwnCalculator"), { 
+  "rent-vs-own": dynamic(() => import("@/pages/calculators/rent-vs-own-calculator"), {
     loading: () => <Loading />
   }),
-  "retirement": dynamic(() => import("@/pages/calculators/RetirementCalculator"), { 
+  "retirement": dynamic(() => import("@/pages/calculators/retirement-calculator"), {
     loading: () => <Loading />
   }),
-  "cash-on-cash": dynamic(() => import("@/pages/calculators/CashOnCashCalculator"), { 
+  "cash-on-cash": dynamic(() => import("@/pages/calculators/cash-on-cash-calculator"), {
     loading: () => <Loading />
   }),
-  "cap-rate": dynamic(() => import("@/pages/calculators/CapRateCalculator"), { 
+  "cap-rate": dynamic(() => import("@/pages/calculators/cap-rate-calculator"), {
     loading: () => <Loading />
   }),
-  "roi": dynamic(() => import("@/pages/calculators/ROICalculator"), { 
+  "roi": dynamic(() => import("@/pages/calculators/roi-calculator"), {
     loading: () => <Loading />
   }),
-  "grm": dynamic(() => import("@/pages/calculators/GRMCalculator"), { 
+  "grm": dynamic(() => import("@/pages/calculators/grm-calculator"), {
     loading: () => <Loading />
   }),
-  "dscr": dynamic(() => import("@/pages/calculators/DSCRCalculator"), { 
+  "dscr": dynamic(() => import("@/pages/calculators/dscr-calculator"), {
     loading: () => <Loading />
   }),
-  "one-percent-rule": dynamic(() => import("@/pages/calculators/OnePercentRuleCalculator"), { 
+  "one-percent-rule": dynamic(() => import("@/pages/calculators/one-percent-rule-calculator"), {
     loading: () => <Loading />
   }),
-  "fifty-percent-rule": dynamic(() => import("@/pages/calculators/FiftyPercentRuleCalculator"), { 
+  "fifty-percent-rule": dynamic(() => import("@/pages/calculators/fifty-percent-rule-calculator"), {
     loading: () => <Loading />
   }),
 }

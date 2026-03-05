@@ -20,6 +20,28 @@ const keywords = [
   "React Scheduling Components"
 ];
 
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: `${title} | Ondo Real Estate`,
+  description: description,
+  alternates: { canonical: `${SITE_URL}${slug}/` },
+  openGraph: {
+    title: `${title} | Ondo Real Estate`,
+    description: description,
+    type: "article",
+    publishedTime: published,
+    modifiedTime: modified || published,
+    authors: [author],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${title} | Ondo Real Estate`,
+    description: description,
+  },
+}
+
 export default function ModernizingNotaryWorkflows() {
   return (
     <main className="min-h-screen">

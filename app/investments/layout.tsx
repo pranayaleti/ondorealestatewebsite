@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   description:
     "Explore commercial real estate and fractional ownership investment opportunities in Utah with Ondo Real Estate.",
-  alternates: { canonical: `${SITE_URL}/investments` },
+  alternates: { canonical: `${SITE_URL}/investments/` },
 }
 
 export default function InvestmentsLayout({ children }: { children: React.ReactNode }) {

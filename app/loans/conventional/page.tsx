@@ -6,6 +6,18 @@ import { Home, DollarSign, Shield, CheckCircle } from "lucide-react"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Conventional Loans in Utah | Ondo Real Estate",
+  description: "Traditional mortgages with flexible terms and competitive rates. Learn requirements and compare options.",
+  alternates: { canonical: `${SITE_URL}/loans/conventional/` },
+  openGraph: {
+    title: "Conventional Loans in Utah | Ondo Real Estate",
+    description: "Traditional mortgages with flexible terms and competitive rates. Learn requirements and compare options.",
+  },
+}
+
 
 export default function ConventionalLoanPage() {
   const benefits = [

@@ -92,7 +92,7 @@ export const metadata: Metadata = {
       "Utah real estate services: property management, buying, selling, refinancing, and mortgages.",
     images: [
       {
-        url: `${SITE_URL}/modern-office-building.png`,
+        url: `${SITE_URL}/modern-office-building.webp`,
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} office building`,
@@ -104,7 +104,7 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — Utah Property Management, Buying, Selling, Loans`,
     description:
       "Utah real estate services: property management, buying, selling, refinancing, and mortgages.",
-    images: [`${SITE_URL}/modern-office-building.png`],
+    images: [`${SITE_URL}/modern-office-building.webp`],
   },
   robots: {
     index: true,
