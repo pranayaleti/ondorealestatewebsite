@@ -37,11 +37,17 @@ export const config = {
     enabled: !!process.env.DATABASE_URL,
   },
 
-  // Supabase
+  // Supabase (publishable key: use NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY)
   supabase: {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    enabled: !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
+    anonKey:
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    enabled: !!(
+      process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ||
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+    ),
   },
 
   // Email
