@@ -26,13 +26,15 @@ export default function UserMenu() {
     setIsLoading(false)
   }
 
-  const getInitials = (name: string) => {
+  const getInitials = (name: string | undefined) => {
+    if (!name || typeof name !== 'string') return '?'
     return name
-      .split(' ')
+      .trim()
+      .split(/\s+/)
       .map(n => n[0])
       .join('')
       .toUpperCase()
-      .slice(0, 2)
+      .slice(0, 2) || '?'
   }
 
   const getDashboardLink = () => {
@@ -51,20 +53,24 @@ export default function UserMenu() {
 
   if (!user) return null
 
+  const u = user as { name?: string; firstName?: string; lastName?: string; email: string }
+  const displayName =
+    u.name ?? ([u.firstName, u.lastName].filter(Boolean).join(' ').trim() || u.email)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.avatar} alt={user.name} />
-            <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+            <AvatarImage src={user.avatar} alt={displayName} />
+            <AvatarFallback>{getInitials(displayName)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user.name}</p>
+            <p className="text-sm font-medium leading-none">{displayName}</p>
             <p className="text-xs leading-none text-foreground/70">
               {user.email}
             </p>
