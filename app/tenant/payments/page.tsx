@@ -1,14 +1,11 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CreditCard, DollarSign, Calendar } from "lucide-react"
+import { DollarSign, Calendar, CreditCard, Loader2 } from "lucide-react"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -22,23 +19,60 @@ import { useToast } from "@/hooks/use-toast"
 import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
+import { backendUrl } from "@/lib/backend"
+import { StripePaymentForm } from "@/components/stripe-payment-form"
 
 export default function PaymentsPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [paymentAmount, setPaymentAmount] = useState("1250.00")
+  const [isCreatingIntent, setIsCreatingIntent] = useState(false)
+  const [clientSecret, setClientSecret] = useState<string | null>(null)
   const { toast } = useToast()
 
-  const handlePayment = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  const amountNumber = parseFloat(paymentAmount) || 0
 
-    // Simulate payment processing
-    setTimeout(() => {
-      setIsSubmitting(false)
-      toast({
-        title: "Payment successful",
-        description: "Your payment has been processed successfully.",
+  const handlePay = async () => {
+    if (amountNumber < 0.5) {
+      toast({ title: "Invalid amount", description: "Minimum payment is $0.50" })
+      return
+    }
+
+    setIsCreatingIntent(true)
+    try {
+      const token = typeof window !== "undefined" ? localStorage.getItem("token") : null
+
+      const res = await fetch(backendUrl("/payments/create-payment-intent"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({
+          amountCents: Math.round(amountNumber * 100),
+          paymentType: "rent",
+          description: "Monthly Rent Payment",
+        }),
       })
-    }, 2000)
+
+      const data = await res.json()
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Failed to create payment")
+      }
+
+      setClientSecret(data.clientSecret)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Payment setup failed."
+      toast({ title: "Error", description: message })
+    } finally {
+      setIsCreatingIntent(false)
+    }
+  }
+
+  const handlePaymentSuccess = () => {
+    setClientSecret(null)
+    toast({
+      title: "Payment successful",
+      description: `Your payment of $${amountNumber.toFixed(2)} has been processed.`,
+    })
   }
 
   return (
@@ -75,82 +109,72 @@ export default function PaymentsPage() {
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Make a Payment</CardTitle>
-            <CardDescription>Pay your rent or other fees</CardDescription>
+            <CardDescription>Pay your rent securely via Stripe</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="card">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="card">Credit Card</TabsTrigger>
-                <TabsTrigger value="bank">Bank Account</TabsTrigger>
-              </TabsList>
-              <TabsContent value="card" className="space-y-4 pt-4">
-                <form onSubmit={handlePayment} className="space-y-4">
-                  <div className="grid gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="amount">Payment Amount</Label>
-                      <div className="relative">
-                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
-                        <Input id="amount" placeholder="1,250.00" className="pl-9" defaultValue="1,250.00" />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name on Card</Label>
-                      <Input id="name" placeholder="John Smith" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="card">Card Number</Label>
-                      <div className="relative">
-                        <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
-                        <Input id="card" placeholder="4242 4242 4242 4242" className="pl-9" />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="expiry">Expiry Date</Label>
-                        <Input id="expiry" placeholder="MM/YY" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="cvc">CVC</Label>
-                        <Input id="cvc" placeholder="123" />
-                      </div>
-                    </div>
+            {clientSecret ? (
+              <div className="space-y-4">
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg text-sm">
+                  Paying <strong>${amountNumber.toFixed(2)}</strong> — enter your payment details below.
+                </div>
+                <StripePaymentForm
+                  clientSecret={clientSecret}
+                  amount={Math.round(amountNumber * 100)}
+                  onSuccess={handlePaymentSuccess}
+                  onError={(msg) => toast({ title: "Payment failed", description: msg })}
+                />
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => setClientSecret(null)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="amount">Payment Amount</Label>
+                  <div className="relative">
+                    <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
+                    <Input
+                      id="amount"
+                      type="number"
+                      value={paymentAmount}
+                      onChange={(e) => setPaymentAmount(e.target.value)}
+                      className="pl-9"
+                      min="0"
+                      step="0.01"
+                    />
                   </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Processing..." : "Pay $1,250.00"}
-                  </Button>
-                </form>
-              </TabsContent>
-              <TabsContent value="bank" className="space-y-4 pt-4">
-                <form onSubmit={handlePayment} className="space-y-4">
-                  <div className="grid gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="bank-amount">Payment Amount</Label>
-                      <div className="relative">
-                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/70" />
-                        <Input id="bank-amount" placeholder="1,250.00" className="pl-9" defaultValue="1,250.00" />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="account-name">Account Holder Name</Label>
-                      <Input id="account-name" placeholder="John Smith" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="routing">Routing Number</Label>
-                      <Input id="routing" placeholder="123456789" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="account">Account Number</Label>
-                      <Input id="account" placeholder="987654321" />
-                    </div>
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Processing..." : "Pay $1,250.00"}
-                  </Button>
-                </form>
-              </TabsContent>
-            </Tabs>
+                </div>
+
+                <Button
+                  className="w-full"
+                  onClick={handlePay}
+                  disabled={isCreatingIntent}
+                >
+                  {isCreatingIntent ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Preparing payment...
+                    </>
+                  ) : (
+                    <>
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      Pay ${amountNumber.toFixed(2)}
+                    </>
+                  )}
+                </Button>
+
+                <p className="text-xs text-center text-foreground/50">
+                  Payments are processed securely by Stripe. Your card details never touch our servers.
+                </p>
+              </div>
+            )}
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>Payment Summary</CardTitle>
@@ -164,7 +188,7 @@ export default function PaymentsPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-foreground/70">Due Date</span>
-                <span className="font-medium">June 1, 2023</span>
+                <span className="font-medium">1st of each month</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-foreground/70">Status</span>
@@ -201,54 +225,28 @@ export default function PaymentsPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-foreground/70" />
-                <div className="text-sm font-medium">May 1, 2023</div>
+            {[
+              { date: "May 1, 2023", ref: "#12458", amount: "$1,250.00" },
+              { date: "April 1, 2023", ref: "#12345", amount: "$1,250.00" },
+              { date: "March 1, 2023", ref: "#12234", amount: "$1,250.00" },
+            ].map((payment) => (
+              <div key={payment.ref} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-foreground/70" />
+                  <div className="text-sm font-medium">{payment.date}</div>
+                </div>
+                <div className="md:col-span-2">
+                  <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
+                  <div className="text-xs text-foreground/70">Payment {payment.ref}</div>
+                </div>
+                <div>
+                  <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
+                    Completed
+                  </Badge>
+                </div>
+                <div className="text-sm font-medium text-right">{payment.amount}</div>
               </div>
-              <div className="md:col-span-2">
-                <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
-                <div className="text-xs text-foreground/70">Payment #12458</div>
-              </div>
-              <div>
-                <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
-                  Completed
-                </Badge>
-              </div>
-              <div className="text-sm font-medium text-right">$1,250.00</div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-foreground/70" />
-                <div className="text-sm font-medium">April 1, 2023</div>
-              </div>
-              <div className="md:col-span-2">
-                <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
-                <div className="text-xs text-foreground/70">Payment #12345</div>
-              </div>
-              <div>
-                <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
-                  Completed
-                </Badge>
-              </div>
-              <div className="text-sm font-medium text-right">$1,250.00</div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center p-3 bg-muted/50 rounded-lg">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-foreground/70" />
-                <div className="text-sm font-medium">March 1, 2023</div>
-              </div>
-              <div className="md:col-span-2">
-                <div className="text-sm">Monthly Rent - 123 Main St, Apt 4B</div>
-                <div className="text-xs text-foreground/70">Payment #12234</div>
-              </div>
-              <div>
-                <Badge variant="outline" className="bg-muted text-green-800 hover:bg-muted">
-                  Completed
-                </Badge>
-              </div>
-              <div className="text-sm font-medium text-right">$1,250.00</div>
-            </div>
+            ))}
           </div>
         </CardContent>
       </Card>
