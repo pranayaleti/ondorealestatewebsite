@@ -561,7 +561,7 @@ export default function PropertiesPage() {
   const [sortBy, setSortBy] = useState<LocalSortOption>('newest');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // 3a) Fetch from your Render API; use in-memory cache for repeat visits and bfcache-friendly behavior
+  // 3a) Fetch from backend API (Supabase Edge Functions); use in-memory cache for repeat visits and bfcache-friendly behavior
   const PROPERTIES_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
   const propertiesCacheKey = cacheKeys.api.properties();
 

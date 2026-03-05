@@ -7,8 +7,8 @@
 
 ## 1. Executive Overview
 
-- **Stack:** Next.js 15 (App Router), TypeScript, React 18, Tailwind CSS, Supabase (analytics + backend data), external backend at `ondorealestateserver.onrender.com`.
-- **Deployment:** Static export (`output: 'export'`) for GitHub Pages; **no server-side API routes at runtime** — all `/api/*` calls in production go to the external Render backend.
+- **Stack:** Next.js 15 (App Router), TypeScript, React 18, Tailwind CSS, Supabase (analytics + backend data), external backend via Supabase Edge Functions (`BACKEND_BASE_URL` → Supabase project `/functions/v1/api`).
+- **Deployment:** Static export (`output: 'export'`) for GitHub Pages; **no server-side API routes at runtime** — all `/api/*` calls in production go to the external backend (Supabase Edge Functions).
 - **Strengths:** Rich feature set (buy/sell, loans, calculators, dashboard, tenant/owner portals, blacklist, leads, SEO, speculation rules, bfcache), design tokens, accessibility utilities, security (rate limiting, blacklist, SecureStorage).
 - **Main gaps:** Hardcoded backend URLs in 2 places, dead code in API route, widespread `any` usage, no unit tests, ErrorBoundary not used in layout, minor naming/config inconsistencies.
 
@@ -22,7 +22,7 @@
 | **Legacy calculators** | `pages/calculators/` | 18 calculator pages; skill says “gradually migrate” to app router |
 | **Shared UI** | `components/` | ui/, dashboard/, owner/, tenant/, landing/, auth, forms |
 | **Shared logic** | `lib/` | auth-context, backend, blacklist, seo, security, validations, performance, speculation-rules, bfcache, etc. |
-| **API (runtime)** | External | `BACKEND_BASE_URL` → `ondorealestateserver.onrender.com`; lead submit, properties public, blacklist |
+| **API (runtime)** | External | `BACKEND_BASE_URL` → Supabase Edge Functions; lead submit, properties public, blacklist |
 | **API (in repo)** | `app/api/` | Used at build time or duplicated on backend; **not run on GitHub Pages** |
 | **Design tokens** | `src/styles/_design-tokens.css`, `design-tokens.json` | Imported in `app/globals.css`; Tailwind wired to CSS vars |
 | **Types** | `lib/types.ts`, `app/types/property.ts` | User, Property, Blacklist, API responses, forms |
@@ -59,7 +59,7 @@
 | Lead submit | ✅ | Backend `/api/leads/submit`; blacklist (IP, user, content) + Supabase insert |
 | Properties public | ✅ | Backend `/api/properties/public`; blacklist filtering via RPC |
 | Blacklist CRUD + check | ✅ | Backend `/api/blacklist`, `/api/blacklist/check`, `/api/blacklist/[id]` |
-| Use of `backendUrl()` | ⚠️ | Most callers use `backendUrl()`; **property-lead-form.tsx** and **dashboard/lead-form.tsx** hardcode Render URL |
+| Use of `backendUrl()` | ⚠️ | Most callers use `backendUrl()`; **property-lead-form.tsx** and **dashboard/lead-form.tsx** should use `backendUrl()` (see Bugs) |
 | Static export vs API | ✅ | next.config `output: 'export'`; app correctly uses external backend for runtime |
 
 ### 3.4 Security
@@ -164,8 +164,8 @@
 
 1. **Hardcoded backend URL (lead submit)**  
    - **Files:** `components/property-lead-form.tsx`, `components/dashboard/lead-form.tsx`  
-   - **Issue:** Both use `"https://ondorealestateserver.onrender.com/api/leads/submit"` instead of `backendUrl('/api/leads/submit')`.  
-   - **Fix:** Replace with `backendUrl('/api/leads/submit')` so env/config controls the base URL.
+   - **Issue:** If either hardcodes the backend URL instead of `backendUrl('/api/leads/submit')`, env/config cannot control the base URL.  
+   - **Fix:** Use `backendUrl('/api/leads/submit')` so env/config controls the base URL.
 
 2. **Dead code in properties API route**  
    - **File:** `app/api/properties/public/route.ts`  
@@ -182,11 +182,11 @@
 1. **Use ErrorBoundary in layout** — Wrap `children` in `app/layout.tsx` with the existing `ErrorBoundary` so component tree errors show a friendly fallback and optional reporting.
 2. **Replace `any` with concrete types** — Prioritize: `lib/types.ts`, owner/dashboard property and form types, chart/footer prop types; add small interfaces for callback payloads (e.g. `(data: AddLeadPayload) => void`).
 3. **Add unit tests** — Start with `lib/mortgage-utils.ts`, `lib/validations.ts`, and blacklist/auth helpers; use Vitest or Jest.
-4. **Single source for backend URL** — Enforce `backendUrl()` (or a single `getBackendUrl()`) for all backend API calls; add a lint rule or grep in CI to disallow hardcoded `ondorealestateserver.onrender.com` in frontend code.
+4. **Single source for backend URL** — Enforce `backendUrl()` (or a single `getBackendUrl()`) for all backend API calls; add a lint rule or grep in CI to disallow hardcoded backend base URLs in frontend code.
 5. **Centralize getClientIP** — Move to `lib/request-utils.ts` (or similar) and import in both API routes that need it; remove unused copy from properties route.
 6. **Unify site name** — Use either "Ondo Real Estate" or "ONDO Real Estate" in both `lib/site.ts` and `lib/config.ts` (and metadata) for consistency.
 7. **Loading states** — Ensure all data-fetching routes that can be slow have a `loading.tsx` where appropriate (you already have several; review dashboard and owner/tenant routes).
-8. **Document static export + backend** — In README or docs, state clearly that the app is static and all runtime API calls go to the Render backend; list which env vars the backend expects vs the Next app.
+8. **Document static export + backend** — In README or docs, state clearly that the app is static and all runtime API calls go to the external backend (Supabase Edge Functions); list which env vars the backend expects vs the Next app.
 
 ---
 
