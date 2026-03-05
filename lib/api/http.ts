@@ -1,6 +1,13 @@
 import { backendUrl } from "@/lib/backend"
 
 const API_CACHE_PREFIX = "ondo:api-cache:"
+const DEFAULT_TIMEOUT_MS = 30_000
+
+function fetchWithTimeout(url: string, init: RequestInit, timeoutMs = DEFAULT_TIMEOUT_MS): Promise<Response> {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
+  return fetch(url, { ...init, signal: controller.signal }).finally(() => clearTimeout(timer))
+}
 
 interface RequestOptions {
   fallbackCacheKey?: string
@@ -25,7 +32,7 @@ function writeToLocalCache<T>(cacheKey: string, value: T): void {
 
 export async function networkFirstGet<T>(path: string, cacheKey: string): Promise<T> {
   try {
-    const response = await fetch(backendUrl(path), { method: "GET", cache: "no-store" })
+    const response = await fetchWithTimeout(backendUrl(path), { method: "GET", cache: "no-store" })
     if (!response.ok) {
       throw new Error(`Request failed: ${response.status}`)
     }
@@ -45,7 +52,7 @@ export async function postJson<TResponse = unknown, TBody = unknown>(
   options?: RequestOptions
 ): Promise<TResponse> {
   try {
-    const response = await fetch(backendUrl(path), {
+    const response = await fetchWithTimeout(backendUrl(path), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

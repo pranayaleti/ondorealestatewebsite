@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { checkUserBlacklist, checkIPBlacklist, validateContent } from '@/lib/blacklist'
+import { z } from 'zod'
 
-// Configure for static export
-export const dynamic = 'force-static'
-export const revalidate = 0
+// POST routes must be force-dynamic — static export excludes this file at build time,
+// but it works in development and any server-rendered deployment.
+export const dynamic = 'force-dynamic'
+
+const LeadSchema = z.object({
+  name: z.string().min(1).max(120).transform(s => s.trim()),
+  email: z.string().email().max(254).transform(s => s.toLowerCase().trim()),
+  phone: z.string().min(7).max(20).regex(/^[+\d\s\-().]+$/, 'Invalid phone format').transform(s => s.trim()),
+  message: z.string().max(2000).optional().transform(s => s?.trim()),
+  propertyId: z.string().uuid().optional(),
+  source: z.enum(['website', 'referral', 'direct', 'social', 'ad']).default('website'),
+})
 
 // POST /api/leads/submit - Submit a lead with blacklist checking
 export async function POST(request: NextRequest) {
@@ -14,16 +24,16 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     )
-    const body = await request.json()
-    const { name, email, phone, message, propertyId, source } = body
 
-    // Basic validation
-    if (!name || !email || !phone) {
+    const rawBody = await request.json()
+    const parseResult = LeadSchema.safeParse(rawBody)
+    if (!parseResult.success) {
       return NextResponse.json(
-        { error: 'Name, email, and phone are required' },
+        { error: 'Validation failed', details: parseResult.error.flatten().fieldErrors },
         { status: 400 }
       )
     }
+    const { name, email, phone, message, propertyId, source } = parseResult.data
 
     // Get client IP for blacklist checking
     const clientIP = getClientIP(request)
@@ -75,68 +85,47 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Insert the lead
+    // Insert the lead — data already sanitized by Zod schema
     const { data: lead, error: insertError } = await supabase
       .from('leads')
       .insert({
-        name: name.trim(),
-        email: email.toLowerCase().trim(),
-        phone: phone.trim(),
-        message: message?.trim(),
+        name,
+        email,
+        phone,
+        message,
         property_id: propertyId,
-        source: source || 'website',
+        source,
         ip_address: clientIP,
         user_agent: request.headers.get('user-agent'),
         created_at: new Date().toISOString()
       })
-      .select()
+      .select('id')
       .single()
 
     if (insertError) {
-      console.error('Error inserting lead:', insertError)
-      return NextResponse.json(
-        { error: 'Failed to submit lead' },
-        { status: 500 }
-      )
+      // Log error code only — no PII, no full error objects
+      console.error('Lead insert failed:', insertError.code)
+      return NextResponse.json({ error: 'Failed to submit lead' }, { status: 500 })
     }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Lead submitted successfully',
-      lead: lead
-    })
+    return NextResponse.json({ success: true, message: 'Lead submitted successfully', leadId: lead.id })
 
   } catch (error) {
-    console.error('Error in lead submission:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error('Lead submission error:', error instanceof Error ? error.message : 'unknown')
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
 function getClientIP(request: NextRequest): string | null {
-  // Check various headers that might contain the real IP
-  const headers = [
-    'x-forwarded-for',
-    'x-real-ip',
-    'x-client-ip',
-    'cf-connecting-ip', // Cloudflare
-    'x-cluster-client-ip', // Rackspace
-    'x-forwarded',
-    'forwarded-for',
-    'forwarded'
-  ]
+  // Trust only Cloudflare's header to prevent IP spoofing via crafted request headers.
+  // If not behind Cloudflare, fall back to x-forwarded-for (set by the trusted reverse proxy only).
+  const cf = request.headers.get('cf-connecting-ip')
+  if (cf && cf !== 'unknown') return cf.trim()
 
-  for (const header of headers) {
-    const value = request.headers.get(header)
-    if (value) {
-      // Take the first IP if there are multiple (comma-separated)
-      const ip = value.split(',')[0].trim()
-      if (ip && ip !== 'unknown') {
-        return ip
-      }
-    }
+  const forwarded = request.headers.get('x-forwarded-for')
+  if (forwarded) {
+    const ip = forwarded.split(',')[0].trim()
+    if (ip && ip !== 'unknown') return ip
   }
 
   return null

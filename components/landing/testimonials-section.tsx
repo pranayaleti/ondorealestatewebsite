@@ -15,7 +15,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 <div className="relative h-12 w-12 rounded-full overflow-hidden">
                   <LazyImage
                     src="/professional-woman-smiling.webp"
-                    alt=""
+                    alt="Sarah J., tenant"
                     fill
                     className="object-cover"
                     quality={75}
@@ -49,7 +49,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 <div className="relative h-12 w-12 rounded-full overflow-hidden">
                   <LazyImage
                     src="/professional-man-suit.webp"
-                    alt=""
+                    alt="Michael T., property owner"
                     fill
                     className="object-cover"
                     quality={75}
@@ -83,7 +83,7 @@ export const TestimonialsSection = memo(function TestimonialsSection() {
                 <div className="relative h-12 w-12 rounded-full overflow-hidden">
                   <LazyImage
                     src="/professional-woman-glasses.webp"
-                    alt=""
+                    alt="Jennifer L., tenant"
                     fill
                     className="object-cover"
                     quality={75}
