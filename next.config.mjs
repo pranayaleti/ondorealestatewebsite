@@ -46,6 +46,11 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
+  // Serve favicon.svg when browser requests /favicon.ico to avoid 404
+  async rewrites() {
+    return [{ source: '/favicon.ico', destination: '/favicon.svg' }]
+  },
+
   transpilePackages: [],
 
   modularizeImports: {

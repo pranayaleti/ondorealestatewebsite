@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CheckCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { emailValidation, phoneValidation } from "@/lib/validations";
+import { backendUrl } from "@/lib/backend";
 
 interface PropertyLeadFormProps {
   open: boolean;
@@ -170,7 +171,7 @@ export function PropertyLeadForm({ open, onClose, propertyName, publicId }: Prop
       };
 
       // Call upstream server directly for static deployment
-      const res = await fetch("https://ondorealestateserver.onrender.com/api/leads/submit", {
+      const res = await fetch(backendUrl("/api/leads/submit"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

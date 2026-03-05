@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle2, Gift, Loader2, Copy, Check } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { backendUrl } from "@/lib/backend"
 
 interface SweepstakesFormProps {
   initialReferralCode?: string
@@ -56,7 +57,7 @@ export function SweepstakesForm({ initialReferralCode }: SweepstakesFormProps) {
       }
       
       // Call upstream server directly for static deployment
-      const response = await fetch("https://ondorealestateserver.onrender.com/api/sweepstakes", {
+      const response = await fetch(backendUrl("/api/sweepstakes"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

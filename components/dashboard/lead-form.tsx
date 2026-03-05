@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent } from "@/components/ui/card"
 import { Building, Home, Hotel, Store, Users } from "lucide-react"
+import { backendUrl } from "@/lib/backend"
 
 export function LeadForm() {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ export function LeadForm() {
     e.preventDefault()
     
     try {
-      const res = await fetch("https://ondorealestateserver.onrender.com/api/leads/submit", {
+      const res = await fetch(backendUrl("/api/leads/submit"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

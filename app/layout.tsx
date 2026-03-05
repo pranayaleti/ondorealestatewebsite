@@ -3,25 +3,9 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { Inter, Outfit } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import { AuthProvider } from "@/lib/auth-context"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { ScrollProgress } from "@/components/scroll-progress"
-import { BfcacheProvider } from "@/components/bfcache-provider"
-import { PwaProvider } from "@/components/pwa/pwa-provider"
-import { RoutePrefetch } from "@/components/route-prefetch"
-import { WebVitalsReporter } from "@/components/web-vitals-reporter"
-import dynamic from "next/dynamic"
+import { RootProvidersClient } from "@/components/root-providers-client"
 import { JsonLd } from "@/components/json-ld"
 import { generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo"
-
-// Lazy load non-critical widgets
-// Note: Can't use ssr: false in Server Components, but static export doesn't need SSR anyway
-const ClientConsultationWidget = dynamic(() => import("@/components/ClientConsultationWidget"), {
-  loading: () => null, // Don't show loading state for widget
-})
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import { getSpeculationRulesJson } from "@/lib/speculation-rules"
 // Vercel Analytics is disabled for static exports (GitHub Pages)
@@ -153,7 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://ondorealestateserver.onrender.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://lpklmquhxgbpavjngbby.supabase.co" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://supabase.co" />
@@ -183,7 +167,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="prefetch" href="/investments" />
         <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://ondorealestateserver.onrender.com; frame-src 'self';"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://lpklmquhxgbpavjngbby.supabase.co; frame-src 'self';"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
@@ -194,26 +178,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <PwaProvider>
-            <BfcacheProvider>
-              <AuthProvider>
-                <ScrollProgress />
-                <div className="min-h-screen flex flex-col">
-                  <Header />
-                  <main id="main-content" className="flex-1" role="main">
-                    {children}
-                  </main>
-                  <Footer />
-                </div>
-                <RoutePrefetch />
-                <WebVitalsReporter />
-                <ClientConsultationWidget />
-                <Toaster />
-              </AuthProvider>
-            </BfcacheProvider>
-          </PwaProvider>
-        </ThemeProvider>
+        <RootProvidersClient>{children}</RootProvidersClient>
         <JsonLd
           id="global-jsonld"
           data={[generateOrganizationJsonLd(), generateWebsiteJsonLd()].filter(Boolean)}

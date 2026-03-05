@@ -109,7 +109,7 @@ function isStaticAsset(requestUrl) {
 }
 
 function isApiRequest(url) {
-  return url.includes("/api/") || url.includes("ondorealestateserver.onrender.com/api/")
+  return url.includes("/api/") || url.includes("supabase.co/functions/v1/api")
 }
 
 // ---------------------------------------------------------------------------
@@ -297,7 +297,7 @@ async function flushQueueByType(type) {
     try {
       const endpoint = item.endpoint.startsWith("http")
         ? item.endpoint
-        : `https://ondorealestateserver.onrender.com${item.endpoint}`
+        : `https://lpklmquhxgbpavjngbby.supabase.co/functions/v1/api${item.endpoint}`
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
