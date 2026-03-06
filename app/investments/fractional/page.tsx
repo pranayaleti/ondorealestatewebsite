@@ -72,7 +72,7 @@ const steps = [
 
 export default function FractionalPage() {
   return (
-    <main className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title="Fractional Real Estate Ownership"
         description="Learn how fractional ownership works — invest in commercial real estate through LLC/SPV structures with lower minimums, quarterly distributions, and professional management."

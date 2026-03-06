@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { InvestmentCard } from "@/components/investments/investment-card"
 import { RiskDisclosure } from "@/components/investments/risk-disclosure"
 import { MOCK_OPPORTUNITIES } from "@/lib/investments-data"
+import { getOpportunities } from "@/lib/investments-api"
 
 export const metadata: Metadata = {
   title: "Investment Opportunities",
@@ -22,13 +23,22 @@ export const metadata: Metadata = {
   },
 }
 
-export default function OpportunitiesPage() {
-  const openDeals = MOCK_OPPORTUNITIES.filter((o) => o.status === "open")
-  const comingSoon = MOCK_OPPORTUNITIES.filter((o) => o.status === "coming-soon")
-  const fullyFunded = MOCK_OPPORTUNITIES.filter((o) => o.status === "fully-funded")
+export default async function OpportunitiesPage() {
+  let opportunities = MOCK_OPPORTUNITIES
+  try {
+    const fromApi = await getOpportunities()
+    if (Array.isArray(fromApi) && fromApi.length >= 0) {
+      opportunities = fromApi
+    }
+  } catch {
+    // Use mock data when API is unavailable (e.g. build time or backend down)
+  }
+  const openDeals = opportunities.filter((o) => o.status === "open")
+  const comingSoon = opportunities.filter((o) => o.status === "coming-soon")
+  const fullyFunded = opportunities.filter((o) => o.status === "fully-funded")
 
   return (
-    <main className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title="Investment Opportunities"
         description="Browse current commercial real estate and fractional ownership investment opportunities in Utah. View deal details, projected returns, and investment minimums."
@@ -62,8 +72,11 @@ export default function OpportunitiesPage() {
                 </div>
               ) : (
                 <p className="text-foreground/70 dark:text-foreground/70 text-center py-8">
-                  No open opportunities at the moment. Check back soon or contact our team to be
-                  notified when new deals are available.
+                  No open opportunities at the moment. Check back soon or{" "}
+                  <Link href="/contact" className="text-primary hover:underline">
+                    contact our team
+                  </Link>{" "}
+                  to be notified when new deals are available.
                 </p>
               )}
             </div>

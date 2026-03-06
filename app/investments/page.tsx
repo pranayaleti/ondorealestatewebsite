@@ -34,7 +34,7 @@ const sections = [
 
 export default function InvestmentsPage() {
   return (
-    <main className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title="Commercial & Fractional Investment Opportunities"
         description="Explore commercial real estate and fractional ownership investment opportunities in Utah. Access institutional-quality properties with lower investment minimums."

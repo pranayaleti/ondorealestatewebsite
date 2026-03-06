@@ -57,7 +57,7 @@ const sampleDeal = {
 
 export default function CommercialRealEstatePage() {
   return (
-    <main className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title="Commercial Real Estate Investing"
         description="Learn about commercial real estate investment opportunities in Utah. Explore asset classes including office, retail, industrial, multifamily, medical office, and self-storage."
