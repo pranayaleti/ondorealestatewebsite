@@ -1,19 +1,11 @@
-Project: Ondo Real Estate Website (Next.js app router, TypeScript, Tailwind, Supabase).
+OndoREui — Ondo Real Estate Consumer-Facing UI
 
-Preferred style:
-- Use modern, accessible, responsive UI patterns.
-- Keep answers concise and information-dense; avoid unnecessary explanation.
-- When suggesting code, prefer small, focused diffs and reuse existing helpers from `lib/` and `components/` when possible.
-- Follow existing patterns for SEO (`lib/seo.ts`, `lib/site.ts`) and analytics (`lib/analytics.ts`, `lib/supabase-analytics.ts`) when touching those areas.
+Purpose: Next.js 15 consumer site — public pages, property search, mortgage calculators, user dashboards. Design tokens for styling; prefer server components.
 
-Conventions:
-- Framework: Next.js 14+ app router with React Server Components where appropriate.
-- Styling: Tailwind CSS plus design tokens from `src/styles/_design-tokens.css` / `design-tokens.json`.
-- Components live under `components/` and are generally colocated by domain (search, dashboard, calculators, etc.).
-- Use TypeScript strictly; fix type errors instead of using `any`.
-- Prefer functional, composable utilities in `lib/` over duplicating logic.
+Stack: Next.js 15 App Router, TypeScript, Tailwind CSS with design tokens (src/styles/design-tokens.json, _design-tokens.css), Supabase JS client. Testing: Vitest, React Testing Library, axe (npm run test:a11y). Bundle: npm run analyze:bundle.
 
-Editing rules:
-- Do NOT create extra markdown docs for humans unless explicitly requested.
-- Keep new files small and cohesive; avoid large "god" modules.
-- When changing behavior, look for existing usage patterns in this repo and match them.
+Run: npm run dev (:3000). npm run dev:clean if 404s for layout.css/main-app.js. npm run build, npm run start, npm run lint, npm run sitemap.
+
+Structure: app/ (routes), app/auth/. pages/calculators/ (legacy). components/ (search, dashboard, calculators). lib/: auth-context.tsx, session-utils.ts, seo.ts, site.ts, analytics.ts, supabase-analytics.ts, mortgage-utils.ts, accessibility.ts, performance.ts, types.ts. src/styles/ for design tokens.
+
+Rules: Design tokens over hard-coded colors. Server components by default; client only for interactivity. Reuse from lib/ and components/. Auth via useAuth() and session-utils. SEO via seo.ts/site.ts. Analytics via analytics.ts/supabase-analytics.ts. Calculators: math in mortgage-utils.ts; new calculators in pages/calculators/. TypeScript strict. Supabase env: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY. WebMCP: docs/WEBMCP.md.
