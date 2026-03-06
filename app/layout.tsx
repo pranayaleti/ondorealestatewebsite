@@ -139,6 +139,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://lpklmquhxgbpavjngbby.supabase.co" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://ddwl4m2hdecbv.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://js.hs-scripts.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://supabase.co" />
 
@@ -170,7 +171,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             object-src/base-uri/form-action lock down common injection vectors. */}
         <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://lpklmquhxgbpavjngbby.supabase.co; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net https://js.hs-scripts.com https://js.hsforms.net https://js.hs-banner.com https://js.hs-analytics.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://lpklmquhxgbpavjngbby.supabase.co https://api.hubspot.com https://forms.hubspot.com https://track.hubspot.com; frame-src 'self' https://app.hubspot.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
@@ -199,6 +200,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-SSND5XGJ87');
           `}
         </Script>
+        {/* HubSpot Tracking Code — enables page view attribution for leads */}
+        {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID ? (
+          <Script
+            id="hubspot-tracking"
+            strategy="lazyOnload"
+            src={`//js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}.js`}
+          />
+        ) : null}
         {/* Vercel Analytics disabled for static exports - only works on Vercel platform */}
         {/* {process.env.NEXT_PUBLIC_VERCEL && <Analytics />} */}
         {/* rb2b Script (optional) - keep off by default for static export */}
