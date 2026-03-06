@@ -11,6 +11,7 @@ import { CheckCircle, Search, DollarSign, Shield, Users } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import ConsultationCTA from "@/components/ConsultationCTA"
+import { WebMCPMortgageTool } from "@/components/buy/webmcp-mortgage-tool"
 
 export const metadata: Metadata = {
   title: "Buy Homes in Utah | Expert Real Estate Agents | Salt Lake City, Lehi, Provo",
@@ -82,6 +83,7 @@ const services = [
 export default function BuyPage() {
   return (
     <>
+      <WebMCPMortgageTool />
       <SEO
         title="Buy Homes in Utah | Expert Real Estate Agents"
         description="Find your dream home in Utah with expert real estate agents. Browse homes for sale across the Wasatch Front."

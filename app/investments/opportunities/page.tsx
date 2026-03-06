@@ -7,6 +7,7 @@ import { SITE_URL } from "@/lib/site"
 import { Button } from "@/components/ui/button"
 import { InvestmentCard } from "@/components/investments/investment-card"
 import { RiskDisclosure } from "@/components/investments/risk-disclosure"
+import { WebMCPOpportunitiesTool } from "@/components/investments/webmcp-opportunities-tool"
 import { MOCK_OPPORTUNITIES } from "@/lib/investments-data"
 import { getOpportunities } from "@/lib/investments-api"
 
@@ -39,6 +40,7 @@ export default async function OpportunitiesPage() {
 
   return (
     <main id="main-content" className="min-h-screen">
+      <WebMCPOpportunitiesTool />
       <SEO
         title="Investment Opportunities"
         description="Browse current commercial real estate and fractional ownership investment opportunities in Utah. View deal details, projected returns, and investment minimums."

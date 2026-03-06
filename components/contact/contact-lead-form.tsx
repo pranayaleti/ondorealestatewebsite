@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,6 +11,8 @@ import { submitContactLead, type ContactLeadSource } from "@/lib/leads-api"
 import { CheckCircle, AlertCircle } from "lucide-react"
 
 const DEFAULT_SOURCE: ContactLeadSource = "website"
+
+const WEBMCP_TOOL_NAME = "submit_contact_lead"
 
 export function ContactLeadForm() {
   const [formData, setFormData] = useState({
@@ -54,6 +56,78 @@ export function ContactLeadForm() {
     setIsSubmitting(false)
   }
 
+  // WebMCP imperative API: register contact lead tool so agents can submit on behalf of user (with confirmation)
+  useEffect(() => {
+    const nav = typeof navigator !== "undefined" ? navigator : null
+    const modelContext = nav && "modelContext" in nav ? (nav as Navigator & { modelContext: { registerTool: (t: unknown) => void; unregisterTool: (name: string) => void } }).modelContext : null
+    if (!modelContext) return
+
+    try {
+      modelContext.registerTool({
+        name: WEBMCP_TOOL_NAME,
+        description:
+          "Submit a contact or lead inquiry to Ondo Real Estate for property management, investments, or leasing in Utah. Requires name and email; optional phone and message. Use when the user wants to get in touch with Ondo. Always request user confirmation before submitting.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            name: { type: "string", description: "Full name of the person submitting the inquiry" },
+            email: { type: "string", description: "Email address for reply (required)" },
+            phone: { type: "string", description: "Phone number (optional)" },
+            message: { type: "string", description: "Message or question for the team (optional)" },
+          },
+          required: ["name", "email"],
+        },
+        async execute(
+          input: { name?: string; email?: string; phone?: string; message?: string },
+          client: { requestUserInteraction?: (cb: () => Promise<boolean>) => Promise<boolean> }
+        ) {
+          const name = String(input?.name ?? "").trim()
+          const email = String(input?.email ?? "").trim()
+          const phone = input?.phone != null ? String(input.phone).trim() : undefined
+          const message = input?.message != null ? String(input.message).trim() : undefined
+          if (!name || !email) {
+            return { content: [{ type: "text", text: JSON.stringify({ error: "name and email are required" }) }] }
+          }
+          const confirmed =
+            typeof client?.requestUserInteraction === "function"
+              ? await client.requestUserInteraction(() =>
+                  Promise.resolve(window.confirm(`Send contact request as ${name} (${email})?`))
+                )
+              : true
+          if (!confirmed) {
+            return { content: [{ type: "text", text: JSON.stringify({ status: "cancelled" }) }] }
+          }
+          const result = await submitContactLead({
+            name,
+            email,
+            ...(phone && { phone }),
+            ...(message && { message }),
+            source: DEFAULT_SOURCE,
+          })
+          return {
+            content: [
+              {
+                type: "text",
+                text: JSON.stringify(
+                  "error" in result ? { error: result.error } : { success: true, message: result.message, leadId: result.leadId }
+                ),
+              },
+            ],
+          }
+        },
+      })
+    } catch {
+      // Duplicate tool or unsupported; ignore
+    }
+    return () => {
+      try {
+        modelContext.unregisterTool(WEBMCP_TOOL_NAME)
+      } catch {
+        // ignore
+      }
+    }
+  }, [])
+
   return (
     <Card>
       <CardHeader>
@@ -86,7 +160,15 @@ export function ContactLeadForm() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="grid gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="grid gap-4"
+          {...({
+            toolname: "submit_contact_lead",
+            tooldescription:
+              "Submit a contact or lead inquiry to Ondo Real Estate. Use to send a message for property management, investments, or leasing in Utah. Requires name and email; optional phone and message. Do not use for automated bulk submissions.",
+          } as Record<string, string>)}
+        >
           <div className="space-y-2">
             <Label htmlFor="contact-name">Name *</Label>
             <Input
@@ -96,6 +178,7 @@ export function ContactLeadForm() {
               onChange={handleInputChange}
               placeholder="Your name"
               required
+              {...({ toolparamdescription: "Full name of the person submitting the inquiry" } as Record<string, string>)}
             />
           </div>
           <div className="space-y-2">
@@ -108,6 +191,7 @@ export function ContactLeadForm() {
               placeholder="you@example.com"
               type="email"
               required
+              {...({ toolparamdescription: "Email address for reply (required)" } as Record<string, string>)}
             />
           </div>
           <div className="space-y-2">
@@ -119,6 +203,7 @@ export function ContactLeadForm() {
               onChange={handleInputChange}
               placeholder="(555) 123-4567"
               type="tel"
+              {...({ toolparamdescription: "Phone number (optional)" } as Record<string, string>)}
             />
           </div>
           <div className="space-y-2">
@@ -130,6 +215,7 @@ export function ContactLeadForm() {
               value={formData.message}
               onChange={handleInputChange}
               placeholder="How can we help?"
+              {...({ toolparamdescription: "Message or question for the team (optional)" } as Record<string, string>)}
             />
           </div>
           <Button type="submit" disabled={isSubmitting} className="w-full">

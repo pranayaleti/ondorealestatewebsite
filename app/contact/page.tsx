@@ -3,6 +3,7 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
 import { ContactLeadForm } from "@/components/contact/contact-lead-form"
+import { WebMCPContactInfoTool } from "@/components/contact/webmcp-contact-info-tool"
 import { Mail, Phone } from "lucide-react"
 
 export const metadata = {
@@ -20,6 +21,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main id="main-content" className="min-h-screen">
+      <WebMCPContactInfoTool />
       <SEO
         title="Contact Us"
         description="Get in touch with Ondo Real Estate. Send a message or call us for property management, investments, and leasing across Utah."

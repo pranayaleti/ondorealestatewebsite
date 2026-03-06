@@ -55,6 +55,10 @@ src/styles/
 types/                   # Additional TypeScript type definitions
 ```
 
+## WebMCP (agent-ready)
+
+The site is aligned with [WebMCP](https://developer.chrome.com/blog/webmcp-epp): contact form uses declarative attributes; imperative tools: `/contact` — `submit_contact_lead`, `get_company_contact_info`; `/investments/opportunities` — `list_investment_opportunities`, `get_investment_opportunity`; `/buy` — `calculate_mortgage_payment`. See `docs/WEBMCP.md` for details.
+
 ## Key implementation rules
 
 1. **Prefer reuse over new code**: Before adding utilities, search `lib/` and `components/` for similar behavior.
