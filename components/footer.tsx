@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { memo } from "react"
 import { SITE_SOCIALS, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE } from "@/lib/site"
+import { usePwaInstall } from "@/lib/pwa/install-context"
 import {
   Facebook,
   Twitter,
@@ -85,6 +86,8 @@ function PinterestIcon({ className }: { className?: string }) {
 }
 
 const Footer = memo(() => {
+  const pwaInstall = usePwaInstall()
+
   // Define social media mapping in a deterministic order to prevent hydration issues
   const socialMediaMap = [
     { pattern: "facebook.com", name: "Facebook", Component: Facebook, hover: "hover:text-primary" },
@@ -408,6 +411,15 @@ const Footer = memo(() => {
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-4">
+              {pwaInstall?.isInstallable && (
+                <button
+                  type="button"
+                  onClick={() => void pwaInstall.triggerInstall()}
+                  className="hover:text-foreground"
+                >
+                  Install app
+                </button>
+              )}
               <Link href="/licensing" className="hover:text-foreground">Licensing</Link>
               <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-foreground">Terms of Use</Link>

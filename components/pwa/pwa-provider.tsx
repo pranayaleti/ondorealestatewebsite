@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { flushQueueNow } from "@/lib/pwa/offline-queue"
+import { PwaInstallProvider } from "@/lib/pwa/install-context"
 
 async function registerServiceWorker(): Promise<void> {
   if (typeof window === "undefined" || !("serviceWorker" in navigator)) return
@@ -45,5 +46,9 @@ export function PwaProvider({ children }: { children: React.ReactNode }) {
     void requestPushPermission()
   }, [])
 
-  return <>{children}</>
+  return (
+    <PwaInstallProvider>
+      {children}
+    </PwaInstallProvider>
+  )
 }
