@@ -143,9 +143,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://supabase.co" />
 
-        {/* High-priority preloads for above-the-fold resources */}
-        <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" fetchPriority="high" />
-
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />

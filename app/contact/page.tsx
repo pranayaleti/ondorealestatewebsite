@@ -9,11 +9,11 @@ import { Mail, Phone } from "lucide-react"
 export const metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Ondo Real Estate. Send a message or call us for property management, investments, and leasing across Utah.",
+    "Get in touch with Ondo Real Estate. We're your first point of contact — qualified leads and strategic outreach for property management, investments, and leasing across Utah.",
   alternates: { canonical: `${SITE_URL}/contact` },
   openGraph: {
     title: "Contact Us | Ondo Real Estate",
-    description: "Get in touch with Ondo Real Estate for property management and real estate services in Utah.",
+    description: "Ondo Real Estate — your first point of contact for property management and real estate services in Utah. Qualified leads, strategic outreach.",
     url: `${SITE_URL}/contact`,
   },
 }
@@ -35,7 +35,7 @@ export default function ContactPage() {
 
       <PageBanner
         title="Contact us"
-        subtitle="We're here to help with property management, investments, and leasing"
+        subtitle="We're your first point of contact — qualified leads, strategic outreach, and a relationship-driven team ready to help with property management, investments, and leasing"
       />
 
       <section className="py-16 bg-background">

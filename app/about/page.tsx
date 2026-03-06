@@ -120,6 +120,32 @@ export default function AboutPage() {
               </div>
             </div>
 
+            {/* AI-powered operations */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-center mb-8 dark:text-foreground">AI-powered operations</h2>
+              <p className="text-center text-lg dark:text-foreground/70 max-w-3xl mx-auto mb-8">
+                We are building a conversational AI assistant to handle everything: reviewing leases, optimizing finances and portfolio insights, generating marketing, and auto-routing maintenance — so managers, owners, and tenants get one intelligent layer that makes operations effortless.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div className="bg-muted p-6 rounded-lg border border-border">
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">Lease review & portfolio insights</h3>
+                  <p className="text-foreground/70">AI-assisted lease review and finance optimization so you make decisions on clear, data-driven insights.</p>
+                </div>
+                <div className="bg-muted p-6 rounded-lg border border-border">
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">Marketing & maintenance routing</h3>
+                  <p className="text-foreground/70">Generate marketing content and auto-route maintenance requests so nothing falls through the cracks.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Your first point of contact */}
+            <div className="mb-16 bg-muted p-8 rounded-lg border border-border">
+              <h2 className="text-3xl font-bold text-center mb-6 dark:text-foreground">Your first point of contact</h2>
+              <p className="text-center text-lg dark:text-foreground/70 max-w-3xl mx-auto">
+                We build Ondo Real Estate&apos;s outbound sales engine from the ground up: identifying and engaging potential clients, crafting targeted outreach sequences, qualifying leads, and developing CRM and pipeline from zero. We collaborate directly with leadership to refine go-to-market strategy and represent Ondo RE as the first point of contact with every potential client — combining a hospitality-honed relationship mindset with data-driven sales tactics to build trust, create opportunities, and fuel growth.
+              </p>
+            </div>
+
             {/* Why Choose Ondo */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold text-center mb-8 dark:text-foreground">Why Choose Ondo</h2>

@@ -6,6 +6,8 @@ This is the **consumer-facing Next.js UI** for the Ondo Real Estate platform. It
 
 For shared product context (mission, roles, brand, repo map), see `../soul.md` and `../identity.md` at the workspace root, or the always-on Cursor rule at `../.cursor/rules/shared-context.mdc`.
 
+**Positioning**: Product narrative includes (1) a conversational AI assistant for lease review, portfolio/finance insights, marketing generation, and auto-routing maintenance; (2) outbound sales engine from the ground up — prospecting, lead qualification, CRM/pipeline from zero, GTM collaboration, and Ondo RE as the first point of contact with potential clients (relationship-driven + data-driven).
+
 ## Stack
 
 - **Framework**: Next.js 15 (App Router) + TypeScript
@@ -18,6 +20,7 @@ For shared product context (mission, roles, brand, repo map), see `../soul.md` a
 
 ```bash
 npm run dev          # Start dev server (Next.js, default :3000)
+npm run dev:clean    # Clear .next + cache, then start dev (use if you see 404s for layout.css / main-app.js)
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint
@@ -26,6 +29,8 @@ npm run test:run     # Vitest (single run)
 npm run test:a11y    # Accessibility audit (axe-core)
 npm run sitemap      # Regenerate sitemap
 ```
+
+**Dev 404s**: If the console shows 404s for `layout.css`, `main-app.js`, `app_pages_internals.js`, or `not-found.js`, stop the dev server, run `npm run dev:clean`, then start again. Ensure you open the app on the port Next reports (e.g. http://localhost:3000).
 
 ## Project structure
 
