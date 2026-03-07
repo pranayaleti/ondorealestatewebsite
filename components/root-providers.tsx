@@ -11,6 +11,7 @@ import { BfcacheProvider } from "@/components/bfcache-provider"
 import { PwaProvider } from "@/components/pwa/pwa-provider"
 import { RoutePrefetch } from "@/components/route-prefetch"
 import { WebVitalsReporter } from "@/components/web-vitals-reporter"
+import ErrorBoundary from "@/components/error-boundary"
 
 const ClientConsultationWidget = dynamic(() => import("@/components/ClientConsultationWidget"), {
   loading: () => null,
@@ -26,7 +27,7 @@ export function RootProviders({ children }: { children: React.ReactNode }) {
             <div className="min-h-screen flex flex-col">
               <Header />
               <main id="main-content" className="flex-1" role="main">
-                {children}
+                <ErrorBoundary>{children}</ErrorBoundary>
               </main>
               <Footer />
             </div>
