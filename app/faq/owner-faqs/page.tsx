@@ -80,7 +80,7 @@ export default function OwnerFAQPage() {
         <div className="container px-4 md:px-6">
           <Link
             href="/faq"
-            className="inline-flex items-center gap-2 text-[#ff9500] hover:text-[#ff6b00] mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-accent-2 hover:text-accent-1 mb-8 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to all FAQs</span>
@@ -88,7 +88,7 @@ export default function OwnerFAQPage() {
 
           <div className="max-w-4xl mx-auto">
             <div className="mb-8 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#ff6b00] to-[#ff9500] flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-1 to-accent-2 flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
                 <Building2 className="h-6 w-6" />
               </div>
               <div>
@@ -118,7 +118,7 @@ export default function OwnerFAQPage() {
               <p className="text-gray-300 mb-4">Still have questions?</p>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#ff6b00] to-[#ff9500] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-accent-1 to-accent-2 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
               >
                 Contact Us
               </Link>

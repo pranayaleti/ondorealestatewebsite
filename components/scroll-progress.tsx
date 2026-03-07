@@ -40,7 +40,7 @@ export function ScrollProgress() {
   return (
     <div className="fixed top-16 left-0 right-0 z-40 h-[3px] bg-gray-200 dark:bg-gray-800">
       <div
-        className="h-full bg-[#F97316] transition-all duration-150 ease-out"
+        className="h-full bg-accent-1 transition-all duration-150 ease-out"
         style={{ width: `${scrollProgress}%` }}
         aria-hidden="true"
       />

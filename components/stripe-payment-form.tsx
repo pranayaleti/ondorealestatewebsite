@@ -86,7 +86,7 @@ export function StripePaymentForm({
         appearance: {
           theme: "stripe",
           variables: {
-            colorPrimary: "#f97316",
+            colorPrimary: "var(--color-accent-1)",
           },
         },
       }}

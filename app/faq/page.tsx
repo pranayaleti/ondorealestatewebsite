@@ -198,7 +198,7 @@ export default function FAQPage() {
           {/* FAQ tiles modeled after calculators page */}
           <section className="mb-16">
             <div className="mb-10 text-center space-y-3">
-              <span className="inline-flex items-center rounded-full border border-[#ff6b00]/30 bg-[#ff6b00]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#ff9500]">
+              <span className="inline-flex items-center rounded-full border border-accent-1/30 bg-accent-1/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-2">
                 Help &amp; Education
               </span>
               <div className="space-y-2">
@@ -219,21 +219,21 @@ export default function FAQPage() {
                   style={{ animationDelay: `${Math.min(index * 0.07, 0.7)}s` }}
                 >
                   <Link href={tile.path} className="block group h-full">
-                    <div className="relative h-full rounded-2xl backdrop-blur-lg border border-white/10 bg-white/5 p-6 overflow-hidden transition-all duration-500 hover:border-[#ff6b00]/50 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(255,107,0,0.15)]">
+                    <div className="relative h-full rounded-2xl backdrop-blur-lg border border-white/10 bg-white/5 p-6 overflow-hidden transition-all duration-500 hover:border-accent-1/50 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(249,115,22,0.15)]">
                       {/* Glow border like calculators page */}
-                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff6b00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff9500] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-1 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Audience badge */}
                       <div className="absolute top-4 right-4">
-                        <span className="text-xs font-semibold bg-[#ff6b00]/20 text-[#ff9500] px-3 py-1 rounded-full border border-[#ff6b00]/30 backdrop-blur-sm">
+                        <span className="text-xs font-semibold bg-accent-1/20 text-accent-2 px-3 py-1 rounded-full border border-accent-1/30 backdrop-blur-sm">
                           {tile.audience}
                         </span>
                       </div>
 
                       {/* Icon */}
                       <div className="mb-6 relative">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#ff6b00] to-[#ff9500] flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-all duration-300">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-1 to-accent-2 flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-all duration-300">
                           {tile.icon}
                         </div>
                       </div>
@@ -247,7 +247,7 @@ export default function FAQPage() {
                       </p>
 
                       {/* CTA */}
-                      <div className="flex items-center gap-2 text-[#ff6b00] group-hover:text-[#ff9500] font-semibold text-sm transition-colors">
+                      <div className="flex items-center gap-2 text-accent-1 group-hover:text-accent-2 font-semibold text-sm transition-colors">
                         <span>Open FAQ page</span>
                         <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </div>

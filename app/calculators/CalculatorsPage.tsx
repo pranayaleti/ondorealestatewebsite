@@ -204,7 +204,7 @@ const CalculatorsPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative">
           <div className="space-y-4 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#ff6b00] to-[#ff9500] bg-clip-text text-transparent tracking-tight mx-auto">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-accent-1 to-accent-2 bg-clip-text text-transparent tracking-tight mx-auto">
               Real Estate Calculators
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
@@ -224,8 +224,8 @@ const CalculatorsPage: React.FC = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer border backdrop-blur-sm active:scale-95 ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-[#ff6b00] to-[#ff9500] text-white border-[#ff6b00] shadow-lg shadow-orange-500/30'
-                    : 'bg-white/5 text-white border-white/10 hover:border-[#ff6b00]/50 hover:bg-white/[0.08]'
+                    ? 'bg-gradient-to-r from-accent-1 to-accent-2 text-white border-accent-1 shadow-lg shadow-orange-500/30'
+                    : 'bg-white/5 text-white border-white/10 hover:border-accent-1/50 hover:bg-white/[0.08]'
                 }`}
               >
                 {category}
@@ -238,7 +238,7 @@ const CalculatorsPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCalculators.length === 0 ? (
             <div className="col-span-full text-center py-12">
-              <p className="text-[#b0b0b0]">No calculators found in this category.</p>
+              <p className="text-muted-foreground">No calculators found in this category.</p>
             </div>
           ) : (
             filteredCalculators.map((calculator, index) => (
@@ -253,21 +253,21 @@ const CalculatorsPage: React.FC = () => {
                 href={calculator.path}
                 className="block group h-full"
               >
-                <div className="relative h-full rounded-2xl backdrop-blur-lg border border-white/10 bg-white/5 p-6 overflow-hidden transition-all duration-500 hover:border-[#ff6b00]/50 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(255,107,0,0.15)]">
+                <div className="relative h-full rounded-2xl backdrop-blur-lg border border-white/10 bg-white/5 p-6 overflow-hidden transition-all duration-500 hover:border-accent-1/50 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(255,107,0,0.15)]">
                   {/* Animated Glow Border on Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff6b00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff9500] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-1 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                   {/* Category Badge */}
                   <div className="absolute top-4 right-4">
-                    <span className="text-xs font-semibold bg-[#ff6b00]/20 text-[#ff9500] px-3 py-1 rounded-full border border-[#ff6b00]/30 backdrop-blur-sm">
+                    <span className="text-xs font-semibold bg-accent-1/20 text-accent-2 px-3 py-1 rounded-full border border-accent-1/30 backdrop-blur-sm">
                       {calculator.category}
                     </span>
                   </div>
 
                   {/* Icon */}
                   <div className="mb-6 relative">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#ff6b00] to-[#ff9500] flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-all duration-300">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-1 to-accent-2 flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-all duration-300">
                       {calculator.icon}
                     </div>
                   </div>
@@ -281,7 +281,7 @@ const CalculatorsPage: React.FC = () => {
                   </p>
 
                   {/* Use Calculator Button */}
-                  <div className="flex items-center gap-2 text-[#ff6b00] group-hover:text-[#ff9500] font-semibold text-sm transition-colors">
+                  <div className="flex items-center gap-2 text-accent-1 group-hover:text-accent-2 font-semibold text-sm transition-colors">
                     <span>Use Calculator</span>
                     <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -298,7 +298,7 @@ const CalculatorsPage: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none"></div>
             
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#ff6b00] to-[#ff9500] bg-clip-text text-transparent">
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-accent-1 to-accent-2 bg-clip-text text-transparent">
                 Why Use Our Calculators?
               </h2>
               <p className="text-gray-300 mb-12 max-w-2xl">
@@ -308,10 +308,10 @@ const CalculatorsPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center group">
                   <div className="relative inline-block mb-6">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff6b00]/20 to-[#ff9500]/20 flex items-center justify-center backdrop-blur-sm border border-[#ff6b00]/30 group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle2 className="h-10 w-10 text-[#ff9500]" />
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-1/20 to-accent-2/20 flex items-center justify-center backdrop-blur-sm border border-accent-1/30 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle2 className="h-10 w-10 text-accent-2" />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b00] to-[#ff9500] rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-1 to-accent-2 rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-white">Accurate Calculations</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">Professional-grade calculations using current market rates and formulas</p>
@@ -319,10 +319,10 @@ const CalculatorsPage: React.FC = () => {
 
                 <div className="text-center group">
                   <div className="relative inline-block mb-6">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff6b00]/20 to-[#ff9500]/20 flex items-center justify-center backdrop-blur-sm border border-[#ff6b00]/30 group-hover:scale-110 transition-transform duration-300">
-                      <Clock className="h-10 w-10 text-[#ff9500]" />
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-1/20 to-accent-2/20 flex items-center justify-center backdrop-blur-sm border border-accent-1/30 group-hover:scale-110 transition-transform duration-300">
+                      <Clock className="h-10 w-10 text-accent-2" />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b00] to-[#ff9500] rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-1 to-accent-2 rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-white">Save Time</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">Quick calculations that would take hours to do manually</p>
@@ -330,10 +330,10 @@ const CalculatorsPage: React.FC = () => {
 
                 <div className="text-center group">
                   <div className="relative inline-block mb-6">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff6b00]/20 to-[#ff9500]/20 flex items-center justify-center backdrop-blur-sm border border-[#ff6b00]/30 group-hover:scale-110 transition-transform duration-300">
-                      <BarChart3 className="h-10 w-10 text-[#ff9500]" />
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-1/20 to-accent-2/20 flex items-center justify-center backdrop-blur-sm border border-accent-1/30 group-hover:scale-110 transition-transform duration-300">
+                      <BarChart3 className="h-10 w-10 text-accent-2" />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b00] to-[#ff9500] rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-1 to-accent-2 rounded-2xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-white">Make Better Decisions</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">Compare scenarios and understand the financial impact of your choices</p>
