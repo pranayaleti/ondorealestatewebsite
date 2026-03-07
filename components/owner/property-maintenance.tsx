@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Calendar, Plus, Search, Wrench, DollarSign, Clock, CheckCircle } from "lucide-react"
+import { Calendar, Plus, Search, Wrench, DollarSign, Clock, CheckCircle, Bell, Wind, Leaf, Filter, Thermometer } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -127,6 +127,58 @@ export function PropertyMaintenance({ property }: PropertyMaintenanceProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Home care reminders: HVAC, air filter, winterize lawn, etc. */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Bell className="h-5 w-5 text-foreground/70" />
+            Home care reminders
+          </CardTitle>
+          <CardDescription>
+            Routine tasks for your property — HVAC cleanup, air filters, winterize lawn (single-family), and more
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <li className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30">
+              <Wind className="h-5 w-5 shrink-0 text-foreground/70 mt-0.5" />
+              <div>
+                <p className="font-medium text-sm">HVAC cleanup</p>
+                <p className="text-xs text-foreground/70">Annual inspection and duct/unit cleanup. Schedule yearly.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30">
+              <Filter className="h-5 w-5 shrink-0 text-foreground/70 mt-0.5" />
+              <div>
+                <p className="font-medium text-sm">Air filter replacement</p>
+                <p className="text-xs text-foreground/70">Replace HVAC filters every 90 days (or per manufacturer).</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30">
+              <Leaf className="h-5 w-5 shrink-0 text-foreground/70 mt-0.5" />
+              <div>
+                <p className="font-medium text-sm">Winterize lawn (single-family)</p>
+                <p className="text-xs text-foreground/70">Fall: last mow, winterize irrigation, fertilize.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30">
+              <Thermometer className="h-5 w-5 shrink-0 text-foreground/70 mt-0.5" />
+              <div>
+                <p className="font-medium text-sm">Thermostat check</p>
+                <p className="text-xs text-foreground/70">Verify operation and program for heating/cooling seasons.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30 sm:col-span-2">
+              <Wrench className="h-5 w-5 shrink-0 text-foreground/70 mt-0.5" />
+              <div>
+                <p className="font-medium text-sm">Other reminders</p>
+                <p className="text-xs text-foreground/70">Smoke & CO detector batteries (yearly), gutter cleaning (fall/spring), water heater flush (yearly), fire extinguisher check.</p>
+              </div>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>
