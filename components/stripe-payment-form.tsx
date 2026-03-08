@@ -25,10 +25,12 @@ function PaymentFormInner({ amount, onSuccess, onError, submitLabel }: PaymentFo
     setIsProcessing(true)
     setErrorMessage(null)
 
+    const confirmUrl = `${window.location.origin}${window.location.pathname}`
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: window.location.href,
+        return_url: confirmUrl,
       },
       redirect: "if_required",
     })
@@ -45,14 +47,15 @@ function PaymentFormInner({ amount, onSuccess, onError, submitLabel }: PaymentFo
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4" aria-label="Payment form">
       <PaymentElement />
       {errorMessage && (
-        <p className="text-sm text-red-600">{errorMessage}</p>
+        <p role="alert" className="text-sm text-red-600">{errorMessage}</p>
       )}
       <Button
         type="submit"
         disabled={!stripe || isProcessing}
+        aria-busy={isProcessing}
         className="w-full"
       >
         {isProcessing
@@ -86,7 +89,7 @@ export function StripePaymentForm({
         appearance: {
           theme: "stripe",
           variables: {
-            colorPrimary: "var(--color-accent-1)",
+            colorPrimary: "#F97316",
           },
         },
       }}

@@ -11,7 +11,6 @@ import {
   ShoppingCart as ShoppingCartIcon,
   ArrowLeftRight,
   PiggyBank,
-  ArrowLeftRight as CompareIcon,
   CheckCircle2,
   Clock,
   BarChart3,
@@ -111,7 +110,7 @@ const CalculatorsPage: React.FC = () => {
       name: 'Rent vs Own Calculator',
       description: 'Compare the financial implications of renting versus buying a home.',
       path: '/calculators/rent-vs-own',
-      icon: <CompareIcon className="h-8 w-8" />,
+      icon: <ArrowLeftRight className="h-8 w-8" />,
       category: 'Analysis',
       color: 'from-amber-500 to-amber-600',
     },
@@ -222,6 +221,7 @@ const CalculatorsPage: React.FC = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
+                aria-pressed={selectedCategory === category}
                 className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer border backdrop-blur-sm active:scale-95 ${
                   selectedCategory === category
                     ? 'bg-gradient-to-r from-accent-1 to-accent-2 text-white border-accent-1 shadow-lg shadow-orange-500/30'
@@ -246,7 +246,7 @@ const CalculatorsPage: React.FC = () => {
               key={calculator.id}
               className="animate-fade-in-up animate-fill-both"
               style={{ 
-                animationDelay: `${Math.min(index * 0.1, 1)}s`,
+                animationDelay: `${Math.min(index * 0.05, 0.5)}s`,
               } as React.CSSProperties}
             >
               <Link

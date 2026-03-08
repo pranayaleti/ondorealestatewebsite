@@ -8,10 +8,10 @@
 	--color-border: #E2E8F0;
 	--color-border-strong: #CBD5E1;
 
-	/* Shared accents */
-	--color-accent-1: #F97316;
-	--color-accent-2: #FB923C;
-	--color-accent-3: #FDBA74;
+	/* Shared accents — stored as RGB channels so Tailwind opacity modifiers work (e.g. bg-accent-1/50) */
+	--color-accent-1: 249 115 22;
+	--color-accent-2: 251 146 60;
+	--color-accent-3: 253 186 116;
 
 	/* Gradients */
 	--color-gradient-from: #FFFFFF;

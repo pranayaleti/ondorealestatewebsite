@@ -8,6 +8,10 @@ import { JsonLd } from "@/components/json-ld"
 import { generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import { getSpeculationRulesJson } from "@/lib/speculation-rules"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import { ScrollProgress } from "@/components/scroll-progress"
+import ErrorBoundary from "@/components/error-boundary"
 // Vercel Analytics is disabled for static exports (GitHub Pages)
 // It only works on Vercel's platform, not with static site generation
 // const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
@@ -123,7 +127,7 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
     other: {
-      'p:domain_verify': 'e6002f0bbb15bad4447b62fed255798b',
+      'p:domain_verify': process.env.NEXT_PUBLIC_PINTEREST_DOMAIN_VERIFY ?? '',
     },
   },
 }
@@ -164,18 +168,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="prefetch" href="/contact" />
         <link rel="prefetch" href="/investments" />
         {/* CSP: 'unsafe-inline' is kept for <script type="speculationrules"> and Next.js hydration chunks.
-            script-src includes unpkg for WebMCP polyfill. */}
+            script-src includes unpkg for WebMCP polyfill and js.stripe.com for Stripe Elements. */}
         <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net https://js.hs-scripts.com https://js.hsforms.net https://js.hs-banner.com https://js.hs-analytics.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://lpklmquhxgbpavjngbby.supabase.co https://api.hubspot.com https://forms.hubspot.com https://track.hubspot.com; frame-src 'self' https://app.hubspot.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://ddwl4m2hdecbv.cloudfront.net https://js.hs-scripts.com https://js.hsforms.net https://js.hs-banner.com https://js.hs-analytics.net https://unpkg.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://ddwl4m2hdecbv.cloudfront.net https://pro.ip-api.com https://lpklmquhxgbpavjngbby.supabase.co https://api.hubspot.com https://forms.hubspot.com https://track.hubspot.com https://api.stripe.com; frame-src 'self' https://app.hubspot.com https://js.stripe.com https://hooks.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${inter.className} ${outfit.variable} min-h-screen bg-background text-foreground`}>
         {/* WebMCP polyfill: enables navigator.modelContext for agent-ready tools (Chrome EPP / future standard) */}
         <Script
-          src="https://unpkg.com/@mcp-b/global@latest/dist/index.iife.js"
-          strategy="beforeInteractive"
+          src="https://unpkg.com/@mcp-b/global@0.3.6/dist/index.iife.js"
+          strategy="lazyOnload"
         />
         <a
           href="#main-content"
@@ -183,24 +187,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        <RootProvidersClient>{children}</RootProvidersClient>
+        <RootProvidersClient>
+          <ScrollProgress />
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            {/* Each page renders its own <main> landmark; this div provides the skip-link target */}
+            <div id="main-content" className="flex-1">
+              <ErrorBoundary>{children}</ErrorBoundary>
+            </div>
+            <Footer />
+          </div>
+        </RootProvidersClient>
         <JsonLd
           id="global-jsonld"
           data={[generateOrganizationJsonLd(), generateWebsiteJsonLd()].filter(Boolean)}
         />
         {/* Google Analytics - Deferred to reduce render blocking and unused JS */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-SSND5XGJ87"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-SSND5XGJ87');
-          `}
-        </Script>
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
         {/* HubSpot Tracking Code — enables page view attribution for leads */}
         {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID ? (
           <Script

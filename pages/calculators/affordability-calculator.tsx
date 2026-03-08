@@ -1,10 +1,9 @@
-"use client"
+'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { ArrowLeft, Download } from 'lucide-react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
 
 interface AffordabilityData {
@@ -149,17 +148,21 @@ const AffordabilityCalculator: React.FC = () => {
     return `${value.toFixed(1)}%`;
   };
 
-  const downloadPDF = async () => {
+  const downloadPDF = useCallback(async () => {
     if (!results) return;
 
     const element = document.getElementById('pdf-content');
     if (!element) return;
 
     try {
+      const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+        import('html2canvas'),
+        import('jspdf'),
+      ]);
+
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
-        allowTaint: true
       });
 
       const imgData = canvas.toDataURL('image/png');
@@ -168,7 +171,6 @@ const AffordabilityCalculator: React.FC = () => {
       const pageHeight = 295;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       let heightLeft = imgHeight;
-
       let position = 0;
 
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
@@ -185,7 +187,7 @@ const AffordabilityCalculator: React.FC = () => {
     } catch (error) {
       console.error('Error generating PDF:', error);
     }
-  };
+  }, [results]);
 
   const getRatioStatus = (ratio: number, type: 'front' | 'back') => {
     if (type === 'front') {
@@ -196,14 +198,22 @@ const AffordabilityCalculator: React.FC = () => {
   };
 
   return (
+    <>
+      <Head>
+        <title>Mortgage Affordability Calculator | Ondo Real Estate</title>
+        <meta
+          name="description"
+          content="Calculate how much home you can afford based on your income, debts, and down payment. Free mortgage affordability calculator for Utah home buyers."
+        />
+      </Head>
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-primary hover:text-primary">
-                <ArrowLeft className="h-6 w-6" />
+              <Link href="/calculators" aria-label="Back to Calculators" className="text-primary hover:text-primary">
+                <ArrowLeft aria-hidden="true" className="h-6 w-6" />
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Mortgage Affordability Calculator</h1>
             </div>
@@ -237,6 +247,8 @@ const AffordabilityCalculator: React.FC = () => {
                   <input
                     id="annualIncome"
                     type="number"
+                    min={0}
+                    max={10000000}
                     value={formData.annualIncome || ''}
                     onChange={(e) => handleInputChange('annualIncome', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -255,6 +267,8 @@ const AffordabilityCalculator: React.FC = () => {
                   <input
                     id="monthlyDebts"
                     type="number"
+                    min={0}
+                    max={100000}
                     value={formData.monthlyDebts || ''}
                     onChange={(e) => handleInputChange('monthlyDebts', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -276,6 +290,8 @@ const AffordabilityCalculator: React.FC = () => {
                   <input
                     id="downPayment"
                     type="number"
+                    min={0}
+                    max={10000000}
                     value={formData.downPayment || ''}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -293,6 +309,8 @@ const AffordabilityCalculator: React.FC = () => {
                   id="interestRate"
                   type="number"
                   step="0.01"
+                  min={0}
+                  max={30}
                   value={formData.interestRate || ''}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -326,6 +344,8 @@ const AffordabilityCalculator: React.FC = () => {
                   id="propertyTaxRate"
                   type="number"
                   step="0.1"
+                  min={0}
+                  max={10}
                   value={formData.propertyTaxRate || ''}
                   onChange={(e) => handleInputChange('propertyTaxRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -342,6 +362,8 @@ const AffordabilityCalculator: React.FC = () => {
                   id="insuranceRate"
                   type="number"
                   step="0.1"
+                  min={0}
+                  max={5}
                   value={formData.insuranceRate || ''}
                   onChange={(e) => handleInputChange('insuranceRate', Number(e.target.value))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
@@ -386,8 +408,8 @@ const AffordabilityCalculator: React.FC = () => {
             </div>
           </div>
 
-          {/* Results */}
-          <div className="space-y-6">
+          {/* Results — aria-live announces updates to screen readers when results are calculated */}
+          <div className="space-y-6" aria-live="polite" aria-atomic="true">
             {results && (
               <div id="pdf-content">
                 {/* Affordability Summary */}
@@ -493,6 +515,7 @@ const AffordabilityCalculator: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

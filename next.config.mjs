@@ -16,12 +16,6 @@ const nextConfig = {
       'date-fns',
       'lodash',
     ],
-    // Stale-time for client router cache (seconds). Reduces redundant server
-    // fetches for static pages the user has already visited in the session.
-    staleTimes: {
-      dynamic: 30,
-      static: 180,
-    },
     optimizeCss: true,
     scrollRestoration: true,
   },
@@ -45,18 +39,7 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // Serve favicon.svg when browser requests /favicon.ico to avoid 404
-  async rewrites() {
-    return [{ source: '/favicon.ico', destination: '/favicon.svg' }]
-  },
-
   transpilePackages: [],
-
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-    },
-  },
 
   webpack: (config, { isServer }) => {
     if (!isServer) {

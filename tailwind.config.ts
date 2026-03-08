@@ -57,8 +57,8 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "accent-1": "var(--color-accent-1)",
-        "accent-2": "var(--color-accent-2)",
+        "accent-1": "rgb(var(--color-accent-1) / <alpha-value>)",
+        "accent-2": "rgb(var(--color-accent-2) / <alpha-value>)",
       },
       borderRadius: {
         lg: "var(--radius)",
