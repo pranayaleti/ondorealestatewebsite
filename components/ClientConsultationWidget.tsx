@@ -37,7 +37,7 @@ export default function ClientConsultationWidget() {
   // Auto-show widget after 30 seconds
   useEffect(() => {
     // Only auto-open in production; never auto-open in local/dev
-    if (process.env.NEXT_PUBLIC_APP_ENV !== "production" && process.env.NODE_ENV !== "production") {
+    if (process.env['NEXT_PUBLIC_APP_ENV'] !== "production" && process.env['NODE_ENV'] !== "production") {
       return
     }
 

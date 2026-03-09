@@ -125,15 +125,15 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   referrer: 'origin-when-cross-origin',
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    google: process.env['NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION'],
     other: {
-      'p:domain_verify': process.env.NEXT_PUBLIC_PINTEREST_DOMAIN_VERIFY ?? '',
+      'p:domain_verify': process.env['NEXT_PUBLIC_PINTEREST_DOMAIN_VERIFY'] ?? '',
     },
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const rb2bKey = process.env.NEXT_PUBLIC_RB2B_KEY
+  const rb2bKey = process.env['NEXT_PUBLIC_RB2B_KEY']
   return (
     <html lang="en" suppressHydrationWarning className="dark:bg-gradient-to-b dark:from-black dark:to-gray-900">
       <head>
@@ -203,10 +203,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data={[generateOrganizationJsonLd(), generateWebsiteJsonLd()].filter(Boolean)}
         />
         {/* Google Analytics - Deferred to reduce render blocking and unused JS */}
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
+        {process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] ? (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID']}`}
               strategy="lazyOnload"
             />
             <Script id="google-analytics" strategy="lazyOnload">
@@ -214,21 +214,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+                gtag('config', '${process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID']}');
               `}
             </Script>
           </>
         ) : null}
         {/* HubSpot Tracking Code — enables page view attribution for leads */}
-        {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID ? (
+        {process.env['NEXT_PUBLIC_HUBSPOT_PORTAL_ID'] ? (
           <Script
             id="hubspot-tracking"
             strategy="lazyOnload"
-            src={`//js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}.js`}
+            src={`//js.hs-scripts.com/${process.env['NEXT_PUBLIC_HUBSPOT_PORTAL_ID']}.js`}
           />
         ) : null}
         {/* Vercel Analytics disabled for static exports - only works on Vercel platform */}
-        {/* {process.env.NEXT_PUBLIC_VERCEL && <Analytics />} */}
+        {/* {process.env['NEXT_PUBLIC_VERCEL'] && <Analytics />} */}
         {/* rb2b Script (optional) - keep off by default for static export */}
         {rb2bKey ? (
           <Script

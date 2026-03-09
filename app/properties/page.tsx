@@ -616,7 +616,7 @@ export default function PropertiesPage() {
 
         const errorMessage = e instanceof Error ? e.message : 'An unexpected error occurred while loading properties';
 
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env['NODE_ENV'] === 'development') {
           console.error('Property fetch error:', e);
         }
 

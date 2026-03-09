@@ -10,8 +10,8 @@ export async function GET(request: NextRequest) {
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
     const { searchParams } = new URL(request.url)
     const limit = Math.min(parseInt(searchParams.get('limit') || '50'), 100) // Max 100
@@ -116,7 +116,7 @@ function _getClientIP(request: NextRequest): string | null {
   for (const header of headers) {
     const value = request.headers.get(header)
     if (value) {
-      const ip = value.split(',')[0].trim()
+      const ip = value.split(',')[0]?.trim()
       if (ip && ip !== 'unknown') {
         return ip
       }

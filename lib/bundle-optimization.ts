@@ -141,7 +141,7 @@ export const bundleAnalysis = {
 
   // Log bundle information in development
   logBundleInfo: () => {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env['NODE_ENV'] === "development") {
       const info = bundleAnalysis.getBundleInfo()
       if (info) {
         // Expose bundle info for debugging without console noise in linted builds
@@ -274,7 +274,7 @@ export const performanceMonitoring = {
       const duration = endTime - startTime
 
       // Return timing metadata to callers instead of logging to console
-      if (process.env.NODE_ENV === "development") {
+      if (process.env['NODE_ENV'] === "development") {
         // Instead of returning a typed object, log the duration and return the result as-is to avoid type errors
         // You can customize this to fit your monitoring/logging solution as well
         // eslint-disable-next-line no-console

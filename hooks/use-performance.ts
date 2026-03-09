@@ -106,10 +106,10 @@ export function usePerformance() {
     // Measure performance after page load
     if (document.readyState === 'complete') {
       measurePerformance()
-    } else {
-      window.addEventListener('load', measurePerformance)
-      return () => window.removeEventListener('load', measurePerformance)
+      return undefined
     }
+    window.addEventListener('load', measurePerformance)
+    return () => window.removeEventListener('load', measurePerformance)
   }, [])
 
   return { metrics, isLoading }
@@ -124,7 +124,7 @@ export function useRenderPerformance(componentName: string) {
       const endTime = performance.now()
       const renderTime = endTime - startTime
       
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env['NODE_ENV'] === 'development') {
         console.log(`${componentName} render time: ${renderTime.toFixed(2)}ms`)
       }
       

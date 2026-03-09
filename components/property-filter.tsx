@@ -49,7 +49,7 @@ export function PropertyFilter({ onFilterChange, initialFilters = defaultFilters
   const [isOpen, setIsOpen] = useState(false)
 
   const handlePriceChange = (value: number[]) => {
-    setPriceDisplay([value[0], value[1]])
+    setPriceDisplay([value[0] ?? 0, value[1] ?? 0])
   }
 
   const handleAmenityToggle = (amenity: string) => {

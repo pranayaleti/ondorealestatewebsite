@@ -71,19 +71,19 @@ export function MaintenanceRequestForm() {
     const newErrors: Record<string, string> = {}
 
     if (!formData.title.trim()) {
-      newErrors.title = "Title is required"
+      newErrors['title'] = "Title is required"
     }
 
     if (!formData.description.trim()) {
-      newErrors.description = "Description is required"
+      newErrors['description'] = "Description is required"
     }
 
     if (!formData.category) {
-      newErrors.category = "Category is required"
+      newErrors['category'] = "Category is required"
     }
 
     if (!formData.priority) {
-      newErrors.priority = "Priority is required"
+      newErrors['priority'] = "Priority is required"
     }
 
     setErrors(newErrors)

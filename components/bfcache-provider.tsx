@@ -21,7 +21,7 @@ export function BfcacheProvider({ children }: { children?: React.ReactNode }) {
 
     const unregisterRestore = registerBfcacheRestoreCallback(() => {
       if (typeof window === "undefined") return
-      if (process.env.NODE_ENV === "development") {
+      if (process.env['NODE_ENV'] === "development") {
         const w = window as Window & { __bfcacheRestoreCount?: number }
         w.__bfcacheRestoreCount = (w.__bfcacheRestoreCount ?? 0) + 1
       }

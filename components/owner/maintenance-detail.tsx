@@ -161,7 +161,7 @@ export function OwnerMaintenanceDetail({ requestId: _requestId = "req-001" }: { 
         scheduledDate,
         scheduledTime,
         assignedVendor,
-        lastUpdated: new Date().toISOString().split("T")[0],
+        lastUpdated: new Date().toISOString().slice(0, 10),
       }))
       toast({
         title: "Request updated",

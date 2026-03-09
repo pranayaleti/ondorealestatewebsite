@@ -27,8 +27,8 @@ async function getUserFromToken(request: NextRequest) {
 
   // Initialize Supabase client inside function to avoid build-time issues
   const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+    process.env['SUPABASE_SERVICE_ROLE_KEY']!
   )
 
   const { data: { user }, error } = await supabase.auth.getUser(token)
@@ -45,8 +45,8 @@ export async function GET(request: NextRequest) {
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const user = await getUserFromToken(request)
@@ -208,8 +208,8 @@ export async function POST(request: NextRequest) {
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const user = await getUserFromToken(request)

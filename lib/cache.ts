@@ -205,7 +205,7 @@ export const cacheUtils = {
       cache.set(key, value, ttl)
     } catch (error) {
       // Silently fail cache warmup - it's not critical
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env['NODE_ENV'] === 'development') {
         // Only log in development
         console.warn(`Failed to warm up cache for key ${key}:`, error)
       }

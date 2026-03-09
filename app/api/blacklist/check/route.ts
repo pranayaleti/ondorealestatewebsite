@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const _supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const body = await request.json()
@@ -66,8 +66,8 @@ async function checkUserBlacklist(userId: string, email?: string): Promise<UserB
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     // Check direct user blacklist
@@ -144,8 +144,8 @@ async function checkPropertyBlacklist(propertyId: number): Promise<PropertyBlack
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const { data: isBlacklisted, error } = await supabase
@@ -195,8 +195,8 @@ async function checkIPBlacklist(ipAddress: string): Promise<IPBlacklistCheck> {
   try {
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const { data: isBlacklisted, error } = await supabase

@@ -22,17 +22,17 @@ describe("performance", () => {
       expect(result === null || typeof result === "object").toBe(true)
     })
     it("logMetrics returns metrics in development", () => {
-      const orig = process.env.NODE_ENV
-      process.env.NODE_ENV = "development"
+      const orig = process.env['NODE_ENV']
+      process.env['NODE_ENV'] = "development"
       const m = { lcp: 1 }
       expect(performanceMonitor.logMetrics(m)).toEqual(m)
-      process.env.NODE_ENV = orig
+      process.env['NODE_ENV'] = orig
     })
     it("logMetrics returns null in production", () => {
-      const orig = process.env.NODE_ENV
-      process.env.NODE_ENV = "production"
+      const orig = process.env['NODE_ENV']
+      process.env['NODE_ENV'] = "production"
       expect(performanceMonitor.logMetrics({})).toBeNull()
-      process.env.NODE_ENV = orig
+      process.env['NODE_ENV'] = orig
     })
   })
 

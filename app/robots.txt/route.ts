@@ -40,7 +40,7 @@ User-agent: nextjs
 Disallow: /
 
 # Sitemap location
-Sitemap: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://ondorealestate.com'}/sitemap.xml`
+Sitemap: ${process.env['NEXT_PUBLIC_SITE_URL'] || 'https://ondorealestate.com'}/sitemap.xml`
 
   return new NextResponse(robotsTxt, {
     headers: {

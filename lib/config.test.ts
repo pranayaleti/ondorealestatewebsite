@@ -38,16 +38,16 @@ describe("config", () => {
 
   describe("validateConfig", () => {
     it("returns true when NEXT_PUBLIC_SITE_URL is set", () => {
-      process.env.NEXT_PUBLIC_SITE_URL = "https://example.com"
+      process.env['NEXT_PUBLIC_SITE_URL'] = "https://example.com"
       const result = validateConfig()
       expect(result).toBe(true)
     })
     it("throws in development when NEXT_PUBLIC_SITE_URL is missing", () => {
-      const nodeEnv = process.env.NODE_ENV
-      process.env.NODE_ENV = "development"
-      delete process.env.NEXT_PUBLIC_SITE_URL
+      const nodeEnv = process.env['NODE_ENV']
+      process.env['NODE_ENV'] = "development"
+      delete process.env['NEXT_PUBLIC_SITE_URL']
       expect(() => validateConfig()).toThrow(/Missing required environment variables/)
-      process.env.NODE_ENV = nodeEnv
+      process.env['NODE_ENV'] = nodeEnv
     })
   })
 })

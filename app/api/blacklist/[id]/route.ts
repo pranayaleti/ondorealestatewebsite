@@ -17,8 +17,8 @@ async function getUserFromToken(request: NextRequest) {
 
   // Initialize Supabase client inside function to avoid build-time issues
   const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+    process.env['SUPABASE_SERVICE_ROLE_KEY']!
   )
 
   const { data: { user }, error } = await supabase.auth.getUser(token)
@@ -52,8 +52,8 @@ export async function GET(
 
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const user = await getUserFromToken(request)
@@ -124,8 +124,8 @@ export async function PUT(
 
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const user = await getUserFromToken(request)
@@ -161,10 +161,10 @@ export async function PUT(
       updated_at: new Date().toISOString()
     }
 
-    if (body.reason !== undefined) updateData.reason = body.reason
-    if (body.expiresAt !== undefined) updateData.expires_at = body.expiresAt
-    if (body.isActive !== undefined) updateData.is_active = body.isActive
-    if (body.notes !== undefined) updateData.notes = body.notes
+    if (body.reason !== undefined) updateData['reason'] = body.reason
+    if (body.expiresAt !== undefined) updateData['expires_at'] = body.expiresAt
+    if (body.isActive !== undefined) updateData['is_active'] = body.isActive
+    if (body.notes !== undefined) updateData['notes'] = body.notes
 
     const { data, error } = await supabase
       .from(tableName)
@@ -210,8 +210,8 @@ export async function DELETE(
 
     // Initialize Supabase client inside function to avoid build-time issues
     const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env['NEXT_PUBLIC_SUPABASE_URL']!,
+      process.env['SUPABASE_SERVICE_ROLE_KEY']!
     )
 
     const user = await getUserFromToken(request)

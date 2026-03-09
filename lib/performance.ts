@@ -43,7 +43,7 @@ export const performanceMonitor = {
 
   // Log performance metrics
   logMetrics: (metrics: unknown) => {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env['NODE_ENV'] === "development") {
       return metrics
     }
     return null

@@ -149,7 +149,7 @@ export async function measureTask<T>(
   const end = performance.now();
   const duration = end - start;
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env['NODE_ENV'] === 'development') {
     // eslint-disable-next-line no-console
     console.log(
       `Task ${label || 'execution'} took ${duration.toFixed(2)}ms`
@@ -157,7 +157,7 @@ export async function measureTask<T>(
   }
 
   // Warn if task takes too long
-  if (duration > 50 && process.env.NODE_ENV === 'development') {
+  if (duration > 50 && process.env['NODE_ENV'] === 'development') {
     console.warn(
       `⚠️ Long task detected: ${label || 'task'} took ${duration.toFixed(2)}ms. Consider breaking it into smaller chunks.`
     );

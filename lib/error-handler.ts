@@ -109,7 +109,7 @@ export const handleClientError = (error: unknown, context?: string) => {
     return {
       message: error.message,
       name: error.name,
-      stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+      stack: process.env['NODE_ENV'] === "development" ? error.stack : undefined,
     }
   }
 
@@ -124,7 +124,7 @@ export const handleErrorBoundaryError = (error: Error, errorInfo: React.ErrorInf
   console.error("Error Boundary caught an error:", error, errorInfo)
 
   // In production, you might want to send this to an error reporting service
-  if (process.env.NODE_ENV === "production") {
+  if (process.env['NODE_ENV'] === "production") {
     // Example: send to Sentry, LogRocket, etc.
     // Sentry.captureException(error, { extra: errorInfo })
   }
@@ -190,7 +190,7 @@ export const logError = (error: unknown, context?: string, metadata?: Record<str
   console.error("Error logged:", errorInfo)
 
   // In production, send to monitoring service
-  if (process.env.NODE_ENV === "production") {
+  if (process.env['NODE_ENV'] === "production") {
     // Example: send to monitoring service
     // monitoringService.captureException(error, errorInfo)
   }

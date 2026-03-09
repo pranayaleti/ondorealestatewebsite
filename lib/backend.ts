@@ -7,7 +7,7 @@ const DEFAULT_BACKEND_BASE_URL = "https://lpklmquhxgbpavjngbby.supabase.co/funct
  * before passing the request to Hono, so routes inside the function start at /.
  */
 export const BACKEND_BASE_URL: string =
-  process.env.NEXT_PUBLIC_BACKEND_BASE_URL || DEFAULT_BACKEND_BASE_URL
+  process.env['NEXT_PUBLIC_BACKEND_BASE_URL'] || DEFAULT_BACKEND_BASE_URL
 
 export function backendUrl(pathname: string) {
   const base = (BACKEND_BASE_URL || DEFAULT_BACKEND_BASE_URL).replace(/\/$/, "")

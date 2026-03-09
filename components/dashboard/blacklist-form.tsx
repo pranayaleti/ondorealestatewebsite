@@ -73,25 +73,25 @@ export function BlacklistForm({ onSuccess, onCancel }: BlacklistFormProps) {
       // Add type-specific fields
       switch (type) {
         case 'user':
-          requestData.userId = formData.userId
-          if (formData.email) requestData.email = formData.email
+          requestData['userId'] = formData.userId
+          if (formData.email) requestData['email'] = formData.email
           break
         case 'property':
-          requestData.propertyId = parseInt(formData.propertyId)
+          requestData['propertyId'] = parseInt(formData.propertyId)
           break
         case 'ip':
-          requestData.ipAddress = formData.ipAddress
+          requestData['ipAddress'] = formData.ipAddress
           break
         case 'email_domain':
-          requestData.domain = formData.domain
+          requestData['domain'] = formData.domain
           break
         case 'content':
-          requestData.pattern = formData.pattern
+          requestData['pattern'] = formData.pattern
           break
       }
 
       if (formData.expiresAt) {
-        requestData.expiresAt = formData.expiresAt.toISOString()
+        requestData['expiresAt'] = formData.expiresAt.toISOString()
       }
 
       const response = await fetch(backendUrl('/api/blacklist'), {

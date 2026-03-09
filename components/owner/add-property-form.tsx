@@ -69,7 +69,9 @@ export function AddPropertyForm() {
 
   const handleUnitChange = (index: number, field: string, value: string) => {
     const updatedUnits = [...formData.units]
-    updatedUnits[index] = { ...updatedUnits[index], [field]: value }
+    const current = updatedUnits[index]
+    if (!current) return
+    updatedUnits[index] = { ...current, [field]: value }
     setFormData((prev) => ({ ...prev, units: updatedUnits }))
   }
 
