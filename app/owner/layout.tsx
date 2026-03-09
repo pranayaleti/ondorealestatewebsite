@@ -12,6 +12,7 @@ import {
   DollarSign,
   Users,
   User,
+  HardHat,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -62,6 +63,12 @@ export default function OwnerLayout({ children }: OwnerLayoutProps) {
               <Button variant="ghost" className="w-full justify-start">
                 <DollarSign className="mr-2 h-4 w-4" />
                 Finances
+              </Button>
+            </Link>
+            <Link href="/owner/vendors">
+              <Button variant="ghost" className="w-full justify-start">
+                <HardHat className="mr-2 h-4 w-4" />
+                Vendors
               </Button>
             </Link>
             <Link href="/owner/documents">
