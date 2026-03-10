@@ -68,18 +68,17 @@ export default function PropertyMap({
   }, []);
 
   useEffect(() => {
-    if (isClient) {
-      // Import leaflet CSS
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-      link.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
-      link.crossOrigin = "";
-      document.head.appendChild(link);
-      return () => {
-        document.head.removeChild(link);
-      };
-    }
+    if (!isClient) return;
+    // Import leaflet CSS
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    link.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+    link.crossOrigin = "";
+    document.head.appendChild(link);
+    return () => {
+      document.head.removeChild(link);
+    };
   }, [isClient]);
 
   const customIcon = useMemo(() => {

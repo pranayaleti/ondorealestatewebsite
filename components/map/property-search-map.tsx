@@ -68,10 +68,11 @@ export default function PropertySearchMap({
         <div className="flex flex-wrap gap-3 items-end">
           {/* Search input */}
           <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="search-query" className="block text-sm font-medium text-gray-700 mb-1">
               Search
             </label>
             <input
+              id="search-query"
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -82,10 +83,11 @@ export default function PropertySearchMap({
 
           {/* Price range */}
           <div className="min-w-[160px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="filter-max-price" className="block text-sm font-medium text-gray-700 mb-1">
               Max Price
             </label>
             <select
+              id="filter-max-price"
               value={priceRange[1]}
               onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -102,10 +104,11 @@ export default function PropertySearchMap({
 
           {/* Bedrooms */}
           <div className="min-w-[100px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="filter-min-beds" className="block text-sm font-medium text-gray-700 mb-1">
               Beds
             </label>
             <select
+              id="filter-min-beds"
               value={minBeds}
               onChange={(e) => setMinBeds(Number(e.target.value))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -120,10 +123,11 @@ export default function PropertySearchMap({
 
           {/* Bathrooms */}
           <div className="min-w-[100px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="filter-min-baths" className="block text-sm font-medium text-gray-700 mb-1">
               Baths
             </label>
             <select
+              id="filter-min-baths"
               value={minBaths}
               onChange={(e) => setMinBaths(Number(e.target.value))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -138,10 +142,11 @@ export default function PropertySearchMap({
           {/* Property Type */}
           {propertyTypes.length > 0 && (
             <div className="min-w-[140px]">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="filter-property-type" className="block text-sm font-medium text-gray-700 mb-1">
                 Type
               </label>
               <select
+                id="filter-property-type"
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -182,8 +187,16 @@ export default function PropertySearchMap({
         {filteredProperties.slice(0, 12).map((property) => (
           <div
             key={property.id}
+            role="button"
+            tabIndex={0}
             className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => onPropertyClick?.(property.id)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onPropertyClick?.(property.id);
+              }
+            }}
           >
             {property.image && (
               <img
