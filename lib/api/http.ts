@@ -1,4 +1,5 @@
 import { backendUrl } from "@/lib/backend"
+import { cacheGet, cacheSet, TTL } from "@/lib/cache/idb-cache"
 
 const API_CACHE_PREFIX = "ondo:api-cache:"
 const DEFAULT_TIMEOUT_MS = 30_000
@@ -14,20 +15,12 @@ interface RequestOptions {
   init?: RequestInit
 }
 
-function readFromLocalCache<T>(cacheKey: string): T | null {
-  if (typeof window === "undefined") return null
-  const raw = localStorage.getItem(`${API_CACHE_PREFIX}${cacheKey}`)
-  if (!raw) return null
-  try {
-    return JSON.parse(raw) as T
-  } catch {
-    return null
-  }
+async function readFromCache<T>(cacheKey: string): Promise<T | null> {
+  return cacheGet<T>(`${API_CACHE_PREFIX}${cacheKey}`)
 }
 
-function writeToLocalCache<T>(cacheKey: string, value: T): void {
-  if (typeof window === "undefined") return
-  localStorage.setItem(`${API_CACHE_PREFIX}${cacheKey}`, JSON.stringify(value))
+async function writeToCache<T>(cacheKey: string, value: T): Promise<void> {
+  await cacheSet(`${API_CACHE_PREFIX}${cacheKey}`, value, TTL.MEDIUM)
 }
 
 export async function networkFirstGet<T>(path: string, cacheKey: string): Promise<T> {
@@ -37,10 +30,10 @@ export async function networkFirstGet<T>(path: string, cacheKey: string): Promis
       throw new Error(`Request failed: ${response.status}`)
     }
     const data = (await response.json()) as T
-    writeToLocalCache(cacheKey, data)
+    await writeToCache(cacheKey, data)
     return data
   } catch (error) {
-    const fallback = readFromLocalCache<T>(cacheKey)
+    const fallback = await readFromCache<T>(cacheKey)
     if (fallback) return fallback
     throw error
   }
@@ -75,7 +68,7 @@ export async function postJson<TResponse = unknown, TBody = unknown>(
     if (!options?.fallbackCacheKey) {
       throw error
     }
-    const fallback = readFromLocalCache<TResponse>(options.fallbackCacheKey)
+    const fallback = await readFromCache<TResponse>(options.fallbackCacheKey)
     if (fallback) return fallback
     throw error
   }

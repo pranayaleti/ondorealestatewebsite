@@ -1,4 +1,5 @@
 import { networkFirstGet } from "@/lib/api/http"
+import { cacheGet, cacheSet, TTL } from "@/lib/cache/idb-cache"
 import type { PropertyFilters, PropertySummary } from "@/lib/api/types"
 
 const LAST_VIEWED_KEY = "ondo:last-viewed-properties"
@@ -43,20 +44,15 @@ const FALLBACK_PROPERTIES: PropertySummary[] = [
   },
 ]
 
-function readJsonList<T>(key: string): T[] {
-  if (typeof window === "undefined") return []
-  const raw = localStorage.getItem(key)
-  if (!raw) return []
-  try {
-    return JSON.parse(raw) as T[]
-  } catch {
-    return []
-  }
+async function readJsonList<T>(key: string): Promise<T[]> {
+  const cached = await cacheGet<T[]>(key)
+  return cached ?? []
 }
 
-function writeJsonList<T>(key: string, value: T[]): void {
-  if (typeof window === "undefined") return
-  localStorage.setItem(key, JSON.stringify(value))
+async function writeJsonList<T>(key: string, value: T[]): Promise<void> {
+  // User preference lists use LONG TTL (30 min) — they are small and mutation-driven,
+  // not network responses, so we keep them alive between page loads.
+  await cacheSet(key, value, TTL.LONG)
 }
 
 function applyFilters(data: PropertySummary[], filters?: PropertyFilters): PropertySummary[] {
@@ -90,33 +86,33 @@ export async function fetchPropertyById(propertyId: string): Promise<PropertySum
   const properties = await fetchProperties()
   const property = properties.find((item) => item.id === propertyId) ?? null
   if (property) {
-    addLastViewedProperty(property)
+    await addLastViewedProperty(property)
   }
   return property
 }
 
-export function addLastViewedProperty(property: PropertySummary): void {
-  const current = readJsonList<PropertySummary>(LAST_VIEWED_KEY).filter((p) => p.id !== property.id)
+export async function addLastViewedProperty(property: PropertySummary): Promise<void> {
+  const current = (await readJsonList<PropertySummary>(LAST_VIEWED_KEY)).filter((p) => p.id !== property.id)
   const updated = [property, ...current].slice(0, 10)
-  writeJsonList(LAST_VIEWED_KEY, updated)
+  await writeJsonList(LAST_VIEWED_KEY, updated)
 }
 
-export function getLastViewedProperties(): PropertySummary[] {
+export async function getLastViewedProperties(): Promise<PropertySummary[]> {
   return readJsonList<PropertySummary>(LAST_VIEWED_KEY)
 }
 
-export function toggleFavoriteProperty(propertyId: string): string[] {
-  const favorites = new Set(readJsonList<string>(FAVORITES_KEY))
+export async function toggleFavoriteProperty(propertyId: string): Promise<string[]> {
+  const favorites = new Set(await readJsonList<string>(FAVORITES_KEY))
   if (favorites.has(propertyId)) {
     favorites.delete(propertyId)
   } else {
     favorites.add(propertyId)
   }
   const next = Array.from(favorites)
-  writeJsonList(FAVORITES_KEY, next)
+  await writeJsonList(FAVORITES_KEY, next)
   return next
 }
 
-export function getFavoritePropertyIds(): string[] {
+export async function getFavoritePropertyIds(): Promise<string[]> {
   return readJsonList<string>(FAVORITES_KEY)
 }

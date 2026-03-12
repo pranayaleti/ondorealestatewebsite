@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 
 // Types
@@ -41,6 +41,21 @@ const Popup = dynamic(
   () => import("react-leaflet").then((mod) => mod.Popup),
   { ssr: false }
 );
+const UseMapEvents = dynamic(
+  () => import("react-leaflet").then((mod) => {
+    // Return a component that calls map.invalidateSize() when the map is ready
+    const { useMap } = mod;
+    function MapReadyHandler({ onReady }: { onReady: (map: import("leaflet").Map) => void }) {
+      const map = useMap();
+      useEffect(() => {
+        onReady(map);
+      }, [map, onReady]);
+      return null;
+    }
+    return MapReadyHandler;
+  }),
+  { ssr: false }
+);
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -59,6 +74,10 @@ export default function PropertyMap({
 }: PropertyMapProps) {
   const [isClient, setIsClient] = useState(false);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
+  // Key increments on container resize to force Leaflet to re-render and
+  // correctly fill the new dimensions (fixes blank tile / incorrect tile
+  // sizing issues after responsive layout changes).
+  const [mapKey, setMapKey] = useState(0);
 
   useEffect(() => {
     setIsClient(true);
@@ -77,9 +96,31 @@ export default function PropertyMap({
     link.crossOrigin = "";
     document.head.appendChild(link);
     return () => {
-      document.head.removeChild(link);
+      if (document.head.contains(link)) document.head.removeChild(link);
     };
   }, [isClient]);
+
+  // Re-key the MapContainer whenever the outer element is resized so Leaflet
+  // re-initialises with correct dimensions.
+  useEffect(() => {
+    if (!isClient || typeof ResizeObserver === "undefined") return;
+    const el = document.getElementById("property-map-container");
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      setMapKey((k) => k + 1);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [isClient]);
+
+  // Call invalidateSize once the map instance is available so tiles fill the
+  // container correctly after the first render.
+  const handleMapReady = useCallback((map: import("leaflet").Map) => {
+    // Defer slightly to ensure the container has its final painted size
+    requestAnimationFrame(() => {
+      map.invalidateSize();
+    });
+  }, []);
 
   const customIcon = useMemo(() => {
     if (!L) return undefined;
@@ -120,25 +161,42 @@ export default function PropertyMap({
 
   if (!isClient || !L) {
     return (
-      <div className={`bg-gray-100 rounded-lg flex items-center justify-center ${className}`} style={{ minHeight: 400 }}>
+      <div
+        id="property-map-container"
+        className={`bg-gray-100 rounded-lg flex items-center justify-center ${className}`}
+        style={{ width: "100%", aspectRatio: "16 / 9", minHeight: 220 }}
+      >
         <p className="text-gray-500">Loading map...</p>
       </div>
     );
   }
 
   return (
-    <div className={`rounded-lg overflow-hidden border border-gray-200 ${className}`}>
+    <div
+      id="property-map-container"
+      className={`rounded-lg overflow-hidden border border-gray-200 ${className}`}
+      style={{ width: "100%" }}
+    >
+      {/*
+        The MapContainer itself is set to 100% width and height so it fills
+        whatever the outer container provides. The outer container drives the
+        responsive sizing via className (e.g. "h-[50vw] max-h-[500px]") or a
+        CSS aspect-ratio rule applied by the caller.
+      */}
       <MapContainer
+        key={mapKey}
         center={bounds ? undefined : center}
         bounds={bounds}
         zoom={bounds ? undefined : zoom}
-        style={{ height: "100%", minHeight: 400, width: "100%" }}
+        style={{ height: "100%", width: "100%", minHeight: 220 }}
         scrollWheelZoom={true}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/* Invalidate tile layout once the map instance is ready */}
+        <UseMapEvents onReady={handleMapReady} />
         {validProperties.map((property) => (
           <Marker
             key={property.id}

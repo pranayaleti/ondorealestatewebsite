@@ -20,6 +20,7 @@ import SEO from "@/components/seo"
 import { generateBreadcrumbJsonLd } from "@/lib/seo"
 import { SITE_URL } from "@/lib/site"
 import { backendUrl } from "@/lib/backend"
+import { supabase } from "@/lib/supabase"
 import { StripePaymentForm } from "@/components/stripe-payment-form"
 
 export default function PaymentsPage() {
@@ -38,7 +39,8 @@ export default function PaymentsPage() {
 
     setIsCreatingIntent(true)
     try {
-      const token = typeof window !== "undefined" ? localStorage.getItem("token") : null
+      const session = supabase ? (await supabase.auth.getSession()).data.session : null
+      const token = session?.access_token ?? null
 
       const res = await fetch(backendUrl("/payments/create-payment-intent"), {
         method: "POST",

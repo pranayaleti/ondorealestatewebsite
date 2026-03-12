@@ -28,14 +28,13 @@ export function PropertyDetailsClientPage({ propertyId }: { propertyId: string }
 
   useEffect(() => {
     void fetchPropertyById(propertyId).then(setProperty)
-    setFavoriteIds(getFavoritePropertyIds())
+    void getFavoritePropertyIds().then(setFavoriteIds)
   }, [propertyId])
 
   const isFavorite = useMemo(() => favoriteIds.includes(propertyId), [favoriteIds, propertyId])
 
   const handleToggleFavorite = () => {
-    const next = toggleFavoriteProperty(propertyId)
-    setFavoriteIds(next)
+    void toggleFavoriteProperty(propertyId).then(setFavoriteIds)
   }
 
   const handleSubmitInquiry = async (event: React.FormEvent<HTMLFormElement>) => {

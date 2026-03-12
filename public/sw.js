@@ -327,41 +327,34 @@ self.addEventListener("sync", (event) => {
 // Push notifications
 // ---------------------------------------------------------------------------
 self.addEventListener("push", (event) => {
-  const defaultPayload = {
-    title: "Ondo Real Estate",
-    body: "You have a new update.",
-    url: "/platform",
-  }
-
-  const payload = event.data ? event.data.json() : defaultPayload
+  const data = event.data?.json() ?? { title: "Ondo", body: "You have a new notification" }
 
   event.waitUntil(
-    self.registration.showNotification(payload.title || defaultPayload.title, {
-      body: payload.body || defaultPayload.body,
-      icon: "/favicon.svg",
-      badge: "/favicon.svg",
-      data: {
-        url: payload.url || defaultPayload.url,
-      },
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: "/icons/icon-192.png",
+      badge: "/icons/icon-192.png",
+      data: data.url ? { url: data.url } : undefined,
     }),
   )
 })
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close()
-  const targetUrl = event.notification.data?.url || "/platform"
-
-  event.waitUntil(
-    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((windowClients) => {
-      for (const client of windowClients) {
-        if (client.url.includes(targetUrl) && "focus" in client) {
-          return client.focus()
+  if (event.notification.data?.url) {
+    event.waitUntil(
+      self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((windowClients) => {
+        const targetUrl = event.notification.data.url
+        for (const client of windowClients) {
+          if (client.url.includes(targetUrl) && "focus" in client) {
+            return client.focus()
+          }
         }
-      }
-      if (self.clients.openWindow) {
-        return self.clients.openWindow(targetUrl)
-      }
-      return null
-    }),
-  )
+        if (self.clients.openWindow) {
+          return self.clients.openWindow(targetUrl)
+        }
+        return null
+      }),
+    )
+  }
 })

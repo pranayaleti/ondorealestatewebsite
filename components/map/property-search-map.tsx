@@ -175,12 +175,24 @@ export default function PropertySearchMap({
         </p>
       </div>
 
-      {/* Map */}
-      <PropertyMap
-        properties={filteredProperties}
-        onPropertyClick={onPropertyClick}
-        className="h-[500px]"
-      />
+      {/* Map — responsive height: clamps between 220px (mobile) and 500px (desktop).
+           The outer wrapper drives the height via aspect-ratio on small screens and
+           a max-height cap on larger ones so the map always fills its container. */}
+      <div
+        className="w-full"
+        style={{
+          /* ~56 vw on mobile, capped at 500px on desktop */
+          aspectRatio: "16 / 9",
+          maxHeight: 500,
+          minHeight: 220,
+        }}
+      >
+        <PropertyMap
+          properties={filteredProperties}
+          onPropertyClick={onPropertyClick}
+          className="h-full"
+        />
+      </div>
 
       {/* Property List (below map) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

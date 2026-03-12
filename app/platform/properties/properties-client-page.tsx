@@ -33,7 +33,7 @@ export function PropertiesClientPage() {
   }, [filters])
 
   useEffect(() => {
-    setLastViewed(getLastViewedProperties())
+    void getLastViewedProperties().then(setLastViewed)
   }, [])
 
   const selectedType = useMemo(() => filters.propertyType ?? "any", [filters.propertyType])

@@ -24,8 +24,33 @@ import {
 } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Progress } from "@/components/ui/progress"
-import { IncomeExpenseChart } from "@/components/owner/income-expense-chart"
-import { PropertyPerformanceChart } from "@/components/owner/property-performance-chart"
+import dynamic from "next/dynamic"
+import { Skeleton } from "@/components/ui/skeleton"
+
+// recharts does not support SSR — lazy-load both chart components so the
+// recharts bundle is excluded from the initial page payload entirely.
+const ChartSkeleton = () => (
+  <div className="h-full w-full space-y-2 p-1">
+    <Skeleton className="h-4 w-28" />
+    <Skeleton className="h-[calc(100%-2rem)] w-full" />
+  </div>
+)
+
+const IncomeExpenseChart = dynamic(
+  () =>
+    import("@/components/owner/income-expense-chart").then(
+      (mod) => mod.IncomeExpenseChart
+    ),
+  { ssr: false, loading: () => <ChartSkeleton /> }
+)
+
+const PropertyPerformanceChart = dynamic(
+  () =>
+    import("@/components/owner/property-performance-chart").then(
+      (mod) => mod.PropertyPerformanceChart
+    ),
+  { ssr: false, loading: () => <ChartSkeleton /> }
+)
 import { AddTransactionDialog } from "@/components/owner/add-transaction-dialog"
 import { useToast } from "@/hooks/use-toast"
 
