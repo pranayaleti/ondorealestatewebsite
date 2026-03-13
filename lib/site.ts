@@ -25,7 +25,7 @@ export const SITE_ADDRESS_OBJ = {
 
 // Centralized emails used across the app
 export const SITE_EMAILS = {
-  primary: "ondorealestate@gmail.com",
+  primary: "info@ondorealestate.com",
   info: "info@ondorealestate.com",
   support: "help@ondorealestate.com",
   media: "media@ondorealestate.com",

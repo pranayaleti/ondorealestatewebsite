@@ -5,7 +5,7 @@ export const config = {
     name: process.env['NEXT_PUBLIC_SITE_NAME'] || "ONDO Real Estate",
     url: process.env['NEXT_PUBLIC_SITE_URL'] || "https://ondorealestate.com",
     phone: process.env['NEXT_PUBLIC_SITE_PHONE'] || "+1-408-538-0420",
-    email: process.env['NEXT_PUBLIC_SITE_EMAIL'] || "ondorealestate@gmail.com",
+    email: process.env['NEXT_PUBLIC_SITE_EMAIL'] || "info@ondorealestate.com",
   },
 
   // Analytics
