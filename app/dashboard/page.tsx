@@ -1,37 +1,11 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
-import dynamic from "next/dynamic"
 import DashboardShell from "@/components/dashboard/dashboard-shell"
 import DashboardHeader from "@/components/dashboard/dashboard-header"
 import { DashboardOverview } from "@/components/dashboard/dashboard-overview"
 import { RecentLeads } from "@/components/dashboard/recent-leads"
 import { MaintenanceRequests } from "@/components/dashboard/maintenance-requests"
-import { Skeleton } from "@/components/ui/skeleton"
-
-// recharts does not support SSR — lazy-load both chart components so the
-// recharts bundle is excluded from the initial page payload entirely.
-const ChartSkeleton = () => (
-  <div className="h-[300px] w-full space-y-3 p-2">
-    <Skeleton className="h-4 w-32" />
-    <Skeleton className="h-[260px] w-full" />
-  </div>
-)
-
-const PropertyTypeDistribution = dynamic(
-  () =>
-    import("@/components/dashboard/property-type-distribution").then(
-      (mod) => mod.PropertyTypeDistribution
-    ),
-  { ssr: false, loading: () => <ChartSkeleton /> }
-)
-
-const PropertyValueDistribution = dynamic(
-  () =>
-    import("@/components/dashboard/property-value-distribution").then(
-      (mod) => mod.PropertyValueDistribution
-    ),
-  { ssr: false, loading: () => <ChartSkeleton /> }
-)
+import { PropertyTypeDistribution, PropertyValueDistribution } from "@/components/dashboard/chart-widgets"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CalendarDateRangePicker } from "@/components/dashboard/date-range-picker"

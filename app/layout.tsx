@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import Script from "next/script"
-import dynamic from "next/dynamic"
 import { Inter, Outfit } from "next/font/google"
 import "./globals.css"
 import { RootProvidersClient } from "@/components/root-providers-client"
@@ -14,12 +13,7 @@ import Footer from "@/components/footer"
 import { ScrollProgress } from "@/components/scroll-progress"
 import ErrorBoundary from "@/components/error-boundary"
 import { CachePurge } from "@/components/cache-purge"
-
-// Lazy-load the push notification prompt — client-only, non-blocking
-const PushNotificationPrompt = dynamic(
-  () => import("@/components/notifications/push-notification-prompt"),
-  { ssr: false },
-)
+import PushNotificationPrompt from "@/components/notifications/push-notification-prompt-loader"
 // Vercel Analytics is disabled for static exports (GitHub Pages)
 // It only works on Vercel's platform, not with static site generation
 // const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false })
