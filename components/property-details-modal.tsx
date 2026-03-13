@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LazyImage } from "@/components/lazy-image"
-import { Phone, ExternalLink, Star, MapPin, DollarSign } from "lucide-react"
+import { Phone, ExternalLink, Star, MapPin, DollarSign, ImageIcon } from "lucide-react" // Added ImageIcon
 import { useState } from "react"
 import { Property, ModalProps } from "@/lib/types"
 
@@ -16,7 +16,9 @@ interface PropertyDetailsModalProps extends ModalProps {
 export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDetailsModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const images = company.images || [company.image].filter(Boolean)
+  // Filter out any falsy values (like null or undefined) from the images array
+  const images = (company.images || [company.image]).filter(Boolean)
+  const hasImages = images.length > 0
   const hasMultipleImages = images.length > 1
 
   const nextImage = () => {
@@ -27,12 +29,18 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
+  // Heuristic to determine if the logo is a generic placeholder SVG
+  const isPlaceholderLogo = company.logo && (
+    company.logo.includes('placeholder') ||
+    company.logo.includes('data:image/svg+xml') && company.logo.length < 200 // Short, generic SVG data URI
+  );
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
-            {company.logo && (
+            {company.logo && !isPlaceholderLogo && ( // Conditionally hide placeholder logo
               <div className="relative h-12 w-12 rounded-lg overflow-hidden">
                 <LazyImage
                   src={company.logo}
@@ -66,60 +74,68 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
           <DialogDescription>{company.description}</DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          {/* Image Gallery */}
-          <div className="space-y-4">
-            <div className="relative aspect-video rounded-lg overflow-hidden">
-              <LazyImage
-                src={images[currentImageIndex] || company.image}
-                alt={`${company.title} property ${currentImageIndex + 1}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+        <div className={`grid grid-cols-1 ${hasImages ? 'xl:grid-cols-2' : ''} gap-6`}> {/* Adjust grid based on images */}
+          {/* Image Gallery or Placeholder */}
+          {hasImages ? (
+            <div className="space-y-4">
+              <div className="relative aspect-video rounded-lg overflow-hidden">
+                <LazyImage
+                  src={images[currentImageIndex]} // Use images array directly
+                  alt={`${company.title} property ${currentImageIndex + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                {hasMultipleImages && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+                      aria-label="Previous image"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+                      aria-label="Next image"
+                    >
+                      ›
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Thumbnail Gallery */}
               {hasMultipleImages && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-                    aria-label="Previous image"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-                    aria-label="Next image"
-                  >
-                    ›
-                  </button>
-                </>
+                <div className="flex gap-2 overflow-x-auto pb-2">
+                  {images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`relative aspect-video w-20 flex-shrink-0 rounded border-2 transition-colors ${
+                        index === currentImageIndex ? 'border-primary' : 'border-transparent'
+                      }`}
+                    >
+                      <LazyImage
+                        src={image}
+                        alt={`Thumbnail ${index + 1}`}
+                        fill
+                        className="object-cover rounded"
+                        sizes="80px"
+                      />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
-
-            {/* Thumbnail Gallery */}
-            {hasMultipleImages && (
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`relative aspect-video w-20 flex-shrink-0 rounded border-2 transition-colors ${
-                      index === currentImageIndex ? 'border-primary' : 'border-transparent'
-                    }`}
-                  >
-                    <LazyImage
-                      src={image}
-                      alt={`Thumbnail ${index + 1}`}
-                      fill
-                      className="object-cover rounded"
-                      sizes="80px"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          ) : (
+            <div className="flex items-center justify-center bg-muted rounded-lg aspect-video text-muted-foreground flex-col p-4">
+              <ImageIcon className="h-16 w-16 mb-4" />
+              <p className="text-lg font-medium text-center">No images available for this property.</p>
+              <p className="text-sm text-center">Check back later or contact the property directly.</p>
+            </div>
+          )}
 
           {/* Property Details */}
           <div className="space-y-6">
@@ -206,12 +222,14 @@ export function PropertyDetailsModal({ company, open, onOpenChange }: PropertyDe
 
             {/* Contact Actions */}
             <div className="flex flex-col gap-3">
-              <Button asChild className="w-full">
-                <a href={`tel:${company.phone}`} className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" />
-                  Call {company.phone}
-                </a>
-              </Button>
+              {company.phone && company.phone.trim() !== "" && (
+                <Button asChild className="w-full">
+                  <a href={`tel:${company.phone}`} className="flex items-center gap-2">
+                    <Phone className="h-4 w-4" />
+                    Call {company.phone}
+                  </a>
+                </Button>
+              )}
 
               {company.website && (
                 <Button variant="outline" asChild className="w-full">

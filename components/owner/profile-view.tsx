@@ -27,6 +27,8 @@ import {
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 
+import { TwoFactorAuthDialog } from "@/components/ui/two-factor-auth-dialog"
+
 // Mock user data
 const USER = {
   id: "user123",
@@ -62,6 +64,7 @@ export function ProfileView() {
   const [activeTab, setActiveTab] = useState("personal")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [userData, setUserData] = useState(USER)
+  const [is2FADialogOpen, setIs2FADialogOpen] = useState(false)
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -86,18 +89,8 @@ export function ProfileView() {
     }))
   }
 
-  const handleTwoFactorChange = (checked: boolean) => {
-    setUserData((prev) => ({
-      ...prev,
-      twoFactorEnabled: checked,
-    }))
-
-    toast({
-      title: checked ? "Two-factor authentication enabled" : "Two-factor authentication disabled",
-      description: checked
-        ? "Your account is now more secure."
-        : "Two-factor authentication has been disabled for your account.",
-    })
+  const handleTwoFactorChange = () => {
+    setIs2FADialogOpen(true)
   }
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -363,7 +356,7 @@ export function ProfileView() {
                     Add an extra layer of security to your account by enabling two-factor authentication.
                   </p>
                 </div>
-                <Switch id="twoFactor" checked={userData.twoFactorEnabled} onCheckedChange={handleTwoFactorChange} />
+                <Switch id="twoFactor" checked={userData.twoFactorEnabled} onCheckedChange={() => handleTwoFactorChange()} />
               </div>
             </CardContent>
           </Card>
@@ -491,6 +484,17 @@ export function ProfileView() {
           </Card>
         </TabsContent>
       </Tabs>
+      <TwoFactorAuthDialog
+        open={is2FADialogOpen}
+        onOpenChange={setIs2FADialogOpen}
+        currentValue={userData.twoFactorEnabled}
+        onConfirm={(enabled) => {
+          setUserData((prev) => ({
+            ...prev,
+            twoFactorEnabled: enabled,
+          }))
+        }}
+      />
     </div>
   )
 }

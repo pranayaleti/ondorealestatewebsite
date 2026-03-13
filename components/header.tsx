@@ -10,8 +10,10 @@ import UserMenu from "@/components/user-menu"
 import { Navigation, overflowNavigationItems, primaryNavigationItems } from "@/components/navigation"
 import { useAuth } from "@/lib/auth-context"
 import { SearchDialog } from "@/components/search-dialog"
+import { usePathname } from "next/navigation"
 
 const Header = memo(() => {
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -33,6 +35,10 @@ const Header = memo(() => {
   const toggleDesktopMenu = useCallback(() => {
     setIsDesktopMenuOpen(prev => !prev)
   }, [])
+
+  const isHiddenPage = ["/login", "/auth", "/owner", "/tenant", "/dashboard"].some(
+    path => pathname === path || pathname?.startsWith(`${path}/`)
+  )
 
   useEffect(() => {
     setIsMounted(true)
@@ -87,6 +93,8 @@ const Header = memo(() => {
       document.removeEventListener("keydown", handleEscape)
     }
   }, [isMenuOpen, isDesktopMenuOpen])
+
+  if (isHiddenPage) return null
 
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-200 bg-background ${isScrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : ""}`}>

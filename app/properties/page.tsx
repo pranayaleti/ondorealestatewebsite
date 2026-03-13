@@ -601,11 +601,14 @@ export default function PropertiesPage() {
         }
 
         const json = await res.json();
-        if (!Array.isArray(json)) {
+        // Backend returns a paginated envelope: { data: [...], pagination: {...} }
+        // Support both the envelope and a legacy plain array shape
+        const rawArray: unknown = Array.isArray(json) ? json : (json?.data ?? null);
+        if (!Array.isArray(rawArray)) {
           throw new Error('Invalid response format. Please try again.');
         }
 
-        const mapped: Property[] = json.map(mapApiProperty);
+        const mapped: Property[] = rawArray.map(mapApiProperty);
         caches.properties.set(propertiesCacheKey, mapped, PROPERTIES_CACHE_TTL);
         setAllApiProperties(mapped);
         setRetryCount(0);
@@ -639,8 +642,9 @@ export default function PropertiesPage() {
       })
         .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
         .then((json: unknown) => {
-          if (!Array.isArray(json)) return;
-          const mapped: Property[] = json.map(mapApiProperty);
+          const rawArray = Array.isArray(json) ? json : (json as Record<string, unknown>)?.data;
+          if (!Array.isArray(rawArray)) return;
+          const mapped: Property[] = rawArray.map(mapApiProperty);
           caches.properties.set(propertiesCacheKey, mapped, PROPERTIES_CACHE_TTL);
           setAllApiProperties(mapped);
           setError(null);

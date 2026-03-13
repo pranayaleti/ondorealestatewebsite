@@ -5,6 +5,7 @@ import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useAuth } from "@/lib/auth-context"
 import {
   SidebarProvider,
   Sidebar,
@@ -92,6 +93,11 @@ export const navItems: NavItem[] = [
 
 export function DashboardSidebar() {
   const pathname = usePathname()
+  const { user } = useAuth()
+
+  const filteredNavItems = navItems.filter((item) => 
+    item.title === 'Blacklist' ? user?.role === 'admin' : true
+  )
 
   return (
     <SidebarProvider>
@@ -112,7 +118,7 @@ export function DashboardSidebar() {
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {navItems.map((item) => (
+            {filteredNavItems.map((item) => (
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.title}>
                   <Link href={item.href} className="flex items-center gap-3">

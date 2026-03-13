@@ -4,6 +4,7 @@ import Image from "next/image"
 import { memo } from "react"
 import { SITE_SOCIALS, SITE_ADDRESS, SITE_PHONE, SITE_EMAILS, SITE_HOURS_LABEL, SITE_ADDRESS_STREET, SITE_ADDRESS_CITY, SITE_ADDRESS_REGION, SITE_ADDRESS_POSTAL_CODE } from "@/lib/site"
 import { usePwaInstall } from "@/lib/pwa/install-context"
+import { usePathname } from "next/navigation"
 import {
   Facebook,
   Twitter,
@@ -87,6 +88,13 @@ function PinterestIcon({ className }: { className?: string }) {
 
 const Footer = memo(() => {
   const pwaInstall = usePwaInstall()
+  const pathname = usePathname()
+
+  const isHiddenPage = ["/login", "/auth", "/owner", "/tenant", "/dashboard"].some(
+    path => pathname === path || pathname?.startsWith(`${path}/`)
+  )
+
+  if (isHiddenPage) return null
 
   // Define social media mapping in a deterministic order to prevent hydration issues
   const socialMediaMap = [

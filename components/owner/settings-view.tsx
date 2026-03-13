@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, CreditCard, Globe, Moon, Sun, Smartphone, Laptop, CheckCircle } from "lucide-react"
+import { TwoFactorAuthDialog } from "@/components/ui/two-factor-auth-dialog"
 
 type SettingsState = {
   general: {
@@ -80,6 +81,7 @@ const initialSettings: SettingsState = {
 export function SettingsView() {
   const [activeTab, setActiveTab] = useState("general")
   const [settings, setSettings] = useState<SettingsState>(initialSettings)
+  const [is2FADialogOpen, setIs2FADialogOpen] = useState(false)
   const { toast } = useToast()
 
   const handleToggleChange = (
@@ -379,7 +381,7 @@ export function SettingsView() {
               <Switch
                 id="two-factor"
                 checked={settings.security.twoFactor}
-                onCheckedChange={() => handleToggleChange("security", "twoFactor", "")}
+                onCheckedChange={() => setIs2FADialogOpen(true)}
               />
             </div>
 
@@ -561,6 +563,20 @@ export function SettingsView() {
           </CardFooter>
         </Card>
       </TabsContent>
+      <TwoFactorAuthDialog
+        open={is2FADialogOpen}
+        onOpenChange={setIs2FADialogOpen}
+        currentValue={settings.security.twoFactor}
+        onConfirm={(enabled) => {
+          setSettings((prev) => ({
+             ...prev,
+             security: {
+               ...prev.security,
+               twoFactor: enabled
+             }
+          }))
+        }}
+      />
     </Tabs>
   )
 }

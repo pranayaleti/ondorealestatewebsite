@@ -2,6 +2,7 @@
 
 import React, { useState } from "react"
 import { useAuth } from "@/lib/auth-context"
+import { notFound } from "next/navigation"
 import { BlacklistTable } from "@/components/dashboard/blacklist-table"
 import { BlacklistForm } from "@/components/dashboard/blacklist-form"
 import { Button } from "@/components/ui/button"
@@ -18,15 +19,7 @@ export default function BlacklistPage() {
 
   // Only allow admin users to access this page
   if (!user || user.role !== 'admin') {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <Shield className="h-12 w-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Access Denied</h2>
-          <p className="text-gray-600">You need administrator privileges to access this page.</p>
-        </div>
-      </div>
-    )
+    notFound()
   }
 
   const handleFormSuccess = () => {

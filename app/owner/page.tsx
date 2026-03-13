@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building, Calendar, DollarSign, PenToolIcon as Tool, Users } from "lucide-react"
+import { Building, Calendar, ChevronRight, DollarSign, PenToolIcon as Tool, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -147,8 +147,8 @@ export default function OwnerDashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
           <CardHeader>
             <CardTitle>Financial Overview</CardTitle>
             <CardDescription>Revenue and expenses for the current month</CardDescription>
@@ -200,7 +200,7 @@ export default function OwnerDashboard() {
             )}
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card>
           <CardHeader>
             <CardTitle>Property Occupancy</CardTitle>
             <CardDescription>Current occupancy status</CardDescription>
@@ -219,35 +219,30 @@ export default function OwnerDashboard() {
                   </div>
                   <Progress value={occupancyRate} className="h-2" />
                 </div>
-                <div className="space-y-4 pt-4">
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <p className="font-medium">123 Main St</p>
-                      <p className="text-sm text-foreground/70">Single Family</p>
-                    </div>
-                    <div className="font-medium text-primary">Occupied</div>
-                  </div>
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <p className="font-medium">456 Oak Ave</p>
-                      <p className="text-sm text-foreground/70">Single Family</p>
-                    </div>
-                    <div className="font-medium text-primary">Occupied</div>
-                  </div>
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <div>
-                      <p className="font-medium">Sunset Apts #101</p>
-                      <p className="text-sm text-foreground/70">Apartment</p>
-                    </div>
-                    <div className="font-medium text-primary">Occupied</div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium">Sunset Apts #205</p>
-                      <p className="text-sm text-foreground/70">Apartment</p>
-                    </div>
-                    <div className="font-medium text-destructive">Vacant</div>
-                  </div>
+                <div className="space-y-1 pt-4">
+                  {[
+                    { id: "prop1", name: "123 Main St",      type: "Single Family", status: "Occupied",  statusClass: "text-primary" },
+                    { id: "prop2", name: "456 Oak Ave",       type: "Single Family", status: "Occupied",  statusClass: "text-primary" },
+                    { id: "prop3", name: "Sunset Apts #101",  type: "Apartment",     status: "Occupied",  statusClass: "text-primary" },
+                    { id: "prop4", name: "Sunset Apts #205",  type: "Apartment",     status: "Vacant",    statusClass: "text-destructive" },
+                  ].map((property, idx, arr) => (
+                    <Link
+                      key={property.id}
+                      href={`/owner/properties/${property.id}`}
+                      className={`flex items-center justify-between rounded-md px-2 py-2.5 -mx-2 transition-colors hover:bg-muted/60 group cursor-pointer${
+                        idx < arr.length - 1 ? " border-b border-border/50 mb-1" : ""
+                      }`}
+                    >
+                      <div>
+                        <p className="font-medium group-hover:text-primary transition-colors">{property.name}</p>
+                        <p className="text-sm text-foreground/70">{property.type}</p>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`font-medium text-sm ${property.statusClass}`}>{property.status}</span>
+                        <ChevronRight className="h-4 w-4 text-foreground/40 group-hover:text-primary transition-colors" />
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}
@@ -255,8 +250,8 @@ export default function OwnerDashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="col-span-1">
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
           <CardHeader>
             <CardTitle>Recent Payments</CardTitle>
             <CardDescription>Latest tenant payments</CardDescription>
@@ -300,7 +295,7 @@ export default function OwnerDashboard() {
             )}
           </CardContent>
         </Card>
-        <Card className="col-span-1">
+        <Card>
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
             <CardDescription>Common owner tasks</CardDescription>
@@ -336,7 +331,7 @@ export default function OwnerDashboard() {
             )}
           </CardContent>
         </Card>
-        <Card className="col-span-1">
+        <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Upcoming Events</CardTitle>
             <CardDescription>Important dates to remember</CardDescription>
