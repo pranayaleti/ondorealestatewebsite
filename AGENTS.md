@@ -44,6 +44,7 @@ components/              # Shared UI components, grouped by domain
 │   ├── dashboard/
 │   └── calculators/
 lib/                     # All shared logic and utilities
+│   ├── aiGuardrails.ts      # AI/chat input validation & output sanitization (align with backend)
 │   ├── auth-context.tsx     # Auth state (useAuth hook)
 │   ├── session-utils.ts     # Session helpers
 │   ├── seo.ts               # SEO metadata helpers
@@ -75,6 +76,7 @@ The site is aligned with [WebMCP](https://developer.chrome.com/blog/webmcp-epp):
 7. **Analytics**: Use `lib/analytics.ts` and `lib/supabase-analytics.ts` — never call analytics APIs directly in components.
 8. **Accessibility**: Follow patterns in `lib/accessibility.ts`. Use semantic HTML and ARIA attributes consistent with existing components.
 9. **Calculators**: New calculators go in `pages/calculators/`. Keep math in pure functions in `lib/mortgage-utils.ts`; keep components focused on rendering and interaction.
+10. **AI/chat input**: When adding assistant chat or any user→LLM input, use `lib/aiGuardrails.ts` (`validateChatInput`, `sanitizeReply`) so limits and prompt-injection checks match the backend.
 
 ## Supabase integration
 
