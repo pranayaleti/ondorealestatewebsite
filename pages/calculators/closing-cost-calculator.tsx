@@ -4,6 +4,16 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, getProgramMI } from '@/lib/mortgage-utils';
+import { useCalculatorAI } from '@/hooks/useCalculatorAI';
+import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
+import dynamic from 'next/dynamic';
+import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
+import type { AIAnalysis } from '@/lib/api/calculators';
+
+const PDFDownloadLink = dynamic(
+  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+  { ssr: false }
+);
 
 interface ClosingCostData {
   homePrice: number;
@@ -54,6 +64,8 @@ const ClosingCostCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<ClosingCostResults | null>(null);
+  const [location, setLocation] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
   useEffect(() => {
     calculateClosingCosts();
@@ -115,6 +127,14 @@ const ClosingCostCalculator: React.FC = () => {
       monthlyPI: monthlyPI || undefined
     });
   };
+
+  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
+    calculatorType: 'closing-cost',
+    inputs: formData as unknown as Record<string, unknown>,
+    results: (results ?? {}) as unknown as Record<string, unknown>,
+    location: location || undefined,
+    propertyType: propertyType || undefined,
+  });
 
   const handleInputChange = (field: keyof ClosingCostData, value: number | string) => {
     const newData = { ...formData, [field]: value };
@@ -477,6 +497,71 @@ const ClosingCostCalculator: React.FC = () => {
                       <p>• Consider rolling costs into the loan if possible</p>
                       <p>• Shop around for title insurance and other services</p>
                     </div>
+                  </div>
+                </div>
+
+                {/* AI Analysis */}
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Location, e.g. Austin, TX"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    />
+                    <select
+                      value={propertyType}
+                      onChange={(e) => setPropertyType(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    >
+                      <option value="">Property type (optional)</option>
+                      <option>Single Family</option>
+                      <option>Multi-Family</option>
+                      <option>Condo</option>
+                      <option>Commercial</option>
+                    </select>
+                    <button
+                      onClick={() => { calculateClosingCosts(); analyze(); }}
+                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+                    >
+                      Get AI Analysis
+                    </button>
+                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
+                    <PDFDownloadLink
+                      document={
+                        <CalculatorPDFDocument
+                          calculatorType="closing-cost"
+                          title="Closing Cost Report"
+                          inputs={{
+                            'Home Price': `$${formData.homePrice.toLocaleString()}`,
+                            'Down Payment': `$${formData.downPayment.toLocaleString()}`,
+                            'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
+                            'Interest Rate': `${formData.interestRate ?? 'N/A'}%`,
+                          }}
+                          results={{
+                            'Total Closing Costs': `$${results!.totalClosingCosts.toFixed(0)}`,
+                            'Total Out of Pocket': `$${results!.outOfPocket.toFixed(0)}`,
+                            'Lender Costs': `$${results!.lenderCosts.toFixed(0)}`,
+                            'Third-Party Costs': `$${results!.thirdPartyCosts.toFixed(0)}`,
+                          }}
+                          analysis={aiAnalysis ?? undefined}
+                          location={location || undefined}
+                          generatedAt={new Date()}
+                        />
+                      }
+                      fileName="ondo-closing-cost-report.pdf"
+                    >
+                      {({ loading: pdfLoading }) => (
+                        <button
+                          disabled={pdfLoading}
+                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
+                        >
+                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
+                        </button>
+                      )}
+                    </PDFDownloadLink>
                   </div>
                 </div>
               </>
