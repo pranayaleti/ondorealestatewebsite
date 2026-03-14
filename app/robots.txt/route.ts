@@ -26,6 +26,7 @@ Disallow: /owner/
 Disallow: /tenant/
 Disallow: /auth/
 Disallow: /login/
+Disallow: /health
 
 # Block API routes and internal files
 Disallow: /api/

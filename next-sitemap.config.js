@@ -59,6 +59,7 @@ module.exports = {
     '/admin/**',
     '/api/**',
     '/feedback',
+    '/health',
   ],
   transform: async (config, path) => {
     return {
