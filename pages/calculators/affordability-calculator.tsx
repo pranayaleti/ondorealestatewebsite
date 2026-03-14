@@ -3,8 +3,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
+import { useCalculatorAI } from '@/hooks/useCalculatorAI';
+import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
+import dynamic from 'next/dynamic';
+import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
+import type { AIAnalysis } from '@/lib/api/calculators';
+
+const PDFDownloadLink = dynamic(
+  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+  { ssr: false }
+);
 
 interface AffordabilityData {
   annualIncome: number;
@@ -42,6 +52,8 @@ const AffordabilityCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<AffordabilityResults | null>(null);
+  const [location, setLocation] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
   const calculateAffordability = React.useCallback(() => {
     const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate } = formData;
@@ -127,6 +139,14 @@ const AffordabilityCalculator: React.FC = () => {
     });
   }, [formData]);
 
+  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
+    calculatorType: 'affordability',
+    inputs: formData as unknown as Record<string, unknown>,
+    results: (results ?? {}) as unknown as Record<string, unknown>,
+    location: location || undefined,
+    propertyType: propertyType || undefined,
+  });
+
   useEffect(() => {
     calculateAffordability();
   }, [calculateAffordability]);
@@ -147,47 +167,6 @@ const AffordabilityCalculator: React.FC = () => {
   const formatPercent = (value: number) => {
     return `${value.toFixed(1)}%`;
   };
-
-  const downloadPDF = useCallback(async () => {
-    if (!results) return;
-
-    const element = document.getElementById('pdf-content');
-    if (!element) return;
-
-    try {
-      const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
-        import('html2canvas'),
-        import('jspdf'),
-      ]);
-
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save('affordability-analysis.pdf');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
-  }, [results]);
 
   const getRatioStatus = (ratio: number, type: 'front' | 'back') => {
     if (type === 'front') {
@@ -210,22 +189,11 @@ const AffordabilityCalculator: React.FC = () => {
       {/* Header */}
       <div className="bg-background shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Link href="/calculators" aria-label="Back to Calculators" className="text-primary hover:text-primary">
-                <ArrowLeft aria-hidden="true" className="h-6 w-6" />
-              </Link>
-              <h1 className="text-2xl font-bold text-foreground">Mortgage Affordability Calculator</h1>
-            </div>
-            {results && (
-              <button
-                onClick={downloadPDF}
-                className="bg-primary hover:opacity-90 text-primary-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
-              >
-                <Download className="h-5 w-5" />
-                <span>Download PDF</span>
-              </button>
-            )}
+          <div className="flex items-center space-x-4">
+            <Link href="/calculators" aria-label="Back to Calculators" className="text-primary hover:text-primary">
+              <ArrowLeft aria-hidden="true" className="h-6 w-6" />
+            </Link>
+            <h1 className="text-2xl font-bold text-foreground">Mortgage Affordability Calculator</h1>
           </div>
         </div>
       </div>
@@ -411,7 +379,7 @@ const AffordabilityCalculator: React.FC = () => {
           {/* Results — aria-live announces updates to screen readers when results are calculated */}
           <div className="space-y-6" aria-live="polite" aria-atomic="true">
             {results && (
-              <div id="pdf-content">
+              <>
                 {/* Affordability Summary */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">What You Can Afford</h2>
@@ -422,7 +390,7 @@ const AffordabilityCalculator: React.FC = () => {
                         <p className="text-3xl font-bold text-foreground">{formatCurrency(results.maxHomePrice)}</p>
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
                         <p className="text-sm text-foreground/70 mb-1">Max Loan Amount</p>
@@ -452,7 +420,7 @@ const AffordabilityCalculator: React.FC = () => {
                         {formatPercent(results.backEndRatio)}
                       </span>
                     </div>
-                    
+
                     <div className="mt-4 p-3 bg-muted rounded-lg">
                       <p className="text-sm text-foreground/70">
                         <strong>Front-End:</strong> Housing expenses ÷ Gross monthly income (target: ≤28%)<br/>
@@ -473,7 +441,7 @@ const AffordabilityCalculator: React.FC = () => {
                         This gives you a 10% buffer for unexpected expenses
                       </p>
                     </div>
-                    
+
                     <div className="space-y-2 text-sm text-foreground/70">
                       <p>• Consider a 20% down payment to avoid PMI</p>
                       <p>• Keep emergency savings separate from down payment</p>
@@ -482,7 +450,74 @@ const AffordabilityCalculator: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+
+                {/* AI Analysis */}
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Location, e.g. Austin, TX"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    />
+                    <select
+                      value={propertyType}
+                      onChange={(e) => setPropertyType(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    >
+                      <option value="">Property type (optional)</option>
+                      <option>Single Family</option>
+                      <option>Multi-Family</option>
+                      <option>Condo</option>
+                      <option>Commercial</option>
+                    </select>
+                    <button
+                      onClick={() => { calculateAffordability(); analyze(); }}
+                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+                    >
+                      Get AI Analysis
+                    </button>
+                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
+                    <PDFDownloadLink
+                      document={
+                        <CalculatorPDFDocument
+                          calculatorType="affordability"
+                          title="Mortgage Affordability Report"
+                          inputs={{
+                            'Annual Income': `$${formData.annualIncome.toLocaleString()}`,
+                            'Monthly Debts': `$${formData.monthlyDebts.toLocaleString()}`,
+                            'Down Payment': `$${formData.downPayment.toLocaleString()}`,
+                            'Interest Rate': `${formData.interestRate}%`,
+                            'Loan Term': `${formData.loanTerm} years`,
+                            'Loan Program': formData.program,
+                          }}
+                          results={{
+                            'Max Home Price': `$${results!.maxHomePrice.toFixed(0)}`,
+                            'Max Loan Amount': `$${results!.maxLoanAmount.toFixed(0)}`,
+                            'Monthly Payment': `$${results!.monthlyPayment.toFixed(0)}`,
+                            'Conservative Price': `$${results!.recommendedHomePrice.toFixed(0)}`,
+                          }}
+                          analysis={aiAnalysis ?? undefined}
+                          location={location || undefined}
+                          generatedAt={new Date()}
+                        />
+                      }
+                      fileName="ondo-affordability-report.pdf"
+                    >
+                      {({ loading: pdfLoading }) => (
+                        <button
+                          disabled={pdfLoading}
+                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
+                        >
+                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
+                        </button>
+                      )}
+                    </PDFDownloadLink>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>
