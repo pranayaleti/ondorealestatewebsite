@@ -46,10 +46,8 @@ When building or modifying components:
   - `npm run lint` uses `eslint-plugin-jsx-a11y` plus Next.js presets to catch common accessibility issues in JSX/TSX.
 
 - **Automated audits**
-  - `npm run a11y:axe`
-    - Runs `@axe-core/cli` against the built output to catch common violations.
-  - `npm run test:a11y`
-    - Runs Playwright + `@axe-core/playwright` smoke tests for a set of critical routes (marketing pages, feedback, contact, dashboard, tenant/owner/platform entry points).
+  - `npm run a11y:axe` and `npm run test:a11y`
+    - Both run Playwright + `@axe-core/playwright` accessibility tests for a set of critical routes (marketing pages, feedback, contact, dashboard, tenant/owner/platform entry points).
 
 ### Adding a new critical route to a11y tests
 

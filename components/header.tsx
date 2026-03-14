@@ -11,6 +11,7 @@ import { Navigation, overflowNavigationItems, primaryNavigationItems } from "@/c
 import { useAuth } from "@/lib/auth-context"
 import { SearchDialog } from "@/components/search-dialog"
 import { usePathname } from "next/navigation"
+import { APP_PORTAL_URL } from "@/lib/site"
 
 const Header = memo(() => {
   const pathname = usePathname()
@@ -185,7 +186,7 @@ const Header = memo(() => {
 
           <ModeToggle />
           <Button variant="ghost" asChild>
-            <Link href={user ? "/dashboard" : "/login"}>Dashboard</Link>
+            <a href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}/login`}>Property Management Portal</a>
           </Button>
           {user && <UserMenu />}
           {/* Mobile hamburger for full navigation */}
@@ -219,11 +220,11 @@ const Header = memo(() => {
               onLinkClick={handleMenuClose}
             />
             <div className="mt-4">
-              <Link href={user ? "/dashboard" : "/login"} onClick={handleMenuClose}>
+              <a href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}/login`} onClick={handleMenuClose}>
                 <Button variant="outline" size="sm" className="w-full">
-                  Dashboard
+                  Property Management Portal
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

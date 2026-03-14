@@ -3,11 +3,27 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, memo } from "react"
+import { ChevronDown } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { APP_PORTAL_URL } from "@/lib/site"
+
+export interface NavigationItemChild {
+  href: string
+  label: string
+  external?: boolean
+}
 
 export interface NavigationItem {
   href: string
   label: string
   special?: boolean
+  /** When set, this item is rendered as a dropdown with these links (e.g. Property Management → Login to Portal). */
+  children?: NavigationItemChild[]
 }
 
 // Central list of all nav items so we can re-use them
@@ -19,7 +35,14 @@ export const allNavigationItems: NavigationItem[] = [
   { href: "/buy", label: "Buy" },
   { href: "/sell", label: "Sell" },
   { href: "/properties", label: "Properties" },
-  { href: "/property-management", label: "Property Management" },
+  {
+    href: "/property-management",
+    label: "Property Management",
+    children: [
+      { href: `${APP_PORTAL_URL}/login`, label: "Login to Owner / Tenant Portal", external: true },
+      { href: "/property-management", label: "Property management services" },
+    ],
+  },
   { href: "/loans", label: "Loans" },
   { href: "/notary", label: "Notary" },
 
@@ -79,26 +102,62 @@ export const Navigation = memo(function Navigation({
     return pathname.startsWith(href)
   }, [pathname])
 
+  const linkClass = (item: NavigationItem) =>
+    `text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
+      item.special
+        ? "bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-primary-foreground font-bold"
+        : isActive(item.href)
+          ? "bg-primary text-primary-foreground"
+          : "text-foreground hover:bg-primary hover:text-primary-foreground"
+    }`
+
   return (
     <nav className={className}>
-      {items.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          prefetch={true}
-          className={`text-xs md:text-sm font-medium px-2 md:px-3 py-2 rounded-md transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
-            item.special
-              ? "bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-primary-foreground font-bold"
-              : isActive(item.href)
-                ? "bg-primary text-primary-foreground"
-                : "text-foreground hover:bg-primary hover:text-primary-foreground"
-          }`}
-          onClick={onLinkClick}
-          aria-current={isActive(item.href) ? "page" : undefined}
-        >
-          {item.label}
-        </Link>
-      ))}
+      {items.map((item) =>
+        item.children?.length ? (
+          <DropdownMenu key={item.href}>
+            <DropdownMenuTrigger
+              className={`inline-flex items-center gap-0.5 ${linkClass(item)} border-0 bg-transparent cursor-pointer`}
+              aria-haspopup="menu"
+              aria-expanded={undefined}
+            >
+              {item.label}
+              <ChevronDown className="h-3.5 w-3.5 opacity-70" aria-hidden />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[220px]">
+              {item.children.map((child) => (
+                <DropdownMenuItem key={child.href} asChild>
+                  {child.external ? (
+                    <a
+                      href={child.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={onLinkClick}
+                    >
+                      {child.label}
+                    </a>
+                  ) : (
+                    <Link href={child.href} prefetch onClick={onLinkClick}>
+                      {child.label}
+                    </Link>
+                  )}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Link
+            key={item.href}
+            href={item.href}
+            prefetch={true}
+            className={linkClass(item)}
+            onClick={onLinkClick}
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </Link>
+        )
+      )}
     </nav>
   )
 })
