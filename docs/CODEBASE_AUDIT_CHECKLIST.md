@@ -47,7 +47,7 @@
 |------|--------|--------|
 | Auth context | ✅ | `lib/auth-context.tsx` (login, logout, token verify, refresh) |
 | Token storage | ✅ | SecureStorage (lib/security), keys in context |
-| Token verification | ✅ | Calls backend `/api/auth/verify` |
+| Token verification | ✅ | Calls backend `GET /api/auth/me` with `Authorization: Bearer <token>` |
 | Blacklist on login | ✅ | `checkUserBlacklist` before storing session |
 | Rate limiting (login) | ✅ | 5 attempts per 5 min in auth-context |
 | Session utils | ✅ | `lib/session-utils.ts` |
