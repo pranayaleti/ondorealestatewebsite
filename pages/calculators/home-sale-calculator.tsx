@@ -3,6 +3,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { useCalculatorAI } from '@/hooks/useCalculatorAI';
+import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
+import dynamic from 'next/dynamic';
+import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
+import type { AIAnalysis } from '@/lib/api/calculators';
+
+const PDFDownloadLink = dynamic(
+  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+  { ssr: false }
+);
 
 interface HomeSaleData {
   homeValue: number;
@@ -38,6 +48,8 @@ const HomeSaleCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<HomeSaleResults | null>(null);
+  const [location, setLocation] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
   const calculateHomeSale = useCallback(() => {
     const { homeValue, mortgageBalance, realtorCommission, closingCosts, repairs, movingCosts, capitalGainsTax } = formData;
@@ -66,6 +78,14 @@ const HomeSaleCalculator: React.FC = () => {
       basisUsed: costBasis
     });
   }, [formData]);
+
+  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
+    calculatorType: 'home-sale',
+    inputs: formData as unknown as Record<string, unknown>,
+    results: (results ?? {}) as unknown as Record<string, unknown>,
+    location: location || undefined,
+    propertyType: propertyType || undefined,
+  });
 
   useEffect(() => {
     calculateHomeSale();
@@ -347,6 +367,71 @@ const HomeSaleCalculator: React.FC = () => {
                       <p>• Consider consulting a real estate professional</p>
                       <p>• Factor in market conditions and timing</p>
                     </div>
+                  </div>
+                </div>
+
+                {/* AI Analysis */}
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Location, e.g. Austin, TX"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    />
+                    <select
+                      value={propertyType}
+                      onChange={(e) => setPropertyType(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    >
+                      <option value="">Property type (optional)</option>
+                      <option>Single Family</option>
+                      <option>Multi-Family</option>
+                      <option>Condo</option>
+                      <option>Commercial</option>
+                    </select>
+                    <button
+                      onClick={() => { calculateHomeSale(); analyze(); }}
+                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+                    >
+                      Get AI Analysis
+                    </button>
+                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
+                    <PDFDownloadLink
+                      document={
+                        <CalculatorPDFDocument
+                          calculatorType="home-sale"
+                          title="Home Sale Net Proceeds Report"
+                          inputs={{
+                            'Home Value': `$${formData.homeValue.toLocaleString()}`,
+                            'Mortgage Balance': `$${formData.mortgageBalance.toLocaleString()}`,
+                            'Realtor Commission': `${formData.realtorCommission}%`,
+                            'Closing Costs': `$${formData.closingCosts.toLocaleString()}`,
+                          }}
+                          results={{
+                            'Net Proceeds': `$${results!.netProceeds.toFixed(0)}`,
+                            'Total Equity': `$${results!.equity.toFixed(0)}`,
+                            'Total Costs': `$${results!.totalCosts.toFixed(0)}`,
+                            'Estimated Profit': `$${results!.profit.toFixed(0)}`,
+                          }}
+                          analysis={aiAnalysis ?? undefined}
+                          location={location || undefined}
+                          generatedAt={new Date()}
+                        />
+                      }
+                      fileName="ondo-home-sale-report.pdf"
+                    >
+                      {({ loading: pdfLoading }) => (
+                        <button
+                          disabled={pdfLoading}
+                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
+                        >
+                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
+                        </button>
+                      )}
+                    </PDFDownloadLink>
                   </div>
                 </div>
               </>
