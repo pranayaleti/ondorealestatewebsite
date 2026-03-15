@@ -7,7 +7,6 @@ export const revalidate = 0;
 export async function GET() {
   const robotsTxt = `User-agent: *
 Allow: /
-Allow: /property-management/
 Allow: /buy/
 Allow: /sell/
 Allow: /loans/

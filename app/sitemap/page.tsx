@@ -13,7 +13,6 @@ export default function SitemapPage() {
       icon: <Building className="h-5 w-5" />,
       links: [
         { name: "Properties", href: "/properties", description: "Browse available rental properties" },
-        { name: "Property Management", href: "/property-management", description: "Professional property management services" },
         { name: "Buy a Home", href: "/buy", description: "Find your dream home" },
         { name: "Sell a Home", href: "/sell", description: "Sell your property" },
         { name: "Mortgage Loans", href: "/loans", description: "Get pre-approved for a mortgage" }
@@ -65,10 +64,10 @@ export default function SitemapPage() {
       title: "Location-Based Services",
       icon: <MapPin className="h-5 w-5" />,
       links: [
-        { name: "Salt Lake City", href: "/property-management/salt-lake-city", description: "Services in Salt Lake City" },
-        { name: "Lehi", href: "/property-management/lehi", description: "Services in Lehi" },
-        { name: "Provo", href: "/property-management/provo", description: "Services in Provo" },
-        { name: "Draper", href: "/property-management/draper", description: "Services in Draper" }
+        { name: "Salt Lake City", href: "/loans/salt-lake-city", description: "Loans in Salt Lake City" },
+        { name: "Lehi", href: "/loans/lehi", description: "Loans in Lehi" },
+        { name: "Provo", href: "/loans/provo", description: "Loans in Provo" },
+        { name: "Draper", href: "/loans/draper", description: "Loans in Draper" }
       ]
     }
   ]

@@ -21,7 +21,6 @@ export const PRERENDER_URLS: string[] = [
 
 /** Primary nav – prefetch eagerly as soon as the rule is seen. */
 export const EAGER_PREFETCH_URLS: string[] = [
-  "/property-management",
   "/loans",
   "/notary",
   "/calculators",
@@ -46,8 +45,6 @@ export const MODERATE_PREFETCH_URLS: string[] = [
   "/privacy-policy",
   "/terms-of-service",
   "/sitemap",
-  "/login",
-  "/auth",
   "/buy/first-time",
   "/buy/second-home",
   "/buy/fixed-rate",

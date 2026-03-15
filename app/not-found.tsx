@@ -1,12 +1,13 @@
 "use client"
 
 import Link from "next/link"
+import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone } from "lucide-react"
-import { SITE_URL, SITE_PHONE, SITE_EMAILS } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS, APP_PORTAL_URL } from "@/lib/site"
 import SEO from "@/components/seo"
 
 export default function NotFound() {
@@ -59,9 +60,9 @@ export default function NotFound() {
     }
   }, [isMounted, pathname, router])
 
-  const popularPages = [
+  const popularPages: { name: string; href: string; icon: React.ReactNode; description: string; external?: boolean }[] = [
     { name: "Properties", href: "/properties", icon: <Building className="h-4 w-4" />, description: "Browse available rentals" },
-    { name: "Property Management", href: "/property-management", icon: <Users className="h-4 w-4" />, description: "Professional management services" },
+    { name: "Property Management Portal", href: APP_PORTAL_URL, icon: <Users className="h-4 w-4" />, description: "Owner & tenant portal", external: true },
     { name: "Buy a Home", href: "/buy", icon: <Home className="h-4 w-4" />, description: "Find your dream home" },
     { name: "Sell a Home", href: "/sell", icon: <Home className="h-4 w-4" />, description: "Sell your property" },
     { name: "Mortgage Loans", href: "/loans", icon: <Calculator className="h-4 w-4" />, description: "Get pre-approved" },
@@ -70,10 +71,10 @@ export default function NotFound() {
     { name: "Contact", href: "/contact", icon: <Phone className="h-4 w-4" />, description: "Get in touch" }
   ]
 
-  const quickActions = [
+  const quickActions: { name: string; href: string; icon: React.ReactNode; external?: boolean }[] = [
     { name: "Search Properties", href: "/properties", icon: <Search className="h-5 w-5" /> },
     { name: "Calculate Mortgage", href: "/calculators/mortgage-payment", icon: <Calculator className="h-5 w-5" /> },
-    { name: "Find Property Management", href: "/property-management", icon: <Building className="h-5 w-5" /> },
+    { name: "Property Management Portal", href: APP_PORTAL_URL, icon: <Building className="h-5 w-5" />, external: true },
     { name: "Get Pre-Approved", href: "/loans", icon: <Home className="h-5 w-5" /> }
   ]
 
@@ -108,14 +109,23 @@ export default function NotFound() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {quickActions.map((action, index) => (
-                <Link key={index} href={action.href}>
-                  <Button variant="outline" className="w-full h-auto p-4 flex flex-col items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors">
-                    {action.icon}
-                    <span className="text-sm font-medium">{action.name}</span>
-                  </Button>
-                </Link>
-              ))}
+              {quickActions.map((action, index) =>
+                action.external ? (
+                  <a key={index} href={action.href} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="w-full h-auto p-4 flex flex-col items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors">
+                      {action.icon}
+                      <span className="text-sm font-medium">{action.name}</span>
+                    </Button>
+                  </a>
+                ) : (
+                  <Link key={index} href={action.href}>
+                    <Button variant="outline" className="w-full h-auto p-4 flex flex-col items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors">
+                      {action.icon}
+                      <span className="text-sm font-medium">{action.name}</span>
+                    </Button>
+                  </Link>
+                )
+              )}
             </div>
           </CardContent>
         </Card>
@@ -128,19 +138,33 @@ export default function NotFound() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {popularPages.map((page, index) => (
-                <Link key={index} href={page.href}>
-                  <div className="p-4 border rounded-lg hover:bg-primary/5 hover:border-primary transition-colors cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <div className="text-primary">{page.icon}</div>
-                      <div>
-                        <h3 className="font-semibold text-foreground">{page.name}</h3>
-                        <p className="text-sm text-foreground/70">{page.description}</p>
+              {popularPages.map((page, index) =>
+                page.external ? (
+                  <a key={index} href={page.href} target="_blank" rel="noopener noreferrer">
+                    <div className="p-4 border rounded-lg hover:bg-primary/5 hover:border-primary transition-colors cursor-pointer">
+                      <div className="flex items-center gap-3">
+                        <div className="text-primary">{page.icon}</div>
+                        <div>
+                          <h3 className="font-semibold text-foreground">{page.name}</h3>
+                          <p className="text-sm text-foreground/70">{page.description}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </a>
+                ) : (
+                  <Link key={index} href={page.href}>
+                    <div className="p-4 border rounded-lg hover:bg-primary/5 hover:border-primary transition-colors cursor-pointer">
+                      <div className="flex items-center gap-3">
+                        <div className="text-primary">{page.icon}</div>
+                        <div>
+                          <h3 className="font-semibold text-foreground">{page.name}</h3>
+                          <p className="text-sm text-foreground/70">{page.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              )}
             </div>
           </CardContent>
         </Card>

@@ -13,12 +13,10 @@ function url(loc: string, priority = 0.7) {
 export async function GET() {
   const base = SITE_URL.replace(/\/$/, "")
   const cityUrls = allCitySlugs.flatMap((slug) => [
-    `${base}/property-management/${slug}/`,
     `${base}/buy-sell/${slug}/`,
     `${base}/loans/${slug}/`,
   ])
   const zipUrls = allZips.flatMap((zip) => [
-    `${base}/property-management/zip/${zip}/`,
     `${base}/buy-sell/zip/${zip}/`,
     `${base}/loans/zip/${zip}/`,
   ])
@@ -26,7 +24,6 @@ export async function GET() {
   const staticUrls = [
     `${base}/`,
     `${base}/properties/`,
-    `${base}/property-management/`,
     `${base}/buy/`,
     `${base}/sell/`,
     `${base}/loans/`,
@@ -40,7 +37,6 @@ export async function GET() {
 
   // Prioritize service pages
   const serviceUrls = [
-    `${base}/property-management/`,
     `${base}/buy/`,
     `${base}/sell/`,
     `${base}/loans/`,

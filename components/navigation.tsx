@@ -10,8 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { APP_PORTAL_URL } from "@/lib/site"
-
 export interface NavigationItemChild {
   href: string
   label: string
@@ -35,14 +33,6 @@ export const allNavigationItems: NavigationItem[] = [
   { href: "/buy", label: "Buy" },
   { href: "/sell", label: "Sell" },
   { href: "/properties", label: "Properties" },
-  {
-    href: "/property-management",
-    label: "Property Management",
-    children: [
-      { href: `${APP_PORTAL_URL}/login`, label: "Login to Owner / Tenant Portal", external: true },
-      { href: "/property-management", label: "Property management services" },
-    ],
-  },
   { href: "/loans", label: "Loans" },
   { href: "/notary", label: "Notary" },
 
@@ -73,7 +63,7 @@ export const allNavigationItems: NavigationItem[] = [
 // These are the items that stay visible in the main
 // desktop navbar. The rest will live in the hamburger menu.
 export const primaryNavigationItems: NavigationItem[] = allNavigationItems.filter(item =>
-  ["/buy", "/sell", "/properties", "/property-management", "/loans", "/notary"].includes(item.href)
+  ["/buy", "/sell", "/properties", "/loans", "/notary"].includes(item.href)
 )
 
 // Everything that is not part of the primary desktop nav.

@@ -186,7 +186,7 @@ const Header = memo(() => {
 
           <ModeToggle />
           <Button variant="ghost" asChild>
-            <a href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}/login`}>Property Management Portal</a>
+            <Link href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}`} target="_blank" rel="noopener noreferrer">Property Management Portal</Link>
           </Button>
           {user && <UserMenu />}
           {/* Mobile hamburger for full navigation */}
@@ -220,7 +220,7 @@ const Header = memo(() => {
               onLinkClick={handleMenuClose}
             />
             <div className="mt-4">
-              <a href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}/login`} onClick={handleMenuClose}>
+              <a href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}`} target="_blank" rel="noopener noreferrer" onClick={handleMenuClose}>
                 <Button variant="outline" size="sm" className="w-full">
                   Property Management Portal
                 </Button>

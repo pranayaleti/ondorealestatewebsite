@@ -294,7 +294,6 @@ export const generateSitemapData = () => {
     static: [
       { url: `${baseUrl}/`, priority: 1.0, changefreq: "daily" },
       { url: `${baseUrl}/properties`, priority: 0.9, changefreq: "daily" },
-      { url: `${baseUrl}/property-management`, priority: 0.9, changefreq: "weekly" },
       { url: `${baseUrl}/buy`, priority: 0.9, changefreq: "weekly" },
       { url: `${baseUrl}/sell`, priority: 0.9, changefreq: "weekly" },
       { url: `${baseUrl}/loans`, priority: 0.9, changefreq: "weekly" },

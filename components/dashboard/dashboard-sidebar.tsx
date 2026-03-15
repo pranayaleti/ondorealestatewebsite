@@ -3,6 +3,7 @@
 import type React from "react"
 
 import Link from "next/link"
+import { APP_PORTAL_URL } from "@/lib/site"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
@@ -162,10 +163,10 @@ export function DashboardSidebar() {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/login" className="flex items-center">
+                <a href={`${APP_PORTAL_URL}/login`} className="flex items-center" target="_blank" rel="noopener noreferrer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
-                </Link>
+                </a>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

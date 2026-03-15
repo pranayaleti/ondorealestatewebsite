@@ -34,14 +34,6 @@ const pages: SearchResult[] = [
     keywords: ['properties', 'rentals', 'rent', 'listings', 'apartments', 'houses']
   },
   {
-    id: 'property-management',
-    title: 'Property Management',
-    description: 'Professional property management services',
-    href: '/property-management',
-    category: 'Service',
-    keywords: ['property management', 'landlord', 'rental management', 'tenant', 'maintenance']
-  },
-  {
     id: 'loans',
     title: 'Mortgage Loans',
     description: 'Get pre-approved for a mortgage',

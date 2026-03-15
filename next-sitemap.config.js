@@ -3,7 +3,6 @@
 // Static lastmod dates by path prefix. Update when making meaningful content changes.
 const SECTION_LASTMOD = {
   '/blog/': '2026-03-07',
-  '/property-management': '2026-03-07',
   '/buy': '2026-03-07',
   '/sell': '2026-03-07',
   '/loans': '2026-03-07',
@@ -27,13 +26,13 @@ function getLastmod(path) {
 
 // Priority tiers:
 //  1.0 — homepage
-//  0.9 — primary service pages (property-management, buy, sell, loans, contact, properties)
+//  0.9 — primary service pages (buy, sell, loans, contact, properties)
 //  0.8 — secondary landing pages (investments, calculators index, blog index, about, faq index)
 //  0.7 — content pages (blog posts, calculator sub-pages, faq sub-pages)
 //  0.5 — utility pages (resources, notary, news, privacy, terms)
 function getPriority(path) {
   if (path === '/') return 1.0
-  const tier9 = ['/property-management', '/buy', '/sell', '/loans', '/contact', '/properties']
+  const tier9 = ['/buy', '/sell', '/loans', '/contact', '/properties']
   if (tier9.includes(path)) return 0.9
   const tier8 = ['/investments', '/calculators', '/blog', '/about', '/faq', '/sweepstakes']
   if (tier8.some(p => path === p)) return 0.8

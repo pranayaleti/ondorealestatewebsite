@@ -13,12 +13,11 @@ import { useEffect } from "react"
  */
 
 const ROUTE_GRAPH: Record<string, string[]> = {
-  "/": ["/buy", "/sell", "/properties", "/contact", "/property-management", "/loans"],
+  "/": ["/buy", "/sell", "/properties", "/contact", "/loans"],
   "/buy": ["/properties", "/calculators/mortgage-payment", "/calculators/affordability", "/buy/first-time", "/loans"],
   "/sell": ["/contact", "/calculators/home-sale", "/properties"],
   "/properties": ["/contact", "/buy", "/calculators/mortgage-payment"],
   "/contact": ["/properties", "/buy", "/sell"],
-  "/property-management": ["/contact", "/about", "/faq"],
   "/loans": ["/calculators/mortgage-payment", "/calculators/affordability", "/loans/conventional", "/loans/fha", "/loans/va"],
   "/calculators": ["/calculators/mortgage-payment", "/calculators/affordability", "/calculators/refinance", "/calculators/closing-cost"],
   "/about": ["/about/team", "/about/history", "/contact", "/about/careers"],
