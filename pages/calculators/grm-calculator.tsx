@@ -106,7 +106,7 @@ const GRMCalculator: React.FC = () => {
                     type="number"
                     value={formData.purchasePrice || ''}
                     onChange={(e) => handleInputChange('purchasePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="300,000"
                   />
                 </div>
@@ -123,7 +123,7 @@ const GRMCalculator: React.FC = () => {
                     type="number"
                     value={formData.monthlyRent || ''}
                     onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="2,500"
                   />
                 </div>
@@ -140,7 +140,7 @@ const GRMCalculator: React.FC = () => {
                     type="number"
                     value={formData.annualRent || ''}
                     onChange={(e) => handleInputChange('annualRent', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>
@@ -156,7 +156,7 @@ const GRMCalculator: React.FC = () => {
                   step="0.1"
                   value={targetGRM || ''}
                   onChange={(e) => setTargetGRM(Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="12.0"
                 />
                 <p className="text-sm text-foreground/70 mt-1">

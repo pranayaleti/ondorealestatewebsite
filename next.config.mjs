@@ -1,3 +1,26 @@
+/** Patch server webpack runtime: numeric chunk ids live in ./chunks/, named chunks (e.g. vendor-chunks/next) stay in ./ */
+function patchServerRuntimePlugin() {
+  return {
+    name: 'patch-server-runtime-chunk-path',
+    apply: (compiler) => {
+      compiler.hooks.emit.tap('patch-server-runtime-chunk-path', (compilation) => {
+        for (const name of Object.keys(compilation.assets)) {
+          const asset = compilation.assets[name];
+          let source = asset.source().toString();
+          if (!source.includes('require("./" + __webpack_require__.u(chunkId))')) continue;
+          // Only add "chunks/" for numeric chunk ids (e.g. 5611); named ids like "vendor-chunks/next" stay as ./
+          source = source.replace(
+            /require\("\.\/" \+ __webpack_require__\.u\(chunkId\)\)/g,
+            'require((/^\\d+$/.test(chunkId) ? "./chunks/" : "./") + __webpack_require__.u(chunkId))'
+          );
+          compilation.assets[name] = { source: () => source, size: () => source.length };
+          break;
+        }
+      });
+    },
+  };
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -7,6 +30,7 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   experimental: {
+    esmExternals: 'loose',
     optimizePackageImports: [
       'lucide-react',
       '@radix-ui/react-icons',
@@ -45,6 +69,11 @@ const nextConfig = {
     if (!isServer) {
       // Deterministic moduleIds for better long-term caching (unchanged modules keep hash)
       config.optimization.moduleIds = 'deterministic'
+    }
+    // Fix server chunk resolution: runtime does require("./chunkId.js") but chunks live in ./chunks/
+    if (isServer) {
+      config.plugins = config.plugins || []
+      config.plugins.push(patchServerRuntimePlugin())
     }
     return config
   },

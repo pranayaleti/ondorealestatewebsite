@@ -1,0 +1,251 @@
+<h2>Updated Design — Ondo Brand + Mobile + Haiku</h2>
+<p class="subtitle">Incorporating your latest requirements</p>
+
+<div class="section">
+  <h3 style="color:#f97316">1. Mobile-Responsive Calculator UI</h3>
+  <p style="font-size:13px;color:#94a3b8;margin-bottom:12px">On mobile: inputs stack above results. AI panel collapses to a tappable "AI Insights" accordion below results.</p>
+
+  <div class="split">
+
+    <!-- Desktop view -->
+    <div class="mockup">
+      <div class="mockup-header">Desktop (side-by-side)</div>
+      <div class="mockup-body" style="padding:0;background:#111827">
+        <div style="display:flex;height:260px;font-family:system-ui,sans-serif;font-size:11px">
+          <!-- Inputs -->
+          <div style="flex:1;padding:12px;border-right:1px solid #1f2937;overflow-y:auto">
+            <div style="color:#f97316;font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:700">Inputs</div>
+            <div style="margin-bottom:6px">
+              <div style="color:#9ca3af;font-size:9px;margin-bottom:2px">Purchase Price</div>
+              <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#f9fafb;font-size:10px">$450,000</div>
+            </div>
+            <div style="margin-bottom:6px">
+              <div style="color:#9ca3af;font-size:9px;margin-bottom:2px">Monthly Rent</div>
+              <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#f9fafb;font-size:10px">$3,200</div>
+            </div>
+            <div style="margin-bottom:6px">
+              <div style="color:#9ca3af;font-size:9px;margin-bottom:2px">Location (optional)</div>
+              <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#6b7280;font-size:10px">Austin, TX</div>
+            </div>
+            <div style="margin-bottom:6px">
+              <div style="color:#9ca3af;font-size:9px;margin-bottom:2px">Property Type</div>
+              <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#f9fafb;font-size:10px">Single Family ▾</div>
+            </div>
+            <div style="background:#f97316;border-radius:5px;padding:7px;text-align:center;color:#fff;font-size:10px;font-weight:700;margin-top:10px">Calculate</div>
+          </div>
+          <!-- Results + AI -->
+          <div style="flex:1;padding:12px;overflow-y:auto">
+            <div style="color:#f97316;font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:700">Results</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px">
+              <div style="background:#1f2937;border-radius:4px;padding:6px;text-align:center">
+                <div style="color:#fb923c;font-size:14px;font-weight:700">8.4%</div>
+                <div style="color:#6b7280;font-size:8px">Cap Rate</div>
+              </div>
+              <div style="background:#1f2937;border-radius:4px;padding:6px;text-align:center">
+                <div style="color:#fb923c;font-size:14px;font-weight:700">12.1%</div>
+                <div style="color:#6b7280;font-size:8px">Cash-on-Cash</div>
+              </div>
+            </div>
+            <!-- AI Panel -->
+            <div style="background:#1a120a;border:1px solid #f97316;border-radius:6px;padding:8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+                <span style="color:#f97316;font-size:9px;font-weight:700">🤖 AI Analysis</span>
+                <span style="background:#f97316;color:#fff;font-size:8px;font-weight:700;padding:1px 7px;border-radius:10px">Strong Buy · 82</span>
+              </div>
+              <div style="background:#111827;height:4px;border-radius:2px;margin-bottom:6px">
+                <div style="background:linear-gradient(90deg,#f97316,#fb923c);width:82%;height:4px;border-radius:2px"></div>
+              </div>
+              <div style="color:#fdba74;font-size:9px;line-height:1.5;margin-bottom:4px">Cap rate exceeds typical Austin SF range (5.5–7%). COC at 12.1% beats 8–10% avg.</div>
+              <div style="background:#0d0d0d;border-radius:3px;padding:5px">
+                <div style="color:#fb923c;font-size:8px;line-height:1.6">• Negotiate to $432K → COC &gt; 14%<br>• DSCR 1.24 qualifies for DSCR loans<br>• At 1% rule threshold</div>
+              </div>
+              <div style="margin-top:6px;border:1px solid #374151;border-radius:4px;padding:5px;display:flex;justify-content:space-between;align-items:center">
+                <span style="color:#6b7280;font-size:8px">Export with AI</span>
+                <span style="background:#f97316;border-radius:3px;padding:3px 8px;color:#fff;font-size:8px;font-weight:600">⬇ PDF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile view -->
+    <div class="mockup">
+      <div class="mockup-header">Mobile (stacked)</div>
+      <div class="mockup-body" style="padding:0;background:#111827">
+        <div style="width:160px;margin:0 auto;font-family:system-ui,sans-serif;font-size:10px;padding:10px">
+          <!-- Inputs stacked -->
+          <div style="color:#f97316;font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700">Inputs</div>
+          <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#f9fafb;margin-bottom:4px">$450,000</div>
+          <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#f9fafb;margin-bottom:4px">$3,200 / mo</div>
+          <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:5px 8px;color:#6b7280;margin-bottom:8px">Austin, TX</div>
+          <div style="background:#f97316;border-radius:5px;padding:6px;text-align:center;color:#fff;font-size:9px;font-weight:700;margin-bottom:10px">Calculate</div>
+
+          <!-- Results grid -->
+          <div style="color:#f97316;font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700">Results</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px">
+            <div style="background:#1f2937;border-radius:4px;padding:5px;text-align:center">
+              <div style="color:#fb923c;font-size:13px;font-weight:700">8.4%</div>
+              <div style="color:#6b7280;font-size:7px">Cap Rate</div>
+            </div>
+            <div style="background:#1f2937;border-radius:4px;padding:5px;text-align:center">
+              <div style="color:#fb923c;font-size:13px;font-weight:700">12.1%</div>
+              <div style="color:#6b7280;font-size:7px">Cash-on-Cash</div>
+            </div>
+          </div>
+
+          <!-- Collapsible AI accordion -->
+          <div style="background:#1a120a;border:1px solid #f97316;border-radius:6px;padding:7px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="color:#f97316;font-size:9px;font-weight:700">🤖 AI Insights</span>
+              <span style="color:#fb923c;font-size:11px">▾</span>
+            </div>
+            <div style="margin-top:5px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+                <span style="color:#fdba74;font-size:8px">Score</span>
+                <span style="background:#f97316;color:#fff;font-size:7px;font-weight:700;padding:1px 5px;border-radius:8px">82 · Strong Buy</span>
+              </div>
+              <div style="background:#111827;height:3px;border-radius:2px;margin-bottom:5px">
+                <div style="background:#f97316;width:82%;height:3px;border-radius:2px"></div>
+              </div>
+              <div style="color:#fb923c;font-size:8px;line-height:1.6">• Negotiate to $432K<br>• Qualifies DSCR loans<br>• 1% rule met</div>
+            </div>
+          </div>
+
+          <div style="margin-top:6px;background:#f97316;border-radius:4px;padding:6px;text-align:center;color:#fff;font-size:8px;font-weight:600">⬇ Download PDF</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3 style="color:#f97316">2. PDF — Mobile-Friendly + Ondo Branded</h3>
+  <p style="font-size:13px;color:#94a3b8;margin-bottom:12px">Single-column layout, large touch-readable text, Ondo orange accents. Renders well on phone screens and prints cleanly.</p>
+  <div style="background:#f8fafc;border-radius:8px;padding:12px">
+    <div style="background:#fff;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12);padding:16px;font-family:Arial,sans-serif;max-width:320px;margin:0 auto">
+      <!-- Header -->
+      <div style="background:#111827;margin:-16px -16px 14px;padding:14px 16px;border-radius:6px 6px 0 0">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="color:#f97316;font-size:11px;font-weight:800;letter-spacing:0.5px">ONDO</div>
+            <div style="color:#f9fafb;font-size:9px;font-weight:600">ROI Investment Report</div>
+            <div style="color:#6b7280;font-size:7.5px;margin-top:1px">Austin, TX · Mar 13, 2026</div>
+          </div>
+          <div style="background:#f97316;border-radius:8px;padding:4px 8px;text-align:center">
+            <div style="color:#fff;font-size:14px;font-weight:800">82</div>
+            <div style="color:#fed7aa;font-size:7px">Strong Buy</div>
+          </div>
+        </div>
+        <!-- Score bar -->
+        <div style="margin-top:10px">
+          <div style="background:#1f2937;height:5px;border-radius:3px">
+            <div style="background:linear-gradient(90deg,#f97316,#fb923c);width:82%;height:5px;border-radius:3px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:2px">
+            <span style="color:#6b7280;font-size:6.5px">0</span>
+            <span style="color:#fb923c;font-size:6.5px">Deal Score</span>
+            <span style="color:#6b7280;font-size:6.5px">100</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metrics — single column mobile-friendly -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+        <div style="border:1px solid #fed7aa;border-radius:5px;padding:7px">
+          <div style="font-size:7px;color:#9ca3af;margin-bottom:1px">CAP RATE</div>
+          <div style="font-size:15px;font-weight:800;color:#111827">8.4%</div>
+          <div style="font-size:7px;color:#f97316">↑ vs 5.5–7% typical</div>
+        </div>
+        <div style="border:1px solid #fed7aa;border-radius:5px;padding:7px">
+          <div style="font-size:7px;color:#9ca3af;margin-bottom:1px">CASH-ON-CASH</div>
+          <div style="font-size:15px;font-weight:800;color:#111827">12.1%</div>
+          <div style="font-size:7px;color:#f97316">↑ vs 8–10% typical</div>
+        </div>
+        <div style="border:1px solid #e5e7eb;border-radius:5px;padding:7px">
+          <div style="font-size:7px;color:#9ca3af;margin-bottom:1px">ANNUAL NOI</div>
+          <div style="font-size:15px;font-weight:800;color:#111827">$37,800</div>
+        </div>
+        <div style="border:1px solid #e5e7eb;border-radius:5px;padding:7px">
+          <div style="font-size:7px;color:#9ca3af;margin-bottom:1px">DSCR</div>
+          <div style="font-size:15px;font-weight:800;color:#111827">1.24x</div>
+          <div style="font-size:7px;color:#16a34a">✓ Loan qualified</div>
+        </div>
+      </div>
+
+      <!-- AI section with orange accent -->
+      <div style="border-left:3px solid #f97316;background:#fff7ed;border-radius:0 6px 6px 0;padding:8px 10px;margin-bottom:10px">
+        <div style="font-size:8px;font-weight:700;color:#f97316;margin-bottom:4px">🤖 AI Analysis — Powered by Claude</div>
+        <div style="font-size:8px;color:#374151;line-height:1.6;margin-bottom:5px">Cap rate and COC returns exceed typical ranges for single-family rentals in Austin, TX. Strong income investment with above-market fundamentals.</div>
+        <div style="font-size:8px;color:#374151;line-height:1.7;font-weight:600;margin-bottom:2px">Recommendations:</div>
+        <div style="font-size:7.5px;color:#374151;line-height:1.7">
+          · Negotiate to $432K to push COC above 14%<br>
+          · DSCR 1.24 qualifies for DSCR loan products<br>
+          · Property meets the 1% monthly rent rule
+        </div>
+      </div>
+
+      <!-- Input summary -->
+      <div style="border-top:1px solid #e5e7eb;padding-top:8px">
+        <div style="font-size:7px;color:#9ca3af;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px">Inputs</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          <div style="background:#f3f4f6;border-radius:3px;padding:3px 6px;font-size:7.5px;color:#374151">$450,000 purchase</div>
+          <div style="background:#f3f4f6;border-radius:3px;padding:3px 6px;font-size:7.5px;color:#374151">$3,200/mo rent</div>
+          <div style="background:#f3f4f6;border-radius:3px;padding:3px 6px;font-size:7.5px;color:#374151">20% down</div>
+          <div style="background:#f3f4f6;border-radius:3px;padding:3px 6px;font-size:7.5px;color:#374151">Single Family</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top:10px;padding-top:6px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center">
+        <span style="color:#f97316;font-size:8px;font-weight:700">ondo.com</span>
+        <span style="color:#9ca3af;font-size:7px">AI analysis by Claude Haiku</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 style="color:#f97316">3. Architecture — Cost-Optimized with Haiku</h3>
+  <div style="background:#111827;border-radius:8px;padding:14px;font-family:monospace;font-size:11px">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <div style="background:#1f2937;border-radius:6px;padding:10px;min-width:130px">
+        <div style="color:#fb923c;font-size:9px;font-weight:700;margin-bottom:5px">Calculator UI</div>
+        <div style="color:#9ca3af;font-size:9px;line-height:1.7">User enters inputs<br>Hits "Calculate"<br>→ local math runs<br>→ POST to /analyze</div>
+      </div>
+      <div style="color:#f97316;font-size:20px">→</div>
+      <div style="background:#1f2937;border-radius:6px;padding:10px;min-width:150px">
+        <div style="color:#86efac;font-size:9px;font-weight:700;margin-bottom:5px">POST /api/calculators/analyze</div>
+        <div style="color:#9ca3af;font-size:9px;line-height:1.7">Body: { type, inputs, results }<br>Builds structured prompt<br>Calls Claude Haiku<br>Returns JSON response</div>
+      </div>
+      <div style="color:#f97316;font-size:20px">→</div>
+      <div style="background:#1a120a;border:1px solid #f97316;border-radius:6px;padding:10px;min-width:130px">
+        <div style="color:#f97316;font-size:9px;font-weight:700;margin-bottom:5px">claude-haiku-4-5</div>
+        <div style="color:#9ca3af;font-size:9px;line-height:1.7">~$0.0008/call<br>Structured JSON out<br>dealScore 0-100<br>marketContext<br>recommendations[]</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;background:#1f2937;border-radius:6px;padding:8px">
+      <div style="color:#fb923c;font-size:9px;font-weight:700;margin-bottom:3px">PDF — @react-pdf/renderer</div>
+      <div style="color:#9ca3af;font-size:9px">Programmatic PDF (no DOM screenshot) → crisp text, proper mobile layout, Ondo orange branding, AI section included. PDF renders same on all screen sizes.</div>
+    </div>
+    <div style="margin-top:6px;background:#1f2937;border-radius:6px;padding:8px">
+      <div style="color:#fb923c;font-size:9px;font-weight:700;margin-bottom:3px">Responsive Layout</div>
+      <div style="color:#9ca3af;font-size:9px">≥768px: side-by-side (inputs | results+AI) &nbsp;·&nbsp; &lt;768px: stacked (inputs → results → AI accordion)</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding:12px;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:8px;margin-top:8px">
+  <p class="label" style="color:#f97316">Full scope</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;font-size:12px;color:#e2e8f0">
+    <div>✅ All 17 calculators — same treatment</div>
+    <div>✅ Mobile-responsive (stacked on &lt;768px)</div>
+    <div>✅ Ondo orange throughout UI + PDF</div>
+    <div>✅ Claude Haiku for low-cost AI calls</div>
+    <div>✅ Deal score + market context + advice</div>
+    <div>✅ <code>@react-pdf/renderer</code> replaces html2canvas</div>
+    <div>✅ PDF readable on mobile + web</div>
+    <div>✅ Location + property type as optional inputs</div>
+  </div>
+</div>

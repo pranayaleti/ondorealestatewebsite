@@ -103,7 +103,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.purchasePrice || ''}
                     onChange={(e) => handleInputChange('purchasePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="100,000"
                   />
                 </div>
@@ -120,7 +120,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.monthlyRent || ''}
                     onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="1,000"
                   />
                 </div>
@@ -137,7 +137,7 @@ const OnePercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.afterRepairValue || ''}
                     onChange={(e) => handleInputChange('afterRepairValue', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>

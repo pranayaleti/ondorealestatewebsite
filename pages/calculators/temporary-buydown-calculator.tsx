@@ -125,7 +125,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     type="number"
                     value={formData.loanAmount || ''}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="300,000"
                   />
                 </div>
@@ -141,7 +141,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.baseRate || ''}
                   onChange={(e) => handleInputChange('baseRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="6.5"
                 />
               </div>
@@ -156,7 +156,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.buydownRate || ''}
                   onChange={(e) => handleInputChange('buydownRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="4.5"
                 />
                 <p className="text-sm text-foreground/70 mt-1">
@@ -172,7 +172,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 <select
                   value={formData.buydownYears}
                   onChange={(e) => handleInputChange('buydownYears', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                 >
                   <option value={1}>1 year</option>
                   <option value={2}>2 years</option>
@@ -191,7 +191,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     type="number"
                     value={formData.buydownCost || ''}
                     onChange={(e) => handleInputChange('buydownCost', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="6,000"
                   />
                 </div>
@@ -208,7 +208,7 @@ const TemporaryBuydownCalculator: React.FC = () => {
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>

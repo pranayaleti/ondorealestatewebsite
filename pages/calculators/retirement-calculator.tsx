@@ -253,7 +253,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentAge || ''}
                       onChange={(e) => handleInputChange('currentAge', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -264,7 +264,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.retirementAge || ''}
                       onChange={(e) => handleInputChange('retirementAge', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -275,7 +275,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.lifeExpectancy || ''}
                       onChange={(e) => handleInputChange('lifeExpectancy', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                 </div>
@@ -296,7 +296,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentSavings || ''}
                       onChange={(e) => handleInputChange('currentSavings', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -307,7 +307,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentIncome || ''}
                       onChange={(e) => handleInputChange('currentIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -318,7 +318,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentExpenses || ''}
                       onChange={(e) => handleInputChange('currentExpenses', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                 </div>
@@ -339,7 +339,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.currentRealEstateValue || ''}
                       onChange={(e) => handleInputChange('currentRealEstateValue', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -350,7 +350,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.realEstateIncome || ''}
                       onChange={(e) => handleInputChange('realEstateIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -361,7 +361,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.realEstateExpenses || ''}
                       onChange={(e) => handleInputChange('realEstateExpenses', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -373,7 +373,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.realEstateAppreciation || ''}
                       onChange={(e) => handleInputChange('realEstateAppreciation', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                 </div>
@@ -394,7 +394,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.monthlyContribution || ''}
                       onChange={(e) => handleInputChange('monthlyContribution', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -406,7 +406,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.investmentReturn || ''}
                       onChange={(e) => handleInputChange('investmentReturn', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -418,7 +418,7 @@ const RetirementCalculator: React.FC = () => {
                       step="0.1"
                       value={formData.inflationRate || ''}
                       onChange={(e) => handleInputChange('inflationRate', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                 </div>
@@ -439,7 +439,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.desiredRetirementIncome || ''}
                       onChange={(e) => handleInputChange('desiredRetirementIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -450,7 +450,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.socialSecurityIncome || ''}
                       onChange={(e) => handleInputChange('socialSecurityIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                   <div>
@@ -461,7 +461,7 @@ const RetirementCalculator: React.FC = () => {
                       type="number"
                       value={formData.otherIncome || ''}
                       onChange={(e) => handleInputChange('otherIncome', Number(e.target.value))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary input-no-spinner"
                     />
                   </div>
                 </div>

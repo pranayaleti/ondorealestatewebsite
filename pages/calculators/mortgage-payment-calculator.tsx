@@ -176,7 +176,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.homePrice || ''}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="300,000"
                   />
                 </div>
@@ -195,7 +195,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                       type="number"
                       value={formData.downPayment || ''}
                       onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                       placeholder="60,000"
                     />
                   </div>
@@ -209,7 +209,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                         const newDownPayment = (percent / 100) * formData.homePrice;
                         handleInputChange('downPayment', newDownPayment);
                       }}
-                      className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                      className="w-full pr-8 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                       placeholder="20.0"
                     />
                     <span className="absolute right-3 top-3 text-foreground/70">%</span>
@@ -234,7 +234,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.loanAmount || ''}
                     onChange={(e) => handleInputChange('loanAmount', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="240,000"
                   />
                 </div>
@@ -251,7 +251,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate || ''}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="4.5"
                 />
               </div>
@@ -265,7 +265,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   id="loanTerm"
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -285,7 +285,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="3,000"
                   />
                 </div>
@@ -303,7 +303,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                     type="number"
                     value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="1,200"
                   />
                 </div>
@@ -318,7 +318,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   id="loanProgram"
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -339,7 +339,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   max={850}
                   value={formData.creditScore || ''}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="740"
                 />
               </div>

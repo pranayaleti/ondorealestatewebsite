@@ -115,7 +115,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.homeValue || ''}
                     onChange={(e) => handleInputChange('homeValue', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="400,000"
                   />
                 </div>
@@ -132,7 +132,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.mortgageBalance || ''}
                     onChange={(e) => handleInputChange('mortgageBalance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="250,000"
                   />
                 </div>
@@ -148,7 +148,7 @@ const HomeSaleCalculator: React.FC = () => {
                   step="0.1"
                   value={formData.realtorCommission || ''}
                   onChange={(e) => handleInputChange('realtorCommission', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="6.0"
                 />
               </div>
@@ -164,7 +164,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.closingCosts || ''}
                     onChange={(e) => handleInputChange('closingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="8,000"
                   />
                 </div>
@@ -181,7 +181,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.repairs || ''}
                     onChange={(e) => handleInputChange('repairs', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="5,000"
                   />
                 </div>
@@ -198,7 +198,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.movingCosts || ''}
                     onChange={(e) => handleInputChange('movingCosts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="2,000"
                   />
                 </div>
@@ -215,7 +215,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.capitalGainsTax || ''}
                     onChange={(e) => handleInputChange('capitalGainsTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>
@@ -235,7 +235,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.originalPurchasePrice || ''}
                     onChange={(e) => handleInputChange('originalPurchasePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="320,000"
                   />
                 </div>
@@ -252,7 +252,7 @@ const HomeSaleCalculator: React.FC = () => {
                     type="number"
                     value={formData.originalImprovements || ''}
                     onChange={(e) => handleInputChange('originalImprovements', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>

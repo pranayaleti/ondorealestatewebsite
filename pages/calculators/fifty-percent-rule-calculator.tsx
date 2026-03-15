@@ -142,7 +142,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.monthlyRent || ''}
                     onChange={(e) => handleInputChange('monthlyRent', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="2,000"
                   />
                 </div>
@@ -159,7 +159,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.annualRent || ''}
                     onChange={(e) => handleInputChange('annualRent', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>
@@ -176,7 +176,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="2,400"
                   />
                 </div>
@@ -193,7 +193,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="1,200"
                   />
                 </div>
@@ -210,7 +210,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.maintenance || ''}
                     onChange={(e) => handleInputChange('maintenance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="2,400"
                   />
                 </div>
@@ -228,7 +228,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     step="0.01"
                     value={formData.propertyManagement || ''}
                     onChange={(e) => handleInputChange('propertyManagement', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>
@@ -244,7 +244,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                   step="0.1"
                   value={formData.vacancyRate || ''}
                   onChange={(e) => handleInputChange('vacancyRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="5.0"
                 />
               </div>
@@ -260,7 +260,7 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                     type="number"
                     value={formData.otherExpenses || ''}
                     onChange={(e) => handleInputChange('otherExpenses', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="0"
                   />
                 </div>

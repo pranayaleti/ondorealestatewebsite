@@ -143,7 +143,7 @@ const IncomeCalculator: React.FC = () => {
                     type="number"
                     value={formData.homePrice || ''}
                     onChange={(e) => handleInputChange('homePrice', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="300,000"
                   />
                 </div>
@@ -160,7 +160,7 @@ const IncomeCalculator: React.FC = () => {
                     type="number"
                     value={formData.downPayment || ''}
                     onChange={(e) => handleInputChange('downPayment', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="60,000"
                   />
                 </div>
@@ -176,7 +176,7 @@ const IncomeCalculator: React.FC = () => {
                   step="0.01"
                   value={formData.interestRate || ''}
                   onChange={(e) => handleInputChange('interestRate', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="4.5"
                 />
               </div>
@@ -189,7 +189,7 @@ const IncomeCalculator: React.FC = () => {
                 <select
                   value={formData.loanTerm}
                   onChange={(e) => handleInputChange('loanTerm', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                 >
                   <option value={15}>15 years</option>
                   <option value={20}>20 years</option>
@@ -208,7 +208,7 @@ const IncomeCalculator: React.FC = () => {
                     type="number"
                     value={formData.propertyTax || ''}
                     onChange={(e) => handleInputChange('propertyTax', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="3,000"
                   />
                 </div>
@@ -225,7 +225,7 @@ const IncomeCalculator: React.FC = () => {
                     type="number"
                     value={formData.insurance || ''}
                     onChange={(e) => handleInputChange('insurance', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="1,200"
                   />
                 </div>
@@ -242,7 +242,7 @@ const IncomeCalculator: React.FC = () => {
                     type="number"
                     value={formData.monthlyDebts || ''}
                     onChange={(e) => handleInputChange('monthlyDebts', Number(e.target.value))}
-                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full pl-8 pr-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                     placeholder="500"
                   />
                 </div>
@@ -257,7 +257,7 @@ const IncomeCalculator: React.FC = () => {
                 <select
                   value={formData.program}
                   onChange={(e) => handleInputChange('program', e.target.value as LoanProgram)}
-                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                 >
                   <option value="conventional">Conventional</option>
                   <option value="fha">FHA</option>
@@ -275,7 +275,7 @@ const IncomeCalculator: React.FC = () => {
                   max={850}
                   value={formData.creditScore || ''}
                   onChange={(e) => handleInputChange('creditScore', Number(e.target.value))}
-                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-3 border border-border bg-background rounded-md focus:ring-2 focus:ring-primary focus:border-primary input-no-spinner"
                   placeholder="740"
                 />
               </div>
