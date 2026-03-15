@@ -5,13 +5,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface AffordabilityData {
   annualIncome: number;
@@ -49,8 +42,6 @@ const AffordabilityCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<AffordabilityResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
 
   const calculateAffordability = React.useCallback(() => {
     const { annualIncome, monthlyDebts, downPayment, interestRate, loanTerm, propertyTaxRate, insuranceRate } = formData;
@@ -135,14 +126,6 @@ const AffordabilityCalculator: React.FC = () => {
       recommendedHomePrice
     });
   }, [formData]);
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'affordability',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   useEffect(() => {
     calculateAffordability();
@@ -448,58 +431,6 @@ const AffordabilityCalculator: React.FC = () => {
                   </div>
                 </div>
 
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateAffordability(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="affordability"
-                      title="Mortgage Affordability Report"
-                      inputs={{
-                        'Annual Income': `$${formData.annualIncome.toLocaleString()}`,
-                        'Monthly Debts': `$${formData.monthlyDebts.toLocaleString()}`,
-                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                        'Interest Rate': `${formData.interestRate}%`,
-                        'Loan Term': `${formData.loanTerm} years`,
-                        'Loan Program': formData.program,
-                      }}
-                      results={{
-                        'Max Home Price': `$${results!.maxHomePrice.toFixed(0)}`,
-                        'Max Loan Amount': `$${results!.maxLoanAmount.toFixed(0)}`,
-                        'Monthly Payment': `$${results!.monthlyPayment.toFixed(0)}`,
-                        'Conservative Price': `$${results!.recommendedHomePrice.toFixed(0)}`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-affordability-report.pdf"
-                    />
-                  </div>
-                </div>
               </>
             )}
           </div>

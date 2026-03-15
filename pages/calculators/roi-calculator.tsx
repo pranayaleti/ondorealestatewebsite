@@ -4,13 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { calculateMonthlyPI } from '@/lib/mortgage-utils';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface ROIData {
   purchasePrice: number;
@@ -69,9 +62,6 @@ const ROICalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<ROIResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-
   const calculateROI = useCallback(() => {
     const {
       purchasePrice,
@@ -168,14 +158,6 @@ const ROICalculator: React.FC = () => {
       cashOnCashReturn
     });
   }, [formData]);
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'roi',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   useEffect(() => {
     calculateROI();
@@ -567,58 +549,6 @@ const ROICalculator: React.FC = () => {
                     <p>• Longer holding periods typically improve ROI through appreciation</p>
                     <p>• Consider tax benefits and leverage effects</p>
                     <p>• Compare ROI to alternative investments</p>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateROI(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="roi"
-                      title="ROI Investment Report"
-                      inputs={{
-                        'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
-                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                        'Interest Rate': `${formData.interestRate}%`,
-                        'Loan Term': `${formData.loanTerm} years`,
-                      }}
-                      results={{
-                        'Total ROI': `${results!.totalROI.toFixed(2)}%`,
-                        'Annual ROI': `${results!.annualROI.toFixed(2)}%`,
-                        'Cash-on-Cash': `${results!.cashOnCashReturn.toFixed(2)}%`,
-                        'Annual Cash Flow': `$${results!.annualCashFlow.toFixed(0)}`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-roi-report.pdf"
-                    />
                   </div>
                 </div>
               </>

@@ -3,13 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface BuydownData {
   loanAmount: number;
@@ -39,9 +32,6 @@ const TemporaryBuydownCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<BuydownResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-
   useEffect(() => {
     calculateBuydown();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,14 +75,6 @@ const TemporaryBuydownCalculator: React.FC = () => {
       buydownCost
     });
   };
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'temporary-buydown',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   const handleInputChange = (field: keyof BuydownData, value: number) => {
     setFormData({ ...formData, [field]: value });
@@ -356,58 +338,6 @@ const TemporaryBuydownCalculator: React.FC = () => {
                     <p>• Consider the opportunity cost of the buydown cost</p>
                     <p>• Compare with other mortgage options</p>
                     <p>• Consult with a mortgage professional</p>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateBuydown(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="temporary-buydown"
-                      title="Temporary Buydown Report"
-                      inputs={{
-                        'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
-                        'Base Rate': `${formData.baseRate}%`,
-                        'Buydown Rate': `${formData.buydownRate}%`,
-                        'Buydown Period': `${formData.buydownYears} year${formData.buydownYears > 1 ? 's' : ''}`,
-                        'Buydown Cost': `$${formData.buydownCost.toLocaleString()}`,
-                      }}
-                      results={{
-                        'Monthly Savings': `$${results!.monthlySavings.toFixed(0)}`,
-                        'Total Savings': `$${results!.totalSavings.toFixed(0)}`,
-                        'Break-Even': `${results!.breakEvenMonths.toFixed(1)} months`,
-                        'Effective Rate': `${results!.effectiveRate.toFixed(2)}%`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-temporary-buydown-report.pdf"
-                    />
                   </div>
                 </div>
               </>

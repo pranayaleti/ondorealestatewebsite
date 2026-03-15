@@ -3,13 +3,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface OnePercentRuleData {
   purchasePrice: number;
@@ -34,9 +27,6 @@ const OnePercentRuleCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<OnePercentRuleResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-
   const calculateOnePercentRule = useCallback(() => {
     const { purchasePrice, monthlyRent, afterRepairValue } = formData;
 
@@ -59,14 +49,6 @@ const OnePercentRuleCalculator: React.FC = () => {
       requiredRentARV
     });
   }, [formData]);
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'one-percent',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   useEffect(() => {
     calculateOnePercentRule();
@@ -238,55 +220,6 @@ const OnePercentRuleCalculator: React.FC = () => {
                     <p>• Higher-priced markets may not meet the rule but can still be good investments</p>
                     <p>• Always perform detailed financial analysis beyond the 1% rule</p>
                     <p>• Consider expenses, financing, and market conditions</p>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateOnePercentRule(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="one-percent"
-                      title="1% Rule Check"
-                      inputs={{
-                        'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
-                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                        'After Repair Value': formData.afterRepairValue > 0 ? `$${formData.afterRepairValue.toLocaleString()}` : 'N/A',
-                      }}
-                      results={{
-                        'Actual %': `${results!.actualPercent.toFixed(2)}%`,
-                        'Required Rent': `$${results!.requiredMonthlyRent.toFixed(0)}`,
-                        'Meets 1% Rule': results!.meetsRule ? 'Yes' : 'No',
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-one-percent-report.pdf"
-                    />
                   </div>
                 </div>
               </>

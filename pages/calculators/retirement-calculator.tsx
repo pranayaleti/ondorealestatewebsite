@@ -3,13 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, TrendingUp, Home, Landmark, PiggyBank } from 'lucide-react';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface RetirementData {
   // Personal Information
@@ -80,9 +73,6 @@ const RetirementCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<RetirementResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-
   useEffect(() => {
     calculateRetirement();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -213,14 +203,6 @@ const RetirementCalculator: React.FC = () => {
       yearByYearProjection
     });
   };
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'retirement',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   const handleInputChange = (field: keyof RetirementData, value: number) => {
     setFormData({ ...formData, [field]: value });
@@ -573,57 +555,6 @@ const RetirementCalculator: React.FC = () => {
                         </tbody>
                       </table>
                     </div>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateRetirement(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="retirement"
-                      title="Retirement Planning Report"
-                      inputs={{
-                        'Current Age': `${formData.currentAge}`,
-                        'Retirement Age': `${formData.retirementAge}`,
-                        'Current Savings': `$${formData.currentSavings.toLocaleString()}`,
-                        'Monthly Contribution': `$${formData.monthlyContribution.toLocaleString()}`,
-                      }}
-                      results={{
-                        'Total Retirement Assets': `$${results!.totalRetirementAssets.toFixed(0)}`,
-                        'Annual Retirement Income': `$${results!.annualRetirementIncome.toFixed(0)}`,
-                        'Income Gap': `$${results!.retirementIncomeGap.toFixed(0)}`,
-                        'Readiness': results!.retirementReadiness,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-retirement-report.pdf"
-                    />
                   </div>
                 </div>
               </>

@@ -4,13 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { useFinancialVisibility } from '@/lib/financial-visibility';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface RefinanceData {
   currentBalance: number;
@@ -47,8 +40,6 @@ const RefinanceCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<RefinanceResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
   const { showValues, toggle } = useFinancialVisibility();
 
   useEffect(() => {
@@ -96,14 +87,6 @@ const RefinanceCalculator: React.FC = () => {
       currentPI
     });
   };
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'refinance',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   const handleInputChange = (field: keyof RefinanceData, value: number) => {
     setFormData({ ...formData, [field]: value });
@@ -386,58 +369,6 @@ const RefinanceCalculator: React.FC = () => {
                     <p>• Consider the opportunity cost of closing costs</p>
                     <p>• Shop around for the best rates and fees</p>
                     <p>• Consult with a mortgage professional</p>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateRefinance(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="refinance"
-                      title="Refinance Analysis Report"
-                      inputs={{
-                        'Current Balance': `$${formData.currentBalance.toLocaleString()}`,
-                        'Current Rate': `${formData.currentRate}%`,
-                        'New Rate': `${formData.newRate}%`,
-                        'New Term': `${formData.newTerm} years`,
-                        'Closing Costs': `$${formData.closingCosts.toLocaleString()}`,
-                      }}
-                      results={{
-                        'New Monthly Payment': `$${results!.newMonthlyPayment.toFixed(0)}`,
-                        'Monthly Savings': `$${results!.monthlySavings.toFixed(0)}`,
-                        'Break-Even': `${results!.breakEvenMonths.toFixed(1)} months`,
-                        'Total Savings': `$${results!.totalSavings.toFixed(0)}`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-refinance-report.pdf"
-                    />
                   </div>
                 </div>
               </>

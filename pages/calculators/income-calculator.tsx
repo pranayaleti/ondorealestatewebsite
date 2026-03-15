@@ -4,13 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, getProgramDTI, getProgramMI, clampCreditScore, calculateMonthlyPI } from '@/lib/mortgage-utils';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface IncomeData {
   homePrice: number;
@@ -49,9 +42,6 @@ const IncomeCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<IncomeResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-
   const calculateRequiredIncome = useCallback(() => {
     const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, monthlyDebts, program, creditScore } = formData;
 
@@ -92,14 +82,6 @@ const IncomeCalculator: React.FC = () => {
       debtToIncomeRatio
     });
   }, [formData]);
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'income',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   useEffect(() => {
     calculateRequiredIncome();
@@ -374,58 +356,6 @@ const IncomeCalculator: React.FC = () => {
                     <p>• Consider additional expenses like maintenance and utilities</p>
                     <p>• Factor in emergency savings and other financial goals</p>
                     <p>• Consult with a mortgage professional for personalized advice</p>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6 border border-border">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateRequiredIncome(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="income"
-                      title="Mortgage Income Requirement Report"
-                      inputs={{
-                        'Home Price': `$${formData.homePrice.toLocaleString()}`,
-                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                        'Interest Rate': `${formData.interestRate}%`,
-                        'Loan Term': `${formData.loanTerm} years`,
-                        'Monthly Debts': `$${formData.monthlyDebts.toLocaleString()}`,
-                      }}
-                      results={{
-                        'Required Annual Income': `$${results!.requiredAnnualIncome.toFixed(0)}`,
-                        'Required Monthly Income': `$${results!.requiredMonthlyIncome.toFixed(0)}`,
-                        'Monthly Housing Payment': `$${results!.monthlyPayment.toFixed(0)}`,
-                        'Front-End Ratio': `${results!.frontEndRatio.toFixed(1)}%`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-income-report.pdf"
-                    />
                   </div>
                 </div>
               </>

@@ -4,13 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, calculateMonthlyPI, clampCreditScore, getProgramMI } from '@/lib/mortgage-utils';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface MortgageData {
   homePrice: number;
@@ -62,9 +55,7 @@ const MortgagePaymentCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<PaymentBreakdown | null>(null);
-  const [showAmortization, setShowAmortization] = useState(false);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
+  const [showAmortization, setShowAmortization] = useState(true);
 
   const calculateMortgage = useCallback(() => {
     const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, program } = formData;
@@ -125,14 +116,6 @@ const MortgagePaymentCalculator: React.FC = () => {
       amortizationSchedule
     });
   }, [formData]);
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'mortgage',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   useEffect(() => {
     calculateMortgage();
@@ -481,58 +464,6 @@ const MortgagePaymentCalculator: React.FC = () => {
                       </table>
                     </div>
                   )}
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateMortgage(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="mortgage"
-                      title="Mortgage Payment Report"
-                      inputs={{
-                        'Home Price': `$${formData.homePrice.toLocaleString()}`,
-                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                        'Interest Rate': `${formData.interestRate}%`,
-                        'Loan Term': `${formData.loanTerm} years`,
-                        'Loan Program': formData.program,
-                      }}
-                      results={{
-                        'Total Monthly Payment': `$${results!.totalMonthly.toFixed(0)}`,
-                        'Principal & Interest': `$${results!.monthlyPI.toFixed(0)}`,
-                        'Total Interest': `$${results!.totalInterest.toFixed(0)}`,
-                        'Total Cost': `$${results!.totalCost.toFixed(0)}`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-mortgage-report.pdf"
-                    />
-                  </div>
                 </div>
               </>
             )}

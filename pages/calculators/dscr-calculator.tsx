@@ -4,13 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { calculateMonthlyPI } from '@/lib/mortgage-utils';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface DSCRData {
   monthlyRent: number;
@@ -54,8 +47,6 @@ const DSCRCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<DSCRResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
 
   const calculateDSCR = React.useCallback(() => {
     const {
@@ -129,14 +120,6 @@ const DSCRCalculator: React.FC = () => {
       maxPurchasePrice
     });
   }, [formData]);
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'dscr',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   useEffect(() => {
     calculateDSCR();
@@ -487,56 +470,6 @@ const DSCRCalculator: React.FC = () => {
                   </div>
                 </div>
 
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateDSCR(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="dscr"
-                      title="DSCR Analysis Report"
-                      inputs={{
-                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                        'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
-                        'Interest Rate': `${formData.interestRate}%`,
-                        'Required DSCR': `${formData.requiredDSCR}`,
-                      }}
-                      results={{
-                        'DSCR': `${results!.dscr.toFixed(2)}`,
-                        'Net Operating Income': `$${results!.netOperatingIncome.toFixed(0)}`,
-                        'Annual Debt Service': `$${results!.annualDebtService.toFixed(0)}`,
-                        'Max Loan Amount': `$${results!.maxLoanAmount.toFixed(0)}`,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-dscr-report.pdf"
-                    />
-                  </div>
-                </div>
               </>
             )}
           </div>

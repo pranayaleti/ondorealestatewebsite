@@ -5,13 +5,6 @@ import Link from 'next/link';
 import { ArrowLeft, TrendingUp, Home, Building2, Eye, EyeOff } from 'lucide-react';
 import { LoanProgram, getProgramMI, clampCreditScore } from '@/lib/mortgage-utils';
 import { useFinancialVisibility } from '@/lib/financial-visibility';
-import { useCalculatorAI } from '@/hooks/useCalculatorAI';
-import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
-import dynamic from 'next/dynamic';
-const PDFExportButton = dynamic(
-  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
-  { ssr: false }
-);
 
 interface RentVsOwnData {
   // Rent scenario
@@ -83,8 +76,6 @@ const RentVsOwnCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<RentVsOwnResults | null>(null);
-  const [location, setLocation] = useState('');
-  const [propertyType, setPropertyType] = useState('');
   const { showValues, toggle } = useFinancialVisibility();
 
   useEffect(() => {
@@ -221,14 +212,6 @@ const RentVsOwnCalculator: React.FC = () => {
       explanation
     });
   };
-
-  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
-    calculatorType: 'rent-vs-own',
-    inputs: formData as unknown as Record<string, unknown>,
-    results: (results ?? {}) as unknown as Record<string, unknown>,
-    location: location || undefined,
-    propertyType: propertyType || undefined,
-  });
 
   const handleInputChange = (field: keyof RentVsOwnData, value: number | string) => {
     setFormData({ ...formData, [field]: value });
@@ -589,57 +572,6 @@ const RentVsOwnCalculator: React.FC = () => {
                         </tbody>
                       </table>
                     </div>
-                  </div>
-                </div>
-
-                {/* AI Analysis */}
-                <div className="bg-card rounded-lg shadow-lg p-6">
-                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder="Location, e.g. Austin, TX"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    />
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
-                    >
-                      <option value="">Property type (optional)</option>
-                      <option>Single Family</option>
-                      <option>Multi-Family</option>
-                      <option>Condo</option>
-                      <option>Commercial</option>
-                    </select>
-                    <button
-                      onClick={() => { calculateRentVsOwn(); analyze(); }}
-                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
-                    >
-                      Get AI Analysis
-                    </button>
-                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFExportButton
-                      calculatorType="rent-vs-own"
-                      title="Rent vs Own Analysis Report"
-                      inputs={{
-                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                        'Home Price': `$${formData.homePrice.toLocaleString()}`,
-                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                        'Analysis Period': `${formData.analysisYears} years`,
-                      }}
-                      results={{
-                        'Total Rent Cost': `$${results!.rentTotalCost.toFixed(0)}`,
-                        'Total Buy Cost': `$${results!.buyTotalCost.toFixed(0)}`,
-                        'Break-Even': `${results!.breakEvenYears} years`,
-                        'Recommendation': results!.recommendation,
-                      }}
-                      analysis={aiAnalysis ?? undefined}
-                      location={location || undefined}
-                      fileName="ondo-rent-vs-own-report.pdf"
-                    />
                   </div>
                 </div>
               </>
