@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react"
 
 interface AuthGuardProps {
   children: React.ReactNode
-  requiredRole?: "tenant" | "owner" | "admin"
+  requiredRole?: "tenant" | "owner" | "manager" | "admin" | "super_admin" | "maintenance"
 }
 
 export default function AuthGuard({ children, requiredRole }: AuthGuardProps) {
@@ -25,6 +25,10 @@ export default function AuthGuard({ children, requiredRole }: AuthGuardProps) {
         router.push("/tenant")
       } else if (user?.role === "owner") {
         router.push("/owner")
+      } else if (user?.role === "manager" || user?.role === "admin" || user?.role === "super_admin") {
+        router.push("/dashboard")
+      } else if (user?.role === "maintenance") {
+        router.push("/dashboard")
       } else {
         router.push("/")
       }

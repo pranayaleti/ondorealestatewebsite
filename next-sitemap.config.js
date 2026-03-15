@@ -16,6 +16,7 @@ const SECTION_LASTMOD = {
 }
 
 const BUILD_DATE = process.env.NEXT_PUBLIC_BUILD_DATE || new Date().toISOString().split('T')[0]
+const PRIVATE_ROUTE_PREFIXES = ['/dashboard', '/owner', '/tenant', '/platform', '/auth', '/admin', '/api']
 
 function getLastmod(path) {
   for (const [prefix, date] of Object.entries(SECTION_LASTMOD)) {
@@ -41,26 +42,53 @@ function getPriority(path) {
   return 0.7
 }
 
+function isExcludedPath(path) {
+  if (path === '/login' || path === '/feedback' || path === '/health') {
+    return true
+  }
+
+  return PRIVATE_ROUTE_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`))
+}
+
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ondorealestate.com',
-  generateRobotsTxt: false,
-  outDir: 'public',
+  generateRobotsTxt: true,
+  outDir: 'out',
   changefreq: 'weekly',
   priority: 0.7,
   generateIndexSitemap: true,
   sitemapSize: 5000,
   exclude: [
+    '/auth',
+    '/dashboard',
+    '/owner',
+    '/tenant',
+    '/platform',
     '/dashboard/**',
+    '/dashboard/*',
     '/owner/**',
+    '/owner/*',
     '/tenant/**',
+    '/tenant/*',
+    '/platform/**',
+    '/platform/*',
     '/auth/**',
+    '/auth/*',
     '/login',
+    '/admin',
     '/admin/**',
+    '/admin/*',
+    '/api',
     '/api/**',
+    '/api/*',
     '/feedback',
     '/health',
   ],
   transform: async (config, path) => {
+    if (isExcludedPath(path)) {
+      return null
+    }
+
     return {
       loc: path,
       changefreq: 'weekly',
@@ -70,5 +98,3 @@ module.exports = {
     }
   },
 }
-
-

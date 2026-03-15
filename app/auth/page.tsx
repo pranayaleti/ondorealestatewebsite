@@ -18,7 +18,8 @@ import { useAuth } from "@/lib/auth-context"
 export default function AuthPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const userType = searchParams?.get("type") || "tenant"
+  const requestedType = searchParams?.get("type")
+  const userType = requestedType === "owner" || requestedType === "tenant" ? requestedType : "tenant"
   const { login } = useAuth()
 
   const [activeTab, setActiveTab] = useState<string>(userType)
@@ -49,13 +50,8 @@ export default function AuthPage() {
 
     const result = await login(email.trim(), password, type as "tenant" | "owner" | "admin")
 
-    if (result.success) {
-      // Redirect based on user role
-      if (type === "owner" || type === "admin") {
-        router.push("/dashboard")
-      } else {
-        router.push("/tenant")
-      }
+    if (result.success && result.redirectPath) {
+      router.push(result.redirectPath)
     } else {
       setError(result.error || "Login failed. Please check your credentials and try again.")
     }
@@ -82,9 +78,10 @@ export default function AuthPage() {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="tenant">Tenant</TabsTrigger>
               <TabsTrigger value="owner">Property Owner</TabsTrigger>
+              <TabsTrigger value="admin">Staff</TabsTrigger>
             </TabsList>
             <TabsContent value="tenant">
               <form onSubmit={(e) => handleLogin(e, "tenant")}>
@@ -162,6 +159,53 @@ export default function AuthPage() {
                     </div>
                     <Input
                       id="owner-password"
+                      name="password"
+                      type="password"
+                      required
+                      disabled={isLoading}
+                    />
+                  </div>
+                  <Button type="submit" disabled={isLoading} className="w-full">
+                    {isLoading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        Signing in...
+                      </div>
+                    ) : (
+                      "Sign In"
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </TabsContent>
+            <TabsContent value="admin">
+              <form onSubmit={(e) => handleLogin(e, "admin")}>
+                <div className="grid gap-4">
+                  {error && (
+                    <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md" role="alert">
+                      {error}
+                    </div>
+                  )}
+                  <div className="grid gap-2">
+                    <Label htmlFor="staff-email">Work email</Label>
+                    <Input
+                      id="staff-email"
+                      name="email"
+                      type="email"
+                      placeholder="team@ondorealestate.com"
+                      required
+                      disabled={isLoading}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="staff-password">Password</Label>
+                      <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
+                        Forgot password?
+                      </Link>
+                    </div>
+                    <Input
+                      id="staff-password"
                       name="password"
                       type="password"
                       required

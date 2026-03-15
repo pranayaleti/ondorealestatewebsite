@@ -7,7 +7,14 @@ import { backendUrl } from "@/lib/backend"
 import { SecureStorage, sanitizeInput, isValidEmail, RateLimiter } from "@/lib/security"
 import { checkUserBlacklist } from "@/lib/blacklist"
 
-type UserRole = "tenant" | "owner" | "admin" | null
+type UserRole =
+  | "tenant"
+  | "owner"
+  | "manager"
+  | "admin"
+  | "super_admin"
+  | "maintenance"
+  | null
 type UserData = {
   id: string
   name: string
@@ -19,7 +26,11 @@ type UserData = {
 
 interface AuthContextType {
   user: UserData
-  login: (email: string, password: string, role: UserRole) => Promise<{ success: boolean; error?: string }>
+  login: (
+    email: string,
+    password: string,
+    role?: Exclude<UserRole, null>
+  ) => Promise<{ success: boolean; error?: string; redirectPath?: string }>
   logout: () => void
   isLoading: boolean
   refreshToken: () => Promise<boolean>
@@ -124,7 +135,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const login = async (email: string, password: string, role: UserRole): Promise<{ success: boolean; error?: string }> => {
+  const login = async (
+    email: string,
+    password: string,
+    _role?: Exclude<UserRole, null>
+  ): Promise<{ success: boolean; error?: string; redirectPath?: string }> => {
     setIsLoading(true)
 
     try {
@@ -139,9 +154,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const sanitizedPassword = password // Don't sanitize password as it might contain special chars
 
       // Basic validation
-      if (!sanitizedEmail || !sanitizedPassword || !role) {
+      if (!sanitizedEmail || !sanitizedPassword) {
         setIsLoading(false)
-        return { success: false, error: "Email, password, and role are required" }
+        return { success: false, error: "Email and password are required" }
       }
 
       // Email validation
@@ -195,7 +210,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: data.user.id,
           name: [data.user.firstName, data.user.lastName].filter(Boolean).join(' '),
           email: data.user.email,
-          role: data.user.role,
+          role: data.user.role as UserRole,
           avatar: data.user.profilePicture,
         }
 
@@ -214,7 +229,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Reset rate limiter on successful login
         loginRateLimiter.reset('login-attempts')
 
-        return { success: true }
+        const resolvedRole = mappedUser.role
+        if (!resolvedRole) {
+          return { success: false, error: "Account role is missing from the server response" }
+        }
+
+        return { success: true, redirectPath: getRedirectPathForRole(resolvedRole) }
       } else {
         setIsLoading(false)
         return { success: false, error: "Invalid response from server" }
@@ -247,3 +267,16 @@ export const useAuth = () => {
   }
   return context
 }
+  const getRedirectPathForRole = (role: Exclude<UserRole, null>): string => {
+    switch (role) {
+      case "tenant":
+        return "/tenant"
+      case "owner":
+        return "/owner"
+      case "manager":
+      case "admin":
+      case "super_admin":
+      case "maintenance":
+        return "/dashboard"
+    }
+  }

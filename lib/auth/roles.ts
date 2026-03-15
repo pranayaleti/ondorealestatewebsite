@@ -1,4 +1,12 @@
-export const ROLE_VALUES = ["public", "tenant", "owner", "admin"] as const
+export const ROLE_VALUES = [
+  "public",
+  "tenant",
+  "owner",
+  "manager",
+  "admin",
+  "super_admin",
+  "maintenance",
+] as const
 
 export type AppRole = (typeof ROLE_VALUES)[number]
 

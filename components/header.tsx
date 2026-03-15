@@ -11,7 +11,7 @@ import { Navigation, overflowNavigationItems, primaryNavigationItems } from "@/c
 import { useAuth } from "@/lib/auth-context"
 import { SearchDialog } from "@/components/search-dialog"
 import { usePathname } from "next/navigation"
-import { APP_PORTAL_URL } from "@/lib/site"
+import { APP_PORTAL_IS_EXTERNAL, APP_PORTAL_URL } from "@/lib/site"
 
 const Header = memo(() => {
   const pathname = usePathname()
@@ -186,7 +186,13 @@ const Header = memo(() => {
 
           <ModeToggle />
           <Button variant="ghost" asChild>
-            <Link href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}`} target="_blank" rel="noopener noreferrer">Property Management Portal</Link>
+            <Link
+              href={APP_PORTAL_URL}
+              target={APP_PORTAL_IS_EXTERNAL ? "_blank" : undefined}
+              rel={APP_PORTAL_IS_EXTERNAL ? "noopener noreferrer" : undefined}
+            >
+              Property Management Portal
+            </Link>
           </Button>
           {user && <UserMenu />}
           {/* Mobile hamburger for full navigation */}
@@ -220,7 +226,12 @@ const Header = memo(() => {
               onLinkClick={handleMenuClose}
             />
             <div className="mt-4">
-              <a href={user ? APP_PORTAL_URL : `${APP_PORTAL_URL}`} target="_blank" rel="noopener noreferrer" onClick={handleMenuClose}>
+              <a
+                href={APP_PORTAL_URL}
+                target={APP_PORTAL_IS_EXTERNAL ? "_blank" : undefined}
+                rel={APP_PORTAL_IS_EXTERNAL ? "noopener noreferrer" : undefined}
+                onClick={handleMenuClose}
+              >
                 <Button variant="outline" size="sm" className="w-full">
                   Property Management Portal
                 </Button>

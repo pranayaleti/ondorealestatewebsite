@@ -2,12 +2,8 @@ import type { Metadata } from "next"
 import { ProtectedPortalNotice } from "@/components/portal/protected-portal-notice"
 
 export const metadata: Metadata = {
-  title: {
-    default: "Ondo Platform",
-    template: "%s | Ondo Platform",
-  },
-  description:
-    "Startup-ready progressive web app experience for public browsing and role-based real estate operations.",
+  title: "Secure platform access | Ondo Real Estate",
+  description: "Platform prototypes are not exposed on the public Ondo Real Estate site.",
   robots: {
     index: false,
     follow: false,
@@ -21,7 +17,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function PlatformLayout() {
+export default function BlockedPlatformPage() {
   return (
     <ProtectedPortalNotice
       title="Platform demos are no longer exposed on the public site"

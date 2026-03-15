@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileQuestion, Home, Search, Calculator, Users, Building, ArrowLeft, MapPin, Phone } from "lucide-react"
-import { SITE_URL, SITE_PHONE, SITE_EMAILS, APP_PORTAL_URL } from "@/lib/site"
+import { SITE_URL, SITE_PHONE, SITE_EMAILS, APP_PORTAL_IS_EXTERNAL, APP_PORTAL_URL } from "@/lib/site"
 import SEO from "@/components/seo"
 
 export default function NotFound() {
@@ -111,7 +111,12 @@ export default function NotFound() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {quickActions.map((action, index) =>
                 action.external ? (
-                  <a key={index} href={action.href} target="_blank" rel="noopener noreferrer">
+                  <a
+                    key={index}
+                    href={action.href}
+                    target={APP_PORTAL_IS_EXTERNAL && action.href === APP_PORTAL_URL ? "_blank" : undefined}
+                    rel={APP_PORTAL_IS_EXTERNAL && action.href === APP_PORTAL_URL ? "noopener noreferrer" : undefined}
+                  >
                     <Button variant="outline" className="w-full h-auto p-4 flex flex-col items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors">
                       {action.icon}
                       <span className="text-sm font-medium">{action.name}</span>
@@ -140,7 +145,12 @@ export default function NotFound() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {popularPages.map((page, index) =>
                 page.external ? (
-                  <a key={index} href={page.href} target="_blank" rel="noopener noreferrer">
+                  <a
+                    key={index}
+                    href={page.href}
+                    target={APP_PORTAL_IS_EXTERNAL && page.href === APP_PORTAL_URL ? "_blank" : undefined}
+                    rel={APP_PORTAL_IS_EXTERNAL && page.href === APP_PORTAL_URL ? "noopener noreferrer" : undefined}
+                  >
                     <div className="p-4 border rounded-lg hover:bg-primary/5 hover:border-primary transition-colors cursor-pointer">
                       <div className="flex items-center gap-3">
                         <div className="text-primary">{page.icon}</div>

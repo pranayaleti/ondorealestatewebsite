@@ -16,21 +16,19 @@ export async function submitMaintenanceRequest(
   }
 
   if (typeof navigator !== "undefined" && !navigator.onLine) {
-    await enqueueSyncItem("maintenanceRequest", "/api/leads/submit", {
+    await enqueueSyncItem("maintenanceRequest", "/api/maintenance", {
       ...requestPayload,
-      type: "maintenance_request",
     })
     await triggerSync("maintenanceRequest")
     return { success: true, queued: true }
   }
 
   try {
-    await postJson("/api/leads/submit", { ...requestPayload, type: "maintenance_request" })
+    await postJson("/api/maintenance", requestPayload)
     return { success: true, queued: false }
   } catch {
-    await enqueueSyncItem("maintenanceRequest", "/api/leads/submit", {
+    await enqueueSyncItem("maintenanceRequest", "/api/maintenance", {
       ...requestPayload,
-      type: "maintenance_request",
     })
     await triggerSync("maintenanceRequest")
     return { success: true, queued: true }

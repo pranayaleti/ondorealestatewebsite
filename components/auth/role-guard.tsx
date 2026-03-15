@@ -19,6 +19,9 @@ function assertNever(value: never): never {
 
 function getDefaultRedirectPath(role: AppRole): string {
   switch (role) {
+    case "super_admin":
+    case "manager":
+    case "maintenance":
     case "admin":
       return "/dashboard"
     case "owner":

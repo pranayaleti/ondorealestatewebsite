@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { ProtectedPortalNotice } from "@/components/portal/protected-portal-notice"
 
 export const metadata: Metadata = {
+  title: "Secure staff portal | Ondo Real Estate",
+  description: "Sign in to access the secure Ondo Real Estate staff portal.",
   robots: {
     index: false,
     follow: false,
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function DashboardLayout() {
+export default function BlockedDashboardPage() {
   return (
     <ProtectedPortalNotice
       title="Staff portal access is handled in the secure app"

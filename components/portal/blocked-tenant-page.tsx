@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import { ProtectedPortalNotice } from "@/components/portal/protected-portal-notice"
 
 export const metadata: Metadata = {
-  title: "Tenant Dashboard - Real Estate",
-  description: "Manage your rental property and payments",
+  title: "Secure tenant portal | Ondo Real Estate",
+  description: "Sign in to access the secure Ondo Real Estate tenant portal.",
   robots: {
     index: false,
     follow: false,
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function TenantLayout() {
+export default function BlockedTenantPage() {
   return (
     <ProtectedPortalNotice
       title="Tenant portal access is available after secure sign in"
