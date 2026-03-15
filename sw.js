@@ -22,7 +22,6 @@ const WARM_ROUTES = [
   "/sell",
   "/properties",
   "/contact",
-  "/property-management",
   "/loans",
   "/calculators",
 ]
