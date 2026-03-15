@@ -54,7 +54,7 @@ export default function AuthPage() {
       if (type === "owner" || type === "admin") {
         router.push("/dashboard")
       } else {
-        router.push("/properties")
+        router.push("/tenant")
       }
     } else {
       setError(result.error || "Login failed. Please check your credentials and try again.")
@@ -109,7 +109,7 @@ export default function AuthPage() {
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="tenant-password">Password</Label>
-                      <Link href="#" className="text-sm text-primary hover:underline">
+                      <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
                         Forgot password?
                       </Link>
                     </div>
@@ -156,7 +156,7 @@ export default function AuthPage() {
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="owner-password">Password</Label>
-                      <Link href="#" className="text-sm text-primary hover:underline">
+                      <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
                         Forgot password?
                       </Link>
                     </div>

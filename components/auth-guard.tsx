@@ -18,7 +18,7 @@ export default function AuthGuard({ children, requiredRole }: AuthGuardProps) {
 
   useEffect(() => {
     if (!isLoading && !user) {
-      router.push("/login")
+      router.push("/auth")
     } else if (!isLoading && requiredRole && user?.role !== requiredRole) {
       // Redirect to appropriate dashboard or home page
       if (user?.role === "tenant") {

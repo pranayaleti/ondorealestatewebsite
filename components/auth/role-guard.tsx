@@ -41,7 +41,7 @@ export function RoleGuard({ children, allowedRoles, redirectTo }: RoleGuardProps
   useEffect(() => {
     if (isLoading) return
     if (!user && !allowedRoles.includes("public")) {
-      router.replace("/login")
+      router.replace("/auth")
       return
     }
     if (!isAllowed) {

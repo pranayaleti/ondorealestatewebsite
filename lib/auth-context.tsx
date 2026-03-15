@@ -76,8 +76,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const verifyToken = async (token: string): Promise<boolean> => {
     try {
-      const response = await fetch(backendUrl('/api/auth/verify'), {
-        method: 'POST',
+      const response = await fetch(backendUrl('/api/auth/me'), {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -98,24 +98,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const refreshToken = async (): Promise<boolean> => {
-    const token = SecureStorage.getItem(TOKEN_KEY)
-    if (!token) return false
-
     try {
       const response = await fetch(backendUrl('/api/auth/refresh'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
+        },
+        credentials: 'include',
       })
 
       if (response.ok) {
         const data = await response.json()
-        if (data.token) {
-          const stored = SecureStorage.setItem(TOKEN_KEY, data.token)
+        if (data.accessToken) {
+          const stored = SecureStorage.setItem(TOKEN_KEY, data.accessToken)
           if (stored && user) {
-            setUser({ ...user, token: data.token })
+            setUser({ ...user, token: data.accessToken })
           }
           return stored
         }
@@ -164,10 +161,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           email: sanitizedEmail.toLowerCase(),
           password: sanitizedPassword,
-          role
         })
       })
 
@@ -182,7 +179,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
 
-      if (data.token && data.user) {
+      if (data.accessToken && data.user) {
         // Check if user is blacklisted before allowing login
         const blacklistCheck = await checkUserBlacklist(data.user.id, data.user.email)
         if (blacklistCheck.isBlacklisted) {
@@ -193,16 +190,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
         }
 
-        // Store token and user data securely
-        const tokenStored = SecureStorage.setItem(TOKEN_KEY, data.token)
-        const userStored = SecureStorage.setItem(USER_KEY, JSON.stringify(data.user))
+        // Map backend user shape (firstName + lastName) to local UserData (name)
+        const mappedUser = {
+          id: data.user.id,
+          name: [data.user.firstName, data.user.lastName].filter(Boolean).join(' '),
+          email: data.user.email,
+          role: data.user.role,
+          avatar: data.user.profilePicture,
+        }
+
+        // Store access token and user data securely
+        const tokenStored = SecureStorage.setItem(TOKEN_KEY, data.accessToken)
+        const userStored = SecureStorage.setItem(USER_KEY, JSON.stringify(mappedUser))
 
         if (!tokenStored || !userStored) {
           setIsLoading(false)
           return { success: false, error: "Failed to securely store session data" }
         }
 
-        setUser({ ...data.user, token: data.token })
+        setUser({ ...mappedUser, token: data.accessToken })
         setIsLoading(false)
 
         // Reset rate limiter on successful login
