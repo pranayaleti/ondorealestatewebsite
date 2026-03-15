@@ -7,11 +7,8 @@ import { calculateMonthlyPI } from '@/lib/mortgage-utils';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -519,39 +516,25 @@ const DSCRCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="dscr"
-                          title="DSCR Analysis Report"
-                          inputs={{
-                            'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                            'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
-                            'Interest Rate': `${formData.interestRate}%`,
-                            'Required DSCR': `${formData.requiredDSCR}`,
-                          }}
-                          results={{
-                            'DSCR': `${results!.dscr.toFixed(2)}`,
-                            'Net Operating Income': `$${results!.netOperatingIncome.toFixed(0)}`,
-                            'Annual Debt Service': `$${results!.annualDebtService.toFixed(0)}`,
-                            'Max Loan Amount': `$${results!.maxLoanAmount.toFixed(0)}`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="dscr"
+                      title="DSCR Analysis Report"
+                      inputs={{
+                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
+                        'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
+                        'Interest Rate': `${formData.interestRate}%`,
+                        'Required DSCR': `${formData.requiredDSCR}`,
+                      }}
+                      results={{
+                        'DSCR': `${results!.dscr.toFixed(2)}`,
+                        'Net Operating Income': `$${results!.netOperatingIncome.toFixed(0)}`,
+                        'Annual Debt Service': `$${results!.annualDebtService.toFixed(0)}`,
+                        'Max Loan Amount': `$${results!.maxLoanAmount.toFixed(0)}`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-dscr-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

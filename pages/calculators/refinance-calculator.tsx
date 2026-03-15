@@ -7,11 +7,8 @@ import { useFinancialVisibility } from '@/lib/financial-visibility';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -421,40 +418,26 @@ const RefinanceCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="refinance"
-                          title="Refinance Analysis Report"
-                          inputs={{
-                            'Current Balance': `$${formData.currentBalance.toLocaleString()}`,
-                            'Current Rate': `${formData.currentRate}%`,
-                            'New Rate': `${formData.newRate}%`,
-                            'New Term': `${formData.newTerm} years`,
-                            'Closing Costs': `$${formData.closingCosts.toLocaleString()}`,
-                          }}
-                          results={{
-                            'New Monthly Payment': `$${results!.newMonthlyPayment.toFixed(0)}`,
-                            'Monthly Savings': `$${results!.monthlySavings.toFixed(0)}`,
-                            'Break-Even': `${results!.breakEvenMonths.toFixed(1)} months`,
-                            'Total Savings': `$${results!.totalSavings.toFixed(0)}`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="refinance"
+                      title="Refinance Analysis Report"
+                      inputs={{
+                        'Current Balance': `$${formData.currentBalance.toLocaleString()}`,
+                        'Current Rate': `${formData.currentRate}%`,
+                        'New Rate': `${formData.newRate}%`,
+                        'New Term': `${formData.newTerm} years`,
+                        'Closing Costs': `$${formData.closingCosts.toLocaleString()}`,
+                      }}
+                      results={{
+                        'New Monthly Payment': `$${results!.newMonthlyPayment.toFixed(0)}`,
+                        'Monthly Savings': `$${results!.monthlySavings.toFixed(0)}`,
+                        'Break-Even': `${results!.breakEvenMonths.toFixed(1)} months`,
+                        'Total Savings': `$${results!.totalSavings.toFixed(0)}`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-refinance-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

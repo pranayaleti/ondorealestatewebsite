@@ -6,11 +6,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -398,38 +395,24 @@ const FiftyPercentRuleCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="fifty-percent"
-                          title="50% Rule Analysis"
-                          inputs={{
-                            'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                            'Vacancy Rate': `${formData.vacancyRate}%`,
-                            'Annual Property Tax': `$${formData.propertyTax.toLocaleString()}`,
-                          }}
-                          results={{
-                            'Expense Ratio': `${results!.expenseRatio.toFixed(1)}%`,
-                            'Actual NOI': `$${results!.actualNOI.toFixed(0)}`,
-                            'Estimated NOI (50% rule)': `$${results!.estimatedNOI.toFixed(0)}`,
-                            'Actual Expenses': `$${results!.actualOperatingExpenses.toFixed(0)}`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="fifty-percent"
+                      title="50% Rule Analysis"
+                      inputs={{
+                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
+                        'Vacancy Rate': `${formData.vacancyRate}%`,
+                        'Annual Property Tax': `$${formData.propertyTax.toLocaleString()}`,
+                      }}
+                      results={{
+                        'Expense Ratio': `${results!.expenseRatio.toFixed(1)}%`,
+                        'Actual NOI': `$${results!.actualNOI.toFixed(0)}`,
+                        'Estimated NOI (50% rule)': `$${results!.estimatedNOI.toFixed(0)}`,
+                        'Actual Expenses': `$${results!.actualOperatingExpenses.toFixed(0)}`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-fifty-percent-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

@@ -6,11 +6,8 @@ import { ArrowLeft, TrendingUp, Home, Landmark, PiggyBank } from 'lucide-react';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -608,39 +605,25 @@ const RetirementCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="retirement"
-                          title="Retirement Planning Report"
-                          inputs={{
-                            'Current Age': `${formData.currentAge}`,
-                            'Retirement Age': `${formData.retirementAge}`,
-                            'Current Savings': `$${formData.currentSavings.toLocaleString()}`,
-                            'Monthly Contribution': `$${formData.monthlyContribution.toLocaleString()}`,
-                          }}
-                          results={{
-                            'Total Retirement Assets': `$${results!.totalRetirementAssets.toFixed(0)}`,
-                            'Annual Retirement Income': `$${results!.annualRetirementIncome.toFixed(0)}`,
-                            'Income Gap': `$${results!.retirementIncomeGap.toFixed(0)}`,
-                            'Readiness': results!.retirementReadiness,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="retirement"
+                      title="Retirement Planning Report"
+                      inputs={{
+                        'Current Age': `${formData.currentAge}`,
+                        'Retirement Age': `${formData.retirementAge}`,
+                        'Current Savings': `$${formData.currentSavings.toLocaleString()}`,
+                        'Monthly Contribution': `$${formData.monthlyContribution.toLocaleString()}`,
+                      }}
+                      results={{
+                        'Total Retirement Assets': `$${results!.totalRetirementAssets.toFixed(0)}`,
+                        'Annual Retirement Income': `$${results!.annualRetirementIncome.toFixed(0)}`,
+                        'Income Gap': `$${results!.retirementIncomeGap.toFixed(0)}`,
+                        'Readiness': results!.retirementReadiness,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-retirement-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

@@ -7,11 +7,8 @@ import { calculateMonthlyPI } from '@/lib/mortgage-utils';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -602,40 +599,26 @@ const ROICalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="roi"
-                          title="ROI Investment Report"
-                          inputs={{
-                            'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
-                            'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                            'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                            'Interest Rate': `${formData.interestRate}%`,
-                            'Loan Term': `${formData.loanTerm} years`,
-                          }}
-                          results={{
-                            'Total ROI': `${results!.totalROI.toFixed(2)}%`,
-                            'Annual ROI': `${results!.annualROI.toFixed(2)}%`,
-                            'Cash-on-Cash': `${results!.cashOnCashReturn.toFixed(2)}%`,
-                            'Annual Cash Flow': `$${results!.annualCashFlow.toFixed(0)}`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="roi"
+                      title="ROI Investment Report"
+                      inputs={{
+                        'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
+                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
+                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
+                        'Interest Rate': `${formData.interestRate}%`,
+                        'Loan Term': `${formData.loanTerm} years`,
+                      }}
+                      results={{
+                        'Total ROI': `${results!.totalROI.toFixed(2)}%`,
+                        'Annual ROI': `${results!.annualROI.toFixed(2)}%`,
+                        'Cash-on-Cash': `${results!.cashOnCashReturn.toFixed(2)}%`,
+                        'Annual Cash Flow': `$${results!.annualCashFlow.toFixed(0)}`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-roi-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

@@ -7,11 +7,8 @@ import { LoanProgram, getProgramMI } from '@/lib/mortgage-utils';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -529,39 +526,25 @@ const ClosingCostCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="closing-cost"
-                          title="Closing Cost Report"
-                          inputs={{
-                            'Home Price': `$${formData.homePrice.toLocaleString()}`,
-                            'Down Payment': `$${formData.downPayment.toLocaleString()}`,
-                            'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
-                            'Interest Rate': `${formData.interestRate ?? 'N/A'}%`,
-                          }}
-                          results={{
-                            'Total Closing Costs': `$${results!.totalClosingCosts.toFixed(0)}`,
-                            'Total Out of Pocket': `$${results!.outOfPocket.toFixed(0)}`,
-                            'Lender Costs': `$${results!.lenderCosts.toFixed(0)}`,
-                            'Third-Party Costs': `$${results!.thirdPartyCosts.toFixed(0)}`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="closing-cost"
+                      title="Closing Cost Report"
+                      inputs={{
+                        'Home Price': `$${formData.homePrice.toLocaleString()}`,
+                        'Down Payment': `$${formData.downPayment.toLocaleString()}`,
+                        'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
+                        'Interest Rate': `${formData.interestRate ?? 'N/A'}%`,
+                      }}
+                      results={{
+                        'Total Closing Costs': `$${results!.totalClosingCosts.toFixed(0)}`,
+                        'Total Out of Pocket': `$${results!.outOfPocket.toFixed(0)}`,
+                        'Lender Costs': `$${results!.lenderCosts.toFixed(0)}`,
+                        'Third-Party Costs': `$${results!.thirdPartyCosts.toFixed(0)}`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-closing-cost-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

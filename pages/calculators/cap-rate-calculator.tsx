@@ -6,11 +6,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -438,39 +435,25 @@ const CapRateCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="cap-rate"
-                          title="Cap Rate Report"
-                          inputs={{
-                            'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
-                            'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
-                            'Vacancy Rate': `${formData.vacancyRate}%`,
-                            'Target Cap Rate': `${targetCapRate}%`,
-                          }}
-                          results={{
-                            'Cap Rate': `${results!.capRate.toFixed(2)}%`,
-                            'Net Operating Income': `$${results!.netOperatingIncome.toFixed(0)}`,
-                            'Annual Rental Income': `$${results!.annualRentalIncome.toFixed(0)}`,
-                            'Property Value at Target': `$${results!.propertyValue.toFixed(0)}`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="cap-rate"
+                      title="Cap Rate Report"
+                      inputs={{
+                        'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
+                        'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
+                        'Vacancy Rate': `${formData.vacancyRate}%`,
+                        'Target Cap Rate': `${targetCapRate}%`,
+                      }}
+                      results={{
+                        'Cap Rate': `${results!.capRate.toFixed(2)}%`,
+                        'Net Operating Income': `$${results!.netOperatingIncome.toFixed(0)}`,
+                        'Annual Rental Income': `$${results!.annualRentalIncome.toFixed(0)}`,
+                        'Property Value at Target': `$${results!.propertyValue.toFixed(0)}`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-cap-rate-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>

@@ -6,11 +6,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useCalculatorAI } from '@/hooks/useCalculatorAI';
 import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
 import dynamic from 'next/dynamic';
-import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
-import type { AIAnalysis } from '@/lib/api/calculators';
-
-const PDFDownloadLink = dynamic(
-  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+const PDFExportButton = dynamic(
+  () => import('@/components/calculators/PDFExportButton').then((m) => m.PDFExportButton),
   { ssr: false }
 );
 
@@ -391,40 +388,26 @@ const TemporaryBuydownCalculator: React.FC = () => {
                       Get AI Analysis
                     </button>
                     <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
-                    <PDFDownloadLink
-                      document={
-                        <CalculatorPDFDocument
-                          calculatorType="temporary-buydown"
-                          title="Temporary Buydown Report"
-                          inputs={{
-                            'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
-                            'Base Rate': `${formData.baseRate}%`,
-                            'Buydown Rate': `${formData.buydownRate}%`,
-                            'Buydown Period': `${formData.buydownYears} year${formData.buydownYears > 1 ? 's' : ''}`,
-                            'Buydown Cost': `$${formData.buydownCost.toLocaleString()}`,
-                          }}
-                          results={{
-                            'Monthly Savings': `$${results!.monthlySavings.toFixed(0)}`,
-                            'Total Savings': `$${results!.totalSavings.toFixed(0)}`,
-                            'Break-Even': `${results!.breakEvenMonths.toFixed(1)} months`,
-                            'Effective Rate': `${results!.effectiveRate.toFixed(2)}%`,
-                          }}
-                          analysis={aiAnalysis ?? undefined}
-                          location={location || undefined}
-                          generatedAt={new Date()}
-                        />
-                      }
+                    <PDFExportButton
+                      calculatorType="temporary-buydown"
+                      title="Temporary Buydown Report"
+                      inputs={{
+                        'Loan Amount': `$${formData.loanAmount.toLocaleString()}`,
+                        'Base Rate': `${formData.baseRate}%`,
+                        'Buydown Rate': `${formData.buydownRate}%`,
+                        'Buydown Period': `${formData.buydownYears} year${formData.buydownYears > 1 ? 's' : ''}`,
+                        'Buydown Cost': `$${formData.buydownCost.toLocaleString()}`,
+                      }}
+                      results={{
+                        'Monthly Savings': `$${results!.monthlySavings.toFixed(0)}`,
+                        'Total Savings': `$${results!.totalSavings.toFixed(0)}`,
+                        'Break-Even': `${results!.breakEvenMonths.toFixed(1)} months`,
+                        'Effective Rate': `${results!.effectiveRate.toFixed(2)}%`,
+                      }}
+                      analysis={aiAnalysis ?? undefined}
+                      location={location || undefined}
                       fileName="ondo-temporary-buydown-report.pdf"
-                    >
-                      {({ loading: pdfLoading }) => (
-                        <button
-                          disabled={pdfLoading}
-                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                        >
-                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
-                        </button>
-                      )}
-                    </PDFDownloadLink>
+                    />
                   </div>
                 </div>
               </>
