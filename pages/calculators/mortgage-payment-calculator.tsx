@@ -2,10 +2,18 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Download } from 'lucide-react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import { ArrowLeft } from 'lucide-react';
 import { LoanProgram, calculateMonthlyPI, clampCreditScore, getProgramMI } from '@/lib/mortgage-utils';
+import { useCalculatorAI } from '@/hooks/useCalculatorAI';
+import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
+import dynamic from 'next/dynamic';
+import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
+import type { AIAnalysis } from '@/lib/api/calculators';
+
+const PDFDownloadLink = dynamic(
+  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+  { ssr: false }
+);
 
 interface MortgageData {
   homePrice: number;
@@ -58,14 +66,16 @@ const MortgagePaymentCalculator: React.FC = () => {
 
   const [results, setResults] = useState<PaymentBreakdown | null>(null);
   const [showAmortization, setShowAmortization] = useState(false);
+  const [location, setLocation] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
   const calculateMortgage = useCallback(() => {
     const { homePrice, downPayment, loanAmount, interestRate, loanTerm, propertyTax, insurance, program } = formData;
-    
+
     // Calculate monthly interest rate
     const monthlyRate = interestRate / 100 / 12;
     const totalPayments = loanTerm * 12;
-    
+
     // Program MI and upfront fees
     const credit = clampCreditScore(formData.creditScore);
     const { monthlyMI, upfrontFee, description: _miDesc } = getProgramMI(program, loanAmount, homePrice, credit, loanTerm, downPayment);
@@ -85,14 +95,14 @@ const MortgagePaymentCalculator: React.FC = () => {
 
     const amortizationSchedule = [];
     let remainingBalance = financedLoanAmount;
-    
+
     for (let month = 1; month <= Math.min(360, totalPayments); month++) {
       const interestPayment = remainingBalance * monthlyRate;
       const principalPayment = monthlyPayment - interestPayment;
       remainingBalance -= principalPayment;
-      
+
       if (remainingBalance < 0) remainingBalance = 0;
-      
+
       amortizationSchedule.push({
         month,
         payment: monthlyPayment,
@@ -103,7 +113,7 @@ const MortgagePaymentCalculator: React.FC = () => {
     }
 
     const firstMonthInterest = financedLoanAmount * monthlyRate;
-    
+
     setResults({
       principal: monthlyPayment - firstMonthInterest,
       interest: firstMonthInterest,
@@ -119,18 +129,26 @@ const MortgagePaymentCalculator: React.FC = () => {
     });
   }, [formData]);
 
+  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
+    calculatorType: 'mortgage',
+    inputs: formData as unknown as Record<string, unknown>,
+    results: (results ?? {}) as unknown as Record<string, unknown>,
+    location: location || undefined,
+    propertyType: propertyType || undefined,
+  });
+
   useEffect(() => {
     calculateMortgage();
   }, [calculateMortgage]);
 
   const handleInputChange = (field: keyof MortgageData, value: number | string) => {
     const newData = { ...formData, [field]: value };
-    
+
     // Auto-calculate loan amount if home price or down payment changes
     if (field === 'homePrice' || field === 'downPayment') {
       newData.loanAmount = Math.max(0, newData.homePrice - newData.downPayment);
     }
-    
+
     setFormData(newData);
   };
 
@@ -141,44 +159,6 @@ const MortgagePaymentCalculator: React.FC = () => {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     }).format(amount);
-  };
-
-  const downloadPDF = async () => {
-    if (!results) return;
-
-    const element = document.getElementById('pdf-content');
-    if (!element) return;
-
-    try {
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save('mortgage-payment-analysis.pdf');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
   };
 
   return (
@@ -193,15 +173,6 @@ const MortgagePaymentCalculator: React.FC = () => {
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Mortgage Payment Calculator</h1>
             </div>
-            {results && (
-              <button
-                onClick={downloadPDF}
-                className="bg-primary hover:opacity-90 text-primary-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
-              >
-                <Download className="h-5 w-5" />
-                <span>Download PDF</span>
-              </button>
-            )}
           </div>
         </div>
       </div>
@@ -211,7 +182,7 @@ const MortgagePaymentCalculator: React.FC = () => {
           {/* Input Form */}
           <div className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-foreground mb-6">Enter Your Information</h2>
-            
+
             <div className="space-y-6">
               {/* Home Price */}
               <div>
@@ -265,7 +236,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                   </div>
                 </div>
                 <p className="text-sm text-foreground/70 mt-1">
-                  {formData.downPayment < formData.homePrice * 0.2 && 
+                  {formData.downPayment < formData.homePrice * 0.2 &&
                     "Note: Less than 20% down payment will require PMI"
                   }
                 </p>
@@ -410,7 +381,7 @@ const MortgagePaymentCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content">
+              <>
                 {/* Monthly Payment Summary */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Monthly Payment Breakdown</h2>
@@ -479,7 +450,7 @@ const MortgagePaymentCalculator: React.FC = () => {
                       {showAmortization ? 'Hide Details' : 'Show Details'}
                     </button>
                   </div>
-                  
+
                   {showAmortization && (
                     <div className="max-h-96 overflow-y-auto">
                       <table className="w-full text-sm">
@@ -514,7 +485,73 @@ const MortgagePaymentCalculator: React.FC = () => {
                     </div>
                   )}
                 </div>
-              </div>
+
+                {/* AI Analysis */}
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Location, e.g. Austin, TX"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    />
+                    <select
+                      value={propertyType}
+                      onChange={(e) => setPropertyType(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    >
+                      <option value="">Property type (optional)</option>
+                      <option>Single Family</option>
+                      <option>Multi-Family</option>
+                      <option>Condo</option>
+                      <option>Commercial</option>
+                    </select>
+                    <button
+                      onClick={() => { calculateMortgage(); analyze(); }}
+                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+                    >
+                      Get AI Analysis
+                    </button>
+                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
+                    <PDFDownloadLink
+                      document={
+                        <CalculatorPDFDocument
+                          calculatorType="mortgage"
+                          title="Mortgage Payment Report"
+                          inputs={{
+                            'Home Price': `$${formData.homePrice.toLocaleString()}`,
+                            'Down Payment': `$${formData.downPayment.toLocaleString()}`,
+                            'Interest Rate': `${formData.interestRate}%`,
+                            'Loan Term': `${formData.loanTerm} years`,
+                            'Loan Program': formData.program,
+                          }}
+                          results={{
+                            'Total Monthly Payment': `$${results!.totalMonthly.toFixed(0)}`,
+                            'Principal & Interest': `$${results!.monthlyPI.toFixed(0)}`,
+                            'Total Interest': `$${results!.totalInterest.toFixed(0)}`,
+                            'Total Cost': `$${results!.totalCost.toFixed(0)}`,
+                          }}
+                          analysis={aiAnalysis ?? undefined}
+                          location={location || undefined}
+                          generatedAt={new Date()}
+                        />
+                      }
+                      fileName="ondo-mortgage-report.pdf"
+                    >
+                      {({ loading: pdfLoading }) => (
+                        <button
+                          disabled={pdfLoading}
+                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
+                        >
+                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
+                        </button>
+                      )}
+                    </PDFDownloadLink>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>

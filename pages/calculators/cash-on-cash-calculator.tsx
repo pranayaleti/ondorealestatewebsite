@@ -2,10 +2,18 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Download } from 'lucide-react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import { ArrowLeft } from 'lucide-react';
 import { calculateMonthlyPI } from '@/lib/mortgage-utils';
+import { useCalculatorAI } from '@/hooks/useCalculatorAI';
+import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
+import dynamic from 'next/dynamic';
+import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
+import type { AIAnalysis } from '@/lib/api/calculators';
+
+const PDFDownloadLink = dynamic(
+  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+  { ssr: false }
+);
 
 interface CashOnCashData {
   purchasePrice: number;
@@ -58,6 +66,8 @@ const CashOnCashCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<CashOnCashResults | null>(null);
+  const [location, setLocation] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
   const calculateCashOnCash = React.useCallback(() => {
     const {
@@ -80,7 +90,7 @@ const CashOnCashCalculator: React.FC = () => {
 
     // Use annual rent if provided, otherwise calculate from monthly
     const effectiveAnnualRent = annualRent > 0 ? annualRent : monthlyRent * 12;
-    
+
     // Calculate vacancy loss
     const vacancyLoss = effectiveAnnualRent * (vacancyRate / 100);
     const annualRentalIncome = effectiveAnnualRent - vacancyLoss;
@@ -130,23 +140,31 @@ const CashOnCashCalculator: React.FC = () => {
     });
   }, [formData]);
 
+  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
+    calculatorType: 'cash-on-cash',
+    inputs: formData as unknown as Record<string, unknown>,
+    results: (results ?? {}) as unknown as Record<string, unknown>,
+    location: location || undefined,
+    propertyType: propertyType || undefined,
+  });
+
   useEffect(() => {
     calculateCashOnCash();
   }, [calculateCashOnCash]);
 
   const handleInputChange = (field: keyof CashOnCashData, value: number) => {
     const newData = { ...formData, [field]: value };
-    
+
     // Auto-calculate loan amount if purchase price or down payment changes
     if (field === 'purchasePrice' || field === 'downPayment') {
       newData.loanAmount = Math.max(0, newData.purchasePrice - newData.downPayment);
     }
-    
+
     // Auto-calculate annual rent from monthly if monthly changes
     if (field === 'monthlyRent' && newData.annualRent === 0) {
       newData.annualRent = 0; // Keep 0 to indicate using monthly
     }
-    
+
     setFormData(newData);
   };
 
@@ -161,44 +179,6 @@ const CashOnCashCalculator: React.FC = () => {
 
   const formatPercent = (value: number) => {
     return `${value.toFixed(2)}%`;
-  };
-
-  const downloadPDF = async () => {
-    if (!results) return;
-
-    const element = document.getElementById('pdf-content');
-    if (!element) return;
-
-    try {
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save('cash-on-cash-analysis.pdf');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
   };
 
   const getReturnColor = (returnPercent: number) => {
@@ -220,15 +200,6 @@ const CashOnCashCalculator: React.FC = () => {
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Cash-on-Cash Return Calculator</h1>
             </div>
-            {results && (
-              <button
-                onClick={downloadPDF}
-                className="bg-primary hover:opacity-90 text-primary-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
-              >
-                <Download className="h-5 w-5" />
-                <span>Download PDF</span>
-              </button>
-            )}
           </div>
         </div>
       </div>
@@ -238,7 +209,7 @@ const CashOnCashCalculator: React.FC = () => {
           {/* Input Form */}
           <div className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-semibold text-foreground mb-6">Property Information</h2>
-            
+
             <div className="space-y-6">
               {/* Purchase Price */}
               <div>
@@ -496,7 +467,7 @@ const CashOnCashCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content">
+              <>
                 {/* Cash-on-Cash Return */}
                 <div className="bg-card rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-foreground mb-4">Cash-on-Cash Return</h2>
@@ -512,7 +483,7 @@ const CashOnCashCalculator: React.FC = () => {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-3 bg-muted rounded-lg">
                         <p className="text-sm text-foreground/70 mb-1">Annual Cash Flow</p>
@@ -618,7 +589,72 @@ const CashOnCashCalculator: React.FC = () => {
                     <p>• Factor in tax benefits and long-term appreciation</p>
                   </div>
                 </div>
-              </div>
+
+                {/* AI Analysis */}
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Location, e.g. Austin, TX"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    />
+                    <select
+                      value={propertyType}
+                      onChange={(e) => setPropertyType(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    >
+                      <option value="">Property type (optional)</option>
+                      <option>Single Family</option>
+                      <option>Multi-Family</option>
+                      <option>Condo</option>
+                      <option>Commercial</option>
+                    </select>
+                    <button
+                      onClick={() => { calculateCashOnCash(); analyze(); }}
+                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+                    >
+                      Get AI Analysis
+                    </button>
+                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
+                    <PDFDownloadLink
+                      document={
+                        <CalculatorPDFDocument
+                          calculatorType="cash-on-cash"
+                          title="Cash-on-Cash Return Report"
+                          inputs={{
+                            'Purchase Price': `$${formData.purchasePrice.toLocaleString()}`,
+                            'Down Payment': `$${formData.downPayment.toLocaleString()}`,
+                            'Monthly Rent': `$${formData.monthlyRent.toLocaleString()}`,
+                            'Interest Rate': `${formData.interestRate}%`,
+                          }}
+                          results={{
+                            'Cash-on-Cash Return': `${results!.cashOnCashReturn.toFixed(2)}%`,
+                            'Annual Cash Flow': `$${results!.annualCashFlow.toFixed(0)}`,
+                            'Monthly Cash Flow': `$${results!.monthlyCashFlow.toFixed(0)}`,
+                            'Cap Rate': `${results!.capRate.toFixed(2)}%`,
+                          }}
+                          analysis={aiAnalysis ?? undefined}
+                          location={location || undefined}
+                          generatedAt={new Date()}
+                        />
+                      }
+                      fileName="ondo-coc-report.pdf"
+                    >
+                      {({ loading: pdfLoading }) => (
+                        <button
+                          disabled={pdfLoading}
+                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
+                        >
+                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
+                        </button>
+                      )}
+                    </PDFDownloadLink>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -655,4 +691,3 @@ const CashOnCashCalculator: React.FC = () => {
 };
 
 export default CashOnCashCalculator;
-
