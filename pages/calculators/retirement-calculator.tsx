@@ -2,9 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Download, TrendingUp, Home, Landmark, PiggyBank } from 'lucide-react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import { ArrowLeft, TrendingUp, Home, Landmark, PiggyBank } from 'lucide-react';
+import { useCalculatorAI } from '@/hooks/useCalculatorAI';
+import { AIInsightsPanel } from '@/components/calculators/AIInsightsPanel';
+import dynamic from 'next/dynamic';
+import { CalculatorPDFDocument } from '@/components/calculators/CalculatorPDFDocument';
+import type { AIAnalysis } from '@/lib/api/calculators';
+
+const PDFDownloadLink = dynamic(
+  () => import('@react-pdf/renderer').then((m) => m.PDFDownloadLink),
+  { ssr: false }
+);
 
 interface RetirementData {
   // Personal Information
@@ -75,6 +83,8 @@ const RetirementCalculator: React.FC = () => {
   });
 
   const [results, setResults] = useState<RetirementResults | null>(null);
+  const [location, setLocation] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
   useEffect(() => {
     calculateRetirement();
@@ -207,6 +217,14 @@ const RetirementCalculator: React.FC = () => {
     });
   };
 
+  const { data: aiAnalysis, loading: aiLoading, error: aiError, analyze } = useCalculatorAI({
+    calculatorType: 'retirement',
+    inputs: formData as unknown as Record<string, unknown>,
+    results: (results ?? {}) as unknown as Record<string, unknown>,
+    location: location || undefined,
+    propertyType: propertyType || undefined,
+  });
+
   const handleInputChange = (field: keyof RetirementData, value: number) => {
     setFormData({ ...formData, [field]: value });
   };
@@ -220,65 +238,16 @@ const RetirementCalculator: React.FC = () => {
     }).format(amount);
   };
 
-  const downloadPDF = async () => {
-    if (!results) return;
-
-    const element = document.getElementById('pdf-content');
-    if (!element) return;
-
-    try {
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save('retirement-planning-analysis.pdf');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="bg-card shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Link href="/calculators" className="text-primary hover:text-primary">
-                <ArrowLeft className="h-6 w-6" />
-              </Link>
-              <h1 className="text-2xl font-bold text-foreground">Retirement Planning Calculator</h1>
-            </div>
-            {results && (
-              <button
-                onClick={downloadPDF}
-                className="bg-green-600 hover:bg-green-700 text-foreground px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
-              >
-                <Download className="h-5 w-5" />
-                <span>Download PDF</span>
-              </button>
-            )}
+          <div className="flex items-center space-x-4">
+            <Link href="/calculators" className="text-primary hover:text-primary">
+              <ArrowLeft className="h-6 w-6" />
+            </Link>
+            <h1 className="text-2xl font-bold text-foreground">Retirement Planning Calculator</h1>
           </div>
         </div>
       </div>
@@ -524,93 +493,157 @@ const RetirementCalculator: React.FC = () => {
           {/* Results */}
           <div className="space-y-6">
             {results && (
-              <div id="pdf-content" className="bg-card rounded-lg shadow-lg p-6">
-                <h2 className="text-xl font-semibold text-foreground mb-6">Retirement Analysis Results</h2>
-                
-                {/* Summary */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-muted p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-foreground mb-2">Total Retirement Savings</h3>
-                    <p className="text-2xl font-bold text-foreground">{formatCurrency(results.totalRetirementSavings)}</p>
+              <>
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-6">Retirement Analysis Results</h2>
+
+                  {/* Summary */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="bg-muted p-4 rounded-lg">
+                      <h3 className="text-sm font-medium text-foreground mb-2">Total Retirement Savings</h3>
+                      <p className="text-2xl font-bold text-foreground">{formatCurrency(results.totalRetirementSavings)}</p>
+                    </div>
+                    <div className="bg-muted p-4 rounded-lg">
+                      <h3 className="text-sm font-medium text-green-900 mb-2">Real Estate Value at Retirement</h3>
+                      <p className="text-2xl font-bold text-green-900">{formatCurrency(results.realEstateValueAtRetirement)}</p>
+                    </div>
                   </div>
-                  <div className="bg-muted p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-green-900 mb-2">Real Estate Value at Retirement</h3>
-                    <p className="text-2xl font-bold text-green-900">{formatCurrency(results.realEstateValueAtRetirement)}</p>
+
+                  {/* Total Assets */}
+                  <div className="bg-muted p-4 rounded-lg mb-6">
+                    <h3 className="text-lg font-medium text-purple-900 mb-2">Total Retirement Assets</h3>
+                    <p className="text-3xl font-bold text-purple-900">{formatCurrency(results.totalRetirementAssets)}</p>
                   </div>
-                </div>
 
-                {/* Total Assets */}
-                <div className="bg-muted p-4 rounded-lg mb-6">
-                  <h3 className="text-lg font-medium text-purple-900 mb-2">Total Retirement Assets</h3>
-                  <p className="text-3xl font-bold text-purple-900">{formatCurrency(results.totalRetirementAssets)}</p>
-                </div>
-
-                {/* Income Analysis */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-muted p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-foreground mb-2">Annual Retirement Income</h3>
-                    <p className="text-xl font-bold text-foreground">{formatCurrency(results.annualRetirementIncome)}</p>
+                  {/* Income Analysis */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="bg-muted p-4 rounded-lg">
+                      <h3 className="text-sm font-medium text-foreground mb-2">Annual Retirement Income</h3>
+                      <p className="text-xl font-bold text-foreground">{formatCurrency(results.annualRetirementIncome)}</p>
+                    </div>
+                    <div className="bg-muted p-4 rounded-lg">
+                      <h3 className="text-sm font-medium text-red-900 mb-2">Income Gap</h3>
+                      <p className="text-xl font-bold text-red-900">{formatCurrency(results.retirementIncomeGap)}</p>
+                    </div>
                   </div>
-                  <div className="bg-muted p-4 rounded-lg">
-                    <h3 className="text-sm font-medium text-red-900 mb-2">Income Gap</h3>
-                    <p className="text-xl font-bold text-red-900">{formatCurrency(results.retirementIncomeGap)}</p>
+
+                  {/* Retirement Readiness */}
+                  <div className="p-4 rounded-lg mb-6 bg-muted">
+                    <h3 className="text-lg font-medium text-foreground mb-2">Retirement Readiness</h3>
+                    <p className={`text-xl font-bold mb-2 ${
+                      results.retirementReadiness === 'On Track' ? 'text-green-900' :
+                      results.retirementReadiness === 'Close to Target' ? 'text-yellow-900' : 'text-red-900'
+                    }`}>
+                      {results.retirementReadiness}
+                    </p>
+                    <ul className="list-disc list-inside space-y-1">
+                      {results.recommendations.map((rec, index) => (
+                        <li key={index} className="text-sm text-foreground">{rec}</li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
 
-                {/* Retirement Readiness */}
-                <div className={`p-4 rounded-lg mb-6 ${
-                  results.retirementReadiness === 'On Track' ? 'bg-muted' :
-                  results.retirementReadiness === 'Close to Target' ? 'bg-muted' : 'bg-muted'
-                }`}>
-                  <h3 className="text-lg font-medium text-foreground mb-2">Retirement Readiness</h3>
-                  <p className={`text-xl font-bold mb-2 ${
-                    results.retirementReadiness === 'On Track' ? 'text-green-900' :
-                    results.retirementReadiness === 'Close to Target' ? 'text-yellow-900' : 'text-red-900'
-                  }`}>
-                    {results.retirementReadiness}
-                  </p>
-                  <ul className="list-disc list-inside space-y-1">
-                    {results.recommendations.map((rec, index) => (
-                      <li key={index} className="text-sm text-foreground">{rec}</li>
-                    ))}
-                  </ul>
-                </div>
+                  {/* Monthly Budget */}
+                  <div className="bg-muted p-4 rounded-lg mb-6">
+                    <h3 className="text-lg font-medium text-indigo-900 mb-2">Monthly Retirement Budget</h3>
+                    <p className="text-2xl font-bold text-indigo-900">{formatCurrency(results.monthlyRetirementBudget)}</p>
+                  </div>
 
-                {/* Monthly Budget */}
-                <div className="bg-muted p-4 rounded-lg mb-6">
-                  <h3 className="text-lg font-medium text-indigo-900 mb-2">Monthly Retirement Budget</h3>
-                  <p className="text-2xl font-bold text-indigo-900">{formatCurrency(results.monthlyRetirementBudget)}</p>
-                </div>
-
-                {/* Year-by-Year Projection */}
-                <div>
-                  <h3 className="text-lg font-medium text-foreground mb-4">Savings Projection</h3>
-                  <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-muted">
-                        <tr>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Age</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Year</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Savings</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Real Estate</th>
-                          <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Total Assets</th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-card divide-y divide-gray-200">
-                        {results.yearByYearProjection.slice(0, 10).map((projection) => (
-                          <tr key={projection.year}>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{projection.age}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-foreground/70">{projection.year}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.savings)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.realEstateValue)}</td>
-                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{formatCurrency(projection.totalAssets)}</td>
+                  {/* Year-by-Year Projection */}
+                  <div>
+                    <h3 className="text-lg font-medium text-foreground mb-4">Savings Projection</h3>
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-muted">
+                          <tr>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Age</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Year</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Savings</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Real Estate</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-foreground/70 uppercase tracking-wider">Total Assets</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="bg-card divide-y divide-gray-200">
+                          {results.yearByYearProjection.slice(0, 10).map((projection) => (
+                            <tr key={projection.year}>
+                              <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{projection.age}</td>
+                              <td className="px-3 py-2 whitespace-nowrap text-sm text-foreground/70">{projection.year}</td>
+                              <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.savings)}</td>
+                              <td className="px-3 py-2 whitespace-nowrap text-sm text-primary">{formatCurrency(projection.realEstateValue)}</td>
+                              <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-foreground">{formatCurrency(projection.totalAssets)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                {/* AI Analysis */}
+                <div className="bg-card rounded-lg shadow-lg p-6">
+                  <h2 className="text-xl font-semibold text-foreground mb-4">AI Analysis</h2>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Location, e.g. Austin, TX"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    />
+                    <select
+                      value={propertyType}
+                      onChange={(e) => setPropertyType(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md bg-background text-foreground focus:ring-1 focus:ring-accent focus:border-accent outline-none"
+                    >
+                      <option value="">Property type (optional)</option>
+                      <option>Single Family</option>
+                      <option>Multi-Family</option>
+                      <option>Condo</option>
+                      <option>Commercial</option>
+                    </select>
+                    <button
+                      onClick={() => { calculateRetirement(); analyze(); }}
+                      className="w-full py-2 text-sm font-semibold rounded-md bg-accent text-accent-foreground hover:opacity-90 transition-opacity"
+                    >
+                      Get AI Analysis
+                    </button>
+                    <AIInsightsPanel analysis={aiAnalysis} loading={aiLoading} error={aiError} />
+                    <PDFDownloadLink
+                      document={
+                        <CalculatorPDFDocument
+                          calculatorType="retirement"
+                          title="Retirement Planning Report"
+                          inputs={{
+                            'Current Age': `${formData.currentAge}`,
+                            'Retirement Age': `${formData.retirementAge}`,
+                            'Current Savings': `$${formData.currentSavings.toLocaleString()}`,
+                            'Monthly Contribution': `$${formData.monthlyContribution.toLocaleString()}`,
+                          }}
+                          results={{
+                            'Total Retirement Assets': `$${results!.totalRetirementAssets.toFixed(0)}`,
+                            'Annual Retirement Income': `$${results!.annualRetirementIncome.toFixed(0)}`,
+                            'Income Gap': `$${results!.retirementIncomeGap.toFixed(0)}`,
+                            'Readiness': results!.retirementReadiness,
+                          }}
+                          analysis={aiAnalysis ?? undefined}
+                          location={location || undefined}
+                          generatedAt={new Date()}
+                        />
+                      }
+                      fileName="ondo-retirement-report.pdf"
+                    >
+                      {({ loading: pdfLoading }) => (
+                        <button
+                          disabled={pdfLoading}
+                          className="w-full py-2 text-sm font-medium rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
+                        >
+                          {pdfLoading ? 'Generating PDF…' : '⬇ Download PDF Report'}
+                        </button>
+                      )}
+                    </PDFDownloadLink>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>
